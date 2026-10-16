@@ -3,27 +3,59 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaDeploymentRunsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment, trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous response's `next_page` field, and set `limit` to control the page size.
+     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment,
+     * trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous
+     * response's `next_page` field, and set `limit` to control the page size.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest, options: RequestOptions? = null): BetaManagedAgentsListDeploymentRunsData {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.listBetaDeploymentRuns(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListDeploymentRunsData {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.listBetaDeploymentRuns(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment, trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous response's `next_page` field, and set `limit` to control the page size.
+     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment,
+     * trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous
+     * response's `next_page` field, and set `limit` to control the page size.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsDeploymentRun) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.listBetaDeploymentRunsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsDeploymentRun) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns
+            .listBetaDeploymentRunsPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves the record for a single deployment run, including whether session creation succeeded or failed. Use `deployment_run_id` to select the run and inspect `session_id` or `error` for its creation outcome.
+     * Retrieves the record for a single deployment run, including whether session creation
+     * succeeded or failed. Use `deployment_run_id` to select the run and inspect `session_id` or
+     * `error` for its creation outcome.
      */
-    fun retrieve(deploymentRunId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeploymentRun {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.retrieveBetaDeploymentRuns(clientConfig, deploymentRunId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        deploymentRunId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeploymentRun {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns
+            .retrieveBetaDeploymentRuns(
+                clientConfig,
+                deploymentRunId,
+                anthropicVersion,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
-
 }

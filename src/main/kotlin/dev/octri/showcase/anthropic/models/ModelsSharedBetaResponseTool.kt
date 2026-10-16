@@ -3,139 +3,166 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaResponseToolReferenceBlock` API schema.
- */
+/** Typed representation of the `BetaResponseToolReferenceBlock` API schema. */
 data class BetaResponseToolReferenceBlock(
-    /**
-     * Required `string` value serialized in the `tool_name` wire field.
-     */
+    /** Required `string` value serialized in the `tool_name` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_name") val toolName: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseToolReferenceBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseToolReferenceBlockTypeEnum,
 )
 
-/**
- * Typed representation of the `BetaResponseToolSearchToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaResponseToolSearchToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseToolSearchToolResultBlock(
-    /**
-     * Required API value serialized in the `content` wire field.
-     */
+    /** Required API value serialized in the `content` wire field. */
     val content: BetaResponseToolSearchToolResultBlockContent,
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseToolSearchToolResultBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseToolSearchToolResultBlockTypeEnum,
 ) : BetaContentBlock, BetaContentBlockStartEventContentBlock
 
-/**
- * Required API value serialized in the `content` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaResponseToolSearchToolResultBlockContent::class)
+/** Required API value serialized in the `content` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaResponseToolSearchToolResultBlockContent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseToolSearchToolResultError::class, name = "tool_search_tool_result_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseToolSearchToolSearchResultBlock::class, name = "tool_search_tool_search_result")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseToolSearchToolResultError::class,
+        name = "tool_search_tool_result_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseToolSearchToolSearchResultBlock::class,
+        name = "tool_search_tool_search_result",
+    ),
 )
 sealed interface BetaResponseToolSearchToolResultBlockContent
 
-/** A [BetaResponseToolSearchToolResultBlockContent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaResponseToolSearchToolResultBlockContent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaResponseToolSearchToolResultBlockContent] whose `type` names no branch this SDK knows,
+ * kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaResponseToolSearchToolResultBlockContent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaResponseToolSearchToolResultBlockContent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `BetaResponseToolSearchToolResultError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaResponseToolSearchToolResultError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseToolSearchToolResultError(
-    /**
-     * Required enumerated value serialized in the `error_code` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: BetaToolSearchToolResultErrorCode,
-    /**
-     * Required `string` value serialized in the `error_message` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_message", required = true) val errorMessage: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseToolSearchToolResultErrorTypeEnum
+    /** Required enumerated value serialized in the `error_code` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
+    val errorCode: BetaToolSearchToolResultErrorCode,
+    /** Required `string` value serialized in the `error_message` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_message", required = true)
+    val errorMessage: String?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseToolSearchToolResultErrorTypeEnum,
 ) : BetaResponseToolSearchToolResultBlockContent
 
-/**
- * Typed representation of the `BetaResponseToolSearchToolSearchResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaResponseToolSearchToolSearchResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseToolSearchToolSearchResultBlock(
-    /**
-     * Required array value serialized in the `tool_references` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_references") val toolReferences: List<BetaResponseToolReferenceBlock>,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseToolSearchToolSearchResultBlockTypeEnum
+    /** Required array value serialized in the `tool_references` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_references")
+    val toolReferences: List<BetaResponseToolReferenceBlock>,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseToolSearchToolSearchResultBlockTypeEnum,
 ) : BetaResponseToolSearchToolResultBlockContent
 
-/**
- * Typed representation of the `BetaResponseToolUseBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaResponseToolUseBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseToolUseBlock(
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
+    /** Required `string` value serialized in the `id` wire field. */
     val id: String,
-    /**
-     * Required object value serialized in the `input` wire field.
-     */
+    /** Required object value serialized in the `input` wire field. */
     val input: Map<String, Any>,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaResponseToolUseBlockTypeEnum,
-    /**
-     * Optional API value serialized in the `caller` wire field.
-     */
+    /** Optional API value serialized in the `caller` wire field. */
     val caller: BetaResponseToolUseBlockCaller? = null,
-    /**
-     * For a toolset member tool_use, the toolset family.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null
+    /** For a toolset member tool_use, the toolset family. */
+    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null,
 ) : BetaContentBlock, BetaContentBlockStartEventContentBlock
 
-/**
- * Optional API value serialized in the `caller` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaResponseToolUseBlockCaller::class)
+/** Optional API value serialized in the `caller` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaResponseToolUseBlockCaller::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaDirectCaller::class, name = "direct"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaServerToolCaller::class, name = "code_execution_20250825"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaServerToolCaller20260120::class, name = "code_execution_20260120")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaDirectCaller::class,
+        name = "direct",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaServerToolCaller::class,
+        name = "code_execution_20250825",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaServerToolCaller20260120::class,
+        name = "code_execution_20260120",
+    ),
 )
 sealed interface BetaResponseToolUseBlockCaller
 
-/** A [BetaResponseToolUseBlockCaller] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaResponseToolUseBlockCaller @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaResponseToolUseBlockCaller] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaResponseToolUseBlockCaller
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaResponseToolUseBlockCaller {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

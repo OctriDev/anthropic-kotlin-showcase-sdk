@@ -14,48 +14,107 @@ import java.time.LocalDate
 
 object BetaOrganizationsUsageReportClaudeCode {
 
-
     /**
-     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to analyze developer productivity and build custom dashboards.
+     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to
+     * analyze developer productivity and build custom dashboards.
      *
-     * @param startingAt UTC date in YYYY-MM-DD format. Returns metrics for this
-     *   single day only.
+     * @param startingAt UTC date in YYYY-MM-DD format. Returns metrics for this single day only.
      * @param limit Number of records per page (default: 20, max: 1000).
      * @param page Opaque cursor token from previous response's `next_page` field.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsUsageReportClaudeCode(clientConfig: ClientConfig, startingAt: LocalDate, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaGetClaudeCodeUsageReportResponse {
-        Validation.validatePattern("starting_at", SdkClient.parameterWireValue(startingAt, "date"), "^\\d{4}-\\d{2}-\\d{2}$")
+    fun retrieveBetaOrganizationsUsageReportClaudeCode(
+        clientConfig: ClientConfig,
+        startingAt: LocalDate,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaGetClaudeCodeUsageReportResponse {
+        Validation.validatePattern(
+            "starting_at",
+            SdkClient.parameterWireValue(startingAt, "date"),
+            "^\\d{4}-\\d{2}-\\d{2}$",
+        )
         Validation.validateDate("starting_at", startingAt)
 
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+        }
 
-        return SdkClient.request<BetaGetClaudeCodeUsageReportResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/usage_report/claude_code?beta=true", config = clientConfig, query = mapOf("starting_at" to
-    SdkClient.queryValue(startingAt, "form", true, "date"), "limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "retrieveBetaOrganizationsUsageReportClaudeCode", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaGetClaudeCodeUsageReportResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/usage_report/claude_code?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "starting_at" to SdkClient.queryValue(startingAt, "form", true, "date"),
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "retrieveBetaOrganizationsUsageReportClaudeCode",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to analyze developer productivity and build custom dashboards.
+     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to
+     * analyze developer productivity and build custom dashboards.
      *
-     * @param startingAt UTC date in YYYY-MM-DD format. Returns metrics for this
-     *   single day only.
+     * @param startingAt UTC date in YYYY-MM-DD format. Returns metrics for this single day only.
      * @param limit Number of records per page (default: 20, max: 1000).
      * @param page Opaque cursor token from previous response's `next_page` field.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsUsageReportClaudeCodePaginated(clientConfig: ClientConfig, startingAt: LocalDate, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaClaudeCodeUsageReportItem) -> Boolean) {
+    fun retrieveBetaOrganizationsUsageReportClaudeCodePaginated(
+        clientConfig: ClientConfig,
+        startingAt: LocalDate,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaClaudeCodeUsageReportItem) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = retrieveBetaOrganizationsUsageReportClaudeCode(clientConfig, startingAt, limit, cursor, anthropicVersion, options)
+            val page =
+                retrieveBetaOrganizationsUsageReportClaudeCode(
+                    clientConfig,
+                    startingAt,
+                    limit,
+                    cursor,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -73,20 +132,36 @@ object BetaOrganizationsUsageReportClaudeCode {
         val hasMore: Boolean,
     )
 
-    fun retrieveBetaOrganizationsUsageReportClaudeCodePages(clientConfig: ClientConfig, startingAt: LocalDate, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldPage: (RetrieveBetaOrganizationsUsageReportClaudeCodePage) -> Boolean) {
+    fun retrieveBetaOrganizationsUsageReportClaudeCodePages(
+        clientConfig: ClientConfig,
+        startingAt: LocalDate,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (RetrieveBetaOrganizationsUsageReportClaudeCodePage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = retrieveBetaOrganizationsUsageReportClaudeCode(clientConfig, startingAt, limit, cursor, anthropicVersion, options)
+            val page =
+                retrieveBetaOrganizationsUsageReportClaudeCode(
+                    clientConfig,
+                    startingAt,
+                    limit,
+                    cursor,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
             val hasMore = page.hasMore == true && nextCursor != null
-            if (!yieldPage(RetrieveBetaOrganizationsUsageReportClaudeCodePage(page, items, hasMore))) return
+            if (
+                !yieldPage(RetrieveBetaOrganizationsUsageReportClaudeCodePage(page, items, hasMore))
+            )
+                return
             if (!hasMore) return
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
-
-
-
 }

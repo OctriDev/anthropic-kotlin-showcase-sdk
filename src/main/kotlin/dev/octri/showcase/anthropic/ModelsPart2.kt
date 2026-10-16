@@ -3,19 +3,24 @@
 
 package dev.octri.showcase.anthropic
 
-typealias BetaClaudeEnterpriseOrganizationRole = dev.octri.showcase.anthropic.models.BetaClaudeEnterpriseOrganizationRole
+typealias BetaClaudeEnterpriseOrganizationRole =
+    dev.octri.showcase.anthropic.models.BetaClaudeEnterpriseOrganizationRole
 
 typealias BetaClearThinking20251015 = dev.octri.showcase.anthropic.models.BetaClearThinking20251015
 
-typealias BetaClearThinking20251015KeepVariant1Enum = dev.octri.showcase.anthropic.models.BetaClearThinking20251015KeepVariant1Enum
+typealias BetaClearThinking20251015KeepVariant1Enum =
+    dev.octri.showcase.anthropic.models.BetaClearThinking20251015KeepVariant1Enum
 
-typealias BetaClearThinking20251015TypeEnum = dev.octri.showcase.anthropic.models.BetaClearThinking20251015TypeEnum
+typealias BetaClearThinking20251015TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaClearThinking20251015TypeEnum
 
 typealias BetaClearToolUses20250919 = dev.octri.showcase.anthropic.models.BetaClearToolUses20250919
 
-typealias BetaClearToolUses20250919Trigger = dev.octri.showcase.anthropic.models.BetaClearToolUses20250919Trigger
+typealias BetaClearToolUses20250919Trigger =
+    dev.octri.showcase.anthropic.models.BetaClearToolUses20250919Trigger
 
-typealias BetaClearToolUses20250919TypeEnum = dev.octri.showcase.anthropic.models.BetaClearToolUses20250919TypeEnum
+typealias BetaClearToolUses20250919TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaClearToolUses20250919TypeEnum
 
 typealias BetaCloudConfig = dev.octri.showcase.anthropic.models.BetaCloudConfig
 
@@ -23,145 +28,206 @@ typealias BetaCloudConfigNetworking = dev.octri.showcase.anthropic.models.BetaCl
 
 typealias BetaCloudConfigParams = dev.octri.showcase.anthropic.models.BetaCloudConfigParams
 
-typealias BetaCloudConfigParamsNetworking = dev.octri.showcase.anthropic.models.BetaCloudConfigParamsNetworking
+typealias BetaCloudConfigParamsNetworking =
+    dev.octri.showcase.anthropic.models.BetaCloudConfigParamsNetworking
 
-typealias BetaCloudConfigParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaCloudConfigParamsTypeEnum
+typealias BetaCloudConfigParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCloudConfigParamsTypeEnum
 
 typealias BetaCloudConfigTypeEnum = dev.octri.showcase.anthropic.models.BetaCloudConfigTypeEnum
 
-typealias BetaCodeExecutionTool20250522 = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250522
+typealias BetaCodeExecutionTool20250522 =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250522
 
-typealias BetaCodeExecutionTool20250522NameEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250522NameEnum
+typealias BetaCodeExecutionTool20250522NameEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250522NameEnum
 
-typealias BetaCodeExecutionTool20250522TypeEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250522TypeEnum
+typealias BetaCodeExecutionTool20250522TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250522TypeEnum
 
-typealias BetaCodeExecutionTool20250825 = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250825
+typealias BetaCodeExecutionTool20250825 =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250825
 
-typealias BetaCodeExecutionTool20250825NameEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250825NameEnum
+typealias BetaCodeExecutionTool20250825NameEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250825NameEnum
 
-typealias BetaCodeExecutionTool20250825TypeEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250825TypeEnum
+typealias BetaCodeExecutionTool20250825TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20250825TypeEnum
 
-typealias BetaCodeExecutionTool20260120 = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260120
+typealias BetaCodeExecutionTool20260120 =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260120
 
-typealias BetaCodeExecutionTool20260120NameEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260120NameEnum
+typealias BetaCodeExecutionTool20260120NameEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260120NameEnum
 
-typealias BetaCodeExecutionTool20260120TypeEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260120TypeEnum
+typealias BetaCodeExecutionTool20260120TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260120TypeEnum
 
-typealias BetaCodeExecutionTool20260521 = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260521
+typealias BetaCodeExecutionTool20260521 =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260521
 
-typealias BetaCodeExecutionTool20260521NameEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260521NameEnum
+typealias BetaCodeExecutionTool20260521NameEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260521NameEnum
 
-typealias BetaCodeExecutionTool20260521TypeEnum = dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260521TypeEnum
+typealias BetaCodeExecutionTool20260521TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionTool20260521TypeEnum
 
-typealias BetaCodeExecutionToolResultErrorCode = dev.octri.showcase.anthropic.models.BetaCodeExecutionToolResultErrorCode
+typealias BetaCodeExecutionToolResultErrorCode =
+    dev.octri.showcase.anthropic.models.BetaCodeExecutionToolResultErrorCode
 
 typealias BetaCompact20260112 = dev.octri.showcase.anthropic.models.BetaCompact20260112
 
-typealias BetaCompact20260112TypeEnum = dev.octri.showcase.anthropic.models.BetaCompact20260112TypeEnum
+typealias BetaCompact20260112TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCompact20260112TypeEnum
 
-typealias BetaCompactionContentBlockDelta = dev.octri.showcase.anthropic.models.BetaCompactionContentBlockDelta
+typealias BetaCompactionContentBlockDelta =
+    dev.octri.showcase.anthropic.models.BetaCompactionContentBlockDelta
 
-typealias BetaCompactionContentBlockDeltaTypeEnum = dev.octri.showcase.anthropic.models.BetaCompactionContentBlockDeltaTypeEnum
+typealias BetaCompactionContentBlockDeltaTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCompactionContentBlockDeltaTypeEnum
 
-typealias BetaCompactionIterationUsage = dev.octri.showcase.anthropic.models.BetaCompactionIterationUsage
+typealias BetaCompactionIterationUsage =
+    dev.octri.showcase.anthropic.models.BetaCompactionIterationUsage
 
-typealias BetaCompactionIterationUsageTypeEnum = dev.octri.showcase.anthropic.models.BetaCompactionIterationUsageTypeEnum
+typealias BetaCompactionIterationUsageTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaCompactionIterationUsageTypeEnum
 
 typealias BetaComplianceSettings = dev.octri.showcase.anthropic.models.BetaComplianceSettings
 
-typealias BetaComplianceSettingsState = dev.octri.showcase.anthropic.models.BetaComplianceSettingsState
+typealias BetaComplianceSettingsState =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsState
 
-typealias BetaComplianceSettingsStateDisabled = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabled
+typealias BetaComplianceSettingsStateDisabled =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabled
 
-typealias BetaComplianceSettingsStateDisabledParams = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabledParams
+typealias BetaComplianceSettingsStateDisabledParams =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabledParams
 
-typealias BetaComplianceSettingsStateDisabledParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabledParamsTypeEnum
+typealias BetaComplianceSettingsStateDisabledParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabledParamsTypeEnum
 
-typealias BetaComplianceSettingsStateDisabledTypeEnum = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabledTypeEnum
+typealias BetaComplianceSettingsStateDisabledTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateDisabledTypeEnum
 
-typealias BetaComplianceSettingsStateEnabled = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabled
+typealias BetaComplianceSettingsStateEnabled =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabled
 
-typealias BetaComplianceSettingsStateEnabledParams = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabledParams
+typealias BetaComplianceSettingsStateEnabledParams =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabledParams
 
-typealias BetaComplianceSettingsStateEnabledParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabledParamsTypeEnum
+typealias BetaComplianceSettingsStateEnabledParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabledParamsTypeEnum
 
-typealias BetaComplianceSettingsStateEnabledTypeEnum = dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabledTypeEnum
+typealias BetaComplianceSettingsStateEnabledTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsStateEnabledTypeEnum
 
-typealias BetaComplianceSettingsTypeEnum = dev.octri.showcase.anthropic.models.BetaComplianceSettingsTypeEnum
+typealias BetaComplianceSettingsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsTypeEnum
 
-typealias BetaComplianceSettingsUpdateParams = dev.octri.showcase.anthropic.models.BetaComplianceSettingsUpdateParams
+typealias BetaComplianceSettingsUpdateParams =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsUpdateParams
 
-typealias BetaComplianceSettingsUpdateParamsState = dev.octri.showcase.anthropic.models.BetaComplianceSettingsUpdateParamsState
+typealias BetaComplianceSettingsUpdateParamsState =
+    dev.octri.showcase.anthropic.models.BetaComplianceSettingsUpdateParamsState
 
-typealias BetaComputerCursorPositionConfig = dev.octri.showcase.anthropic.models.BetaComputerCursorPositionConfig
+typealias BetaComputerCursorPositionConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerCursorPositionConfig
 
-typealias BetaComputerDoubleClickConfig = dev.octri.showcase.anthropic.models.BetaComputerDoubleClickConfig
+typealias BetaComputerDoubleClickConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerDoubleClickConfig
 
 typealias BetaComputerHoldKeyConfig = dev.octri.showcase.anthropic.models.BetaComputerHoldKeyConfig
 
 typealias BetaComputerKeyConfig = dev.octri.showcase.anthropic.models.BetaComputerKeyConfig
 
-typealias BetaComputerLeftClickConfig = dev.octri.showcase.anthropic.models.BetaComputerLeftClickConfig
+typealias BetaComputerLeftClickConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerLeftClickConfig
 
-typealias BetaComputerLeftClickDragConfig = dev.octri.showcase.anthropic.models.BetaComputerLeftClickDragConfig
+typealias BetaComputerLeftClickDragConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerLeftClickDragConfig
 
-typealias BetaComputerLeftMouseDownConfig = dev.octri.showcase.anthropic.models.BetaComputerLeftMouseDownConfig
+typealias BetaComputerLeftMouseDownConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerLeftMouseDownConfig
 
-typealias BetaComputerLeftMouseUpConfig = dev.octri.showcase.anthropic.models.BetaComputerLeftMouseUpConfig
+typealias BetaComputerLeftMouseUpConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerLeftMouseUpConfig
 
-typealias BetaComputerMiddleClickConfig = dev.octri.showcase.anthropic.models.BetaComputerMiddleClickConfig
+typealias BetaComputerMiddleClickConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerMiddleClickConfig
 
-typealias BetaComputerMouseMoveConfig = dev.octri.showcase.anthropic.models.BetaComputerMouseMoveConfig
+typealias BetaComputerMouseMoveConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerMouseMoveConfig
 
-typealias BetaComputerRightClickConfig = dev.octri.showcase.anthropic.models.BetaComputerRightClickConfig
+typealias BetaComputerRightClickConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerRightClickConfig
 
-typealias BetaComputerScreenshotConfig = dev.octri.showcase.anthropic.models.BetaComputerScreenshotConfig
+typealias BetaComputerScreenshotConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerScreenshotConfig
 
 typealias BetaComputerScrollConfig = dev.octri.showcase.anthropic.models.BetaComputerScrollConfig
 
-typealias BetaComputerToolset20260801 = dev.octri.showcase.anthropic.models.BetaComputerToolset20260801
+typealias BetaComputerToolset20260801 =
+    dev.octri.showcase.anthropic.models.BetaComputerToolset20260801
 
-typealias BetaComputerToolset20260801TypeEnum = dev.octri.showcase.anthropic.models.BetaComputerToolset20260801TypeEnum
+typealias BetaComputerToolset20260801TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComputerToolset20260801TypeEnum
 
-typealias BetaComputerToolsetConfigs = dev.octri.showcase.anthropic.models.BetaComputerToolsetConfigs
+typealias BetaComputerToolsetConfigs =
+    dev.octri.showcase.anthropic.models.BetaComputerToolsetConfigs
 
-typealias BetaComputerTripleClickConfig = dev.octri.showcase.anthropic.models.BetaComputerTripleClickConfig
+typealias BetaComputerTripleClickConfig =
+    dev.octri.showcase.anthropic.models.BetaComputerTripleClickConfig
 
 typealias BetaComputerTypeConfig = dev.octri.showcase.anthropic.models.BetaComputerTypeConfig
 
-typealias BetaComputerUseTool20241022 = dev.octri.showcase.anthropic.models.BetaComputerUseTool20241022
+typealias BetaComputerUseTool20241022 =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20241022
 
-typealias BetaComputerUseTool20241022NameEnum = dev.octri.showcase.anthropic.models.BetaComputerUseTool20241022NameEnum
+typealias BetaComputerUseTool20241022NameEnum =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20241022NameEnum
 
-typealias BetaComputerUseTool20241022TypeEnum = dev.octri.showcase.anthropic.models.BetaComputerUseTool20241022TypeEnum
+typealias BetaComputerUseTool20241022TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20241022TypeEnum
 
-typealias BetaComputerUseTool20250124 = dev.octri.showcase.anthropic.models.BetaComputerUseTool20250124
+typealias BetaComputerUseTool20250124 =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20250124
 
-typealias BetaComputerUseTool20250124NameEnum = dev.octri.showcase.anthropic.models.BetaComputerUseTool20250124NameEnum
+typealias BetaComputerUseTool20250124NameEnum =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20250124NameEnum
 
-typealias BetaComputerUseTool20250124TypeEnum = dev.octri.showcase.anthropic.models.BetaComputerUseTool20250124TypeEnum
+typealias BetaComputerUseTool20250124TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20250124TypeEnum
 
-typealias BetaComputerUseTool20251124 = dev.octri.showcase.anthropic.models.BetaComputerUseTool20251124
+typealias BetaComputerUseTool20251124 =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20251124
 
-typealias BetaComputerUseTool20251124NameEnum = dev.octri.showcase.anthropic.models.BetaComputerUseTool20251124NameEnum
+typealias BetaComputerUseTool20251124NameEnum =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20251124NameEnum
 
-typealias BetaComputerUseTool20251124TypeEnum = dev.octri.showcase.anthropic.models.BetaComputerUseTool20251124TypeEnum
+typealias BetaComputerUseTool20251124TypeEnum =
+    dev.octri.showcase.anthropic.models.BetaComputerUseTool20251124TypeEnum
 
 typealias BetaComputerWaitConfig = dev.octri.showcase.anthropic.models.BetaComputerWaitConfig
 
 typealias BetaComputerZoomConfig = dev.octri.showcase.anthropic.models.BetaComputerZoomConfig
 
-typealias BetaConnectorPermissionResource = dev.octri.showcase.anthropic.models.BetaConnectorPermissionResource
+typealias BetaConnectorPermissionResource =
+    dev.octri.showcase.anthropic.models.BetaConnectorPermissionResource
 
-typealias BetaConnectorPermissionResourceTypeEnum = dev.octri.showcase.anthropic.models.BetaConnectorPermissionResourceTypeEnum
+typealias BetaConnectorPermissionResourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaConnectorPermissionResourceTypeEnum
 
-typealias BetaConnectorScopePermissionResource = dev.octri.showcase.anthropic.models.BetaConnectorScopePermissionResource
+typealias BetaConnectorScopePermissionResource =
+    dev.octri.showcase.anthropic.models.BetaConnectorScopePermissionResource
 
-typealias BetaConnectorScopePermissionResourceTypeEnum = dev.octri.showcase.anthropic.models.BetaConnectorScopePermissionResourceTypeEnum
+typealias BetaConnectorScopePermissionResourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaConnectorScopePermissionResourceTypeEnum
 
-typealias BetaConnectorToolPermissionResource = dev.octri.showcase.anthropic.models.BetaConnectorToolPermissionResource
+typealias BetaConnectorToolPermissionResource =
+    dev.octri.showcase.anthropic.models.BetaConnectorToolPermissionResource
 
-typealias BetaConnectorToolPermissionResourceTypeEnum = dev.octri.showcase.anthropic.models.BetaConnectorToolPermissionResourceTypeEnum
+typealias BetaConnectorToolPermissionResourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaConnectorToolPermissionResourceTypeEnum
 
 typealias BetaContainer = dev.octri.showcase.anthropic.models.BetaContainer
 
@@ -169,39 +235,53 @@ typealias BetaContainerParams = dev.octri.showcase.anthropic.models.BetaContaine
 
 typealias BetaContainerSkill = dev.octri.showcase.anthropic.models.BetaContainerSkill
 
-typealias BetaContainerSkillTypeEnum = dev.octri.showcase.anthropic.models.BetaContainerSkillTypeEnum
+typealias BetaContainerSkillTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaContainerSkillTypeEnum
 
 typealias BetaContentBlock = dev.octri.showcase.anthropic.models.BetaContentBlock
 
-typealias BetaContentBlockDeltaEvent = dev.octri.showcase.anthropic.models.BetaContentBlockDeltaEvent
+typealias BetaContentBlockDeltaEvent =
+    dev.octri.showcase.anthropic.models.BetaContentBlockDeltaEvent
 
-typealias BetaContentBlockDeltaEventDelta = dev.octri.showcase.anthropic.models.BetaContentBlockDeltaEventDelta
+typealias BetaContentBlockDeltaEventDelta =
+    dev.octri.showcase.anthropic.models.BetaContentBlockDeltaEventDelta
 
-typealias BetaContentBlockDeltaEventTypeEnum = dev.octri.showcase.anthropic.models.BetaContentBlockDeltaEventTypeEnum
+typealias BetaContentBlockDeltaEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaContentBlockDeltaEventTypeEnum
 
 typealias BetaContentBlockSource = dev.octri.showcase.anthropic.models.BetaContentBlockSource
 
-typealias BetaContentBlockSourceContentItem = dev.octri.showcase.anthropic.models.BetaContentBlockSourceContentItem
+typealias BetaContentBlockSourceContentItem =
+    dev.octri.showcase.anthropic.models.BetaContentBlockSourceContentItem
 
-typealias BetaContentBlockSourceTypeEnum = dev.octri.showcase.anthropic.models.BetaContentBlockSourceTypeEnum
+typealias BetaContentBlockSourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaContentBlockSourceTypeEnum
 
-typealias BetaContentBlockStartEvent = dev.octri.showcase.anthropic.models.BetaContentBlockStartEvent
+typealias BetaContentBlockStartEvent =
+    dev.octri.showcase.anthropic.models.BetaContentBlockStartEvent
 
-typealias BetaContentBlockStartEventContentBlock = dev.octri.showcase.anthropic.models.BetaContentBlockStartEventContentBlock
+typealias BetaContentBlockStartEventContentBlock =
+    dev.octri.showcase.anthropic.models.BetaContentBlockStartEventContentBlock
 
-typealias BetaContentBlockStartEventTypeEnum = dev.octri.showcase.anthropic.models.BetaContentBlockStartEventTypeEnum
+typealias BetaContentBlockStartEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaContentBlockStartEventTypeEnum
 
 typealias BetaContentBlockStopEvent = dev.octri.showcase.anthropic.models.BetaContentBlockStopEvent
 
-typealias BetaContentBlockStopEventTypeEnum = dev.octri.showcase.anthropic.models.BetaContentBlockStopEventTypeEnum
+typealias BetaContentBlockStopEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaContentBlockStopEventTypeEnum
 
-typealias BetaContextManagementCapability = dev.octri.showcase.anthropic.models.BetaContextManagementCapability
+typealias BetaContextManagementCapability =
+    dev.octri.showcase.anthropic.models.BetaContextManagementCapability
 
-typealias BetaContextManagementConfig = dev.octri.showcase.anthropic.models.BetaContextManagementConfig
+typealias BetaContextManagementConfig =
+    dev.octri.showcase.anthropic.models.BetaContextManagementConfig
 
-typealias BetaContextManagementConfigEditsItem = dev.octri.showcase.anthropic.models.BetaContextManagementConfigEditsItem
+typealias BetaContextManagementConfigEditsItem =
+    dev.octri.showcase.anthropic.models.BetaContextManagementConfigEditsItem
 
-typealias BetaContextManagementResponse = dev.octri.showcase.anthropic.models.BetaContextManagementResponse
+typealias BetaContextManagementResponse =
+    dev.octri.showcase.anthropic.models.BetaContextManagementResponse
 
 typealias BetaCoreMetrics = dev.octri.showcase.anthropic.models.BetaCoreMetrics
 
@@ -213,17 +293,21 @@ typealias BetaCostReportServiceTier = dev.octri.showcase.anthropic.models.BetaCo
 
 typealias BetaCostReportTimeBucket = dev.octri.showcase.anthropic.models.BetaCostReportTimeBucket
 
-typealias BetaCostReportTimeBucketWidth = dev.octri.showcase.anthropic.models.BetaCostReportTimeBucketWidth
+typealias BetaCostReportTimeBucketWidth =
+    dev.octri.showcase.anthropic.models.BetaCostReportTimeBucketWidth
 
 typealias BetaCostReportTokenType = dev.octri.showcase.anthropic.models.BetaCostReportTokenType
 
 typealias BetaCostType = dev.octri.showcase.anthropic.models.BetaCostType
 
-typealias BetaCountMessageTokensParams = dev.octri.showcase.anthropic.models.BetaCountMessageTokensParams
+typealias BetaCountMessageTokensParams =
+    dev.octri.showcase.anthropic.models.BetaCountMessageTokensParams
 
-typealias BetaCountMessageTokensParamsToolsItem = dev.octri.showcase.anthropic.models.BetaCountMessageTokensParamsToolsItem
+typealias BetaCountMessageTokensParamsToolsItem =
+    dev.octri.showcase.anthropic.models.BetaCountMessageTokensParamsToolsItem
 
-typealias BetaCountMessageTokensResponse = dev.octri.showcase.anthropic.models.BetaCountMessageTokensResponse
+typealias BetaCountMessageTokensResponse =
+    dev.octri.showcase.anthropic.models.BetaCountMessageTokensResponse
 
 typealias BetaCreatedBy = dev.octri.showcase.anthropic.models.BetaCreatedBy
 
@@ -233,27 +317,35 @@ typealias BetaCreateDreamRequest = dev.octri.showcase.anthropic.models.BetaCreat
 
 typealias BetaCreateInviteParams = dev.octri.showcase.anthropic.models.BetaCreateInviteParams
 
-typealias BetaCreateInviteParamsRoleEnum = dev.octri.showcase.anthropic.models.BetaCreateInviteParamsRoleEnum
+typealias BetaCreateInviteParamsRoleEnum =
+    dev.octri.showcase.anthropic.models.BetaCreateInviteParamsRoleEnum
 
-typealias BetaCreateMessageBatchParams = dev.octri.showcase.anthropic.models.BetaCreateMessageBatchParams
+typealias BetaCreateMessageBatchParams =
+    dev.octri.showcase.anthropic.models.BetaCreateMessageBatchParams
 
 typealias BetaCreateMessageParams = dev.octri.showcase.anthropic.models.BetaCreateMessageParams
 
-typealias BetaCreateMessageParamsServiceTierEnum = dev.octri.showcase.anthropic.models.BetaCreateMessageParamsServiceTierEnum
+typealias BetaCreateMessageParamsServiceTierEnum =
+    dev.octri.showcase.anthropic.models.BetaCreateMessageParamsServiceTierEnum
 
-typealias BetaCreateMessageParamsToolsItem = dev.octri.showcase.anthropic.models.BetaCreateMessageParamsToolsItem
+typealias BetaCreateMessageParamsToolsItem =
+    dev.octri.showcase.anthropic.models.BetaCreateMessageParamsToolsItem
 
 typealias BetaCreateRbacGroupParams = dev.octri.showcase.anthropic.models.BetaCreateRbacGroupParams
 
-typealias BetaCreateTunnelCertificateParams = dev.octri.showcase.anthropic.models.BetaCreateTunnelCertificateParams
+typealias BetaCreateTunnelCertificateParams =
+    dev.octri.showcase.anthropic.models.BetaCreateTunnelCertificateParams
 
-typealias BetaCreateTunnelCertificateRequestBody = dev.octri.showcase.anthropic.models.BetaCreateTunnelCertificateRequestBody
+typealias BetaCreateTunnelCertificateRequestBody =
+    dev.octri.showcase.anthropic.models.BetaCreateTunnelCertificateRequestBody
 
 typealias BetaCreateTunnelRequest = dev.octri.showcase.anthropic.models.BetaCreateTunnelRequest
 
-typealias BetaCreateUserProfileRequest = dev.octri.showcase.anthropic.models.BetaCreateUserProfileRequest
+typealias BetaCreateUserProfileRequest =
+    dev.octri.showcase.anthropic.models.BetaCreateUserProfileRequest
 
-typealias BetaCreateWorkspaceMemberParams = dev.octri.showcase.anthropic.models.BetaCreateWorkspaceMemberParams
+typealias BetaCreateWorkspaceMemberParams =
+    dev.octri.showcase.anthropic.models.BetaCreateWorkspaceMemberParams
 
 typealias BetaCurrency = dev.octri.showcase.anthropic.models.BetaCurrency
 
@@ -261,9 +353,11 @@ typealias BetaCustomerType = dev.octri.showcase.anthropic.models.BetaCustomerTyp
 
 typealias BetaDataResidency = dev.octri.showcase.anthropic.models.BetaDataResidency
 
-typealias BetaDataResidencyCreateParams = dev.octri.showcase.anthropic.models.BetaDataResidencyCreateParams
+typealias BetaDataResidencyCreateParams =
+    dev.octri.showcase.anthropic.models.BetaDataResidencyCreateParams
 
-typealias BetaDataResidencyUpdateParams = dev.octri.showcase.anthropic.models.BetaDataResidencyUpdateParams
+typealias BetaDataResidencyUpdateParams =
+    dev.octri.showcase.anthropic.models.BetaDataResidencyUpdateParams
 
 typealias BetaDeletedSkill = dev.octri.showcase.anthropic.models.BetaDeletedSkill
 
@@ -271,45 +365,62 @@ typealias BetaDeletedSkillTypeEnum = dev.octri.showcase.anthropic.models.BetaDel
 
 typealias BetaDeletedSkillVersion = dev.octri.showcase.anthropic.models.BetaDeletedSkillVersion
 
-typealias BetaDeletedSkillVersionTypeEnum = dev.octri.showcase.anthropic.models.BetaDeletedSkillVersionTypeEnum
+typealias BetaDeletedSkillVersionTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeletedSkillVersionTypeEnum
 
-typealias BetaDeleteExternalKeyResponse = dev.octri.showcase.anthropic.models.BetaDeleteExternalKeyResponse
+typealias BetaDeleteExternalKeyResponse =
+    dev.octri.showcase.anthropic.models.BetaDeleteExternalKeyResponse
 
-typealias BetaDeleteExternalKeyResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteExternalKeyResponseTypeEnum
+typealias BetaDeleteExternalKeyResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteExternalKeyResponseTypeEnum
 
 typealias BetaDeleteInviteResponse = dev.octri.showcase.anthropic.models.BetaDeleteInviteResponse
 
-typealias BetaDeleteInviteResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteInviteResponseTypeEnum
+typealias BetaDeleteInviteResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteInviteResponseTypeEnum
 
-typealias BetaDeleteMessageBatchResponse = dev.octri.showcase.anthropic.models.BetaDeleteMessageBatchResponse
+typealias BetaDeleteMessageBatchResponse =
+    dev.octri.showcase.anthropic.models.BetaDeleteMessageBatchResponse
 
-typealias BetaDeleteMessageBatchResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteMessageBatchResponseTypeEnum
+typealias BetaDeleteMessageBatchResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteMessageBatchResponseTypeEnum
 
-typealias BetaDeleteRbacGroupMemberResponse = dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupMemberResponse
+typealias BetaDeleteRbacGroupMemberResponse =
+    dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupMemberResponse
 
-typealias BetaDeleteRbacGroupMemberResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupMemberResponseTypeEnum
+typealias BetaDeleteRbacGroupMemberResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupMemberResponseTypeEnum
 
-typealias BetaDeleteRbacGroupResponse = dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupResponse
+typealias BetaDeleteRbacGroupResponse =
+    dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupResponse
 
-typealias BetaDeleteRbacGroupResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupResponseTypeEnum
+typealias BetaDeleteRbacGroupResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteRbacGroupResponseTypeEnum
 
-typealias BetaDeleteSpendLimitResponse = dev.octri.showcase.anthropic.models.BetaDeleteSpendLimitResponse
+typealias BetaDeleteSpendLimitResponse =
+    dev.octri.showcase.anthropic.models.BetaDeleteSpendLimitResponse
 
-typealias BetaDeleteSpendLimitResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteSpendLimitResponseTypeEnum
+typealias BetaDeleteSpendLimitResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteSpendLimitResponseTypeEnum
 
 typealias BetaDeleteUserResponse = dev.octri.showcase.anthropic.models.BetaDeleteUserResponse
 
-typealias BetaDeleteUserResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteUserResponseTypeEnum
+typealias BetaDeleteUserResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteUserResponseTypeEnum
 
-typealias BetaDeleteWorkspaceMemberResponse = dev.octri.showcase.anthropic.models.BetaDeleteWorkspaceMemberResponse
+typealias BetaDeleteWorkspaceMemberResponse =
+    dev.octri.showcase.anthropic.models.BetaDeleteWorkspaceMemberResponse
 
-typealias BetaDeleteWorkspaceMemberResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDeleteWorkspaceMemberResponseTypeEnum
+typealias BetaDeleteWorkspaceMemberResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDeleteWorkspaceMemberResponseTypeEnum
 
-typealias BetaDenySpendLimitIncreaseRequestParams = dev.octri.showcase.anthropic.models.BetaDenySpendLimitIncreaseRequestParams
+typealias BetaDenySpendLimitIncreaseRequestParams =
+    dev.octri.showcase.anthropic.models.BetaDenySpendLimitIncreaseRequestParams
 
 typealias BetaDiagnostics = dev.octri.showcase.anthropic.models.BetaDiagnostics
 
-typealias BetaDiagnosticsCacheMissReason = dev.octri.showcase.anthropic.models.BetaDiagnosticsCacheMissReason
+typealias BetaDiagnosticsCacheMissReason =
+    dev.octri.showcase.anthropic.models.BetaDiagnosticsCacheMissReason
 
 typealias BetaDiagnosticsParam = dev.octri.showcase.anthropic.models.BetaDiagnosticsParam
 
@@ -325,21 +436,26 @@ typealias BetaDreamingError = dev.octri.showcase.anthropic.models.BetaDreamingEr
 
 typealias BetaDreamingErrorResponse = dev.octri.showcase.anthropic.models.BetaDreamingErrorResponse
 
-typealias BetaDreamingErrorResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaDreamingErrorResponseTypeEnum
+typealias BetaDreamingErrorResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDreamingErrorResponseTypeEnum
 
 typealias BetaDreamInput = dev.octri.showcase.anthropic.models.BetaDreamInput
 
 typealias BetaDreamMemoryStoreInput = dev.octri.showcase.anthropic.models.BetaDreamMemoryStoreInput
 
-typealias BetaDreamMemoryStoreInputTypeEnum = dev.octri.showcase.anthropic.models.BetaDreamMemoryStoreInputTypeEnum
+typealias BetaDreamMemoryStoreInputTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDreamMemoryStoreInputTypeEnum
 
-typealias BetaDreamMemoryStoreOutput = dev.octri.showcase.anthropic.models.BetaDreamMemoryStoreOutput
+typealias BetaDreamMemoryStoreOutput =
+    dev.octri.showcase.anthropic.models.BetaDreamMemoryStoreOutput
 
-typealias BetaDreamMemoryStoreOutputTypeEnum = dev.octri.showcase.anthropic.models.BetaDreamMemoryStoreOutputTypeEnum
+typealias BetaDreamMemoryStoreOutputTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDreamMemoryStoreOutputTypeEnum
 
 typealias BetaDreamModelConfig = dev.octri.showcase.anthropic.models.BetaDreamModelConfig
 
-typealias BetaDreamModelConfigParams = dev.octri.showcase.anthropic.models.BetaDreamModelConfigParams
+typealias BetaDreamModelConfigParams =
+    dev.octri.showcase.anthropic.models.BetaDreamModelConfigParams
 
 typealias BetaDreamModelParams = dev.octri.showcase.anthropic.models.BetaDreamModelParams
 
@@ -347,7 +463,8 @@ typealias BetaDreamOutput = dev.octri.showcase.anthropic.models.BetaDreamOutput
 
 typealias BetaDreamSessionsInput = dev.octri.showcase.anthropic.models.BetaDreamSessionsInput
 
-typealias BetaDreamSessionsInputTypeEnum = dev.octri.showcase.anthropic.models.BetaDreamSessionsInputTypeEnum
+typealias BetaDreamSessionsInputTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaDreamSessionsInputTypeEnum
 
 typealias BetaDreamStatus = dev.octri.showcase.anthropic.models.BetaDreamStatus
 
@@ -367,11 +484,14 @@ typealias BetaEnvironment = dev.octri.showcase.anthropic.models.BetaEnvironment
 
 typealias BetaEnvironmentConfig = dev.octri.showcase.anthropic.models.BetaEnvironmentConfig
 
-typealias BetaEnvironmentDeleteResponse = dev.octri.showcase.anthropic.models.BetaEnvironmentDeleteResponse
+typealias BetaEnvironmentDeleteResponse =
+    dev.octri.showcase.anthropic.models.BetaEnvironmentDeleteResponse
 
-typealias BetaEnvironmentDeleteResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaEnvironmentDeleteResponseTypeEnum
+typealias BetaEnvironmentDeleteResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaEnvironmentDeleteResponseTypeEnum
 
-typealias BetaEnvironmentListResponse = dev.octri.showcase.anthropic.models.BetaEnvironmentListResponse
+typealias BetaEnvironmentListResponse =
+    dev.octri.showcase.anthropic.models.BetaEnvironmentListResponse
 
 typealias BetaEnvironmentScopeEnum = dev.octri.showcase.anthropic.models.BetaEnvironmentScopeEnum
 
@@ -399,40 +519,56 @@ typealias BetaExternalKey = dev.octri.showcase.anthropic.models.BetaExternalKey
 
 typealias BetaExternalKeyAttachment = dev.octri.showcase.anthropic.models.BetaExternalKeyAttachment
 
-typealias BetaExternalKeyCreateParams = dev.octri.showcase.anthropic.models.BetaExternalKeyCreateParams
+typealias BetaExternalKeyCreateParams =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyCreateParams
 
-typealias BetaExternalKeyCreateParamsGeoEnum = dev.octri.showcase.anthropic.models.BetaExternalKeyCreateParamsGeoEnum
+typealias BetaExternalKeyCreateParamsGeoEnum =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyCreateParamsGeoEnum
 
-typealias BetaExternalKeyCreateParamsProviderConfig = dev.octri.showcase.anthropic.models.BetaExternalKeyCreateParamsProviderConfig
+typealias BetaExternalKeyCreateParamsProviderConfig =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyCreateParamsProviderConfig
 
-typealias BetaExternalKeyListResponse = dev.octri.showcase.anthropic.models.BetaExternalKeyListResponse
+typealias BetaExternalKeyListResponse =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyListResponse
 
-typealias BetaExternalKeyProviderConfig = dev.octri.showcase.anthropic.models.BetaExternalKeyProviderConfig
+typealias BetaExternalKeyProviderConfig =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyProviderConfig
 
 typealias BetaExternalKeyTypeEnum = dev.octri.showcase.anthropic.models.BetaExternalKeyTypeEnum
 
-typealias BetaExternalKeyUpdateParams = dev.octri.showcase.anthropic.models.BetaExternalKeyUpdateParams
+typealias BetaExternalKeyUpdateParams =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyUpdateParams
 
-typealias BetaExternalKeyUpdateParamsGeoVariant0Enum = dev.octri.showcase.anthropic.models.BetaExternalKeyUpdateParamsGeoVariant0Enum
+typealias BetaExternalKeyUpdateParamsGeoVariant0Enum =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyUpdateParamsGeoVariant0Enum
 
-typealias BetaExternalKeyUpdateParamsProviderConfig = dev.octri.showcase.anthropic.models.BetaExternalKeyUpdateParamsProviderConfig
+typealias BetaExternalKeyUpdateParamsProviderConfig =
+    dev.octri.showcase.anthropic.models.BetaExternalKeyUpdateParamsProviderConfig
 
 typealias BetaFallbackConfigV2 = dev.octri.showcase.anthropic.models.BetaFallbackConfigV2
 
-typealias BetaFallbackConfigV2Thinking = dev.octri.showcase.anthropic.models.BetaFallbackConfigV2Thinking
+typealias BetaFallbackConfigV2Thinking =
+    dev.octri.showcase.anthropic.models.BetaFallbackConfigV2Thinking
 
-typealias BetaFallbackCreditNotApplied = dev.octri.showcase.anthropic.models.BetaFallbackCreditNotApplied
+typealias BetaFallbackCreditNotApplied =
+    dev.octri.showcase.anthropic.models.BetaFallbackCreditNotApplied
 
-typealias BetaFallbackCreditNotAppliedReasonEnum = dev.octri.showcase.anthropic.models.BetaFallbackCreditNotAppliedReasonEnum
+typealias BetaFallbackCreditNotAppliedReasonEnum =
+    dev.octri.showcase.anthropic.models.BetaFallbackCreditNotAppliedReasonEnum
 
-typealias BetaFallbackCreditNotAppliedTypeEnum = dev.octri.showcase.anthropic.models.BetaFallbackCreditNotAppliedTypeEnum
+typealias BetaFallbackCreditNotAppliedTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaFallbackCreditNotAppliedTypeEnum
 
-typealias BetaFallbackCreditRedeemed = dev.octri.showcase.anthropic.models.BetaFallbackCreditRedeemed
+typealias BetaFallbackCreditRedeemed =
+    dev.octri.showcase.anthropic.models.BetaFallbackCreditRedeemed
 
-typealias BetaFallbackCreditRedeemedTypeEnum = dev.octri.showcase.anthropic.models.BetaFallbackCreditRedeemedTypeEnum
+typealias BetaFallbackCreditRedeemedTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaFallbackCreditRedeemedTypeEnum
 
-typealias BetaFallbackCreditTokenParam = dev.octri.showcase.anthropic.models.BetaFallbackCreditTokenParam
+typealias BetaFallbackCreditTokenParam =
+    dev.octri.showcase.anthropic.models.BetaFallbackCreditTokenParam
 
-typealias BetaFallbackCreditTokenParamModeEnum = dev.octri.showcase.anthropic.models.BetaFallbackCreditTokenParamModeEnum
+typealias BetaFallbackCreditTokenParamModeEnum =
+    dev.octri.showcase.anthropic.models.BetaFallbackCreditTokenParamModeEnum
 
 typealias BetaFallbackCreditUsage = dev.octri.showcase.anthropic.models.BetaFallbackCreditUsage

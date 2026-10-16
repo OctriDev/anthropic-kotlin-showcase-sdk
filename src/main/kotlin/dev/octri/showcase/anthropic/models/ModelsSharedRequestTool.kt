@@ -3,206 +3,259 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Tool reference block that can be included in tool_result content.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Tool reference block that can be included in tool_result content. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestToolReferenceBlock(
-    /**
-     * Required `string` value serialized in the `tool_name` wire field.
-     */
+    /** Required `string` value serialized in the `tool_name` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_name") val toolName: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestToolReferenceBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
 ) : RequestToolResultBlockContentItem
 
-/**
- * Typed representation of the `RequestToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestToolResultBlock(
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestToolResultBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * Optional API value serialized in the `content` wire field.
-     */
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
+    /** Optional API value serialized in the `content` wire field. */
     val content: Any? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_error` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_error` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null,
-    /**
-     * For a toolset member tool_result, the toolset family of the paired tool_use.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null
+    /** For a toolset member tool_result, the toolset family of the paired tool_use. */
+    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null,
 ) : InputContentBlock
 
-/**
- * Required API value serialized in the `content[]` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestToolResultBlockContentItem::class)
+/** Required API value serialized in the `content[]` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestToolResultBlockContentItem::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestTextBlock::class, name = "text"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestImageBlock::class, name = "image"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestSearchResultBlock::class, name = "search_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestDocumentBlock::class, name = "document"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestToolReferenceBlock::class, name = "tool_reference"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestBrowserStateBlock::class, name = "browser_state")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestTextBlock::class,
+        name = "text",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestImageBlock::class,
+        name = "image",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestSearchResultBlock::class,
+        name = "search_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestDocumentBlock::class,
+        name = "document",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestToolReferenceBlock::class,
+        name = "tool_reference",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestBrowserStateBlock::class,
+        name = "browser_state",
+    ),
 )
 sealed interface RequestToolResultBlockContentItem
 
-/** A [RequestToolResultBlockContentItem] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestToolResultBlockContentItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [RequestToolResultBlockContentItem] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestToolResultBlockContentItem
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestToolResultBlockContentItem {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `RequestToolSearchToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestToolSearchToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestToolSearchToolResultBlock(
-    /**
-     * Required API value serialized in the `content` wire field.
-     */
+    /** Required API value serialized in the `content` wire field. */
     val content: RequestToolSearchToolResultBlockContent,
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestToolSearchToolResultBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
 ) : InputContentBlock
 
-/**
- * Required API value serialized in the `content` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestToolSearchToolResultBlockContent::class)
+/** Required API value serialized in the `content` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestToolSearchToolResultBlockContent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestToolSearchToolResultError::class, name = "tool_search_tool_result_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestToolSearchToolSearchResultBlock::class, name = "tool_search_tool_search_result")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestToolSearchToolResultError::class,
+        name = "tool_search_tool_result_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestToolSearchToolSearchResultBlock::class,
+        name = "tool_search_tool_search_result",
+    ),
 )
 sealed interface RequestToolSearchToolResultBlockContent
 
-/** A [RequestToolSearchToolResultBlockContent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestToolSearchToolResultBlockContent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [RequestToolSearchToolResultBlockContent] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestToolSearchToolResultBlockContent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestToolSearchToolResultBlockContent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `RequestToolSearchToolResultError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestToolSearchToolResultError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestToolSearchToolResultError(
-    /**
-     * Required enumerated value serialized in the `error_code` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: ToolSearchToolResultErrorCode,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `error_code` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
+    val errorCode: ToolSearchToolResultErrorCode,
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestToolSearchToolResultErrorTypeEnum,
-    /**
-     * Optional `string` value serialized in the `error_message` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_message") val errorMessage: String? = null
+    /** Optional `string` value serialized in the `error_message` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_message")
+    val errorMessage: String? = null,
 ) : RequestToolSearchToolResultBlockContent
 
-/**
- * Typed representation of the `RequestToolSearchToolSearchResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestToolSearchToolSearchResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestToolSearchToolSearchResultBlock(
-    /**
-     * Required array value serialized in the `tool_references` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_references") val toolReferences: List<RequestToolReferenceBlock>,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RequestToolSearchToolSearchResultBlockTypeEnum
+    /** Required array value serialized in the `tool_references` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_references")
+    val toolReferences: List<RequestToolReferenceBlock>,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestToolSearchToolSearchResultBlockTypeEnum,
 ) : RequestToolSearchToolResultBlockContent
 
-/**
- * Typed representation of the `RequestToolUseBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestToolUseBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestToolUseBlock(
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
+    /** Required `string` value serialized in the `id` wire field. */
     val id: String,
-    /**
-     * Required object value serialized in the `input` wire field.
-     */
+    /** Required object value serialized in the `input` wire field. */
     val input: Map<String, Any>,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestToolUseBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * Optional API value serialized in the `caller` wire field.
-     */
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
+    /** Optional API value serialized in the `caller` wire field. */
     val caller: RequestToolUseBlockCaller? = null,
-    /**
-     * For a toolset member tool_use, the toolset family this member belongs to.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null
+    /** For a toolset member tool_use, the toolset family this member belongs to. */
+    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null,
 ) : InputContentBlock
 
-/**
- * Optional API value serialized in the `caller` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestToolUseBlockCaller::class)
+/** Optional API value serialized in the `caller` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestToolUseBlockCaller::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = DirectCaller::class, name = "direct"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ServerToolCaller::class, name = "code_execution_20250825"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ServerToolCaller20260120::class, name = "code_execution_20260120")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = DirectCaller::class,
+        name = "direct",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ServerToolCaller::class,
+        name = "code_execution_20250825",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ServerToolCaller20260120::class,
+        name = "code_execution_20260120",
+    ),
 )
 sealed interface RequestToolUseBlockCaller
 
 /** A [RequestToolUseBlockCaller] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestToolUseBlockCaller @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestToolUseBlockCaller
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestToolUseBlockCaller {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

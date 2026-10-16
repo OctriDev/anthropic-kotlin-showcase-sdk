@@ -3,187 +3,218 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `RequestTextBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestTextBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestTextBlock(
-    /**
-     * Required `string` value serialized in the `text` wire field.
-     */
+    /** Required `string` value serialized in the `text` wire field. */
     val text: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestTextBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * Optional array value serialized in the `citations` wire field.
-     */
-    val citations: List<RequestTextBlockCitationsItem>? = null
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
+    /** Optional array value serialized in the `citations` wire field. */
+    val citations: List<RequestTextBlockCitationsItem>? = null,
 ) : InputContentBlock, ContentBlockSourceContentItem, RequestToolResultBlockContentItem
 
-/**
- * Required API value serialized in the `citations[]` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestTextBlockCitationsItem::class)
+/** Required API value serialized in the `citations[]` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestTextBlockCitationsItem::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestCharLocationCitation::class, name = "char_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestPageLocationCitation::class, name = "page_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestContentBlockLocationCitation::class, name = "content_block_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestWebSearchResultLocationCitation::class, name = "web_search_result_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestSearchResultLocationCitation::class, name = "search_result_location")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestCharLocationCitation::class,
+        name = "char_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestPageLocationCitation::class,
+        name = "page_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestContentBlockLocationCitation::class,
+        name = "content_block_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestWebSearchResultLocationCitation::class,
+        name = "web_search_result_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestSearchResultLocationCitation::class,
+        name = "search_result_location",
+    ),
 )
 sealed interface RequestTextBlockCitationsItem
 
-/** A [RequestTextBlockCitationsItem] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestTextBlockCitationsItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [RequestTextBlockCitationsItem] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestTextBlockCitationsItem
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestTextBlockCitationsItem {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `RequestTextEditorCodeExecutionCreateResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestTextEditorCodeExecutionCreateResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestTextEditorCodeExecutionCreateResultBlock(
-    /**
-     * Required `boolean` value serialized in the `is_file_update` wire field.
-     */
+    /** Required `boolean` value serialized in the `is_file_update` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_file_update") val isFileUpdate: Boolean,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RequestTextEditorCodeExecutionCreateResultBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestTextEditorCodeExecutionCreateResultBlockTypeEnum,
 ) : RequestTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Typed representation of the `RequestTextEditorCodeExecutionStrReplaceResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestTextEditorCodeExecutionStrReplaceResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestTextEditorCodeExecutionStrReplaceResultBlock(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum,
-    /**
-     * Optional array value serialized in the `lines` wire field.
-     */
+    /** Optional array value serialized in the `lines` wire field. */
     val lines: List<String>? = null,
-    /**
-     * Optional `integer` value serialized in the `new_lines` wire field.
-     */
+    /** Optional `integer` value serialized in the `new_lines` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("new_lines") val newLines: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `new_start` wire field.
-     */
+    /** Optional `integer` value serialized in the `new_start` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("new_start") val newStart: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `old_lines` wire field.
-     */
+    /** Optional `integer` value serialized in the `old_lines` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("old_lines") val oldLines: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `old_start` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("old_start") val oldStart: Long? = null
+    /** Optional `integer` value serialized in the `old_start` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("old_start") val oldStart: Long? = null,
 ) : RequestTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Typed representation of the `RequestTextEditorCodeExecutionToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestTextEditorCodeExecutionToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestTextEditorCodeExecutionToolResultBlock(
-    /**
-     * Required API value serialized in the `content` wire field.
-     */
+    /** Required API value serialized in the `content` wire field. */
     val content: RequestTextEditorCodeExecutionToolResultBlockContent,
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestTextEditorCodeExecutionToolResultBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
 ) : InputContentBlock
 
-/**
- * Required API value serialized in the `content` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestTextEditorCodeExecutionToolResultBlockContent::class)
+/** Required API value serialized in the `content` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestTextEditorCodeExecutionToolResultBlockContent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestTextEditorCodeExecutionToolResultError::class, name = "text_editor_code_execution_tool_result_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestTextEditorCodeExecutionViewResultBlock::class, name = "text_editor_code_execution_view_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestTextEditorCodeExecutionCreateResultBlock::class, name = "text_editor_code_execution_create_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestTextEditorCodeExecutionStrReplaceResultBlock::class, name = "text_editor_code_execution_str_replace_result")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestTextEditorCodeExecutionToolResultError::class,
+        name = "text_editor_code_execution_tool_result_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestTextEditorCodeExecutionViewResultBlock::class,
+        name = "text_editor_code_execution_view_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestTextEditorCodeExecutionCreateResultBlock::class,
+        name = "text_editor_code_execution_create_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestTextEditorCodeExecutionStrReplaceResultBlock::class,
+        name = "text_editor_code_execution_str_replace_result",
+    ),
 )
 sealed interface RequestTextEditorCodeExecutionToolResultBlockContent
 
-/** A [RequestTextEditorCodeExecutionToolResultBlockContent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestTextEditorCodeExecutionToolResultBlockContent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [RequestTextEditorCodeExecutionToolResultBlockContent] whose `type` names no branch this SDK
+ * knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestTextEditorCodeExecutionToolResultBlockContent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestTextEditorCodeExecutionToolResultBlockContent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `RequestTextEditorCodeExecutionToolResultError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestTextEditorCodeExecutionToolResultError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestTextEditorCodeExecutionToolResultError(
-    /**
-     * Required enumerated value serialized in the `error_code` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: TextEditorCodeExecutionToolResultErrorCode,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `error_code` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
+    val errorCode: TextEditorCodeExecutionToolResultErrorCode,
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestTextEditorCodeExecutionToolResultErrorTypeEnum,
-    /**
-     * Optional `string` value serialized in the `error_message` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_message") val errorMessage: String? = null
+    /** Optional `string` value serialized in the `error_message` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_message")
+    val errorMessage: String? = null,
 ) : RequestTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Typed representation of the `RequestTextEditorCodeExecutionViewResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestTextEditorCodeExecutionViewResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestTextEditorCodeExecutionViewResultBlock(
-    /**
-     * Required `string` value serialized in the `content` wire field.
-     */
+    /** Required `string` value serialized in the `content` wire field. */
     val content: String,
-    /**
-     * Required enumerated value serialized in the `file_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("file_type") val fileType: RequestTextEditorCodeExecutionViewResultBlockFileTypeEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `file_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_type")
+    val fileType: RequestTextEditorCodeExecutionViewResultBlockFileTypeEnum,
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestTextEditorCodeExecutionViewResultBlockTypeEnum,
-    /**
-     * Optional `integer` value serialized in the `num_lines` wire field.
-     */
+    /** Optional `integer` value serialized in the `num_lines` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("num_lines") val numLines: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `start_line` wire field.
-     */
+    /** Optional `integer` value serialized in the `start_line` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `total_lines` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_lines") val totalLines: Long? = null
+    /** Optional `integer` value serialized in the `total_lines` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_lines") val totalLines: Long? = null,
 ) : RequestTextEditorCodeExecutionToolResultBlockContent

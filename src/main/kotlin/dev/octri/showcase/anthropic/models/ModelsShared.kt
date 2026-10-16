@@ -5,140 +5,143 @@ package dev.octri.showcase.anthropic.models
 
 typealias AnthropicBeta = String
 
-/**
- * Typed representation of the `APIError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `APIError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class APIError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: APIErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: APIErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Typed representation of the `AuthenticationError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `AuthenticationError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class AuthenticationError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: AuthenticationErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: AuthenticationErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Typed representation of the `BillingError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BillingError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BillingError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BillingErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BillingErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Tool invocation directly from the model.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Tool invocation directly from the model. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class DirectCaller(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: DirectCallerTypeEnum
-) : ResponseToolUseBlockCaller, ResponseServerToolUseBlockCaller, ResponseWebSearchToolResultBlockCaller, ResponseWebFetchToolResultBlockCaller, RequestToolUseBlockCaller, RequestServerToolUseBlockCaller, RequestWebSearchToolResultBlockCaller, RequestWebFetchToolResultBlockCaller
+) :
+    ResponseToolUseBlockCaller,
+    ResponseServerToolUseBlockCaller,
+    ResponseWebSearchToolResultBlockCaller,
+    ResponseWebFetchToolResultBlockCaller,
+    RequestToolUseBlockCaller,
+    RequestServerToolUseBlockCaller,
+    RequestWebSearchToolResultBlockCaller,
+    RequestWebFetchToolResultBlockCaller
 
-/**
- * Typed representation of the `GatewayTimeoutError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `GatewayTimeoutError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class GatewayTimeoutError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: GatewayTimeoutErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: GatewayTimeoutErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Typed representation of the `InvalidRequestError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `InvalidRequestError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class InvalidRequestError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: InvalidRequestErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: InvalidRequestErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Typed representation of the `MemoryTool_20250818` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `MemoryTool_20250818` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class MemoryTool20250818(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: MemoryTool20250818NameEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: MemoryTool20250818TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<AllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * Optional array value serialized in the `allowed_callers` wire field.
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
-    /**
-     * Optional array value serialized in the `input_examples` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null,
-    /**
-     * When true, guarantees schema validation on tool names and inputs
-     */
-    val strict: Boolean? = null
-) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, JsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) :
+    CountMessageTokensParamsToolsItem,
+    CreateMessageParamsToolsItem,
+    CreateMessageParamsWithoutStreamToolsItem
 
-/**
- * Typed representation of the `Metadata` API schema.
- */
+/** Typed representation of the `Metadata` API schema. */
 data class Metadata(
     /**
-     * An external identifier for the user who is associated with the request. This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+     * An external identifier for the user who is associated with the request. This should be a
+     * uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse.
+     * Do not include any identifying information such as name, email address, or phone number.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null
 )
 
-/**
- * The model that will complete your prompt. See models for additional details and options.
- */
+/** The model that will complete your prompt. See models for additional details and options. */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = Model.Deserializer::class)
 sealed interface Model {
     /** Chooses the branch this payload is shaped like. */
@@ -150,210 +153,196 @@ sealed interface Model {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
             return when {
-                node.isTextual -> StringModel(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> ValueModel(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<Any>() {}))
+                node.isTextual ->
+                    StringModel(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    ValueModel(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<Any>() {},
+                        )
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class StringModel(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : Model
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ValueModel(@get:com.fasterxml.jackson.annotation.JsonValue val value: Any) : Model
 
-/**
- * Typed representation of the `NotFoundError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `NotFoundError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class NotFoundError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: NotFoundErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: NotFoundErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Typed representation of the `OverloadedError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `OverloadedError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class OverloadedError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: OverloadedErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: OverloadedErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Typed representation of the `PermissionError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `PermissionError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class PermissionError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: PermissionErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: PermissionErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Typed representation of the `PlainTextSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `PlainTextSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class PlainTextSource(
-    /**
-     * Required `string` value serialized in the `data` wire field.
-     */
+    /** Required `string` value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: String,
-    /**
-     * Required `string` value serialized in the `media_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: PlainTextSourceMediaTypeEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: PlainTextSourceTypeEnum
+    /** Required `string` value serialized in the `media_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
+    val mediaType: PlainTextSourceMediaTypeEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: PlainTextSourceTypeEnum,
 ) : ResponseDocumentBlockSource, RequestDocumentBlockSource
 
-/**
- * Typed representation of the `RateLimitError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RateLimitError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RateLimitError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RateLimitErrorTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RateLimitErrorTypeEnum,
 ) : ErrorResponseError
 
-/**
- * Specification for a skill to be loaded in a container (request model).
- */
+/** Specification for a skill to be loaded in a container (request model). */
 data class SkillParams(
-    /**
-     * Skill ID
-     */
+    /** Skill ID */
     @com.fasterxml.jackson.annotation.JsonProperty("skill_id") val skillId: String,
-    /**
-     * Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
-     */
+    /** Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined) */
     val type: SkillParamsTypeEnum,
-    /**
-     * Skill version or 'latest' for most recent version
-     */
-    val version: String? = null
+    /** Skill version or 'latest' for most recent version */
+    val version: String? = null,
 )
 
-/**
- * Typed representation of the `URLImageSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `URLImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class URLImageSource(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: URLImageSourceTypeEnum,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `string` value serialized in the `url` wire field. */
+    val url: String,
 ) : RequestImageBlockSource
 
-/**
- * Typed representation of the `URLPDFSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `URLPDFSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class URLPDFSource(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: URLPDFSourceTypeEnum,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `string` value serialized in the `url` wire field. */
+    val url: String,
 ) : RequestDocumentBlockSource
 
-/**
- * Typed representation of the `Usage` API schema.
- */
+/** Typed representation of the `Usage` API schema. */
 data class Usage(
-    /**
-     * Breakdown of cached tokens by TTL
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true) val cacheCreation: CacheCreation?,
-    /**
-     * The number of input tokens used to create the cache entry.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens", required = true) val cacheCreationInputTokens: Long?,
-    /**
-     * The number of input tokens read from the cache.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens", required = true) val cacheReadInputTokens: Long?,
-    /**
-     * The geographic region where inference was performed for this request.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo", required = true) val inferenceGeo: String?,
-    /**
-     * The number of input tokens which were used.
-     */
+    /** Breakdown of cached tokens by TTL */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
+    val cacheCreation: CacheCreation?,
+    /** The number of input tokens used to create the cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens", required = true)
+    val cacheCreationInputTokens: Long?,
+    /** The number of input tokens read from the cache. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens", required = true)
+    val cacheReadInputTokens: Long?,
+    /** The geographic region where inference was performed for this request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo", required = true)
+    val inferenceGeo: String?,
+    /** The number of input tokens which were used. */
     @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
-    /**
-     * The number of output tokens which were used.
-     */
+    /** The number of output tokens which were used. */
     @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
     /**
-     * Breakdown of output tokens by category. `output_tokens` remains the inclusive, authoritative total used for billing. This object provides a read-only decomposition for observability — for example, how many of the billed output tokens were spent on internal reasoning that may have been summarized before being returned to you.
+     * Breakdown of output tokens by category. `output_tokens` remains the inclusive, authoritative
+     * total used for billing. This object provides a read-only decomposition for observability —
+     * for example, how many of the billed output tokens were spent on internal reasoning that may
+     * have been summarized before being returned to you.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens_details", required = true) val outputTokensDetails: OutputTokensDetails?,
-    /**
-     * The number of server tool requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("server_tool_use", required = true) val serverToolUse: ServerToolUsage?,
-    /**
-     * If the request used the priority, standard, or batch tier.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("service_tier", required = true) val serviceTier: UsageServiceTierVariant0Enum?
+    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens_details", required = true)
+    val outputTokensDetails: OutputTokensDetails?,
+    /** The number of server tool requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("server_tool_use", required = true)
+    val serverToolUse: ServerToolUsage?,
+    /** If the request used the priority, standard, or batch tier. */
+    @com.fasterxml.jackson.annotation.JsonProperty("service_tier", required = true)
+    val serviceTier: UsageServiceTierVariant0Enum?,
 )
 
-/**
- * Typed representation of the `UserLocation` API schema.
- */
+/** Typed representation of the `UserLocation` API schema. */
 data class UserLocation(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: UserLocationTypeEnum,
-    /**
-     * The city of the user.
-     */
+    /** The city of the user. */
     val city: String? = null,
-    /**
-     * The two letter ISO country code of the user.
-     */
+    /** The two letter ISO country code of the user. */
     val country: String? = null,
-    /**
-     * The region of the user.
-     */
+    /** The region of the user. */
     val region: String? = null,
-    /**
-     * The IANA timezone of the user.
-     */
-    val timezone: String? = null
+    /** The IANA timezone of the user. */
+    val timezone: String? = null,
 )

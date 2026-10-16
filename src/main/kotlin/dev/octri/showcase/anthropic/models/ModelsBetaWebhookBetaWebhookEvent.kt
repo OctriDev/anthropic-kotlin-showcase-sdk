@@ -5,85 +5,220 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaWebhookEvent` API schema.
- */
+/** Typed representation of the `BetaWebhookEvent` API schema. */
 data class BetaWebhookEvent(
-    /**
-     * Object type. Always `event` for webhook payloads.
-     */
+    /** Object type. Always `event` for webhook payloads. */
     val type: BetaWebhookEventTypeEnum,
-    /**
-     * Unique event identifier for idempotency.
-     */
+    /** Unique event identifier for idempotency. */
     val id: String,
-    /**
-     * RFC 3339 timestamp when the event occurred.
-     */
+    /** RFC 3339 timestamp when the event occurred. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required API value serialized in the `data` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: BetaWebhookEventData
+    /** Required API value serialized in the `data` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: BetaWebhookEventData,
 )
 
-/**
- * Typed representation of the `BetaWebhookEventData` API schema.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaWebhookEventData::class)
+/** Typed representation of the `BetaWebhookEventData` API schema. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaWebhookEventData::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionCreatedEventData::class, name = "session.created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionPendingEventData::class, name = "session.pending"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionRunningEventData::class, name = "session.running"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionIdledEventData::class, name = "session.idled"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionRequiresActionEventData::class, name = "session.requires_action"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionArchivedEventData::class, name = "session.archived"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionDeletedEventData::class, name = "session.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionStatusRescheduledEventData::class, name = "session.status_rescheduled"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionStatusRunStartedEventData::class, name = "session.status_run_started"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionStatusIdledEventData::class, name = "session.status_idled"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionStatusTerminatedEventData::class, name = "session.status_terminated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionThreadCreatedEventData::class, name = "session.thread_created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionThreadIdledEventData::class, name = "session.thread_idled"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionThreadTerminatedEventData::class, name = "session.thread_terminated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionOutcomeEvaluationEndedEventData::class, name = "session.outcome_evaluation_ended"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookVaultCreatedEventData::class, name = "vault.created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookVaultArchivedEventData::class, name = "vault.archived"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookVaultDeletedEventData::class, name = "vault.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookVaultCredentialCreatedEventData::class, name = "vault_credential.created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookVaultCredentialArchivedEventData::class, name = "vault_credential.archived"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookVaultCredentialDeletedEventData::class, name = "vault_credential.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookVaultCredentialRefreshFailedEventData::class, name = "vault_credential.refresh_failed"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionUpdatedEventData::class, name = "session.updated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookAgentCreatedEventData::class, name = "agent.created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookAgentArchivedEventData::class, name = "agent.archived"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookAgentDeletedEventData::class, name = "agent.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentPausedEventData::class, name = "deployment.paused"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentRunFailedEventData::class, name = "deployment_run.failed"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentCreatedEventData::class, name = "deployment.created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentUpdatedEventData::class, name = "deployment.updated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentUnpausedEventData::class, name = "deployment.unpaused"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookAgentUpdatedEventData::class, name = "agent.updated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentArchivedEventData::class, name = "deployment.archived"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentRunStartedEventData::class, name = "deployment_run.started"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentDeletedEventData::class, name = "deployment.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookDeploymentRunSucceededEventData::class, name = "deployment_run.succeeded"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookEnvironmentCreatedEventData::class, name = "environment.created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookEnvironmentUpdatedEventData::class, name = "environment.updated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookEnvironmentArchivedEventData::class, name = "environment.archived"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookEnvironmentDeletedEventData::class, name = "environment.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookMemoryStoreCreatedEventData::class, name = "memory_store.created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookMemoryStoreArchivedEventData::class, name = "memory_store.archived"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookMemoryStoreDeletedEventData::class, name = "memory_store.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaWebhookSessionBudgetReachedEventData::class, name = "session.budget_reached")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionCreatedEventData::class,
+        name = "session.created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionPendingEventData::class,
+        name = "session.pending",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionRunningEventData::class,
+        name = "session.running",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionIdledEventData::class,
+        name = "session.idled",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionRequiresActionEventData::class,
+        name = "session.requires_action",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionArchivedEventData::class,
+        name = "session.archived",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionDeletedEventData::class,
+        name = "session.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionStatusRescheduledEventData::class,
+        name = "session.status_rescheduled",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionStatusRunStartedEventData::class,
+        name = "session.status_run_started",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionStatusIdledEventData::class,
+        name = "session.status_idled",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionStatusTerminatedEventData::class,
+        name = "session.status_terminated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionThreadCreatedEventData::class,
+        name = "session.thread_created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionThreadIdledEventData::class,
+        name = "session.thread_idled",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionThreadTerminatedEventData::class,
+        name = "session.thread_terminated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionOutcomeEvaluationEndedEventData::class,
+        name = "session.outcome_evaluation_ended",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookVaultCreatedEventData::class,
+        name = "vault.created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookVaultArchivedEventData::class,
+        name = "vault.archived",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookVaultDeletedEventData::class,
+        name = "vault.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookVaultCredentialCreatedEventData::class,
+        name = "vault_credential.created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookVaultCredentialArchivedEventData::class,
+        name = "vault_credential.archived",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookVaultCredentialDeletedEventData::class,
+        name = "vault_credential.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookVaultCredentialRefreshFailedEventData::class,
+        name = "vault_credential.refresh_failed",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionUpdatedEventData::class,
+        name = "session.updated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookAgentCreatedEventData::class,
+        name = "agent.created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookAgentArchivedEventData::class,
+        name = "agent.archived",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookAgentDeletedEventData::class,
+        name = "agent.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentPausedEventData::class,
+        name = "deployment.paused",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentRunFailedEventData::class,
+        name = "deployment_run.failed",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentCreatedEventData::class,
+        name = "deployment.created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentUpdatedEventData::class,
+        name = "deployment.updated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentUnpausedEventData::class,
+        name = "deployment.unpaused",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookAgentUpdatedEventData::class,
+        name = "agent.updated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentArchivedEventData::class,
+        name = "deployment.archived",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentRunStartedEventData::class,
+        name = "deployment_run.started",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentDeletedEventData::class,
+        name = "deployment.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookDeploymentRunSucceededEventData::class,
+        name = "deployment_run.succeeded",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookEnvironmentCreatedEventData::class,
+        name = "environment.created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookEnvironmentUpdatedEventData::class,
+        name = "environment.updated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookEnvironmentArchivedEventData::class,
+        name = "environment.archived",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookEnvironmentDeletedEventData::class,
+        name = "environment.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookMemoryStoreCreatedEventData::class,
+        name = "memory_store.created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookMemoryStoreArchivedEventData::class,
+        name = "memory_store.archived",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookMemoryStoreDeletedEventData::class,
+        name = "memory_store.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaWebhookSessionBudgetReachedEventData::class,
+        name = "session.budget_reached",
+    ),
 )
 sealed interface BetaWebhookEventData
 
 /** A [BetaWebhookEventData] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaWebhookEventData @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaWebhookEventData
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaWebhookEventData {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

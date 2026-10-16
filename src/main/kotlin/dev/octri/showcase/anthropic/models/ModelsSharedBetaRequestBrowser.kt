@@ -4,45 +4,82 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * The caller's browser state after a browser toolset member call — the full inventory of open tabs, which tab is active, and any side effects (tabs opened, download state changes) the call produced. At most one per `tool_result`, only on a non-error result answering a browser toolset member `tool_use`. The server renders the model-visible text from it; the model never sees the raw fields.
+ * The caller's browser state after a browser toolset member call — the full inventory of open tabs,
+ * which tab is active, and any side effects (tabs opened, download state changes) the call
+ * produced. At most one per `tool_result`, only on a non-error result answering a browser toolset
+ * member `tool_use`. The server renders the model-visible text from it; the model never sees the
+ * raw fields.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestBrowserStateBlock(
     /**
-     * All tabs open in the browser after this call — the full inventory, not a delta. May be empty. Whenever non-empty, exactly one entry carries `active: true`.
+     * All tabs open in the browser after this call — the full inventory, not a delta. May be empty.
+     * Whenever non-empty, exactly one entry carries `active: true`.
      */
     val tabs: List<BetaBrowserStateTabEntry>,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestBrowserStateBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
     /**
-     * Create a cache control breakpoint at this content block.
+     * Tabs opened and download state changes during this call. "Nothing to report" is expressed by
+     * omitting the field, never by an empty list.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * Tabs opened and download state changes during this call. "Nothing to report" is expressed by omitting the field, never by an empty list.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("state_changes") val stateChanges: List<BetaRequestBrowserStateBlockStateChangesItem>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("state_changes")
+    val stateChanges: List<BetaRequestBrowserStateBlockStateChangesItem>? = null,
 ) : BetaRequestToolResultBlockContentItem
 
-/**
- * Required API value serialized in the `state_changes[]` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaRequestBrowserStateBlockStateChangesItem::class)
+/** Required API value serialized in the `state_changes[]` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaRequestBrowserStateBlockStateChangesItem::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBrowserStateChangeTabOpened::class, name = "tab_opened"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBrowserStateChangeDownloadStarted::class, name = "download_started"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBrowserStateChangeDownloadCompleted::class, name = "download_completed"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBrowserStateChangeDownloadFailed::class, name = "download_failed")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaBrowserStateChangeTabOpened::class,
+        name = "tab_opened",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaBrowserStateChangeDownloadStarted::class,
+        name = "download_started",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaBrowserStateChangeDownloadCompleted::class,
+        name = "download_completed",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaBrowserStateChangeDownloadFailed::class,
+        name = "download_failed",
+    ),
 )
 sealed interface BetaRequestBrowserStateBlockStateChangesItem
 
-/** A [BetaRequestBrowserStateBlockStateChangesItem] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaRequestBrowserStateBlockStateChangesItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaRequestBrowserStateBlockStateChangesItem] whose `type` names no branch this SDK knows,
+ * kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaRequestBrowserStateBlockStateChangesItem
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaRequestBrowserStateBlockStateChangesItem {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

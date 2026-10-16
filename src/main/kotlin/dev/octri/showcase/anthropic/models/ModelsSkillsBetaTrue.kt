@@ -3,108 +3,174 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Per-skill activity data for a given day.
- */
+/** Per-skill activity data for a given day. */
 data class BetaAnalyticsSkillActivity(
+    /** Claude.ai activity metrics for a single skill on a given day. */
+    @com.fasterxml.jackson.annotation.JsonProperty("chat_metrics")
+    val chatMetrics: BetaAnalyticsSkillChatMetrics,
+    /** Claude Code activity metrics for a single skill on a given day. */
+    @com.fasterxml.jackson.annotation.JsonProperty("claude_code_metrics")
+    val claudeCodeMetrics: BetaAnalyticsSkillClaudeCodeMetrics,
+    /** Cowork activity metrics for a single skill on a given day. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cowork_metrics")
+    val coworkMetrics: BetaAnalyticsSkillCoworkMetrics,
     /**
-     * Claude.ai activity metrics for a single skill on a given day.
+     * Number of distinct users who used the skill on the requested day, or, in date-range mode,
+     * over the requested window — recomputed as an exact distinct count over the window's
+     * per-member daily rows, never a sum of per-day values. A skill counts as used only when it is
+     * explicitly activated — the model (or the user, via the skill's slash command) invokes it,
+     * reading its instructions into context as part of that activation. Skills that are merely
+     * installed or listed as available,…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("chat_metrics") val chatMetrics: BetaAnalyticsSkillChatMetrics,
+    @com.fasterxml.jackson.annotation.JsonProperty("distinct_user_count")
+    val distinctUserCount: Long,
     /**
-     * Claude Code activity metrics for a single skill on a given day.
+     * Office Agent activity metrics for a single skill on a given day, broken out by Office
+     * product.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("claude_code_metrics") val claudeCodeMetrics: BetaAnalyticsSkillClaudeCodeMetrics,
-    /**
-     * Cowork activity metrics for a single skill on a given day.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cowork_metrics") val coworkMetrics: BetaAnalyticsSkillCoworkMetrics,
-    /**
-     * Number of distinct users who used the skill on the requested day, or, in date-range mode, over the requested window — recomputed as an exact distinct count over the window's per-member daily rows, never a sum of per-day values. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available,…
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_user_count") val distinctUserCount: Long,
-    /**
-     * Office Agent activity metrics for a single skill on a given day, broken out by Office product.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("office_metrics") val officeMetrics: BetaAnalyticsSkillOfficeMetrics,
-    /**
-     * Name of the skill
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("office_metrics")
+    val officeMetrics: BetaAnalyticsSkillOfficeMetrics,
+    /** Name of the skill */
     @com.fasterxml.jackson.annotation.JsonProperty("skill_name") val skillName: String,
     /**
-     * List-price (rate-card) value of the member requests attributed to this skill, as a decimal string in the minor unit of `currency` (cents for USD), from Claude Code, Cowork, and Office Agent request-level attribution — the value of requests that involved the skill, not the skill's incremental cost. Unlike `estimated_overage_spend` this reflects usage value regardless of how it was funded — seat-covered usage counts — but it is undiscounted and does not tie to billed spend or…
+     * List-price (rate-card) value of the member requests attributed to this skill, as a decimal
+     * string in the minor unit of `currency` (cents for USD), from Claude Code, Cowork, and Office
+     * Agent request-level attribution — the value of requests that involved the skill, not the
+     * skill's incremental cost. Unlike `estimated_overage_spend` this reflects usage value
+     * regardless of how it was funded — seat-covered usage counts — but it is undiscounted and does
+     * not tie to billed spend or…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("attributed_list_price") val attributedListPrice: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("attributed_list_price")
+    val attributedListPrice: String? = null,
     /**
-     * Currency for this row's monetary fields (`estimated_overage_spend` and `attributed_list_price`), as an uppercase ISO-4217 code. Always "USD" when either amount is populated; null whenever both amounts are null.
+     * Currency for this row's monetary fields (`estimated_overage_spend` and
+     * `attributed_list_price`), as an uppercase ISO-4217 code. Always "USD" when either amount is
+     * populated; null whenever both amounts are null.
      */
     val currency: BetaAnalyticsSkillActivityCurrencyVariant0Enum? = null,
     /**
-     * Distinct accounts that enabled this skill on the requested day (claude.ai only — the skill analog of plugin `install_count`). The count is org-wide: null when enable reporting is not enabled for this organization, or when the request scopes to `user_id` / `rbac_group_id` / `product` via `group_by[]` or `filter[]` (an org-wide count would be misleading on per-cut rows). A distinct count, not an event count: summing across days double-counts members who enable the skill on…
+     * Distinct accounts that enabled this skill on the requested day (claude.ai only — the skill
+     * analog of plugin `install_count`). The count is org-wide: null when enable reporting is not
+     * enabled for this organization, or when the request scopes to `user_id` / `rbac_group_id` /
+     * `product` via `group_by[]` or `filter[]` (an org-wide count would be misleading on per-cut
+     * rows). A distinct count, not an event count: summing across days double-counts members who
+     * enable the skill on…
      */
     @com.fasterxml.jackson.annotation.JsonProperty("enable_count") val enableCount: Long? = null,
     /**
-     * Estimated overage spend attributed to this skill, as a decimal string in the minor unit of `currency` (cents for USD; "1250" is $12.50, fractional cents possible) — an allocation of each member's daily post-discount, pre-credit metered overage spend (the same cost basis as the organization's spend reporting and the Cost & Usage API, so per-skill figures are directly comparable; spend with no skill attribution — including any member-day without skill invocations — is not…
+     * Estimated overage spend attributed to this skill, as a decimal string in the minor unit of
+     * `currency` (cents for USD; "1250" is $12.50, fractional cents possible) — an allocation of
+     * each member's daily post-discount, pre-credit metered overage spend (the same cost basis as
+     * the organization's spend reporting and the Cost & Usage API, so per-skill figures are
+     * directly comparable; spend with no skill attribution — including any member-day without skill
+     * invocations — is not…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("estimated_overage_spend") val estimatedOverageSpend: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("estimated_overage_spend")
+    val estimatedOverageSpend: String? = null,
     /**
-     * Total number of times this skill was invoked on the requested day (the skill analog of plugin `invocation_count`). Unlike `distinct_user_count` — which answers '# of users' — this is the true '# of uses'. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content…
+     * Total number of times this skill was invoked on the requested day (the skill analog of plugin
+     * `invocation_count`). Unlike `distinct_user_count` — which answers '# of users' — this is the
+     * true '# of uses'. A skill counts as used only when it is explicitly activated — the model (or
+     * the user, via the skill's slash command) invokes it, reading its instructions into context as
+     * part of that activation. Skills that are merely installed or listed as available, or whose
+     * content…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("invocation_count") val invocationCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("invocation_count")
+    val invocationCount: Long? = null,
     /**
-     * Product that produced this row's activity: one of `chat`, `claude_code`, `cowork`, or `office_agent` (the canonical Cost & Usage product naming; an `office_agent` row's per-surface breakdown is in its `office_metrics`). On `/plugins` only `cowork` and `claude_code` occur (the only surfaces with plugin attribution); on `/artifacts` only `chat`, `claude_code`, and `cowork` occur (the surfaces that create artifacts); `/apps/chat/projects` does not support the product dimension…
+     * Product that produced this row's activity: one of `chat`, `claude_code`, `cowork`, or
+     * `office_agent` (the canonical Cost & Usage product naming; an `office_agent` row's
+     * per-surface breakdown is in its `office_metrics`). On `/plugins` only `cowork` and
+     * `claude_code` occur (the only surfaces with plugin attribution); on `/artifacts` only `chat`,
+     * `claude_code`, and `cowork` occur (the surfaces that create artifacts); `/apps/chat/projects`
+     * does not support the product dimension…
      */
     val product: String? = null,
     /**
-     * Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling. Present only when the request grouped by `rbac_group_id`.
+     * Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling.
+     * Present only when the request grouped by `rbac_group_id`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_id") val rbacGroupId: String? = null,
     /**
-     * Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is available. Null if the group has been deleted or its name could not be resolved; `rbac_group_id` remains the stable key.
+     * Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is
+     * available. Null if the group has been deleted or its name could not be resolved;
+     * `rbac_group_id` remains the stable key.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_name") val rbacGroupName: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_name")
+    val rbacGroupName: String? = null,
     /**
-     * Skill share status (claude.ai only): one of `private`, `organization`, or `public`. Null for skills used only in Claude Code or Office (no per-skill share-status concept) and when share-status reporting is not yet available for the organization. Filterable via `filter[]=share_status:{value}`.
+     * Skill share status (claude.ai only): one of `private`, `organization`, or `public`. Null for
+     * skills used only in Claude Code or Office (no per-skill share-status concept) and when
+     * share-status reporting is not yet available for the organization. Filterable via
+     * `filter[]=share_status:{value}`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("share_status") val shareStatus: BetaAnalyticsSkillActivityShareStatusVariant0Enum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("share_status")
+    val shareStatus: BetaAnalyticsSkillActivityShareStatusVariant0Enum? = null,
     /**
-     * Human-readable display name for rows whose `skill_name` is an opaque skill id (user/organization skill types and plugin-delivered skills — user-defined names are withheld from the analytics pipeline). Organization-shared skills and skills delivered by the organization's own plugins (its plugin marketplaces and its library) resolve; plugin skill names are shown without their 'plugin:' prefix. The literal 'unknown' bucket row gets a fixed 'Unknown skill' label. Null for…
+     * Human-readable display name for rows whose `skill_name` is an opaque skill id
+     * (user/organization skill types and plugin-delivered skills — user-defined names are withheld
+     * from the analytics pipeline). Organization-shared skills and skills delivered by the
+     * organization's own plugins (its plugin marketplaces and its library) resolve; plugin skill
+     * names are shown without their 'plugin:' prefix. The literal 'unknown' bucket row gets a fixed
+     * 'Unknown skill' label. Null for…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("skill_display_name") val skillDisplayName: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("skill_display_name")
+    val skillDisplayName: String? = null,
     /**
      * Tagged user identifier (e.g. `user_...`). Present only when the request grouped by `user_id`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null,
 )
 
-/**
- * Claude.ai activity metrics for a single skill on a given day.
- */
+/** Claude.ai activity metrics for a single skill on a given day. */
 data class BetaAnalyticsSkillChatMetrics(
     /**
-     * Number of distinct conversations in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical error <2%)…
+     * Number of distinct conversations in which the skill was used. A skill counts as used only
+     * when it is explicitly activated — the model (or the user, via the skill's slash command)
+     * invokes it, reading its instructions into context as part of that activation. Skills that are
+     * merely installed or listed as available, or whose content reaches the context without an
+     * activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate
+     * (HLL, typical error <2%)…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_conversation_skill_used_count", required = true) val distinctConversationSkillUsedCount: Long?
+    @com.fasterxml.jackson.annotation.JsonProperty(
+        "distinct_conversation_skill_used_count",
+        required = true,
+    )
+    val distinctConversationSkillUsedCount: Long?
 )
 
-/**
- * Claude Code activity metrics for a single skill on a given day.
- */
+/** Claude Code activity metrics for a single skill on a given day. */
 data class BetaAnalyticsSkillClaudeCodeMetrics(
     /**
-     * Number of distinct Claude Code sessions in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical…
+     * Number of distinct Claude Code sessions in which the skill was used. A skill counts as used
+     * only when it is explicitly activated — the model (or the user, via the skill's slash command)
+     * invokes it, reading its instructions into context as part of that activation. Skills that are
+     * merely installed or listed as available, or whose content reaches the context without an
+     * activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate
+     * (HLL, typical…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_session_skill_used_count", required = true) val distinctSessionSkillUsedCount: Long?
+    @com.fasterxml.jackson.annotation.JsonProperty(
+        "distinct_session_skill_used_count",
+        required = true,
+    )
+    val distinctSessionSkillUsedCount: Long?
 )
 
-/**
- * Cowork activity metrics for a single skill on a given day.
- */
+/** Cowork activity metrics for a single skill on a given day. */
 data class BetaAnalyticsSkillCoworkMetrics(
     /**
-     * Number of distinct Cowork sessions in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical error…
+     * Number of distinct Cowork sessions in which the skill was used. A skill counts as used only
+     * when it is explicitly activated — the model (or the user, via the skill's slash command)
+     * invokes it, reading its instructions into context as part of that activation. Skills that are
+     * merely installed or listed as available, or whose content reaches the context without an
+     * activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate
+     * (HLL, typical error…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_session_skill_used_count", required = true) val distinctSessionSkillUsedCount: Long?
+    @com.fasterxml.jackson.annotation.JsonProperty(
+        "distinct_session_skill_used_count",
+        required = true,
+    )
+    val distinctSessionSkillUsedCount: Long?
 )
 
 /**
@@ -126,57 +192,58 @@ data class BetaAnalyticsSkillOfficeMetrics(
     /**
      * Office Agent activity metrics for a single skill on a given day within one Office product.
      */
-    val word: BetaAnalyticsSkillOfficeProductMetrics
+    val word: BetaAnalyticsSkillOfficeProductMetrics,
 )
 
-/**
- * Office Agent activity metrics for a single skill on a given day within one Office product.
- */
+/** Office Agent activity metrics for a single skill on a given day within one Office product. */
 data class BetaAnalyticsSkillOfficeProductMetrics(
     /**
-     * Number of distinct Office Agent sessions in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical…
+     * Number of distinct Office Agent sessions in which the skill was used. A skill counts as used
+     * only when it is explicitly activated — the model (or the user, via the skill's slash command)
+     * invokes it, reading its instructions into context as part of that activation. Skills that are
+     * merely installed or listed as available, or whose content reaches the context without an
+     * activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate
+     * (HLL, typical…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_session_skill_used_count", required = true) val distinctSessionSkillUsedCount: Long?
+    @com.fasterxml.jackson.annotation.JsonProperty(
+        "distinct_session_skill_used_count",
+        required = true,
+    )
+    val distinctSessionSkillUsedCount: Long?
 )
 
-/**
- * Response for GET /v1/organizations/analytics/skills.
- */
+/** Response for GET /v1/organizations/analytics/skills. */
 data class BetaAnalyticsSkillsResponse(
-    /**
-     * Required array value serialized in the `data` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaAnalyticsSkillActivity>,
-    /**
-     * Opaque cursor for the next page, or null if no more results
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    /** Required array value serialized in the `data` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaAnalyticsSkillActivity>,
+    /** Opaque cursor for the next page, or null if no more results */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 )
 
-/**
- * Typed representation of the `BetaBody_create_skill_v1_skills_post` API schema.
- */
+/** Typed representation of the `BetaBody_create_skill_v1_skills_post` API schema. */
 data class BetaBodyCreateSkillV1SkillsPost(
     /**
-     * Files to upload for the skill. All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+     * Files to upload for the skill. All files must be in the same top-level directory and must
+     * include a SKILL.md file at the root of that directory.
      */
     val files: List<ByteArray>,
     /**
-     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
+     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived
+     * from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null,
 )
 
-/**
- * Typed representation of the `BetaListSkillsResponse` API schema.
- */
+/** Typed representation of the `BetaListSkillsResponse` API schema. */
 data class BetaListSkillsResponse(
-    /**
-     * List of skills.
-     */
+    /** List of skills. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaSkill>,
     /**
-     * Token for fetching the next page of results. If `null`, there are no more results available. Pass this value to the `page` parameter in the next request to get the next page.
+     * Token for fetching the next page of results. If `null`, there are no more results available.
+     * Pass this value to the `page` parameter in the next request to get the next page.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 )

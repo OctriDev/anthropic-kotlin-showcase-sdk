@@ -3,55 +3,88 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaRequestImageBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestImageBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestImageBlock(
-    /**
-     * Required API value serialized in the `source` wire field.
-     */
+    /** Required API value serialized in the `source` wire field. */
     val source: BetaRequestImageBlockSource,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestImageBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
     /**
-     * Create a cache control breakpoint at this content block.
+     * Configures the transformations the server applies to this image before the model observes it.
+     * Each key names a condition the server transforms images for; its value selects the
+     * transformation applied. Omitted keys keep their default behavior, and an empty object is
+     * equivalent to omitting the field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * Configures the transformations the server applies to this image before the model observes it. Each key names a condition the server transforms images for; its value selects the transformation applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting the field.
-     */
-    val transformations: BetaRequestImageTransformations? = null
+    val transformations: BetaRequestImageTransformations? = null,
 ) : BetaInputContentBlock, BetaContentBlockSourceContentItem, BetaRequestToolResultBlockContentItem
 
-/**
- * Required API value serialized in the `source` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaRequestImageBlockSource::class)
+/** Required API value serialized in the `source` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaRequestImageBlockSource::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBase64ImageSource::class, name = "base64"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaURLImageSource::class, name = "url"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaFileImageSource::class, name = "file")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaBase64ImageSource::class,
+        name = "base64",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaURLImageSource::class,
+        name = "url",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaFileImageSource::class,
+        name = "file",
+    ),
 )
 sealed interface BetaRequestImageBlockSource
 
-/** A [BetaRequestImageBlockSource] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaRequestImageBlockSource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaRequestImageBlockSource] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaRequestImageBlockSource
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaRequestImageBlockSource {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
 /**
- * Configures the transformations the server applies to this image before the model observes it. Each key names a condition the server transforms images for; its value selects the transformation applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting the field.
+ * Configures the transformations the server applies to this image before the model observes it.
+ * Each key names a condition the server transforms images for; its value selects the transformation
+ * applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting
+ * the field.
  */
 data class BetaRequestImageTransformations(
     /**
-     * What the server does when this image exceeds the model's maximum image size. `"downsize"` (the default) scales the image down to fit, which changes the dimensions the model observes without telling you. `"error"` instead rejects the request with a 400 error naming the image's dimensions and the largest dimensions that fit, so you can scale the image deliberately — your image is never silently scaled down.
+     * What the server does when this image exceeds the model's maximum image size. `"downsize"`
+     * (the default) scales the image down to fit, which changes the dimensions the model observes
+     * without telling you. `"error"` instead rejects the request with a 400 error naming the
+     * image's dimensions and the largest dimensions that fit, so you can scale the image
+     * deliberately — your image is never silently scaled down.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("oversized_image") val oversizedImage: BetaRequestImageTransformationsOversizedImageEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("oversized_image")
+    val oversizedImage: BetaRequestImageTransformationsOversizedImageEnum? = null
 )

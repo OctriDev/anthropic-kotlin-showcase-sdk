@@ -5,88 +5,64 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaFileDocumentSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaFileDocumentSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaFileDocumentSource(
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaFileDocumentSourceTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaFileDocumentSourceTypeEnum,
 ) : BetaRequestDocumentBlockSource
 
-/**
- * Typed representation of the `BetaFileImageSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaFileImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaFileImageSource(
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaFileImageSourceTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaFileImageSourceTypeEnum,
 ) : BetaRequestImageBlockSource
 
-/**
- * Typed representation of the `BetaFileMetadataSchema` API schema.
- */
+/** Typed representation of the `BetaFileMetadataSchema` API schema. */
 data class BetaFileMetadataSchema(
-    /**
-     * RFC 3339 datetime string representing when the file was created.
-     */
+    /** RFC 3339 datetime string representing when the file was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Original filename of the uploaded file.
-     */
+    /** Original filename of the uploaded file. */
     val filename: String,
-    /**
-     * Unique object identifier. The format and length of IDs may change over time.
-     */
+    /** Unique object identifier. The format and length of IDs may change over time. */
     val id: String,
-    /**
-     * MIME type of the file.
-     */
+    /** MIME type of the file. */
     @com.fasterxml.jackson.annotation.JsonProperty("mime_type") val mimeType: String,
-    /**
-     * Size of the file in bytes.
-     */
+    /** Size of the file in bytes. */
     @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long,
-    /**
-     * Object type. For files, this is always `"file"`.
-     */
+    /** Object type. For files, this is always `"file"`. */
     val type: BetaFileMetadataSchemaTypeEnum,
-    /**
-     * Whether the file can be downloaded.
-     */
+    /** Whether the file can be downloaded. */
     val downloadable: Boolean? = null,
     /**
-     * RFC 3339 datetime string representing when the file will expire and become unavailable for download. Null if the file does not expire. For files uploaded with `expires_in_seconds`, this is the upload time plus that value.
+     * RFC 3339 datetime string representing when the file will expire and become unavailable for
+     * download. Null if the file does not expire. For files uploaded with `expires_in_seconds`,
+     * this is the upload time plus that value.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: String? = null,
-    /**
-     * The scope of this file, indicating the context in which it was created (e.g., a session).
-     */
-    val scope: BetaFileScope? = null
+    /** The scope of this file, indicating the context in which it was created (e.g., a session). */
+    val scope: BetaFileScope? = null,
 )
 
-/**
- * Typed representation of the `BetaFileScope` API schema.
- */
+/** Typed representation of the `BetaFileScope` API schema. */
 data class BetaFileScope(
-    /**
-     * The ID of the scoping resource (e.g., the session ID).
-     */
+    /** The ID of the scoping resource (e.g., the session ID). */
     val id: String,
-    /**
-     * The type of scope (e.g., `"session"`).
-     */
-    val type: BetaFileScopeTypeEnum
+    /** The type of scope (e.g., `"session"`). */
+    val type: BetaFileScopeTypeEnum,
 )

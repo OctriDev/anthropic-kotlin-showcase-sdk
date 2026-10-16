@@ -3,51 +3,82 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `MessageStartEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `MessageStartEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class MessageStartEvent(
-    /**
-     * Required object value serialized in the `message` wire field.
-     */
+    /** Required object value serialized in the `message` wire field. */
     val message: Message,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: MessageStartEventTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: MessageStartEventTypeEnum,
 ) : MessageStreamEvent
 
-/**
- * Typed representation of the `MessageStopEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `MessageStopEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class MessageStopEvent(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: MessageStopEventTypeEnum
 ) : MessageStreamEvent
 
-/**
- * Typed representation of the `MessageStreamEvent` API schema.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownMessageStreamEvent::class)
+/** Typed representation of the `MessageStreamEvent` API schema. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownMessageStreamEvent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = MessageStartEvent::class, name = "message_start"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = MessageDeltaEvent::class, name = "message_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = MessageStopEvent::class, name = "message_stop"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ContentBlockStartEvent::class, name = "content_block_start"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ContentBlockDeltaEvent::class, name = "content_block_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ContentBlockStopEvent::class, name = "content_block_stop")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = MessageStartEvent::class,
+        name = "message_start",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = MessageDeltaEvent::class,
+        name = "message_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = MessageStopEvent::class,
+        name = "message_stop",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ContentBlockStartEvent::class,
+        name = "content_block_start",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ContentBlockDeltaEvent::class,
+        name = "content_block_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ContentBlockStopEvent::class,
+        name = "content_block_stop",
+    ),
 )
 sealed interface MessageStreamEvent
 
 /** A [MessageStreamEvent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownMessageStreamEvent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownMessageStreamEvent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : MessageStreamEvent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

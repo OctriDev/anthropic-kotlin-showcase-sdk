@@ -3,52 +3,85 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * The added session resource.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsAddSessionResource::class)
+/** The added session resource. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsAddSessionResource::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsFileResource::class, name = "file")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsFileResource::class,
+        name = "file",
+    )
 )
 sealed interface BetaManagedAgentsAddSessionResource
 
-/** A [BetaManagedAgentsAddSessionResource] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsAddSessionResource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsAddSessionResource] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsAddSessionResource
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsAddSessionResource {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Request parameters for adding a resource to a session.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsAddSessionResourceParams::class)
+/** Request parameters for adding a resource to a session. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsAddSessionResourceParams::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsFileResourceParams::class, name = "file")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsFileResourceParams::class,
+        name = "file",
+    )
 )
 sealed interface BetaManagedAgentsAddSessionResourceParams
 
-/** A [BetaManagedAgentsAddSessionResourceParams] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsAddSessionResourceParams @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsAddSessionResourceParams] whose `type` names no branch this SDK knows, kept
+ * as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsAddSessionResourceParams
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsAddSessionResourceParams {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Paginated list of resources attached to a session.
- */
+/** Paginated list of resources attached to a session. */
 data class BetaManagedAgentsListSessionResources(
-    /**
-     * Resources for the session, ordered by `created_at`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsSessionResource>,
-    /**
-     * Opaque cursor for the next page. Null when no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** Resources for the session, ordered by `created_at`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsSessionResource>,
+    /** Opaque cursor for the next page. Null when no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 )

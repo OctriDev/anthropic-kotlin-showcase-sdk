@@ -3,46 +3,76 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `ErrorResponse` API schema.
- */
+/** Typed representation of the `ErrorResponse` API schema. */
 data class ErrorResponse(
-    /**
-     * Required API value serialized in the `error` wire field.
-     */
+    /** Required API value serialized in the `error` wire field. */
     val error: ErrorResponseError,
-    /**
-     * Required `string` value serialized in the `request_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("request_id", required = true) val requestId: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ErrorResponseTypeEnum
+    /** Required `string` value serialized in the `request_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("request_id", required = true)
+    val requestId: String?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ErrorResponseTypeEnum,
 ) : dev.octri.showcase.anthropic.ErrorBody
 
-/**
- * Required API value serialized in the `error` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownErrorResponseError::class)
+/** Required API value serialized in the `error` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownErrorResponseError::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InvalidRequestError::class, name = "invalid_request_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = AuthenticationError::class, name = "authentication_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BillingError::class, name = "billing_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = PermissionError::class, name = "permission_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = NotFoundError::class, name = "not_found_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RateLimitError::class, name = "rate_limit_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = GatewayTimeoutError::class, name = "timeout_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = InvalidRequestError::class,
+        name = "invalid_request_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = AuthenticationError::class,
+        name = "authentication_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BillingError::class,
+        name = "billing_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = PermissionError::class,
+        name = "permission_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = NotFoundError::class,
+        name = "not_found_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RateLimitError::class,
+        name = "rate_limit_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = GatewayTimeoutError::class,
+        name = "timeout_error",
+    ),
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = APIError::class, name = "api_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = OverloadedError::class, name = "overloaded_error")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = OverloadedError::class,
+        name = "overloaded_error",
+    ),
 )
 sealed interface ErrorResponseError
 
 /** A [ErrorResponseError] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownErrorResponseError @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownErrorResponseError
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : ErrorResponseError {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

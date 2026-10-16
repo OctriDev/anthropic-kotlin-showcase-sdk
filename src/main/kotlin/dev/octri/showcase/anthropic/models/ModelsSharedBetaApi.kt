@@ -5,146 +5,194 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaApiKey` API schema.
- */
+/** Typed representation of the `BetaApiKey` API schema. */
 data class BetaApiKey(
-    /**
-     * RFC 3339 datetime string indicating when the API Key was created.
-     */
+    /** RFC 3339 datetime string indicating when the API Key was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     /**
-     * The ID and type of the actor that created the API key, or `null` when the creator is not recorded (legacy, workload-identity-federated, or system-created keys).
+     * The ID and type of the actor that created the API key, or `null` when the creator is not
+     * recorded (legacy, workload-identity-federated, or system-created keys).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_by", required = true) val createdBy: BetaCreatedBy?,
+    @com.fasterxml.jackson.annotation.JsonProperty("created_by", required = true)
+    val createdBy: BetaCreatedBy?,
     /**
      * RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("expires_at", required = true) val expiresAt: String?,
-    /**
-     * ID of the API key.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("expires_at", required = true)
+    val expiresAt: String?,
+    /** ID of the API key. */
     val id: String,
-    /**
-     * Name of the API key.
-     */
+    /** Name of the API key. */
     val name: String,
+    /** Partially redacted hint for the API key. */
+    @com.fasterxml.jackson.annotation.JsonProperty("partial_key_hint", required = true)
+    val partialKeyHint: String?,
     /**
-     * Partially redacted hint for the API key.
+     * The principal the API key acts as (a User or a Service Account), or `null` if the API key is
+     * not bound to a principal.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("partial_key_hint", required = true) val partialKeyHint: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("principal", required = true)
+    val principal: BetaApiKeyPrincipal?,
     /**
-     * The principal the API key acts as (a User or a Service Account), or `null` if the API key is not bound to a principal.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("principal", required = true) val principal: BetaApiKeyPrincipal?,
-    /**
-     * Where the API key belongs: its Workspace (`{"type": "workspace", "workspace_id": "wrkspc_..."}`, with the Workspace's real ID even when it is the organization's default Workspace), or the organization (`{"type": "organization"}`) for a principal-bound API key that has no Workspace.
+     * Where the API key belongs: its Workspace (`{"type": "workspace", "workspace_id":
+     * "wrkspc_..."}`, with the Workspace's real ID even when it is the organization's default
+     * Workspace), or the organization (`{"type": "organization"}`) for a principal-bound API key
+     * that has no Workspace.
      */
     val scope: BetaApiKeyScope,
-    /**
-     * Status of the API key.
-     */
+    /** Status of the API key. */
     val status: BetaApiKeyStatusEnum,
-    /**
-     * Object type. For API Keys, this is always `"api_key"`.
-     */
+    /** Object type. For API Keys, this is always `"api_key"`. */
     val type: BetaApiKeyTypeEnum,
     /**
-     * Deprecated: use `scope` instead. ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace. Also `null` for a principal-bound API key that has no Workspace; `scope` tells the two apart.
+     * Deprecated: use `scope` instead. ID of the Workspace associated with the API key, or `null`
+     * if the API key belongs to the default Workspace. Also `null` for a principal-bound API key
+     * that has no Workspace; `scope` tells the two apart.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id", required = true) val workspaceId: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id", required = true)
+    val workspaceId: String?,
 )
 
-/**
- * Typed representation of the `BetaApiKeyOrganizationScope` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaApiKeyOrganizationScope` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaApiKeyOrganizationScope(
     /**
-     * Scope type. Always `"organization"`: the API key has no Workspace. Only a principal-bound API key can have this scope.
+     * Scope type. Always `"organization"`: the API key has no Workspace. Only a principal-bound API
+     * key can have this scope.
      */
     val type: BetaApiKeyOrganizationScopeTypeEnum
 ) : BetaApiKeyScope
 
 /**
- * The principal the API key acts as (a User or a Service Account), or `null` if the API key is not bound to a principal.
+ * The principal the API key acts as (a User or a Service Account), or `null` if the API key is not
+ * bound to a principal.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaApiKeyPrincipal::class)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaApiKeyPrincipal::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaApiKeyUserActor::class, name = "user_actor"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaApiKeyServiceAccountActor::class, name = "service_account_actor")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaApiKeyUserActor::class,
+        name = "user_actor",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaApiKeyServiceAccountActor::class,
+        name = "service_account_actor",
+    ),
 )
 sealed interface BetaApiKeyPrincipal
 
 /** A [BetaApiKeyPrincipal] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaApiKeyPrincipal @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaApiKeyPrincipal
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaApiKeyPrincipal {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
 /**
- * Where the API key belongs: its Workspace (`{"type": "workspace", "workspace_id": "wrkspc_..."}`, with the Workspace's real ID even when it is the organization's default Workspace), or the organization (`{"type": "organization"}`) for a principal-bound API key that has no Workspace.
+ * Where the API key belongs: its Workspace (`{"type": "workspace", "workspace_id": "wrkspc_..."}`,
+ * with the Workspace's real ID even when it is the organization's default Workspace), or the
+ * organization (`{"type": "organization"}`) for a principal-bound API key that has no Workspace.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaApiKeyScope::class)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaApiKeyScope::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaApiKeyOrganizationScope::class, name = "organization"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaApiKeyWorkspaceScope::class, name = "workspace")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaApiKeyOrganizationScope::class,
+        name = "organization",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaApiKeyWorkspaceScope::class,
+        name = "workspace",
+    ),
 )
 sealed interface BetaApiKeyScope
 
 /** A [BetaApiKeyScope] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaApiKeyScope @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaApiKeyScope
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaApiKeyScope {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `BetaApiKeyServiceAccountActor` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaApiKeyServiceAccountActor` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaApiKeyServiceAccountActor(
-    /**
-     * ID of the Service Account the API key acts as.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("service_account_id") val serviceAccountId: String,
-    /**
-     * Principal type. Always `"service_account_actor"` for a Service Account.
-     */
-    val type: BetaApiKeyServiceAccountActorTypeEnum
+    /** ID of the Service Account the API key acts as. */
+    @com.fasterxml.jackson.annotation.JsonProperty("service_account_id")
+    val serviceAccountId: String,
+    /** Principal type. Always `"service_account_actor"` for a Service Account. */
+    val type: BetaApiKeyServiceAccountActorTypeEnum,
 ) : BetaApiKeyPrincipal
 
-/**
- * Typed representation of the `BetaApiKeyUserActor` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaApiKeyUserActor` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaApiKeyUserActor(
-    /**
-     * Principal type. Always `"user_actor"` for a User.
-     */
+    /** Principal type. Always `"user_actor"` for a User. */
     val type: BetaApiKeyUserActorTypeEnum,
-    /**
-     * ID of the User the API key acts as.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String
+    /** ID of the User the API key acts as. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String,
 ) : BetaApiKeyPrincipal
 
-/**
- * Typed representation of the `BetaApiKeyWorkspaceScope` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaApiKeyWorkspaceScope` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaApiKeyWorkspaceScope(
-    /**
-     * Scope type. Always `"workspace"`: the API key belongs to one Workspace.
-     */
+    /** Scope type. Always `"workspace"`: the API key belongs to one Workspace. */
     val type: BetaApiKeyWorkspaceScopeTypeEnum,
     /**
-     * ID of the Workspace the API key belongs to. Unlike the deprecated top-level `workspace_id`, this is the Workspace's real ID even for the organization's default Workspace.
+     * ID of the Workspace the API key belongs to. Unlike the deprecated top-level `workspace_id`,
+     * this is the Workspace's real ID even for the organization's default Workspace.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
 ) : BetaApiKeyScope

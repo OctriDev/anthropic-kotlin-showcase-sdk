@@ -3,61 +3,74 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Response after deleting an environment.
- */
+/** Response after deleting an environment. */
 data class BetaEnvironmentDeleteResponse(
-    /**
-     * Environment identifier
-     */
+    /** Environment identifier */
     val id: String,
-    /**
-     * The type of response
-     */
-    val type: BetaEnvironmentDeleteResponseTypeEnum
+    /** The type of response */
+    val type: BetaEnvironmentDeleteResponseTypeEnum,
 )
 
-/**
- * Public API request to update an environment (without org/account fields).
- */
+/** Public API request to update an environment (without org/account fields). */
 data class BetaPublicEnvironmentUpdateRequest(
-    /**
-     * Updated environment configuration
-     */
+    /** Updated environment configuration */
     val config: BetaPublicEnvironmentUpdateRequestConfig? = null,
     /**
-     * Updated description of the environment. Omit to preserve; null clears to null; an empty string is stored as an empty string.
+     * Updated description of the environment. Omit to preserve; null clears to null; an empty
+     * string is stored as an empty string.
      */
     val description: String? = null,
     /**
-     * User-provided metadata key-value pairs. Set a value to null or empty string to delete the key.
+     * User-provided metadata key-value pairs. Set a value to null or empty string to delete the
+     * key.
      */
     val metadata: Map<String, String>? = null,
-    /**
-     * Updated name for the environment
-     */
+    /** Updated name for the environment */
     val name: String? = null,
     /**
-     * The visibility scope for this environment. 'organization' makes the environment visible to all accounts. 'account' restricts visibility to the owning account only.
+     * The visibility scope for this environment. 'organization' makes the environment visible to
+     * all accounts. 'account' restricts visibility to the owning account only.
      */
-    val scope: BetaPublicEnvironmentUpdateRequestScopeVariant0Enum? = null
+    val scope: BetaPublicEnvironmentUpdateRequestScopeVariant0Enum? = null,
 )
 
-/**
- * Updated environment configuration
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaPublicEnvironmentUpdateRequestConfig::class)
+/** Updated environment configuration */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaPublicEnvironmentUpdateRequestConfig::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCloudConfigParams::class, name = "cloud"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaSelfHostedConfigParams::class, name = "self_hosted")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaCloudConfigParams::class,
+        name = "cloud",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaSelfHostedConfigParams::class,
+        name = "self_hosted",
+    ),
 )
 sealed interface BetaPublicEnvironmentUpdateRequestConfig
 
-/** A [BetaPublicEnvironmentUpdateRequestConfig] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaPublicEnvironmentUpdateRequestConfig @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaPublicEnvironmentUpdateRequestConfig] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaPublicEnvironmentUpdateRequestConfig
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaPublicEnvironmentUpdateRequestConfig {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

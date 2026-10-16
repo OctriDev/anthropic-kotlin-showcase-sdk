@@ -3,16 +3,10 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaDeleteInviteResponse` API schema.
- */
+/** Typed representation of the `BetaDeleteInviteResponse` API schema. */
 data class BetaDeleteInviteResponse(
-    /**
-     * ID of the Invite.
-     */
+    /** ID of the Invite. */
     val id: String,
-    /**
-     * Deleted object type. For Invites, this is always `"invite_deleted"`.
-     */
-    val type: BetaDeleteInviteResponseTypeEnum
+    /** Deleted object type. For Invites, this is always `"invite_deleted"`. */
+    val type: BetaDeleteInviteResponseTypeEnum,
 )

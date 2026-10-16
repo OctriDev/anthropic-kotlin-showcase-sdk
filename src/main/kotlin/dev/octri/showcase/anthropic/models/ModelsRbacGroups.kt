@@ -3,26 +3,16 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaDeleteRbacGroupResponse` API schema.
- */
+/** Typed representation of the `BetaDeleteRbacGroupResponse` API schema. */
 data class BetaDeleteRbacGroupResponse(
-    /**
-     * ID of the RBAC Group.
-     */
+    /** ID of the RBAC Group. */
     val id: String,
-    /**
-     * Deleted object type. For RBAC Groups, this is always `"rbac_group_deleted"`.
-     */
-    val type: BetaDeleteRbacGroupResponseTypeEnum
+    /** Deleted object type. For RBAC Groups, this is always `"rbac_group_deleted"`. */
+    val type: BetaDeleteRbacGroupResponseTypeEnum,
 )
 
-/**
- * Typed representation of the `BetaUpdateRbacGroupParams` API schema.
- */
+/** Typed representation of the `BetaUpdateRbacGroupParams` API schema. */
 data class BetaUpdateRbacGroupParams(
-    /**
-     * Name of the RBAC Group. Not uniqueness-enforced.
-     */
+    /** Name of the RBAC Group. Not uniqueness-enforced. */
     val name: String? = null
 )

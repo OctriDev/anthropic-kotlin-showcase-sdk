@@ -3,234 +3,413 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Union type for event parameters that can be sent to a session.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsEventParams::class)
+/** Union type for event parameters that can be sent to a session. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsEventParams::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserMessageEventParams::class, name = "user.message"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserInterruptEventParams::class, name = "user.interrupt"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserToolConfirmationEventParams::class, name = "user.tool_confirmation"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserCustomToolResultEventParams::class, name = "user.custom_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserDefineOutcomeEventParams::class, name = "user.define_outcome"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserToolResultEventParams::class, name = "user.tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSystemMessageEventParams::class, name = "system.message")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserMessageEventParams::class,
+        name = "user.message",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserInterruptEventParams::class,
+        name = "user.interrupt",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserToolConfirmationEventParams::class,
+        name = "user.tool_confirmation",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserCustomToolResultEventParams::class,
+        name = "user.custom_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserDefineOutcomeEventParams::class,
+        name = "user.define_outcome",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserToolResultEventParams::class,
+        name = "user.tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSystemMessageEventParams::class,
+        name = "system.message",
+    ),
 )
 sealed interface BetaManagedAgentsEventParams
 
-/** A [BetaManagedAgentsEventParams] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsEventParams @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsEventParams] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsEventParams
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsEventParams {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Union type for events that can be sent to a session.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsInputEvent::class)
+/** Union type for events that can be sent to a session. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsInputEvent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserMessageEvent::class, name = "user.message"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserInterruptEvent::class, name = "user.interrupt"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserToolConfirmationEvent::class, name = "user.tool_confirmation"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserCustomToolResultEvent::class, name = "user.custom_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserDefineOutcomeEvent::class, name = "user.define_outcome"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserToolResultEvent::class, name = "user.tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSystemMessageEvent::class, name = "system.message")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserMessageEvent::class,
+        name = "user.message",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserInterruptEvent::class,
+        name = "user.interrupt",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserToolConfirmationEvent::class,
+        name = "user.tool_confirmation",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserCustomToolResultEvent::class,
+        name = "user.custom_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserDefineOutcomeEvent::class,
+        name = "user.define_outcome",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserToolResultEvent::class,
+        name = "user.tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSystemMessageEvent::class,
+        name = "system.message",
+    ),
 )
 sealed interface BetaManagedAgentsInputEvent
 
-/** A [BetaManagedAgentsInputEvent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsInputEvent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsInputEvent] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsInputEvent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsInputEvent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Paginated list of events for a `session`.
- */
+/** Paginated list of events for a `session`. */
 data class BetaManagedAgentsListSessionEvents(
-    /**
-     * Events for the session, ordered by `processed_at`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsSessionEvent>? = null,
-    /**
-     * Opaque cursor for the next page. Null when no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** Events for the session, ordered by `processed_at`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsSessionEvent>? = null,
+    /** Opaque cursor for the next page. Null when no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 )
 
-/**
- * Paginated list of events for a single thread within a `session`.
- */
+/** Paginated list of events for a single thread within a `session`. */
 data class BetaManagedAgentsListSessionThreadEvents(
-    /**
-     * Events for the thread, ordered by `processed_at`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsSessionEvent>? = null,
-    /**
-     * Opaque cursor for the next page. Null when no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** Events for the thread, ordered by `processed_at`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsSessionEvent>? = null,
+    /** Opaque cursor for the next page. Null when no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 )
 
-/**
- * Events that were successfully sent to the session.
- */
+/** Events that were successfully sent to the session. */
 data class BetaManagedAgentsSendSessionEvents(
-    /**
-     * Sent events
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsInputEvent>? = null
+    /** Sent events */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsInputEvent>? = null
 )
 
-/**
- * Request parameters for sending events to a `session`.
- */
+/** Request parameters for sending events to a `session`. */
 data class BetaManagedAgentsSendSessionEventsParams(
-    /**
-     * Events to send to the `session`.
-     */
+    /** Events to send to the `session`. */
     val events: List<BetaManagedAgentsEventParams>
 )
 
-/**
- * Union type for all event types in a session.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsSessionEvent::class)
+/** Union type for all event types in a session. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsSessionEvent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserMessageEvent::class, name = "user.message"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserInterruptEvent::class, name = "user.interrupt"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserToolConfirmationEvent::class, name = "user.tool_confirmation"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserCustomToolResultEvent::class, name = "user.custom_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentCustomToolUseEvent::class, name = "agent.custom_tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentMessageEvent::class, name = "agent.message"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentThinkingEvent::class, name = "agent.thinking"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentMcpToolUseEvent::class, name = "agent.mcp_tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentMcpToolResultEvent::class, name = "agent.mcp_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentToolUseEvent::class, name = "agent.tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentToolResultEvent::class, name = "agent.tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentThreadMessageReceivedEvent::class, name = "agent.thread_message_received"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentThreadMessageSentEvent::class, name = "agent.thread_message_sent"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentThreadContextCompactedEvent::class, name = "agent.thread_context_compacted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionErrorEvent::class, name = "session.error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionStatusRescheduledEvent::class, name = "session.status_rescheduled"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionStatusRunningEvent::class, name = "session.status_running"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionStatusIdleEvent::class, name = "session.status_idle"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionStatusTerminatedEvent::class, name = "session.status_terminated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionThreadCreatedEvent::class, name = "session.thread_created"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSpanOutcomeEvaluationStartEvent::class, name = "span.outcome_evaluation_start"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSpanOutcomeEvaluationEndEvent::class, name = "span.outcome_evaluation_end"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSpanModelRequestStartEvent::class, name = "span.model_request_start"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSpanModelRequestEndEvent::class, name = "span.model_request_end"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent::class, name = "span.outcome_evaluation_ongoing"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserDefineOutcomeEvent::class, name = "user.define_outcome"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionDeletedEvent::class, name = "session.deleted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionThreadStatusRunningEvent::class, name = "session.thread_status_running"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionThreadStatusIdleEvent::class, name = "session.thread_status_idle"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionThreadStatusTerminatedEvent::class, name = "session.thread_status_terminated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserToolResultEvent::class, name = "user.tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionThreadStatusRescheduledEvent::class, name = "session.thread_status_rescheduled"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionUpdatedEvent::class, name = "session.updated"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSystemMessageEvent::class, name = "system.message"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionUsageEvent::class, name = "session.usage")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserMessageEvent::class,
+        name = "user.message",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserInterruptEvent::class,
+        name = "user.interrupt",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserToolConfirmationEvent::class,
+        name = "user.tool_confirmation",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserCustomToolResultEvent::class,
+        name = "user.custom_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentCustomToolUseEvent::class,
+        name = "agent.custom_tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentMessageEvent::class,
+        name = "agent.message",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentThinkingEvent::class,
+        name = "agent.thinking",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentMcpToolUseEvent::class,
+        name = "agent.mcp_tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentMcpToolResultEvent::class,
+        name = "agent.mcp_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentToolUseEvent::class,
+        name = "agent.tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentToolResultEvent::class,
+        name = "agent.tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentThreadMessageReceivedEvent::class,
+        name = "agent.thread_message_received",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentThreadMessageSentEvent::class,
+        name = "agent.thread_message_sent",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsAgentThreadContextCompactedEvent::class,
+        name = "agent.thread_context_compacted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionErrorEvent::class,
+        name = "session.error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionStatusRescheduledEvent::class,
+        name = "session.status_rescheduled",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionStatusRunningEvent::class,
+        name = "session.status_running",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionStatusIdleEvent::class,
+        name = "session.status_idle",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionStatusTerminatedEvent::class,
+        name = "session.status_terminated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionThreadCreatedEvent::class,
+        name = "session.thread_created",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSpanOutcomeEvaluationStartEvent::class,
+        name = "span.outcome_evaluation_start",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSpanOutcomeEvaluationEndEvent::class,
+        name = "span.outcome_evaluation_end",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSpanModelRequestStartEvent::class,
+        name = "span.model_request_start",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSpanModelRequestEndEvent::class,
+        name = "span.model_request_end",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent::class,
+        name = "span.outcome_evaluation_ongoing",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserDefineOutcomeEvent::class,
+        name = "user.define_outcome",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionDeletedEvent::class,
+        name = "session.deleted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionThreadStatusRunningEvent::class,
+        name = "session.thread_status_running",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionThreadStatusIdleEvent::class,
+        name = "session.thread_status_idle",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionThreadStatusTerminatedEvent::class,
+        name = "session.thread_status_terminated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsUserToolResultEvent::class,
+        name = "user.tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionThreadStatusRescheduledEvent::class,
+        name = "session.thread_status_rescheduled",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionUpdatedEvent::class,
+        name = "session.updated",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSystemMessageEvent::class,
+        name = "system.message",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsSessionUsageEvent::class,
+        name = "session.usage",
+    ),
 )
 sealed interface BetaManagedAgentsSessionEvent
 
-/** A [BetaManagedAgentsSessionEvent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsSessionEvent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsSessionEvent] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsSessionEvent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsSessionEvent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Parameters for providing the result of a custom tool execution.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Parameters for providing the result of a custom tool execution. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsUserCustomToolResultEventParams(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsUserCustomToolResultEventParamsTypeEnum,
     /**
-     * The id of the `agent.custom_tool_use` event this result corresponds to, which can be found in the last `session.status_idle` event's `stop_reason.event_ids` field.
+     * The id of the `agent.custom_tool_use` event this result corresponds to, which can be found in
+     * the last `session.status_idle` event's `stop_reason.event_ids` field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_tool_use_id") val customToolUseId: String,
-    /**
-     * The result content returned by the tool.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_tool_use_id")
+    val customToolUseId: String,
+    /** The result content returned by the tool. */
     val content: List<BetaManagedAgentsToolResultContentBlock>? = null,
-    /**
-     * Whether the tool execution resulted in an error.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null
+    /** Whether the tool execution resulted in an error. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null,
 ) : BetaManagedAgentsEventParams
 
-/**
- * Parameters for sending an interrupt to pause the agent.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Parameters for sending an interrupt to pause the agent. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsUserInterruptEventParams(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsUserInterruptEventParamsTypeEnum,
     /**
-     * If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
+     * If absent, interrupts every non-archived thread in a multiagent session (or the primary alone
+     * in a single-agent session). If present, interrupts only the named thread.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("session_thread_id") val sessionThreadId: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("session_thread_id")
+    val sessionThreadId: String? = null,
 ) : BetaManagedAgentsEventParams
 
-/**
- * Parameters for confirming or denying a tool execution request.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Parameters for confirming or denying a tool execution request. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsUserToolConfirmationEventParams(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsUserToolConfirmationEventParamsTypeEnum,
     /**
-     * The id of the `agent.tool_use` or `agent.mcp_tool_use` event this result corresponds to, which can be found in the last `session.status_idle` event's `stop_reason.event_ids` field.
+     * The id of the `agent.tool_use` or `agent.mcp_tool_use` event this result corresponds to,
+     * which can be found in the last `session.status_idle` event's `stop_reason.event_ids` field.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * The confirmation result: 'allow' or 'deny'.
-     */
+    /** The confirmation result: 'allow' or 'deny'. */
     val result: BetaManagedAgentsUserToolConfirmationResult,
     /**
      * Optional message providing context for a 'deny' decision. Only allowed when result is 'deny'.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("deny_message") val denyMessage: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("deny_message") val denyMessage: String? = null,
 ) : BetaManagedAgentsEventParams
 
 /**
- * Parameters for providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+ * Parameters for providing the result of an agent-toolset tool execution. Only valid on
+ * `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the
+ * server.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsUserToolResultEventParams(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsUserToolResultEventParamsTypeEnum,
     /**
-     * The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` event's `stop_reason.event_ids` field.
+     * The id of the `agent.tool_use` event this result corresponds to, which can be found in the
+     * last `session.status_idle` event's `stop_reason.event_ids` field.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * The result content returned by the tool.
-     */
+    /** The result content returned by the tool. */
     val content: List<BetaManagedAgentsToolResultContentBlock>? = null,
-    /**
-     * Whether the tool execution resulted in an error.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null
+    /** Whether the tool execution resulted in an error. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null,
 ) : BetaManagedAgentsEventParams

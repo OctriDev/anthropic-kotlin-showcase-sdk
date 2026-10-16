@@ -3,55 +3,72 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `RequestDocumentBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestDocumentBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestDocumentBlock(
-    /**
-     * Required API value serialized in the `source` wire field.
-     */
+    /** Required API value serialized in the `source` wire field. */
     val source: RequestDocumentBlockSource,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: RequestDocumentBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * Optional API value serialized in the `citations` wire field.
-     */
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
+    /** Optional API value serialized in the `citations` wire field. */
     val citations: RequestCitationsConfig? = null,
-    /**
-     * Optional API value serialized in the `context` wire field.
-     */
+    /** Optional API value serialized in the `context` wire field. */
     val context: String? = null,
-    /**
-     * Optional API value serialized in the `title` wire field.
-     */
-    val title: String? = null
+    /** Optional API value serialized in the `title` wire field. */
+    val title: String? = null,
 ) : InputContentBlock, RequestToolResultBlockContentItem
 
-/**
- * Required API value serialized in the `source` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestDocumentBlockSource::class)
+/** Required API value serialized in the `source` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestDocumentBlockSource::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = Base64PDFSource::class, name = "base64"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = PlainTextSource::class, name = "text"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ContentBlockSource::class, name = "content"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = Base64PDFSource::class,
+        name = "base64",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = PlainTextSource::class,
+        name = "text",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ContentBlockSource::class,
+        name = "content",
+    ),
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = URLPDFSource::class, name = "url"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = FileDocumentSource::class, name = "file")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = FileDocumentSource::class,
+        name = "file",
+    ),
 )
 sealed interface RequestDocumentBlockSource
 
 /** A [RequestDocumentBlockSource] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestDocumentBlockSource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestDocumentBlockSource
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestDocumentBlockSource {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

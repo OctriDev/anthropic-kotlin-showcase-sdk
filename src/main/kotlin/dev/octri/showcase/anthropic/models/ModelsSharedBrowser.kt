@@ -3,505 +3,543 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * ``close_tab``'s config overrides.
- */
+/** ``close_tab``'s config overrides. */
 data class BrowserCloseTabConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``double_click``'s config overrides.
- */
+/** ``double_click``'s config overrides. */
 data class BrowserDoubleClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``file_upload``'s config overrides.
- */
+/** ``file_upload``'s config overrides. */
 data class BrowserFileUploadConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``find``'s config overrides.
- */
+/** ``find``'s config overrides. */
 data class BrowserFindConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``form_input``'s config overrides.
- */
+/** ``form_input``'s config overrides. */
 data class BrowserFormInputConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``get_page_text``'s config overrides.
- */
+/** ``get_page_text``'s config overrides. */
 data class BrowserGetPageTextConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``hold_key``'s config overrides.
- */
+/** ``hold_key``'s config overrides. */
 data class BrowserHoldKeyConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``hover``'s config overrides.
- */
+/** ``hover``'s config overrides. */
 data class BrowserHoverConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``javascript_exec``'s config overrides.
- */
+/** ``javascript_exec``'s config overrides. */
 data class BrowserJavascriptExecConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``key``'s config overrides.
- */
+/** ``key``'s config overrides. */
 data class BrowserKeyConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_click``'s config overrides.
- */
+/** ``left_click``'s config overrides. */
 data class BrowserLeftClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_click_drag``'s config overrides.
- */
+/** ``left_click_drag``'s config overrides. */
 data class BrowserLeftClickDragConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_mouse_down``'s config overrides.
- */
+/** ``left_mouse_down``'s config overrides. */
 data class BrowserLeftMouseDownConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_mouse_up``'s config overrides.
- */
+/** ``left_mouse_up``'s config overrides. */
 data class BrowserLeftMouseUpConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``list_tabs``'s config overrides.
- */
+/** ``list_tabs``'s config overrides. */
 data class BrowserListTabsConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``middle_click``'s config overrides.
- */
+/** ``middle_click``'s config overrides. */
 data class BrowserMiddleClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``mouse_move``'s config overrides.
- */
+/** ``mouse_move``'s config overrides. */
 data class BrowserMouseMoveConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``navigate``'s config overrides.
- */
+/** ``navigate``'s config overrides. */
 data class BrowserNavigateConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``new_tab``'s config overrides.
- */
+/** ``new_tab``'s config overrides. */
 data class BrowserNewTabConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``read_console``'s config overrides.
- */
+/** ``read_console``'s config overrides. */
 data class BrowserReadConsoleConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``read_network``'s config overrides.
- */
+/** ``read_network``'s config overrides. */
 data class BrowserReadNetworkConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``read_page``'s config overrides.
- */
+/** ``read_page``'s config overrides. */
 data class BrowserReadPageConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``right_click``'s config overrides.
- */
+/** ``right_click``'s config overrides. */
 data class BrowserRightClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``screenshot``'s config overrides.
- */
+/** ``screenshot``'s config overrides. */
 data class BrowserScreenshotConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``scroll``'s config overrides.
- */
+/** ``scroll``'s config overrides. */
 data class BrowserScrollConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``scroll_to``'s config overrides.
- */
+/** ``scroll_to``'s config overrides. */
 data class BrowserScrollToConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
 /**
- * A file download that finished during this call, reported with the same `download_id` as its `download_started` — or without a prior `download_started`, when the download finished during the call that started it (at most one state change per `download_id` per result).
+ * A file download that finished during this call, reported with the same `download_id` as its
+ * `download_started` — or without a prior `download_started`, when the download finished during the
+ * call that started it (at most one state change per `download_id` per result).
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BrowserStateChangeDownloadCompleted(
     /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting it.
+     * The caller-assigned identifier for this download, stable across the state changes reporting
+     * it.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BrowserStateChangeDownloadCompletedTypeEnum,
-    /**
-     * The final post-redirect URL the download was served from.
-     */
+    /** The final post-redirect URL the download was served from. */
     val url: String,
     /**
-     * Where the executor saved the file, on the executor's filesystem. Only included when another tool in the same environment can read the file at that path.
+     * Where the executor saved the file, on the executor's filesystem. Only included when another
+     * tool in the same environment can read the file at that path.
      */
     val path: String? = null,
-    /**
-     * The completed download's size.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long? = null
+    /** The completed download's size. */
+    @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long? = null,
 ) : RequestBrowserStateBlockStateChangesItem
 
-/**
- * A file download that failed — or was cancelled — during this call.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A file download that failed — or was cancelled — during this call. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BrowserStateChangeDownloadFailed(
     /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting it.
+     * The caller-assigned identifier for this download, stable across the state changes reporting
+     * it.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BrowserStateChangeDownloadFailedTypeEnum,
-    /**
-     * The final post-redirect URL the download was served from.
-     */
+    /** The final post-redirect URL the download was served from. */
     val url: String,
-    /**
-     * The failure or cancellation detail, when known.
-     */
-    val error: String? = null
+    /** The failure or cancellation detail, when known. */
+    val error: String? = null,
 ) : RequestBrowserStateBlockStateChangesItem
 
-/**
- * A file download that started during this call.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A file download that started during this call. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BrowserStateChangeDownloadStarted(
     /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting it.
+     * The caller-assigned identifier for this download, stable across the state changes reporting
+     * it.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BrowserStateChangeDownloadStartedTypeEnum,
-    /**
-     * The final post-redirect URL the download was served from.
-     */
-    val url: String
+    /** The final post-redirect URL the download was served from. */
+    val url: String,
 ) : RequestBrowserStateBlockStateChangesItem
 
 /**
- * A tab this call's execution opened that remains open at its end — the creation delta of the `tabs` inventory, not an event log. Carries only the `tab_id`; the tab's `title` and `url` live on its `tabs` entry, which must include the same `tab_id`. A tab opened during a failed call gets no deferred `tab_opened`; it simply appears in the next result's `tabs` inventory.
+ * A tab this call's execution opened that remains open at its end — the creation delta of the
+ * `tabs` inventory, not an event log. Carries only the `tab_id`; the tab's `title` and `url` live
+ * on its `tabs` entry, which must include the same `tab_id`. A tab opened during a failed call gets
+ * no deferred `tab_opened`; it simply appears in the next result's `tabs` inventory.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BrowserStateChangeTabOpened(
-    /**
-     * The `tab_id` of the opened tab, present in `tabs`.
-     */
+    /** The `tab_id` of the opened tab, present in `tabs`. */
     @com.fasterxml.jackson.annotation.JsonProperty("tab_id") val tabId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BrowserStateChangeTabOpenedTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BrowserStateChangeTabOpenedTypeEnum,
 ) : RequestBrowserStateBlockStateChangesItem
 
 /**
- * One open browser tab reported in a `browser_state` block's `tabs` inventory. `tab_id` is the caller-assigned identifier for the tab; `title` and `url` describe the page the tab is currently showing and may be empty strings (a blank tab legitimately has both empty). `active` marks the tab that is active after this call; whenever `tabs` is non-empty, exactly one entry is marked.
+ * One open browser tab reported in a `browser_state` block's `tabs` inventory. `tab_id` is the
+ * caller-assigned identifier for the tab; `title` and `url` describe the page the tab is currently
+ * showing and may be empty strings (a blank tab legitimately has both empty). `active` marks the
+ * tab that is active after this call; whenever `tabs` is non-empty, exactly one entry is marked.
  */
 data class BrowserStateTabEntry(
-    /**
-     * The caller-assigned identifier for this tab, unique within the inventory.
-     */
+    /** The caller-assigned identifier for this tab, unique within the inventory. */
     @com.fasterxml.jackson.annotation.JsonProperty("tab_id") val tabId: String,
-    /**
-     * The title of the page the tab is showing. May be empty.
-     */
+    /** The title of the page the tab is showing. May be empty. */
     val title: String,
-    /**
-     * The URL of the page the tab is showing. May be empty.
-     */
+    /** The URL of the page the tab is showing. May be empty. */
     val url: String,
     /**
-     * Whether this tab is the active tab after this call. Whenever `tabs` is non-empty, exactly one entry is marked `active: true`.
+     * Whether this tab is the active tab after this call. Whenever `tabs` is non-empty, exactly one
+     * entry is marked `active: true`.
      */
-    val active: Boolean? = null
+    val active: Boolean? = null,
 )
 
-/**
- * ``switch_tab``'s config overrides.
- */
+/** ``switch_tab``'s config overrides. */
 data class BrowserSwitchTabConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
 /**
- * The browser toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the browser tool family. The model is served the family's tool with any members disabled via ``configs`` removed from its schema.
+ * The browser toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the
+ * browser tool family. The model is served the family's tool with any members disabled via
+ * ``configs`` removed from its schema.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BrowserToolset20260801(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BrowserToolset20260801TypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * Create a cache control breakpoint at this content block.
+     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a
+     * member's defaults apply wherever its key is absent.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a member's defaults apply wherever its key is absent.
-     */
-    val configs: BrowserToolsetConfigs? = null
-) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
+    val configs: BrowserToolsetConfigs? = null,
+) :
+    CountMessageTokensParamsToolsItem,
+    CreateMessageParamsToolsItem,
+    CreateMessageParamsWithoutStreamToolsItem

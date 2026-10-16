@@ -3,40 +3,36 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `Base64ImageSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `Base64ImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class Base64ImageSource(
-    /**
-     * Required `byte`-formatted value serialized in the `data` wire field.
-     */
+    /** Required `byte`-formatted value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
-    /**
-     * Required enumerated value serialized in the `media_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: Base64ImageSourceMediaTypeEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: Base64ImageSourceTypeEnum
+    /** Required enumerated value serialized in the `media_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
+    val mediaType: Base64ImageSourceMediaTypeEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: Base64ImageSourceTypeEnum,
 ) : RequestImageBlockSource
 
-/**
- * Typed representation of the `Base64PDFSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `Base64PDFSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class Base64PDFSource(
-    /**
-     * Required `byte`-formatted value serialized in the `data` wire field.
-     */
+    /** Required `byte`-formatted value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
-    /**
-     * Required `string` value serialized in the `media_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: Base64PDFSourceMediaTypeEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: Base64PDFSourceTypeEnum
+    /** Required `string` value serialized in the `media_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
+    val mediaType: Base64PDFSourceMediaTypeEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: Base64PDFSourceTypeEnum,
 ) : ResponseDocumentBlockSource, RequestDocumentBlockSource

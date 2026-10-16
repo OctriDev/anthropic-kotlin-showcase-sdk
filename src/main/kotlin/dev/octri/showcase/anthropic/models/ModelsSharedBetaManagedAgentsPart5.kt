@@ -3,409 +3,427 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Resolved configuration for a specific MCP tool.
- */
+/** Resolved configuration for a specific MCP tool. */
 data class BetaManagedAgentsMCPToolConfig(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `boolean` value serialized in the `enabled` wire field.
-     */
+    /** Required `boolean` value serialized in the `enabled` wire field. */
     val enabled: Boolean,
-    /**
-     * Permission policy for tool execution.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy
+    /** Permission policy for tool execution. */
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy,
 )
 
-/**
- * Configuration override for a specific MCP tool.
- */
+/** Configuration override for a specific MCP tool. */
 data class BetaManagedAgentsMCPToolConfigParams(
-    /**
-     * Name of the MCP tool to configure. 1-128 characters.
-     */
+    /** Name of the MCP tool to configure. 1-128 characters. */
     val name: String,
-    /**
-     * Whether this tool is enabled. Overrides the `default_config` setting.
-     */
+    /** Whether this tool is enabled. Overrides the `default_config` setting. */
     val enabled: Boolean? = null,
-    /**
-     * Permission policy for this tool. Overrides the `default_config` setting.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null
+    /** Permission policy for this tool. Overrides the `default_config` setting. */
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null,
 )
 
-/**
- * Typed representation of the `BetaManagedAgentsMCPToolset` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaManagedAgentsMCPToolset` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMCPToolset(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMCPToolsetTypeEnum,
-    /**
-     * Required `string` value serialized in the `mcp_server_name` wire field.
-     */
+    /** Required `string` value serialized in the `mcp_server_name` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("mcp_server_name") val mcpServerName: String,
-    /**
-     * Resolved default configuration for all tools from an MCP server.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_config") val defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfig,
-    /**
-     * Required array value serialized in the `configs` wire field.
-     */
-    val configs: List<BetaManagedAgentsMCPToolConfig>
+    /** Resolved default configuration for all tools from an MCP server. */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_config")
+    val defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfig,
+    /** Required array value serialized in the `configs` wire field. */
+    val configs: List<BetaManagedAgentsMCPToolConfig>,
 ) : BetaManagedAgentsAgentTool
 
-/**
- * Resolved default configuration for all tools from an MCP server.
- */
+/** Resolved default configuration for all tools from an MCP server. */
 data class BetaManagedAgentsMCPToolsetDefaultConfig(
-    /**
-     * Required `boolean` value serialized in the `enabled` wire field.
-     */
+    /** Required `boolean` value serialized in the `enabled` wire field. */
     val enabled: Boolean,
-    /**
-     * Permission policy for tool execution.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy
+    /** Permission policy for tool execution. */
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy,
 )
 
-/**
- * Default configuration for all tools from an MCP server.
- */
+/** Default configuration for all tools from an MCP server. */
 data class BetaManagedAgentsMCPToolsetDefaultConfigParams(
-    /**
-     * Whether tools are enabled by default. Defaults to true if not specified.
-     */
+    /** Whether tools are enabled by default. Defaults to true if not specified. */
     val enabled: Boolean? = null,
-    /**
-     * Default permission policy for tools from this server.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null
+    /** Default permission policy for tools from this server. */
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null,
 )
 
-/**
- * Configuration for tools from an MCP server defined in `mcp_servers`.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration for tools from an MCP server defined in `mcp_servers`. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMCPToolsetParams(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMCPToolsetParamsTypeEnum,
     /**
-     * Name of the MCP server. Must match a server name from the mcp_servers array. 1-255 characters.
+     * Name of the MCP server. Must match a server name from the mcp_servers array. 1-255
+     * characters.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("mcp_server_name") val mcpServerName: String,
-    /**
-     * Default configuration for all tools from this server.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_config") val defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfigParams? = null,
-    /**
-     * Per-tool configuration overrides.
-     */
-    val configs: List<BetaManagedAgentsMCPToolConfigParams>? = null
+    /** Default configuration for all tools from this server. */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_config")
+    val defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfigParams? = null,
+    /** Per-tool configuration overrides. */
+    val configs: List<BetaManagedAgentsMCPToolConfigParams>? = null,
 ) : BetaManagedAgentsAgentToolParams
 
 /**
- * A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+ * A `memory` object: a single text document at a hierarchical path inside a memory store. The
+ * `content` field is populated when `view=full` and `null` when `view=basic`; the
+ * `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff
+ * without fetching content. Memories are addressed by their `mem_...` ID; the path is the create
+ * key and can be changed via update.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemory(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryTypeEnum,
     /**
-     * Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID, not the path, to read, update, or delete the memory.
+     * Unique identifier for this memory (a `mem_...` value). Stable across renames; use this ID,
+     * not the path, to read, update, or delete the memory.
      */
     val id: String,
-    /**
-     * ID of the memory store this memory belongs to (a `memstore_...` value).
-     */
+    /** ID of the memory store this memory belongs to (a `memstore_...` value). */
     @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
     /**
-     * Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
+     * Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always
+     * starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
      */
     val path: String,
     /**
-     * Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of `view`.
+     * Size of `content` in bytes (the UTF-8 plaintext length). Always populated, regardless of
+     * `view`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("content_size_bytes") val contentSizeBytes: Int,
     /**
-     * Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies no normalization, so clients can compute the same hash locally for staleness checks and as the value for a `content_sha256` precondition on update. Always populated, regardless of `view`.
+     * Lowercase hex SHA-256 digest of the UTF-8 `content` bytes (64 characters). The server applies
+     * no normalization, so clients can compute the same hash locally for staleness checks and as
+     * the value for a `content_sha256` precondition on update. Always populated, regardless of
+     * `view`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("content_sha256") val contentSha256: String,
     /**
-     * ID of the `memory_version` representing this memory's current content (a `memver_...` value). This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest` flag, so compare against this field instead. Enumerate the history via List memory versions.
+     * ID of the `memory_version` representing this memory's current content (a `memver_...` value).
+     * This is the authoritative head pointer; `memory_version` objects do not carry an `is_latest`
+     * flag, so compare against this field instead. Enumerate the history via List memory versions.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("memory_version_id") val memoryVersionId: String,
-    /**
-     * When this memory was created, in RFC 3339 format.
-     */
+    /** When this memory was created, in RFC 3339 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
     /**
-     * When this memory was last modified, in RFC 3339 format. Use this as a cheap freshness signal; for who made the change, look up the head version's `created_by` via List memory versions.
+     * When this memory was last modified, in RFC 3339 format. Use this as a cheap freshness signal;
+     * for who made the change, look up the head version's `created_by` via List memory versions.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: BetaTimestamp,
     /**
-     * The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
+     * The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`.
+     * Maximum 100 kB (102,400 bytes).
      */
-    val content: String? = null
+    val content: String? = null,
 ) : BetaManagedAgentsMemoryListItem
 
-/**
- * Typed representation of the `BetaManagedAgentsMemoryPathConflictError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaManagedAgentsMemoryPathConflictError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryPathConflictError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryPathConflictErrorTypeEnum,
-    /**
-     * Optional `string` value serialized in the `message` wire field.
-     */
+    /** Optional `string` value serialized in the `message` wire field. */
     val message: String? = null,
-    /**
-     * Optional `string` value serialized in the `conflicting_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("conflicting_path") val conflictingPath: String? = null,
-    /**
-     * Optional `string` value serialized in the `conflicting_memory_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("conflicting_memory_id") val conflictingMemoryId: String? = null
+    /** Optional `string` value serialized in the `conflicting_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("conflicting_path")
+    val conflictingPath: String? = null,
+    /** Optional `string` value serialized in the `conflicting_memory_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("conflicting_memory_id")
+    val conflictingMemoryId: String? = null,
 ) : BetaManagedAgentsError
 
-/**
- * Typed representation of the `BetaManagedAgentsMemoryPreconditionFailedError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaManagedAgentsMemoryPreconditionFailedError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryPreconditionFailedError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryPreconditionFailedErrorTypeEnum,
-    /**
-     * Optional `string` value serialized in the `message` wire field.
-     */
-    val message: String? = null
+    /** Optional `string` value serialized in the `message` wire field. */
+    val message: String? = null,
 ) : BetaManagedAgentsError
 
 /**
- * A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+ * A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to
+ * a session via `resources[]` to mount it as a directory the agent can read and write.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryStore(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryStoreTypeEnum,
     /**
-     * Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+     * Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching
+     * the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
      */
     val id: String,
     /**
-     * Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+     * Human-readable name for the store. 1–255 characters. The store's mount-path slug under
+     * `/mnt/memory/` is derived from this name.
      */
     val name: String,
-    /**
-     * Timestamp when the store was created.
-     */
+    /** Timestamp when the store was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
     /**
-     * Timestamp when the store's `name`, `description`, or `metadata` was last modified. Memory writes inside the store do not advance this.
+     * Timestamp when the store's `name`, `description`, or `metadata` was last modified. Memory
+     * writes inside the store do not advance this.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: BetaTimestamp,
     /**
-     * Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+     * Free-text description of what the store contains, up to 1024 characters. Included in the
+     * agent's system prompt when the store is attached, so word it to be useful to the agent. Empty
+     * string when unset.
      */
     val description: String? = null,
     /**
-     * Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
+     * Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to).
+     * Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list
+     * but not filterable.
      */
     val metadata: Map<String, String>? = null,
     /**
-     * Timestamp when the store was archived, or `null` if active. Set once and never cleared; archiving is one-way. Archived stores are read-only and cannot be attached to new sessions.
+     * Timestamp when the store was archived, or `null` if active. Set once and never cleared;
+     * archiving is one-way. Archived stores are read-only and cannot be attached to new sessions.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at") val archivedAt: BetaTimestamp? = null
-) : BetaManagedAgentsArchiveMemoryStoreResponse, BetaManagedAgentsCreateMemoryStoreResponse, BetaManagedAgentsGetMemoryStoreResponse, BetaManagedAgentsUpdateMemoryStoreResponse
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at")
+    val archivedAt: BetaTimestamp? = null,
+) :
+    BetaManagedAgentsArchiveMemoryStoreResponse,
+    BetaManagedAgentsCreateMemoryStoreResponse,
+    BetaManagedAgentsGetMemoryStoreResponse,
+    BetaManagedAgentsUpdateMemoryStoreResponse
 
-/**
- * A memory store referenced by the deployment is archived.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A memory store referenced by the deployment is archived. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonErrorTypeEnum
 ) : BetaManagedAgentsDeploymentPausedReasonError
 
-/**
- * A memory store referenced by the deployment is archived.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A memory store referenced by the deployment is archived. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryStoreArchivedRunError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryStoreArchivedRunErrorTypeEnum,
-    /**
-     * Human-readable error description.
-     */
-    val message: String
+    /** Human-readable error description. */
+    val message: String,
 ) : BetaManagedAgentsRunError
 
-/**
- * A memory store attached to an agent session.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A memory store attached to an agent session. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryStoreResource(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryStoreResourceTypeEnum,
     /**
      * The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
     /**
-     * Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
+     * Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as
+     * a read-only filesystem.
      */
     val access: BetaManagedAgentsMountMode? = null,
     /**
-     * Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
+     * Display name of the memory store, snapshotted at attach time. Later edits to the store's name
+     * do not propagate to this resource.
      */
     val name: String? = null,
     /**
-     * Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
+     * Description of the memory store, snapshotted at attach time. Rendered into the agent's system
+     * prompt. Empty string when the store has no description.
      */
     val description: String? = null,
     /**
-     * Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+     * Per-attachment guidance for the agent on how to use this store. Rendered into the memory
+     * section of the system prompt. Max 4096 chars.
      */
     val instructions: String? = null,
     /**
-     * Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
+     * Filesystem path where the store is mounted in the session container, e.g.
+     * /mnt/memory/user-preferences. Derived from the store's name. Output-only.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("mount_path") val mountPath: String? = null
-) : BetaManagedAgentsGetSessionResource, BetaManagedAgentsSessionResource, BetaManagedAgentsUpdateSessionResource
+    @com.fasterxml.jackson.annotation.JsonProperty("mount_path") val mountPath: String? = null,
+) :
+    BetaManagedAgentsGetSessionResource,
+    BetaManagedAgentsSessionResource,
+    BetaManagedAgentsUpdateSessionResource
 
-/**
- * A memory store attached to each session created from this deployment.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A memory store attached to each session created from this deployment. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryStoreResourceConfig(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryStoreResourceConfigTypeEnum,
     /**
      * The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
     /**
-     * Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
+     * Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as
+     * a read-only filesystem.
      */
     val access: BetaManagedAgentsMountMode? = null,
     /**
-     * Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+     * Per-attachment guidance for the agent on how to use this store. Rendered into the memory
+     * section of the system prompt. Max 4096 chars.
      */
-    val instructions: String? = null
+    val instructions: String? = null,
 ) : BetaManagedAgentsSessionResourceConfig
 
-/**
- * Parameters for attaching a memory store to an agent session.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Parameters for attaching a memory store to an agent session. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryStoreResourceParam(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryStoreResourceParamTypeEnum,
     /**
      * The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
     /**
-     * Access mode for the mounted store. Defaults to read_write. read_only mounts the store as a read-only filesystem.
+     * Access mode for the mounted store. Defaults to read_write. read_only mounts the store as a
+     * read-only filesystem.
      */
     val access: BetaManagedAgentsMountMode? = null,
     /**
-     * Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+     * Per-attachment guidance for the agent on how to use this store. Rendered into the memory
+     * section of the system prompt. Max 4096 chars.
      */
-    val instructions: String? = null
+    val instructions: String? = null,
 ) : BetaManagedAgentsSessionResourceParams
 
 /**
- * A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and are not deleted with the memory; each version is retained for at least the version retention period after it was written, unless the store itself is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and…
+ * A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every
+ * non-no-op mutation to a memory produces a new version. Versions belong to the store (not the
+ * individual memory) and are not deleted with the memory; each version is retained for at least the
+ * version retention period after it was written, unless the store itself is deleted. Retrieving a
+ * redacted version returns 200 with `content`, `path`, `content_size_bytes`, and…
  */
 data class BetaManagedAgentsMemoryVersion(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryVersionTypeEnum,
-    /**
-     * Unique identifier for this version (a `memver_...` value).
-     */
+    /** Unique identifier for this version (a `memver_...` value). */
     val id: String,
-    /**
-     * ID of the memory store this version belongs to (a `memstore_...` value).
-     */
+    /** ID of the memory store this version belongs to (a `memstore_...` value). */
     @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
     /**
-     * ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory is deleted; pass it as `memory_id` to List memory versions to retrieve the memory's retained versions, including the `deleted` row while the lineage is retained.
+     * ID of the memory this version snapshots (a `mem_...` value). Remains valid after the memory
+     * is deleted; pass it as `memory_id` to List memory versions to retrieve the memory's retained
+     * versions, including the `deleted` row while the lineage is retained.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("memory_id") val memoryId: String,
-    /**
-     * The kind of mutation this version records: `created`, `modified`, or `deleted`.
-     */
+    /** The kind of mutation this version records: `created`, `modified`, or `deleted`. */
     val operation: BetaManagedAgentsMemoryVersionOperation,
-    /**
-     * When this version was written, in RFC 3339 format.
-     */
+    /** When this version was written, in RFC 3339 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
-    /**
-     * The memory's path at the time of this write. `null` if and only if `redacted_at` is set.
-     */
+    /** The memory's path at the time of this write. `null` if and only if `redacted_at` is set. */
     val path: String? = null,
     /**
-     * The memory's UTF-8 text content as of this version. `null` when `view=basic`, when `operation` is `deleted`, or when `redacted_at` is set.
+     * The memory's UTF-8 text content as of this version. `null` when `view=basic`, when
+     * `operation` is `deleted`, or when `redacted_at` is set.
      */
     val content: String? = null,
     /**
-     * Size of `content` in bytes as of this version. `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+     * Size of `content` in bytes as of this version. `null` when `redacted_at` is set or
+     * `operation` is `deleted`. Populated regardless of `view` otherwise.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_size_bytes") val contentSizeBytes: Int? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("content_size_bytes")
+    val contentSizeBytes: Int? = null,
     /**
-     * Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
+     * Lowercase hex SHA-256 digest of `content` as of this version (64 characters). `null` when
+     * `redacted_at` is set or `operation` is `deleted`. Populated regardless of `view` otherwise.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_sha256") val contentSha256: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("content_sha256")
+    val contentSha256: String? = null,
     /**
-     * Who performed this write: one of `session_actor`, `api_actor`, `user_actor`, or `service_account_actor`; `null` when no writer is recorded. Captured at write time and preserved through redaction.
+     * Who performed this write: one of `session_actor`, `api_actor`, `user_actor`, or
+     * `service_account_actor`; `null` when no writer is recorded. Captured at write time and
+     * preserved through redaction.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_by") val createdBy: BetaManagedAgentsActor? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("created_by")
+    val createdBy: BetaManagedAgentsActor? = null,
     /**
-     * When this version was redacted, in RFC 3339 format, or `null` if it has not been redacted. When set, `content`, `path`, `content_size_bytes`, and `content_sha256` are all `null`. See Redact a memory version.
+     * When this version was redacted, in RFC 3339 format, or `null` if it has not been redacted.
+     * When set, `content`, `path`, `content_size_bytes`, and `content_sha256` are all `null`. See
+     * Redact a memory version.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("redacted_at") val redactedAt: BetaTimestamp? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("redacted_at")
+    val redactedAt: BetaTimestamp? = null,
     /**
-     * Who redacted this version, or `null` if it has not been redacted. In practice always an `api_actor`, `user_actor`, or `service_account_actor` (agents do not have a redact capability).
+     * Who redacted this version, or `null` if it has not been redacted. In practice always an
+     * `api_actor`, `user_actor`, or `service_account_actor` (agents do not have a redact
+     * capability).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("redacted_by") val redactedBy: BetaManagedAgentsActor? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("redacted_by")
+    val redactedBy: BetaManagedAgentsActor? = null,
 )
 
-/**
- * The model that will power your agent. See models for additional details and options.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = BetaManagedAgentsModel.Deserializer::class)
+/** The model that will power your agent. See models for additional details and options. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = BetaManagedAgentsModel.Deserializer::class
+)
 sealed interface BetaManagedAgentsModel : BetaManagedAgentsModelParams {
     /** Chooses the branch this payload is shaped like. */
     class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<BetaManagedAgentsModel>() {
@@ -416,97 +434,131 @@ sealed interface BetaManagedAgentsModel : BetaManagedAgentsModelParams {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
             return when {
-                node.isTextual -> StringBetaManagedAgentsModel(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> ValueBetaManagedAgentsModel(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<Any>() {}))
+                node.isTextual ->
+                    StringBetaManagedAgentsModel(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    ValueBetaManagedAgentsModel(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<Any>() {},
+                        )
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringBetaManagedAgentsModel(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : BetaManagedAgentsModel
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringBetaManagedAgentsModel(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : BetaManagedAgentsModel
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class ValueBetaManagedAgentsModel(@get:com.fasterxml.jackson.annotation.JsonValue val value: Any) : BetaManagedAgentsModel
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class ValueBetaManagedAgentsModel(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: Any
+) : BetaManagedAgentsModel
 
-/**
- * Model identifier and configuration.
- */
+/** Model identifier and configuration. */
 data class BetaManagedAgentsModelConfig(
-    /**
-     * The model that will power your agent. See models for additional details and options.
-     */
+    /** The model that will power your agent. See models for additional details and options. */
     val id: BetaManagedAgentsModel,
     /**
-     * Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Defaults to `standard`. Not all models support `fast`; invalid combinations are rejected at create time.
+     * Inference speed mode. `fast` provides significantly faster output token generation at premium
+     * pricing. Defaults to `standard`. Not all models support `fast`; invalid combinations are
+     * rejected at create time.
      */
     val speed: BetaManagedAgentsSpeed? = null,
     /**
-     * How hard Claude works on each inference call. One of `low`, `medium`, `high`, `xhigh`, `max`. Always present; resolved to the per-model default at save time when not supplied.
+     * How hard Claude works on each inference call. One of `low`, `medium`, `high`, `xhigh`, `max`.
+     * Always present; resolved to the per-model default at save time when not supplied.
      */
     val effort: BetaManagedAgentsEffort? = null,
     /**
-     * Geographic region for model inference. When unset, requests fall through to the workspace's default_inference_geo.
+     * Geographic region for model inference. When unset, requests fall through to the workspace's
+     * default_inference_geo.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo") val inferenceGeo: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo")
+    val inferenceGeo: String? = null,
 )
 
-/**
- * An object that defines additional configuration control over model use
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** An object that defines additional configuration control over model use */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsModelConfigParams(
-    /**
-     * The model that will power your agent. See models for additional details and options.
-     */
+    /** The model that will power your agent. See models for additional details and options. */
     val id: BetaManagedAgentsModel,
-    /**
-     * Inference speed mode. Defaults to `standard`.
-     */
+    /** Inference speed mode. Defaults to `standard`. */
     val speed: BetaManagedAgentsSpeed? = null,
     /**
-     * How hard Claude works on each inference call. Accepts a bare level string (`"high"`) or `{"type": "high"}`. On create, omitting it resolves the per-model default; on update, omitting it leaves the stored value unchanged.
+     * How hard Claude works on each inference call. Accepts a bare level string (`"high"`) or
+     * `{"type": "high"}`. On create, omitting it resolves the per-model default; on update,
+     * omitting it leaves the stored value unchanged.
      */
     val effort: BetaManagedAgentsEffortParams? = null,
     /**
-     * Geographic region for model inference. When unset, requests fall through to the workspace's default_inference_geo. On update, `model` is whole-object replacement — omitting inference_geo clears it.
+     * Geographic region for model inference. When unset, requests fall through to the workspace's
+     * default_inference_geo. On update, `model` is whole-object replacement — omitting
+     * inference_geo clears it.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo") val inferenceGeo: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo")
+    val inferenceGeo: String? = null,
 ) : BetaManagedAgentsModelParams
 
-/**
- * The model is currently overloaded. Emitted after automatic retries are exhausted.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The model is currently overloaded. Emitted after automatic retries are exhausted. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsModelOverloadedError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsModelOverloadedErrorTypeEnum,
-    /**
-     * Human-readable error description.
-     */
+    /** Human-readable error description. */
     val message: String,
-    /**
-     * What the client should do next.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("retry_status") val retryStatus: BetaManagedAgentsRetryStatus
+    /** What the client should do next. */
+    @com.fasterxml.jackson.annotation.JsonProperty("retry_status")
+    val retryStatus: BetaManagedAgentsRetryStatus,
 ) : BetaManagedAgentsSessionErrorEventError
 
-/**
- * Typed representation of the `BetaManagedAgentsModelParams` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = BetaManagedAgentsModelParams.Deserializer::class)
+/** Typed representation of the `BetaManagedAgentsModelParams` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = BetaManagedAgentsModelParams.Deserializer::class
+)
 sealed interface BetaManagedAgentsModelParams {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<BetaManagedAgentsModelParams>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<BetaManagedAgentsModelParams>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): BetaManagedAgentsModelParams {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out BetaManagedAgentsModelParams>> = listOf(BetaManagedAgentsModelConfigParams::class.java, BetaManagedAgentsModel::class.java)
+            val objectTypes: List<Class<out BetaManagedAgentsModelParams>> =
+                listOf(
+                    BetaManagedAgentsModelConfigParams::class.java,
+                    BetaManagedAgentsModel::class.java,
+                )
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -515,104 +567,135 @@ sealed interface BetaManagedAgentsModelParams {
                 }
             }
             return when {
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, BetaManagedAgentsModelParams::class.java, "no BetaManagedAgentsModelParams branch accepts this payload")
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        BetaManagedAgentsModelParams::class.java,
+                        "no BetaManagedAgentsModelParams branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-/**
- * The model request was rate-limited.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The model request was rate-limited. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsModelRateLimitedError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsModelRateLimitedErrorTypeEnum,
-    /**
-     * Human-readable error description.
-     */
+    /** Human-readable error description. */
     val message: String,
-    /**
-     * What the client should do next.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("retry_status") val retryStatus: BetaManagedAgentsRetryStatus
+    /** What the client should do next. */
+    @com.fasterxml.jackson.annotation.JsonProperty("retry_status")
+    val retryStatus: BetaManagedAgentsRetryStatus,
 ) : BetaManagedAgentsSessionErrorEventError
 
-/**
- * A model request failed for a reason other than overload or rate-limiting.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A model request failed for a reason other than overload or rate-limiting. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsModelRequestFailedError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsModelRequestFailedErrorTypeEnum,
-    /**
-     * Human-readable error description.
-     */
+    /** Human-readable error description. */
     val message: String,
-    /**
-     * What the client should do next.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("retry_status") val retryStatus: BetaManagedAgentsRetryStatus
+    /** What the client should do next. */
+    @com.fasterxml.jackson.annotation.JsonProperty("retry_status")
+    val retryStatus: BetaManagedAgentsRetryStatus,
 ) : BetaManagedAgentsSessionErrorEventError
 
-/**
- * Resolved multiagent orchestration configuration as returned in API responses.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsMultiagent::class)
+/** Resolved multiagent orchestration configuration as returned in API responses. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsMultiagent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMultiagentCoordinator::class, name = "coordinator")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsMultiagentCoordinator::class,
+        name = "coordinator",
+    )
 )
 sealed interface BetaManagedAgentsMultiagent
 
-/** A [BetaManagedAgentsMultiagent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsMultiagent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsMultiagent] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsMultiagent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsMultiagent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Resolved coordinator topology with a concrete agent roster.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Resolved coordinator topology with a concrete agent roster. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMultiagentCoordinator(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMultiagentCoordinatorTypeEnum,
-    /**
-     * Agents the coordinator may spawn as session threads, each resolved to a specific version.
-     */
-    val agents: List<BetaManagedAgentsMultiagentRosterEntry>
+    /** Agents the coordinator may spawn as session threads, each resolved to a specific version. */
+    val agents: List<BetaManagedAgentsMultiagentRosterEntry>,
 ) : BetaManagedAgentsMultiagent
 
 /**
- * A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+ * A coordinator topology: the session's primary thread orchestrates work by spawning session
+ * threads, each running an agent drawn from the `agents` roster.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMultiagentCoordinatorParams(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMultiagentCoordinatorParamsTypeEnum,
     /**
-     * Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is an agent ID string, a versioned `{"type":"agent","id","version"}` reference, or `{"type":"self"}` to allow recursive self-invocation. Entries must reference distinct agents (after resolving `self` and string forms); at most one `self`. Referenced agents must exist, must not be archived, and must not themselves have `multiagent` set (depth limit 1).
+     * Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is an agent ID
+     * string, a versioned `{"type":"agent","id","version"}` reference, or `{"type":"self"}` to
+     * allow recursive self-invocation. Entries must reference distinct agents (after resolving
+     * `self` and string forms); at most one `self`. Referenced agents must exist, must not be
+     * archived, and must not themselves have `multiagent` set (depth limit 1).
      */
-    val agents: List<BetaManagedAgentsMultiagentRosterEntryParams>
+    val agents: List<BetaManagedAgentsMultiagentRosterEntryParams>,
 ) : BetaManagedAgentsMultiagentParams
 
-/**
- * Multiagent orchestration configuration. Currently supports the `coordinator` topology.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsMultiagentParams::class)
+/** Multiagent orchestration configuration. Currently supports the `coordinator` topology. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsMultiagentParams::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMultiagentCoordinatorParams::class, name = "coordinator")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsMultiagentCoordinatorParams::class,
+        name = "coordinator",
+    )
 )
 sealed interface BetaManagedAgentsMultiagentParams

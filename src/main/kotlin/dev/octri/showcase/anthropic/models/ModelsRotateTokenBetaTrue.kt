@@ -3,22 +3,14 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaRotateTunnelTokenParams` API schema.
- */
+/** Typed representation of the `BetaRotateTunnelTokenParams` API schema. */
 data class BetaRotateTunnelTokenParams(
-    /**
-     * Optional free-text reason for the rotation, recorded for audit.
-     */
+    /** Optional free-text reason for the rotation, recorded for audit. */
     val reason: String? = null
 )
 
-/**
- * Typed representation of the `BetaRotateTunnelTokenRequestBody` API schema.
- */
+/** Typed representation of the `BetaRotateTunnelTokenRequestBody` API schema. */
 data class BetaRotateTunnelTokenRequestBody(
-    /**
-     * Optional free-text reason for the rotation, recorded for audit.
-     */
+    /** Optional free-text reason for the rotation, recorded for audit. */
     val reason: String? = null
 )

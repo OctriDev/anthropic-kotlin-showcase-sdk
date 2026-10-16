@@ -3,66 +3,110 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Confirmation of resource deletion.
- */
+/** Confirmation of resource deletion. */
 data class BetaManagedAgentsDeleteSessionResource(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsDeleteSessionResourceTypeEnum,
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
-    val id: String
+    /** Required `string` value serialized in the `id` wire field. */
+    val id: String,
 )
 
-/**
- * The requested session resource.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsGetSessionResource::class)
+/** The requested session resource. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsGetSessionResource::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsGitHubRepositoryResource::class, name = "github_repository"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsFileResource::class, name = "file"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStoreResource::class, name = "memory_store")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsGitHubRepositoryResource::class,
+        name = "github_repository",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsFileResource::class,
+        name = "file",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsMemoryStoreResource::class,
+        name = "memory_store",
+    ),
 )
 sealed interface BetaManagedAgentsGetSessionResource
 
-/** A [BetaManagedAgentsGetSessionResource] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsGetSessionResource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsGetSessionResource] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsGetSessionResource
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsGetSessionResource {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * The updated session resource.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsUpdateSessionResource::class)
+/** The updated session resource. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsUpdateSessionResource::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsGitHubRepositoryResource::class, name = "github_repository"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsFileResource::class, name = "file"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStoreResource::class, name = "memory_store")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsGitHubRepositoryResource::class,
+        name = "github_repository",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsFileResource::class,
+        name = "file",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsMemoryStoreResource::class,
+        name = "memory_store",
+    ),
 )
 sealed interface BetaManagedAgentsUpdateSessionResource
 
-/** A [BetaManagedAgentsUpdateSessionResource] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsUpdateSessionResource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsUpdateSessionResource] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsUpdateSessionResource
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsUpdateSessionResource {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Request parameters for updating a session resource.
- */
+/** Request parameters for updating a session resource. */
 data class BetaManagedAgentsUpdateSessionResourceParams(
     /**
-     * New authorization token for the resource. Currently only `github_repository` resources support token rotation.
+     * New authorization token for the resource. Currently only `github_repository` resources
+     * support token rotation.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("authorization_token") val authorizationToken: String
+    @com.fasterxml.jackson.annotation.JsonProperty("authorization_token")
+    val authorizationToken: String
 )

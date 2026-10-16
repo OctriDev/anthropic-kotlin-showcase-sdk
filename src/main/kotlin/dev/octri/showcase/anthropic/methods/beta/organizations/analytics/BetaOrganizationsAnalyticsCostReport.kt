@@ -20,7 +20,6 @@ import java.time.OffsetDateTime
 
 object BetaOrganizationsAnalyticsCostReport {
 
-
     /** Parameters for [retrieveBetaOrganizationsAnalyticsCostReport]. */
     data class RetrieveBetaOrganizationsAnalyticsCostReportRequest(
         val startingAt: OffsetDateTime,
@@ -28,200 +27,265 @@ object BetaOrganizationsAnalyticsCostReport {
         val bucketWidth: RetrieveBetaOrganizationsAnalyticsCostReportParameterEnum? = null,
         val products: SdkClient.SdkOptional<List<BetaAnalyticsProductFilter>?>? = null,
         val models: SdkClient.SdkOptional<List<String>?>? = null,
-        val contextWindows: SdkClient.SdkOptional<List<BetaMessagesUsageReportContextWindow>?>? = null,
+        val contextWindows: SdkClient.SdkOptional<List<BetaMessagesUsageReportContextWindow>?>? =
+            null,
         val inferenceGeos: SdkClient.SdkOptional<List<BetaInferenceGeoFilter>?>? = null,
-        val speeds: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsAnalyticsCostReportParameterItemEnumd8f8e89e>?>? = null,
+        val speeds:
+            SdkClient.SdkOptional<
+                List<RetrieveBetaOrganizationsAnalyticsCostReportParameterItemEnumd8f8e89e>?
+            >? =
+            null,
         val slackChannelIds: SdkClient.SdkOptional<List<String>?>? = null,
         val rbacGroupIds: SdkClient.SdkOptional<List<String>?>? = null,
         val userIds: SdkClient.SdkOptional<List<String>?>? = null,
         val limit: SdkClient.SdkOptional<Long?>? = null,
         val page: SdkClient.SdkOptional<String?>? = null,
-        val groupBy: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsAnalyticsCostReportParameterItemEnum>?>? = null
+        val groupBy:
+            SdkClient.SdkOptional<
+                List<RetrieveBetaOrganizationsAnalyticsCostReportParameterItemEnum>?
+            >? =
+            null,
     )
 
     /**
-     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day, optionally broken down by product, model, context window, inference region, speed, cost type, or token type. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day,
+     * optionally broken down by product, model, context window, inference region, speed, cost type,
+     * or token type. Available to organizations on a Claude Enterprise plan. Requires an API key
+     * with the `read:analytics` scope.
      *
-     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within
-     *   the last 365 days and no earlier than 2026-01-01T00:00:00Z.
-     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier
-     *   of now and `starting_at` + 31 days. The range may span at most 31 days.
+     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within the last 365
+     *   days and no earlier than 2026-01-01T00:00:00Z.
+     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier of now and
+     *   `starting_at` + 31 days. The range may span at most 31 days.
      * @param bucketWidth Time bucket granularity.
      * @param products Product surfaces to include. Defaults to all products. Use
      *   `group_by[]=product` to break out per-product values.
-     * @param models Models to include. Defaults to all models. Use
-     *   `group_by[]=model` to break out per-model values.
+     * @param models Models to include. Defaults to all models. Use `group_by[]=model` to break out
+     *   per-model values.
      * @param contextWindows Filter to specific context-window pricing tiers. Use
      *   `group_by[]=context_window` to break out per-tier values.
-     * @param inferenceGeos Filter to specific inference regions. `not_available`
-     *   matches rows where the region is unset. Use `group_by[]=inference_geo` to
-     *   break out per-region values.
-     * @param speeds Filter to fast or standard inference mode. Use
-     *   `group_by[]=speed` to break out per-mode values.
-     * @param slackChannelIds Filter to usage originating from specific Slack
-     *   channels. Use `group_by[]=slack_channel_id` to break out per-channel values.
-     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups.
-     *   Accepts tagged RBAC group IDs (`rbac_group_...`) or bare group UUIDs. A row
-     *   matches when the user belonged to any of the listed groups on the (UTC) day
-     *   the usage occurred; usage with no group attribution never matches.
+     * @param inferenceGeos Filter to specific inference regions. `not_available` matches rows where
+     *   the region is unset. Use `group_by[]=inference_geo` to break out per-region values.
+     * @param speeds Filter to fast or standard inference mode. Use `group_by[]=speed` to break out
+     *   per-mode values.
+     * @param slackChannelIds Filter to usage originating from specific Slack channels. Use
+     *   `group_by[]=slack_channel_id` to break out per-channel values.
+     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups. Accepts tagged RBAC
+     *   group IDs (`rbac_group_...`) or bare group UUIDs. A row matches when the user belonged to
+     *   any of the listed groups on the (UTC) day the usage occurred; usage with no group
+     *   attribution never matches.
      * @param userIds Filter to specific users by tagged user ID.
-     * @param limit Maximum number of time buckets per page. Defaults and caps vary
-     *   by `bucket_width` (`1d`: default 7, max 31; `1h`: default 24, max 168; `1m`:
-     *   default 60, max 256).
+     * @param limit Maximum number of time buckets per page. Defaults and caps vary by
+     *   `bucket_width` (`1d`: default 7, max 31; `1h`: default 24, max 168; `1m`: default 60, max
+     *   256).
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param groupBy Dimensions to break each time bucket out by. Defaults to no
-     *   grouping (one total per bucket). Each bucket reports at most its top 100
-     *   groups; a group beyond that cap has no row in that bucket (there is no
-     *   remainder row), so grouped buckets are not exhaustive when a dimension has
-     *   more than 100 distinct values.
+     * @param groupBy Dimensions to break each time bucket out by. Defaults to no grouping (one
+     *   total per bucket). Each bucket reports at most its top 100 groups; a group beyond that cap
+     *   has no row in that bucket (there is no remainder row), so grouped buckets are not
+     *   exhaustive when a dimension has more than 100 distinct values.
      */
-    fun retrieveBetaOrganizationsAnalyticsCostReport(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsAnalyticsCostReportRequest, options: RequestOptions? = null): BetaAnalyticsCostBucketedResponse {
+    fun retrieveBetaOrganizationsAnalyticsCostReport(
+        clientConfig: ClientConfig,
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest,
+        options: RequestOptions? = null,
+    ): BetaAnalyticsCostBucketedResponse {
         validateRetrieveBetaOrganizationsAnalyticsCostReportRequest(request)
 
-        return SdkClient.request<BetaAnalyticsCostBucketedResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/analytics/cost_report?beta=true", config = clientConfig, query = buildRetrieveBetaOrganizationsAnalyticsCostReportQuery(request), operationId = "retrieveBetaOrganizationsAnalyticsCostReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaAnalyticsCostBucketedResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/analytics/cost_report?beta=true",
+                    config = clientConfig,
+                    query = buildRetrieveBetaOrganizationsAnalyticsCostReportQuery(request),
+                    operationId = "retrieveBetaOrganizationsAnalyticsCostReport",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateRetrieveBetaOrganizationsAnalyticsCostReportRequest(request: RetrieveBetaOrganizationsAnalyticsCostReportRequest) {
+    private fun validateRetrieveBetaOrganizationsAnalyticsCostReportRequest(
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest
+    ) {
         validateRetrieveBetaOrganizationsAnalyticsCostReportRequestPart1(request)
         validateRetrieveBetaOrganizationsAnalyticsCostReportRequestPart2(request)
     }
 
-    private fun validateRetrieveBetaOrganizationsAnalyticsCostReportRequestPart1(request: RetrieveBetaOrganizationsAnalyticsCostReportRequest) {
+    private fun validateRetrieveBetaOrganizationsAnalyticsCostReportRequestPart1(
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest
+    ) {
         Validation.validateDateTime("starting_at", request.startingAt)
 
         val productsValue = request.products?.getOrNull()
-if (productsValue != null) {
+        if (productsValue != null) {
             Validation.validateItems("products[]", productsValue, Validation.LengthOpts(max = 100))
-}
-
-        val modelsValue = request.models?.getOrNull()
-if (modelsValue != null) {
-            Validation.validateItems("models[]", modelsValue, Validation.LengthOpts(max = 100))
-}
-
-        val contextWindowsValue = request.contextWindows?.getOrNull()
-if (contextWindowsValue != null) {
-            Validation.validateItems("context_windows[]", contextWindowsValue, Validation.LengthOpts(max = 100))
-}
-
-        val inferenceGeosValue = request.inferenceGeos?.getOrNull()
-if (inferenceGeosValue != null) {
-            Validation.validateItems("inference_geos[]", inferenceGeosValue, Validation.LengthOpts(max = 100))
-}
-    }
-
-    private fun validateRetrieveBetaOrganizationsAnalyticsCostReportRequestPart2(request: RetrieveBetaOrganizationsAnalyticsCostReportRequest) {
-        val speedsValue = request.speeds?.getOrNull()
-if (speedsValue != null) {
-            Validation.validateItems("speeds[]", speedsValue, Validation.LengthOpts(max = 100))
-}
-
-        val slackChannelIdsValue = request.slackChannelIds?.getOrNull()
-if (slackChannelIdsValue != null) {
-            Validation.validateItems("slack_channel_ids[]", slackChannelIdsValue, Validation.LengthOpts(max = 100))
-}
-
-        val rbacGroupIdsValue = request.rbacGroupIds?.getOrNull()
-if (rbacGroupIdsValue != null) {
-            Validation.validateItems("rbac_group_ids[]", rbacGroupIdsValue, Validation.LengthOpts(max = 100))
-}
-
-        val userIdsValue = request.userIds?.getOrNull()
-if (userIdsValue != null) {
-            Validation.validateItems("user_ids[]", userIdsValue, Validation.LengthOpts(max = 100))
-}
-
-        val groupByValue = request.groupBy?.getOrNull()
-if (groupByValue != null) {
-            Validation.validateItems("group_by[]", groupByValue, Validation.LengthOpts(max = 100))
-}
-    }
-
-
-    private fun buildRetrieveBetaOrganizationsAnalyticsCostReportQuery(request: RetrieveBetaOrganizationsAnalyticsCostReportRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart1(request))
-            putAll(buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart2(request))
         }
 
-    private fun buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart1(request: RetrieveBetaOrganizationsAnalyticsCostReportRequest): Map<String, Any?> =
+        val modelsValue = request.models?.getOrNull()
+        if (modelsValue != null) {
+            Validation.validateItems("models[]", modelsValue, Validation.LengthOpts(max = 100))
+        }
+
+        val contextWindowsValue = request.contextWindows?.getOrNull()
+        if (contextWindowsValue != null) {
+            Validation.validateItems(
+                "context_windows[]",
+                contextWindowsValue,
+                Validation.LengthOpts(max = 100),
+            )
+        }
+
+        val inferenceGeosValue = request.inferenceGeos?.getOrNull()
+        if (inferenceGeosValue != null) {
+            Validation.validateItems(
+                "inference_geos[]",
+                inferenceGeosValue,
+                Validation.LengthOpts(max = 100),
+            )
+        }
+    }
+
+    private fun validateRetrieveBetaOrganizationsAnalyticsCostReportRequestPart2(
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest
+    ) {
+        val speedsValue = request.speeds?.getOrNull()
+        if (speedsValue != null) {
+            Validation.validateItems("speeds[]", speedsValue, Validation.LengthOpts(max = 100))
+        }
+
+        val slackChannelIdsValue = request.slackChannelIds?.getOrNull()
+        if (slackChannelIdsValue != null) {
+            Validation.validateItems(
+                "slack_channel_ids[]",
+                slackChannelIdsValue,
+                Validation.LengthOpts(max = 100),
+            )
+        }
+
+        val rbacGroupIdsValue = request.rbacGroupIds?.getOrNull()
+        if (rbacGroupIdsValue != null) {
+            Validation.validateItems(
+                "rbac_group_ids[]",
+                rbacGroupIdsValue,
+                Validation.LengthOpts(max = 100),
+            )
+        }
+
+        val userIdsValue = request.userIds?.getOrNull()
+        if (userIdsValue != null) {
+            Validation.validateItems("user_ids[]", userIdsValue, Validation.LengthOpts(max = 100))
+        }
+
+        val groupByValue = request.groupBy?.getOrNull()
+        if (groupByValue != null) {
+            Validation.validateItems("group_by[]", groupByValue, Validation.LengthOpts(max = 100))
+        }
+    }
+
+    private fun buildRetrieveBetaOrganizationsAnalyticsCostReportQuery(
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart1(request))
+        putAll(buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart2(request))
+    }
+
+    private fun buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart1(
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest
+    ): Map<String, Any?> =
         mapOf(
-            "starting_at" to
-    SdkClient.queryValue(request.startingAt, "form", true, "date-time"),
-            "ending_at" to
-    SdkClient.queryValue(request.endingAt, "form", true),
-            "bucket_width" to
-    SdkClient.queryValue(request.bucketWidth, "form", true),
-            "products[]" to
-    SdkClient.queryValue(request.products, "form", true),
-            "models[]" to
-    SdkClient.queryValue(request.models, "form", true),
-            "context_windows[]" to
-    SdkClient.queryValue(request.contextWindows, "form", true),
-            "inference_geos[]" to
-    SdkClient.queryValue(request.inferenceGeos, "form", true),
-            "speeds[]" to
-    SdkClient.queryValue(request.speeds, "form", true),
-            "slack_channel_ids[]" to
-    SdkClient.queryValue(request.slackChannelIds, "form", true),
-            "rbac_group_ids[]" to
-    SdkClient.queryValue(request.rbacGroupIds, "form", true),
-            "user_ids[]" to
-    SdkClient.queryValue(request.userIds, "form", true),
+            "starting_at" to SdkClient.queryValue(request.startingAt, "form", true, "date-time"),
+            "ending_at" to SdkClient.queryValue(request.endingAt, "form", true),
+            "bucket_width" to SdkClient.queryValue(request.bucketWidth, "form", true),
+            "products[]" to SdkClient.queryValue(request.products, "form", true),
+            "models[]" to SdkClient.queryValue(request.models, "form", true),
+            "context_windows[]" to SdkClient.queryValue(request.contextWindows, "form", true),
+            "inference_geos[]" to SdkClient.queryValue(request.inferenceGeos, "form", true),
+            "speeds[]" to SdkClient.queryValue(request.speeds, "form", true),
+            "slack_channel_ids[]" to SdkClient.queryValue(request.slackChannelIds, "form", true),
+            "rbac_group_ids[]" to SdkClient.queryValue(request.rbacGroupIds, "form", true),
+            "user_ids[]" to SdkClient.queryValue(request.userIds, "form", true),
             "limit" to SdkClient.queryValue(request.limit, "form", true),
         )
 
-    private fun buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart2(request: RetrieveBetaOrganizationsAnalyticsCostReportRequest): Map<String, Any?> =
+    private fun buildRetrieveBetaOrganizationsAnalyticsCostReportQueryPart2(
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest
+    ): Map<String, Any?> =
         mapOf(
             "page" to SdkClient.queryValue(request.page, "form", true),
-            "group_by[]" to
-    SdkClient.queryValue(request.groupBy, "form", true),
+            "group_by[]" to SdkClient.queryValue(request.groupBy, "form", true),
         )
 
-
-
-
     /**
-     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day, optionally broken down by product, model, context window, inference region, speed, cost type, or token type. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day,
+     * optionally broken down by product, model, context window, inference region, speed, cost type,
+     * or token type. Available to organizations on a Claude Enterprise plan. Requires an API key
+     * with the `read:analytics` scope.
      *
-     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within
-     *   the last 365 days and no earlier than 2026-01-01T00:00:00Z.
-     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier
-     *   of now and `starting_at` + 31 days. The range may span at most 31 days.
+     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within the last 365
+     *   days and no earlier than 2026-01-01T00:00:00Z.
+     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier of now and
+     *   `starting_at` + 31 days. The range may span at most 31 days.
      * @param bucketWidth Time bucket granularity.
      * @param products Product surfaces to include. Defaults to all products. Use
      *   `group_by[]=product` to break out per-product values.
-     * @param models Models to include. Defaults to all models. Use
-     *   `group_by[]=model` to break out per-model values.
+     * @param models Models to include. Defaults to all models. Use `group_by[]=model` to break out
+     *   per-model values.
      * @param contextWindows Filter to specific context-window pricing tiers. Use
      *   `group_by[]=context_window` to break out per-tier values.
-     * @param inferenceGeos Filter to specific inference regions. `not_available`
-     *   matches rows where the region is unset. Use `group_by[]=inference_geo` to
-     *   break out per-region values.
-     * @param speeds Filter to fast or standard inference mode. Use
-     *   `group_by[]=speed` to break out per-mode values.
-     * @param slackChannelIds Filter to usage originating from specific Slack
-     *   channels. Use `group_by[]=slack_channel_id` to break out per-channel values.
-     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups.
-     *   Accepts tagged RBAC group IDs (`rbac_group_...`) or bare group UUIDs. A row
-     *   matches when the user belonged to any of the listed groups on the (UTC) day
-     *   the usage occurred; usage with no group attribution never matches.
+     * @param inferenceGeos Filter to specific inference regions. `not_available` matches rows where
+     *   the region is unset. Use `group_by[]=inference_geo` to break out per-region values.
+     * @param speeds Filter to fast or standard inference mode. Use `group_by[]=speed` to break out
+     *   per-mode values.
+     * @param slackChannelIds Filter to usage originating from specific Slack channels. Use
+     *   `group_by[]=slack_channel_id` to break out per-channel values.
+     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups. Accepts tagged RBAC
+     *   group IDs (`rbac_group_...`) or bare group UUIDs. A row matches when the user belonged to
+     *   any of the listed groups on the (UTC) day the usage occurred; usage with no group
+     *   attribution never matches.
      * @param userIds Filter to specific users by tagged user ID.
-     * @param limit Maximum number of time buckets per page. Defaults and caps vary
-     *   by `bucket_width` (`1d`: default 7, max 31; `1h`: default 24, max 168; `1m`:
-     *   default 60, max 256).
+     * @param limit Maximum number of time buckets per page. Defaults and caps vary by
+     *   `bucket_width` (`1d`: default 7, max 31; `1h`: default 24, max 168; `1m`: default 60, max
+     *   256).
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param groupBy Dimensions to break each time bucket out by. Defaults to no
-     *   grouping (one total per bucket). Each bucket reports at most its top 100
-     *   groups; a group beyond that cap has no row in that bucket (there is no
-     *   remainder row), so grouped buckets are not exhaustive when a dimension has
-     *   more than 100 distinct values.
+     * @param groupBy Dimensions to break each time bucket out by. Defaults to no grouping (one
+     *   total per bucket). Each bucket reports at most its top 100 groups; a group beyond that cap
+     *   has no row in that bucket (there is no remainder row), so grouped buckets are not
+     *   exhaustive when a dimension has more than 100 distinct values.
      */
-    fun retrieveBetaOrganizationsAnalyticsCostReportPaginated(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsAnalyticsCostReportRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsCostReportTimeBucket) -> Boolean) {
+    fun retrieveBetaOrganizationsAnalyticsCostReportPaginated(
+        clientConfig: ClientConfig,
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaAnalyticsCostReportTimeBucket) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = retrieveBetaOrganizationsAnalyticsCostReport(clientConfig, request.copy(page = cursor), options)
+            val page =
+                retrieveBetaOrganizationsAnalyticsCostReport(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -239,20 +303,28 @@ if (groupByValue != null) {
         val hasMore: Boolean,
     )
 
-    fun retrieveBetaOrganizationsAnalyticsCostReportPages(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsAnalyticsCostReportRequest, options: RequestOptions? = null, yieldPage: (RetrieveBetaOrganizationsAnalyticsCostReportPage) -> Boolean) {
+    fun retrieveBetaOrganizationsAnalyticsCostReportPages(
+        clientConfig: ClientConfig,
+        request: RetrieveBetaOrganizationsAnalyticsCostReportRequest,
+        options: RequestOptions? = null,
+        yieldPage: (RetrieveBetaOrganizationsAnalyticsCostReportPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = retrieveBetaOrganizationsAnalyticsCostReport(clientConfig, request.copy(page = cursor), options)
+            val page =
+                retrieveBetaOrganizationsAnalyticsCostReport(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
             val hasMore = page.hasMore == true && nextCursor != null
-            if (!yieldPage(RetrieveBetaOrganizationsAnalyticsCostReportPage(page, items, hasMore))) return
+            if (!yieldPage(RetrieveBetaOrganizationsAnalyticsCostReportPage(page, items, hasMore)))
+                return
             if (!hasMore) return
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
-
-
-
 }

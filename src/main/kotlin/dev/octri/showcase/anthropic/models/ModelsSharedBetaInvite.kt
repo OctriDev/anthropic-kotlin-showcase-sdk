@@ -5,44 +5,28 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaInviteSchema` API schema.
- */
+/** Typed representation of the `BetaInviteSchema` API schema. */
 data class BetaInviteSchema(
-    /**
-     * RFC 3339 datetime string indicating when the Invite was accepted, or null.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("accepted_at", required = true) val acceptedAt: String?,
-    /**
-     * Email of the User being invited.
-     */
+    /** RFC 3339 datetime string indicating when the Invite was accepted, or null. */
+    @com.fasterxml.jackson.annotation.JsonProperty("accepted_at", required = true)
+    val acceptedAt: String?,
+    /** Email of the User being invited. */
     val email: String,
-    /**
-     * RFC 3339 datetime string indicating when the Invite expires.
-     */
+    /** RFC 3339 datetime string indicating when the Invite expires. */
     @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: OffsetDateTime,
-    /**
-     * ID of the Invite.
-     */
+    /** ID of the Invite. */
     val id: String,
-    /**
-     * RFC 3339 datetime string indicating when the Invite was created.
-     */
+    /** RFC 3339 datetime string indicating when the Invite was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("invited_at") val invitedAt: OffsetDateTime,
     /**
-     * RBAC group IDs recorded on the Invite (Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
+     * RBAC group IDs recorded on the Invite (Claude Enterprise organizations), to be assigned to
+     * the User when the Invite is accepted. `[]` when none.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_ids") val rbacGroupIds: List<String>,
-    /**
-     * Organization role of the User.
-     */
+    /** Organization role of the User. */
     val role: BetaOrganizationRoleSchema,
-    /**
-     * Status of the Invite.
-     */
+    /** Status of the Invite. */
     val status: BetaInviteStatusSchema,
-    /**
-     * Object type. For Invites, this is always `"invite"`.
-     */
-    val type: BetaInviteSchemaTypeEnum
+    /** Object type. For Invites, this is always `"invite"`. */
+    val type: BetaInviteSchemaTypeEnum,
 )

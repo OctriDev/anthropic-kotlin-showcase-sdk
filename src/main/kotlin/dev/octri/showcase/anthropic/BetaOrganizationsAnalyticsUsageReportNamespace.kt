@@ -3,20 +3,42 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsAnalyticsUsageReportNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get token usage over time across a date range. Returns token usage bucketed by minute, hour, or day, optionally broken down by product, model, context window, inference region, or speed. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get token usage over time across a date range. Returns token usage bucketed by minute, hour,
+     * or day, optionally broken down by product, model, context window, inference region, or speed.
+     * Available to organizations on a Claude Enterprise plan. Requires an API key with the
+     * `read:analytics` scope.
      */
-    fun retrieve(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsageReport.RetrieveBetaOrganizationsAnalyticsUsageReportRequest, options: RequestOptions? = null): BetaAnalyticsUsageBucketedResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsageReport.retrieveBetaOrganizationsAnalyticsUsageReport(clientConfig, request, options)
+    fun retrieve(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsageReport.RetrieveBetaOrganizationsAnalyticsUsageReportRequest,
+        options: RequestOptions? = null,
+    ): BetaAnalyticsUsageBucketedResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsUsageReport
+            .retrieveBetaOrganizationsAnalyticsUsageReport(clientConfig, request, options)
     }
 
     /**
-     * Get token usage over time across a date range. Returns token usage bucketed by minute, hour, or day, optionally broken down by product, model, context window, inference region, or speed. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get token usage over time across a date range. Returns token usage bucketed by minute, hour,
+     * or day, optionally broken down by product, model, context window, inference region, or speed.
+     * Available to organizations on a Claude Enterprise plan. Requires an API key with the
+     * `read:analytics` scope.
      */
-    fun retrievePaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsageReport.RetrieveBetaOrganizationsAnalyticsUsageReportRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsUsageReportTimeBucket) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsageReport.retrieveBetaOrganizationsAnalyticsUsageReportPaginated(clientConfig, request, options, yieldFn)
+    fun retrievePaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsageReport.RetrieveBetaOrganizationsAnalyticsUsageReportRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaAnalyticsUsageReportTimeBucket) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsUsageReport
+            .retrieveBetaOrganizationsAnalyticsUsageReportPaginated(
+                clientConfig,
+                request,
+                options,
+                yieldFn,
+            )
     }
-
 }

@@ -5,164 +5,149 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaAllThinkingTurns` API schema.
- */
+/** Typed representation of the `BetaAllThinkingTurns` API schema. */
 data class BetaAllThinkingTurns(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaAllThinkingTurnsTypeEnum
 )
 
-/**
- * Indicates whether a capability is supported.
- */
+/** Indicates whether a capability is supported. */
 data class BetaCapabilitySupport(
-    /**
-     * Whether this capability is supported by the model.
-     */
+    /** Whether this capability is supported by the model. */
     val supported: Boolean
 )
 
-/**
- * Typed representation of the `BetaCreatedBy` API schema.
- */
+/** Typed representation of the `BetaCreatedBy` API schema. */
 data class BetaCreatedBy(
-    /**
-     * ID of the actor that created the object.
-     */
+    /** ID of the actor that created the object. */
     val id: String,
-    /**
-     * Type of the actor that created the object.
-     */
-    val type: BetaCreatedByTypeEnum
+    /** Type of the actor that created the object. */
+    val type: BetaCreatedByTypeEnum,
 )
 
-/**
- * Typed representation of the `BetaDataResidency` API schema.
- */
+/** Typed representation of the `BetaDataResidency` API schema. */
 data class BetaDataResidency(
-    /**
-     * Permitted inference geo values. 'unrestricted' means all geos are allowed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos") val allowedInferenceGeos: Any,
-    /**
-     * Default inference geo applied when requests omit the parameter.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_inference_geo") val defaultInferenceGeo: String,
-    /**
-     * Geographic region for workspace data storage. Immutable after creation.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_geo") val workspaceGeo: String
+    /** Permitted inference geo values. 'unrestricted' means all geos are allowed. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos")
+    val allowedInferenceGeos: Any,
+    /** Default inference geo applied when requests omit the parameter. */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_inference_geo")
+    val defaultInferenceGeo: String,
+    /** Geographic region for workspace data storage. Immutable after creation. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_geo") val workspaceGeo: String,
 )
 
 /**
- * Status of automatic JWKS polling for a federation issuer. Anthropic periodically fetches the issuer's signing keys in the background. These fields summarize the most recent fetches so the health of the JWKS endpoint can be monitored.
+ * Status of automatic JWKS polling for a federation issuer. Anthropic periodically fetches the
+ * issuer's signing keys in the background. These fields summarize the most recent fetches so the
+ * health of the JWKS endpoint can be monitored.
  */
 data class BetaIssuerPollStatus(
-    /**
-     * Consecutive fetch failures since the last success.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("consecutive_failures") val consecutiveFailures: Long,
-    /**
-     * When the last successful fetch completed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_fetched_at", required = true) val lastFetchedAt: String?,
-    /**
-     * When the next fetch is scheduled. Null if paused.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_poll_at", required = true) val nextPollAt: String?
+    /** Consecutive fetch failures since the last success. */
+    @com.fasterxml.jackson.annotation.JsonProperty("consecutive_failures")
+    val consecutiveFailures: Long,
+    /** When the last successful fetch completed. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_fetched_at", required = true)
+    val lastFetchedAt: String?,
+    /** When the next fetch is scheduled. Null if paused. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_poll_at", required = true)
+    val nextPollAt: String?,
 )
 
 typealias BetaIterationsUsage = List<BetaUsageIterationsItem>
 
-/**
- * Typed representation of the `BetaMetadata` API schema.
- */
+/** Typed representation of the `BetaMetadata` API schema. */
 data class BetaMetadata(
     /**
-     * An external identifier for the user who is associated with the request. This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+     * An external identifier for the user who is associated with the request. This should be a
+     * uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse.
+     * Do not include any identifying information such as name, email address, or phone number.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null
 )
 
-/**
- * A monetary amount in a specific currency.
- */
+/** A monetary amount in a specific currency. */
 data class BetaMonetaryAmount(
     /**
-     * Uppercase ISO-4217 currency code. `USD` is the only currency currently supported; the accepted set is closed and grows only when a new currency is priced.
+     * Uppercase ISO-4217 currency code. `USD` is the only currency currently supported; the
+     * accepted set is closed and grows only when a new currency is priced.
      */
     val currency: BetaCurrency,
     /**
-     * Amount in minor units of the currency, as an integer decimal string with no leading zeros: "2500" is $25.00 and "50" is fifty cents. A string rather than a number so no float rounding is ever applied.
+     * Amount in minor units of the currency, as an integer decimal string with no leading zeros:
+     * "2500" is $25.00 and "50" is fifty cents. A string rather than a number so no float rounding
+     * is ever applied.
      */
-    val amount: String
+    val amount: String,
 )
 
 /**
- * Does the incoming JWT qualify? All populated fields must pass; omitted fields are skipped. At least one of `subject_prefix` (other than a wildcard-only value like `*`), `claims`, or `condition` is required; `audience` alone is not sufficient.
+ * Does the incoming JWT qualify? All populated fields must pass; omitted fields are skipped. At
+ * least one of `subject_prefix` (other than a wildcard-only value like `*`), `claims`, or
+ * `condition` is required; `audience` alone is not sufficient.
  */
 data class BetaRuleMatch(
     /**
-     * Exact match against the `aud` claim (any element if array). When omitted, the JWT's `aud` must still equal Anthropic's expected audience for the issuer; setting this field overrides that default.
+     * Exact match against the `aud` claim (any element if array). When omitted, the JWT's `aud`
+     * must still equal Anthropic's expected audience for the issuer; setting this field overrides
+     * that default.
      */
     val audience: String? = null,
     /**
-     * Exact-match `{claim: value}` pairs against top-level claims. Only string-valued claims can be matched; use `condition` for non-string claims.
+     * Exact-match `{claim: value}` pairs against top-level claims. Only string-valued claims can be
+     * matched; use `condition` for non-string claims.
      */
     val claims: Map<String, String>? = null,
     /**
-     * CEL expression over claims for logic the structural fields can't express. Must evaluate to a boolean and may reference only the `claims` variable; a constant-true expression (such as `true`) is rejected with 400.
+     * CEL expression over claims for logic the structural fields can't express. Must evaluate to a
+     * boolean and may reference only the `claims` variable; a constant-true expression (such as
+     * `true`) is rejected with 400.
      */
     val condition: String? = null,
     /**
-     * Match the verified JWT `sub` claim. Exact match unless the value ends with `*`, in which case it is a prefix match. Example: `repo:my-org/my-repo:ref:refs/heads/main`.
+     * Match the verified JWT `sub` claim. Exact match unless the value ends with `*`, in which case
+     * it is a prefix match. Example: `repo:my-org/my-repo:ref:refs/heads/main`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("subject_prefix") val subjectPrefix: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("subject_prefix")
+    val subjectPrefix: String? = null,
 )
 
 /**
- * Work data for session work items. This resource type is used when work represents a session that needs to be executed in a self-hosted environment.
+ * Work data for session work items. This resource type is used when work represents a session that
+ * needs to be executed in a self-hosted environment.
  */
 data class BetaSessionWorkData(
-    /**
-     * Session identifier (e.g., 'session_...')
-     */
+    /** Session identifier (e.g., 'session_...') */
     val id: String,
-    /**
-     * Type of work data
-     */
-    val type: BetaSessionWorkDataTypeEnum
+    /** Type of work data */
+    val type: BetaSessionWorkDataTypeEnum,
 )
 
 /**
- * Per-message output configuration on a role:"system" input message. Fields here apply per-turn; ``format`` remains top-level only. An empty ``{}`` is accepted on a message that carries content; a message with neither content nor output_config fields is rejected.
+ * Per-message output configuration on a role:"system" input message. Fields here apply per-turn;
+ * ``format`` remains top-level only. An empty ``{}`` is accepted on a message that carries content;
+ * a message with neither content nor output_config fields is rejected.
  */
 data class BetaSystemMessageOutputConfig(
     /**
-     * How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer. Valid values are `low`, `medium`, `high`, `xhigh`, or `max`.
+     * How much effort the model should put into its response. Higher effort levels may result in
+     * more thorough analysis but take longer. Valid values are `low`, `medium`, `high`, `xhigh`, or
+     * `max`.
      */
     val effort: BetaEffortLevel? = null
 )
 
 typealias BetaTimestamp = OffsetDateTime
 
-/**
- * User-configurable total token budget across contexts.
- */
+/** User-configurable total token budget across contexts. */
 data class BetaTokenTaskBudget(
-    /**
-     * Total token budget across all contexts in the session.
-     */
+    /** Total token budget across all contexts in the session. */
     val total: Long,
-    /**
-     * The budget type. Currently only 'tokens' is supported.
-     */
+    /** The budget type. Currently only 'tokens' is supported. */
     val type: BetaTokenTaskBudgetTypeEnum,
     /**
-     * Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
+     * Remaining tokens in the budget. Use this to track usage across contexts when implementing
+     * compaction client-side. Defaults to total if not provided.
      */
-    val remaining: Long? = null
+    val remaining: Long? = null,
 )

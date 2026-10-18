@@ -3,16 +3,17 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Response payload for List memory versions.
- */
+/** Response payload for List memory versions. */
 data class BetaManagedAgentsListMemoryVersionsResult(
     /**
-     * One page of `memory_version` objects, ordered by `created_at` descending (newest first), with `id` as tiebreak.
+     * One page of `memory_version` objects, ordered by `created_at` descending (newest first), with
+     * `id` as tiebreak.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsMemoryVersion>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsMemoryVersion>? = null,
     /**
-     * Opaque cursor for the next page (a `page_...` value), or `null` if there are no more results. Pass as `page` on the next request.
+     * Opaque cursor for the next page (a `page_...` value), or `null` if there are no more results.
+     * Pass as `page` on the next request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 )

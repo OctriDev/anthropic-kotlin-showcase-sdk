@@ -3,13 +3,13 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsMeNamespace(private val clientConfig: ClientConfig) {
-    /**
-     * Retrieve information about the organization associated with the authenticated API key.
-     */
-    fun retrieve(anthropicVersion: String? = null, options: RequestOptions? = null): BetaOrganizationSchema {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsMe.retrieveBetaOrganizationsMe(clientConfig, anthropicVersion, options)
+    /** Retrieve information about the organization associated with the authenticated API key. */
+    fun retrieve(
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationSchema {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsMe
+            .retrieveBetaOrganizationsMe(clientConfig, anthropicVersion, options)
     }
-
 }

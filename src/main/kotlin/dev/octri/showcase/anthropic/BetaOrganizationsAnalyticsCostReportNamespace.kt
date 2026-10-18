@@ -3,20 +3,42 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsAnalyticsCostReportNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day, optionally broken down by product, model, context window, inference region, speed, cost type, or token type. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day,
+     * optionally broken down by product, model, context window, inference region, speed, cost type,
+     * or token type. Available to organizations on a Claude Enterprise plan. Requires an API key
+     * with the `read:analytics` scope.
      */
-    fun retrieve(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsCostReport.RetrieveBetaOrganizationsAnalyticsCostReportRequest, options: RequestOptions? = null): BetaAnalyticsCostBucketedResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsCostReport.retrieveBetaOrganizationsAnalyticsCostReport(clientConfig, request, options)
+    fun retrieve(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsCostReport.RetrieveBetaOrganizationsAnalyticsCostReportRequest,
+        options: RequestOptions? = null,
+    ): BetaAnalyticsCostBucketedResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsCostReport
+            .retrieveBetaOrganizationsAnalyticsCostReport(clientConfig, request, options)
     }
 
     /**
-     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day, optionally broken down by product, model, context window, inference region, speed, cost type, or token type. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get cost in USD over time across a date range. Returns cost bucketed by minute, hour, or day,
+     * optionally broken down by product, model, context window, inference region, speed, cost type,
+     * or token type. Available to organizations on a Claude Enterprise plan. Requires an API key
+     * with the `read:analytics` scope.
      */
-    fun retrievePaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsCostReport.RetrieveBetaOrganizationsAnalyticsCostReportRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsCostReportTimeBucket) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsCostReport.retrieveBetaOrganizationsAnalyticsCostReportPaginated(clientConfig, request, options, yieldFn)
+    fun retrievePaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsCostReport.RetrieveBetaOrganizationsAnalyticsCostReportRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaAnalyticsCostReportTimeBucket) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsCostReport
+            .retrieveBetaOrganizationsAnalyticsCostReportPaginated(
+                clientConfig,
+                request,
+                options,
+                yieldFn,
+            )
     }
-
 }

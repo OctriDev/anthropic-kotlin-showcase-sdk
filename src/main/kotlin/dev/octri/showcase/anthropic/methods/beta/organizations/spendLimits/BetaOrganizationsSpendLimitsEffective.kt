@@ -14,60 +14,134 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsSpendLimitsEffective {
 
-
     /**
-     * List each member's effective spend limit and period-to-date spend. Returns one row per (member, period) the member resolves a spend limit for, with the `source` scope the spend limit was inherited from. Paginates by member, so a member's periods never split across pages.
+     * List each member's effective spend limit and period-to-date spend. Returns one row per
+     * (member, period) the member resolves a spend limit for, with the `source` scope the spend
+     * limit was inherited from. Paginates by member, so a member's periods never split across
+     * pages.
      *
-     * @param userIds Restrict the report to these members, by tagged user ID
-     *   (`user_...`). At most 100 entries.
-     * @param period Restrict the report to these limit periods. Omit to return one
-     *   row per period each member resolves a spend limit for.
-     * @param limit Maximum number of members per page. A member's period rows never
-     *   split across pages, so a page may carry more rows than this. Defaults to `20`.
+     * @param userIds Restrict the report to these members, by tagged user ID (`user_...`). At most
+     *   100 entries.
+     * @param period Restrict the report to these limit periods. Omit to return one row per period
+     *   each member resolves a spend limit for.
+     * @param limit Maximum number of members per page. A member's period rows never split across
+     *   pages, so a page may carry more rows than this. Defaults to `20`.
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsSpendLimitsEffective(clientConfig: ClientConfig, userIds: SdkClient.SdkOptional<List<String>?>? = null, period: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?>? = null, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaListEffectiveSpendLimitsResponse {
+    fun retrieveBetaOrganizationsSpendLimitsEffective(
+        clientConfig: ClientConfig,
+        userIds: SdkClient.SdkOptional<List<String>?>? = null,
+        period:
+            SdkClient.SdkOptional<
+                List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?
+            >? =
+            null,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaListEffectiveSpendLimitsResponse {
         val userIdsValue = userIds?.getOrNull()
-if (userIdsValue != null) {
+        if (userIdsValue != null) {
             Validation.validateItems("user_ids[]", userIdsValue, Validation.LengthOpts(max = 100))
-}
+        }
 
         val periodValue = period?.getOrNull()
-if (periodValue != null) {
+        if (periodValue != null) {
             Validation.validateItems("period[]", periodValue, Validation.LengthOpts(max = 3))
-}
+        }
 
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+        }
 
-        return SdkClient.request<BetaListEffectiveSpendLimitsResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/spend_limits/effective?beta=true", config = clientConfig, query = mapOf("user_ids[]" to SdkClient.queryValue(userIds, "form", true), "period[]" to SdkClient.queryValue(period, "form", true), "limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "retrieveBetaOrganizationsSpendLimitsEffective", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaListEffectiveSpendLimitsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/spend_limits/effective?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "user_ids[]" to SdkClient.queryValue(userIds, "form", true),
+                            "period[]" to SdkClient.queryValue(period, "form", true),
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "retrieveBetaOrganizationsSpendLimitsEffective",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * List each member's effective spend limit and period-to-date spend. Returns one row per (member, period) the member resolves a spend limit for, with the `source` scope the spend limit was inherited from. Paginates by member, so a member's periods never split across pages.
+     * List each member's effective spend limit and period-to-date spend. Returns one row per
+     * (member, period) the member resolves a spend limit for, with the `source` scope the spend
+     * limit was inherited from. Paginates by member, so a member's periods never split across
+     * pages.
      *
-     * @param userIds Restrict the report to these members, by tagged user ID
-     *   (`user_...`). At most 100 entries.
-     * @param period Restrict the report to these limit periods. Omit to return one
-     *   row per period each member resolves a spend limit for.
-     * @param limit Maximum number of members per page. A member's period rows never
-     *   split across pages, so a page may carry more rows than this. Defaults to `20`.
+     * @param userIds Restrict the report to these members, by tagged user ID (`user_...`). At most
+     *   100 entries.
+     * @param period Restrict the report to these limit periods. Omit to return one row per period
+     *   each member resolves a spend limit for.
+     * @param limit Maximum number of members per page. A member's period rows never split across
+     *   pages, so a page may carry more rows than this. Defaults to `20`.
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsSpendLimitsEffectivePaginated(clientConfig: ClientConfig, userIds: SdkClient.SdkOptional<List<String>?>? = null, period: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?>? = null, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaSpendSummary) -> Boolean) {
+    fun retrieveBetaOrganizationsSpendLimitsEffectivePaginated(
+        clientConfig: ClientConfig,
+        userIds: SdkClient.SdkOptional<List<String>?>? = null,
+        period:
+            SdkClient.SdkOptional<
+                List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?
+            >? =
+            null,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaSpendSummary) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = retrieveBetaOrganizationsSpendLimitsEffective(clientConfig, userIds, period, limit, cursor, anthropicVersion, options)
+            val page =
+                retrieveBetaOrganizationsSpendLimitsEffective(
+                    clientConfig,
+                    userIds,
+                    period,
+                    limit,
+                    cursor,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -84,20 +158,40 @@ if (periodValue != null) {
         val hasMore: Boolean,
     )
 
-    fun retrieveBetaOrganizationsSpendLimitsEffectivePages(clientConfig: ClientConfig, userIds: SdkClient.SdkOptional<List<String>?>? = null, period: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?>? = null, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldPage: (RetrieveBetaOrganizationsSpendLimitsEffectivePage) -> Boolean) {
+    fun retrieveBetaOrganizationsSpendLimitsEffectivePages(
+        clientConfig: ClientConfig,
+        userIds: SdkClient.SdkOptional<List<String>?>? = null,
+        period:
+            SdkClient.SdkOptional<
+                List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?
+            >? =
+            null,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (RetrieveBetaOrganizationsSpendLimitsEffectivePage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = retrieveBetaOrganizationsSpendLimitsEffective(clientConfig, userIds, period, limit, cursor, anthropicVersion, options)
+            val page =
+                retrieveBetaOrganizationsSpendLimitsEffective(
+                    clientConfig,
+                    userIds,
+                    period,
+                    limit,
+                    cursor,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
             val hasMore = nextCursor != null
-            if (!yieldPage(RetrieveBetaOrganizationsSpendLimitsEffectivePage(page, items, hasMore))) return
+            if (!yieldPage(RetrieveBetaOrganizationsSpendLimitsEffectivePage(page, items, hasMore)))
+                return
             if (!hasMore) return
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
-
-
-
 }

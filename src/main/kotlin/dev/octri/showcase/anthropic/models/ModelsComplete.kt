@@ -3,70 +3,77 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `CompletionRequest` API schema.
- */
+/** Typed representation of the `CompletionRequest` API schema. */
 data class CompletionRequest(
-    /**
-     * The model that will complete your prompt. See models for additional details and options.
-     */
+    /** The model that will complete your prompt. See models for additional details and options. */
     val model: Model,
     /**
-     * The prompt that you want Claude to complete. For proper response generation you will need to format your prompt using alternating `\n\nHuman:` and `\n\nAssistant:` conversational turns. For example: ``` "\n\nHuman: {userQuestion}\n\nAssistant:" ``` See prompt validation and our guide to prompt design for more details.
+     * The prompt that you want Claude to complete. For proper response generation you will need to
+     * format your prompt using alternating `\n\nHuman:` and `\n\nAssistant:` conversational turns.
+     * For example: ``` "\n\nHuman: {userQuestion}\n\nAssistant:" ``` See prompt validation and our
+     * guide to prompt design for more details.
      */
     val prompt: String,
     /**
-     * The maximum number of tokens to generate before stopping. Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+     * The maximum number of tokens to generate before stopping. Note that our models may stop
+     * _before_ reaching this maximum. This parameter only specifies the absolute maximum number of
+     * tokens to generate.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_tokens_to_sample") val maxTokensToSample: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("max_tokens_to_sample")
+    val maxTokensToSample: Long,
     /**
-     * Sequences that will cause the model to stop generating. Our models stop on `"\n\nHuman:"`, and may include additional built-in stop sequences in the future. By providing the stop_sequences parameter, you may include additional strings that will cause the model to stop generating.
+     * Sequences that will cause the model to stop generating. Our models stop on `"\n\nHuman:"`,
+     * and may include additional built-in stop sequences in the future. By providing the
+     * stop_sequences parameter, you may include additional strings that will cause the model to
+     * stop generating.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_sequences") val stopSequences: List<String>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_sequences")
+    val stopSequences: List<String>? = null,
     /**
-     * Amount of randomness injected into the response. Defaults to `1.0`. Ranges from `0.0` to `1.0`. Use `temperature` closer to `0.0` for analytical / multiple choice, and closer to `1.0` for creative and generative tasks. Note that even with `temperature` of `0.0`, the results will not be fully deterministic.
+     * Amount of randomness injected into the response. Defaults to `1.0`. Ranges from `0.0` to
+     * `1.0`. Use `temperature` closer to `0.0` for analytical / multiple choice, and closer to
+     * `1.0` for creative and generative tasks. Note that even with `temperature` of `0.0`, the
+     * results will not be fully deterministic.
      */
     val temperature: Double? = null,
     /**
-     * Use nucleus sampling. In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. Recommended for advanced use cases only.
+     * Use nucleus sampling. In nucleus sampling, we compute the cumulative distribution over all
+     * the options for each subsequent token in decreasing probability order and cut it off once it
+     * reaches a particular probability specified by `top_p`. Recommended for advanced use cases
+     * only.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("top_p") val topP: Double? = null,
     /**
-     * Only sample from the top K options for each subsequent token. Used to remove "long tail" low probability responses. Learn more technical details here. Recommended for advanced use cases only.
+     * Only sample from the top K options for each subsequent token. Used to remove "long tail" low
+     * probability responses. Learn more technical details here. Recommended for advanced use cases
+     * only.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("top_k") val topK: Long? = null,
-    /**
-     * An object describing metadata about the request.
-     */
+    /** An object describing metadata about the request. */
     val metadata: Metadata? = null,
     /**
-     * Whether to incrementally stream the response using server-sent events. See streaming for details.
+     * Whether to incrementally stream the response using server-sent events. See streaming for
+     * details.
      */
-    val stream: Boolean? = null
+    val stream: Boolean? = null,
 )
 
-/**
- * Typed representation of the `CompletionResponse` API schema.
- */
+/** Typed representation of the `CompletionResponse` API schema. */
 data class CompletionResponse(
-    /**
-     * The resulting completion up to and excluding the stop sequences.
-     */
+    /** The resulting completion up to and excluding the stop sequences. */
     val completion: String,
-    /**
-     * Unique object identifier. The format and length of IDs may change over time.
-     */
+    /** Unique object identifier. The format and length of IDs may change over time. */
     val id: String,
-    /**
-     * The model that will complete your prompt. See models for additional details and options.
-     */
+    /** The model that will complete your prompt. See models for additional details and options. */
     val model: Model,
     /**
-     * The reason that we stopped. This may be one the following values: * `"stop_sequence"`: we reached a stop sequence — either provided by you via the `stop_sequences` parameter, or a stop sequence built into the model * `"max_tokens"`: we exceeded `max_tokens_to_sample` or the model's maximum
+     * The reason that we stopped. This may be one the following values: * `"stop_sequence"`: we
+     * reached a stop sequence — either provided by you via the `stop_sequences` parameter, or a
+     * stop sequence built into the model * `"max_tokens"`: we exceeded `max_tokens_to_sample` or
+     * the model's maximum
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true) val stopReason: String?,
-    /**
-     * Object type. For Text Completions, this is always `"completion"`.
-     */
-    val type: CompletionResponseTypeEnum
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true)
+    val stopReason: String?,
+    /** Object type. For Text Completions, this is always `"completion"`. */
+    val type: CompletionResponseTypeEnum,
 )

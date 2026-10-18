@@ -3,105 +3,110 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `RequestCodeExecutionOutputBlock` API schema.
- */
+/** Typed representation of the `RequestCodeExecutionOutputBlock` API schema. */
 data class RequestCodeExecutionOutputBlock(
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RequestCodeExecutionOutputBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestCodeExecutionOutputBlockTypeEnum,
 )
 
-/**
- * Typed representation of the `RequestCodeExecutionResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestCodeExecutionResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestCodeExecutionResultBlock(
-    /**
-     * Required array value serialized in the `content` wire field.
-     */
+    /** Required array value serialized in the `content` wire field. */
     val content: List<RequestCodeExecutionOutputBlock>,
-    /**
-     * Required `integer` value serialized in the `return_code` wire field.
-     */
+    /** Required `integer` value serialized in the `return_code` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("return_code") val returnCode: Long,
-    /**
-     * Required `string` value serialized in the `stderr` wire field.
-     */
+    /** Required `string` value serialized in the `stderr` wire field. */
     val stderr: String,
-    /**
-     * Required `string` value serialized in the `stdout` wire field.
-     */
+    /** Required `string` value serialized in the `stdout` wire field. */
     val stdout: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RequestCodeExecutionResultBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestCodeExecutionResultBlockTypeEnum,
 ) : RequestCodeExecutionToolResultBlockContent
 
-/**
- * Required API value serialized in the `content` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestCodeExecutionToolResultBlockContent::class)
+/** Required API value serialized in the `content` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestCodeExecutionToolResultBlockContent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestCodeExecutionToolResultError::class, name = "code_execution_tool_result_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestCodeExecutionResultBlock::class, name = "code_execution_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RequestEncryptedCodeExecutionResultBlock::class, name = "encrypted_code_execution_result")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestCodeExecutionToolResultError::class,
+        name = "code_execution_tool_result_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestCodeExecutionResultBlock::class,
+        name = "code_execution_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RequestEncryptedCodeExecutionResultBlock::class,
+        name = "encrypted_code_execution_result",
+    ),
 )
 sealed interface RequestCodeExecutionToolResultBlockContent
 
-/** A [RequestCodeExecutionToolResultBlockContent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestCodeExecutionToolResultBlockContent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [RequestCodeExecutionToolResultBlockContent] whose `type` names no branch this SDK knows, kept
+ * as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestCodeExecutionToolResultBlockContent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestCodeExecutionToolResultBlockContent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `RequestCodeExecutionToolResultError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `RequestCodeExecutionToolResultError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestCodeExecutionToolResultError(
-    /**
-     * Required enumerated value serialized in the `error_code` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: CodeExecutionToolResultErrorCode,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RequestCodeExecutionToolResultErrorTypeEnum
+    /** Required enumerated value serialized in the `error_code` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
+    val errorCode: CodeExecutionToolResultErrorCode,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestCodeExecutionToolResultErrorTypeEnum,
 ) : RequestCodeExecutionToolResultBlockContent
 
-/**
- * Code execution result with encrypted stdout for PFC + web_search results.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Code execution result with encrypted stdout for PFC + web_search results. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RequestEncryptedCodeExecutionResultBlock(
-    /**
-     * Required array value serialized in the `content` wire field.
-     */
+    /** Required array value serialized in the `content` wire field. */
     val content: List<RequestCodeExecutionOutputBlock>,
-    /**
-     * Required `string` value serialized in the `encrypted_stdout` wire field.
-     */
+    /** Required `string` value serialized in the `encrypted_stdout` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("encrypted_stdout") val encryptedStdout: String,
-    /**
-     * Required `integer` value serialized in the `return_code` wire field.
-     */
+    /** Required `integer` value serialized in the `return_code` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("return_code") val returnCode: Long,
-    /**
-     * Required `string` value serialized in the `stderr` wire field.
-     */
+    /** Required `string` value serialized in the `stderr` wire field. */
     val stderr: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RequestEncryptedCodeExecutionResultBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestEncryptedCodeExecutionResultBlockTypeEnum,
 ) : RequestCodeExecutionToolResultBlockContent

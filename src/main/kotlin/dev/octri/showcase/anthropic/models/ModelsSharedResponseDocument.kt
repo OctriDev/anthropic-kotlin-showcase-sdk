@@ -3,43 +3,55 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `ResponseDocumentBlock` API schema.
- */
+/** Typed representation of the `ResponseDocumentBlock` API schema. */
 data class ResponseDocumentBlock(
-    /**
-     * Citation configuration for the document
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("citations", required = true) val citations: ResponseCitationsConfig?,
-    /**
-     * Required API value serialized in the `source` wire field.
-     */
+    /** Citation configuration for the document */
+    @com.fasterxml.jackson.annotation.JsonProperty("citations", required = true)
+    val citations: ResponseCitationsConfig?,
+    /** Required API value serialized in the `source` wire field. */
     val source: ResponseDocumentBlockSource,
-    /**
-     * The title of the document
-     */
+    /** The title of the document */
     @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseDocumentBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseDocumentBlockTypeEnum,
 )
 
-/**
- * Required API value serialized in the `source` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownResponseDocumentBlockSource::class)
+/** Required API value serialized in the `source` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownResponseDocumentBlockSource::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = Base64PDFSource::class, name = "base64"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = PlainTextSource::class, name = "text")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = Base64PDFSource::class,
+        name = "base64",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = PlainTextSource::class,
+        name = "text",
+    ),
 )
 sealed interface ResponseDocumentBlockSource
 
-/** A [ResponseDocumentBlockSource] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownResponseDocumentBlockSource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [ResponseDocumentBlockSource] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownResponseDocumentBlockSource
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : ResponseDocumentBlockSource {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

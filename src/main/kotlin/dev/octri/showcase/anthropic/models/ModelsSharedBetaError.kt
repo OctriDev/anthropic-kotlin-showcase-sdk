@@ -3,46 +3,79 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaErrorResponse` API schema.
- */
+/** Typed representation of the `BetaErrorResponse` API schema. */
 data class BetaErrorResponse(
-    /**
-     * Required API value serialized in the `error` wire field.
-     */
+    /** Required API value serialized in the `error` wire field. */
     val error: BetaErrorResponseError,
-    /**
-     * Required `string` value serialized in the `request_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("request_id", required = true) val requestId: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaErrorResponseTypeEnum
+    /** Required `string` value serialized in the `request_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("request_id", required = true)
+    val requestId: String?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaErrorResponseTypeEnum,
 ) : dev.octri.showcase.anthropic.ErrorBody
 
-/**
- * Required API value serialized in the `error` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaErrorResponseError::class)
+/** Required API value serialized in the `error` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaErrorResponseError::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaInvalidRequestError::class, name = "invalid_request_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAuthenticationError::class, name = "authentication_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBillingError::class, name = "billing_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaPermissionError::class, name = "permission_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaNotFoundError::class, name = "not_found_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRateLimitError::class, name = "rate_limit_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaGatewayTimeoutError::class, name = "timeout_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAPIError::class, name = "api_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaOverloadedError::class, name = "overloaded_error")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaInvalidRequestError::class,
+        name = "invalid_request_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaAuthenticationError::class,
+        name = "authentication_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaBillingError::class,
+        name = "billing_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaPermissionError::class,
+        name = "permission_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaNotFoundError::class,
+        name = "not_found_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRateLimitError::class,
+        name = "rate_limit_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaGatewayTimeoutError::class,
+        name = "timeout_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaAPIError::class,
+        name = "api_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaOverloadedError::class,
+        name = "overloaded_error",
+    ),
 )
 sealed interface BetaErrorResponseError
 
 /** A [BetaErrorResponseError] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaErrorResponseError @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaErrorResponseError
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaErrorResponseError {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

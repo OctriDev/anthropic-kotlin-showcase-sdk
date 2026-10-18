@@ -3,30 +3,21 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Confirmation of a deleted vault.
- */
+/** Confirmation of a deleted vault. */
 data class BetaManagedAgentsDeletedVault(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsDeletedVaultTypeEnum,
-    /**
-     * Unique identifier of the deleted vault.
-     */
-    val id: String
+    /** Unique identifier of the deleted vault. */
+    val id: String,
 )
 
-/**
- * Typed representation of the `BetaManagedAgentsUpdateVaultRequestBody` API schema.
- */
+/** Typed representation of the `BetaManagedAgentsUpdateVaultRequestBody` API schema. */
 data class BetaManagedAgentsUpdateVaultRequestBody(
-    /**
-     * Updated human-readable name for the vault. 1-255 characters.
-     */
+    /** Updated human-readable name for the vault. 1-255 characters. */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null,
     /**
-     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omitted keys are preserved.
+     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omitted keys are
+     * preserved.
      */
-    val metadata: Map<String, String>? = null
+    val metadata: Map<String, String>? = null,
 )

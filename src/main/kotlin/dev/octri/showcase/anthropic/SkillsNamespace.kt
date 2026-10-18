@@ -3,45 +3,124 @@
 
 package dev.octri.showcase.anthropic
 
-
 class SkillsNamespace(private val clientConfig: ClientConfig) {
     val versions: SkillsVersionsNamespace
+
     init {
         versions = SkillsVersionsNamespace(clientConfig)
     }
+
     /**
-     * Creates a skill from uploaded files and creates its initial version. Provide the files in a single top-level directory with `SKILL.md` at that directory's root; optionally set `display_name` to a human-readable label. If omitted, the label is derived from the `SKILL.md` frontmatter name.
+     * Creates a skill from uploaded files and creates its initial version. Provide the files in a
+     * single top-level directory with `SKILL.md` at that directory's root; optionally set
+     * `display_name` to a human-readable label. If omitted, the label is derived from the
+     * `SKILL.md` frontmatter name.
      */
-    fun create(files: List<SdkClient.UploadFile>, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): Skill {
-        return dev.octri.showcase.anthropic.methods.Skills.createSkills(clientConfig, files, anthropicVersion, anthropicWorkspaceId, displayName, options)
+    fun create(
+        files: List<SdkClient.UploadFile>,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): Skill {
+        return dev.octri.showcase.anthropic.methods.Skills.createSkills(
+            clientConfig,
+            files,
+            anthropicVersion,
+            anthropicWorkspaceId,
+            displayName,
+            options,
+        )
     }
 
     /**
-     * Lists skills available to the authenticated user, with optional pagination and filtering by source. Use `source` to limit results to custom or Anthropic-created skills, and use `page` and `limit` to paginate the results. The response includes a `next_page` cursor when more results are available.
+     * Lists skills available to the authenticated user, with optional pagination and filtering by
+     * source. Use `source` to limit results to custom or Anthropic-created skills, and use `page`
+     * and `limit` to paginate the results. The response includes a `next_page` cursor when more
+     * results are available.
      */
-    fun list(page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ListSkillsResponse {
-        return dev.octri.showcase.anthropic.methods.Skills.listSkills(clientConfig, page, limit, source, anthropicVersion, anthropicWorkspaceId, options)
+    fun list(
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: Long? = null,
+        source: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): ListSkillsResponse {
+        return dev.octri.showcase.anthropic.methods.Skills.listSkills(
+            clientConfig,
+            page,
+            limit,
+            source,
+            anthropicVersion,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Lists skills available to the authenticated user, with optional pagination and filtering by source. Use `source` to limit results to custom or Anthropic-created skills, and use `page` and `limit` to paginate the results. The response includes a `next_page` cursor when more results are available.
+     * Lists skills available to the authenticated user, with optional pagination and filtering by
+     * source. Use `source` to limit results to custom or Anthropic-created skills, and use `page`
+     * and `limit` to paginate the results. The response includes a `next_page` cursor when more
+     * results are available.
      */
-    fun listPaginated(page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (Skill) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.Skills.listSkillsPaginated(clientConfig, page, limit, source, anthropicVersion, anthropicWorkspaceId, options, yieldFn)
+    fun listPaginated(
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: Long? = null,
+        source: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (Skill) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.Skills.listSkillsPaginated(
+            clientConfig,
+            page,
+            limit,
+            source,
+            anthropicVersion,
+            anthropicWorkspaceId,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a skill by its unique identifier. Use `skill_id` to identify the skill and inspect its display name, source, timestamps, and latest version identifier. The identifier's format and length may change over time.
+     * Retrieves a skill by its unique identifier. Use `skill_id` to identify the skill and inspect
+     * its display name, source, timestamps, and latest version identifier. The identifier's format
+     * and length may change over time.
      */
-    fun retrieve(skillId: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): Skill {
-        return dev.octri.showcase.anthropic.methods.Skills.retrieveSkills(clientConfig, skillId, anthropicVersion, anthropicWorkspaceId, options)
+    fun retrieve(
+        skillId: String,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): Skill {
+        return dev.octri.showcase.anthropic.methods.Skills.retrieveSkills(
+            clientConfig,
+            skillId,
+            anthropicVersion,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Deletes a skill identified by its unique identifier. Use `skill_id` to select the skill to remove. A successful response confirms the deletion and includes the skill's ID.
+     * Deletes a skill identified by its unique identifier. Use `skill_id` to select the skill to
+     * remove. A successful response confirms the deletion and includes the skill's ID.
      */
-    fun delete(skillId: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): DeletedSkill {
-        return dev.octri.showcase.anthropic.methods.Skills.deleteSkills(clientConfig, skillId, anthropicVersion, anthropicWorkspaceId, options)
+    fun delete(
+        skillId: String,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): DeletedSkill {
+        return dev.octri.showcase.anthropic.methods.Skills.deleteSkills(
+            clientConfig,
+            skillId,
+            anthropicVersion,
+            anthropicWorkspaceId,
+            options,
+        )
     }
-
 }

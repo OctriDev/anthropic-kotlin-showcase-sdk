@@ -3,97 +3,150 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Network configuration policy.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaCloudConfigNetworking::class)
+/** Network configuration policy. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaCloudConfigNetworking::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaUnrestrictedNetwork::class, name = "unrestricted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaLimitedNetwork::class, name = "limited")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaUnrestrictedNetwork::class,
+        name = "unrestricted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaLimitedNetwork::class,
+        name = "limited",
+    ),
 )
 sealed interface BetaCloudConfigNetworking
 
 /** A [BetaCloudConfigNetworking] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaCloudConfigNetworking @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaCloudConfigNetworking
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaCloudConfigNetworking {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Network configuration policy. Omit on update to preserve the existing value.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaCloudConfigParamsNetworking::class)
+/** Network configuration policy. Omit on update to preserve the existing value. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaCloudConfigParamsNetworking::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaUnrestrictedNetwork::class, name = "unrestricted"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaLimitedNetworkParams::class, name = "limited")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaUnrestrictedNetwork::class,
+        name = "unrestricted",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaLimitedNetworkParams::class,
+        name = "limited",
+    ),
 )
 sealed interface BetaCloudConfigParamsNetworking
 
-/** A [BetaCloudConfigParamsNetworking] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaCloudConfigParamsNetworking @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaCloudConfigParamsNetworking] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaCloudConfigParamsNetworking
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaCloudConfigParamsNetworking {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Limited network access.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Limited network access. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaLimitedNetwork(
     /**
-     * Permits outbound access to MCP server endpoints configured on the agent, beyond those listed in the `allowed_hosts` array.
+     * Permits outbound access to MCP server endpoints configured on the agent, beyond those listed
+     * in the `allowed_hosts` array.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_mcp_servers") val allowMcpServers: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_mcp_servers")
+    val allowMcpServers: Boolean,
     /**
-     * Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array.
+     * Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in
+     * the `allowed_hosts` array.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_package_managers") val allowPackageManagers: Boolean,
-    /**
-     * Specifies domains the container can reach.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_package_managers")
+    val allowPackageManagers: Boolean,
+    /** Specifies domains the container can reach. */
     @com.fasterxml.jackson.annotation.JsonProperty("allowed_hosts") val allowedHosts: List<String>,
-    /**
-     * Network policy type
-     */
-    val type: BetaLimitedNetworkTypeEnum
+    /** Network policy type */
+    val type: BetaLimitedNetworkTypeEnum,
 ) : BetaCloudConfigNetworking
 
 /**
- * Limited network request params. Fields default to null; on update, omitted fields preserve the existing value.
+ * Limited network request params. Fields default to null; on update, omitted fields preserve the
+ * existing value.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaLimitedNetworkParams(
-    /**
-     * Network policy type
-     */
+    /** Network policy type */
     val type: BetaLimitedNetworkParamsTypeEnum,
     /**
-     * Permits outbound access to MCP server endpoints configured on the agent, beyond those listed in the `allowed_hosts` array. Defaults to `false`.
+     * Permits outbound access to MCP server endpoints configured on the agent, beyond those listed
+     * in the `allowed_hosts` array. Defaults to `false`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_mcp_servers") val allowMcpServers: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_mcp_servers")
+    val allowMcpServers: Boolean? = null,
     /**
-     * Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array. Defaults to `false` on creation. Must be `true` when `packages` are specified.
+     * Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in
+     * the `allowed_hosts` array. Defaults to `false` on creation. Must be `true` when `packages`
+     * are specified.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_package_managers") val allowPackageManagers: Boolean? = null,
-    /**
-     * Specifies domains the container can reach.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_hosts") val allowedHosts: List<String>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_package_managers")
+    val allowPackageManagers: Boolean? = null,
+    /** Specifies domains the container can reach. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_hosts")
+    val allowedHosts: List<String>? = null,
 ) : BetaCloudConfigParamsNetworking
 
-/**
- * Unrestricted network access.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Unrestricted network access. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaUnrestrictedNetwork(
-    /**
-     * Network policy type
-     */
+    /** Network policy type */
     val type: BetaUnrestrictedNetworkTypeEnum
 ) : BetaCloudConfigNetworking, BetaCloudConfigParamsNetworking

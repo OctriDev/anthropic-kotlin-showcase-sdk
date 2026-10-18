@@ -21,35 +21,6 @@ data class BetaUser(
     val type: BetaUserTypeEnum,
 )
 
-/**
- * A user within the organization. `name` and `email_address` are null when the underlying account
- * is unavailable or has been deleted; `deleted` is true only for deleted accounts.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaUserActorSchema(
-    /** True only when the underlying account has been deleted. */
-    val deleted: Boolean,
-    /** The user's email address. Null when the account is unavailable or has been deleted. */
-    @com.fasterxml.jackson.annotation.JsonProperty("email_address", required = true)
-    val emailAddress: String?,
-    /**
-     * The user's current display name. Null when the account is unavailable, has been deleted, or
-     * has no name set.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
-    /** Actor type. Always `user_actor`. */
-    val type: BetaUserActorSchemaTypeEnum,
-    /** Tagged ID of the user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String,
-) :
-    BetaApproveSpendLimitIncreaseRequestResponseResolvedBy,
-    BetaSpendLimitIncreaseRequestSchemaResolvedBy
-
 /** Typed representation of the `BetaUserLocation` API schema. */
 data class BetaUserLocation(
     /** Required `string` value serialized in the `type` wire field. */
@@ -115,17 +86,3 @@ data class BetaUserProfileTrustGrant(
     /** Status of the trust grant. */
     val status: BetaUserProfileTrustGrantStatusEnum
 )
-
-/** Scope selecting a single member of the organization. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaUserScope(
-    /** Scope type. Always `user` for this scope. */
-    val type: BetaUserScopeTypeEnum,
-    /** Tagged ID of the member the spend limit applies to. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String,
-) : BetaSpendLimitScope, BetaSpendSummarySource

@@ -3,6 +3,117 @@
 
 package dev.octri.showcase.anthropic.models
 
+/** Token usage for an advisor sub-inference iteration. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaAdvisorMessageIterationUsage(
+    /** Breakdown of cached tokens by TTL */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
+    val cacheCreation: BetaCacheCreation?,
+    /** The number of input tokens used to create the cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
+    val cacheCreationInputTokens: Long,
+    /** The number of input tokens read from the cache. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
+    val cacheReadInputTokens: Long,
+    /** The number of input tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
+    /** The model that will complete your prompt. See models for additional details and options. */
+    val model: Model,
+    /** The number of output tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
+    /** Usage for an advisor sub-inference iteration */
+    val type: BetaAdvisorMessageIterationUsageTypeEnum,
+) : BetaUsageIterationsItem
+
+/** Token usage for a compaction iteration. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaCompactionIterationUsage(
+    /** Breakdown of cached tokens by TTL */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
+    val cacheCreation: BetaCacheCreation?,
+    /** The number of input tokens used to create the cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
+    val cacheCreationInputTokens: Long,
+    /** The number of input tokens read from the cache. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
+    val cacheReadInputTokens: Long,
+    /** The number of input tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
+    /** The number of output tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
+    /** Usage for a compaction iteration */
+    val type: BetaCompactionIterationUsageTypeEnum,
+) : BetaUsageIterationsItem
+
+/**
+ * Token usage for the fallback-model attempt of a server-side fallback request. Produced in place
+ * of a `message` entry for whichever hop served the response. A declined hop produces the existing
+ * `message` entry. Whether a fallback model served the response is signalled by the presence of
+ * this entry in `usage.iterations`.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaFallbackMessageIterationUsage(
+    /** Breakdown of cached tokens by TTL */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
+    val cacheCreation: BetaCacheCreation?,
+    /** The number of input tokens used to create the cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
+    val cacheCreationInputTokens: Long,
+    /** The number of input tokens read from the cache. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
+    val cacheReadInputTokens: Long,
+    /** The number of input tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
+    /** The model that will complete your prompt. See models for additional details and options. */
+    val model: Model,
+    /** The number of output tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
+    /** Usage for the fallback-model attempt that served the response */
+    val type: BetaFallbackMessageIterationUsageTypeEnum,
+) : BetaUsageIterationsItem
+
+/** Token usage for a sampling iteration. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaMessageIterationUsage(
+    /** Breakdown of cached tokens by TTL */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
+    val cacheCreation: BetaCacheCreation?,
+    /** The number of input tokens used to create the cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
+    val cacheCreationInputTokens: Long,
+    /** The number of input tokens read from the cache. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
+    val cacheReadInputTokens: Long,
+    /** The number of input tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
+    /** The model that will complete your prompt. See models for additional details and options. */
+    val model: Model,
+    /** The number of output tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
+    /** Usage for a sampling iteration */
+    val type: BetaMessageIterationUsageTypeEnum,
+) : BetaUsageIterationsItem
+
 /** Typed representation of the `BetaUsage` API schema. */
 data class BetaUsage(
     /** Breakdown of cached tokens by TTL */

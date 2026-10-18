@@ -81,20 +81,6 @@ constructor(
         get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `ContentBlockSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ContentBlockSource(
-    /** Required API value serialized in the `content` wire field. */
-    val content: Any,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ContentBlockSourceTypeEnum,
-) : RequestDocumentBlockSource
-
 /** Required API value serialized in the `content[]` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -134,3 +120,46 @@ constructor(
     val tag: String
         get() = raw.path("type").asText()
 }
+
+/** Typed representation of the `RequestImageBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class RequestImageBlock(
+    /** Required API value serialized in the `source` wire field. */
+    val source: RequestImageBlockSource,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestImageBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * Configures the transformations the server applies to this image before the model observes it.
+     * Each key names a condition the server transforms images for; its value selects the
+     * transformation applied. Omitted keys keep their default behavior, and an empty object is
+     * equivalent to omitting the field.
+     */
+    val transformations: RequestImageTransformations? = null,
+) : InputContentBlock, ContentBlockSourceContentItem, RequestToolResultBlockContentItem
+
+/** Typed representation of the `RequestTextBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class RequestTextBlock(
+    /** Required `string` value serialized in the `text` wire field. */
+    val text: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestTextBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
+    /** Optional array value serialized in the `citations` wire field. */
+    val citations: List<RequestTextBlockCitationsItem>? = null,
+) : InputContentBlock, ContentBlockSourceContentItem, RequestToolResultBlockContentItem

@@ -3,6 +3,38 @@
 
 package dev.octri.showcase.anthropic.models
 
+/**
+ * The caller's browser state after a browser toolset member call — the full inventory of open tabs,
+ * which tab is active, and any side effects (tabs opened, download state changes) the call
+ * produced. At most one per `tool_result`, only on a non-error result answering a browser toolset
+ * member `tool_use`. The server renders the model-visible text from it; the model never sees the
+ * raw fields.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class RequestBrowserStateBlock(
+    /**
+     * All tabs open in the browser after this call — the full inventory, not a delta. May be empty.
+     * Whenever non-empty, exactly one entry carries `active: true`.
+     */
+    val tabs: List<BrowserStateTabEntry>,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: RequestBrowserStateBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * Tabs opened and download state changes during this call. "Nothing to report" is expressed by
+     * omitting the field, never by an empty list.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("state_changes")
+    val stateChanges: List<RequestBrowserStateBlockStateChangesItem>? = null,
+) : RequestToolResultBlockContentItem
+
 /** Tool reference block that can be included in tool_result content. */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
     using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
@@ -19,29 +51,6 @@ data class RequestToolReferenceBlock(
     @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
     val cacheControl: CacheControlEphemeral? = null,
 ) : RequestToolResultBlockContentItem
-
-/** Typed representation of the `RequestToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RequestToolResultBlock(
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestToolResultBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Optional API value serialized in the `content` wire field. */
-    val content: Any? = null,
-    /** Optional `boolean` value serialized in the `is_error` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null,
-    /** For a toolset member tool_result, the toolset family of the paired tool_use. */
-    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null,
-) : InputContentBlock
 
 /** Required API value serialized in the `content[]` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
@@ -99,25 +108,6 @@ constructor(
     val tag: String
         get() = raw.path("type").asText()
 }
-
-/** Typed representation of the `RequestToolSearchToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RequestToolSearchToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    val content: RequestToolSearchToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestToolSearchToolResultBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-) : InputContentBlock
 
 /** Required API value serialized in the `content` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
@@ -192,31 +182,6 @@ data class RequestToolSearchToolSearchResultBlock(
     /** Required `string` value serialized in the `type` wire field. */
     val type: RequestToolSearchToolSearchResultBlockTypeEnum,
 ) : RequestToolSearchToolResultBlockContent
-
-/** Typed representation of the `RequestToolUseBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RequestToolUseBlock(
-    /** Required `string` value serialized in the `id` wire field. */
-    val id: String,
-    /** Required object value serialized in the `input` wire field. */
-    val input: Map<String, Any>,
-    /** Required `string` value serialized in the `name` wire field. */
-    val name: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestToolUseBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Optional API value serialized in the `caller` wire field. */
-    val caller: RequestToolUseBlockCaller? = null,
-    /** For a toolset member tool_use, the toolset family this member belongs to. */
-    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null,
-) : InputContentBlock
 
 /** Optional API value serialized in the `caller` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(

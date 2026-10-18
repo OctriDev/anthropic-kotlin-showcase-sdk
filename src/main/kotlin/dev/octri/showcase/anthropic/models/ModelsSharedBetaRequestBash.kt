@@ -31,25 +31,6 @@ data class BetaRequestBashCodeExecutionResultBlock(
     val type: BetaRequestBashCodeExecutionResultBlockTypeEnum,
 ) : BetaRequestBashCodeExecutionToolResultBlockContent
 
-/** Typed representation of the `BetaRequestBashCodeExecutionToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaRequestBashCodeExecutionToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    val content: BetaRequestBashCodeExecutionToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaRequestBashCodeExecutionToolResultBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: BetaCacheControlEphemeral? = null,
-) : BetaInputContentBlock
-
 /** Required API value serialized in the `content` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,

@@ -77,6 +77,22 @@ constructor(
         get() = raw.path("type").asText()
 }
 
+/** Mount a file uploaded via the Files API into the session. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaManagedAgentsFileResourceParams(
+    /** Required enumerated value serialized in the `type` wire field. */
+    val type: BetaManagedAgentsFileResourceParamsTypeEnum,
+    /** ID of a previously uploaded file. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
+    /** Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("mount_path") val mountPath: String? = null,
+) : BetaManagedAgentsAddSessionResourceParams, BetaManagedAgentsSessionResourceParams
+
 /** Paginated list of resources attached to a session. */
 data class BetaManagedAgentsListSessionResources(
     /** Resources for the session, ordered by `created_at`. */

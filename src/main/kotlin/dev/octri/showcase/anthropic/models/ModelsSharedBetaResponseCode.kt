@@ -31,22 +31,6 @@ data class BetaResponseCodeExecutionResultBlock(
     val type: BetaResponseCodeExecutionResultBlockTypeEnum,
 ) : BetaResponseCodeExecutionToolResultBlockContent
 
-/** Typed representation of the `BetaResponseCodeExecutionToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaResponseCodeExecutionToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    val content: BetaResponseCodeExecutionToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaResponseCodeExecutionToolResultBlockTypeEnum,
-) : BetaContentBlock, BetaContentBlockStartEventContentBlock
-
 /** Required API value serialized in the `content` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -105,4 +89,24 @@ data class BetaResponseCodeExecutionToolResultError(
     val errorCode: BetaCodeExecutionToolResultErrorCode,
     /** Required `string` value serialized in the `type` wire field. */
     val type: BetaResponseCodeExecutionToolResultErrorTypeEnum,
+) : BetaResponseCodeExecutionToolResultBlockContent
+
+/** Code execution result with encrypted stdout for PFC + web_search results. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseEncryptedCodeExecutionResultBlock(
+    /** Required array value serialized in the `content` wire field. */
+    val content: List<BetaResponseCodeExecutionOutputBlock>,
+    /** Required `string` value serialized in the `encrypted_stdout` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_stdout") val encryptedStdout: String,
+    /** Required `integer` value serialized in the `return_code` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("return_code") val returnCode: Long,
+    /** Required `string` value serialized in the `stderr` wire field. */
+    val stderr: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseEncryptedCodeExecutionResultBlockTypeEnum,
 ) : BetaResponseCodeExecutionToolResultBlockContent

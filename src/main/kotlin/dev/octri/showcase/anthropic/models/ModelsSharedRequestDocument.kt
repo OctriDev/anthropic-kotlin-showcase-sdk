@@ -3,28 +3,67 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `RequestDocumentBlock` API schema. */
+/** Typed representation of the `Base64PDFSource` API schema. */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
     using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
 )
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
 )
-data class RequestDocumentBlock(
-    /** Required API value serialized in the `source` wire field. */
-    val source: RequestDocumentBlockSource,
+data class Base64PDFSource(
+    /** Required `byte`-formatted value serialized in the `data` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
+    /** Required `string` value serialized in the `media_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
+    val mediaType: Base64PDFSourceMediaTypeEnum,
     /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestDocumentBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Optional API value serialized in the `citations` wire field. */
-    val citations: RequestCitationsConfig? = null,
-    /** Optional API value serialized in the `context` wire field. */
-    val context: String? = null,
-    /** Optional API value serialized in the `title` wire field. */
-    val title: String? = null,
-) : InputContentBlock, RequestToolResultBlockContentItem
+    val type: Base64PDFSourceTypeEnum,
+) : ResponseDocumentBlockSource, RequestDocumentBlockSource
+
+/** Typed representation of the `ContentBlockSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class ContentBlockSource(
+    /** Required API value serialized in the `content` wire field. */
+    val content: Any,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ContentBlockSourceTypeEnum,
+) : RequestDocumentBlockSource
+
+/** Typed representation of the `FileDocumentSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class FileDocumentSource(
+    /** Required `string` value serialized in the `file_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: FileDocumentSourceTypeEnum,
+) : RequestDocumentBlockSource
+
+/** Typed representation of the `PlainTextSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class PlainTextSource(
+    /** Required `string` value serialized in the `data` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: String,
+    /** Required `string` value serialized in the `media_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
+    val mediaType: PlainTextSourceMediaTypeEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: PlainTextSourceTypeEnum,
+) : ResponseDocumentBlockSource, RequestDocumentBlockSource
 
 /** Required API value serialized in the `source` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
@@ -72,3 +111,17 @@ constructor(
     val tag: String
         get() = raw.path("type").asText()
 }
+
+/** Typed representation of the `URLPDFSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class URLPDFSource(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: URLPDFSourceTypeEnum,
+    /** Required `string` value serialized in the `url` wire field. */
+    val url: String,
+) : RequestDocumentBlockSource

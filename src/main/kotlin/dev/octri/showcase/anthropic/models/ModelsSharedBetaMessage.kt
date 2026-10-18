@@ -135,30 +135,3 @@ data class BetaMessageBatch(
     /** Object type. For Message Batches, this is always `"message_batch"`. */
     val type: BetaMessageBatchTypeEnum,
 )
-
-/** Token usage for a sampling iteration. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaMessageIterationUsage(
-    /** Breakdown of cached tokens by TTL */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
-    val cacheCreation: BetaCacheCreation?,
-    /** The number of input tokens used to create the cache entry. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
-    val cacheCreationInputTokens: Long,
-    /** The number of input tokens read from the cache. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
-    val cacheReadInputTokens: Long,
-    /** The number of input tokens which were used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
-    /** The model that will complete your prompt. See models for additional details and options. */
-    val model: Model,
-    /** The number of output tokens which were used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
-    /** Usage for a sampling iteration */
-    val type: BetaMessageIterationUsageTypeEnum,
-) : BetaUsageIterationsItem

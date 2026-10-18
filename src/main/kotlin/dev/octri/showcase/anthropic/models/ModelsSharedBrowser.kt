@@ -394,95 +394,6 @@ data class BrowserScrollToConfig(
 )
 
 /**
- * A file download that finished during this call, reported with the same `download_id` as its
- * `download_started` — or without a prior `download_started`, when the download finished during the
- * call that started it (at most one state change per `download_id` per result).
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserStateChangeDownloadCompleted(
-    /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserStateChangeDownloadCompletedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
-    /**
-     * Where the executor saved the file, on the executor's filesystem. Only included when another
-     * tool in the same environment can read the file at that path.
-     */
-    val path: String? = null,
-    /** The completed download's size. */
-    @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long? = null,
-) : RequestBrowserStateBlockStateChangesItem
-
-/** A file download that failed — or was cancelled — during this call. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserStateChangeDownloadFailed(
-    /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserStateChangeDownloadFailedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
-    /** The failure or cancellation detail, when known. */
-    val error: String? = null,
-) : RequestBrowserStateBlockStateChangesItem
-
-/** A file download that started during this call. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserStateChangeDownloadStarted(
-    /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserStateChangeDownloadStartedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
-) : RequestBrowserStateBlockStateChangesItem
-
-/**
- * A tab this call's execution opened that remains open at its end — the creation delta of the
- * `tabs` inventory, not an event log. Carries only the `tab_id`; the tab's `title` and `url` live
- * on its `tabs` entry, which must include the same `tab_id`. A tab opened during a failed call gets
- * no deferred `tab_opened`; it simply appears in the next result's `tabs` inventory.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserStateChangeTabOpened(
-    /** The `tab_id` of the opened tab, present in `tabs`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tab_id") val tabId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserStateChangeTabOpenedTypeEnum,
-) : RequestBrowserStateBlockStateChangesItem
-
-/**
  * One open browser tab reported in a `browser_state` block's `tabs` inventory. `tab_id` is the
  * caller-assigned identifier for the tab; `title` and `url` describe the page the tab is currently
  * showing and may be empty strings (a blank tab legitimately has both empty). `active` marks the
@@ -518,28 +429,154 @@ data class BrowserSwitchTabConfig(
 )
 
 /**
- * The browser toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the
- * browser tool family. The model is served the family's tool with any members disabled via
- * ``configs`` removed from its schema.
+ * Per-member configuration for ``browser_toolset_20260801``: one optional field per member tool,
+ * keyed by the member name — the same name the member's ``tool_use`` blocks carry. Every member is
+ * an accepted key, and a member's defaults apply wherever its key is absent. Unknown keys are
+ * rejected: the field set is this toolset version's complete member set.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+data class BrowserToolsetConfigs(
+    /** Optional API value serialized in the `close_tab` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("close_tab")
+    val closeTab: BrowserCloseTabConfig? = null,
+    /** Optional API value serialized in the `double_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("double_click")
+    val doubleClick: BrowserDoubleClickConfig? = null,
+    /** Optional API value serialized in the `file_upload` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_upload")
+    val fileUpload: BrowserFileUploadConfig? = null,
+    /** Optional API value serialized in the `find` wire field. */
+    val find: BrowserFindConfig? = null,
+    /** Optional API value serialized in the `form_input` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("form_input")
+    val formInput: BrowserFormInputConfig? = null,
+    /** Optional API value serialized in the `get_page_text` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("get_page_text")
+    val getPageText: BrowserGetPageTextConfig? = null,
+    /** Optional API value serialized in the `hold_key` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("hold_key")
+    val holdKey: BrowserHoldKeyConfig? = null,
+    /** Optional API value serialized in the `hover` wire field. */
+    val hover: BrowserHoverConfig? = null,
+    /** Optional API value serialized in the `javascript_exec` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("javascript_exec")
+    val javascriptExec: BrowserJavascriptExecConfig? = null,
+    /** Optional API value serialized in the `key` wire field. */
+    val key: BrowserKeyConfig? = null,
+    /** Optional API value serialized in the `left_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_click")
+    val leftClick: BrowserLeftClickConfig? = null,
+    /** Optional API value serialized in the `left_click_drag` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_click_drag")
+    val leftClickDrag: BrowserLeftClickDragConfig? = null,
+    /** Optional API value serialized in the `left_mouse_down` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_down")
+    val leftMouseDown: BrowserLeftMouseDownConfig? = null,
+    /** Optional API value serialized in the `left_mouse_up` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_up")
+    val leftMouseUp: BrowserLeftMouseUpConfig? = null,
+    /** Optional API value serialized in the `list_tabs` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("list_tabs")
+    val listTabs: BrowserListTabsConfig? = null,
+    /** Optional API value serialized in the `middle_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("middle_click")
+    val middleClick: BrowserMiddleClickConfig? = null,
+    /** Optional API value serialized in the `mouse_move` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("mouse_move")
+    val mouseMove: BrowserMouseMoveConfig? = null,
+    /** Optional API value serialized in the `navigate` wire field. */
+    val navigate: BrowserNavigateConfig? = null,
+    /** Optional API value serialized in the `new_tab` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("new_tab")
+    val newTab: BrowserNewTabConfig? = null,
+    /** Optional API value serialized in the `read_console` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("read_console")
+    val readConsole: BrowserReadConsoleConfig? = null,
+    /** Optional API value serialized in the `read_network` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("read_network")
+    val readNetwork: BrowserReadNetworkConfig? = null,
+    /** Optional API value serialized in the `read_page` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("read_page")
+    val readPage: BrowserReadPageConfig? = null,
+    /** Optional API value serialized in the `right_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("right_click")
+    val rightClick: BrowserRightClickConfig? = null,
+    /** Optional API value serialized in the `screenshot` wire field. */
+    val screenshot: BrowserScreenshotConfig? = null,
+    /** Optional API value serialized in the `scroll` wire field. */
+    val scroll: BrowserScrollConfig? = null,
+    /** Optional API value serialized in the `scroll_to` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("scroll_to")
+    val scrollTo: BrowserScrollToConfig? = null,
+    /** Optional API value serialized in the `switch_tab` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("switch_tab")
+    val switchTab: BrowserSwitchTabConfig? = null,
+    /** Optional API value serialized in the `triple_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("triple_click")
+    val tripleClick: BrowserTripleClickConfig? = null,
+    /** Optional API value serialized in the `type` wire field. */
+    val type: BrowserTypeConfig? = null,
+    /** Optional API value serialized in the `wait` wire field. */
+    val wait: BrowserWaitConfig? = null,
+    /** Optional API value serialized in the `zoom` wire field. */
+    val zoom: BrowserZoomConfig? = null,
 )
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserToolset20260801(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserToolset20260801TypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
+
+/** ``triple_click``'s config overrides. */
+data class BrowserTripleClickConfig(
     /**
-     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a
-     * member's defaults apply wherever its key is absent.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    val configs: BrowserToolsetConfigs? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)
+
+/** ``type``'s config overrides. */
+data class BrowserTypeConfig(
+    /**
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)
+
+/** ``wait``'s config overrides. */
+data class BrowserWaitConfig(
+    /**
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)
+
+/** ``zoom``'s config overrides. */
+data class BrowserZoomConfig(
+    /**
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)

@@ -3,29 +3,36 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `RequestImageBlock` API schema. */
+/** Typed representation of the `Base64ImageSource` API schema. */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
     using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
 )
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
 )
-data class RequestImageBlock(
-    /** Required API value serialized in the `source` wire field. */
-    val source: RequestImageBlockSource,
+data class Base64ImageSource(
+    /** Required `byte`-formatted value serialized in the `data` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
+    /** Required enumerated value serialized in the `media_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
+    val mediaType: Base64ImageSourceMediaTypeEnum,
     /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestImageBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * Configures the transformations the server applies to this image before the model observes it.
-     * Each key names a condition the server transforms images for; its value selects the
-     * transformation applied. Omitted keys keep their default behavior, and an empty object is
-     * equivalent to omitting the field.
-     */
-    val transformations: RequestImageTransformations? = null,
-) : InputContentBlock, ContentBlockSourceContentItem, RequestToolResultBlockContentItem
+    val type: Base64ImageSourceTypeEnum,
+) : RequestImageBlockSource
+
+/** Typed representation of the `FileImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class FileImageSource(
+    /** Required `string` value serialized in the `file_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: FileImageSourceTypeEnum,
+) : RequestImageBlockSource
 
 /** Required API value serialized in the `source` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
@@ -83,3 +90,17 @@ data class RequestImageTransformations(
     @com.fasterxml.jackson.annotation.JsonProperty("oversized_image")
     val oversizedImage: RequestImageTransformationsOversizedImageEnum? = null
 )
+
+/** Typed representation of the `URLImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class URLImageSource(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: URLImageSourceTypeEnum,
+    /** Required `string` value serialized in the `url` wire field. */
+    val url: String,
+) : RequestImageBlockSource

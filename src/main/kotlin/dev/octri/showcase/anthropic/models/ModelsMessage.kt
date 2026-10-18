@@ -3,6 +3,76 @@
 
 package dev.octri.showcase.anthropic.models
 
+/** Typed representation of the `ContentBlockDeltaEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class ContentBlockDeltaEvent(
+    /** Required API value serialized in the `delta` wire field. */
+    val delta: ContentBlockDeltaEventDelta,
+    /** Required `integer` value serialized in the `index` wire field. */
+    val index: Long,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ContentBlockDeltaEventTypeEnum,
+) : MessageStreamEvent
+
+/** Typed representation of the `ContentBlockStartEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class ContentBlockStartEvent(
+    /** Required API value serialized in the `content_block` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("content_block")
+    val contentBlock: ContentBlockStartEventContentBlock,
+    /** Required `integer` value serialized in the `index` wire field. */
+    val index: Long,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ContentBlockStartEventTypeEnum,
+) : MessageStreamEvent
+
+/** Typed representation of the `ContentBlockStopEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class ContentBlockStopEvent(
+    /** Required `integer` value serialized in the `index` wire field. */
+    val index: Long,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ContentBlockStopEventTypeEnum,
+) : MessageStreamEvent
+
+/** Typed representation of the `MessageDeltaEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class MessageDeltaEvent(
+    /** Required object value serialized in the `delta` wire field. */
+    val delta: MessageDelta,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: MessageDeltaEventTypeEnum,
+    /**
+     * Billing and rate-limit usage. Anthropic's API bills and rate-limits by token counts, as
+     * tokens represent the underlying cost to our systems. Under the hood, the API transforms
+     * requests into a format suitable for the model. The model's output then goes through a parsing
+     * stage before becoming an API response. As a result, the token counts in `usage` will not
+     * match one-to-one with the exact visible content of an API request or response. For example,
+     * `output_tokens` will be…
+     */
+    val usage: MessageDeltaUsage,
+) : MessageStreamEvent
+
 /** Typed representation of the `MessageStartEvent` API schema. */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
     using = com.fasterxml.jackson.databind.JsonDeserializer.None::class

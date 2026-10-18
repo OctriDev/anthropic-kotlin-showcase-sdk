@@ -22,24 +22,6 @@ data class ResponseWebFetchResultBlock(
     val url: String,
 ) : ResponseWebFetchToolResultBlockContent
 
-/** Typed representation of the `ResponseWebFetchToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ResponseWebFetchToolResultBlock(
-    /** Required API value serialized in the `caller` wire field. */
-    val caller: ResponseWebFetchToolResultBlockCaller,
-    /** Required API value serialized in the `content` wire field. */
-    val content: ResponseWebFetchToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ResponseWebFetchToolResultBlockTypeEnum,
-) : ContentBlock, ContentBlockStartEventContentBlock
-
 /** Required API value serialized in the `caller` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -156,47 +138,6 @@ data class ResponseWebSearchResultBlock(
     /** Required `string` value serialized in the `url` wire field. */
     val url: String,
 )
-
-/** Typed representation of the `ResponseWebSearchResultLocationCitation` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ResponseWebSearchResultLocationCitation(
-    /** Required `string` value serialized in the `cited_text` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /** Required `string` value serialized in the `encrypted_index` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_index") val encryptedIndex: String,
-    /** Required API value serialized in the `title` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ResponseWebSearchResultLocationCitationTypeEnum,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-) : CitationsDeltaCitation, ResponseTextBlockCitationsItem
-
-/** Typed representation of the `ResponseWebSearchToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ResponseWebSearchToolResultBlock(
-    /** Required API value serialized in the `caller` wire field. */
-    val caller: ResponseWebSearchToolResultBlockCaller,
-    /** Required API value serialized in the `content` wire field. */
-    @com.fasterxml.jackson.annotation.JsonSubTypes(
-        com.fasterxml.jackson.annotation.JsonSubTypes.Type(ResponseWebSearchToolResultError::class)
-    )
-    val content: Any,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ResponseWebSearchToolResultBlockTypeEnum,
-) : ContentBlock, ContentBlockStartEventContentBlock
 
 /** Required API value serialized in the `caller` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(

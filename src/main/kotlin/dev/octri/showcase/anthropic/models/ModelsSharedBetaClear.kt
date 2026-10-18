@@ -3,51 +3,6 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaClearThinking20251015` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaClearThinking20251015(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaClearThinking20251015TypeEnum,
-    /**
-     * Number of most recent assistant turns to keep thinking blocks for. Older turns will have
-     * their thinking blocks removed.
-     */
-    val keep: BetaClearThinking20251015KeepVariant1Enum? = null,
-) : BetaContextManagementConfigEditsItem
-
-/** Typed representation of the `BetaClearToolUses20250919` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaClearToolUses20250919(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaClearToolUses20250919TypeEnum,
-    /**
-     * Minimum number of tokens that must be cleared when triggered. Context will only be modified
-     * if at least this many tokens can be removed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_at_least")
-    val clearAtLeast: BetaInputTokensClearAtLeast? = null,
-    /** Whether to clear all tool inputs (bool) or specific tool inputs to clear (list) */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_tool_inputs")
-    val clearToolInputs: Any? = null,
-    /** Tool names whose uses are preserved from clearing */
-    @com.fasterxml.jackson.annotation.JsonProperty("exclude_tools")
-    val excludeTools: List<String>? = null,
-    /** Number of tool uses to retain in the conversation */
-    val keep: BetaToolUsesKeep? = null,
-    /** Condition that triggers the context management strategy */
-    val trigger: BetaClearToolUses20250919Trigger? = null,
-) : BetaContextManagementConfigEditsItem
-
 /** Condition that triggers the context management strategy */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -88,3 +43,31 @@ constructor(
     val tag: String
         get() = raw.path("type").asText()
 }
+
+/** Typed representation of the `BetaInputTokensTrigger` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaInputTokensTrigger(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaInputTokensTriggerTypeEnum,
+    /** Required `integer` value serialized in the `value` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long,
+) : BetaClearToolUses20250919Trigger
+
+/** Typed representation of the `BetaToolUsesTrigger` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaToolUsesTrigger(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaToolUsesTriggerTypeEnum,
+    /** Required `integer` value serialized in the `value` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long,
+) : BetaClearToolUses20250919Trigger

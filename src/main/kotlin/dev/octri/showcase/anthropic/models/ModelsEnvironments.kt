@@ -3,6 +3,29 @@
 
 package dev.octri.showcase.anthropic.models
 
+/**
+ * Request params for `cloud` environment configuration. Fields default to null; on update, omitted
+ * fields preserve the existing value.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaCloudConfigParams(
+    /** Environment type */
+    val type: BetaCloudConfigParamsTypeEnum,
+    /** Network configuration policy. Omit on update to preserve the existing value. */
+    val networking: BetaCloudConfigParamsNetworking? = null,
+    /**
+     * Package manager configuration. Under `limited` networking, requires
+     * `networking.allow_package_managers` to be `true`. Omit on update to preserve the existing
+     * value.
+     */
+    val packages: BetaPackagesParams? = null,
+) : BetaPublicEnvironmentCreateRequestConfig, BetaPublicEnvironmentUpdateRequestConfig
+
 /** Response after deleting an environment. */
 data class BetaEnvironmentDeleteResponse(
     /** Environment identifier */
@@ -74,3 +97,15 @@ constructor(
     val tag: String
         get() = raw.path("type").asText()
 }
+
+/** Request params for `self_hosted` environment configuration. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaSelfHostedConfigParams(
+    /** Environment type */
+    val type: BetaSelfHostedConfigParamsTypeEnum
+) : BetaPublicEnvironmentCreateRequestConfig, BetaPublicEnvironmentUpdateRequestConfig

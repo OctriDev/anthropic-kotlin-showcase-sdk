@@ -21,27 +21,6 @@ data class RequestWebFetchResultBlock(
     @com.fasterxml.jackson.annotation.JsonProperty("retrieved_at") val retrievedAt: String? = null,
 ) : RequestWebFetchToolResultBlockContent
 
-/** Typed representation of the `RequestWebFetchToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RequestWebFetchToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    val content: RequestWebFetchToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestWebFetchToolResultBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Optional API value serialized in the `caller` wire field. */
-    val caller: RequestWebFetchToolResultBlockCaller? = null,
-) : InputContentBlock
-
 /** Optional API value serialized in the `caller` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -157,50 +136,6 @@ data class RequestWebSearchResultBlock(
     /** Optional `string` value serialized in the `page_age` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("page_age") val pageAge: String? = null,
 )
-
-/** Typed representation of the `RequestWebSearchResultLocationCitation` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RequestWebSearchResultLocationCitation(
-    /** Required `string` value serialized in the `cited_text` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /** Required `string` value serialized in the `encrypted_index` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_index") val encryptedIndex: String,
-    /** Required API value serialized in the `title` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestWebSearchResultLocationCitationTypeEnum,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-) : RequestTextBlockCitationsItem
-
-/** Typed representation of the `RequestWebSearchToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RequestWebSearchToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    @com.fasterxml.jackson.annotation.JsonSubTypes(
-        com.fasterxml.jackson.annotation.JsonSubTypes.Type(RequestWebSearchToolResultError::class)
-    )
-    val content: Any,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: RequestWebSearchToolResultBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Optional API value serialized in the `caller` wire field. */
-    val caller: RequestWebSearchToolResultBlockCaller? = null,
-) : InputContentBlock
 
 /** Optional API value serialized in the `caller` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(

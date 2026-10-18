@@ -25,29 +25,6 @@ data class MessageDelta(
     val stopSequence: String?,
 )
 
-/** Typed representation of the `MessageDeltaEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class MessageDeltaEvent(
-    /** Required object value serialized in the `delta` wire field. */
-    val delta: MessageDelta,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: MessageDeltaEventTypeEnum,
-    /**
-     * Billing and rate-limit usage. Anthropic's API bills and rate-limits by token counts, as
-     * tokens represent the underlying cost to our systems. Under the hood, the API transforms
-     * requests into a format suitable for the model. The model's output then goes through a parsing
-     * stage before becoming an API response. As a result, the token counts in `usage` will not
-     * match one-to-one with the exact visible content of an API request or response. For example,
-     * `output_tokens` will be…
-     */
-    val usage: MessageDeltaUsage,
-) : MessageStreamEvent
-
 /** Typed representation of the `MessageDeltaUsage` API schema. */
 data class MessageDeltaUsage(
     /** The cumulative number of input tokens used to create the cache entry. */

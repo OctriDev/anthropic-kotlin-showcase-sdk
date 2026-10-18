@@ -21,27 +21,6 @@ data class BetaRequestWebFetchResultBlock(
     @com.fasterxml.jackson.annotation.JsonProperty("retrieved_at") val retrievedAt: String? = null,
 ) : BetaRequestWebFetchToolResultBlockContent
 
-/** Typed representation of the `BetaRequestWebFetchToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaRequestWebFetchToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    val content: BetaRequestWebFetchToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaRequestWebFetchToolResultBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: BetaCacheControlEphemeral? = null,
-    /** Optional API value serialized in the `caller` wire field. */
-    val caller: BetaRequestWebFetchToolResultBlockCaller? = null,
-) : BetaInputContentBlock
-
 /** Optional API value serialized in the `caller` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -157,52 +136,6 @@ data class BetaRequestWebSearchResultBlock(
     /** Optional `string` value serialized in the `page_age` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("page_age") val pageAge: String? = null,
 )
-
-/** Typed representation of the `BetaRequestWebSearchResultLocationCitation` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaRequestWebSearchResultLocationCitation(
-    /** Required `string` value serialized in the `cited_text` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /** Required `string` value serialized in the `encrypted_index` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_index") val encryptedIndex: String,
-    /** Required API value serialized in the `title` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaRequestWebSearchResultLocationCitationTypeEnum,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-) : BetaRequestTextBlockCitationsItem
-
-/** Typed representation of the `BetaRequestWebSearchToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaRequestWebSearchToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    @com.fasterxml.jackson.annotation.JsonSubTypes(
-        com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-            BetaRequestWebSearchToolResultError::class
-        )
-    )
-    val content: Any,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaRequestWebSearchToolResultBlockTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: BetaCacheControlEphemeral? = null,
-    /** Optional API value serialized in the `caller` wire field. */
-    val caller: BetaRequestWebSearchToolResultBlockCaller? = null,
-) : BetaInputContentBlock
 
 /** Optional API value serialized in the `caller` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(

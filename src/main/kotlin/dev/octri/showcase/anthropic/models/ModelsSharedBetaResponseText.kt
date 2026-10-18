@@ -3,27 +3,6 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaResponseTextBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaResponseTextBlock(
-    /**
-     * Citations supporting the text block. The type of citation returned will depend on the type of
-     * document being cited. Citing a PDF results in `page_location`, plain text results in
-     * `char_location`, and content document results in `content_block_location`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("citations", required = true)
-    val citations: List<BetaResponseTextBlockCitationsItem>?,
-    /** Required `string` value serialized in the `text` wire field. */
-    val text: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaResponseTextBlockTypeEnum,
-) : BetaContentBlock, BetaContentBlockStartEventContentBlock
-
 /** Required API value serialized in the `citations[]` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -122,22 +101,6 @@ data class BetaResponseTextEditorCodeExecutionStrReplaceResultBlock(
     /** Required `string` value serialized in the `type` wire field. */
     val type: BetaResponseTextEditorCodeExecutionStrReplaceResultBlockTypeEnum,
 ) : BetaResponseTextEditorCodeExecutionToolResultBlockContent
-
-/** Typed representation of the `BetaResponseTextEditorCodeExecutionToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaResponseTextEditorCodeExecutionToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    val content: BetaResponseTextEditorCodeExecutionToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaResponseTextEditorCodeExecutionToolResultBlockTypeEnum,
-) : BetaContentBlock, BetaContentBlockStartEventContentBlock
 
 /** Required API value serialized in the `content` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(

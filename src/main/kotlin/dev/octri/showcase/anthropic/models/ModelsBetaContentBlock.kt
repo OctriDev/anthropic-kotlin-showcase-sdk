@@ -3,21 +3,36 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaContentBlockDeltaEvent` API schema. */
+/** Typed representation of the `BetaCitationsDelta` API schema. */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
     using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
 )
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
 )
-data class BetaContentBlockDeltaEvent(
-    /** Required API value serialized in the `delta` wire field. */
-    val delta: BetaContentBlockDeltaEventDelta,
-    /** Required `integer` value serialized in the `index` wire field. */
-    val index: Long,
+data class BetaCitationsDelta(
+    /** Required API value serialized in the `citation` wire field. */
+    val citation: BetaCitationsDeltaCitation,
     /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaContentBlockDeltaEventTypeEnum,
-) : BetaMessageStreamEvent
+    val type: BetaCitationsDeltaTypeEnum,
+) : BetaContentBlockDeltaEventDelta
+
+/** Typed representation of the `BetaCompactionContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaCompactionContentBlockDelta(
+    /** Required `string` value serialized in the `content` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("content", required = true) val content: String?,
+    /** Opaque metadata from prior compaction, to be round-tripped verbatim */
+    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_content", required = true)
+    val encryptedContent: String?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaCompactionContentBlockDeltaTypeEnum,
+) : BetaContentBlockDeltaEventDelta
 
 /** Required API value serialized in the `delta` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
@@ -75,23 +90,6 @@ constructor(
     val tag: String
         get() = raw.path("type").asText()
 }
-
-/** Typed representation of the `BetaContentBlockStartEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaContentBlockStartEvent(
-    /** Required API value serialized in the `content_block` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_block")
-    val contentBlock: BetaContentBlockStartEventContentBlock,
-    /** Required `integer` value serialized in the `index` wire field. */
-    val index: Long,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaContentBlockStartEventTypeEnum,
-) : BetaMessageStreamEvent
 
 /** Required API value serialized in the `content_block` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
@@ -194,16 +192,406 @@ constructor(
         get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaContentBlockStopEvent` API schema. */
+/** Typed representation of the `BetaInputJsonContentBlockDelta` API schema. */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
     using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
 )
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
 )
-data class BetaContentBlockStopEvent(
-    /** Required `integer` value serialized in the `index` wire field. */
-    val index: Long,
+data class BetaInputJsonContentBlockDelta(
+    /** Required `string` value serialized in the `partial_json` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("partial_json") val partialJson: String,
     /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaContentBlockStopEventTypeEnum,
-) : BetaMessageStreamEvent
+    val type: BetaInputJsonContentBlockDeltaTypeEnum,
+) : BetaContentBlockDeltaEventDelta
+
+/** Typed representation of the `BetaResponseAdvisorToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseAdvisorToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    val content: BetaResponseAdvisorToolResultBlockContent,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseAdvisorToolResultBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseBashCodeExecutionToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseBashCodeExecutionToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    val content: BetaResponseBashCodeExecutionToolResultBlockContent,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseBashCodeExecutionToolResultBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseCodeExecutionToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseCodeExecutionToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    val content: BetaResponseCodeExecutionToolResultBlockContent,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseCodeExecutionToolResultBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/**
+ * A compaction block returned when autocompact is triggered. When content is None, it indicates the
+ * compaction failed to produce a valid summary (e.g., malformed output from the model). Clients may
+ * round-trip compaction blocks with null content; the server treats them as no-ops.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseCompactionBlock(
+    /** Summary of compacted content, or null if compaction failed */
+    @com.fasterxml.jackson.annotation.JsonProperty("content", required = true) val content: String?,
+    /** Opaque metadata from prior compaction, to be round-tripped verbatim */
+    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_content", required = true)
+    val encryptedContent: String?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseCompactionBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Response model for a file uploaded to the container. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseContainerUploadBlock(
+    /** Required `string` value serialized in the `file_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseContainerUploadBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/**
+ * Marks the point in `content` where one model's output gives way to the next. One block appears
+ * per hop where a preceding model actually ran this turn and declined. A turn where no preceding
+ * model ran and declined has no such boundary and carries no block — the signal for whether a
+ * fallback model served the response is the presence of a `fallback_message` entry in
+ * `usage.iterations`, not this block. The block is treated like a server-tool content block for
+ * streaming: it…
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseFallbackBlock(
+    /**
+     * The model whose output ends at this point — the model that declined at this hop. When the
+     * declining hop is the requested model, its `model` echoes the top-level `model` string the
+     * caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is
+     * that model's canonical id.
+     */
+    val from: BetaResponseFallbackHopInfo,
+    /**
+     * The fallback model producing the content that follows this block. Its `model` is always the
+     * canonical id.
+     */
+    val to: BetaResponseFallbackHopInfo,
+    /** What caused the `from` model to hand over at this hop. */
+    val trigger: BetaFallbackRefusalTrigger,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseFallbackBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseMCPToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseMCPToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    val content: Any,
+    /** Required `boolean` value serialized in the `is_error` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseMCPToolResultBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseMCPToolUseBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseMCPToolUseBlock(
+    /** Required `string` value serialized in the `id` wire field. */
+    val id: String,
+    /** Required object value serialized in the `input` wire field. */
+    val input: Map<String, Any>,
+    /** The name of the MCP tool */
+    val name: String,
+    /** The name of the MCP server */
+    @com.fasterxml.jackson.annotation.JsonProperty("server_name") val serverName: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseMCPToolUseBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseRedactedThinkingBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseRedactedThinkingBlock(
+    /**
+     * The contents of this redacted thinking block, returned when portions of the model's thinking
+     * were safety-redacted. This field is opaque and encrypted, with no readable content. Pass
+     * `redacted_thinking` blocks back to the API unchanged when continuing a multi-turn
+     * conversation. See extended thinking for details.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseRedactedThinkingBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseServerToolUseBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseServerToolUseBlock(
+    /** Required `string` value serialized in the `id` wire field. */
+    val id: String,
+    /** Required object value serialized in the `input` wire field. */
+    val input: Map<String, Any>,
+    /** Required enumerated value serialized in the `name` wire field. */
+    val name: BetaResponseServerToolUseBlockNameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseServerToolUseBlockTypeEnum,
+    /** Optional API value serialized in the `caller` wire field. */
+    val caller: BetaResponseServerToolUseBlockCaller? = null,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseTextBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseTextBlock(
+    /**
+     * Citations supporting the text block. The type of citation returned will depend on the type of
+     * document being cited. Citing a PDF results in `page_location`, plain text results in
+     * `char_location`, and content document results in `content_block_location`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("citations", required = true)
+    val citations: List<BetaResponseTextBlockCitationsItem>?,
+    /** Required `string` value serialized in the `text` wire field. */
+    val text: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseTextBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseTextEditorCodeExecutionToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseTextEditorCodeExecutionToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    val content: BetaResponseTextEditorCodeExecutionToolResultBlockContent,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseTextEditorCodeExecutionToolResultBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseThinkingBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseThinkingBlock(
+    /**
+     * A value used to verify that this thinking block was generated by Claude when it is passed
+     * back to the API. This is an opaque field and should not be interpreted or parsed. When
+     * passing thinking blocks back to the API (required when using tools with extended thinking),
+     * pass them back exactly as received, with this field intact. See extended thinking for
+     * details.
+     */
+    val signature: String,
+    /** The text of Claude's thinking process for this block. */
+    val thinking: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseThinkingBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseToolSearchToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseToolSearchToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    val content: BetaResponseToolSearchToolResultBlockContent,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseToolSearchToolResultBlockTypeEnum,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseToolUseBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseToolUseBlock(
+    /** Required `string` value serialized in the `id` wire field. */
+    val id: String,
+    /** Required object value serialized in the `input` wire field. */
+    val input: Map<String, Any>,
+    /** Required `string` value serialized in the `name` wire field. */
+    val name: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseToolUseBlockTypeEnum,
+    /** Optional API value serialized in the `caller` wire field. */
+    val caller: BetaResponseToolUseBlockCaller? = null,
+    /** For a toolset member tool_use, the toolset family. */
+    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseWebFetchToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseWebFetchToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    val content: BetaResponseWebFetchToolResultBlockContent,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseWebFetchToolResultBlockTypeEnum,
+    /** Optional API value serialized in the `caller` wire field. */
+    val caller: BetaResponseWebFetchToolResultBlockCaller? = null,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaResponseWebSearchToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaResponseWebSearchToolResultBlock(
+    /** Required API value serialized in the `content` wire field. */
+    @com.fasterxml.jackson.annotation.JsonSubTypes(
+        com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+            BetaResponseWebSearchToolResultError::class
+        )
+    )
+    val content: Any,
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseWebSearchToolResultBlockTypeEnum,
+    /** Optional API value serialized in the `caller` wire field. */
+    val caller: BetaResponseWebSearchToolResultBlockCaller? = null,
+) : BetaContentBlock, BetaContentBlockStartEventContentBlock
+
+/** Typed representation of the `BetaSignatureContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaSignatureContentBlockDelta(
+    /**
+     * The `signature` for this thinking block: an opaque value used to verify that the block was
+     * generated by Claude when it is passed back to the API. Delivered in a `signature_delta` event
+     * just before the block's `content_block_stop` event.
+     */
+    val signature: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaSignatureContentBlockDeltaTypeEnum,
+) : BetaContentBlockDeltaEventDelta
+
+/** Typed representation of the `BetaTextContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaTextContentBlockDelta(
+    /** Required `string` value serialized in the `text` wire field. */
+    val text: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaTextContentBlockDeltaTypeEnum,
+) : BetaContentBlockDeltaEventDelta
+
+/** Typed representation of the `BetaThinkingContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaThinkingContentBlockDelta(
+    /**
+     * Per-frame increment of a coarse, running estimate of the tokens this thinking block has
+     * produced so far. Present whenever the `thinking-token-count-2026-05-13` beta is set; `null`
+     * unless `thinking.display` resolves to `"omitted"` and a count is due this frame. Sum the
+     * increments across `thinking_delta` frames on this block for a progress indicator. Each
+     * increment is a non-negative multiple of a fixed quantum and the cadence is rate-limited, so
+     * this is a deliberately lossy…
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("estimated_tokens", required = true)
+    val estimatedTokens: Long?,
+    /**
+     * The incremental `thinking` text for this content block. Concatenate the `thinking` values of
+     * successive `thinking_delta` events to assemble the block's full `thinking` value.
+     */
+    val thinking: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaThinkingContentBlockDeltaTypeEnum,
+) : BetaContentBlockDeltaEventDelta

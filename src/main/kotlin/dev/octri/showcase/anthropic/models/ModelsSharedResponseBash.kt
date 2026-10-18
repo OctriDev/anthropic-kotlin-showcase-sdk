@@ -31,22 +31,6 @@ data class ResponseBashCodeExecutionResultBlock(
     val type: ResponseBashCodeExecutionResultBlockTypeEnum,
 ) : ResponseBashCodeExecutionToolResultBlockContent
 
-/** Typed representation of the `ResponseBashCodeExecutionToolResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ResponseBashCodeExecutionToolResultBlock(
-    /** Required API value serialized in the `content` wire field. */
-    val content: ResponseBashCodeExecutionToolResultBlockContent,
-    /** Required `string` value serialized in the `tool_use_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ResponseBashCodeExecutionToolResultBlockTypeEnum,
-) : ContentBlock, ContentBlockStartEventContentBlock
-
 /** Required API value serialized in the `content` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,

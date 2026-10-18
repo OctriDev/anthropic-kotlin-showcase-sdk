@@ -101,20 +101,6 @@ constructor(
         get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaContentBlockSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaContentBlockSource(
-    /** Required API value serialized in the `content` wire field. */
-    val content: Any,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaContentBlockSourceTypeEnum,
-) : BetaRequestDocumentBlockSource
-
 /** Required API value serialized in the `content[]` wire field. */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(
     use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
@@ -155,3 +141,46 @@ constructor(
     val tag: String
         get() = raw.path("type").asText()
 }
+
+/** Typed representation of the `BetaRequestImageBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaRequestImageBlock(
+    /** Required API value serialized in the `source` wire field. */
+    val source: BetaRequestImageBlockSource,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaRequestImageBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * Configures the transformations the server applies to this image before the model observes it.
+     * Each key names a condition the server transforms images for; its value selects the
+     * transformation applied. Omitted keys keep their default behavior, and an empty object is
+     * equivalent to omitting the field.
+     */
+    val transformations: BetaRequestImageTransformations? = null,
+) : BetaInputContentBlock, BetaContentBlockSourceContentItem, BetaRequestToolResultBlockContentItem
+
+/** Typed representation of the `BetaRequestTextBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaRequestTextBlock(
+    /** Required `string` value serialized in the `text` wire field. */
+    val text: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaRequestTextBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /** Optional array value serialized in the `citations` wire field. */
+    val citations: List<BetaRequestTextBlockCitationsItem>? = null,
+) : BetaInputContentBlock, BetaContentBlockSourceContentItem, BetaRequestToolResultBlockContentItem

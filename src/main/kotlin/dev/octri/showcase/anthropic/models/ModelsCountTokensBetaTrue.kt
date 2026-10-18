@@ -3,6 +3,414 @@
 
 package dev.octri.showcase.anthropic.models
 
+/** Typed representation of the `BetaAdvisorTool_20260301` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaAdvisorTool20260301(
+    /** The model that will complete your prompt. See models for additional details and options. */
+    val model: Model,
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaAdvisorTool20260301NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaAdvisorTool20260301TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * Caching for the advisor's own prompt. When set, each advisor call writes a cache entry at the
+     * given TTL so subsequent calls in the same conversation read the stable prefix. When omitted,
+     * the advisor prompt is not cached.
+     */
+    val caching: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap,
+     * the returned advisor_result or advisor_redacted_result block carries
+     * stop_reason='max_tokens', and a truncation note is appended to the advice text the worker
+     * model sees (inside the encrypted blob in redacted mode). When set, the server also emits a
+     * remaining-tokens budget block in the advisor's prompt so the advisor self-shapes toward the
+     * cap. When omitted, the advisor model's…
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_tokens") val maxTokens: Long? = null,
+    /** Maximum number of times the tool can be used in the API request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_uses") val maxUses: Long? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaBashTool_20241022` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaBashTool20241022(
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaBashTool20241022NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaBashTool20241022TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, BetaJsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaBashTool_20250124` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaBashTool20250124(
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaBashTool20250124NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaBashTool20250124TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, BetaJsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/**
+ * The browser toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the
+ * browser tool family. The model is served the family's tool with any members disabled via
+ * ``configs`` removed from its schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaBrowserToolset20260801(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaBrowserToolset20260801TypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a
+     * member's defaults apply wherever its key is absent.
+     */
+    val configs: BetaBrowserToolsetConfigs? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaCodeExecutionTool_20250522` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaCodeExecutionTool20250522(
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaCodeExecutionTool20250522NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaCodeExecutionTool20250522TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaCodeExecutionTool_20250825` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaCodeExecutionTool20250825(
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaCodeExecutionTool20250825NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaCodeExecutionTool20250825TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint). */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaCodeExecutionTool20260120(
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaCodeExecutionTool20260120NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaCodeExecutionTool20260120TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Code execution tool with REPL state persistence. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaCodeExecutionTool20260521(
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaCodeExecutionTool20260521NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaCodeExecutionTool20260521TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/**
+ * The computer toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the
+ * computer tool family. The model is served the family's tool with any members disabled via
+ * ``configs`` removed from its schema. Every member is enabled by default, zoom included. The
+ * single-tool options ``display_number`` and ``enable_zoom`` are not fields of a toolset entry — it
+ * carries only ``type``, ``configs``, and ``cache_control``; zoom is controlled via
+ * ``configs.zoom.enabled``.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaComputerToolset20260801(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaComputerToolset20260801TypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a
+     * member's defaults apply wherever its key is absent.
+     */
+    val configs: BetaComputerToolsetConfigs? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaComputerUseTool_20241022` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaComputerUseTool20241022(
+    /** The height of the display in pixels. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_height_px") val displayHeightPx: Long,
+    /** The width of the display in pixels. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_width_px") val displayWidthPx: Long,
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaComputerUseTool20241022NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaComputerUseTool20241022TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** The X11 display number (e.g. 0, 1) for the display. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_number")
+    val displayNumber: Long? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, BetaJsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaComputerUseTool_20250124` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaComputerUseTool20250124(
+    /** The height of the display in pixels. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_height_px") val displayHeightPx: Long,
+    /** The width of the display in pixels. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_width_px") val displayWidthPx: Long,
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaComputerUseTool20250124NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaComputerUseTool20250124TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** The X11 display number (e.g. 0, 1) for the display. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_number")
+    val displayNumber: Long? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, BetaJsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaComputerUseTool_20251124` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaComputerUseTool20251124(
+    /** The height of the display in pixels. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_height_px") val displayHeightPx: Long,
+    /** The width of the display in pixels. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_width_px") val displayWidthPx: Long,
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaComputerUseTool20251124NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaComputerUseTool20251124TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** The X11 display number (e.g. 0, 1) for the display. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_number")
+    val displayNumber: Long? = null,
+    /** Whether to enable an action to take a zoomed-in screenshot of the screen. */
+    @com.fasterxml.jackson.annotation.JsonProperty("enable_zoom") val enableZoom: Boolean? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, BetaJsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
 /** Typed representation of the `BetaContextManagementResponse` API schema. */
 data class BetaContextManagementResponse(
     /** The original token count before context management was applied */
@@ -95,19 +503,11 @@ sealed interface BetaCountMessageTokensParamsToolsItem {
         ): BetaCountMessageTokensParamsToolsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType: Class<out BetaCountMessageTokensParamsToolsItem>? =
-                when {
-                    node.has("description") ||
-                        node.has("input_schema") ||
-                        node.has("eager_input_streaming") -> BetaTool::class.java
-                    node.has("enable_zoom") -> BetaComputerUseTool20251124::class.java
-                    node.has("max_characters") -> BetaTextEditor20250728::class.java
-                    node.has("caching") || node.has("max_tokens") || node.has("model") ->
-                        BetaAdvisorTool20260301::class.java
-                    node.has("default_config") || node.has("mcp_server_name") ->
-                        BetaMCPToolset::class.java
-                    else -> null
-                }
+            val ownedType =
+                BetaCountMessageTokensParamsToolsItemOwnedTypes.firstOrNull { (keys, _) ->
+                        keys.any(node::has)
+                    }
+                    ?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -146,12 +546,8 @@ sealed interface BetaCountMessageTokensParamsToolsItem {
                     BetaToolSearchToolRegex20251119::class.java,
                     BetaMCPToolset::class.java,
                 )
-            for (objectType in objectTypes) {
-                try {
-                    return mapper.convertValue(node, objectType)
-                } catch (ignored: IllegalArgumentException) {
-                    // Not this branch.
-                }
+            dev.octri.showcase.anthropic.sdkObjectBranch(mapper, node, objectTypes)?.let {
+                return it
             }
             return when {
                 else ->
@@ -165,6 +561,16 @@ sealed interface BetaCountMessageTokensParamsToolsItem {
     }
 }
 
+internal val BetaCountMessageTokensParamsToolsItemOwnedTypes:
+    List<Pair<List<String>, Class<out BetaCountMessageTokensParamsToolsItem>>> =
+    listOf(
+        listOf("description", "input_schema", "eager_input_streaming") to BetaTool::class.java,
+        listOf("enable_zoom") to BetaComputerUseTool20251124::class.java,
+        listOf("max_characters") to BetaTextEditor20250728::class.java,
+        listOf("caching", "max_tokens", "model") to BetaAdvisorTool20260301::class.java,
+        listOf("default_config", "mcp_server_name") to BetaMCPToolset::class.java,
+    )
+
 /** Typed representation of the `BetaCountMessageTokensResponse` API schema. */
 data class BetaCountMessageTokensResponse(
     /** Information about context management applied to the message. */
@@ -175,3 +581,61 @@ data class BetaCountMessageTokensResponse(
      */
     @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
 )
+
+/**
+ * Configuration for a group of tools from an MCP server. Allows configuring enabled status and
+ * defer_loading for all tools from an MCP server, with optional per-tool overrides.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaMCPToolset(
+    /** Name of the MCP server to configure tools for */
+    @com.fasterxml.jackson.annotation.JsonProperty("mcp_server_name") val mcpServerName: String,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaMCPToolsetTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /** Configuration overrides for specific tools, keyed by tool name */
+    val configs: Map<String, BetaMCPToolConfig>? = null,
+    /** Default configuration applied to all tools from this server */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_config")
+    val defaultConfig: BetaMCPToolDefaultConfig? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+
+/** Typed representation of the `BetaMemoryTool_20250818` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaMemoryTool20250818(
+    /**
+     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
+     */
+    val name: BetaMemoryTool20250818NameEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaMemoryTool20250818TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<BetaAllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, BetaJsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem

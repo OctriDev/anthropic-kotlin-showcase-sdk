@@ -11,138 +11,11 @@ data class BetaAllThinkingTurns(
     val type: BetaAllThinkingTurnsTypeEnum
 )
 
-/** Typed representation of the `BetaAPIError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaAPIError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaAPIErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaAttachedAttachment` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaAttachedAttachment(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaAttachedAttachmentTypeEnum
-) : BetaExternalKeyAttachment
-
-/** Typed representation of the `BetaAuthenticationError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaAuthenticationError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaAuthenticationErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaAwsExternalKeyConfig` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaAwsExternalKeyConfig(
-    /**
-     * Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in
-     * your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs
-     * are rejected.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("kms_arn") val kmsArn: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaAwsExternalKeyConfigTypeEnum,
-    /** AWS region. Derived from `kms_arn` if omitted. */
-    val region: String? = null,
-    /**
-     * IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role
-     * (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is
-     * ignored.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("role_arn") val roleArn: String? = null,
-) :
-    BetaExternalKeyProviderConfig,
-    BetaExternalKeyCreateParamsProviderConfig,
-    BetaExternalKeyUpdateParamsProviderConfig
-
-/** Typed representation of the `BetaBillingError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaBillingError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBillingErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
 /** Indicates whether a capability is supported. */
 data class BetaCapabilitySupport(
     /** Whether this capability is supported by the model. */
     val supported: Boolean
 )
-
-/** Automatically compact older context when reaching the configured trigger threshold. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaCompact20260112(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaCompact20260112TypeEnum,
-    /** Additional instructions for summarization. */
-    val instructions: String? = null,
-    /** Whether to pause after compaction and return the compaction block to the user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pause_after_compaction")
-    val pauseAfterCompaction: Boolean? = null,
-    /** When to trigger compaction. Defaults to 150000 input tokens. */
-    val trigger: BetaInputTokensTrigger? = null,
-) : BetaContextManagementConfigEditsItem
-
-/** Token usage for a compaction iteration. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaCompactionIterationUsage(
-    /** Breakdown of cached tokens by TTL */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
-    val cacheCreation: BetaCacheCreation?,
-    /** The number of input tokens used to create the cache entry. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
-    val cacheCreationInputTokens: Long,
-    /** The number of input tokens read from the cache. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
-    val cacheReadInputTokens: Long,
-    /** The number of input tokens which were used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
-    /** The number of output tokens which were used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
-    /** Usage for a compaction iteration */
-    val type: BetaCompactionIterationUsageTypeEnum,
-) : BetaUsageIterationsItem
 
 /** Typed representation of the `BetaCreatedBy` API schema. */
 data class BetaCreatedBy(
@@ -164,71 +37,6 @@ data class BetaDataResidency(
     @com.fasterxml.jackson.annotation.JsonProperty("workspace_geo") val workspaceGeo: String,
 )
 
-/** Tool invocation directly from the model. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaDirectCaller(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaDirectCallerTypeEnum
-) :
-    BetaResponseToolUseBlockCaller,
-    BetaResponseServerToolUseBlockCaller,
-    BetaResponseWebSearchToolResultBlockCaller,
-    BetaResponseWebFetchToolResultBlockCaller,
-    BetaRequestToolUseBlockCaller,
-    BetaRequestServerToolUseBlockCaller,
-    BetaRequestWebSearchToolResultBlockCaller,
-    BetaRequestWebFetchToolResultBlockCaller
-
-/** Typed representation of the `BetaGatewayTimeoutError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaGatewayTimeoutError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaGatewayTimeoutErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaGcpExternalKeyConfig` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaGcpExternalKeyConfig(
-    /** Full resource name of the Cloud KMS key. */
-    @com.fasterxml.jackson.annotation.JsonProperty("key_name") val keyName: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaGcpExternalKeyConfigTypeEnum,
-) :
-    BetaExternalKeyProviderConfig,
-    BetaExternalKeyCreateParamsProviderConfig,
-    BetaExternalKeyUpdateParamsProviderConfig
-
-/** Typed representation of the `BetaInvalidRequestError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaInvalidRequestError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaInvalidRequestErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
 /**
  * Status of automatic JWKS polling for a federation issuer. Anthropic periodically fetches the
  * issuer's signing keys in the background. These fields summarize the most recent fetches so the
@@ -247,64 +55,6 @@ data class BetaIssuerPollStatus(
 )
 
 typealias BetaIterationsUsage = List<BetaUsageIterationsItem>
-
-/**
- * Configuration for a group of tools from an MCP server. Allows configuring enabled status and
- * defer_loading for all tools from an MCP server, with optional per-tool overrides.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaMCPToolset(
-    /** Name of the MCP server to configure tools for */
-    @com.fasterxml.jackson.annotation.JsonProperty("mcp_server_name") val mcpServerName: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaMCPToolsetTypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: BetaCacheControlEphemeral? = null,
-    /** Configuration overrides for specific tools, keyed by tool name */
-    val configs: Map<String, BetaMCPToolConfig>? = null,
-    /** Default configuration applied to all tools from this server */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_config")
-    val defaultConfig: BetaMCPToolDefaultConfig? = null,
-) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
-
-/** Typed representation of the `BetaMemoryTool_20250818` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaMemoryTool20250818(
-    /**
-     * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
-     */
-    val name: BetaMemoryTool20250818NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaMemoryTool20250818TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<BetaAllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** Optional array value serialized in the `input_examples` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
-    val inputExamples: List<Map<String, BetaJsonValue>>? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
 
 /** Typed representation of the `BetaMetadata` API schema. */
 data class BetaMetadata(
@@ -330,93 +80,6 @@ data class BetaMonetaryAmount(
      */
     val amount: String,
 )
-
-/** Typed representation of the `BetaNotFoundError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaNotFoundError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaNotFoundErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaOrgServiceScope` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaOrgServiceScope(
-    /** Required `string` value serialized in the `service` wire field. */
-    val service: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaOrgServiceScopeTypeEnum,
-) : BetaSpendLimitScope, BetaSpendSummarySource
-
-/** Typed representation of the `BetaOverloadedError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaOverloadedError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaOverloadedErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaPermissionError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaPermissionError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaPermissionErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaPlainTextSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaPlainTextSource(
-    /** Required `string` value serialized in the `data` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: String,
-    /** Required `string` value serialized in the `media_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
-    val mediaType: BetaPlainTextSourceMediaTypeEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaPlainTextSourceTypeEnum,
-) : BetaResponseDocumentBlockSource, BetaRequestDocumentBlockSource
-
-/** Typed representation of the `BetaRateLimitError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaRateLimitError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaRateLimitErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
 
 /**
  * Does the incoming JWT qualify? All populated fields must pass; omitted fields are skipped. At
@@ -449,36 +112,6 @@ data class BetaRuleMatch(
     val subjectPrefix: String? = null,
 )
 
-/** A scoped Admin API key acting on behalf of the organization. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaScopedApiKeyActorSchema(
-    /** Required `string` value serialized in the `scoped_api_key_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("scoped_api_key_id") val scopedApiKeyId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaScopedApiKeyActorSchemaTypeEnum,
-) :
-    BetaApproveSpendLimitIncreaseRequestResponseResolvedBy,
-    BetaSpendLimitIncreaseRequestSchemaResolvedBy
-
-/** Typed representation of the `BetaSeatTierScope` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaSeatTierScope(
-    /** Required `string` value serialized in the `seat_tier` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("seat_tier") val seatTier: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaSeatTierScopeTypeEnum,
-) : BetaSpendLimitScope, BetaSpendSummarySource
-
 /**
  * Work data for session work items. This resource type is used when work represents a session that
  * needs to be executed in a self-hosted environment.
@@ -504,29 +137,6 @@ data class BetaSystemMessageOutputConfig(
     val effort: BetaEffortLevel? = null
 )
 
-/**
- * The `output_behavior.memory_store_id` target is still held by a prior `{type: "update_existing"}`
- * dream — one that is `pending` or `running`, or was canceled with its final writes still landing.
- * Rarely the named dream has just finished (`completed`/`failed`) and its execution is still
- * closing; an immediate retry then almost always succeeds. The message names the holding dream when
- * the server can identify it (rarely omitted); poll it to a terminal state or cancel it, then…
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaTargetStoreHeldError(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaTargetStoreHeldErrorTypeEnum,
-    /**
-     * Human-readable description of the conflict, naming the dream that holds the target store when
-     * the server can identify it.
-     */
-    val message: String? = null,
-) : BetaDreamingError
-
 typealias BetaTimestamp = OffsetDateTime
 
 /** User-configurable total token budget across contexts. */
@@ -541,55 +151,3 @@ data class BetaTokenTaskBudget(
      */
     val remaining: Long? = null,
 )
-
-/** Typed representation of the `BetaUnattachedAttachment` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaUnattachedAttachment(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaUnattachedAttachmentTypeEnum
-) : BetaExternalKeyAttachment
-
-/** Unrestricted network access. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaUnrestrictedNetwork(
-    /** Network policy type */
-    val type: BetaUnrestrictedNetworkTypeEnum
-) : BetaCloudConfigNetworking, BetaCloudConfigParamsNetworking
-
-/** Typed representation of the `BetaURLImageSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaURLImageSource(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaURLImageSourceTypeEnum,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-) : BetaRequestImageBlockSource
-
-/** Typed representation of the `BetaURLPDFSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaURLPDFSource(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaURLPDFSourceTypeEnum,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-) : BetaRequestDocumentBlockSource

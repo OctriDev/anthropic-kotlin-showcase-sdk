@@ -394,95 +394,6 @@ data class BetaBrowserScrollToConfig(
 )
 
 /**
- * A file download that finished during this call, reported with the same `download_id` as its
- * `download_started` — or without a prior `download_started`, when the download finished during the
- * call that started it (at most one state change per `download_id` per result).
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaBrowserStateChangeDownloadCompleted(
-    /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBrowserStateChangeDownloadCompletedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
-    /**
-     * Where the executor saved the file, on the executor's filesystem. Only included when another
-     * tool in the same environment can read the file at that path.
-     */
-    val path: String? = null,
-    /** The completed download's size. */
-    @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long? = null,
-) : BetaRequestBrowserStateBlockStateChangesItem
-
-/** A file download that failed — or was cancelled — during this call. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaBrowserStateChangeDownloadFailed(
-    /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBrowserStateChangeDownloadFailedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
-    /** The failure or cancellation detail, when known. */
-    val error: String? = null,
-) : BetaRequestBrowserStateBlockStateChangesItem
-
-/** A file download that started during this call. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaBrowserStateChangeDownloadStarted(
-    /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBrowserStateChangeDownloadStartedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
-) : BetaRequestBrowserStateBlockStateChangesItem
-
-/**
- * A tab this call's execution opened that remains open at its end — the creation delta of the
- * `tabs` inventory, not an event log. Carries only the `tab_id`; the tab's `title` and `url` live
- * on its `tabs` entry, which must include the same `tab_id`. A tab opened during a failed call gets
- * no deferred `tab_opened`; it simply appears in the next result's `tabs` inventory.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaBrowserStateChangeTabOpened(
-    /** The `tab_id` of the opened tab, present in `tabs`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tab_id") val tabId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBrowserStateChangeTabOpenedTypeEnum,
-) : BetaRequestBrowserStateBlockStateChangesItem
-
-/**
  * One open browser tab reported in a `browser_state` block's `tabs` inventory. `tab_id` is the
  * caller-assigned identifier for the tab; `title` and `url` describe the page the tab is currently
  * showing and may be empty strings (a blank tab legitimately has both empty). `active` marks the
@@ -518,25 +429,154 @@ data class BetaBrowserSwitchTabConfig(
 )
 
 /**
- * The browser toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the
- * browser tool family. The model is served the family's tool with any members disabled via
- * ``configs`` removed from its schema.
+ * Per-member configuration for ``browser_toolset_20260801``: one optional field per member tool,
+ * keyed by the member name — the same name the member's ``tool_use`` blocks carry. Every member is
+ * an accepted key, and a member's defaults apply wherever its key is absent. Unknown keys are
+ * rejected: the field set is this toolset version's complete member set.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+data class BetaBrowserToolsetConfigs(
+    /** Optional API value serialized in the `close_tab` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("close_tab")
+    val closeTab: BetaBrowserCloseTabConfig? = null,
+    /** Optional API value serialized in the `double_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("double_click")
+    val doubleClick: BetaBrowserDoubleClickConfig? = null,
+    /** Optional API value serialized in the `file_upload` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_upload")
+    val fileUpload: BetaBrowserFileUploadConfig? = null,
+    /** Optional API value serialized in the `find` wire field. */
+    val find: BetaBrowserFindConfig? = null,
+    /** Optional API value serialized in the `form_input` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("form_input")
+    val formInput: BetaBrowserFormInputConfig? = null,
+    /** Optional API value serialized in the `get_page_text` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("get_page_text")
+    val getPageText: BetaBrowserGetPageTextConfig? = null,
+    /** Optional API value serialized in the `hold_key` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("hold_key")
+    val holdKey: BetaBrowserHoldKeyConfig? = null,
+    /** Optional API value serialized in the `hover` wire field. */
+    val hover: BetaBrowserHoverConfig? = null,
+    /** Optional API value serialized in the `javascript_exec` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("javascript_exec")
+    val javascriptExec: BetaBrowserJavascriptExecConfig? = null,
+    /** Optional API value serialized in the `key` wire field. */
+    val key: BetaBrowserKeyConfig? = null,
+    /** Optional API value serialized in the `left_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_click")
+    val leftClick: BetaBrowserLeftClickConfig? = null,
+    /** Optional API value serialized in the `left_click_drag` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_click_drag")
+    val leftClickDrag: BetaBrowserLeftClickDragConfig? = null,
+    /** Optional API value serialized in the `left_mouse_down` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_down")
+    val leftMouseDown: BetaBrowserLeftMouseDownConfig? = null,
+    /** Optional API value serialized in the `left_mouse_up` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_up")
+    val leftMouseUp: BetaBrowserLeftMouseUpConfig? = null,
+    /** Optional API value serialized in the `list_tabs` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("list_tabs")
+    val listTabs: BetaBrowserListTabsConfig? = null,
+    /** Optional API value serialized in the `middle_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("middle_click")
+    val middleClick: BetaBrowserMiddleClickConfig? = null,
+    /** Optional API value serialized in the `mouse_move` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("mouse_move")
+    val mouseMove: BetaBrowserMouseMoveConfig? = null,
+    /** Optional API value serialized in the `navigate` wire field. */
+    val navigate: BetaBrowserNavigateConfig? = null,
+    /** Optional API value serialized in the `new_tab` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("new_tab")
+    val newTab: BetaBrowserNewTabConfig? = null,
+    /** Optional API value serialized in the `read_console` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("read_console")
+    val readConsole: BetaBrowserReadConsoleConfig? = null,
+    /** Optional API value serialized in the `read_network` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("read_network")
+    val readNetwork: BetaBrowserReadNetworkConfig? = null,
+    /** Optional API value serialized in the `read_page` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("read_page")
+    val readPage: BetaBrowserReadPageConfig? = null,
+    /** Optional API value serialized in the `right_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("right_click")
+    val rightClick: BetaBrowserRightClickConfig? = null,
+    /** Optional API value serialized in the `screenshot` wire field. */
+    val screenshot: BetaBrowserScreenshotConfig? = null,
+    /** Optional API value serialized in the `scroll` wire field. */
+    val scroll: BetaBrowserScrollConfig? = null,
+    /** Optional API value serialized in the `scroll_to` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("scroll_to")
+    val scrollTo: BetaBrowserScrollToConfig? = null,
+    /** Optional API value serialized in the `switch_tab` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("switch_tab")
+    val switchTab: BetaBrowserSwitchTabConfig? = null,
+    /** Optional API value serialized in the `triple_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("triple_click")
+    val tripleClick: BetaBrowserTripleClickConfig? = null,
+    /** Optional API value serialized in the `type` wire field. */
+    val type: BetaBrowserTypeConfig? = null,
+    /** Optional API value serialized in the `wait` wire field. */
+    val wait: BetaBrowserWaitConfig? = null,
+    /** Optional API value serialized in the `zoom` wire field. */
+    val zoom: BetaBrowserZoomConfig? = null,
 )
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaBrowserToolset20260801(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBrowserToolset20260801TypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: BetaCacheControlEphemeral? = null,
+
+/** ``triple_click``'s config overrides. */
+data class BetaBrowserTripleClickConfig(
     /**
-     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a
-     * member's defaults apply wherever its key is absent.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    val configs: BetaBrowserToolsetConfigs? = null,
-) : BetaCountMessageTokensParamsToolsItem, BetaCreateMessageParamsToolsItem
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)
+
+/** ``type``'s config overrides. */
+data class BetaBrowserTypeConfig(
+    /**
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)
+
+/** ``wait``'s config overrides. */
+data class BetaBrowserWaitConfig(
+    /**
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)
+
+/** ``zoom``'s config overrides. */
+data class BetaBrowserZoomConfig(
+    /**
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /**
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
+     */
+    val enabled: Boolean? = null,
+)

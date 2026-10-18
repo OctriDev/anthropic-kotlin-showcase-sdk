@@ -192,38 +192,6 @@ constructor(
         get() = raw.path("type").asText()
 }
 
-/**
- * Token usage for the fallback-model attempt of a server-side fallback request. Produced in place
- * of a `message` entry for whichever hop served the response. A declined hop produces the existing
- * `message` entry. Whether a fallback model served the response is signalled by the presence of
- * this entry in `usage.iterations`.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaFallbackMessageIterationUsage(
-    /** Breakdown of cached tokens by TTL */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation", required = true)
-    val cacheCreation: BetaCacheCreation?,
-    /** The number of input tokens used to create the cache entry. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
-    val cacheCreationInputTokens: Long,
-    /** The number of input tokens read from the cache. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
-    val cacheReadInputTokens: Long,
-    /** The number of input tokens which were used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
-    /** The model that will complete your prompt. See models for additional details and options. */
-    val model: Model,
-    /** The number of output tokens which were used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
-    /** Usage for the fallback-model attempt that served the response */
-    val type: BetaFallbackMessageIterationUsageTypeEnum,
-) : BetaUsageIterationsItem
-
 /** The `from` model declined for policy reasons. */
 data class BetaFallbackRefusalTrigger(
     /**
@@ -235,3 +203,69 @@ data class BetaFallbackRefusalTrigger(
     /** Required `string` value serialized in the `type` wire field. */
     val type: BetaFallbackRefusalTriggerTypeEnum,
 )
+
+/** Typed representation of the `BetaThinkingConfigAdaptive` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaThinkingConfigAdaptive(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaThinkingConfigAdaptiveTypeEnum,
+    /**
+     * Controls for block binding: what happens when a thinking block this request sends back fails
+     * the conversation check. `null`, absent or an empty object means every default.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("block_binding")
+    val blockBinding: BetaThinkingBlockBinding? = null,
+    /**
+     * Controls how thinking content appears in the response. When set to `summarized`, thinking is
+     * returned normally. When set to `omitted`, thinking content is redacted but a signature is
+     * returned for multi-turn continuity. Defaults to `summarized`.
+     */
+    val display: BetaThinkingDisplayMode? = null,
+) : BetaThinkingConfigParam, BetaFallbackConfigV2Thinking
+
+/** Typed representation of the `BetaThinkingConfigDisabled` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaThinkingConfigDisabled(
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaThinkingConfigDisabledTypeEnum
+) : BetaThinkingConfigParam, BetaFallbackConfigV2Thinking
+
+/** Typed representation of the `BetaThinkingConfigEnabled` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class BetaThinkingConfigEnabled(
+    /**
+     * Determines how many tokens Claude can use for its internal reasoning process. Larger budgets
+     * can enable more thorough analysis for complex problems, improving response quality. Must be
+     * ≥1024 and less than `max_tokens`. See extended thinking for details.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_tokens") val budgetTokens: Long,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaThinkingConfigEnabledTypeEnum,
+    /**
+     * Controls for block binding: what happens when a thinking block this request sends back fails
+     * the conversation check. `null`, absent or an empty object means every default.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("block_binding")
+    val blockBinding: BetaThinkingBlockBinding? = null,
+    /**
+     * Controls how thinking content appears in the response. When set to `summarized`, thinking is
+     * returned normally. When set to `omitted`, thinking content is redacted but a signature is
+     * returned for multi-turn continuity. Defaults to `summarized`.
+     */
+    val display: BetaThinkingDisplayMode? = null,
+) : BetaThinkingConfigParam, BetaFallbackConfigV2Thinking

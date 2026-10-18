@@ -130,14 +130,11 @@ sealed interface CreateMessageParamsToolsItem {
         ): CreateMessageParamsToolsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType: Class<out CreateMessageParamsToolsItem>? =
-                when {
-                    node.has("description") ||
-                        node.has("input_schema") ||
-                        node.has("eager_input_streaming") -> Tool::class.java
-                    node.has("max_characters") -> TextEditor20250728::class.java
-                    else -> null
-                }
+            val ownedType =
+                CreateMessageParamsToolsItemOwnedTypes.firstOrNull { (keys, _) ->
+                        keys.any(node::has)
+                    }
+                    ?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -169,12 +166,8 @@ sealed interface CreateMessageParamsToolsItem {
                     ToolSearchToolBM2520251119::class.java,
                     ToolSearchToolRegex20251119::class.java,
                 )
-            for (objectType in objectTypes) {
-                try {
-                    return mapper.convertValue(node, objectType)
-                } catch (ignored: IllegalArgumentException) {
-                    // Not this branch.
-                }
+            dev.octri.showcase.anthropic.sdkObjectBranch(mapper, node, objectTypes)?.let {
+                return it
             }
             return when {
                 else ->
@@ -187,3 +180,10 @@ sealed interface CreateMessageParamsToolsItem {
         }
     }
 }
+
+internal val CreateMessageParamsToolsItemOwnedTypes:
+    List<Pair<List<String>, Class<out CreateMessageParamsToolsItem>>> =
+    listOf(
+        listOf("description", "input_schema", "eager_input_streaming") to Tool::class.java,
+        listOf("max_characters") to TextEditor20250728::class.java,
+    )

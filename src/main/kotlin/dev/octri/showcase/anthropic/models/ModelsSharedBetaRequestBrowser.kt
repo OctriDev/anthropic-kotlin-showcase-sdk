@@ -4,27 +4,88 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * The caller's browser state after a browser toolset member call — the full inventory of open tabs, which tab is active, and any side effects (tabs opened, download state changes) the call produced. At most one per `tool_result`, only on a non-error result answering a browser toolset member `tool_use`. The server renders the model-visible text from it; the model never sees the raw fields.
+ * A file download that finished during this call, reported with the same `download_id` as its `download_started` — or without a prior `download_started`, when the download finished during the call that started it (at most one state change per `download_id` per result).
  */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestBrowserStateBlock(
+data class BetaBrowserStateChangeDownloadCompleted(
     /**
-     * All tabs open in the browser after this call — the full inventory, not a delta. May be empty. Whenever non-empty, exactly one entry carries `active: true`.
+     * The caller-assigned identifier for this download, stable across the state changes reporting it.
      */
-    val tabs: List<BetaBrowserStateTabEntry>,
+    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
     /**
      * Required `string` value serialized in the `type` wire field.
      */
-    val type: BetaRequestBrowserStateBlockTypeEnum,
+    val type: BetaBrowserStateChangeDownloadCompletedTypeEnum,
     /**
-     * Create a cache control breakpoint at this content block.
+     * The final post-redirect URL the download was served from.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
+    val url: String,
     /**
-     * Tabs opened and download state changes during this call. "Nothing to report" is expressed by omitting the field, never by an empty list.
+     * Where the executor saved the file, on the executor's filesystem. Only included when another tool in the same environment can read the file at that path.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("state_changes") val stateChanges: List<BetaRequestBrowserStateBlockStateChangesItem>? = null
-) : BetaRequestToolResultBlockContentItem
+    val path: String? = null,
+    /**
+     * The completed download's size.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long? = null
+) : BetaRequestBrowserStateBlockStateChangesItem
+
+/**
+ * A file download that failed — or was cancelled — during this call.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaBrowserStateChangeDownloadFailed(
+    /**
+     * The caller-assigned identifier for this download, stable across the state changes reporting it.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaBrowserStateChangeDownloadFailedTypeEnum,
+    /**
+     * The final post-redirect URL the download was served from.
+     */
+    val url: String,
+    /**
+     * The failure or cancellation detail, when known.
+     */
+    val error: String? = null
+) : BetaRequestBrowserStateBlockStateChangesItem
+
+/**
+ * A file download that started during this call.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaBrowserStateChangeDownloadStarted(
+    /**
+     * The caller-assigned identifier for this download, stable across the state changes reporting it.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaBrowserStateChangeDownloadStartedTypeEnum,
+    /**
+     * The final post-redirect URL the download was served from.
+     */
+    val url: String
+) : BetaRequestBrowserStateBlockStateChangesItem
+
+/**
+ * A tab this call's execution opened that remains open at its end — the creation delta of the `tabs` inventory, not an event log. Carries only the `tab_id`; the tab's `title` and `url` live on its `tabs` entry, which must include the same `tab_id`. A tab opened during a failed call gets no deferred `tab_opened`; it simply appears in the next result's `tabs` inventory.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaBrowserStateChangeTabOpened(
+    /**
+     * The `tab_id` of the opened tab, present in `tabs`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("tab_id") val tabId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaBrowserStateChangeTabOpenedTypeEnum
+) : BetaRequestBrowserStateBlockStateChangesItem
 
 /**
  * Required API value serialized in the `state_changes[]` wire field.

@@ -4,6 +4,88 @@
 package dev.octri.showcase.anthropic.models
 
 /**
+ * Typed representation of the `BetaCacheMissMessagesChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaCacheMissMessagesChanged(
+    /**
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissMessagesChangedTypeEnum
+) : BetaDiagnosticsCacheMissReason
+
+/**
+ * Typed representation of the `BetaCacheMissModelChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaCacheMissModelChanged(
+    /**
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissModelChangedTypeEnum
+) : BetaDiagnosticsCacheMissReason
+
+/**
+ * Typed representation of the `BetaCacheMissPreviousMessageNotFound` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaCacheMissPreviousMessageNotFound(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissPreviousMessageNotFoundTypeEnum
+) : BetaDiagnosticsCacheMissReason
+
+/**
+ * Typed representation of the `BetaCacheMissSystemChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaCacheMissSystemChanged(
+    /**
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissSystemChangedTypeEnum
+) : BetaDiagnosticsCacheMissReason
+
+/**
+ * Typed representation of the `BetaCacheMissToolsChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaCacheMissToolsChanged(
+    /**
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissToolsChangedTypeEnum
+) : BetaDiagnosticsCacheMissReason
+
+/**
+ * Typed representation of the `BetaCacheMissUnavailable` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaCacheMissUnavailable(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissUnavailableTypeEnum
+) : BetaDiagnosticsCacheMissReason
+
+/**
  * Response envelope for request-level diagnostics. Present (possibly null) whenever the caller supplied `diagnostics` on the request.
  */
 data class BetaDiagnostics(

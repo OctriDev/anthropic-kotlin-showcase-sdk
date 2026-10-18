@@ -6,6 +6,44 @@ package dev.octri.showcase.anthropic.models
 import java.time.OffsetDateTime
 
 /**
+ * Typed representation of the `BetaAttachedAttachment` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaAttachedAttachment(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaAttachedAttachmentTypeEnum
+) : BetaExternalKeyAttachment
+
+/**
+ * Typed representation of the `BetaAzureExternalKeyConfig` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaAzureExternalKeyConfig(
+    /**
+     * Name of the key within the vault.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("key_name") val keyName: String,
+    /**
+     * Azure AD tenant ID.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("tenant_id") val tenantId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaAzureExternalKeyConfigTypeEnum,
+    /**
+     * Key Vault data-plane URI — `{vault-name}.vault.azure.net` or `{hsm-name}.managedhsm.azure.net`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("vault_uri") val vaultUri: String,
+    /**
+     * Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null
+) : BetaExternalKeyProviderConfig
+
+/**
  * CMEK external key config belonging to the caller's organization. Configs are organization-scoped. Workspaces attach to a config; once any workspace references it, the provider fields become effectively immutable (existing encrypted data needs the config for decrypt).
  */
 data class BetaExternalKey(
@@ -81,3 +119,14 @@ data class UnknownBetaExternalKeyProviderConfig @com.fasterxml.jackson.annotatio
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
+
+/**
+ * Typed representation of the `BetaUnattachedAttachment` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaUnattachedAttachment(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaUnattachedAttachmentTypeEnum
+) : BetaExternalKeyAttachment

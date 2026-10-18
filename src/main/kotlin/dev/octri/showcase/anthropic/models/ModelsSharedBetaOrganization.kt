@@ -6,17 +6,6 @@ package dev.octri.showcase.anthropic.models
 import java.time.OffsetDateTime
 
 /**
- * Typed representation of the `BetaOrganizationScope` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaOrganizationScope(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaOrganizationScopeTypeEnum
-) : BetaSpendLimitScope, BetaSpendSummarySource
-
-/**
  * Typed representation of the `BetaOrganizationTunnel` API schema.
  */
 data class BetaOrganizationTunnel(

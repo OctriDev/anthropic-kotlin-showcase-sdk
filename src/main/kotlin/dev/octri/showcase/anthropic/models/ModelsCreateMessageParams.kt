@@ -90,11 +90,7 @@ sealed interface CreateMessageParamsWithoutStreamToolsItem {
         ): CreateMessageParamsWithoutStreamToolsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType: Class<out CreateMessageParamsWithoutStreamToolsItem>? = when {
-                node.has("description") || node.has("input_schema") || node.has("eager_input_streaming") -> Tool::class.java
-                node.has("max_characters") -> TextEditor20250728::class.java
-                else -> null
-            }
+            val ownedType = CreateMessageParamsWithoutStreamToolsItemOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -103,13 +99,7 @@ sealed interface CreateMessageParamsWithoutStreamToolsItem {
                 }
             }
             val objectTypes: List<Class<out CreateMessageParamsWithoutStreamToolsItem>> = listOf(Tool::class.java, BashTool20250124::class.java, CodeExecutionTool20250522::class.java, CodeExecutionTool20250825::class.java, CodeExecutionTool20260120::class.java, CodeExecutionTool20260521::class.java, BrowserToolset20260801::class.java, MemoryTool20250818::class.java, ComputerToolset20260801::class.java, TextEditor20250124::class.java, TextEditor20250429::class.java, TextEditor20250728::class.java, WebSearchTool20250305::class.java, WebFetchTool20250910::class.java, WebSearchTool20260209::class.java, WebFetchTool20260209::class.java, WebFetchTool20260309::class.java, WebSearchTool20260318::class.java, WebFetchTool20260318::class.java, ToolSearchToolBM2520251119::class.java, ToolSearchToolRegex20251119::class.java)
-            for (objectType in objectTypes) {
-                try {
-                    return mapper.convertValue(node, objectType)
-                } catch (ignored: IllegalArgumentException) {
-                    // Not this branch.
-                }
-            }
+            dev.octri.showcase.anthropic.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
             return when {
                 else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
                     parser, CreateMessageParamsWithoutStreamToolsItem::class.java, "no CreateMessageParamsWithoutStreamToolsItem branch accepts this payload")
@@ -117,3 +107,8 @@ sealed interface CreateMessageParamsWithoutStreamToolsItem {
         }
     }
 }
+
+internal val CreateMessageParamsWithoutStreamToolsItemOwnedTypes: List<Pair<List<String>, Class<out CreateMessageParamsWithoutStreamToolsItem>>> = listOf(
+    listOf("description", "input_schema", "eager_input_streaming") to Tool::class.java,
+    listOf("max_characters") to TextEditor20250728::class.java,
+)

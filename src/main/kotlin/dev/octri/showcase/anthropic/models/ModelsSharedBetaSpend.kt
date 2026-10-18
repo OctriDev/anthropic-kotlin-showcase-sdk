@@ -6,6 +6,62 @@ package dev.octri.showcase.anthropic.models
 import java.time.OffsetDateTime
 
 /**
+ * Typed representation of the `BetaOrganizationScope` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaOrganizationScope(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaOrganizationScopeTypeEnum
+) : BetaSpendLimitScope, BetaSpendSummarySource
+
+/**
+ * Typed representation of the `BetaOrgServiceScope` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaOrgServiceScope(
+    /**
+     * Required `string` value serialized in the `service` wire field.
+     */
+    val service: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaOrgServiceScopeTypeEnum
+) : BetaSpendLimitScope, BetaSpendSummarySource
+
+/**
+ * Typed representation of the `BetaRbacGroupScope` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaRbacGroupScope(
+    /**
+     * Required `string` value serialized in the `rbac_group_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_id") val rbacGroupId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaRbacGroupScopeTypeEnum
+) : BetaSpendLimitScope, BetaSpendSummarySource
+
+/**
+ * Typed representation of the `BetaSeatTierScope` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaSeatTierScope(
+    /**
+     * Required `string` value serialized in the `seat_tier` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("seat_tier") val seatTier: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaSeatTierScopeTypeEnum
+) : BetaSpendLimitScope, BetaSpendSummarySource
+
+/**
  * A configured spend limit: a cap on metered spend for one scope and period.
  */
 data class BetaSpendLimit(
@@ -185,3 +241,18 @@ data class UnknownBetaSpendSummarySource @com.fasterxml.jackson.annotation.JsonC
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
+
+/**
+ * Scope selecting a single member of the organization.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaUserScope(
+    /**
+     * Scope type. Always `user` for this scope.
+     */
+    val type: BetaUserScopeTypeEnum,
+    /**
+     * Tagged ID of the member the spend limit applies to.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String
+) : BetaSpendLimitScope, BetaSpendSummarySource

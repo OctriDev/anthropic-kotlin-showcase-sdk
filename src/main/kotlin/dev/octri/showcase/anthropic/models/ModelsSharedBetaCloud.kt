@@ -4,25 +4,6 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * `cloud` environment configuration.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaCloudConfig(
-    /**
-     * Network configuration policy.
-     */
-    val networking: BetaCloudConfigNetworking,
-    /**
-     * Package manager configuration.
-     */
-    val packages: BetaPackages,
-    /**
-     * Environment type
-     */
-    val type: BetaCloudConfigTypeEnum
-) : BetaEnvironmentConfig
-
-/**
  * Network configuration policy.
  */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaCloudConfigNetworking::class)
@@ -42,25 +23,6 @@ data class UnknownBetaCloudConfigNetworking @com.fasterxml.jackson.annotation.Js
 }
 
 /**
- * Request params for `cloud` environment configuration. Fields default to null; on update, omitted fields preserve the existing value.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaCloudConfigParams(
-    /**
-     * Environment type
-     */
-    val type: BetaCloudConfigParamsTypeEnum,
-    /**
-     * Network configuration policy. Omit on update to preserve the existing value.
-     */
-    val networking: BetaCloudConfigParamsNetworking? = null,
-    /**
-     * Package manager configuration. Under `limited` networking, requires `networking.allow_package_managers` to be `true`. Omit on update to preserve the existing value.
-     */
-    val packages: BetaPackagesParams? = null
-) : BetaPublicEnvironmentCreateRequestConfig, BetaPublicEnvironmentUpdateRequestConfig
-
-/**
  * Network configuration policy. Omit on update to preserve the existing value.
  */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaCloudConfigParamsNetworking::class)
@@ -78,3 +40,60 @@ data class UnknownBetaCloudConfigParamsNetworking @com.fasterxml.jackson.annotat
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
+
+/**
+ * Limited network access.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaLimitedNetwork(
+    /**
+     * Permits outbound access to MCP server endpoints configured on the agent, beyond those listed in the `allowed_hosts` array.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_mcp_servers") val allowMcpServers: Boolean,
+    /**
+     * Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_package_managers") val allowPackageManagers: Boolean,
+    /**
+     * Specifies domains the container can reach.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_hosts") val allowedHosts: List<String>,
+    /**
+     * Network policy type
+     */
+    val type: BetaLimitedNetworkTypeEnum
+) : BetaCloudConfigNetworking
+
+/**
+ * Limited network request params. Fields default to null; on update, omitted fields preserve the existing value.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaLimitedNetworkParams(
+    /**
+     * Network policy type
+     */
+    val type: BetaLimitedNetworkParamsTypeEnum,
+    /**
+     * Permits outbound access to MCP server endpoints configured on the agent, beyond those listed in the `allowed_hosts` array. Defaults to `false`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_mcp_servers") val allowMcpServers: Boolean? = null,
+    /**
+     * Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array. Defaults to `false` on creation. Must be `true` when `packages` are specified.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_package_managers") val allowPackageManagers: Boolean? = null,
+    /**
+     * Specifies domains the container can reach.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_hosts") val allowedHosts: List<String>? = null
+) : BetaCloudConfigParamsNetworking
+
+/**
+ * Unrestricted network access.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaUnrestrictedNetwork(
+    /**
+     * Network policy type
+     */
+    val type: BetaUnrestrictedNetworkTypeEnum
+) : BetaCloudConfigNetworking, BetaCloudConfigParamsNetworking

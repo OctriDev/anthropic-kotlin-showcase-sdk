@@ -4,27 +4,38 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Typed representation of the `BetaRequestImageBlock` API schema.
+ * Typed representation of the `BetaBase64ImageSource` API schema.
  */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestImageBlock(
+data class BetaBase64ImageSource(
     /**
-     * Required API value serialized in the `source` wire field.
+     * Required `byte`-formatted value serialized in the `data` wire field.
      */
-    val source: BetaRequestImageBlockSource,
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
+    /**
+     * Required enumerated value serialized in the `media_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: BetaBase64ImageSourceMediaTypeEnum,
     /**
      * Required `string` value serialized in the `type` wire field.
      */
-    val type: BetaRequestImageBlockTypeEnum,
+    val type: BetaBase64ImageSourceTypeEnum
+) : BetaRequestImageBlockSource
+
+/**
+ * Typed representation of the `BetaFileImageSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaFileImageSource(
     /**
-     * Create a cache control breakpoint at this content block.
+     * Required `string` value serialized in the `file_id` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
     /**
-     * Configures the transformations the server applies to this image before the model observes it. Each key names a condition the server transforms images for; its value selects the transformation applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting the field.
+     * Required `string` value serialized in the `type` wire field.
      */
-    val transformations: BetaRequestImageTransformations? = null
-) : BetaInputContentBlock, BetaContentBlockSourceContentItem, BetaRequestToolResultBlockContentItem
+    val type: BetaFileImageSourceTypeEnum
+) : BetaRequestImageBlockSource
 
 /**
  * Required API value serialized in the `source` wire field.
@@ -55,3 +66,18 @@ data class BetaRequestImageTransformations(
      */
     @com.fasterxml.jackson.annotation.JsonProperty("oversized_image") val oversizedImage: BetaRequestImageTransformationsOversizedImageEnum? = null
 )
+
+/**
+ * Typed representation of the `BetaURLImageSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaURLImageSource(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaURLImageSourceTypeEnum,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String
+) : BetaRequestImageBlockSource

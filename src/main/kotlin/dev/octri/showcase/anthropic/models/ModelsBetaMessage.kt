@@ -4,6 +4,59 @@
 package dev.octri.showcase.anthropic.models
 
 /**
+ * Typed representation of the `BetaContentBlockDeltaEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaContentBlockDeltaEvent(
+    /**
+     * Required API value serialized in the `delta` wire field.
+     */
+    val delta: BetaContentBlockDeltaEventDelta,
+    /**
+     * Required `integer` value serialized in the `index` wire field.
+     */
+    val index: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaContentBlockDeltaEventTypeEnum
+) : BetaMessageStreamEvent
+
+/**
+ * Typed representation of the `BetaContentBlockStartEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaContentBlockStartEvent(
+    /**
+     * Required API value serialized in the `content_block` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("content_block") val contentBlock: BetaContentBlockStartEventContentBlock,
+    /**
+     * Required `integer` value serialized in the `index` wire field.
+     */
+    val index: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaContentBlockStartEventTypeEnum
+) : BetaMessageStreamEvent
+
+/**
+ * Typed representation of the `BetaContentBlockStopEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaContentBlockStopEvent(
+    /**
+     * Required `integer` value serialized in the `index` wire field.
+     */
+    val index: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaContentBlockStopEventTypeEnum
+) : BetaMessageStreamEvent
+
+/**
  * Typed representation of the `BetaMessageDelta` API schema.
  */
 data class BetaMessageDelta(

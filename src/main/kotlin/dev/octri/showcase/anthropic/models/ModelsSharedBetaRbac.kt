@@ -40,21 +40,6 @@ data class BetaRbacGroup(
 )
 
 /**
- * Typed representation of the `BetaRbacGroupScope` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRbacGroupScope(
-    /**
-     * Required `string` value serialized in the `rbac_group_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_id") val rbacGroupId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRbacGroupScopeTypeEnum
-) : BetaSpendLimitScope, BetaSpendSummarySource
-
-/**
  * Typed representation of the `BetaRbacRole` API schema.
  */
 data class BetaRbacRole(

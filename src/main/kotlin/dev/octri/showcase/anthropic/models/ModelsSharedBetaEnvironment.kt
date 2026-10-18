@@ -4,6 +4,25 @@
 package dev.octri.showcase.anthropic.models
 
 /**
+ * `cloud` environment configuration.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaCloudConfig(
+    /**
+     * Network configuration policy.
+     */
+    val networking: BetaCloudConfigNetworking,
+    /**
+     * Package manager configuration.
+     */
+    val packages: BetaPackages,
+    /**
+     * Environment type
+     */
+    val type: BetaCloudConfigTypeEnum
+) : BetaEnvironmentConfig
+
+/**
  * Unified Environment resource for both cloud and self-hosted environments.
  */
 data class BetaEnvironment(
@@ -67,3 +86,14 @@ data class UnknownBetaEnvironmentConfig @com.fasterxml.jackson.annotation.JsonCr
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
+
+/**
+ * Configuration for self-hosted environments.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaSelfHostedConfig(
+    /**
+     * Environment type
+     */
+    val type: BetaSelfHostedConfigTypeEnum
+) : BetaEnvironmentConfig

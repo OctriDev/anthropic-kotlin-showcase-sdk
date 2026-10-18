@@ -4,23 +4,27 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Mid-conversation directive to surface a declared tool. ``tool`` references a tool (or MCP toolset) by name from the request's ``tools``; it is offered to the model from this point in the conversation onward.
+ * The caller's browser state after a browser toolset member call — the full inventory of open tabs, which tab is active, and any side effects (tabs opened, download state changes) the call produced. At most one per `tool_result`, only on a non-error result answering a browser toolset member `tool_use`. The server renders the model-visible text from it; the model never sees the raw fields.
  */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestToolAdditionBlock(
+data class BetaRequestBrowserStateBlock(
     /**
-     * Required API value serialized in the `tool` wire field.
+     * All tabs open in the browser after this call — the full inventory, not a delta. May be empty. Whenever non-empty, exactly one entry carries `active: true`.
      */
-    val tool: BetaRequestToolAdditionBlockTool,
+    val tabs: List<BetaBrowserStateTabEntry>,
     /**
      * Required `string` value serialized in the `type` wire field.
      */
-    val type: BetaRequestToolAdditionBlockTypeEnum,
+    val type: BetaRequestBrowserStateBlockTypeEnum,
     /**
      * Create a cache control breakpoint at this content block.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null
-) : BetaInputContentBlock
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
+    /**
+     * Tabs opened and download state changes during this call. "Nothing to report" is expressed by omitting the field, never by an empty list.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("state_changes") val stateChanges: List<BetaRequestBrowserStateBlockStateChangesItem>? = null
+) : BetaRequestToolResultBlockContentItem
 
 /**
  * Required API value serialized in the `tool` wire field.
@@ -62,25 +66,6 @@ data class BetaRequestToolReferenceBlock(
 ) : BetaRequestToolResultBlockContentItem
 
 /**
- * Mid-conversation directive to withdraw a tool. ``tool`` references a tool (or MCP toolset) by name from the request's ``tools``; it is no longer offered to the model from this point in the conversation onward.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestToolRemovalBlock(
-    /**
-     * Required API value serialized in the `tool` wire field.
-     */
-    val tool: BetaRequestToolRemovalBlockTool,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestToolRemovalBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null
-) : BetaInputContentBlock
-
-/**
  * Required API value serialized in the `tool` wire field.
  */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaRequestToolRemovalBlockTool::class)
@@ -99,37 +84,6 @@ data class UnknownBetaRequestToolRemovalBlockTool @com.fasterxml.jackson.annotat
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
-
-/**
- * Typed representation of the `BetaRequestToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestToolResultBlock(
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestToolResultBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * Optional API value serialized in the `content` wire field.
-     */
-    val content: Any? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_error` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null,
-    /**
-     * For a toolset member tool_result, the toolset family of the paired tool_use.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null
-) : BetaInputContentBlock
 
 /**
  * Required API value serialized in the `content[]` wire field.
@@ -153,29 +107,6 @@ data class UnknownBetaRequestToolResultBlockContentItem @com.fasterxml.jackson.a
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
-
-/**
- * Typed representation of the `BetaRequestToolSearchToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestToolSearchToolResultBlock(
-    /**
-     * Required API value serialized in the `content` wire field.
-     */
-    val content: BetaRequestToolSearchToolResultBlockContent,
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestToolSearchToolResultBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null
-) : BetaInputContentBlock
 
 /**
  * Required API value serialized in the `content` wire field.
@@ -231,41 +162,6 @@ data class BetaRequestToolSearchToolSearchResultBlock(
 ) : BetaRequestToolSearchToolResultBlockContent
 
 /**
- * Typed representation of the `BetaRequestToolUseBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestToolUseBlock(
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
-    val id: String,
-    /**
-     * Required object value serialized in the `input` wire field.
-     */
-    val input: Map<String, Any>,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
-    val name: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestToolUseBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * Optional API value serialized in the `caller` wire field.
-     */
-    val caller: BetaRequestToolUseBlockCaller? = null,
-    /**
-     * For a toolset member tool_use, the toolset family this member belongs to.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("toolset_name") val toolsetName: String? = null
-) : BetaInputContentBlock
-
-/**
  * Optional API value serialized in the `caller` wire field.
  */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaRequestToolUseBlockCaller::class)
@@ -284,3 +180,52 @@ data class UnknownBetaRequestToolUseBlockCaller @com.fasterxml.jackson.annotatio
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
+
+/**
+ * Reference to a single MCP tool by its server and remote name — the same ``server_name``/``name`` pair ``mcp_tool_use`` carries.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaToolChangeMCPToolReference(
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
+    val name: String,
+    /**
+     * Required `string` value serialized in the `server_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("server_name") val serverName: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaToolChangeMCPToolReferenceTypeEnum
+) : BetaRequestToolAdditionBlockTool, BetaRequestToolRemovalBlockTool
+
+/**
+ * Reference to every tool in the named MCP server's toolset.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaToolChangeMCPToolsetReference(
+    /**
+     * Required `string` value serialized in the `server_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("server_name") val serverName: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaToolChangeMCPToolsetReferenceTypeEnum
+) : BetaRequestToolAdditionBlockTool, BetaRequestToolRemovalBlockTool
+
+/**
+ * Reference to a single tool the caller declared directly in ``tools\[\]``. Does not accept the composed ``{server}_{name}`` form the server assigns to MCP-resolved tools — use ``mcp_tool_reference`` or ``mcp_toolset_reference`` for those.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaToolChangeToolReference(
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
+    val name: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaToolChangeToolReferenceTypeEnum
+) : BetaRequestToolAdditionBlockTool, BetaRequestToolRemovalBlockTool

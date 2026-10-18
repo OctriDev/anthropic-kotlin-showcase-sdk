@@ -122,14 +122,7 @@ sealed interface BetaCreateMessageParamsToolsItem {
         ): BetaCreateMessageParamsToolsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType: Class<out BetaCreateMessageParamsToolsItem>? = when {
-                node.has("description") || node.has("input_schema") || node.has("eager_input_streaming") -> BetaTool::class.java
-                node.has("enable_zoom") -> BetaComputerUseTool20251124::class.java
-                node.has("max_characters") -> BetaTextEditor20250728::class.java
-                node.has("caching") || node.has("max_tokens") || node.has("model") -> BetaAdvisorTool20260301::class.java
-                node.has("default_config") || node.has("mcp_server_name") -> BetaMCPToolset::class.java
-                else -> null
-            }
+            val ownedType = BetaCreateMessageParamsToolsItemOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -138,13 +131,7 @@ sealed interface BetaCreateMessageParamsToolsItem {
                 }
             }
             val objectTypes: List<Class<out BetaCreateMessageParamsToolsItem>> = listOf(BetaTool::class.java, BetaBashTool20241022::class.java, BetaBashTool20250124::class.java, BetaCodeExecutionTool20250522::class.java, BetaCodeExecutionTool20250825::class.java, BetaCodeExecutionTool20260120::class.java, BetaCodeExecutionTool20260521::class.java, BetaBrowserToolset20260801::class.java, BetaComputerUseTool20241022::class.java, BetaMemoryTool20250818::class.java, BetaComputerUseTool20250124::class.java, BetaTextEditor20241022::class.java, BetaComputerUseTool20251124::class.java, BetaComputerToolset20260801::class.java, BetaTextEditor20250124::class.java, BetaTextEditor20250429::class.java, BetaTextEditor20250728::class.java, BetaWebSearchTool20250305::class.java, BetaWebFetchTool20250910::class.java, BetaWebSearchTool20260209::class.java, BetaWebFetchTool20260209::class.java, BetaWebFetchTool20260309::class.java, BetaWebSearchTool20260318::class.java, BetaWebFetchTool20260318::class.java, BetaAdvisorTool20260301::class.java, BetaToolSearchToolBM2520251119::class.java, BetaToolSearchToolRegex20251119::class.java, BetaMCPToolset::class.java)
-            for (objectType in objectTypes) {
-                try {
-                    return mapper.convertValue(node, objectType)
-                } catch (ignored: IllegalArgumentException) {
-                    // Not this branch.
-                }
-            }
+            dev.octri.showcase.anthropic.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
             return when {
                 else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
                     parser, BetaCreateMessageParamsToolsItem::class.java, "no BetaCreateMessageParamsToolsItem branch accepts this payload")
@@ -152,3 +139,11 @@ sealed interface BetaCreateMessageParamsToolsItem {
         }
     }
 }
+
+internal val BetaCreateMessageParamsToolsItemOwnedTypes: List<Pair<List<String>, Class<out BetaCreateMessageParamsToolsItem>>> = listOf(
+    listOf("description", "input_schema", "eager_input_streaming") to BetaTool::class.java,
+    listOf("enable_zoom") to BetaComputerUseTool20251124::class.java,
+    listOf("max_characters") to BetaTextEditor20250728::class.java,
+    listOf("caching", "max_tokens", "model") to BetaAdvisorTool20260301::class.java,
+    listOf("default_config", "mcp_server_name") to BetaMCPToolset::class.java,
+)

@@ -52,3 +52,56 @@ data class UnknownBetaFederationIssuerUpdateParamsJwks @com.fasterxml.jackson.an
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
+
+/**
+ * JWKS via the issuer's OIDC discovery document.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaJwksDiscovery(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaJwksDiscoveryTypeEnum,
+    /**
+     * Optional custom CA (PEM) for TLS verification of the JWKS fetch.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ca_cert_pem") val caCertPem: String? = null,
+    /**
+     * Set when the discovery URL differs from `issuer_url`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("discovery_base") val discoveryBase: String? = null
+) : BetaFederationIssuerJwks, BetaFederationIssuerCreateParamsJwks, BetaFederationIssuerUpdateParamsJwks
+
+/**
+ * JWKS fetched from a fixed endpoint.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaJwksExplicitUrl(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaJwksExplicitUrlTypeEnum,
+    /**
+     * JWKS endpoint.
+     */
+    val url: String,
+    /**
+     * Optional custom CA (PEM) for TLS verification of the JWKS fetch.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ca_cert_pem") val caCertPem: String? = null
+) : BetaFederationIssuerJwks, BetaFederationIssuerCreateParamsJwks, BetaFederationIssuerUpdateParamsJwks
+
+/**
+ * JWKS supplied directly; no network fetch.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaJwksInline(
+    /**
+     * Inline JWK objects.
+     */
+    val keys: List<Map<String, Any>>,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaJwksInlineTypeEnum
+) : BetaFederationIssuerJwks, BetaFederationIssuerCreateParamsJwks, BetaFederationIssuerUpdateParamsJwks

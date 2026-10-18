@@ -4,35 +4,72 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Typed representation of the `BetaRequestDocumentBlock` API schema.
+ * Typed representation of the `BetaBase64PDFSource` API schema.
  */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaRequestDocumentBlock(
+data class BetaBase64PDFSource(
     /**
-     * Required API value serialized in the `source` wire field.
+     * Required `byte`-formatted value serialized in the `data` wire field.
      */
-    val source: BetaRequestDocumentBlockSource,
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
+    /**
+     * Required `string` value serialized in the `media_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: BetaBase64PDFSourceMediaTypeEnum,
     /**
      * Required `string` value serialized in the `type` wire field.
      */
-    val type: BetaRequestDocumentBlockTypeEnum,
+    val type: BetaBase64PDFSourceTypeEnum
+) : BetaResponseDocumentBlockSource, BetaRequestDocumentBlockSource
+
+/**
+ * Typed representation of the `BetaContentBlockSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaContentBlockSource(
     /**
-     * Create a cache control breakpoint at this content block.
+     * Required API value serialized in the `content` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
+    val content: Any,
     /**
-     * Optional API value serialized in the `citations` wire field.
+     * Required `string` value serialized in the `type` wire field.
      */
-    val citations: BetaRequestCitationsConfig? = null,
+    val type: BetaContentBlockSourceTypeEnum
+) : BetaRequestDocumentBlockSource
+
+/**
+ * Typed representation of the `BetaFileDocumentSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaFileDocumentSource(
     /**
-     * Optional API value serialized in the `context` wire field.
+     * Required `string` value serialized in the `file_id` wire field.
      */
-    val context: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
     /**
-     * Optional API value serialized in the `title` wire field.
+     * Required `string` value serialized in the `type` wire field.
      */
-    val title: String? = null
-) : BetaInputContentBlock, BetaRequestToolResultBlockContentItem
+    val type: BetaFileDocumentSourceTypeEnum
+) : BetaRequestDocumentBlockSource
+
+/**
+ * Typed representation of the `BetaPlainTextSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaPlainTextSource(
+    /**
+     * Required `string` value serialized in the `data` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: String,
+    /**
+     * Required `string` value serialized in the `media_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: BetaPlainTextSourceMediaTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaPlainTextSourceTypeEnum
+) : BetaResponseDocumentBlockSource, BetaRequestDocumentBlockSource
 
 /**
  * Required API value serialized in the `source` wire field.
@@ -55,3 +92,18 @@ data class UnknownBetaRequestDocumentBlockSource @com.fasterxml.jackson.annotati
     /** The tag the server sent. */
     val tag: String get() = raw.path("type").asText()
 }
+
+/**
+ * Typed representation of the `BetaURLPDFSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaURLPDFSource(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaURLPDFSourceTypeEnum,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String
+) : BetaRequestDocumentBlockSource

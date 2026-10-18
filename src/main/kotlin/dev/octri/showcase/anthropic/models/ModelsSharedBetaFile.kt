@@ -6,36 +6,6 @@ package dev.octri.showcase.anthropic.models
 import java.time.OffsetDateTime
 
 /**
- * Typed representation of the `BetaFileDocumentSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaFileDocumentSource(
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaFileDocumentSourceTypeEnum
-) : BetaRequestDocumentBlockSource
-
-/**
- * Typed representation of the `BetaFileImageSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class BetaFileImageSource(
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaFileImageSourceTypeEnum
-) : BetaRequestImageBlockSource
-
-/**
  * Typed representation of the `BetaFileMetadataSchema` API schema.
  */
 data class BetaFileMetadataSchema(

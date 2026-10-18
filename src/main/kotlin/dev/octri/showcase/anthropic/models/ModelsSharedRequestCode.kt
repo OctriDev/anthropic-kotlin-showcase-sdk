@@ -45,29 +45,6 @@ data class RequestCodeExecutionResultBlock(
 ) : RequestCodeExecutionToolResultBlockContent
 
 /**
- * Typed representation of the `RequestCodeExecutionToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class RequestCodeExecutionToolResultBlock(
-    /**
-     * Required API value serialized in the `content` wire field.
-     */
-    val content: RequestCodeExecutionToolResultBlockContent,
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: RequestCodeExecutionToolResultBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null
-) : InputContentBlock
-
-/**
  * Required API value serialized in the `content` wire field.
  */
 @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestCodeExecutionToolResultBlockContent::class)
@@ -100,4 +77,31 @@ data class RequestCodeExecutionToolResultError(
      * Required `string` value serialized in the `type` wire field.
      */
     val type: RequestCodeExecutionToolResultErrorTypeEnum
+) : RequestCodeExecutionToolResultBlockContent
+
+/**
+ * Code execution result with encrypted stdout for PFC + web_search results.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class RequestEncryptedCodeExecutionResultBlock(
+    /**
+     * Required array value serialized in the `content` wire field.
+     */
+    val content: List<RequestCodeExecutionOutputBlock>,
+    /**
+     * Required `string` value serialized in the `encrypted_stdout` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_stdout") val encryptedStdout: String,
+    /**
+     * Required `integer` value serialized in the `return_code` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("return_code") val returnCode: Long,
+    /**
+     * Required `string` value serialized in the `stderr` wire field.
+     */
+    val stderr: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: RequestEncryptedCodeExecutionResultBlockTypeEnum
 ) : RequestCodeExecutionToolResultBlockContent

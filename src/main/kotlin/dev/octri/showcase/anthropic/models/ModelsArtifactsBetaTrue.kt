@@ -4,78 +4,57 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Artifact-creation activity for one (`artifact_type`, `is_shared`) bucket on a given day.
- * Artifacts form a small finite cube — the canonical MIME type (8 values incl. `other`) crossed
- * with shared-vs-private — so the response is the full set of non-empty buckets, not a
- * ranked/paginated list. Claude Code and Cowork artifacts report under `text/html` and are counted
- * from 2026-08-17 onward; earlier days contain claude.ai chat artifacts only. With
- * `group_by[]=product` / `user_id`…
+ * Artifact-creation activity for one (`artifact_type`, `is_shared`) bucket on a given day. Artifacts form a small finite cube — the canonical MIME type (8 values incl. `other`) crossed with shared-vs-private — so the response is the full set of non-empty buckets, not a ranked/paginated list. Claude Code and Cowork artifacts report under `text/html` and are counted from 2026-08-17 onward; earlier days contain claude.ai chat artifacts only. With `group_by[]=product` / `user_id`…
  */
 data class BetaAnalyticsArtifactActivity(
     /**
-     * Canonical artifact MIME type (e.g. `text/markdown`, `application/vnd.ant.react`,
-     * `image/svg+xml`), or `other`. Claude Code and Cowork artifacts report as `text/html`.
+     * Canonical artifact MIME type (e.g. `text/markdown`, `application/vnd.ant.react`, `image/svg+xml`), or `other`. Claude Code and Cowork artifacts report as `text/html`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("artifact_type") val artifactType: String,
-    /** Number of artifacts created in this bucket on the requested day */
-    @com.fasterxml.jackson.annotation.JsonProperty("artifacts_created_count")
-    val artifactsCreatedCount: Long,
-    /** Number of distinct users who created artifacts in this bucket on the requested day */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_user_count")
-    val distinctUserCount: Long,
     /**
-     * Whether the artifacts in this bucket have ever been shared (a Claude Code / Cowork artifact
-     * is shared once anyone beyond its creator may open it: named members, the whole organization,
-     * or anyone with the link).
+     * Number of artifacts created in this bucket on the requested day
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("artifacts_created_count") val artifactsCreatedCount: Long,
+    /**
+     * Number of distinct users who created artifacts in this bucket on the requested day
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("distinct_user_count") val distinctUserCount: Long,
+    /**
+     * Whether the artifacts in this bucket have ever been shared (a Claude Code / Cowork artifact is shared once anyone beyond its creator may open it: named members, the whole organization, or anyone with the link).
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_shared") val isShared: Boolean,
     /**
-     * Number of those artifacts that have been published (for Claude Code / Cowork artifacts: open
-     * to anyone with the link); never exceeds `artifacts_created_count`
+     * Number of those artifacts that have been published (for Claude Code / Cowork artifacts: open to anyone with the link); never exceeds `artifacts_created_count`
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("published_artifacts_created_count")
-    val publishedArtifactsCreatedCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("published_artifacts_created_count") val publishedArtifactsCreatedCount: Long,
     /**
-     * Product that produced this row's activity: one of `chat`, `claude_code`, `cowork`, or
-     * `office_agent` (the canonical Cost & Usage product naming; an `office_agent` row's
-     * per-surface breakdown is in its `office_metrics`). On `/plugins` only `cowork` and
-     * `claude_code` occur (the only surfaces with plugin attribution); on `/artifacts` only `chat`,
-     * `claude_code`, and `cowork` occur (the surfaces that create artifacts); `/apps/chat/projects`
-     * does not support the product dimension…
+     * Product that produced this row's activity: one of `chat`, `claude_code`, `cowork`, or `office_agent` (the canonical Cost & Usage product naming; an `office_agent` row's per-surface breakdown is in its `office_metrics`). On `/plugins` only `cowork` and `claude_code` occur (the only surfaces with plugin attribution); on `/artifacts` only `chat`, `claude_code`, and `cowork` occur (the surfaces that create artifacts); `/apps/chat/projects` does not support the product dimension…
      */
     val product: String? = null,
     /**
-     * Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling.
-     * Present only when the request grouped by `rbac_group_id`.
+     * Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling. Present only when the request grouped by `rbac_group_id`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_id") val rbacGroupId: String? = null,
     /**
-     * Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is
-     * available. Null if the group has been deleted or its name could not be resolved;
-     * `rbac_group_id` remains the stable key.
+     * Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is available. Null if the group has been deleted or its name could not be resolved; `rbac_group_id` remains the stable key.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_name")
-    val rbacGroupName: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_name") val rbacGroupName: String? = null,
     /**
      * Tagged user identifier (e.g. `user_...`). Present only when the request grouped by `user_id`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null
 )
 
 /**
- * Response for GET /v1/organizations/analytics/artifacts. `next_page` is null on ungrouped queries
- * — the artifact-type cube is finite and returned in full. Grouped queries (`group_by[]` on
- * `product` / `user_id` / `rbac_group_id`) multiply the cube and paginate like the other analytics
- * list endpoints.
+ * Response for GET /v1/organizations/analytics/artifacts. `next_page` is null on ungrouped queries — the artifact-type cube is finite and returned in full. Grouped queries (`group_by[]` on `product` / `user_id` / `rbac_group_id`) multiply the cube and paginate like the other analytics list endpoints.
  */
 data class BetaAnalyticsArtifactsResponse(
-    /** Required array value serialized in the `data` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data")
-    val `data`: List<BetaAnalyticsArtifactActivity>,
     /**
-     * Cursor for the next page of a grouped query; always null for the ungrouped artifact-type
-     * cube, which is returned in full.
+     * Required array value serialized in the `data` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaAnalyticsArtifactActivity>,
+    /**
+     * Cursor for the next page of a grouped query; always null for the ungrouped artifact-type cube, which is returned in full.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )

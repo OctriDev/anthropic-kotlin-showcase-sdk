@@ -3,60 +3,56 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Confirmation that a `session` has been permanently deleted. */
+/**
+ * Confirmation that a `session` has been permanently deleted.
+ */
 data class BetaManagedAgentsDeletedSession(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsDeletedSessionTypeEnum,
-    /** Required `string` value serialized in the `id` wire field. */
-    val id: String,
+    /**
+     * Required `string` value serialized in the `id` wire field.
+     */
+    val id: String
 )
 
 /**
- * Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full
- * replacement: the provided array becomes the new value. To preserve existing entries, GET the
- * session, modify the array, and POST it back.
+ * Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.
  */
 data class BetaManagedAgentsSessionAgentUpdate(
     /**
-     * Replacement tool list. Full replacement: the provided array becomes the new value. Send an
-     * empty array to clear; omit to preserve.
+     * Replacement tool list. Full replacement: the provided array becomes the new value. Send an empty array to clear; omit to preserve.
      */
     val tools: List<BetaManagedAgentsAgentToolParams>? = null,
     /**
-     * Replacement MCP server list. Full replacement: the provided array becomes the new value. Send
-     * an empty array to clear; omit to preserve.
+     * Replacement MCP server list. Full replacement: the provided array becomes the new value. Send an empty array to clear; omit to preserve.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("mcp_servers")
-    val mcpServers: List<BetaManagedAgentsMCPServerParams>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("mcp_servers") val mcpServers: List<BetaManagedAgentsMCPServerParams>? = null
 )
 
-/** Request parameters for updating a `session`. Omit a field to preserve its current value. */
+/**
+ * Request parameters for updating a `session`. Omit a field to preserve its current value.
+ */
 data class BetaManagedAgentsUpdateSessionParams(
-    /** Human-readable session title. */
+    /**
+     * Human-readable session title.
+     */
     val title: String? = null,
     /**
-     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field
-     * to preserve.
+     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve.
      */
     val metadata: Map<String, String>? = null,
     /**
-     * Vault IDs (`vlt_*`) to attach to the session. Not yet supported; requests setting this field
-     * are rejected. Reserved for future use.
+     * Vault IDs (`vlt_*`) to attach to the session. Not yet supported; requests setting this field are rejected. Reserved for future use.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("vault_ids") val vaultIds: List<String>? = null,
     /**
-     * Agent configuration update. Only `tools` and `mcp_servers` are updatable mid-session. Only
-     * valid for sessions created from an agent or deployment reference. The session must not be
-     * running.
+     * Agent configuration update. Only `tools` and `mcp_servers` are updatable mid-session. Only valid for sessions created from an agent or deployment reference. The session must not be running.
      */
     val agent: BetaManagedAgentsSessionAgentUpdate? = null,
     /**
-     * Enforced spend ceiling for the session. Set an object to replace the budget of a session that
-     * was created with one, or `null` to remove it; omit to preserve. A budget cannot be added to a
-     * session created without one (rejected with reason `budget_create_only`), and a removed budget
-     * cannot be re-added. Allowed in any non-terminated status. Lowering `max_list_cost` to at or
-     * below the session's consumed list cost is rejected with reason `budget_not_raised`, and every
-     * model the…
+     * Enforced spend ceiling for the session. Set an object to replace the budget of a session that was created with one, or `null` to remove it; omit to preserve. A budget cannot be added to a session created without one (rejected with reason `budget_create_only`), and a removed budget cannot be re-added. Allowed in any non-terminated status. Lowering `max_list_cost` to at or below the session's consumed list cost is rejected with reason `budget_not_raised`, and every model the…
      */
-    val budget: BetaManagedAgentsBudget? = null,
+    val budget: BetaManagedAgentsBudget? = null
 )

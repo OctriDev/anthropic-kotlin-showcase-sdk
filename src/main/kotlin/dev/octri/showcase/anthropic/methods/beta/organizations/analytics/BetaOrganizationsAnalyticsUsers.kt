@@ -15,6 +15,7 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsAnalyticsUsers {
 
+
     /** Parameters for [listBetaOrganizationsAnalyticsUsers]. */
     data class ListBetaOrganizationsAnalyticsUsersRequest(
         val date: SdkClient.SdkOptional<String?>? = null,
@@ -22,182 +23,132 @@ object BetaOrganizationsAnalyticsUsers {
         val endingDate: SdkClient.SdkOptional<String?>? = null,
         val limit: SdkClient.SdkOptional<Long?>? = null,
         val page: SdkClient.SdkOptional<String?>? = null,
-        val groupBy:
-            SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsUsersParameterItemEnum>?>? =
-            null,
+        val groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsUsersParameterItemEnum>?>? = null,
         val filter: SdkClient.SdkOptional<List<String>?>? = null,
         val orderBy: SdkClient.SdkOptional<String?>? = null,
-        val order:
-            SdkClient.SdkOptional<ListBetaOrganizationsAnalyticsUsersParameterVariant0Enum?>? =
-            null,
+        val order: SdkClient.SdkOptional<ListBetaOrganizationsAnalyticsUsersParameterVariant0Enum?>? = null
     )
 
     /**
-     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics
-     * for each user in the organization, sorted by email address. Use `group_by[]` for
-     * per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a
-     * chat project. Available to organizations on a Claude Enterprise plan. Requires an API key
-     * with the `read:analytics` scope.
+     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics for each user in the organization, sorted by email address. Use `group_by[]` for per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a chat project. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      *
-     * @param date UTC date in YYYY-MM-DD format. The day to get user activity for. Data is
-     *   typically available with a 1-day lag (varies by query; the error for a too-recent date
-     *   names the latest available day) and may be revised by a few percent over the following
-     *   days. No earlier than 2026-01-01.
-     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range (inclusive). Enables
-     *   rollup mode: one row per entity aggregated over the whole range — addable counters are
-     *   summed across days, and a distinct count is never summed where summing could double-count
-     *   (a field's range value is recomputed exactly over the window, approximate via HLL with
-     *   typical error under 2%, null, or — for the creation-event counts, whose per-day values
-     *   cannot overlap — a per-day sum that is itself exact;…
-     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range (exclusive); only
-     *   valid with `starting_date`. Data is typically available with a 1-day lag (varies by query;
-     *   the error for a too-recent date names the latest available day), so this can be at most
-     *   today — which is also the default when omitted, resolved once when the first page is served
-     *   and reused for the rest of the pagination sequence. At most 366 days after `starting_date`.
+     * @param date UTC date in YYYY-MM-DD format. The day to get user activity for.
+     *   Data is typically available with a 1-day lag (varies by query; the error for a
+     *   too-recent date names the latest available day) and may be revised by a few
+     *   percent over the following days. No earlier than 2026-01-01.
+     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range
+     *   (inclusive). Enables rollup mode: one row per entity aggregated over the whole
+     *   range — addable counters are summed across days, and a distinct count is never
+     *   summed where summing could double-count (a field's range value is recomputed
+     *   exactly over the window, approximate via HLL with typical error under 2%,
+     *   null, or — for the creation-event counts, whose per-day values cannot overlap
+     *   — a per-day sum that is itself exact;…
+     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range
+     *   (exclusive); only valid with `starting_date`. Data is typically available with
+     *   a 1-day lag (varies by query; the error for a too-recent date names the latest
+     *   available day), so this can be at most today — which is also the default when
+     *   omitted, resolved once when the first page is served and reused for the rest
+     *   of the pagination sequence. At most 366 days after `starting_date`.
      * @param limit Number of results per page (1-1000, default 100).
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param groupBy Dimensions to break results out by (e.g. `group_by[]=rbac_group_id`).
-     *   Supported on this endpoint: `rbac_group_id`. Rows are already per-member, so the one
-     *   supported grouping aggregates them per RBAC group instead. Grouped rows carry the requested
-     *   dimension values as additional fields and paginate like ungrouped responses via
-     *   `next_page`; an unsupported dimension returns 400. `rbac_group_id` attributes a user to
-     *   every group they held at any point during each covered UTC day,…
-     * @param filter Filters as `dimension:value`, e.g. `filter[]=rbac_group_id:{id}`. Repeat the
-     *   param for OR within a dimension and across dimensions for AND. Supported dimensions on this
-     *   endpoint: `project_id`, `rbac_group_id`, `user_id`. Value forms: `project_id` takes a
-     *   tagged project id (`claude_proj_...`) and scopes each member's row to their claude.ai chat
-     *   activity within that project (it cannot be combined with `group_by[]` or an `rbac_group_id`
-     *   filter); `rbac_group_id` takes the tagged…
-     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its rankable metrics
-     *   (metrics default to descending; a few metrics rank in date-range mode only, per the
-     *   endpoint's documented orderable set).
-     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the endpoint's sort
-     *   column and to `desc` when `order_by` names a metric (a top-N ranking). Applies to
-     *   `order_by`, or to the endpoint's default sort field when `order_by` is omitted.
+     * @param groupBy Dimensions to break results out by (e.g.
+     *   `group_by[]=rbac_group_id`). Supported on this endpoint: `rbac_group_id`. Rows
+     *   are already per-member, so the one supported grouping aggregates them per RBAC
+     *   group instead. Grouped rows carry the requested dimension values as additional
+     *   fields and paginate like ungrouped responses via `next_page`; an unsupported
+     *   dimension returns 400. `rbac_group_id` attributes a user to every group they
+     *   held at any point during each covered UTC day,…
+     * @param filter Filters as `dimension:value`, e.g.
+     *   `filter[]=rbac_group_id:{id}`. Repeat the param for OR within a dimension and
+     *   across dimensions for AND. Supported dimensions on this endpoint:
+     *   `project_id`, `rbac_group_id`, `user_id`. Value forms: `project_id` takes a
+     *   tagged project id (`claude_proj_...`) and scopes each member's row to their
+     *   claude.ai chat activity within that project (it cannot be combined with
+     *   `group_by[]` or an `rbac_group_id` filter); `rbac_group_id` takes the tagged…
+     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its
+     *   rankable metrics (metrics default to descending; a few metrics rank in
+     *   date-range mode only, per the endpoint's documented orderable set).
+     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the
+     *   endpoint's sort column and to `desc` when `order_by` names a metric (a top-N
+     *   ranking). Applies to `order_by`, or to the endpoint's default sort field when
+     *   `order_by` is omitted.
      */
-    fun listBetaOrganizationsAnalyticsUsers(
-        clientConfig: ClientConfig,
-        request: ListBetaOrganizationsAnalyticsUsersRequest,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsUsersResponse {
+    fun listBetaOrganizationsAnalyticsUsers(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsUsersRequest, options: RequestOptions? = null): BetaAnalyticsUsersResponse {
         validateListBetaOrganizationsAnalyticsUsersRequest(request)
 
-        return SdkClient.request<BetaAnalyticsUsersResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/analytics/users?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "date" to SdkClient.queryValue(request.date, "form", true),
-                            "starting_date" to
-                                SdkClient.queryValue(request.startingDate, "form", true),
-                            "ending_date" to SdkClient.queryValue(request.endingDate, "form", true),
-                            "limit" to SdkClient.queryValue(request.limit, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                            "group_by[]" to SdkClient.queryValue(request.groupBy, "form", true),
-                            "filter[]" to SdkClient.queryValue(request.filter, "form", true),
-                            "order_by" to SdkClient.queryValue(request.orderBy, "form", true),
-                            "order" to SdkClient.queryValue(request.order, "form", true),
-                        ),
-                    operationId = "listBetaOrganizationsAnalyticsUsers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaAnalyticsUsersResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/analytics/users?beta=true", config = clientConfig, query = mapOf("date" to SdkClient.queryValue(request.date, "form", true), "starting_date" to
+    SdkClient.queryValue(request.startingDate, "form", true), "ending_date" to
+    SdkClient.queryValue(request.endingDate, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "group_by[]" to
+    SdkClient.queryValue(request.groupBy, "form", true), "filter[]" to
+    SdkClient.queryValue(request.filter, "form", true), "order_by" to
+    SdkClient.queryValue(request.orderBy, "form", true), "order" to SdkClient.queryValue(request.order, "form", true)), operationId = "listBetaOrganizationsAnalyticsUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
-    private fun validateListBetaOrganizationsAnalyticsUsersRequest(
-        request: ListBetaOrganizationsAnalyticsUsersRequest
-    ) {
+
+    private fun validateListBetaOrganizationsAnalyticsUsersRequest(request: ListBetaOrganizationsAnalyticsUsersRequest) {
         val groupByValue = request.groupBy?.getOrNull()
-        if (groupByValue != null) {
+if (groupByValue != null) {
             Validation.validateItems("group_by[]", groupByValue, Validation.LengthOpts(max = 100))
-        }
+}
 
         val filterValue = request.filter?.getOrNull()
-        if (filterValue != null) {
+if (filterValue != null) {
             Validation.validateItems("filter[]", filterValue, Validation.LengthOpts(max = 100))
-        }
+}
     }
 
+
+
+
+
     /**
-     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics
-     * for each user in the organization, sorted by email address. Use `group_by[]` for
-     * per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a
-     * chat project. Available to organizations on a Claude Enterprise plan. Requires an API key
-     * with the `read:analytics` scope.
+     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics for each user in the organization, sorted by email address. Use `group_by[]` for per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a chat project. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      *
-     * @param date UTC date in YYYY-MM-DD format. The day to get user activity for. Data is
-     *   typically available with a 1-day lag (varies by query; the error for a too-recent date
-     *   names the latest available day) and may be revised by a few percent over the following
-     *   days. No earlier than 2026-01-01.
-     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range (inclusive). Enables
-     *   rollup mode: one row per entity aggregated over the whole range — addable counters are
-     *   summed across days, and a distinct count is never summed where summing could double-count
-     *   (a field's range value is recomputed exactly over the window, approximate via HLL with
-     *   typical error under 2%, null, or — for the creation-event counts, whose per-day values
-     *   cannot overlap — a per-day sum that is itself exact;…
-     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range (exclusive); only
-     *   valid with `starting_date`. Data is typically available with a 1-day lag (varies by query;
-     *   the error for a too-recent date names the latest available day), so this can be at most
-     *   today — which is also the default when omitted, resolved once when the first page is served
-     *   and reused for the rest of the pagination sequence. At most 366 days after `starting_date`.
+     * @param date UTC date in YYYY-MM-DD format. The day to get user activity for.
+     *   Data is typically available with a 1-day lag (varies by query; the error for a
+     *   too-recent date names the latest available day) and may be revised by a few
+     *   percent over the following days. No earlier than 2026-01-01.
+     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range
+     *   (inclusive). Enables rollup mode: one row per entity aggregated over the whole
+     *   range — addable counters are summed across days, and a distinct count is never
+     *   summed where summing could double-count (a field's range value is recomputed
+     *   exactly over the window, approximate via HLL with typical error under 2%,
+     *   null, or — for the creation-event counts, whose per-day values cannot overlap
+     *   — a per-day sum that is itself exact;…
+     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range
+     *   (exclusive); only valid with `starting_date`. Data is typically available with
+     *   a 1-day lag (varies by query; the error for a too-recent date names the latest
+     *   available day), so this can be at most today — which is also the default when
+     *   omitted, resolved once when the first page is served and reused for the rest
+     *   of the pagination sequence. At most 366 days after `starting_date`.
      * @param limit Number of results per page (1-1000, default 100).
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param groupBy Dimensions to break results out by (e.g. `group_by[]=rbac_group_id`).
-     *   Supported on this endpoint: `rbac_group_id`. Rows are already per-member, so the one
-     *   supported grouping aggregates them per RBAC group instead. Grouped rows carry the requested
-     *   dimension values as additional fields and paginate like ungrouped responses via
-     *   `next_page`; an unsupported dimension returns 400. `rbac_group_id` attributes a user to
-     *   every group they held at any point during each covered UTC day,…
-     * @param filter Filters as `dimension:value`, e.g. `filter[]=rbac_group_id:{id}`. Repeat the
-     *   param for OR within a dimension and across dimensions for AND. Supported dimensions on this
-     *   endpoint: `project_id`, `rbac_group_id`, `user_id`. Value forms: `project_id` takes a
-     *   tagged project id (`claude_proj_...`) and scopes each member's row to their claude.ai chat
-     *   activity within that project (it cannot be combined with `group_by[]` or an `rbac_group_id`
-     *   filter); `rbac_group_id` takes the tagged…
-     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its rankable metrics
-     *   (metrics default to descending; a few metrics rank in date-range mode only, per the
-     *   endpoint's documented orderable set).
-     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the endpoint's sort
-     *   column and to `desc` when `order_by` names a metric (a top-N ranking). Applies to
-     *   `order_by`, or to the endpoint's default sort field when `order_by` is omitted.
+     * @param groupBy Dimensions to break results out by (e.g.
+     *   `group_by[]=rbac_group_id`). Supported on this endpoint: `rbac_group_id`. Rows
+     *   are already per-member, so the one supported grouping aggregates them per RBAC
+     *   group instead. Grouped rows carry the requested dimension values as additional
+     *   fields and paginate like ungrouped responses via `next_page`; an unsupported
+     *   dimension returns 400. `rbac_group_id` attributes a user to every group they
+     *   held at any point during each covered UTC day,…
+     * @param filter Filters as `dimension:value`, e.g.
+     *   `filter[]=rbac_group_id:{id}`. Repeat the param for OR within a dimension and
+     *   across dimensions for AND. Supported dimensions on this endpoint:
+     *   `project_id`, `rbac_group_id`, `user_id`. Value forms: `project_id` takes a
+     *   tagged project id (`claude_proj_...`) and scopes each member's row to their
+     *   claude.ai chat activity within that project (it cannot be combined with
+     *   `group_by[]` or an `rbac_group_id` filter); `rbac_group_id` takes the tagged…
+     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its
+     *   rankable metrics (metrics default to descending; a few metrics rank in
+     *   date-range mode only, per the endpoint's documented orderable set).
+     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the
+     *   endpoint's sort column and to `desc` when `order_by` names a metric (a top-N
+     *   ranking). Applies to `order_by`, or to the endpoint's default sort field when
+     *   `order_by` is omitted.
      */
-    fun listBetaOrganizationsAnalyticsUsersPaginated(
-        clientConfig: ClientConfig,
-        request: ListBetaOrganizationsAnalyticsUsersRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsUserActivity) -> Boolean,
-    ) {
+    fun listBetaOrganizationsAnalyticsUsersPaginated(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsUsersRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsUserActivity) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page =
-                listBetaOrganizationsAnalyticsUsers(
-                    clientConfig,
-                    request.copy(page = cursor),
-                    options,
-                )
+            val page = listBetaOrganizationsAnalyticsUsers(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -214,20 +165,10 @@ object BetaOrganizationsAnalyticsUsers {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsAnalyticsUsersPages(
-        clientConfig: ClientConfig,
-        request: ListBetaOrganizationsAnalyticsUsersRequest,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaOrganizationsAnalyticsUsersPage) -> Boolean,
-    ) {
+    fun listBetaOrganizationsAnalyticsUsersPages(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsUsersRequest, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsAnalyticsUsersPage) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page =
-                listBetaOrganizationsAnalyticsUsers(
-                    clientConfig,
-                    request.copy(page = cursor),
-                    options,
-                )
+            val page = listBetaOrganizationsAnalyticsUsers(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -237,4 +178,7 @@ object BetaOrganizationsAnalyticsUsers {
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
+
+
+
 }

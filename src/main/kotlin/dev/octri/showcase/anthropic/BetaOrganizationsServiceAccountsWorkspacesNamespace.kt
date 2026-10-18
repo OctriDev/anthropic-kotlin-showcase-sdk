@@ -3,120 +3,34 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsServiceAccountsWorkspacesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. List the workspaces a service account is a member of. Each
-     * entry includes the service account's `workspace_role` in that workspace. Use `limit` and the
-     * `next_page` cursor to paginate. When the service account has no explicit default-workspace
-     * membership, the implicit…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List the workspaces a service account is a member of. Each entry includes the service account's `workspace_role` in that workspace. Use `limit` and the `next_page` cursor to paginate. When the service account has no explicit default-workspace membership, the implicit…
      */
-    fun list(
-        serviceAccountId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaServiceAccountWorkspaceMemberListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts
-            .BetaOrganizationsServiceAccountsWorkspaces
-            .listBetaOrganizationsServiceAccountsWorkspaces(
-                clientConfig,
-                serviceAccountId,
-                limit,
-                page,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-            )
+    fun list(serviceAccountId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMemberListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts.BetaOrganizationsServiceAccountsWorkspaces.listBetaOrganizationsServiceAccountsWorkspaces(clientConfig, serviceAccountId, limit, page, anthropicBeta, anthropicVersion, options)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. List the workspaces a service account is a member of. Each
-     * entry includes the service account's `workspace_role` in that workspace. Use `limit` and the
-     * `next_page` cursor to paginate. When the service account has no explicit default-workspace
-     * membership, the implicit…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List the workspaces a service account is a member of. Each entry includes the service account's `workspace_role` in that workspace. Use `limit` and the `next_page` cursor to paginate. When the service account has no explicit default-workspace membership, the implicit…
      */
-    fun listPaginated(
-        serviceAccountId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaServiceAccountWorkspaceMember) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts
-            .BetaOrganizationsServiceAccountsWorkspaces
-            .listBetaOrganizationsServiceAccountsWorkspacesPaginated(
-                clientConfig,
-                serviceAccountId,
-                limit,
-                page,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-                yieldFn,
-            )
+    fun listPaginated(serviceAccountId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaServiceAccountWorkspaceMember) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts.BetaOrganizationsServiceAccountsWorkspaces.listBetaOrganizationsServiceAccountsWorkspacesPaginated(clientConfig, serviceAccountId, limit, page, anthropicBeta, anthropicVersion, options, yieldFn)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Add a service account to a workspace with the given
-     * `workspace_role`. Mirror of `POST /workspaces/{workspace_id}/service_accounts`, addressed
-     * from the service-account side; both create the same membership. If the service account is
-     * already an explicit member of the…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Add a service account to a workspace with the given `workspace_role`. Mirror of `POST /workspaces/{workspace_id}/service_accounts`, addressed from the service-account side; both create the same membership. If the service account is already an explicit member of the…
      */
-    fun create(
-        serviceAccountId: String,
-        workspaceId: String,
-        workspaceRole: BetaNoBillingWorkspaceRoleSchema,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaServiceAccountWorkspaceMember {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts
-            .BetaOrganizationsServiceAccountsWorkspaces
-            .createBetaOrganizationsServiceAccountsWorkspaces(
-                clientConfig,
-                serviceAccountId,
-                workspaceId,
-                workspaceRole,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-            )
+    fun create(serviceAccountId: String, workspaceId: String, workspaceRole: BetaNoBillingWorkspaceRoleSchema, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMember {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts.BetaOrganizationsServiceAccountsWorkspaces.createBetaOrganizationsServiceAccountsWorkspaces(clientConfig, serviceAccountId, workspaceId, workspaceRole, anthropicBeta, anthropicVersion, options)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Remove a service account from a workspace. Mirror of `DELETE
-     * /workspaces/{workspace_id}/service_accounts/{service_account_id}`, addressed from the
-     * service-account side. Removal is idempotent (returns 200 even if the membership was already
-     * removed). A DELETE against…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Remove a service account from a workspace. Mirror of `DELETE /workspaces/{workspace_id}/service_accounts/{service_account_id}`, addressed from the service-account side. Removal is idempotent (returns 200 even if the membership was already removed). A DELETE against…
      */
-    fun delete(
-        workspaceId: String,
-        serviceAccountId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaServiceAccountWorkspaceMemberDeleteResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts
-            .BetaOrganizationsServiceAccountsWorkspaces
-            .deleteBetaOrganizationsServiceAccountsWorkspaces(
-                clientConfig,
-                workspaceId,
-                serviceAccountId,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-            )
+    fun delete(workspaceId: String, serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMemberDeleteResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.serviceAccounts.BetaOrganizationsServiceAccountsWorkspaces.deleteBetaOrganizationsServiceAccountsWorkspaces(clientConfig, workspaceId, serviceAccountId, anthropicBeta, anthropicVersion, options)
     }
+
 }

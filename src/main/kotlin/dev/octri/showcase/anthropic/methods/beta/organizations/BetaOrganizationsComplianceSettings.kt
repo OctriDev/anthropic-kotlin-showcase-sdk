@@ -12,109 +12,40 @@ import dev.octri.showcase.anthropic.SdkClient
 
 object BetaOrganizationsComplianceSettings {
 
-    /**
-     * Retrieve your organization's Compliance Settings. Compliance Settings is a singleton
-     * resource: there is exactly one per organization, addressed without an identifier. The `state`
-     * field reflects whether the Compliance API is enabled. An organization with a parent
-     * organization reads the state inherited from the parent's configuration.
-     *
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     */
-    fun listBetaOrganizationsComplianceSettings(
-        clientConfig: ClientConfig,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaComplianceSettings {
-        return SdkClient.request<BetaComplianceSettings>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/compliance_settings?beta=true",
-                    config = clientConfig,
-                    operationId = "listBetaOrganizationsComplianceSettings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
-    }
 
     /**
-     * Update your organization's Compliance Settings. Setting `state` to `enabled` turns on the
-     * Compliance API and begins capturing organization activity events. Setting it to `disabled`
-     * turns both off. `state` reflects whether the Compliance API is enabled. A request that sets
-     * `state` to its current value succeeds and leaves the resource unchanged. A `disabled` request
-     * stays in effect until a later `enabled` request or the organization's next provisioning
-     * action that enables…
+     * Retrieve your organization's Compliance Settings. Compliance Settings is a singleton resource: there is exactly one per organization, addressed without an identifier. The `state` field reflects whether the Compliance API is enabled. An organization with a parent organization reads the state inherited from the parent's configuration.
      *
-     * @param state Desired state. Accepts the string shorthand "enabled" or "disabled" in place of
-     *   the object form; the response always returns the canonical object form.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun createBetaOrganizationsComplianceSettings(
-        clientConfig: ClientConfig,
-        state: BetaComplianceSettingsUpdateParamsState,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaComplianceSettings {
-        return SdkClient.request<BetaComplianceSettings>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/compliance_settings?beta=true",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("state" to (state)),
-                    operationId = "createBetaOrganizationsComplianceSettings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun listBetaOrganizationsComplianceSettings(clientConfig: ClientConfig, anthropicVersion: String? = null, options: RequestOptions? = null): BetaComplianceSettings {
+        return SdkClient.request<BetaComplianceSettings>(SdkClient.RequestSpec("GET", "/v1/organizations/compliance_settings?beta=true", config = clientConfig, operationId = "listBetaOrganizationsComplianceSettings", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
+    /**
+     * Update your organization's Compliance Settings. Setting `state` to `enabled` turns on the Compliance API and begins capturing organization activity events. Setting it to `disabled` turns both off. `state` reflects whether the Compliance API is enabled. A request that sets `state` to its current value succeeds and leaves the resource unchanged. A `disabled` request stays in effect until a later `enabled` request or the organization's next provisioning action that enables…
+     *
+     * @param state Desired state. Accepts the string shorthand "enabled" or
+     *   "disabled" in place of the object form; the response always returns the
+     *   canonical object form.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     */
+    fun createBetaOrganizationsComplianceSettings(clientConfig: ClientConfig, state: BetaComplianceSettingsUpdateParamsState, anthropicVersion: String? = null, options: RequestOptions? = null): BetaComplianceSettings {
+        return SdkClient.request<BetaComplianceSettings>(SdkClient.RequestSpec("POST", "/v1/organizations/compliance_settings?beta=true", config = clientConfig, body = SdkClient.bodyMap("state" to (state)), operationId = "createBetaOrganizationsComplianceSettings", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    }
+
+
+
+
+
+
+
 }

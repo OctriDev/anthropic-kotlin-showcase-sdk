@@ -3,101 +3,75 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaOutputBehavior` API schema. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaOutputBehavior::class,
-)
+/**
+ * Typed representation of the `BetaOutputBehavior` API schema.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaOutputBehavior::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaOutputBehaviorCreateNew::class,
-        name = "create_new",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaOutputBehaviorUpdateExisting::class,
-        name = "update_existing",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaOutputBehaviorCreateNew::class, name = "create_new"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaOutputBehaviorUpdateExisting::class, name = "update_existing")
 )
 sealed interface BetaOutputBehavior
 
 /** A [BetaOutputBehavior] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaOutputBehavior
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaOutputBehavior @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaOutputBehavior {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * The default destination: the job creates a new output memory store as a clone of the memory_store
- * input and writes the consolidated memories into it. The input store is never mutated.
+ * The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaOutputBehaviorCreateNew(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaOutputBehaviorCreateNewTypeEnum
 ) : BetaOutputBehavior
 
 /**
- * The job writes the consolidated memories into this existing memory store instead of creating one.
- * In EAP the store must be the job's own memory_store input, so the job consolidates the store in
- * place.
+ * The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaOutputBehaviorUpdateExisting(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaOutputBehaviorUpdateExistingTypeEnum,
-    /** Required `string` value serialized in the `memory_store_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
+    /**
+     * Required `string` value serialized in the `memory_store_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String
 ) : BetaOutputBehavior
 
-/** Typed representation of the `BetaOutputConfig` API schema. */
+/**
+ * Typed representation of the `BetaOutputConfig` API schema.
+ */
 data class BetaOutputConfig(
     /**
-     * How much effort the model should put into its response. Higher effort levels may result in
-     * more thorough analysis but take longer. Valid values are `low`, `medium`, `high`, `xhigh`, or
-     * `max`.
+     * How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer. Valid values are `low`, `medium`, `high`, `xhigh`, or `max`.
      */
     val effort: BetaEffortLevel? = null,
-    /** A schema to specify Claude's output format in responses. See structured outputs */
+    /**
+     * A schema to specify Claude's output format in responses. See structured outputs
+     */
     val format: BetaJsonOutputFormat? = null,
-    /** Configuration for token budget tracking across contexts. */
-    @com.fasterxml.jackson.annotation.JsonProperty("task_budget")
-    val taskBudget: BetaTokenTaskBudget? = null,
+    /**
+     * Configuration for token budget tracking across contexts.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("task_budget") val taskBudget: BetaTokenTaskBudget? = null
 )
 
-/** Typed representation of the `BetaOutputTokensDetails` API schema. */
+/**
+ * Typed representation of the `BetaOutputTokensDetails` API schema.
+ */
 data class BetaOutputTokensDetails(
     /**
-     * Number of output tokens the model generated as internal reasoning, including the
-     * thinking-block delimiter tokens. Reflects the raw reasoning the model produced, not the
-     * (possibly shorter) summarized thinking text returned in the response body. Computed by
-     * re-tokenizing the raw reasoning text, so it may differ from the model's exact generation
-     * count by a small number of tokens. Always ≤ `output_tokens`; `output_tokens -
-     * thinking_tokens` approximates the non-reasoning output.
+     * Number of output tokens the model generated as internal reasoning, including the thinking-block delimiter tokens. Reflects the raw reasoning the model produced, not the (possibly shorter) summarized thinking text returned in the response body. Computed by re-tokenizing the raw reasoning text, so it may differ from the model's exact generation count by a small number of tokens. Always ≤ `output_tokens`; `output_tokens - thinking_tokens` approximates the non-reasoning output.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("thinking_tokens") val thinkingTokens: Long
 )

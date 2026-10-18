@@ -3,30 +3,23 @@
 
 package dev.octri.showcase.anthropic
 
-typealias CountMessageTokensParamsToolsItem =
-    dev.octri.showcase.anthropic.models.CountMessageTokensParamsToolsItem
+typealias CountMessageTokensParamsToolsItem = dev.octri.showcase.anthropic.models.CountMessageTokensParamsToolsItem
 
-typealias CountMessageTokensResponse =
-    dev.octri.showcase.anthropic.models.CountMessageTokensResponse
+typealias CountMessageTokensResponse = dev.octri.showcase.anthropic.models.CountMessageTokensResponse
 
 typealias CreateMessageBatchParams = dev.octri.showcase.anthropic.models.CreateMessageBatchParams
 
 typealias CreateMessageParams = dev.octri.showcase.anthropic.models.CreateMessageParams
 
-typealias CreateMessageParamsServiceTierEnum =
-    dev.octri.showcase.anthropic.models.CreateMessageParamsServiceTierEnum
+typealias CreateMessageParamsServiceTierEnum = dev.octri.showcase.anthropic.models.CreateMessageParamsServiceTierEnum
 
-typealias CreateMessageParamsToolsItem =
-    dev.octri.showcase.anthropic.models.CreateMessageParamsToolsItem
+typealias CreateMessageParamsToolsItem = dev.octri.showcase.anthropic.models.CreateMessageParamsToolsItem
 
-typealias CreateMessageParamsWithoutStream =
-    dev.octri.showcase.anthropic.models.CreateMessageParamsWithoutStream
+typealias CreateMessageParamsWithoutStream = dev.octri.showcase.anthropic.models.CreateMessageParamsWithoutStream
 
-typealias CreateMessageParamsWithoutStreamServiceTierEnum =
-    dev.octri.showcase.anthropic.models.CreateMessageParamsWithoutStreamServiceTierEnum
+typealias CreateMessageParamsWithoutStreamServiceTierEnum = dev.octri.showcase.anthropic.models.CreateMessageParamsWithoutStreamServiceTierEnum
 
-typealias CreateMessageParamsWithoutStreamToolsItem =
-    dev.octri.showcase.anthropic.models.CreateMessageParamsWithoutStreamToolsItem
+typealias CreateMessageParamsWithoutStreamToolsItem = dev.octri.showcase.anthropic.models.CreateMessageParamsWithoutStreamToolsItem
 
 typealias Default = dev.octri.showcase.anthropic.models.Default
 
@@ -36,14 +29,11 @@ typealias DeletedSkillTypeEnum = dev.octri.showcase.anthropic.models.DeletedSkil
 
 typealias DeletedSkillVersion = dev.octri.showcase.anthropic.models.DeletedSkillVersion
 
-typealias DeletedSkillVersionTypeEnum =
-    dev.octri.showcase.anthropic.models.DeletedSkillVersionTypeEnum
+typealias DeletedSkillVersionTypeEnum = dev.octri.showcase.anthropic.models.DeletedSkillVersionTypeEnum
 
-typealias DeleteMessageBatchResponse =
-    dev.octri.showcase.anthropic.models.DeleteMessageBatchResponse
+typealias DeleteMessageBatchResponse = dev.octri.showcase.anthropic.models.DeleteMessageBatchResponse
 
-typealias DeleteMessageBatchResponseTypeEnum =
-    dev.octri.showcase.anthropic.models.DeleteMessageBatchResponseTypeEnum
+typealias DeleteMessageBatchResponseTypeEnum = dev.octri.showcase.anthropic.models.DeleteMessageBatchResponseTypeEnum
 
 typealias DirectCaller = dev.octri.showcase.anthropic.models.DirectCaller
 
@@ -71,13 +61,11 @@ typealias ExpiredResultTypeEnum = dev.octri.showcase.anthropic.models.ExpiredRes
 
 typealias FileDeleteResponse = dev.octri.showcase.anthropic.models.FileDeleteResponse
 
-typealias FileDeleteResponseTypeEnum =
-    dev.octri.showcase.anthropic.models.FileDeleteResponseTypeEnum
+typealias FileDeleteResponseTypeEnum = dev.octri.showcase.anthropic.models.FileDeleteResponseTypeEnum
 
 typealias FileDocumentSource = dev.octri.showcase.anthropic.models.FileDocumentSource
 
-typealias FileDocumentSourceTypeEnum =
-    dev.octri.showcase.anthropic.models.FileDocumentSourceTypeEnum
+typealias FileDocumentSourceTypeEnum = dev.octri.showcase.anthropic.models.FileDocumentSourceTypeEnum
 
 typealias FileImageSource = dev.octri.showcase.anthropic.models.FileImageSource
 
@@ -87,21 +75,17 @@ typealias FileListResponse = dev.octri.showcase.anthropic.models.FileListRespons
 
 typealias FileMetadataSchema = dev.octri.showcase.anthropic.models.FileMetadataSchema
 
-typealias FileMetadataSchemaTypeEnum =
-    dev.octri.showcase.anthropic.models.FileMetadataSchemaTypeEnum
+typealias FileMetadataSchemaTypeEnum = dev.octri.showcase.anthropic.models.FileMetadataSchemaTypeEnum
 
 typealias GatewayTimeoutError = dev.octri.showcase.anthropic.models.GatewayTimeoutError
 
-typealias GatewayTimeoutErrorTypeEnum =
-    dev.octri.showcase.anthropic.models.GatewayTimeoutErrorTypeEnum
+typealias GatewayTimeoutErrorTypeEnum = dev.octri.showcase.anthropic.models.GatewayTimeoutErrorTypeEnum
 
 typealias InputContentBlock = dev.octri.showcase.anthropic.models.InputContentBlock
 
-typealias InputJsonContentBlockDelta =
-    dev.octri.showcase.anthropic.models.InputJsonContentBlockDelta
+typealias InputJsonContentBlockDelta = dev.octri.showcase.anthropic.models.InputJsonContentBlockDelta
 
-typealias InputJsonContentBlockDeltaTypeEnum =
-    dev.octri.showcase.anthropic.models.InputJsonContentBlockDeltaTypeEnum
+typealias InputJsonContentBlockDeltaTypeEnum = dev.octri.showcase.anthropic.models.InputJsonContentBlockDeltaTypeEnum
 
 typealias InputMessage = dev.octri.showcase.anthropic.models.InputMessage
 
@@ -113,8 +97,7 @@ typealias InputSchemaTypeEnum = dev.octri.showcase.anthropic.models.InputSchemaT
 
 typealias InvalidRequestError = dev.octri.showcase.anthropic.models.InvalidRequestError
 
-typealias InvalidRequestErrorTypeEnum =
-    dev.octri.showcase.anthropic.models.InvalidRequestErrorTypeEnum
+typealias InvalidRequestErrorTypeEnum = dev.octri.showcase.anthropic.models.InvalidRequestErrorTypeEnum
 
 typealias JsonOutputFormat = dev.octri.showcase.anthropic.models.JsonOutputFormat
 
@@ -122,53 +105,37 @@ typealias JsonOutputFormatTypeEnum = dev.octri.showcase.anthropic.models.JsonOut
 
 typealias JsonValue = dev.octri.showcase.anthropic.models.JsonValue
 
-typealias ListBetaOrganizationsAnalyticsAppsChatProjectsParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsAppsChatProjectsParameterItemEnum
+typealias ListBetaOrganizationsAnalyticsAppsChatProjectsParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsAppsChatProjectsParameterItemEnum
 
-typealias ListBetaOrganizationsAnalyticsAppsChatProjectsParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsAppsChatProjectsParameterVariant0Enum
+typealias ListBetaOrganizationsAnalyticsAppsChatProjectsParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsAppsChatProjectsParameterVariant0Enum
 
-typealias ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum
+typealias ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum
 
-typealias ListBetaOrganizationsAnalyticsConnectorsParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsConnectorsParameterItemEnum
+typealias ListBetaOrganizationsAnalyticsConnectorsParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsConnectorsParameterItemEnum
 
-typealias ListBetaOrganizationsAnalyticsConnectorsParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsConnectorsParameterVariant0Enum
+typealias ListBetaOrganizationsAnalyticsConnectorsParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsConnectorsParameterVariant0Enum
 
-typealias ListBetaOrganizationsAnalyticsPluginsParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsPluginsParameterItemEnum
+typealias ListBetaOrganizationsAnalyticsPluginsParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsPluginsParameterItemEnum
 
-typealias ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum
+typealias ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum
 
-typealias ListBetaOrganizationsAnalyticsSkillsParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsSkillsParameterItemEnum
+typealias ListBetaOrganizationsAnalyticsSkillsParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsSkillsParameterItemEnum
 
-typealias ListBetaOrganizationsAnalyticsSkillsParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsSkillsParameterVariant0Enum
+typealias ListBetaOrganizationsAnalyticsSkillsParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsSkillsParameterVariant0Enum
 
-typealias ListBetaOrganizationsAnalyticsUsersParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsUsersParameterItemEnum
+typealias ListBetaOrganizationsAnalyticsUsersParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsUsersParameterItemEnum
 
-typealias ListBetaOrganizationsAnalyticsUsersParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsUsersParameterVariant0Enum
+typealias ListBetaOrganizationsAnalyticsUsersParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsUsersParameterVariant0Enum
 
-typealias ListBetaOrganizationsApiKeysParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsApiKeysParameterVariant0Enum
+typealias ListBetaOrganizationsApiKeysParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsApiKeysParameterVariant0Enum
 
-typealias ListBetaOrganizationsInvitesParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsInvitesParameterItemEnum
+typealias ListBetaOrganizationsInvitesParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsInvitesParameterItemEnum
 
-typealias ListBetaOrganizationsRateLimitsParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsRateLimitsParameterVariant0Enum
+typealias ListBetaOrganizationsRateLimitsParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsRateLimitsParameterVariant0Enum
 
-typealias ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum
+typealias ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum
 
-typealias ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum
+typealias ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum = dev.octri.showcase.anthropic.models.ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum
 
 typealias ListResponseMessageBatch = dev.octri.showcase.anthropic.models.ListResponseMessageBatch
 
@@ -180,27 +147,21 @@ typealias ListSkillVersionsResponse = dev.octri.showcase.anthropic.models.ListSk
 
 typealias MemoryTool20250818 = dev.octri.showcase.anthropic.models.MemoryTool20250818
 
-typealias MemoryTool20250818NameEnum =
-    dev.octri.showcase.anthropic.models.MemoryTool20250818NameEnum
+typealias MemoryTool20250818NameEnum = dev.octri.showcase.anthropic.models.MemoryTool20250818NameEnum
 
-typealias MemoryTool20250818TypeEnum =
-    dev.octri.showcase.anthropic.models.MemoryTool20250818TypeEnum
+typealias MemoryTool20250818TypeEnum = dev.octri.showcase.anthropic.models.MemoryTool20250818TypeEnum
 
 typealias Message = dev.octri.showcase.anthropic.models.Message
 
 typealias MessageBatch = dev.octri.showcase.anthropic.models.MessageBatch
 
-typealias MessageBatchIndividualRequestParams =
-    dev.octri.showcase.anthropic.models.MessageBatchIndividualRequestParams
+typealias MessageBatchIndividualRequestParams = dev.octri.showcase.anthropic.models.MessageBatchIndividualRequestParams
 
-typealias MessageBatchIndividualResponse =
-    dev.octri.showcase.anthropic.models.MessageBatchIndividualResponse
+typealias MessageBatchIndividualResponse = dev.octri.showcase.anthropic.models.MessageBatchIndividualResponse
 
-typealias MessageBatchIndividualResponseResult =
-    dev.octri.showcase.anthropic.models.MessageBatchIndividualResponseResult
+typealias MessageBatchIndividualResponseResult = dev.octri.showcase.anthropic.models.MessageBatchIndividualResponseResult
 
-typealias MessageBatchProcessingStatusEnum =
-    dev.octri.showcase.anthropic.models.MessageBatchProcessingStatusEnum
+typealias MessageBatchProcessingStatusEnum = dev.octri.showcase.anthropic.models.MessageBatchProcessingStatusEnum
 
 typealias MessageBatchTypeEnum = dev.octri.showcase.anthropic.models.MessageBatchTypeEnum
 
@@ -288,8 +249,7 @@ typealias PermissionErrorTypeEnum = dev.octri.showcase.anthropic.models.Permissi
 
 typealias PlainTextSource = dev.octri.showcase.anthropic.models.PlainTextSource
 
-typealias PlainTextSourceMediaTypeEnum =
-    dev.octri.showcase.anthropic.models.PlainTextSourceMediaTypeEnum
+typealias PlainTextSourceMediaTypeEnum = dev.octri.showcase.anthropic.models.PlainTextSourceMediaTypeEnum
 
 typealias PlainTextSourceTypeEnum = dev.octri.showcase.anthropic.models.PlainTextSourceTypeEnum
 
@@ -301,106 +261,75 @@ typealias RefusalCategory = dev.octri.showcase.anthropic.models.RefusalCategory
 
 typealias RefusalStopDetails = dev.octri.showcase.anthropic.models.RefusalStopDetails
 
-typealias RefusalStopDetailsTypeEnum =
-    dev.octri.showcase.anthropic.models.RefusalStopDetailsTypeEnum
+typealias RefusalStopDetailsTypeEnum = dev.octri.showcase.anthropic.models.RefusalStopDetailsTypeEnum
 
-typealias RequestBashCodeExecutionOutputBlock =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionOutputBlock
+typealias RequestBashCodeExecutionOutputBlock = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionOutputBlock
 
-typealias RequestBashCodeExecutionOutputBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionOutputBlockTypeEnum
+typealias RequestBashCodeExecutionOutputBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionOutputBlockTypeEnum
 
-typealias RequestBashCodeExecutionResultBlock =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionResultBlock
+typealias RequestBashCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionResultBlock
 
-typealias RequestBashCodeExecutionResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionResultBlockTypeEnum
+typealias RequestBashCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionResultBlockTypeEnum
 
-typealias RequestBashCodeExecutionToolResultBlock =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultBlock
+typealias RequestBashCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultBlock
 
-typealias RequestBashCodeExecutionToolResultBlockContent =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultBlockContent
+typealias RequestBashCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultBlockContent
 
-typealias RequestBashCodeExecutionToolResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultBlockTypeEnum
+typealias RequestBashCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultBlockTypeEnum
 
-typealias RequestBashCodeExecutionToolResultError =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultError
+typealias RequestBashCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultError
 
-typealias RequestBashCodeExecutionToolResultErrorTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultErrorTypeEnum
+typealias RequestBashCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.RequestBashCodeExecutionToolResultErrorTypeEnum
 
 typealias RequestBrowserStateBlock = dev.octri.showcase.anthropic.models.RequestBrowserStateBlock
 
-typealias RequestBrowserStateBlockStateChangesItem =
-    dev.octri.showcase.anthropic.models.RequestBrowserStateBlockStateChangesItem
+typealias RequestBrowserStateBlockStateChangesItem = dev.octri.showcase.anthropic.models.RequestBrowserStateBlockStateChangesItem
 
-typealias RequestBrowserStateBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestBrowserStateBlockTypeEnum
+typealias RequestBrowserStateBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestBrowserStateBlockTypeEnum
 
-typealias RequestCharLocationCitation =
-    dev.octri.showcase.anthropic.models.RequestCharLocationCitation
+typealias RequestCharLocationCitation = dev.octri.showcase.anthropic.models.RequestCharLocationCitation
 
-typealias RequestCharLocationCitationTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestCharLocationCitationTypeEnum
+typealias RequestCharLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.RequestCharLocationCitationTypeEnum
 
 typealias RequestCitationsConfig = dev.octri.showcase.anthropic.models.RequestCitationsConfig
 
-typealias RequestCodeExecutionOutputBlock =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionOutputBlock
+typealias RequestCodeExecutionOutputBlock = dev.octri.showcase.anthropic.models.RequestCodeExecutionOutputBlock
 
-typealias RequestCodeExecutionOutputBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionOutputBlockTypeEnum
+typealias RequestCodeExecutionOutputBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestCodeExecutionOutputBlockTypeEnum
 
-typealias RequestCodeExecutionResultBlock =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionResultBlock
+typealias RequestCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.RequestCodeExecutionResultBlock
 
-typealias RequestCodeExecutionResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionResultBlockTypeEnum
+typealias RequestCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestCodeExecutionResultBlockTypeEnum
 
-typealias RequestCodeExecutionToolResultBlock =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultBlock
+typealias RequestCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultBlock
 
-typealias RequestCodeExecutionToolResultBlockContent =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultBlockContent
+typealias RequestCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultBlockContent
 
-typealias RequestCodeExecutionToolResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultBlockTypeEnum
+typealias RequestCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultBlockTypeEnum
 
-typealias RequestCodeExecutionToolResultError =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultError
+typealias RequestCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultError
 
-typealias RequestCodeExecutionToolResultErrorTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultErrorTypeEnum
+typealias RequestCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.RequestCodeExecutionToolResultErrorTypeEnum
 
-typealias RequestContainerUploadBlock =
-    dev.octri.showcase.anthropic.models.RequestContainerUploadBlock
+typealias RequestContainerUploadBlock = dev.octri.showcase.anthropic.models.RequestContainerUploadBlock
 
-typealias RequestContainerUploadBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestContainerUploadBlockTypeEnum
+typealias RequestContainerUploadBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestContainerUploadBlockTypeEnum
 
-typealias RequestContentBlockLocationCitation =
-    dev.octri.showcase.anthropic.models.RequestContentBlockLocationCitation
+typealias RequestContentBlockLocationCitation = dev.octri.showcase.anthropic.models.RequestContentBlockLocationCitation
 
-typealias RequestContentBlockLocationCitationTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestContentBlockLocationCitationTypeEnum
+typealias RequestContentBlockLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.RequestContentBlockLocationCitationTypeEnum
 
 typealias RequestCounts = dev.octri.showcase.anthropic.models.RequestCounts
 
 typealias RequestDocumentBlock = dev.octri.showcase.anthropic.models.RequestDocumentBlock
 
-typealias RequestDocumentBlockSource =
-    dev.octri.showcase.anthropic.models.RequestDocumentBlockSource
+typealias RequestDocumentBlockSource = dev.octri.showcase.anthropic.models.RequestDocumentBlockSource
 
-typealias RequestDocumentBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestDocumentBlockTypeEnum
+typealias RequestDocumentBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestDocumentBlockTypeEnum
 
-typealias RequestEncryptedCodeExecutionResultBlock =
-    dev.octri.showcase.anthropic.models.RequestEncryptedCodeExecutionResultBlock
+typealias RequestEncryptedCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.RequestEncryptedCodeExecutionResultBlock
 
-typealias RequestEncryptedCodeExecutionResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestEncryptedCodeExecutionResultBlockTypeEnum
+typealias RequestEncryptedCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestEncryptedCodeExecutionResultBlockTypeEnum
 
 typealias RequestImageBlock = dev.octri.showcase.anthropic.models.RequestImageBlock
 
@@ -408,143 +337,102 @@ typealias RequestImageBlockSource = dev.octri.showcase.anthropic.models.RequestI
 
 typealias RequestImageBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestImageBlockTypeEnum
 
-typealias RequestImageTransformations =
-    dev.octri.showcase.anthropic.models.RequestImageTransformations
+typealias RequestImageTransformations = dev.octri.showcase.anthropic.models.RequestImageTransformations
 
-typealias RequestImageTransformationsOversizedImageEnum =
-    dev.octri.showcase.anthropic.models.RequestImageTransformationsOversizedImageEnum
+typealias RequestImageTransformationsOversizedImageEnum = dev.octri.showcase.anthropic.models.RequestImageTransformationsOversizedImageEnum
 
-typealias RequestPageLocationCitation =
-    dev.octri.showcase.anthropic.models.RequestPageLocationCitation
+typealias RequestPageLocationCitation = dev.octri.showcase.anthropic.models.RequestPageLocationCitation
 
-typealias RequestPageLocationCitationTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestPageLocationCitationTypeEnum
+typealias RequestPageLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.RequestPageLocationCitationTypeEnum
 
-typealias RequestRedactedThinkingBlock =
-    dev.octri.showcase.anthropic.models.RequestRedactedThinkingBlock
+typealias RequestRedactedThinkingBlock = dev.octri.showcase.anthropic.models.RequestRedactedThinkingBlock
 
-typealias RequestRedactedThinkingBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestRedactedThinkingBlockTypeEnum
+typealias RequestRedactedThinkingBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestRedactedThinkingBlockTypeEnum
 
 typealias RequestSearchResultBlock = dev.octri.showcase.anthropic.models.RequestSearchResultBlock
 
-typealias RequestSearchResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestSearchResultBlockTypeEnum
+typealias RequestSearchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestSearchResultBlockTypeEnum
 
-typealias RequestSearchResultLocationCitation =
-    dev.octri.showcase.anthropic.models.RequestSearchResultLocationCitation
+typealias RequestSearchResultLocationCitation = dev.octri.showcase.anthropic.models.RequestSearchResultLocationCitation
 
-typealias RequestSearchResultLocationCitationTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestSearchResultLocationCitationTypeEnum
+typealias RequestSearchResultLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.RequestSearchResultLocationCitationTypeEnum
 
 typealias RequestServerToolUseBlock = dev.octri.showcase.anthropic.models.RequestServerToolUseBlock
 
-typealias RequestServerToolUseBlockCaller =
-    dev.octri.showcase.anthropic.models.RequestServerToolUseBlockCaller
+typealias RequestServerToolUseBlockCaller = dev.octri.showcase.anthropic.models.RequestServerToolUseBlockCaller
 
-typealias RequestServerToolUseBlockNameEnum =
-    dev.octri.showcase.anthropic.models.RequestServerToolUseBlockNameEnum
+typealias RequestServerToolUseBlockNameEnum = dev.octri.showcase.anthropic.models.RequestServerToolUseBlockNameEnum
 
-typealias RequestServerToolUseBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestServerToolUseBlockTypeEnum
+typealias RequestServerToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestServerToolUseBlockTypeEnum
 
 typealias RequestTextBlock = dev.octri.showcase.anthropic.models.RequestTextBlock
 
-typealias RequestTextBlockCitationsItem =
-    dev.octri.showcase.anthropic.models.RequestTextBlockCitationsItem
+typealias RequestTextBlockCitationsItem = dev.octri.showcase.anthropic.models.RequestTextBlockCitationsItem
 
 typealias RequestTextBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestTextBlockTypeEnum
 
-typealias RequestTextEditorCodeExecutionCreateResultBlock =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionCreateResultBlock
+typealias RequestTextEditorCodeExecutionCreateResultBlock = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionCreateResultBlock
 
-typealias RequestTextEditorCodeExecutionCreateResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionCreateResultBlockTypeEnum
+typealias RequestTextEditorCodeExecutionCreateResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionCreateResultBlockTypeEnum
 
-typealias RequestTextEditorCodeExecutionStrReplaceResultBlock =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionStrReplaceResultBlock
+typealias RequestTextEditorCodeExecutionStrReplaceResultBlock = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionStrReplaceResultBlock
 
-typealias RequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum
+typealias RequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum
 
-typealias RequestTextEditorCodeExecutionToolResultBlock =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultBlock
+typealias RequestTextEditorCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultBlock
 
-typealias RequestTextEditorCodeExecutionToolResultBlockContent =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultBlockContent
+typealias RequestTextEditorCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultBlockContent
 
-typealias RequestTextEditorCodeExecutionToolResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultBlockTypeEnum
+typealias RequestTextEditorCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultBlockTypeEnum
 
-typealias RequestTextEditorCodeExecutionToolResultError =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultError
+typealias RequestTextEditorCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultError
 
-typealias RequestTextEditorCodeExecutionToolResultErrorTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultErrorTypeEnum
+typealias RequestTextEditorCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionToolResultErrorTypeEnum
 
-typealias RequestTextEditorCodeExecutionViewResultBlock =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionViewResultBlock
+typealias RequestTextEditorCodeExecutionViewResultBlock = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionViewResultBlock
 
-typealias RequestTextEditorCodeExecutionViewResultBlockFileTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionViewResultBlockFileTypeEnum
+typealias RequestTextEditorCodeExecutionViewResultBlockFileTypeEnum = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionViewResultBlockFileTypeEnum
 
-typealias RequestTextEditorCodeExecutionViewResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionViewResultBlockTypeEnum
+typealias RequestTextEditorCodeExecutionViewResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestTextEditorCodeExecutionViewResultBlockTypeEnum
 
 typealias RequestThinkingBlock = dev.octri.showcase.anthropic.models.RequestThinkingBlock
 
-typealias RequestThinkingBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestThinkingBlockTypeEnum
+typealias RequestThinkingBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestThinkingBlockTypeEnum
 
 typealias RequestToolReferenceBlock = dev.octri.showcase.anthropic.models.RequestToolReferenceBlock
 
-typealias RequestToolReferenceBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestToolReferenceBlockTypeEnum
+typealias RequestToolReferenceBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestToolReferenceBlockTypeEnum
 
 typealias RequestToolResultBlock = dev.octri.showcase.anthropic.models.RequestToolResultBlock
 
-typealias RequestToolResultBlockContentItem =
-    dev.octri.showcase.anthropic.models.RequestToolResultBlockContentItem
+typealias RequestToolResultBlockContentItem = dev.octri.showcase.anthropic.models.RequestToolResultBlockContentItem
 
-typealias RequestToolResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestToolResultBlockTypeEnum
+typealias RequestToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestToolResultBlockTypeEnum
 
-typealias RequestToolSearchToolResultBlock =
-    dev.octri.showcase.anthropic.models.RequestToolSearchToolResultBlock
+typealias RequestToolSearchToolResultBlock = dev.octri.showcase.anthropic.models.RequestToolSearchToolResultBlock
 
-typealias RequestToolSearchToolResultBlockContent =
-    dev.octri.showcase.anthropic.models.RequestToolSearchToolResultBlockContent
+typealias RequestToolSearchToolResultBlockContent = dev.octri.showcase.anthropic.models.RequestToolSearchToolResultBlockContent
 
-typealias RequestToolSearchToolResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestToolSearchToolResultBlockTypeEnum
+typealias RequestToolSearchToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestToolSearchToolResultBlockTypeEnum
 
-typealias RequestToolSearchToolResultError =
-    dev.octri.showcase.anthropic.models.RequestToolSearchToolResultError
+typealias RequestToolSearchToolResultError = dev.octri.showcase.anthropic.models.RequestToolSearchToolResultError
 
-typealias RequestToolSearchToolResultErrorTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestToolSearchToolResultErrorTypeEnum
+typealias RequestToolSearchToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.RequestToolSearchToolResultErrorTypeEnum
 
-typealias RequestToolSearchToolSearchResultBlock =
-    dev.octri.showcase.anthropic.models.RequestToolSearchToolSearchResultBlock
+typealias RequestToolSearchToolSearchResultBlock = dev.octri.showcase.anthropic.models.RequestToolSearchToolSearchResultBlock
 
-typealias RequestToolSearchToolSearchResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestToolSearchToolSearchResultBlockTypeEnum
+typealias RequestToolSearchToolSearchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestToolSearchToolSearchResultBlockTypeEnum
 
 typealias RequestToolUseBlock = dev.octri.showcase.anthropic.models.RequestToolUseBlock
 
 typealias RequestToolUseBlockCaller = dev.octri.showcase.anthropic.models.RequestToolUseBlockCaller
 
-typealias RequestToolUseBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestToolUseBlockTypeEnum
+typealias RequestToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestToolUseBlockTypeEnum
 
-typealias RequestWebFetchResultBlock =
-    dev.octri.showcase.anthropic.models.RequestWebFetchResultBlock
+typealias RequestWebFetchResultBlock = dev.octri.showcase.anthropic.models.RequestWebFetchResultBlock
 
-typealias RequestWebFetchResultBlockTypeEnum =
-    dev.octri.showcase.anthropic.models.RequestWebFetchResultBlockTypeEnum
+typealias RequestWebFetchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.RequestWebFetchResultBlockTypeEnum
 
-typealias RequestWebFetchToolResultBlock =
-    dev.octri.showcase.anthropic.models.RequestWebFetchToolResultBlock
+typealias RequestWebFetchToolResultBlock = dev.octri.showcase.anthropic.models.RequestWebFetchToolResultBlock
 
-typealias RequestWebFetchToolResultBlockCaller =
-    dev.octri.showcase.anthropic.models.RequestWebFetchToolResultBlockCaller
+typealias RequestWebFetchToolResultBlockCaller = dev.octri.showcase.anthropic.models.RequestWebFetchToolResultBlockCaller

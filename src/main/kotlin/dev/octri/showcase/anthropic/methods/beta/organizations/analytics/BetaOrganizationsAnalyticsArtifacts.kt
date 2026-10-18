@@ -15,155 +15,86 @@ import java.time.LocalDate
 
 object BetaOrganizationsAnalyticsArtifacts {
 
+
     /**
-     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full
-     * (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for
-     * grouped queries, which paginate. The cube can be broken out per product, per member, or per
-     * RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the
-     * `read:analytics` scope.
+     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for grouped queries, which paginate. The cube can be broken out per product, per member, or per RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the `read:analytics` scope.
      *
-     * @param date UTC date in YYYY-MM-DD format. The day to get artifact activity for. Data is
-     *   typically available with a 1-day lag (varies by query; the error for a too-recent date
-     *   names the latest available day) and may be revised by a few percent over the following
-     *   days. No earlier than 2026-01-01.
-     * @param limit Maximum rows to return (1-1000, default 100). The ungrouped artifact-type cube
-     *   is finite and returned in full; `limit` is the page size only when `group_by[]` multiplies
-     *   the cube.
-     * @param page Opaque cursor from a previous response's `next_page` field. Only valid with
-     *   `group_by[]` — the ungrouped cube is never paginated.
+     * @param date UTC date in YYYY-MM-DD format. The day to get artifact activity
+     *   for. Data is typically available with a 1-day lag (varies by query; the error
+     *   for a too-recent date names the latest available day) and may be revised by a
+     *   few percent over the following days. No earlier than 2026-01-01.
+     * @param limit Maximum rows to return (1-1000, default 100). The ungrouped
+     *   artifact-type cube is finite and returned in full; `limit` is the page size
+     *   only when `group_by[]` multiplies the cube.
+     * @param page Opaque cursor from a previous response's `next_page` field. Only
+     *   valid with `group_by[]` — the ungrouped cube is never paginated.
      * @param groupBy Dimensions to break results out by: `product`, `user_id` and/or
-     *   `rbac_group_id`. The ungrouped artifact-type cube is finite and returned in full; grouped
-     *   queries multiply the cube and paginate via `next_page`. `product` takes the values `chat`,
-     *   `claude_code`, or `cowork` (the surfaces that create artifacts). `rbac_group_id` attributes
-     *   a user to every group they held at any point during the requested UTC day, so grouped rows
-     *   are not an exclusive partition. At most 100 entries.
-     * @param filter Filters as `dimension:value`, e.g. `filter[]=rbac_group_id:{id}`. Repeat the
-     *   param for OR within a dimension and across dimensions for AND. Supported dimensions on this
-     *   endpoint: `artifact_type`, `is_shared`, `product`, `rbac_group_id`, `user_id`. Value forms:
-     *   `artifact_type` is a canonical artifact MIME type (e.g. `text/markdown`) or `other`;
-     *   `is_shared` is `true` or `false`; `product` is `chat`, `claude_code`, or `cowork` (the
-     *   surfaces that create artifacts);…
+     *   `rbac_group_id`. The ungrouped artifact-type cube is finite and returned in
+     *   full; grouped queries multiply the cube and paginate via `next_page`.
+     *   `product` takes the values `chat`, `claude_code`, or `cowork` (the surfaces
+     *   that create artifacts). `rbac_group_id` attributes a user to every group they
+     *   held at any point during the requested UTC day, so grouped rows are not an
+     *   exclusive partition. At most 100 entries.
+     * @param filter Filters as `dimension:value`, e.g.
+     *   `filter[]=rbac_group_id:{id}`. Repeat the param for OR within a dimension and
+     *   across dimensions for AND. Supported dimensions on this endpoint:
+     *   `artifact_type`, `is_shared`, `product`, `rbac_group_id`, `user_id`. Value
+     *   forms: `artifact_type` is a canonical artifact MIME type (e.g.
+     *   `text/markdown`) or `other`; `is_shared` is `true` or `false`; `product` is
+     *   `chat`, `claude_code`, or `cowork` (the surfaces that create artifacts);…
      */
-    fun listBetaOrganizationsAnalyticsArtifacts(
-        clientConfig: ClientConfig,
-        date: LocalDate,
-        limit: SdkClient.SdkOptional<Long?>? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        groupBy:
-            SdkClient.SdkOptional<
-                List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?
-            >? =
-            null,
-        filter: SdkClient.SdkOptional<List<String>?>? = null,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsArtifactsResponse {
+    fun listBetaOrganizationsAnalyticsArtifacts(clientConfig: ClientConfig, date: LocalDate, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?>? = null, filter: SdkClient.SdkOptional<List<String>?>? = null, options: RequestOptions? = null): BetaAnalyticsArtifactsResponse {
         Validation.validateDate("date", date)
 
         val groupByValue = groupBy?.getOrNull()
-        if (groupByValue != null) {
+if (groupByValue != null) {
             Validation.validateItems("group_by[]", groupByValue, Validation.LengthOpts(max = 100))
-        }
+}
 
         val filterValue = filter?.getOrNull()
-        if (filterValue != null) {
+if (filterValue != null) {
             Validation.validateItems("filter[]", filterValue, Validation.LengthOpts(max = 100))
-        }
+}
 
-        return SdkClient.request<BetaAnalyticsArtifactsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/analytics/artifacts?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "date" to SdkClient.queryValue(date, "form", true, "date"),
-                            "limit" to SdkClient.queryValue(limit, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "group_by[]" to SdkClient.queryValue(groupBy, "form", true),
-                            "filter[]" to SdkClient.queryValue(filter, "form", true),
-                        ),
-                    operationId = "listBetaOrganizationsAnalyticsArtifacts",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaAnalyticsArtifactsResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/analytics/artifacts?beta=true", config = clientConfig, query = mapOf("date" to SdkClient.queryValue(date, "form", true, "date"), "limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true), "group_by[]" to SdkClient.queryValue(groupBy, "form", true), "filter[]" to SdkClient.queryValue(filter, "form", true)), operationId = "listBetaOrganizationsAnalyticsArtifacts", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
     /**
-     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full
-     * (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for
-     * grouped queries, which paginate. The cube can be broken out per product, per member, or per
-     * RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the
-     * `read:analytics` scope.
+     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for grouped queries, which paginate. The cube can be broken out per product, per member, or per RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the `read:analytics` scope.
      *
-     * @param date UTC date in YYYY-MM-DD format. The day to get artifact activity for. Data is
-     *   typically available with a 1-day lag (varies by query; the error for a too-recent date
-     *   names the latest available day) and may be revised by a few percent over the following
-     *   days. No earlier than 2026-01-01.
-     * @param limit Maximum rows to return (1-1000, default 100). The ungrouped artifact-type cube
-     *   is finite and returned in full; `limit` is the page size only when `group_by[]` multiplies
-     *   the cube.
-     * @param page Opaque cursor from a previous response's `next_page` field. Only valid with
-     *   `group_by[]` — the ungrouped cube is never paginated.
+     * @param date UTC date in YYYY-MM-DD format. The day to get artifact activity
+     *   for. Data is typically available with a 1-day lag (varies by query; the error
+     *   for a too-recent date names the latest available day) and may be revised by a
+     *   few percent over the following days. No earlier than 2026-01-01.
+     * @param limit Maximum rows to return (1-1000, default 100). The ungrouped
+     *   artifact-type cube is finite and returned in full; `limit` is the page size
+     *   only when `group_by[]` multiplies the cube.
+     * @param page Opaque cursor from a previous response's `next_page` field. Only
+     *   valid with `group_by[]` — the ungrouped cube is never paginated.
      * @param groupBy Dimensions to break results out by: `product`, `user_id` and/or
-     *   `rbac_group_id`. The ungrouped artifact-type cube is finite and returned in full; grouped
-     *   queries multiply the cube and paginate via `next_page`. `product` takes the values `chat`,
-     *   `claude_code`, or `cowork` (the surfaces that create artifacts). `rbac_group_id` attributes
-     *   a user to every group they held at any point during the requested UTC day, so grouped rows
-     *   are not an exclusive partition. At most 100 entries.
-     * @param filter Filters as `dimension:value`, e.g. `filter[]=rbac_group_id:{id}`. Repeat the
-     *   param for OR within a dimension and across dimensions for AND. Supported dimensions on this
-     *   endpoint: `artifact_type`, `is_shared`, `product`, `rbac_group_id`, `user_id`. Value forms:
-     *   `artifact_type` is a canonical artifact MIME type (e.g. `text/markdown`) or `other`;
-     *   `is_shared` is `true` or `false`; `product` is `chat`, `claude_code`, or `cowork` (the
-     *   surfaces that create artifacts);…
+     *   `rbac_group_id`. The ungrouped artifact-type cube is finite and returned in
+     *   full; grouped queries multiply the cube and paginate via `next_page`.
+     *   `product` takes the values `chat`, `claude_code`, or `cowork` (the surfaces
+     *   that create artifacts). `rbac_group_id` attributes a user to every group they
+     *   held at any point during the requested UTC day, so grouped rows are not an
+     *   exclusive partition. At most 100 entries.
+     * @param filter Filters as `dimension:value`, e.g.
+     *   `filter[]=rbac_group_id:{id}`. Repeat the param for OR within a dimension and
+     *   across dimensions for AND. Supported dimensions on this endpoint:
+     *   `artifact_type`, `is_shared`, `product`, `rbac_group_id`, `user_id`. Value
+     *   forms: `artifact_type` is a canonical artifact MIME type (e.g.
+     *   `text/markdown`) or `other`; `is_shared` is `true` or `false`; `product` is
+     *   `chat`, `claude_code`, or `cowork` (the surfaces that create artifacts);…
      */
-    fun listBetaOrganizationsAnalyticsArtifactsPaginated(
-        clientConfig: ClientConfig,
-        date: LocalDate,
-        limit: SdkClient.SdkOptional<Long?>? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        groupBy:
-            SdkClient.SdkOptional<
-                List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?
-            >? =
-            null,
-        filter: SdkClient.SdkOptional<List<String>?>? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsArtifactActivity) -> Boolean,
-    ) {
+    fun listBetaOrganizationsAnalyticsArtifactsPaginated(clientConfig: ClientConfig, date: LocalDate, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?>? = null, filter: SdkClient.SdkOptional<List<String>?>? = null, options: RequestOptions? = null, yieldFn: (BetaAnalyticsArtifactActivity) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                listBetaOrganizationsAnalyticsArtifacts(
-                    clientConfig,
-                    date,
-                    limit,
-                    cursor,
-                    groupBy,
-                    filter,
-                    options,
-                )
+            val page = listBetaOrganizationsAnalyticsArtifacts(clientConfig, date, limit, cursor, groupBy, filter, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -180,40 +111,20 @@ object BetaOrganizationsAnalyticsArtifacts {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsAnalyticsArtifactsPages(
-        clientConfig: ClientConfig,
-        date: LocalDate,
-        limit: SdkClient.SdkOptional<Long?>? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        groupBy:
-            SdkClient.SdkOptional<
-                List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?
-            >? =
-            null,
-        filter: SdkClient.SdkOptional<List<String>?>? = null,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaOrganizationsAnalyticsArtifactsPage) -> Boolean,
-    ) {
+    fun listBetaOrganizationsAnalyticsArtifactsPages(clientConfig: ClientConfig, date: LocalDate, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?>? = null, filter: SdkClient.SdkOptional<List<String>?>? = null, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsAnalyticsArtifactsPage) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                listBetaOrganizationsAnalyticsArtifacts(
-                    clientConfig,
-                    date,
-                    limit,
-                    cursor,
-                    groupBy,
-                    filter,
-                    options,
-                )
+            val page = listBetaOrganizationsAnalyticsArtifacts(clientConfig, date, limit, cursor, groupBy, filter, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
             val hasMore = nextCursor != null
-            if (!yieldPage(ListBetaOrganizationsAnalyticsArtifactsPage(page, items, hasMore)))
-                return
+            if (!yieldPage(ListBetaOrganizationsAnalyticsArtifactsPage(page, items, hasMore))) return
             if (!hasMore) return
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
+
+
+
 }

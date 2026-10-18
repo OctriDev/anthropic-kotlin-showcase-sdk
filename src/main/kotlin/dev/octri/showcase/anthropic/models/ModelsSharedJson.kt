@@ -3,13 +3,21 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `JsonOutputFormat` API schema. */
+/**
+ * Typed representation of the `JsonOutputFormat` API schema.
+ */
 data class JsonOutputFormat(
-    /** The JSON schema of the format */
+    /**
+     * The JSON schema of the format
+     */
     val schema: Map<String, Any>,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: JsonOutputFormatTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: JsonOutputFormatTypeEnum
 )
 
-/** Typed representation of the `JsonValue` API schema. */
+/**
+ * Typed representation of the `JsonValue` API schema.
+ */
 class JsonValue

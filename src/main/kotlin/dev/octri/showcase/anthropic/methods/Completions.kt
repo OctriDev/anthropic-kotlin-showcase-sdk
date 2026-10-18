@@ -15,6 +15,7 @@ import dev.octri.showcase.anthropic.Validation
 
 object Completions {
 
+
     /** Parameters for [createCompletions]. */
     data class CreateCompletionsRequest(
         val model: Model,
@@ -28,138 +29,81 @@ object Completions {
         val topP: Double? = null,
         val topK: Long? = null,
         val metadata: Metadata? = null,
-        val stream: Boolean? = null,
+        val stream: Boolean? = null
     )
 
     /**
-     * Legacy] Create a Text Completion. The Text Completions API is a legacy API. We recommend
-     * using the \[Messages API going forward. Future models and features will not be compatible
-     * with Text Completions. See our migration guide for guidance in migrating from Text
-     * Completions to Messages.
+     * Legacy] Create a Text Completion. The Text Completions API is a legacy API. We recommend using the \[Messages API going forward. Future models and features will not be compatible with Text Completions. See our migration guide for guidance in migrating from Text Completions to Messages.
      *
-     * @param model The model that will complete your prompt. See models for additional details and
-     *   options.
-     * @param prompt The prompt that you want Claude to complete. For proper response generation you
-     *   will need to format your prompt using alternating `\n\nHuman:` and `\n\nAssistant:`
-     *   conversational turns. For example: ``` "\n\nHuman: {userQuestion}\n\nAssistant:" ``` See
-     *   prompt validation and our guide to prompt design for more details.
-     * @param maxTokensToSample The maximum number of tokens to generate before stopping. Note that
-     *   our models may stop _before_ reaching this maximum. This parameter only specifies the
-     *   absolute maximum number of tokens to generate.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
-     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
-     *   multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
-     * @param stopSequences Sequences that will cause the model to stop generating. Our models stop
-     *   on `"\n\nHuman:"`, and may include additional built-in stop sequences in the future. By
-     *   providing the stop_sequences parameter, you may include additional strings that will cause
-     *   the model to stop generating.
-     * @param temperature Amount of randomness injected into the response. Defaults to `1.0`. Ranges
-     *   from `0.0` to `1.0`. Use `temperature` closer to `0.0` for analytical / multiple choice,
-     *   and closer to `1.0` for creative and generative tasks. Note that even with `temperature` of
-     *   `0.0`, the results will not be fully deterministic.
-     * @param topP Use nucleus sampling. In nucleus sampling, we compute the cumulative distribution
-     *   over all the options for each subsequent token in decreasing probability order and cut it
-     *   off once it reaches a particular probability specified by `top_p`. Recommended for advanced
-     *   use cases only.
-     * @param topK Only sample from the top K options for each subsequent token. Used to remove
-     *   "long tail" low probability responses. Learn more technical details here. Recommended for
-     *   advanced use cases only.
+     * @param model The model that will complete your prompt. See models for
+     *   additional details and options.
+     * @param prompt The prompt that you want Claude to complete. For proper response
+     *   generation you will need to format your prompt using alternating `\n\nHuman:`
+     *   and `\n\nAssistant:` conversational turns. For example: ``` "\n\nHuman:
+     *   {userQuestion}\n\nAssistant:" ``` See prompt validation and our guide to
+     *   prompt design for more details.
+     * @param maxTokensToSample The maximum number of tokens to generate before
+     *   stopping. Note that our models may stop _before_ reaching this maximum. This
+     *   parameter only specifies the absolute maximum number of tokens to generate.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want
+     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
+     *   or specify the header multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     * @param stopSequences Sequences that will cause the model to stop generating.
+     *   Our models stop on `"\n\nHuman:"`, and may include additional built-in stop
+     *   sequences in the future. By providing the stop_sequences parameter, you may
+     *   include additional strings that will cause the model to stop generating.
+     * @param temperature Amount of randomness injected into the response. Defaults
+     *   to `1.0`. Ranges from `0.0` to `1.0`. Use `temperature` closer to `0.0` for
+     *   analytical / multiple choice, and closer to `1.0` for creative and generative
+     *   tasks. Note that even with `temperature` of `0.0`, the results will not be
+     *   fully deterministic.
+     * @param topP Use nucleus sampling. In nucleus sampling, we compute the
+     *   cumulative distribution over all the options for each subsequent token in
+     *   decreasing probability order and cut it off once it reaches a particular
+     *   probability specified by `top_p`. Recommended for advanced use cases only.
+     * @param topK Only sample from the top K options for each subsequent token. Used
+     *   to remove "long tail" low probability responses. Learn more technical details
+     *   here. Recommended for advanced use cases only.
      * @param metadata An object describing metadata about the request.
-     * @param stream Whether to incrementally stream the response using server-sent events. See
-     *   streaming for details.
+     * @param stream Whether to incrementally stream the response using server-sent
+     *   events. See streaming for details.
      */
-    fun createCompletions(
-        clientConfig: ClientConfig,
-        request: CreateCompletionsRequest,
-        options: RequestOptions? = null,
-    ): CompletionResponse {
+    fun createCompletions(clientConfig: ClientConfig, request: CreateCompletionsRequest, options: RequestOptions? = null): CompletionResponse {
         validateCreateCompletionsRequest(request)
 
-        return SdkClient.request<CompletionResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/complete",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "model" to (request.model),
-                            "prompt" to (request.prompt),
-                            "max_tokens_to_sample" to (request.maxTokensToSample),
-                            "stop_sequences" to (SdkClient.omitIfNull(request.stopSequences)),
-                            "temperature" to (SdkClient.omitIfNull(request.temperature)),
-                            "top_p" to (SdkClient.omitIfNull(request.topP)),
-                            "top_k" to (SdkClient.omitIfNull(request.topK)),
-                            "metadata" to (SdkClient.omitIfNull(request.metadata)),
-                            "stream" to (SdkClient.omitIfNull(request.stream)),
-                        ),
-                    operationId = "createCompletions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to ErrorResponse::class.java,
-                            "401" to ErrorResponse::class.java,
-                            "403" to ErrorResponse::class.java,
-                            "404" to ErrorResponse::class.java,
-                            "408" to ErrorResponse::class.java,
-                            "409" to ErrorResponse::class.java,
-                            "412" to ErrorResponse::class.java,
-                            "413" to ErrorResponse::class.java,
-                            "429" to ErrorResponse::class.java,
-                            "431" to ErrorResponse::class.java,
-                            "499" to ErrorResponse::class.java,
-                            "500" to ErrorResponse::class.java,
-                            "501" to ErrorResponse::class.java,
-                            "503" to ErrorResponse::class.java,
-                            "504" to ErrorResponse::class.java,
-                            "529" to ErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CompletionResponse>(SdkClient.RequestSpec("POST", "/v1/complete", config = clientConfig, body = SdkClient.bodyMap("model" to (request.model), "prompt" to (request.prompt), "max_tokens_to_sample" to (request.maxTokensToSample), "stop_sequences" to
+    (SdkClient.omitIfNull(request.stopSequences)), "temperature" to (SdkClient.omitIfNull(request.temperature)), "top_p" to (SdkClient.omitIfNull(request.topP)), "top_k" to (SdkClient.omitIfNull(request.topK)), "metadata" to (SdkClient.omitIfNull(request.metadata)), "stream" to (SdkClient.omitIfNull(request.stream))), operationId = "createCompletions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
     }
+
 
     private fun validateCreateCompletionsRequest(request: CreateCompletionsRequest) {
         Validation.validateLength("prompt", request.prompt, Validation.LengthOpts(min = 1))
 
-        Validation.validateRange(
-            "max_tokens_to_sample",
-            request.maxTokensToSample,
-            Validation.RangeOpts(min = 1.0),
-        )
+        Validation.validateRange("max_tokens_to_sample", request.maxTokensToSample, Validation.RangeOpts(min = 1.0))
 
         if (request.temperature != null) {
-            Validation.validateRange(
-                "temperature",
-                request.temperature,
-                Validation.RangeOpts(min = 0.0, max = 1.0),
-            )
-        }
+            Validation.validateRange("temperature", request.temperature, Validation.RangeOpts(min = 0.0, max = 1.0))
+}
 
         if (request.topP != null) {
-            Validation.validateRange(
-                "top_p",
-                request.topP,
-                Validation.RangeOpts(min = 0.0, max = 1.0),
-            )
-        }
+            Validation.validateRange("top_p", request.topP, Validation.RangeOpts(min = 0.0, max = 1.0))
+}
 
         if (request.topK != null) {
             Validation.validateRange("top_k", request.topK, Validation.RangeOpts(min = 0.0))
-        }
+}
     }
+
+
+
+
+
+
 }

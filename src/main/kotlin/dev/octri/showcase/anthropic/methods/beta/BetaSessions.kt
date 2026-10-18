@@ -23,6 +23,7 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaSessions {
 
+
     /** Parameters for [createBetaSessions]. */
     data class CreateBetaSessionsRequest(
         val agent: BetaManagedAgentsCreateSessionAgentUnionParams,
@@ -35,98 +36,53 @@ object BetaSessions {
         val resources: List<BetaManagedAgentsSessionResourceParams>? = null,
         val vaultIds: List<String>? = null,
         val initialEvents: List<BetaManagedAgentsSessionInitialEventParams>? = null,
-        val budget: BetaManagedAgentsBudget? = null,
+        val budget: BetaManagedAgentsBudget? = null
     )
 
     /**
-     * Creates a session using an agent and an environment configuration. Supply `agent` and
-     * `environment_id` at minimum; you can also set session metadata, attach resources or vaults,
-     * and provide initial events. Initial events are processed in order, and the session response
-     * includes its status, resolved agent configuration, resources, usage, and timing statistics.
+     * Creates a session using an agent and an environment configuration. Supply `agent` and `environment_id` at minimum; you can also set session metadata, attach resources or vaults, and provide initial events. Initial events are processed in order, and the session response includes its status, resolved agent configuration, resources, usage, and timing statistics.
      *
-     * @param agent Agent identifier. Accepts the `agent` ID string, which pins the latest version
-     *   for the session, or an `agent` object with both id and version specified.
-     * @param environmentId ID of the `environment` defining the container configuration for this
-     *   session.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param agent Agent identifier. Accepts the `agent` ID string, which pins the
+     *   latest version for the session, or an `agent` object with both id and version
+     *   specified.
+     * @param environmentId ID of the `environment` defining the container
+     *   configuration for this session.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      * @param title Human-readable session title.
-     * @param metadata Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys
-     *   up to 64 chars, values up to 512 chars.
-     * @param resources Resources (e.g. repositories, files) to mount into the session's container.
-     * @param vaultIds Vault IDs for stored credentials the agent can use during the session.
-     * @param initialEvents Initial events to send to the `session` at creation, processed in order.
-     *   Supports `user.message` and `user.define_outcome` events. Maximum 50 events.
-     * @param budget Enforced spend ceiling for the session. Omit to create an uncapped session.
-     *   Every model the session can run — the agent's model and each callable agent's model — must
-     *   have a public list price, or the request is rejected with reason `model_not_budgetable`.
+     * @param metadata Arbitrary key-value metadata attached to the session. Maximum
+     *   16 pairs, keys up to 64 chars, values up to 512 chars.
+     * @param resources Resources (e.g. repositories, files) to mount into the
+     *   session's container.
+     * @param vaultIds Vault IDs for stored credentials the agent can use during the
+     *   session.
+     * @param initialEvents Initial events to send to the `session` at creation,
+     *   processed in order. Supports `user.message` and `user.define_outcome` events.
+     *   Maximum 50 events.
+     * @param budget Enforced spend ceiling for the session. Omit to create an
+     *   uncapped session. Every model the session can run — the agent's model and each
+     *   callable agent's model — must have a public list price, or the request is
+     *   rejected with reason `model_not_budgetable`.
      */
-    fun createBetaSessions(
-        clientConfig: ClientConfig,
-        request: CreateBetaSessionsRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsSession {
+    fun createBetaSessions(clientConfig: ClientConfig, request: CreateBetaSessionsRequest, options: RequestOptions? = null): BetaManagedAgentsSession {
         validateCreateBetaSessionsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsSession>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/sessions?beta=true",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "agent" to (request.agent),
-                            "environment_id" to (request.environmentId),
-                            "title" to (request.title ?: SdkClient.SdkOptional.Omitted),
-                            "metadata" to (SdkClient.omitIfNull(request.metadata)),
-                            "resources" to (SdkClient.omitIfNull(request.resources)),
-                            "vault_ids" to (SdkClient.omitIfNull(request.vaultIds)),
-                            "initial_events" to (SdkClient.omitIfNull(request.initialEvents)),
-                            "budget" to (SdkClient.omitIfNull(request.budget)),
-                        ),
-                    operationId = "createBetaSessions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaManagedAgentsSession>(SdkClient.RequestSpec("POST", "/v1/sessions?beta=true", config = clientConfig, body = SdkClient.bodyMap("agent" to (request.agent), "environment_id" to (request.environmentId), "title" to (request.title ?: SdkClient.SdkOptional.Omitted), "metadata" to (SdkClient.omitIfNull(request.metadata)), "resources" to (SdkClient.omitIfNull(request.resources)), "vault_ids" to (SdkClient.omitIfNull(request.vaultIds)), "initial_events" to
+    (SdkClient.omitIfNull(request.initialEvents)), "budget" to (SdkClient.omitIfNull(request.budget))), operationId = "createBetaSessions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
 
+
     private fun validateCreateBetaSessionsRequest(request: CreateBetaSessionsRequest) {
-        Validation.validateLength(
-            "environment_id",
-            request.environmentId,
-            Validation.LengthOpts(min = 1, max = 128),
-        )
+        Validation.validateLength("environment_id", request.environmentId, Validation.LengthOpts(min = 1, max = 128))
     }
+
+
+
+
+
 
     /** Parameters for [listBetaSessions]. */
     data class ListBetaSessionsRequest(
@@ -145,102 +101,62 @@ object BetaSessions {
         val statuses: List<BetaManagedAgentsSessionStatus>? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null,
+        val anthropicWorkspaceId: String? = null
     )
 
     /**
-     * Lists sessions with cursor-based pagination and optional filters for creation time, agent,
-     * memory store, deployment, and status. Use `page` to navigate with the response cursors, and
-     * use `order` to sort by creation time; `agent_version` only filters results when `agent_id` is
-     * also set. The authenticated user must have valid credentials and permission to access the
-     * requested sessions.
+     * Lists sessions with cursor-based pagination and optional filters for creation time, agent, memory store, deployment, and status. Use `page` to navigate with the response cursors, and use `order` to sort by creation time; `agent_version` only filters results when `agent_id` is also set. The authenticated user must have valid credentials and permission to access the requested sessions.
      *
      * @param limit Maximum number of results to return.
      * @param page Opaque pagination cursor from a previous response.
-     * @param includeArchived When true, includes archived sessions. Default: false (exclude
-     *   archived).
+     * @param includeArchived When true, includes archived sessions. Default: false
+     *   (exclude archived).
      * @param createdAtGte Return sessions created at or after this time (inclusive).
      * @param createdAtGt Return sessions created after this time (exclusive).
-     * @param createdAtLte Return sessions created at or before this time (inclusive).
+     * @param createdAtLte Return sessions created at or before this time
+     *   (inclusive).
      * @param createdAtLt Return sessions created before this time (exclusive).
      * @param agentId Filter sessions created with this agent ID.
-     * @param agentVersion Filter by agent version. Only applies when `agent_id` is also set.
-     * @param order Sort direction for results, ordered by `created_at`. Defaults to `desc` (newest
-     *   first).
-     * @param memoryStoreId Filter sessions whose resources contain a `memory_store` with this
-     *   memory store ID.
+     * @param agentVersion Filter by agent version. Only applies when `agent_id` is
+     *   also set.
+     * @param order Sort direction for results, ordered by `created_at`. Defaults to
+     *   `desc` (newest first).
+     * @param memoryStoreId Filter sessions whose resources contain a `memory_store`
+     *   with this memory store ID.
      * @param deploymentId Filter sessions created by this deployment ID.
-     * @param statuses Filter by session status. Repeat the parameter to match any of multiple
-     *   statuses.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param statuses Filter by session status. Repeat the parameter to match any of
+     *   multiple statuses.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessions(
-        clientConfig: ClientConfig,
-        request: ListBetaSessionsRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsListSessions {
+    fun listBetaSessions(clientConfig: ClientConfig, request: ListBetaSessionsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessions {
         validateListBetaSessionsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsListSessions>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/sessions?beta=true",
-                    config = clientConfig,
-                    query = buildListBetaSessionsQuery(request),
-                    operationId = "listBetaSessions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaManagedAgentsListSessions>(SdkClient.RequestSpec("GET", "/v1/sessions?beta=true", config = clientConfig, query = buildListBetaSessionsQuery(request), operationId = "listBetaSessions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
+
 
     private fun validateListBetaSessionsRequest(request: ListBetaSessionsRequest) {
         if (request.createdAtGte != null) {
             Validation.validateDateTime("created_at[gte]", request.createdAtGte)
-        }
+}
 
         if (request.createdAtGt != null) {
             Validation.validateDateTime("created_at[gt]", request.createdAtGt)
-        }
+}
 
         if (request.createdAtLte != null) {
             Validation.validateDateTime("created_at[lte]", request.createdAtLte)
-        }
+}
 
         if (request.createdAtLt != null) {
             Validation.validateDateTime("created_at[lt]", request.createdAtLt)
-        }
+}
     }
+
 
     private fun buildListBetaSessionsQuery(request: ListBetaSessionsRequest): Map<String, Any?> =
         buildMap {
@@ -248,68 +164,69 @@ object BetaSessions {
             putAll(buildListBetaSessionsQueryPart2(request))
         }
 
-    private fun buildListBetaSessionsQueryPart1(
-        request: ListBetaSessionsRequest
-    ): Map<String, Any?> =
+    private fun buildListBetaSessionsQueryPart1(request: ListBetaSessionsRequest): Map<String, Any?> =
         mapOf(
             "limit" to SdkClient.queryValue(request.limit, "form", true),
             "page" to SdkClient.queryValue(request.page, "form", true),
-            "include_archived" to SdkClient.queryValue(request.includeArchived, "form", true),
+            "include_archived" to
+    SdkClient.queryValue(request.includeArchived, "form", true),
             "created_at[gte]" to
-                SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"),
+    SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"),
             "created_at[gt]" to
-                SdkClient.queryValue(request.createdAtGt, "form", true, "date-time"),
+    SdkClient.queryValue(request.createdAtGt, "form", true, "date-time"),
             "created_at[lte]" to
-                SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"),
+    SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"),
             "created_at[lt]" to
-                SdkClient.queryValue(request.createdAtLt, "form", true, "date-time"),
-            "agent_id" to SdkClient.queryValue(request.agentId, "form", true),
-            "agent_version" to SdkClient.queryValue(request.agentVersion, "form", true),
+    SdkClient.queryValue(request.createdAtLt, "form", true, "date-time"),
+            "agent_id" to
+    SdkClient.queryValue(request.agentId, "form", true),
+            "agent_version" to
+    SdkClient.queryValue(request.agentVersion, "form", true),
             "order" to SdkClient.queryValue(request.order, "form", true),
-            "memory_store_id" to SdkClient.queryValue(request.memoryStoreId, "form", true),
-            "deployment_id" to SdkClient.queryValue(request.deploymentId, "form", true),
+            "memory_store_id" to
+    SdkClient.queryValue(request.memoryStoreId, "form", true),
+            "deployment_id" to
+    SdkClient.queryValue(request.deploymentId, "form", true),
         )
 
-    private fun buildListBetaSessionsQueryPart2(
-        request: ListBetaSessionsRequest
-    ): Map<String, Any?> =
-        mapOf("statuses[]" to SdkClient.queryValue(request.statuses, "form", true))
+    private fun buildListBetaSessionsQueryPart2(request: ListBetaSessionsRequest): Map<String, Any?> =
+        mapOf(
+            "statuses[]" to
+    SdkClient.queryValue(request.statuses, "form", true),
+        )
+
+
+
 
     /**
-     * Lists sessions with cursor-based pagination and optional filters for creation time, agent,
-     * memory store, deployment, and status. Use `page` to navigate with the response cursors, and
-     * use `order` to sort by creation time; `agent_version` only filters results when `agent_id` is
-     * also set. The authenticated user must have valid credentials and permission to access the
-     * requested sessions.
+     * Lists sessions with cursor-based pagination and optional filters for creation time, agent, memory store, deployment, and status. Use `page` to navigate with the response cursors, and use `order` to sort by creation time; `agent_version` only filters results when `agent_id` is also set. The authenticated user must have valid credentials and permission to access the requested sessions.
      *
      * @param limit Maximum number of results to return.
      * @param page Opaque pagination cursor from a previous response.
-     * @param includeArchived When true, includes archived sessions. Default: false (exclude
-     *   archived).
+     * @param includeArchived When true, includes archived sessions. Default: false
+     *   (exclude archived).
      * @param createdAtGte Return sessions created at or after this time (inclusive).
      * @param createdAtGt Return sessions created after this time (exclusive).
-     * @param createdAtLte Return sessions created at or before this time (inclusive).
+     * @param createdAtLte Return sessions created at or before this time
+     *   (inclusive).
      * @param createdAtLt Return sessions created before this time (exclusive).
      * @param agentId Filter sessions created with this agent ID.
-     * @param agentVersion Filter by agent version. Only applies when `agent_id` is also set.
-     * @param order Sort direction for results, ordered by `created_at`. Defaults to `desc` (newest
-     *   first).
-     * @param memoryStoreId Filter sessions whose resources contain a `memory_store` with this
-     *   memory store ID.
+     * @param agentVersion Filter by agent version. Only applies when `agent_id` is
+     *   also set.
+     * @param order Sort direction for results, ordered by `created_at`. Defaults to
+     *   `desc` (newest first).
+     * @param memoryStoreId Filter sessions whose resources contain a `memory_store`
+     *   with this memory store ID.
      * @param deploymentId Filter sessions created by this deployment ID.
-     * @param statuses Filter by session status. Repeat the parameter to match any of multiple
-     *   statuses.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param statuses Filter by session status. Repeat the parameter to match any of
+     *   multiple statuses.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsPaginated(
-        clientConfig: ClientConfig,
-        request: ListBetaSessionsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaManagedAgentsSession) -> Boolean,
-    ) {
+    fun listBetaSessionsPaginated(clientConfig: ClientConfig, request: ListBetaSessionsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSession) -> Boolean) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessions(clientConfig, request.copy(page = cursor), options)
@@ -329,12 +246,7 @@ object BetaSessions {
         val hasMore: Boolean,
     )
 
-    fun listBetaSessionsPages(
-        clientConfig: ClientConfig,
-        request: ListBetaSessionsRequest,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaSessionsPage) -> Boolean,
-    ) {
+    fun listBetaSessionsPages(clientConfig: ClientConfig, request: ListBetaSessionsRequest, options: RequestOptions? = null, yieldPage: (ListBetaSessionsPage) -> Boolean) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessions(clientConfig, request.copy(page = cursor), options)
@@ -348,62 +260,27 @@ object BetaSessions {
         }
     }
 
+
+
     /**
-     * Retrieves a session by its identifier. Use this operation to inspect the session's current
-     * status, configuration, resources, cumulative usage, and timing statistics. The returned agent
-     * definition is a snapshot of the agent configuration from when the session was created.
+     * Retrieves a session by its identifier. Use this operation to inspect the session's current status, configuration, resources, cumulative usage, and timing statistics. The returned agent definition is a snapshot of the agent configuration from when the session was created.
      *
      * @param sessionId Path parameter session_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaSessions(
-        clientConfig: ClientConfig,
-        sessionId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsSession {
-        return SdkClient.request<BetaManagedAgentsSession>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "retrieveBetaSessions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun retrieveBetaSessions(clientConfig: ClientConfig, sessionId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSession {
+        return SdkClient.request<BetaManagedAgentsSession>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}?beta=true", config = clientConfig, operationId = "retrieveBetaSessions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [updateBetaSessions]. */
     data class UpdateBetaSessionsRequest(
@@ -415,197 +292,84 @@ object BetaSessions {
         val metadata: SdkClient.SdkOptional<Map<String, String>?>? = null,
         val vaultIds: List<String>? = null,
         val agent: BetaManagedAgentsSessionAgentUpdate? = null,
-        val budget: SdkClient.SdkOptional<BetaManagedAgentsBudget?>? = null,
+        val budget: SdkClient.SdkOptional<BetaManagedAgentsBudget?>? = null
     )
 
     /**
-     * Updates configurable fields on a session while preserving fields you omit. Use `title`,
-     * `metadata`, `agent`, or `budget` to change the corresponding session settings; only `tools`
-     * and `mcp_servers` can be updated in the agent configuration. `vault_ids` is reserved for
-     * future use and requests that set it are rejected.
+     * Updates configurable fields on a session while preserving fields you omit. Use `title`, `metadata`, `agent`, or `budget` to change the corresponding session settings; only `tools` and `mcp_servers` can be updated in the agent configuration. `vault_ids` is reserved for future use and requests that set it are rejected.
      *
      * @param sessionId Path parameter session_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      * @param title Human-readable session title.
-     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null to delete it.
-     *   Omit the field to preserve.
-     * @param vaultIds Vault IDs (`vlt_*`) to attach to the session. Not yet supported; requests
-     *   setting this field are rejected. Reserved for future use.
-     * @param agent Agent configuration update. Only `tools` and `mcp_servers` are updatable
-     *   mid-session. Only valid for sessions created from an agent or deployment reference. The
-     *   session must not be running.
-     * @param budget Enforced spend ceiling for the session. Set an object to replace the budget of
-     *   a session that was created with one, or `null` to remove it; omit to preserve. A budget
-     *   cannot be added to a session created without one (rejected with reason
-     *   `budget_create_only`), and a removed budget cannot be re-added. Allowed in any
-     *   non-terminated status. Lowering `max_list_cost` to at or below the session's consumed list
-     *   cost is rejected with reason `budget_not_raised`, and every model the…
+     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null
+     *   to delete it. Omit the field to preserve.
+     * @param vaultIds Vault IDs (`vlt_*`) to attach to the session. Not yet
+     *   supported; requests setting this field are rejected. Reserved for future use.
+     * @param agent Agent configuration update. Only `tools` and `mcp_servers` are
+     *   updatable mid-session. Only valid for sessions created from an agent or
+     *   deployment reference. The session must not be running.
+     * @param budget Enforced spend ceiling for the session. Set an object to replace
+     *   the budget of a session that was created with one, or `null` to remove it;
+     *   omit to preserve. A budget cannot be added to a session created without one
+     *   (rejected with reason `budget_create_only`), and a removed budget cannot be
+     *   re-added. Allowed in any non-terminated status. Lowering `max_list_cost` to at
+     *   or below the session's consumed list cost is rejected with reason
+     *   `budget_not_raised`, and every model the…
      */
-    fun updateBetaSessions(
-        clientConfig: ClientConfig,
-        request: UpdateBetaSessionsRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsSession {
-        return SdkClient.request<BetaManagedAgentsSession>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}?beta=true",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "title" to (request.title ?: SdkClient.SdkOptional.Omitted),
-                            "metadata" to (request.metadata ?: SdkClient.SdkOptional.Omitted),
-                            "vault_ids" to (SdkClient.omitIfNull(request.vaultIds)),
-                            "agent" to (SdkClient.omitIfNull(request.agent)),
-                            "budget" to (request.budget ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "updateBetaSessions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun updateBetaSessions(clientConfig: ClientConfig, request: UpdateBetaSessionsRequest, options: RequestOptions? = null): BetaManagedAgentsSession {
+        return SdkClient.request<BetaManagedAgentsSession>(SdkClient.RequestSpec("POST", "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("title" to (request.title ?: SdkClient.SdkOptional.Omitted), "metadata" to
+    (request.metadata ?: SdkClient.SdkOptional.Omitted), "vault_ids" to (SdkClient.omitIfNull(request.vaultIds)), "agent" to (SdkClient.omitIfNull(request.agent)), "budget" to
+    (request.budget ?: SdkClient.SdkOptional.Omitted)), operationId = "updateBetaSessions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
 
-    /**
-     * Deletes a session permanently. Use this operation when you need to remove a session rather
-     * than archive it. A successful response confirms deletion with the session identifier.
-     *
-     * @param sessionId Path parameter session_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
-     */
-    fun deleteBetaSessions(
-        clientConfig: ClientConfig,
-        sessionId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsDeletedSession {
-        return SdkClient.request<BetaManagedAgentsDeletedSession>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "deleteBetaSessions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
-    }
+
+
+
+
+
 
     /**
-     * Archives a session, marking it as archived while retaining its session record. Use
-     * `session_id` to identify the session; if you select a Workspace with
-     * `anthropic-workspace-id`, it must match the Workspace associated with the credential.
+     * Deletes a session permanently. Use this operation when you need to remove a session rather than archive it. A successful response confirms deletion with the session identifier.
      *
      * @param sessionId Path parameter session_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun archiveBetaSessions(
-        clientConfig: ClientConfig,
-        sessionId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsSession {
-        return SdkClient.request<BetaManagedAgentsSession>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/archive?beta=true",
-                    config = clientConfig,
-                    operationId = "archiveBetaSessions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun deleteBetaSessions(clientConfig: ClientConfig, sessionId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeletedSession {
+        return SdkClient.request<BetaManagedAgentsDeletedSession>(SdkClient.RequestSpec("DELETE", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}?beta=true", config = clientConfig, operationId = "deleteBetaSessions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
+    /**
+     * Archives a session, marking it as archived while retaining its session record. Use `session_id` to identify the session; if you select a Workspace with `anthropic-workspace-id`, it must match the Workspace associated with the credential.
+     *
+     * @param sessionId Path parameter session_id
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     */
+    fun archiveBetaSessions(clientConfig: ClientConfig, sessionId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSession {
+        return SdkClient.request<BetaManagedAgentsSession>(SdkClient.RequestSpec("POST", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaSessions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    }
+
+
+
+
+
+
+
 }

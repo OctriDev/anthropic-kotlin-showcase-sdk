@@ -3,44 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsAnalyticsAppsChatProjectsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get per-project activity for a given day, with cursor-based pagination. Returns activity
-     * metrics for each project in the organization, sorted by project ID. Use `group_by[]` to break
-     * projects out per member or per RBAC group, and `filter[]` to scope results; the parameter
-     * descriptions list the supported dimensions. Available to organizations on a Claude Enterprise
-     * plan. Requires an API key with the `read:analytics` scope.
+     * Get per-project activity for a given day, with cursor-based pagination. Returns activity metrics for each project in the organization, sorted by project ID. Use `group_by[]` to break projects out per member or per RBAC group, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat.BetaOrganizationsAnalyticsAppsChatProjects.ListBetaOrganizationsAnalyticsAppsChatProjectsRequest,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsProjectsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat
-            .BetaOrganizationsAnalyticsAppsChatProjects
-            .listBetaOrganizationsAnalyticsAppsChatProjects(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat.BetaOrganizationsAnalyticsAppsChatProjects.ListBetaOrganizationsAnalyticsAppsChatProjectsRequest, options: RequestOptions? = null): BetaAnalyticsProjectsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat.BetaOrganizationsAnalyticsAppsChatProjects.listBetaOrganizationsAnalyticsAppsChatProjects(clientConfig, request, options)
     }
 
     /**
-     * Get per-project activity for a given day, with cursor-based pagination. Returns activity
-     * metrics for each project in the organization, sorted by project ID. Use `group_by[]` to break
-     * projects out per member or per RBAC group, and `filter[]` to scope results; the parameter
-     * descriptions list the supported dimensions. Available to organizations on a Claude Enterprise
-     * plan. Requires an API key with the `read:analytics` scope.
+     * Get per-project activity for a given day, with cursor-based pagination. Returns activity metrics for each project in the organization, sorted by project ID. Use `group_by[]` to break projects out per member or per RBAC group, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat.BetaOrganizationsAnalyticsAppsChatProjects.ListBetaOrganizationsAnalyticsAppsChatProjectsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsProjectActivity) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat
-            .BetaOrganizationsAnalyticsAppsChatProjects
-            .listBetaOrganizationsAnalyticsAppsChatProjectsPaginated(
-                clientConfig,
-                request,
-                options,
-                yieldFn,
-            )
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat.BetaOrganizationsAnalyticsAppsChatProjects.ListBetaOrganizationsAnalyticsAppsChatProjectsRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsProjectActivity) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.apps.chat.BetaOrganizationsAnalyticsAppsChatProjects.listBetaOrganizationsAnalyticsAppsChatProjectsPaginated(clientConfig, request, options, yieldFn)
     }
+
 }

@@ -5,112 +5,136 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/** Typed representation of the `BetaAddFederationRuleWorkspaceParams` API schema. */
+/**
+ * Typed representation of the `BetaAddFederationRuleWorkspaceParams` API schema.
+ */
 data class BetaAddFederationRuleWorkspaceParams(
-    /** Tagged ID of the workspace to enable this rule for. */
+    /**
+     * Tagged ID of the workspace to enable this rule for.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String
 )
 
-/** Typed representation of the `BetaDataResidencyCreateParams` API schema. */
+/**
+ * Typed representation of the `BetaDataResidencyCreateParams` API schema.
+ */
 data class BetaDataResidencyCreateParams(
     /**
-     * Permitted inference geo values. Defaults to 'unrestricted' if omitted, which allows all geos.
-     * Use the string 'unrestricted' to allow all geos, or a list of specific geos.
+     * Permitted inference geo values. Defaults to 'unrestricted' if omitted, which allows all geos. Use the string 'unrestricted' to allow all geos, or a list of specific geos.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos")
-    val allowedInferenceGeos: Any? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos") val allowedInferenceGeos: Any? = null,
     /**
-     * Default inference geo applied when requests omit the parameter. Defaults to 'global' if
-     * omitted. Must be a member of `allowed_inference_geos` unless `allowed_inference_geos` is
-     * `"unrestricted"`.
+     * Default inference geo applied when requests omit the parameter. Defaults to 'global' if omitted. Must be a member of `allowed_inference_geos` unless `allowed_inference_geos` is `"unrestricted"`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_inference_geo")
-    val defaultInferenceGeo: BetaInferenceGeo? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("default_inference_geo") val defaultInferenceGeo: BetaInferenceGeo? = null,
     /**
-     * Geographic region for workspace data storage. Immutable after creation. Defaults to 'us' if
-     * omitted.
+     * Geographic region for workspace data storage. Immutable after creation. Defaults to 'us' if omitted.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_geo")
-    val workspaceGeo: BetaWorkspaceGeo? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_geo") val workspaceGeo: BetaWorkspaceGeo? = null
 )
 
-/** Typed representation of the `BetaFederationRuleWorkspace` API schema. */
+/**
+ * Typed representation of the `BetaFederationRuleWorkspace` API schema.
+ */
 data class BetaFederationRuleWorkspace(
-    /** When this workspace was enabled for the rule. */
+    /**
+     * When this workspace was enabled for the rule.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     /**
-     * Tagged ID (`user_...` or `svac_...`) of the actor that enabled this workspace for the rule,
-     * if known.
+     * Tagged ID (`user_...` or `svac_...`) of the actor that enabled this workspace for the rule, if known.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_by_actor_id", required = true)
-    val createdByActorId: String?,
-    /** Tagged ID of the federation rule. */
-    @com.fasterxml.jackson.annotation.JsonProperty("federation_rule_id")
-    val federationRuleId: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_by_actor_id", required = true) val createdByActorId: String?,
+    /**
+     * Tagged ID of the federation rule.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("federation_rule_id") val federationRuleId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaFederationRuleWorkspaceTypeEnum,
-    /** Tagged ID of the workspace this rule is enabled for. */
+    /**
+     * Tagged ID of the workspace this rule is enabled for.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
-    /** Workspace display name. Populated when listing; null in the enable response. */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_name", required = true)
-    val workspaceName: String?,
+    /**
+     * Workspace display name. Populated when listing; null in the enable response.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_name", required = true) val workspaceName: String?
 )
 
-/** Typed representation of the `BetaFederationRuleWorkspaceListResponse` API schema. */
+/**
+ * Typed representation of the `BetaFederationRuleWorkspaceListResponse` API schema.
+ */
 data class BetaFederationRuleWorkspaceListResponse(
-    /** Required array value serialized in the `data` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data")
-    val `data`: List<BetaFederationRuleWorkspace>,
-    /** Opaque cursor for the next page; null when there are no more results. */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaFederationRuleWorkspace>,
+    /**
+     * Opaque cursor for the next page; null when there are no more results.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )
 
-/** Typed representation of the `BetaListResponse_Workspace_` API schema. */
+/**
+ * Typed representation of the `BetaListResponse_Workspace_` API schema.
+ */
 data class BetaListResponseWorkspace(
-    /** Required array value serialized in the `data` wire field. */
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaWorkspace>,
-    /** First ID in the `data` list. Can be used as the `before_id` for the previous page. */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true)
-    val firstId: String?,
-    /** Indicates if there are more results in the requested page direction. */
+    /**
+     * First ID in the `data` list. Can be used as the `before_id` for the previous page.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true) val firstId: String?,
+    /**
+     * Indicates if there are more results in the requested page direction.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
-    /** Last ID in the `data` list. Can be used as the `after_id` for the next page. */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?,
+    /**
+     * Last ID in the `data` list. Can be used as the `after_id` for the next page.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?
 )
 
-/** Typed representation of the `BetaServiceAccountWorkspaceMemberCreateFromSAParams` API schema. */
+/**
+ * Typed representation of the `BetaServiceAccountWorkspaceMemberCreateFromSAParams` API schema.
+ */
 data class BetaServiceAccountWorkspaceMemberCreateFromSAParams(
-    /** Tagged workspace ID to add the service account to. */
+    /**
+     * Tagged workspace ID to add the service account to.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
-    /** Role to assign to the service account in this workspace. */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_role")
-    val workspaceRole: BetaNoBillingWorkspaceRoleSchema,
+    /**
+     * Role to assign to the service account in this workspace.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_role") val workspaceRole: BetaNoBillingWorkspaceRoleSchema
 )
 
-/** Typed representation of the `BetaWorkspaceCreateParams` API schema. */
+/**
+ * Typed representation of the `BetaWorkspaceCreateParams` API schema.
+ */
 data class BetaWorkspaceCreateParams(
-    /** Name of the Workspace. */
+    /**
+     * Name of the Workspace.
+     */
     val name: String,
     /**
-     * Data residency configuration for the workspace. If omitted, defaults to `workspace_geo:
-     * "us"`, `allowed_inference_geos: "unrestricted"`, and `default_inference_geo: "global"`.
+     * Data residency configuration for the workspace. If omitted, defaults to `workspace_geo: "us"`, `allowed_inference_geos: "unrestricted"`, and `default_inference_geo: "global"`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_residency")
-    val dataResidency: BetaDataResidencyCreateParams? = null,
-    /** Hex color code representing the Workspace in the Anthropic Console. */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_color")
-    val displayColor: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("data_residency") val dataResidency: BetaDataResidencyCreateParams? = null,
     /**
-     * ID of the customer-managed encryption key (CMEK) configuration to use for this Workspace.
-     * Setting this field requires CMEK to be enabled for your organization. When set, data stored
-     * for this Workspace is encrypted with the referenced key. Create key configurations with the
-     * External Keys API. On Claude Platform on AWS the value is the AWS KMS key ARN, and the key
-     * must be a single-Region key in the same AWS account and Region as the Workspace. On that
-     * platform the key is…
+     * Hex color code representing the Workspace in the Anthropic Console.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_key_id")
-    val externalKeyId: String? = null,
-    /** User-defined tags as string key-value pairs. Keys may not begin with `anthropic`. */
-    val tags: Map<String, String>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("display_color") val displayColor: String? = null,
+    /**
+     * ID of the customer-managed encryption key (CMEK) configuration to use for this Workspace. Setting this field requires CMEK to be enabled for your organization. When set, data stored for this Workspace is encrypted with the referenced key. Create key configurations with the External Keys API. On Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a single-Region key in the same AWS account and Region as the Workspace. On that platform the key is…
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("external_key_id") val externalKeyId: String? = null,
+    /**
+     * User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+     */
+    val tags: Map<String, String>? = null
 )

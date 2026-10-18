@@ -3,129 +3,48 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaFilesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Uploads a file and returns its metadata. Send the file as multipart form data in the `file`
-     * field; optionally set `expires_in_seconds` to control when the file bytes become unavailable.
-     * The uploaded filename uses only the final path component, and a missing or empty filename is
-     * replaced with `unnamed` plus the known file extension.
+     * Uploads a file and returns its metadata. Send the file as multipart form data in the `file` field; optionally set `expires_in_seconds` to control when the file bytes become unavailable. The uploaded filename uses only the final path component, and a missing or empty filename is replaced with `unnamed` plus the known file extension.
      */
-    fun upload(
-        file: SdkClient.UploadFile,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        expiresInSeconds: Long? = null,
-        options: RequestOptions? = null,
-    ): BetaFileMetadataSchema {
-        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.uploadBetaFiles(
-            clientConfig,
-            file,
-            anthropicBeta,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            expiresInSeconds,
-            options,
-        )
+    fun upload(file: SdkClient.UploadFile, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, expiresInSeconds: Long? = null, options: RequestOptions? = null): BetaFileMetadataSchema {
+        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.uploadBetaFiles(clientConfig, file, anthropicBeta, anthropicVersion, anthropicWorkspaceId, expiresInSeconds, options)
     }
 
     /**
-     * Lists file metadata available to the authenticated user. Use `scope_id` to filter by scope,
-     * or `ids[]` to retrieve specific files; `ids[]` cannot be combined with `page` or `limit`, and
-     * returns a single page. Use `page` and `limit` to paginate the results.
+     * Lists file metadata available to the authenticated user. Use `scope_id` to filter by scope, or `ids[]` to retrieve specific files; `ids[]` cannot be combined with `page` or `limit`, and returns a single page. Use `page` and `limit` to paginate the results.
      */
-    fun list(
-        request: dev.octri.showcase.anthropic.methods.beta.BetaFiles.ListBetaFilesRequest,
-        options: RequestOptions? = null,
-    ): BetaFileListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.listBetaFiles(
-            clientConfig,
-            request,
-            options,
-        )
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaFiles.ListBetaFilesRequest, options: RequestOptions? = null): BetaFileListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.listBetaFiles(clientConfig, request, options)
     }
 
     /**
-     * Lists file metadata available to the authenticated user. Use `scope_id` to filter by scope,
-     * or `ids[]` to retrieve specific files; `ids[]` cannot be combined with `page` or `limit`, and
-     * returns a single page. Use `page` and `limit` to paginate the results.
+     * Lists file metadata available to the authenticated user. Use `scope_id` to filter by scope, or `ids[]` to retrieve specific files; `ids[]` cannot be combined with `page` or `limit`, and returns a single page. Use `page` and `limit` to paginate the results.
      */
-    fun listPaginated(
-        request: dev.octri.showcase.anthropic.methods.beta.BetaFiles.ListBetaFilesRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaFileMetadataSchema) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.BetaFiles.listBetaFilesPaginated(
-            clientConfig,
-            request,
-            options,
-            yieldFn,
-        )
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaFiles.ListBetaFilesRequest, options: RequestOptions? = null, yieldFn: (BetaFileMetadataSchema) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.BetaFiles.listBetaFilesPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves metadata for a file by its ID. Use this operation to inspect details such as the
-     * file's name, MIME type, size, scope, and expiration time. Provide an API key and, when
-     * needed, a Workspace ID that matches the credential's Workspace.
+     * Retrieves metadata for a file by its ID. Use this operation to inspect details such as the file's name, MIME type, size, scope, and expiration time. Provide an API key and, when needed, a Workspace ID that matches the credential's Workspace.
      */
-    fun retrieve(
-        fileId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaFileMetadataSchema {
-        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.retrieveBetaFiles(
-            clientConfig,
-            fileId,
-            anthropicBeta,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun retrieve(fileId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaFileMetadataSchema {
+        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.retrieveBetaFiles(clientConfig, fileId, anthropicBeta, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Deletes a file by its ID. Use this operation when you no longer need the file; deletion
-     * removes it from the files available to you. Provide an API key and, when needed, a Workspace
-     * ID that matches the credential's Workspace.
+     * Deletes a file by its ID. Use this operation when you no longer need the file; deletion removes it from the files available to you. Provide an API key and, when needed, a Workspace ID that matches the credential's Workspace.
      */
-    fun delete(
-        fileId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaFileDeleteResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.deleteBetaFiles(
-            clientConfig,
-            fileId,
-            anthropicBeta,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun delete(fileId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaFileDeleteResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.deleteBetaFiles(clientConfig, fileId, anthropicBeta, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Retrieves the contents of a file by its ID. Use this operation when you need the file bytes
-     * rather than its metadata. Provide an API key and, when needed, a Workspace ID that matches
-     * the credential's Workspace.
+     * Retrieves the contents of a file by its ID. Use this operation when you need the file bytes rather than its metadata. Provide an API key and, when needed, a Workspace ID that matches the credential's Workspace.
      */
-    fun download(
-        fileId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): ByteArray {
-        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.downloadBetaFiles(
-            clientConfig,
-            fileId,
-            anthropicBeta,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun download(fileId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ByteArray {
+        return dev.octri.showcase.anthropic.methods.beta.BetaFiles.downloadBetaFiles(clientConfig, fileId, anthropicBeta, anthropicVersion, anthropicWorkspaceId, options)
     }
+
 }

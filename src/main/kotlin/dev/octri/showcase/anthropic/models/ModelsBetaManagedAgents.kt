@@ -4,83 +4,97 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Input payload for the `bash` tool of the `agent_toolset_20260401` toolset. All fields are
- * optional; a normal invocation supplies `command`, while `restart=true` (with no `command`)
- * reboots the runner-side bash session.
+ * Input payload for the `bash` tool of the `agent_toolset_20260401` toolset. All fields are optional; a normal invocation supplies `command`, while `restart=true` (with no `command`) reboots the runner-side bash session.
  */
 data class BetaManagedAgentsAgentToolset20260401BashInput(
-    /** Shell command to execute. Omit only when `restart` is true. */
+    /**
+     * Shell command to execute. Omit only when `restart` is true.
+     */
     val command: String? = null,
     /**
-     * When true, restart the persistent bash session instead of running a command. Subsequent calls
-     * without `restart` will run against the fresh session.
+     * When true, restart the persistent bash session instead of running a command. Subsequent calls without `restart` will run against the fresh session.
      */
     val restart: Boolean? = null,
     /**
-     * Per-call timeout in milliseconds. Defaults to the runner-wide tool timeout when omitted or
-     * zero.
+     * Per-call timeout in milliseconds. Defaults to the runner-wide tool timeout when omitted or zero.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("timeout_ms") val timeoutMs: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("timeout_ms") val timeoutMs: Long? = null
 )
 
 /**
- * Input payload for the `edit` tool. Performs a string replacement in the named file; by default
- * `old_string` must occur exactly once.
+ * Input payload for the `edit` tool. Performs a string replacement in the named file; by default `old_string` must occur exactly once.
  */
 data class BetaManagedAgentsAgentToolset20260401EditInput(
-    /** Path of the file to edit. */
+    /**
+     * Path of the file to edit.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String,
-    /** Substring to find and replace. */
+    /**
+     * Substring to find and replace.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("old_string") val oldString: String,
-    /** Replacement text. */
+    /**
+     * Replacement text.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("new_string") val newString: String,
-    /** When true, replace every occurrence of `old_string` instead of requiring a unique match. */
-    @com.fasterxml.jackson.annotation.JsonProperty("replace_all") val replaceAll: Boolean? = null,
+    /**
+     * When true, replace every occurrence of `old_string` instead of requiring a unique match.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("replace_all") val replaceAll: Boolean? = null
 )
 
 /**
- * Input payload for the `glob` tool. Returns paths matching a doublestar glob pattern, newest
- * first.
+ * Input payload for the `glob` tool. Returns paths matching a doublestar glob pattern, newest first.
  */
 data class BetaManagedAgentsAgentToolset20260401GlobInput(
     /**
-     * Doublestar glob pattern (e.g. `** / *.go`). Absolute patterns are only permitted when the
-     * runner is configured to allow them.
+     * Doublestar glob pattern (e.g. `** / *.go`). Absolute patterns are only permitted when the runner is configured to allow them.
      */
     val pattern: String,
-    /** Optional directory root to search under. Defaults to the runner's working directory. */
-    val path: String? = null,
+    /**
+     * Optional directory root to search under. Defaults to the runner's working directory.
+     */
+    val path: String? = null
 )
 
 /**
- * Input payload for the `grep` tool. Searches file contents for a regular expression, returning
- * matching lines.
+ * Input payload for the `grep` tool. Searches file contents for a regular expression, returning matching lines.
  */
 data class BetaManagedAgentsAgentToolset20260401GrepInput(
-    /** Regular expression to search for. */
+    /**
+     * Regular expression to search for.
+     */
     val pattern: String,
-    /** Optional directory root to search under. Defaults to the runner's working directory. */
-    val path: String? = null,
+    /**
+     * Optional directory root to search under. Defaults to the runner's working directory.
+     */
+    val path: String? = null
 )
 
 /**
- * Input payload for the `read` tool. Reads file contents relative to the runner's working directory
- * (or absolute when the runner permits).
+ * Input payload for the `read` tool. Reads file contents relative to the runner's working directory (or absolute when the runner permits).
  */
 data class BetaManagedAgentsAgentToolset20260401ReadInput(
-    /** Path of the file to read. */
+    /**
+     * Path of the file to read.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String,
     /**
-     * Optional `[start_line, end_line]` 1-indexed inclusive range. When omitted the entire file is
-     * returned. `end_line` of 0 or negative means "to end of file".
+     * Optional `[start_line, end_line]` 1-indexed inclusive range. When omitted the entire file is returned. `end_line` of 0 or negative means "to end of file".
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("view_range") val viewRange: List<Long>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("view_range") val viewRange: List<Long>? = null
 )
 
-/** Input payload for the `write` tool. Writes (overwriting) the entire file contents. */
+/**
+ * Input payload for the `write` tool. Writes (overwriting) the entire file contents.
+ */
 data class BetaManagedAgentsAgentToolset20260401WriteInput(
-    /** Path of the file to write. */
+    /**
+     * Path of the file to write.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String,
-    /** Full file contents to write. */
-    val content: String,
+    /**
+     * Full file contents to write.
+     */
+    val content: String
 )

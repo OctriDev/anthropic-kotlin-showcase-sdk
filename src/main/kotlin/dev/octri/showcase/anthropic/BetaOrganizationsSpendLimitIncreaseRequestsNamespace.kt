@@ -3,144 +3,49 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsSpendLimitIncreaseRequestsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieve a spend limit increase request. While `pending`, the response includes a live
-     * `spend_summary` for the requester at the request's period.
+     * Retrieve a spend limit increase request. While `pending`, the response includes a live `spend_summary` for the requester at the request's period.
      */
-    fun retrieve(
-        spendLimitIncreaseRequestId: String,
-        options: RequestOptions? = null,
-    ): BetaSpendLimitIncreaseRequestSchema {
-        return dev.octri.showcase.anthropic.methods.beta.organizations
-            .BetaOrganizationsSpendLimitIncreaseRequests
-            .retrieveBetaOrganizationsSpendLimitIncreaseRequests(
-                clientConfig,
-                spendLimitIncreaseRequestId,
-                options,
-            )
+    fun retrieve(spendLimitIncreaseRequestId: String, options: RequestOptions? = null): BetaSpendLimitIncreaseRequestSchema {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsSpendLimitIncreaseRequests.retrieveBetaOrganizationsSpendLimitIncreaseRequests(clientConfig, spendLimitIncreaseRequestId, options)
     }
 
     /**
-     * Denies a pending spend limit increase request and records the request as denied. Denying an
-     * already-denied request is idempotent, while denying an approved request is rejected; the
-     * requester is emailed unless `suppress_notification` is set.
+     * Denies a pending spend limit increase request and records the request as denied. Denying an already-denied request is idempotent, while denying an approved request is rejected; the requester is emailed unless `suppress_notification` is set.
      *
-     * Deny a pending spend limit increase request. Idempotent on `denied`; denying an
-     * already-`approved` request returns 400. Anthropic emails the requester unless
-     * `suppress_notification` is set.
+     * Deny a pending spend limit increase request. Idempotent on `denied`; denying an already-`approved` request returns 400. Anthropic emails the requester unless `suppress_notification` is set.
      */
-    fun deny(
-        spendLimitIncreaseRequestId: String,
-        suppressNotification: Boolean? = null,
-        options: RequestOptions? = null,
-    ): BetaSpendLimitIncreaseRequestSchema {
-        return dev.octri.showcase.anthropic.methods.beta.organizations
-            .BetaOrganizationsSpendLimitIncreaseRequests
-            .denyBetaOrganizationsSpendLimitIncreaseRequests(
-                clientConfig,
-                spendLimitIncreaseRequestId,
-                suppressNotification,
-                options,
-            )
+    fun deny(spendLimitIncreaseRequestId: String, suppressNotification: Boolean? = null, options: RequestOptions? = null): BetaSpendLimitIncreaseRequestSchema {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsSpendLimitIncreaseRequests.denyBetaOrganizationsSpendLimitIncreaseRequests(clientConfig, spendLimitIncreaseRequestId, suppressNotification, options)
     }
 
     /**
-     * Approves a pending spend limit increase request and creates a per-user spend limit for the
-     * requester. Supply `amount` as a non-negative integer decimal string in minor units; `period`
-     * defaults to the period the member was blocked on, and the requester is emailed unless
-     * `suppress_notification` is set.
+     * Approves a pending spend limit increase request and creates a per-user spend limit for the requester. Supply `amount` as a non-negative integer decimal string in minor units; `period` defaults to the period the member was blocked on, and the requester is emailed unless `suppress_notification` is set.
      *
-     * Approve a pending spend limit increase request. Writes a per-user spend limit at `amount` for
-     * the requester and transitions the request to `approved`. `period` defaults to the period the
-     * member was blocked on. Anthropic emails the requester unless `suppress_notification` is set.
+     * Approve a pending spend limit increase request. Writes a per-user spend limit at `amount` for the requester and transitions the request to `approved`. `period` defaults to the period the member was blocked on. Anthropic emails the requester unless `suppress_notification` is set.
      */
-    fun approve(
-        spendLimitIncreaseRequestId: String,
-        amount: String,
-        period:
-            SdkClient.SdkOptional<BetaApproveSpendLimitIncreaseRequestParamsPeriodVariant0Enum?>? =
-            null,
-        suppressNotification: Boolean? = null,
-        options: RequestOptions? = null,
-    ): BetaApproveSpendLimitIncreaseRequestResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations
-            .BetaOrganizationsSpendLimitIncreaseRequests
-            .approveBetaOrganizationsSpendLimitIncreaseRequests(
-                clientConfig,
-                spendLimitIncreaseRequestId,
-                amount,
-                period,
-                suppressNotification,
-                options,
-            )
+    fun approve(spendLimitIncreaseRequestId: String, amount: String, period: SdkClient.SdkOptional<BetaApproveSpendLimitIncreaseRequestParamsPeriodVariant0Enum?>? = null, suppressNotification: Boolean? = null, options: RequestOptions? = null): BetaApproveSpendLimitIncreaseRequestResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsSpendLimitIncreaseRequests.approveBetaOrganizationsSpendLimitIncreaseRequests(clientConfig, spendLimitIncreaseRequestId, amount, period, suppressNotification, options)
     }
 
     /**
-     * Lists spend limit increase requests, ordered from most recent to oldest. Filter by request
-     * status or requester, and use the `page` cursor from a previous response to continue through
-     * the results; pending requests include a live `spend_summary`, while requests from former
-     * members are excluded.
+     * Lists spend limit increase requests, ordered from most recent to oldest. Filter by request status or requester, and use the `page` cursor from a previous response to continue through the results; pending requests include a live `spend_summary`, while requests from former members are excluded.
      *
-     * List spend limit increase requests, most recent first. Pending requests include a live
-     * `spend_summary` for the requester. Requests whose requester is no longer a member are
-     * excluded.
+     * List spend limit increase requests, most recent first. Pending requests include a live `spend_summary` for the requester. Requests whose requester is no longer a member are excluded.
      */
-    fun list(
-        status:
-            SdkClient.SdkOptional<
-                List<ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum>?
-            >? =
-            null,
-        actorIds: SdkClient.SdkOptional<List<String>?>? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        limit: Long? = null,
-        options: RequestOptions? = null,
-    ): BetaSpendLimitIncreaseRequestListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations
-            .BetaOrganizationsSpendLimitIncreaseRequests
-            .listBetaOrganizationsSpendLimitIncreaseRequests(
-                clientConfig,
-                status,
-                actorIds,
-                page,
-                limit,
-                options,
-            )
+    fun list(status: SdkClient.SdkOptional<List<ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum>?>? = null, actorIds: SdkClient.SdkOptional<List<String>?>? = null, page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, options: RequestOptions? = null): BetaSpendLimitIncreaseRequestListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsSpendLimitIncreaseRequests.listBetaOrganizationsSpendLimitIncreaseRequests(clientConfig, status, actorIds, page, limit, options)
     }
 
     /**
-     * Lists spend limit increase requests, ordered from most recent to oldest. Filter by request
-     * status or requester, and use the `page` cursor from a previous response to continue through
-     * the results; pending requests include a live `spend_summary`, while requests from former
-     * members are excluded.
+     * Lists spend limit increase requests, ordered from most recent to oldest. Filter by request status or requester, and use the `page` cursor from a previous response to continue through the results; pending requests include a live `spend_summary`, while requests from former members are excluded.
      *
-     * List spend limit increase requests, most recent first. Pending requests include a live
-     * `spend_summary` for the requester. Requests whose requester is no longer a member are
-     * excluded.
+     * List spend limit increase requests, most recent first. Pending requests include a live `spend_summary` for the requester. Requests whose requester is no longer a member are excluded.
      */
-    fun listPaginated(
-        status:
-            SdkClient.SdkOptional<
-                List<ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum>?
-            >? =
-            null,
-        actorIds: SdkClient.SdkOptional<List<String>?>? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        limit: Long? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaSpendLimitIncreaseRequestSchema) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations
-            .BetaOrganizationsSpendLimitIncreaseRequests
-            .listBetaOrganizationsSpendLimitIncreaseRequestsPaginated(
-                clientConfig,
-                status,
-                actorIds,
-                page,
-                limit,
-                options,
-                yieldFn,
-            )
+    fun listPaginated(status: SdkClient.SdkOptional<List<ListBetaOrganizationsSpendLimitIncreaseRequestsParameterItemEnum>?>? = null, actorIds: SdkClient.SdkOptional<List<String>?>? = null, page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, options: RequestOptions? = null, yieldFn: (BetaSpendLimitIncreaseRequestSchema) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsSpendLimitIncreaseRequests.listBetaOrganizationsSpendLimitIncreaseRequestsPaginated(clientConfig, status, actorIds, page, limit, options, yieldFn)
     }
+
 }

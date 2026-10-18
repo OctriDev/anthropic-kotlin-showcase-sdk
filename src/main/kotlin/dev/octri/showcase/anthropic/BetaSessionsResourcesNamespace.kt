@@ -3,120 +3,48 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaSessionsResourcesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from
-     * a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it
-     * returns all resources.
+     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it returns all resources.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.ListBetaSessionsResourcesRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsListSessionResources {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
-            .listBetaSessionsResources(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.ListBetaSessionsResourcesRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionResources {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.listBetaSessionsResources(clientConfig, request, options)
     }
 
     /**
-     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from
-     * a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it
-     * returns all resources.
+     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it returns all resources.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.ListBetaSessionsResourcesRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaManagedAgentsSessionResource) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
-            .listBetaSessionsResourcesPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.ListBetaSessionsResourcesRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionResource) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.listBetaSessionsResourcesPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Attaches a previously uploaded file to a session as a mounted resource. Supply the required
-     * `file_id`; optionally set `mount_path`, which defaults to `/mnt/session/uploads/<file_id>`
-     * when omitted.
+     * Attaches a previously uploaded file to a session as a mounted resource. Supply the required `file_id`; optionally set `mount_path`, which defaults to `/mnt/session/uploads/<file_id>` when omitted.
      */
-    fun create(
-        sessionId: String,
-        body: BetaManagedAgentsAddSessionResourceParams,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsAddSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
-            .createBetaSessionsResources(
-                clientConfig,
-                sessionId,
-                body,
-                anthropicVersion,
-                anthropicBeta,
-                anthropicWorkspaceId,
-                options,
-            )
+    fun create(sessionId: String, body: BetaManagedAgentsAddSessionResourceParams, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsAddSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.createBetaSessionsResources(clientConfig, sessionId, body, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
     }
 
     /**
-     * Retrieves a resource attached to a session, such as a mounted file, repository, or memory
-     * store. Use `session_id` and `resource_id` to identify the session and the specific resource.
+     * Retrieves a resource attached to a session, such as a mounted file, repository, or memory store. Use `session_id` and `resource_id` to identify the session and the specific resource.
      */
-    fun retrieve(
-        sessionId: String,
-        resourceId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsGetSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
-            .retrieveBetaSessionsResources(
-                clientConfig,
-                sessionId,
-                resourceId,
-                anthropicVersion,
-                anthropicBeta,
-                anthropicWorkspaceId,
-                options,
-            )
+    fun retrieve(sessionId: String, resourceId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsGetSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.retrieveBetaSessionsResources(clientConfig, sessionId, resourceId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
     }
 
     /**
-     * Deletes a resource from a session. Use `session_id` and `resource_id` to identify the session
-     * and resource to remove. A successful response confirms deletion with the resource ID.
+     * Deletes a resource from a session. Use `session_id` and `resource_id` to identify the session and resource to remove. A successful response confirms deletion with the resource ID.
      */
-    fun delete(
-        sessionId: String,
-        resourceId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsDeleteSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
-            .deleteBetaSessionsResources(
-                clientConfig,
-                sessionId,
-                resourceId,
-                anthropicVersion,
-                anthropicBeta,
-                anthropicWorkspaceId,
-                options,
-            )
+    fun delete(sessionId: String, resourceId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeleteSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.deleteBetaSessionsResources(clientConfig, sessionId, resourceId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
     }
 
     /**
-     * Updates the authorization token for a resource attached to a session. Supply
-     * `authorization_token` between 1 and 4096 characters; token rotation is currently supported
-     * only for `github_repository` resources.
+     * Updates the authorization token for a resource attached to a session. Supply `authorization_token` between 1 and 4096 characters; token rotation is currently supported only for `github_repository` resources.
      */
-    fun update(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.UpdateBetaSessionsResourcesRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsUpdateSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
-            .updateBetaSessionsResources(clientConfig, request, options)
+    fun update(request: dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.UpdateBetaSessionsResourcesRequest, options: RequestOptions? = null): BetaManagedAgentsUpdateSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.updateBetaSessionsResources(clientConfig, request, options)
     }
+
 }

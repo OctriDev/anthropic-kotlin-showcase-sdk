@@ -3,132 +3,123 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaClearThinking20251015` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaClearThinking20251015` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaClearThinking20251015(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaClearThinking20251015TypeEnum,
     /**
-     * Number of most recent assistant turns to keep thinking blocks for. Older turns will have
-     * their thinking blocks removed.
+     * Number of most recent assistant turns to keep thinking blocks for. Older turns will have their thinking blocks removed.
      */
-    val keep: BetaClearThinking20251015KeepVariant1Enum? = null,
+    val keep: BetaClearThinking20251015KeepVariant1Enum? = null
 ) : BetaContextManagementConfigEditsItem
 
-/** Typed representation of the `BetaClearToolUses20250919` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaClearToolUses20250919` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaClearToolUses20250919(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaClearToolUses20250919TypeEnum,
     /**
-     * Minimum number of tokens that must be cleared when triggered. Context will only be modified
-     * if at least this many tokens can be removed.
+     * Minimum number of tokens that must be cleared when triggered. Context will only be modified if at least this many tokens can be removed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_at_least")
-    val clearAtLeast: BetaInputTokensClearAtLeast? = null,
-    /** Whether to clear all tool inputs (bool) or specific tool inputs to clear (list) */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_tool_inputs")
-    val clearToolInputs: Any? = null,
-    /** Tool names whose uses are preserved from clearing */
-    @com.fasterxml.jackson.annotation.JsonProperty("exclude_tools")
-    val excludeTools: List<String>? = null,
-    /** Number of tool uses to retain in the conversation */
+    @com.fasterxml.jackson.annotation.JsonProperty("clear_at_least") val clearAtLeast: BetaInputTokensClearAtLeast? = null,
+    /**
+     * Whether to clear all tool inputs (bool) or specific tool inputs to clear (list)
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("clear_tool_inputs") val clearToolInputs: Any? = null,
+    /**
+     * Tool names whose uses are preserved from clearing
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("exclude_tools") val excludeTools: List<String>? = null,
+    /**
+     * Number of tool uses to retain in the conversation
+     */
     val keep: BetaToolUsesKeep? = null,
-    /** Condition that triggers the context management strategy */
-    val trigger: BetaClearToolUses20250919Trigger? = null,
+    /**
+     * Condition that triggers the context management strategy
+     */
+    val trigger: BetaClearToolUses20250919Trigger? = null
 ) : BetaContextManagementConfigEditsItem
 
-/** Automatically compact older context when reaching the configured trigger threshold. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Automatically compact older context when reaching the configured trigger threshold.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaCompact20260112(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaCompact20260112TypeEnum,
-    /** Additional instructions for summarization. */
+    /**
+     * Additional instructions for summarization.
+     */
     val instructions: String? = null,
-    /** Whether to pause after compaction and return the compaction block to the user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pause_after_compaction")
-    val pauseAfterCompaction: Boolean? = null,
-    /** When to trigger compaction. Defaults to 150000 input tokens. */
-    val trigger: BetaInputTokensTrigger? = null,
+    /**
+     * Whether to pause after compaction and return the compaction block to the user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pause_after_compaction") val pauseAfterCompaction: Boolean? = null,
+    /**
+     * When to trigger compaction. Defaults to 150000 input tokens.
+     */
+    val trigger: BetaInputTokensTrigger? = null
 ) : BetaContextManagementConfigEditsItem
 
-/** Context management capability details. */
+/**
+ * Context management capability details.
+ */
 data class BetaContextManagementCapability(
-    /** Whether the clear_thinking_20251015 strategy is supported. */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_thinking_20251015", required = true)
-    val clearThinking20251015: BetaCapabilitySupport?,
-    /** Whether the clear_tool_uses_20250919 strategy is supported. */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_tool_uses_20250919", required = true)
-    val clearToolUses20250919: BetaCapabilitySupport?,
-    /** Whether the compact_20260112 strategy is supported. */
-    @com.fasterxml.jackson.annotation.JsonProperty("compact_20260112", required = true)
-    val compact20260112: BetaCapabilitySupport?,
-    /** Whether this capability is supported by the model. */
-    val supported: Boolean,
+    /**
+     * Whether the clear_thinking_20251015 strategy is supported.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("clear_thinking_20251015", required = true) val clearThinking20251015: BetaCapabilitySupport?,
+    /**
+     * Whether the clear_tool_uses_20250919 strategy is supported.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("clear_tool_uses_20250919", required = true) val clearToolUses20250919: BetaCapabilitySupport?,
+    /**
+     * Whether the compact_20260112 strategy is supported.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("compact_20260112", required = true) val compact20260112: BetaCapabilitySupport?,
+    /**
+     * Whether this capability is supported by the model.
+     */
+    val supported: Boolean
 )
 
-/** Typed representation of the `BetaContextManagementConfig` API schema. */
+/**
+ * Typed representation of the `BetaContextManagementConfig` API schema.
+ */
 data class BetaContextManagementConfig(
-    /** List of context management edits to apply */
+    /**
+     * List of context management edits to apply
+     */
     val edits: List<BetaContextManagementConfigEditsItem>? = null
 )
 
-/** Required API value serialized in the `edits[]` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaContextManagementConfigEditsItem::class,
-)
+/**
+ * Required API value serialized in the `edits[]` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaContextManagementConfigEditsItem::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaClearToolUses20250919::class,
-        name = "clear_tool_uses_20250919",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaClearThinking20251015::class,
-        name = "clear_thinking_20251015",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCompact20260112::class,
-        name = "compact_20260112",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaClearToolUses20250919::class, name = "clear_tool_uses_20250919"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaClearThinking20251015::class, name = "clear_thinking_20251015"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCompact20260112::class, name = "compact_20260112")
 )
 sealed interface BetaContextManagementConfigEditsItem
 
-/**
- * A [BetaContextManagementConfigEditsItem] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaContextManagementConfigEditsItem
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaContextManagementConfigEditsItem] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaContextManagementConfigEditsItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaContextManagementConfigEditsItem {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }

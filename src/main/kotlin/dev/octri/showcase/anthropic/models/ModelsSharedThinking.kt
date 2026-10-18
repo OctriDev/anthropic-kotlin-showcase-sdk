@@ -3,103 +3,67 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `ThinkingConfigAdaptive` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `ThinkingConfigAdaptive` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ThinkingConfigAdaptive(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: ThinkingConfigAdaptiveTypeEnum,
     /**
-     * Controls how thinking content appears in the response. When set to `summarized`, thinking is
-     * returned normally. When set to `omitted`, thinking content is redacted but a signature is
-     * returned for multi-turn continuity. Defaults to `summarized`.
+     * Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
      */
-    val display: ThinkingDisplayMode? = null,
-) : ThinkingConfigParam
-
-/** Typed representation of the `ThinkingConfigDisabled` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ThinkingConfigDisabled(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ThinkingConfigDisabledTypeEnum
-) : ThinkingConfigParam
-
-/** Typed representation of the `ThinkingConfigEnabled` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ThinkingConfigEnabled(
-    /**
-     * Determines how many tokens Claude can use for its internal reasoning process. Larger budgets
-     * can enable more thorough analysis for complex problems, improving response quality. Must be
-     * ≥1024 and less than `max_tokens`. See extended thinking for details.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_tokens") val budgetTokens: Long,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ThinkingConfigEnabledTypeEnum,
-    /**
-     * Controls how thinking content appears in the response. When set to `summarized`, thinking is
-     * returned normally. When set to `omitted`, thinking content is redacted but a signature is
-     * returned for multi-turn continuity. Defaults to `summarized`.
-     */
-    val display: ThinkingDisplayMode? = null,
+    val display: ThinkingDisplayMode? = null
 ) : ThinkingConfigParam
 
 /**
- * Configuration for enabling Claude's extended thinking. When enabled, responses include `thinking`
- * content blocks showing Claude's thinking process before the final answer. Requires a minimum
- * budget of 1,024 tokens and counts towards your `max_tokens` limit. See extended thinking for
- * details.
+ * Typed representation of the `ThinkingConfigDisabled` API schema.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownThinkingConfigParam::class,
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class ThinkingConfigDisabled(
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: ThinkingConfigDisabledTypeEnum
+) : ThinkingConfigParam
+
+/**
+ * Typed representation of the `ThinkingConfigEnabled` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class ThinkingConfigEnabled(
+    /**
+     * Determines how many tokens Claude can use for its internal reasoning process. Larger budgets can enable more thorough analysis for complex problems, improving response quality. Must be ≥1024 and less than `max_tokens`. See extended thinking for details.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_tokens") val budgetTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: ThinkingConfigEnabledTypeEnum,
+    /**
+     * Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+     */
+    val display: ThinkingDisplayMode? = null
+) : ThinkingConfigParam
+
+/**
+ * Configuration for enabling Claude's extended thinking. When enabled, responses include `thinking` content blocks showing Claude's thinking process before the final answer. Requires a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit. See extended thinking for details.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownThinkingConfigParam::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = ThinkingConfigEnabled::class,
-        name = "enabled",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = ThinkingConfigDisabled::class,
-        name = "disabled",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = ThinkingConfigAdaptive::class,
-        name = "adaptive",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ThinkingConfigEnabled::class, name = "enabled"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ThinkingConfigDisabled::class, name = "disabled"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ThinkingConfigAdaptive::class, name = "adaptive")
 )
 sealed interface ThinkingConfigParam
 
 /** A [ThinkingConfigParam] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownThinkingConfigParam
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownThinkingConfigParam @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : ThinkingConfigParam {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }

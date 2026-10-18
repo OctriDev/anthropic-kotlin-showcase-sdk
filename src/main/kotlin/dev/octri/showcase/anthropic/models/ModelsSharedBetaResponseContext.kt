@@ -3,85 +3,69 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaResponseClearThinking20251015Edit` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaResponseClearThinking20251015Edit` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaResponseClearThinking20251015Edit(
-    /** Number of input tokens cleared by this edit. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cleared_input_tokens")
-    val clearedInputTokens: Long,
-    /** Number of thinking turns that were cleared. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cleared_thinking_turns")
-    val clearedThinkingTurns: Long,
-    /** The type of context management edit applied. */
-    val type: BetaResponseClearThinking20251015EditTypeEnum,
+    /**
+     * Number of input tokens cleared by this edit.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cleared_input_tokens") val clearedInputTokens: Long,
+    /**
+     * Number of thinking turns that were cleared.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cleared_thinking_turns") val clearedThinkingTurns: Long,
+    /**
+     * The type of context management edit applied.
+     */
+    val type: BetaResponseClearThinking20251015EditTypeEnum
 ) : BetaResponseContextManagementAppliedEditsItem
 
-/** Typed representation of the `BetaResponseClearToolUses20250919Edit` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaResponseClearToolUses20250919Edit` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaResponseClearToolUses20250919Edit(
-    /** Number of input tokens cleared by this edit. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cleared_input_tokens")
-    val clearedInputTokens: Long,
-    /** Number of tool uses that were cleared. */
+    /**
+     * Number of input tokens cleared by this edit.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cleared_input_tokens") val clearedInputTokens: Long,
+    /**
+     * Number of tool uses that were cleared.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("cleared_tool_uses") val clearedToolUses: Long,
-    /** The type of context management edit applied. */
-    val type: BetaResponseClearToolUses20250919EditTypeEnum,
+    /**
+     * The type of context management edit applied.
+     */
+    val type: BetaResponseClearToolUses20250919EditTypeEnum
 ) : BetaResponseContextManagementAppliedEditsItem
 
-/** Typed representation of the `BetaResponseContextManagement` API schema. */
+/**
+ * Typed representation of the `BetaResponseContextManagement` API schema.
+ */
 data class BetaResponseContextManagement(
-    /** List of context management edits that were applied. */
-    @com.fasterxml.jackson.annotation.JsonProperty("applied_edits")
-    val appliedEdits: List<BetaResponseContextManagementAppliedEditsItem>
+    /**
+     * List of context management edits that were applied.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("applied_edits") val appliedEdits: List<BetaResponseContextManagementAppliedEditsItem>
 )
 
-/** Required API value serialized in the `applied_edits[]` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaResponseContextManagementAppliedEditsItem::class,
-)
+/**
+ * Required API value serialized in the `applied_edits[]` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaResponseContextManagementAppliedEditsItem::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaResponseClearToolUses20250919Edit::class,
-        name = "clear_tool_uses_20250919",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaResponseClearThinking20251015Edit::class,
-        name = "clear_thinking_20251015",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseClearToolUses20250919Edit::class, name = "clear_tool_uses_20250919"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseClearThinking20251015Edit::class, name = "clear_thinking_20251015")
 )
 sealed interface BetaResponseContextManagementAppliedEditsItem
 
-/**
- * A [BetaResponseContextManagementAppliedEditsItem] whose `type` names no branch this SDK knows,
- * kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaResponseContextManagementAppliedEditsItem
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaResponseContextManagementAppliedEditsItem] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaResponseContextManagementAppliedEditsItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaResponseContextManagementAppliedEditsItem {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }

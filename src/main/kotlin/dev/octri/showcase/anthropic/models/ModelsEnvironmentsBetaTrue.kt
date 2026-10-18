@@ -4,75 +4,60 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Response when listing environments. This response model uses opaque cursor-based pagination. Use
- * the `page` query parameter with the value from `next_page` to fetch the next page.
+ * Response when listing environments. This response model uses opaque cursor-based pagination. Use the `page` query parameter with the value from `next_page` to fetch the next page.
  */
 data class BetaEnvironmentListResponse(
-    /** List of environments. */
+    /**
+     * List of environments.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaEnvironment>,
     /**
-     * Token for fetching the next page of results. If `null`, there are no more results available.
-     * Pass this value to the `page` parameter in the next request.
+     * Token for fetching the next page of results. If `null`, there are no more results available. Pass this value to the `page` parameter in the next request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )
 
-/** Public API request to create a new environment (without org/account fields). */
+/**
+ * Public API request to create a new environment (without org/account fields).
+ */
 data class BetaPublicEnvironmentCreateRequest(
-    /** Human-readable name for the environment */
+    /**
+     * Human-readable name for the environment
+     */
     val name: String,
-    /** Environment configuration */
+    /**
+     * Environment configuration
+     */
     val config: BetaPublicEnvironmentCreateRequestConfig? = null,
-    /** Optional description of the environment */
+    /**
+     * Optional description of the environment
+     */
     val description: String? = null,
-    /** User-provided metadata key-value pairs */
+    /**
+     * User-provided metadata key-value pairs
+     */
     val metadata: Map<String, String>? = null,
     /**
-     * The visibility scope for this environment. 'organization' makes the environment visible to
-     * all accounts. 'account' restricts visibility to the owning account only. Only applicable for
-     * self-hosted environments. If not specified, defaults based on organization type.
+     * The visibility scope for this environment. 'organization' makes the environment visible to all accounts. 'account' restricts visibility to the owning account only. Only applicable for self-hosted environments. If not specified, defaults based on organization type.
      */
-    val scope: BetaPublicEnvironmentCreateRequestScopeVariant0Enum? = null,
+    val scope: BetaPublicEnvironmentCreateRequestScopeVariant0Enum? = null
 )
 
-/** Environment configuration */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaPublicEnvironmentCreateRequestConfig::class,
-)
+/**
+ * Environment configuration
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaPublicEnvironmentCreateRequestConfig::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCloudConfigParams::class,
-        name = "cloud",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaSelfHostedConfigParams::class,
-        name = "self_hosted",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCloudConfigParams::class, name = "cloud"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaSelfHostedConfigParams::class, name = "self_hosted")
 )
 sealed interface BetaPublicEnvironmentCreateRequestConfig
 
-/**
- * A [BetaPublicEnvironmentCreateRequestConfig] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaPublicEnvironmentCreateRequestConfig
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaPublicEnvironmentCreateRequestConfig] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaPublicEnvironmentCreateRequestConfig @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaPublicEnvironmentCreateRequestConfig {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }

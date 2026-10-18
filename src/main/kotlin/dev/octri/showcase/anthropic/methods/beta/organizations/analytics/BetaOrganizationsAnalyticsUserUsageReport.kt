@@ -13,8 +13,8 @@ import dev.octri.showcase.anthropic.BetaInferenceGeoFilter
 import dev.octri.showcase.anthropic.BetaMessagesUsageReportContextWindow
 import dev.octri.showcase.anthropic.ClientConfig
 import dev.octri.showcase.anthropic.RequestOptions
-import dev.octri.showcase.anthropic.RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterIteXdea8910ad0
 import dev.octri.showcase.anthropic.RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterItemEnum
+import dev.octri.showcase.anthropic.RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterIteXdea8910ad0
 import dev.octri.showcase.anthropic.RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterVariant0Enum
 import dev.octri.showcase.anthropic.SdkClient
 import dev.octri.showcase.anthropic.Validation
@@ -22,318 +22,243 @@ import java.time.OffsetDateTime
 
 object BetaOrganizationsAnalyticsUserUsageReport {
 
+
     /** Parameters for [retrieveBetaOrganizationsAnalyticsUserUsageReport]. */
     data class RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest(
         val startingAt: OffsetDateTime,
         val endingAt: SdkClient.SdkOptional<String?>? = null,
         val products: SdkClient.SdkOptional<List<BetaAnalyticsProductFilter>?>? = null,
         val models: SdkClient.SdkOptional<List<String>?>? = null,
-        val contextWindows: SdkClient.SdkOptional<List<BetaMessagesUsageReportContextWindow>?>? =
-            null,
+        val contextWindows: SdkClient.SdkOptional<List<BetaMessagesUsageReportContextWindow>?>? = null,
         val inferenceGeos: SdkClient.SdkOptional<List<BetaInferenceGeoFilter>?>? = null,
-        val speeds:
-            SdkClient.SdkOptional<
-                List<RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterIteXdea8910ad0>?
-            >? =
-            null,
+        val speeds: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterIteXdea8910ad0>?>? = null,
         val slackChannelIds: SdkClient.SdkOptional<List<String>?>? = null,
         val rbacGroupIds: SdkClient.SdkOptional<List<String>?>? = null,
         val userIds: SdkClient.SdkOptional<List<String>?>? = null,
-        val bucketWidth:
-            SdkClient.SdkOptional<
-                RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterVariant0Enum?
-            >? =
-            null,
+        val bucketWidth: SdkClient.SdkOptional<RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterVariant0Enum?>? = null,
         val order: BetaAnalyticsSortOrder? = null,
         val excludeDeletedUsers: Boolean? = null,
         val limit: Long? = null,
         val page: SdkClient.SdkOptional<String?>? = null,
         val orderBy: BetaAnalyticsUsageUsersOrderBy? = null,
-        val groupBy:
-            SdkClient.SdkOptional<
-                List<RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterItemEnum>?
-            >? =
-            null,
+        val groupBy: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsAnalyticsUserUsageReportParameterItemEnum>?>? = null
     )
 
     /**
-     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen
-     * token metric. Use this to see which users consume the most tokens. Only usage attributable to
-     * a seat user is included; for organization-wide totals including direct API-key and automation
-     * traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to
-     * organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics`
-     * scope.
+     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen token metric. Use this to see which users consume the most tokens. Only usage attributable to a seat user is included; for organization-wide totals including direct API-key and automation traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      *
-     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within the last 365
-     *   days and no earlier than 2026-01-01T00:00:00Z.
-     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier of now and
-     *   `starting_at` + 31 days. The range may span at most 31 days.
+     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within
+     *   the last 365 days and no earlier than 2026-01-01T00:00:00Z.
+     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier
+     *   of now and `starting_at` + 31 days. The range may span at most 31 days.
      * @param products Product surfaces to include. Defaults to all products.
-     * @param models Models to include. Defaults to all models. Use `group_by[]=model` to break out
-     *   per-model values.
+     * @param models Models to include. Defaults to all models. Use
+     *   `group_by[]=model` to break out per-model values.
      * @param contextWindows Filter to specific context-window pricing tiers. Use
      *   `group_by[]=context_window` to break out per-tier values.
-     * @param inferenceGeos Filter to specific inference regions. `not_available` matches rows where
-     *   the region is unset. Use `group_by[]=inference_geo` to break out per-region values.
-     * @param speeds Filter to fast or standard inference mode. Use `group_by[]=speed` to break out
-     *   per-mode values.
-     * @param slackChannelIds Filter to usage originating from specific Slack channels. Use
-     *   `group_by[]=slack_channel_id` to break out per-channel values.
-     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups. Accepts tagged RBAC
-     *   group IDs (`rbac_group_...`) or bare group UUIDs. A row matches when the user belonged to
-     *   any of the listed groups on the (UTC) day the usage occurred; usage with no group
-     *   attribution never matches.
+     * @param inferenceGeos Filter to specific inference regions. `not_available`
+     *   matches rows where the region is unset. Use `group_by[]=inference_geo` to
+     *   break out per-region values.
+     * @param speeds Filter to fast or standard inference mode. Use
+     *   `group_by[]=speed` to break out per-mode values.
+     * @param slackChannelIds Filter to usage originating from specific Slack
+     *   channels. Use `group_by[]=slack_channel_id` to break out per-channel values.
+     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups.
+     *   Accepts tagged RBAC group IDs (`rbac_group_...`) or bare group UUIDs. A row
+     *   matches when the user belonged to any of the listed groups on the (UTC) day
+     *   the usage occurred; usage with no group attribution never matches.
      * @param userIds Filter to specific users by tagged user ID.
-     * @param bucketWidth Time-bucket granularity. When set, each row's `starting_at` and
-     *   `ending_at` are populated and one actor may span several rows (one per time bucket with
-     *   usage). The time bucket counts toward `limit`, so one page can return multiple rows for the
-     *   same actor. `ending_at` is required when `bucket_width` is set, and with
-     *   `bucket_width="1m"` the range may span at most 24 hours. When omitted, each row aggregates
-     *   the full `[starting_at, ending_at)` range.
+     * @param bucketWidth Time-bucket granularity. When set, each row's `starting_at`
+     *   and `ending_at` are populated and one actor may span several rows (one per
+     *   time bucket with usage). The time bucket counts toward `limit`, so one page
+     *   can return multiple rows for the same actor. `ending_at` is required when
+     *   `bucket_width` is set, and with `bucket_width="1m"` the range may span at most
+     *   24 hours. When omitted, each row aggregates the full `[starting_at,
+     *   ending_at)` range.
      * @param order Sort direction. Defaults to `desc`.
-     * @param excludeDeletedUsers If true, omit rows for users who are deleted (`deleted: true`). A
-     *   page may contain fewer than `limit` rows; use `has_more` and `next_page` to paginate as
-     *   usual.
-     * @param limit Number of rows per page (1-1000, default 20). One row per actor unless
-     *   `group_by[]` or `bucket_width` splits an actor across rows; `cost_type`/`token_type`
-     *   fan-out rows (cost endpoint only) are the exception — they do not count toward this limit,
-     *   so `data` can exceed it.
+     * @param excludeDeletedUsers If true, omit rows for users who are deleted
+     *   (`deleted: true`). A page may contain fewer than `limit` rows; use `has_more`
+     *   and `next_page` to paginate as usual.
+     * @param limit Number of rows per page (1-1000, default 20). One row per actor
+     *   unless `group_by[]` or `bucket_width` splits an actor across rows;
+     *   `cost_type`/`token_type` fan-out rows (cost endpoint only) are the exception —
+     *   they do not count toward this limit, so `data` can exceed it.
      * @param page Opaque cursor from a previous response's `next_page` field.
      * @param orderBy Metric to rank actors by. Defaults to `total_tokens`.
-     * @param groupBy Break each actor's row out by the given dimensions. Accepts the same values as
-     *   the bucketed `/usage_report` endpoint. `limit` bounds (actor × time bucket × dimension)
-     *   rows — with dimensions or `bucket_width` present, one actor may span several rows.
+     * @param groupBy Break each actor's row out by the given dimensions. Accepts the
+     *   same values as the bucketed `/usage_report` endpoint. `limit` bounds (actor ×
+     *   time bucket × dimension) rows — with dimensions or `bucket_width` present, one
+     *   actor may span several rows.
      */
-    fun retrieveBetaOrganizationsAnalyticsUserUsageReport(
-        clientConfig: ClientConfig,
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsUsageUsersResponse {
+    fun retrieveBetaOrganizationsAnalyticsUserUsageReport(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest, options: RequestOptions? = null): BetaAnalyticsUsageUsersResponse {
         validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequest(request)
 
-        return SdkClient.request<BetaAnalyticsUsageUsersResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/analytics/user_usage_report?beta=true",
-                    config = clientConfig,
-                    query = buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQuery(request),
-                    operationId = "retrieveBetaOrganizationsAnalyticsUserUsageReport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaAnalyticsUsageUsersResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/analytics/user_usage_report?beta=true", config = clientConfig, query = buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQuery(request), operationId = "retrieveBetaOrganizationsAnalyticsUserUsageReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
-    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequest(
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest
-    ) {
+
+    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequest(request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest) {
         validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart1(request)
         validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart2(request)
         validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart3(request)
     }
 
-    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart1(
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest
-    ) {
+    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart1(request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest) {
         Validation.validateDateTime("starting_at", request.startingAt)
 
         val productsValue = request.products?.getOrNull()
-        if (productsValue != null) {
+if (productsValue != null) {
             Validation.validateItems("products[]", productsValue, Validation.LengthOpts(max = 100))
-        }
+}
 
         val modelsValue = request.models?.getOrNull()
-        if (modelsValue != null) {
+if (modelsValue != null) {
             Validation.validateItems("models[]", modelsValue, Validation.LengthOpts(max = 100))
-        }
+}
 
         val contextWindowsValue = request.contextWindows?.getOrNull()
-        if (contextWindowsValue != null) {
-            Validation.validateItems(
-                "context_windows[]",
-                contextWindowsValue,
-                Validation.LengthOpts(max = 100),
-            )
-        }
+if (contextWindowsValue != null) {
+            Validation.validateItems("context_windows[]", contextWindowsValue, Validation.LengthOpts(max = 100))
+}
 
         val inferenceGeosValue = request.inferenceGeos?.getOrNull()
-        if (inferenceGeosValue != null) {
-            Validation.validateItems(
-                "inference_geos[]",
-                inferenceGeosValue,
-                Validation.LengthOpts(max = 100),
-            )
-        }
+if (inferenceGeosValue != null) {
+            Validation.validateItems("inference_geos[]", inferenceGeosValue, Validation.LengthOpts(max = 100))
+}
     }
 
-    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart2(
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest
-    ) {
+    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart2(request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest) {
         val speedsValue = request.speeds?.getOrNull()
-        if (speedsValue != null) {
+if (speedsValue != null) {
             Validation.validateItems("speeds[]", speedsValue, Validation.LengthOpts(max = 100))
-        }
+}
 
         val slackChannelIdsValue = request.slackChannelIds?.getOrNull()
-        if (slackChannelIdsValue != null) {
-            Validation.validateItems(
-                "slack_channel_ids[]",
-                slackChannelIdsValue,
-                Validation.LengthOpts(max = 100),
-            )
-        }
+if (slackChannelIdsValue != null) {
+            Validation.validateItems("slack_channel_ids[]", slackChannelIdsValue, Validation.LengthOpts(max = 100))
+}
 
         val rbacGroupIdsValue = request.rbacGroupIds?.getOrNull()
-        if (rbacGroupIdsValue != null) {
-            Validation.validateItems(
-                "rbac_group_ids[]",
-                rbacGroupIdsValue,
-                Validation.LengthOpts(max = 100),
-            )
-        }
+if (rbacGroupIdsValue != null) {
+            Validation.validateItems("rbac_group_ids[]", rbacGroupIdsValue, Validation.LengthOpts(max = 100))
+}
 
         val userIdsValue = request.userIds?.getOrNull()
-        if (userIdsValue != null) {
+if (userIdsValue != null) {
             Validation.validateItems("user_ids[]", userIdsValue, Validation.LengthOpts(max = 100))
-        }
+}
 
         if (request.limit != null) {
-            Validation.validateRange(
-                "limit",
-                request.limit,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
     }
 
-    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart3(
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest
-    ) {
+    private fun validateRetrieveBetaOrganizationsAnalyticsUserUsageReportRequestPart3(request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest) {
         val groupByValue = request.groupBy?.getOrNull()
-        if (groupByValue != null) {
+if (groupByValue != null) {
             Validation.validateItems("group_by[]", groupByValue, Validation.LengthOpts(max = 100))
+}
+    }
+
+
+    private fun buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQuery(request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart1(request))
+            putAll(buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart2(request))
         }
-    }
 
-    private fun buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQuery(
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest
-    ): Map<String, Any?> = buildMap {
-        putAll(buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart1(request))
-        putAll(buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart2(request))
-    }
-
-    private fun buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart1(
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest
-    ): Map<String, Any?> =
+    private fun buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart1(request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest): Map<String, Any?> =
         mapOf(
-            "starting_at" to SdkClient.queryValue(request.startingAt, "form", true, "date-time"),
-            "ending_at" to SdkClient.queryValue(request.endingAt, "form", true),
-            "products[]" to SdkClient.queryValue(request.products, "form", true),
-            "models[]" to SdkClient.queryValue(request.models, "form", true),
-            "context_windows[]" to SdkClient.queryValue(request.contextWindows, "form", true),
-            "inference_geos[]" to SdkClient.queryValue(request.inferenceGeos, "form", true),
-            "speeds[]" to SdkClient.queryValue(request.speeds, "form", true),
-            "slack_channel_ids[]" to SdkClient.queryValue(request.slackChannelIds, "form", true),
-            "rbac_group_ids[]" to SdkClient.queryValue(request.rbacGroupIds, "form", true),
-            "user_ids[]" to SdkClient.queryValue(request.userIds, "form", true),
-            "bucket_width" to SdkClient.queryValue(request.bucketWidth, "form", true),
+            "starting_at" to
+    SdkClient.queryValue(request.startingAt, "form", true, "date-time"),
+            "ending_at" to
+    SdkClient.queryValue(request.endingAt, "form", true),
+            "products[]" to
+    SdkClient.queryValue(request.products, "form", true),
+            "models[]" to
+    SdkClient.queryValue(request.models, "form", true),
+            "context_windows[]" to
+    SdkClient.queryValue(request.contextWindows, "form", true),
+            "inference_geos[]" to
+    SdkClient.queryValue(request.inferenceGeos, "form", true),
+            "speeds[]" to
+    SdkClient.queryValue(request.speeds, "form", true),
+            "slack_channel_ids[]" to
+    SdkClient.queryValue(request.slackChannelIds, "form", true),
+            "rbac_group_ids[]" to
+    SdkClient.queryValue(request.rbacGroupIds, "form", true),
+            "user_ids[]" to
+    SdkClient.queryValue(request.userIds, "form", true),
+            "bucket_width" to
+    SdkClient.queryValue(request.bucketWidth, "form", true),
             "order" to SdkClient.queryValue(request.order, "form", true),
         )
 
-    private fun buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart2(
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest
-    ): Map<String, Any?> =
+    private fun buildRetrieveBetaOrganizationsAnalyticsUserUsageReportQueryPart2(request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest): Map<String, Any?> =
         mapOf(
             "exclude_deleted_users" to
-                SdkClient.queryValue(request.excludeDeletedUsers, "form", true),
+    SdkClient.queryValue(request.excludeDeletedUsers, "form", true),
             "limit" to SdkClient.queryValue(request.limit, "form", true),
             "page" to SdkClient.queryValue(request.page, "form", true),
-            "order_by" to SdkClient.queryValue(request.orderBy, "form", true),
-            "group_by[]" to SdkClient.queryValue(request.groupBy, "form", true),
+            "order_by" to
+    SdkClient.queryValue(request.orderBy, "form", true),
+            "group_by[]" to
+    SdkClient.queryValue(request.groupBy, "form", true),
         )
 
+
+
+
     /**
-     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen
-     * token metric. Use this to see which users consume the most tokens. Only usage attributable to
-     * a seat user is included; for organization-wide totals including direct API-key and automation
-     * traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to
-     * organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics`
-     * scope.
+     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen token metric. Use this to see which users consume the most tokens. Only usage attributable to a seat user is included; for organization-wide totals including direct API-key and automation traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      *
-     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within the last 365
-     *   days and no earlier than 2026-01-01T00:00:00Z.
-     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier of now and
-     *   `starting_at` + 31 days. The range may span at most 31 days.
+     * @param startingAt Start of range, inclusive. RFC 3339 tz-aware. Must be within
+     *   the last 365 days and no earlier than 2026-01-01T00:00:00Z.
+     * @param endingAt End of range, exclusive. When omitted, defaults to the earlier
+     *   of now and `starting_at` + 31 days. The range may span at most 31 days.
      * @param products Product surfaces to include. Defaults to all products.
-     * @param models Models to include. Defaults to all models. Use `group_by[]=model` to break out
-     *   per-model values.
+     * @param models Models to include. Defaults to all models. Use
+     *   `group_by[]=model` to break out per-model values.
      * @param contextWindows Filter to specific context-window pricing tiers. Use
      *   `group_by[]=context_window` to break out per-tier values.
-     * @param inferenceGeos Filter to specific inference regions. `not_available` matches rows where
-     *   the region is unset. Use `group_by[]=inference_geo` to break out per-region values.
-     * @param speeds Filter to fast or standard inference mode. Use `group_by[]=speed` to break out
-     *   per-mode values.
-     * @param slackChannelIds Filter to usage originating from specific Slack channels. Use
-     *   `group_by[]=slack_channel_id` to break out per-channel values.
-     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups. Accepts tagged RBAC
-     *   group IDs (`rbac_group_...`) or bare group UUIDs. A row matches when the user belonged to
-     *   any of the listed groups on the (UTC) day the usage occurred; usage with no group
-     *   attribution never matches.
+     * @param inferenceGeos Filter to specific inference regions. `not_available`
+     *   matches rows where the region is unset. Use `group_by[]=inference_geo` to
+     *   break out per-region values.
+     * @param speeds Filter to fast or standard inference mode. Use
+     *   `group_by[]=speed` to break out per-mode values.
+     * @param slackChannelIds Filter to usage originating from specific Slack
+     *   channels. Use `group_by[]=slack_channel_id` to break out per-channel values.
+     * @param rbacGroupIds Filter to usage attributed to specific RBAC groups.
+     *   Accepts tagged RBAC group IDs (`rbac_group_...`) or bare group UUIDs. A row
+     *   matches when the user belonged to any of the listed groups on the (UTC) day
+     *   the usage occurred; usage with no group attribution never matches.
      * @param userIds Filter to specific users by tagged user ID.
-     * @param bucketWidth Time-bucket granularity. When set, each row's `starting_at` and
-     *   `ending_at` are populated and one actor may span several rows (one per time bucket with
-     *   usage). The time bucket counts toward `limit`, so one page can return multiple rows for the
-     *   same actor. `ending_at` is required when `bucket_width` is set, and with
-     *   `bucket_width="1m"` the range may span at most 24 hours. When omitted, each row aggregates
-     *   the full `[starting_at, ending_at)` range.
+     * @param bucketWidth Time-bucket granularity. When set, each row's `starting_at`
+     *   and `ending_at` are populated and one actor may span several rows (one per
+     *   time bucket with usage). The time bucket counts toward `limit`, so one page
+     *   can return multiple rows for the same actor. `ending_at` is required when
+     *   `bucket_width` is set, and with `bucket_width="1m"` the range may span at most
+     *   24 hours. When omitted, each row aggregates the full `[starting_at,
+     *   ending_at)` range.
      * @param order Sort direction. Defaults to `desc`.
-     * @param excludeDeletedUsers If true, omit rows for users who are deleted (`deleted: true`). A
-     *   page may contain fewer than `limit` rows; use `has_more` and `next_page` to paginate as
-     *   usual.
-     * @param limit Number of rows per page (1-1000, default 20). One row per actor unless
-     *   `group_by[]` or `bucket_width` splits an actor across rows; `cost_type`/`token_type`
-     *   fan-out rows (cost endpoint only) are the exception — they do not count toward this limit,
-     *   so `data` can exceed it.
+     * @param excludeDeletedUsers If true, omit rows for users who are deleted
+     *   (`deleted: true`). A page may contain fewer than `limit` rows; use `has_more`
+     *   and `next_page` to paginate as usual.
+     * @param limit Number of rows per page (1-1000, default 20). One row per actor
+     *   unless `group_by[]` or `bucket_width` splits an actor across rows;
+     *   `cost_type`/`token_type` fan-out rows (cost endpoint only) are the exception —
+     *   they do not count toward this limit, so `data` can exceed it.
      * @param page Opaque cursor from a previous response's `next_page` field.
      * @param orderBy Metric to rank actors by. Defaults to `total_tokens`.
-     * @param groupBy Break each actor's row out by the given dimensions. Accepts the same values as
-     *   the bucketed `/usage_report` endpoint. `limit` bounds (actor × time bucket × dimension)
-     *   rows — with dimensions or `bucket_width` present, one actor may span several rows.
+     * @param groupBy Break each actor's row out by the given dimensions. Accepts the
+     *   same values as the bucketed `/usage_report` endpoint. `limit` bounds (actor ×
+     *   time bucket × dimension) rows — with dimensions or `bucket_width` present, one
+     *   actor may span several rows.
      */
-    fun retrieveBetaOrganizationsAnalyticsUserUsageReportPaginated(
-        clientConfig: ClientConfig,
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsUsageUsersItem) -> Boolean,
-    ) {
+    fun retrieveBetaOrganizationsAnalyticsUserUsageReportPaginated(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsUsageUsersItem) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page =
-                retrieveBetaOrganizationsAnalyticsUserUsageReport(
-                    clientConfig,
-                    request.copy(page = cursor),
-                    options,
-                )
+            val page = retrieveBetaOrganizationsAnalyticsUserUsageReport(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -351,32 +276,20 @@ object BetaOrganizationsAnalyticsUserUsageReport {
         val hasMore: Boolean,
     )
 
-    fun retrieveBetaOrganizationsAnalyticsUserUsageReportPages(
-        clientConfig: ClientConfig,
-        request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest,
-        options: RequestOptions? = null,
-        yieldPage: (RetrieveBetaOrganizationsAnalyticsUserUsageReportPage) -> Boolean,
-    ) {
+    fun retrieveBetaOrganizationsAnalyticsUserUsageReportPages(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest, options: RequestOptions? = null, yieldPage: (RetrieveBetaOrganizationsAnalyticsUserUsageReportPage) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page =
-                retrieveBetaOrganizationsAnalyticsUserUsageReport(
-                    clientConfig,
-                    request.copy(page = cursor),
-                    options,
-                )
+            val page = retrieveBetaOrganizationsAnalyticsUserUsageReport(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
             val hasMore = page.hasMore == true && nextCursor != null
-            if (
-                !yieldPage(
-                    RetrieveBetaOrganizationsAnalyticsUserUsageReportPage(page, items, hasMore)
-                )
-            )
-                return
+            if (!yieldPage(RetrieveBetaOrganizationsAnalyticsUserUsageReportPage(page, items, hasMore))) return
             if (!hasMore) return
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
+
+
+
 }

@@ -3,147 +3,89 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Confirmation that a `memory_store` was deleted. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Confirmation that a `memory_store` was deleted.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsDeletedMemoryStore(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsDeletedMemoryStoreTypeEnum,
     /**
-     * ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories
-     * and versions are no longer retrievable.
+     * ID of the deleted memory store (a `memstore_...` identifier). The store and all its memories and versions are no longer retrievable.
      */
-    val id: String,
+    val id: String
 ) : BetaManagedAgentsDeleteMemoryStoreResponse
 
-/** Response from deleting a `memory_store`. Confirms the deleted ID. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsDeleteMemoryStoreResponse::class,
-)
+/**
+ * Response from deleting a `memory_store`. Confirms the deleted ID.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsDeleteMemoryStoreResponse::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsDeletedMemoryStore::class,
-        name = "memory_store_deleted",
-    )
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsDeletedMemoryStore::class, name = "memory_store_deleted")
 )
 sealed interface BetaManagedAgentsDeleteMemoryStoreResponse
 
-/**
- * A [BetaManagedAgentsDeleteMemoryStoreResponse] whose `type` names no branch this SDK knows, kept
- * as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsDeleteMemoryStoreResponse
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsDeleteMemoryStoreResponse] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsDeleteMemoryStoreResponse @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsDeleteMemoryStoreResponse {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Response from retrieving a `memory_store`. Returns the store, including archived stores. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsGetMemoryStoreResponse::class,
-)
+/**
+ * Response from retrieving a `memory_store`. Returns the store, including archived stores.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsGetMemoryStoreResponse::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsMemoryStore::class,
-        name = "memory_store",
-    )
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStore::class, name = "memory_store")
 )
 sealed interface BetaManagedAgentsGetMemoryStoreResponse
 
-/**
- * A [BetaManagedAgentsGetMemoryStoreResponse] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsGetMemoryStoreResponse
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsGetMemoryStoreResponse] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsGetMemoryStoreResponse @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsGetMemoryStoreResponse {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaManagedAgentsUpdateMemoryStoreRequestBody` API schema. */
+/**
+ * Typed representation of the `BetaManagedAgentsUpdateMemoryStoreRequestBody` API schema.
+ */
 data class BetaManagedAgentsUpdateMemoryStoreRequestBody(
     /**
-     * New human-readable name for the store. 1–255 characters; no control characters. Renaming
-     * changes the slug used for the store's `mount_path` in sessions created after the update.
+     * New human-readable name for the store. 1–255 characters; no control characters. Renaming changes the slug used for the store's `mount_path` in sessions created after the update.
      */
     val name: String? = null,
-    /** New description for the store, up to 1024 characters. Pass an empty string to clear it. */
+    /**
+     * New description for the store, up to 1024 characters. Pass an empty string to clear it.
+     */
     val description: String? = null,
     /**
-     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field
-     * to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with values up to 512
-     * chars.
+     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with values up to 512 chars.
      */
-    val metadata: Map<String, String>? = null,
+    val metadata: Map<String, String>? = null
 )
 
-/** Response from updating a `memory_store`. Returns the store with the changes applied. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsUpdateMemoryStoreResponse::class,
-)
+/**
+ * Response from updating a `memory_store`. Returns the store with the changes applied.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsUpdateMemoryStoreResponse::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsMemoryStore::class,
-        name = "memory_store",
-    )
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStore::class, name = "memory_store")
 )
 sealed interface BetaManagedAgentsUpdateMemoryStoreResponse
 
-/**
- * A [BetaManagedAgentsUpdateMemoryStoreResponse] whose `type` names no branch this SDK knows, kept
- * as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsUpdateMemoryStoreResponse
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsUpdateMemoryStoreResponse] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsUpdateMemoryStoreResponse @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsUpdateMemoryStoreResponse {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }

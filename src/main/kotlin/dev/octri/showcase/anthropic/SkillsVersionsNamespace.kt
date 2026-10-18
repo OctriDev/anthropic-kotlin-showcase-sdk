@@ -3,117 +3,41 @@
 
 package dev.octri.showcase.anthropic
 
+
 class SkillsVersionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a new version of a skill by uploading its files. Put all files in the same top-level
-     * directory and include `SKILL.md` at that directory's root. The response contains the created
-     * skill version and its generated identifier.
+     * Creates a new version of a skill by uploading its files. Put all files in the same top-level directory and include `SKILL.md` at that directory's root. The response contains the created skill version and its generated identifier.
      */
-    fun create(
-        skillId: String,
-        files: List<SdkClient.UploadFile>,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): SkillVersion {
-        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.createSkillsVersions(
-            clientConfig,
-            skillId,
-            files,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun create(skillId: String, files: List<SdkClient.UploadFile>, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SkillVersion {
+        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.createSkillsVersions(clientConfig, skillId, files, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Lists versions of a specific skill. Use `page` to continue from the previous response's
-     * `next_page` token and `limit` to control the number of results per page.
+     * Lists versions of a specific skill. Use `page` to continue from the previous response's `next_page` token and `limit` to control the number of results per page.
      */
-    fun list(
-        skillId: String,
-        page: SdkClient.SdkOptional<String?>? = null,
-        limit: SdkClient.SdkOptional<Long?>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): ListSkillVersionsResponse {
-        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.listSkillsVersions(
-            clientConfig,
-            skillId,
-            page,
-            limit,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun list(skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ListSkillVersionsResponse {
+        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.listSkillsVersions(clientConfig, skillId, page, limit, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Lists versions of a specific skill. Use `page` to continue from the previous response's
-     * `next_page` token and `limit` to control the number of results per page.
+     * Lists versions of a specific skill. Use `page` to continue from the previous response's `next_page` token and `limit` to control the number of results per page.
      */
-    fun listPaginated(
-        skillId: String,
-        page: SdkClient.SdkOptional<String?>? = null,
-        limit: SdkClient.SdkOptional<Long?>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-        yieldFn: (SkillVersion) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.skills.SkillsVersions.listSkillsVersionsPaginated(
-            clientConfig,
-            skillId,
-            page,
-            limit,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-            yieldFn,
-        )
+    fun listPaginated(skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (SkillVersion) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.skills.SkillsVersions.listSkillsVersionsPaginated(clientConfig, skillId, page, limit, anthropicVersion, anthropicWorkspaceId, options, yieldFn)
     }
 
     /**
-     * Retrieves a specific version of a skill. Use `version` to identify the version by its ID or
-     * request `latest` for the skill's most recent version. With the `skills-2025-10-02` beta
-     * header, identify the version by its Unix epoch timestamp instead.
+     * Retrieves a specific version of a skill. Use `version` to identify the version by its ID or request `latest` for the skill's most recent version. With the `skills-2025-10-02` beta header, identify the version by its Unix epoch timestamp instead.
      */
-    fun retrieve(
-        skillId: String,
-        version: String,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): SkillVersion {
-        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.retrieveSkillsVersions(
-            clientConfig,
-            skillId,
-            version,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun retrieve(skillId: String, version: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SkillVersion {
+        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.retrieveSkillsVersions(clientConfig, skillId, version, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Deletes a specific version of a skill. Supply the skill and version identifiers to select the
-     * version to remove. The response confirms the deletion with the deleted version's ID.
+     * Deletes a specific version of a skill. Supply the skill and version identifiers to select the version to remove. The response confirms the deletion with the deleted version's ID.
      */
-    fun delete(
-        skillId: String,
-        version: String,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): DeletedSkillVersion {
-        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.deleteSkillsVersions(
-            clientConfig,
-            skillId,
-            version,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun delete(skillId: String, version: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): DeletedSkillVersion {
+        return dev.octri.showcase.anthropic.methods.skills.SkillsVersions.deleteSkillsVersions(clientConfig, skillId, version, anthropicVersion, anthropicWorkspaceId, options)
     }
+
 }

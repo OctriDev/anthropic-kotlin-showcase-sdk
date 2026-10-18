@@ -3,33 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaAgentsVersionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists versions of a specified agent. Use `agent_id` to select the agent and `page` to
-     * continue through the cursor-based results. Each response includes a `next_page` cursor when
-     * another page is available.
+     * Lists versions of a specified agent. Use `agent_id` to select the agent and `page` to continue through the cursor-based results. Each response includes a `next_page` cursor when another page is available.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions.ListBetaAgentsVersionsRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsListAgentVersions {
-        return dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions
-            .listBetaAgentsVersions(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions.ListBetaAgentsVersionsRequest, options: RequestOptions? = null): BetaManagedAgentsListAgentVersions {
+        return dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions.listBetaAgentsVersions(clientConfig, request, options)
     }
 
     /**
-     * Lists versions of a specified agent. Use `agent_id` to select the agent and `page` to
-     * continue through the cursor-based results. Each response includes a `next_page` cursor when
-     * another page is available.
+     * Lists versions of a specified agent. Use `agent_id` to select the agent and `page` to continue through the cursor-based results. Each response includes a `next_page` cursor when another page is available.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions.ListBetaAgentsVersionsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaManagedAgentsAgent) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions
-            .listBetaAgentsVersionsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions.ListBetaAgentsVersionsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsAgent) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.agents.BetaAgentsVersions.listBetaAgentsVersionsPaginated(clientConfig, request, options, yieldFn)
     }
+
 }

@@ -3,137 +3,55 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsExternalKeysNamespace(private val clientConfig: ClientConfig) {
-    /** Create an external key config owned by the caller's organization. */
-    fun create(
-        providerConfig: BetaExternalKeyCreateParamsProviderConfig,
-        anthropicVersion: String? = null,
-        displayName: SdkClient.SdkOptional<String?>? = null,
-        geo: BetaExternalKeyCreateParamsGeoEnum? = null,
-        options: RequestOptions? = null,
-    ): BetaExternalKey {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys
-            .createBetaOrganizationsExternalKeys(
-                clientConfig,
-                providerConfig,
-                anthropicVersion,
-                displayName,
-                geo,
-                options,
-            )
+    /**
+     * Create an external key config owned by the caller's organization.
+     */
+    fun create(providerConfig: BetaExternalKeyCreateParamsProviderConfig, anthropicVersion: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, geo: BetaExternalKeyCreateParamsGeoEnum? = null, options: RequestOptions? = null): BetaExternalKey {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys.createBetaOrganizationsExternalKeys(clientConfig, providerConfig, anthropicVersion, displayName, geo, options)
     }
 
     /**
-     * List external key configs in the caller's organization. Results are ordered by creation time
-     * (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
+     * List external key configs in the caller's organization. Results are ordered by creation time (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
      */
-    fun list(
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaExternalKeyListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys
-            .listBetaOrganizationsExternalKeys(clientConfig, limit, page, anthropicVersion, options)
+    fun list(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaExternalKeyListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys.listBetaOrganizationsExternalKeys(clientConfig, limit, page, anthropicVersion, options)
     }
 
     /**
-     * List external key configs in the caller's organization. Results are ordered by creation time
-     * (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
+     * List external key configs in the caller's organization. Results are ordered by creation time (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
      */
-    fun listPaginated(
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaExternalKey) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys
-            .listBetaOrganizationsExternalKeysPaginated(
-                clientConfig,
-                limit,
-                page,
-                anthropicVersion,
-                options,
-                yieldFn,
-            )
-    }
-
-    /** Retrieve a single external key config in the caller's organization by ID. */
-    fun retrieve(
-        externalKeyId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaExternalKey {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys
-            .retrieveBetaOrganizationsExternalKeys(
-                clientConfig,
-                externalKeyId,
-                anthropicVersion,
-                options,
-            )
+    fun listPaginated(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaExternalKey) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys.listBetaOrganizationsExternalKeysPaginated(clientConfig, limit, page, anthropicVersion, options, yieldFn)
     }
 
     /**
-     * Partially update an external key config. Omitted fields are left unchanged. `display_name` is
-     * always editable. `geo` and `provider_config` cannot be changed once any workspace references
-     * this config, because previously encrypted data requires the original key identity to decrypt.
+     * Retrieve a single external key config in the caller's organization by ID.
      */
-    fun update(
-        externalKeyId: String,
-        anthropicVersion: String? = null,
-        displayName: SdkClient.SdkOptional<String?>? = null,
-        geo: SdkClient.SdkOptional<String?>? = null,
-        providerConfig: SdkClient.SdkOptional<BetaExternalKeyUpdateParamsProviderConfig?>? = null,
-        options: RequestOptions? = null,
-    ): BetaExternalKey {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys
-            .updateBetaOrganizationsExternalKeys(
-                clientConfig,
-                externalKeyId,
-                anthropicVersion,
-                displayName,
-                geo,
-                providerConfig,
-                options,
-            )
+    fun retrieve(externalKeyId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaExternalKey {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys.retrieveBetaOrganizationsExternalKeys(clientConfig, externalKeyId, anthropicVersion, options)
     }
 
     /**
-     * Delete an external key config. The request is rejected if any workspace still references this
-     * config.
+     * Partially update an external key config. Omitted fields are left unchanged. `display_name` is always editable. `geo` and `provider_config` cannot be changed once any workspace references this config, because previously encrypted data requires the original key identity to decrypt.
      */
-    fun delete(
-        externalKeyId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaDeleteExternalKeyResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys
-            .deleteBetaOrganizationsExternalKeys(
-                clientConfig,
-                externalKeyId,
-                anthropicVersion,
-                options,
-            )
+    fun update(externalKeyId: String, anthropicVersion: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, geo: SdkClient.SdkOptional<String?>? = null, providerConfig: SdkClient.SdkOptional<BetaExternalKeyUpdateParamsProviderConfig?>? = null, options: RequestOptions? = null): BetaExternalKey {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys.updateBetaOrganizationsExternalKeys(clientConfig, externalKeyId, anthropicVersion, displayName, geo, providerConfig, options)
     }
 
     /**
-     * Validate an external key config against the customer's KMS. Anthropic performs an
-     * encrypt/decrypt roundtrip against the configured KMS key and waits up to 30 seconds for the
-     * result. The response status is `success` if the roundtrip succeeded, or `failure` with an
-     * error message if it failed or timed out.
+     * Delete an external key config. The request is rejected if any workspace still references this config.
      */
-    fun validate(
-        externalKeyId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaValidateExternalKeyResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys
-            .validateBetaOrganizationsExternalKeys(
-                clientConfig,
-                externalKeyId,
-                anthropicVersion,
-                options,
-            )
+    fun delete(externalKeyId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaDeleteExternalKeyResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys.deleteBetaOrganizationsExternalKeys(clientConfig, externalKeyId, anthropicVersion, options)
     }
+
+    /**
+     * Validate an external key config against the customer's KMS. Anthropic performs an encrypt/decrypt roundtrip against the configured KMS key and waits up to 30 seconds for the result. The response status is `success` if the roundtrip succeeded, or `failure` with an error message if it failed or timed out.
+     */
+    fun validate(externalKeyId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaValidateExternalKeyResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsExternalKeys.validateBetaOrganizationsExternalKeys(clientConfig, externalKeyId, anthropicVersion, options)
+    }
+
 }

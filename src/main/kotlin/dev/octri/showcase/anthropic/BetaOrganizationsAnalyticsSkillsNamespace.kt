@@ -3,39 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsAnalyticsSkillsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage
-     * metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per
-     * member, per RBAC group, or per product surface, and `filter[]` to scope results; the
-     * parameter descriptions list the supported dimensions. Available to organizations on a Claude
-     * Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per member, per RBAC group, or per product surface, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsSkillsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsSkills
-            .listBetaOrganizationsAnalyticsSkills(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null): BetaAnalyticsSkillsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.listBetaOrganizationsAnalyticsSkills(clientConfig, request, options)
     }
 
     /**
-     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage
-     * metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per
-     * member, per RBAC group, or per product surface, and `filter[]` to scope results; the
-     * parameter descriptions list the supported dimensions. Available to organizations on a Claude
-     * Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per member, per RBAC group, or per product surface, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsSkillActivity) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsSkills
-            .listBetaOrganizationsAnalyticsSkillsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsSkillActivity) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.listBetaOrganizationsAnalyticsSkillsPaginated(clientConfig, request, options, yieldFn)
     }
+
 }

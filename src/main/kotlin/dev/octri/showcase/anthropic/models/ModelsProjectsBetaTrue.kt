@@ -3,71 +3,66 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Per-project activity data for a given day. */
+/**
+ * Per-project activity data for a given day.
+ */
 data class BetaAnalyticsProjectActivity(
     /**
-     * Number of distinct users who used the project on the requested day, or, in date-range mode,
-     * over the requested window — recomputed as an exact distinct count over the window's
-     * per-member daily rows, never a sum of per-day values.
+     * Number of distinct users who used the project on the requested day, or, in date-range mode, over the requested window — recomputed as an exact distinct count over the window's per-member daily rows, never a sum of per-day values.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_user_count")
-    val distinctUserCount: Long,
-    /** Number of messages sent in the project on the requested day */
+    @com.fasterxml.jackson.annotation.JsonProperty("distinct_user_count") val distinctUserCount: Long,
+    /**
+     * Number of messages sent in the project on the requested day
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("message_count") val messageCount: Long,
-    /** Tagged project identifier (e.g. `claude_proj_...`) */
+    /**
+     * Tagged project identifier (e.g. `claude_proj_...`)
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_id") val projectId: String,
-    /** Name of the project */
+    /**
+     * Name of the project
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_name") val projectName: String,
     /**
-     * Project creation timestamp in RFC 3339 format. Null if the project was deleted before
-     * attribution was recorded.
+     * Project creation timestamp in RFC 3339 format. Null if the project was deleted before attribution was recorded.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String? = null,
     /**
-     * User who created the project. Null if the project was deleted before attribution was
-     * recorded, or if the creator's account no longer exists.
+     * User who created the project. Null if the project was deleted before attribution was recorded, or if the creator's account no longer exists.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_by")
-    val createdBy: BetaAnalyticsUser? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("created_by") val createdBy: BetaAnalyticsUser? = null,
     /**
-     * Number of distinct conversations in the project. Null on aggregated rows where a distinct
-     * count cannot be computed.
+     * Number of distinct conversations in the project. Null on aggregated rows where a distinct count cannot be computed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("distinct_conversation_count")
-    val distinctConversationCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("distinct_conversation_count") val distinctConversationCount: Long? = null,
     /**
-     * Product that produced this row's activity: one of `chat`, `claude_code`, `cowork`, or
-     * `office_agent` (the canonical Cost & Usage product naming; an `office_agent` row's
-     * per-surface breakdown is in its `office_metrics`). On `/plugins` only `cowork` and
-     * `claude_code` occur (the only surfaces with plugin attribution); on `/artifacts` only `chat`,
-     * `claude_code`, and `cowork` occur (the surfaces that create artifacts); `/apps/chat/projects`
-     * does not support the product dimension…
+     * Product that produced this row's activity: one of `chat`, `claude_code`, `cowork`, or `office_agent` (the canonical Cost & Usage product naming; an `office_agent` row's per-surface breakdown is in its `office_metrics`). On `/plugins` only `cowork` and `claude_code` occur (the only surfaces with plugin attribution); on `/artifacts` only `chat`, `claude_code`, and `cowork` occur (the surfaces that create artifacts); `/apps/chat/projects` does not support the product dimension…
      */
     val product: String? = null,
     /**
-     * Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling.
-     * Present only when the request grouped by `rbac_group_id`.
+     * Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling. Present only when the request grouped by `rbac_group_id`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_id") val rbacGroupId: String? = null,
     /**
-     * Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is
-     * available. Null if the group has been deleted or its name could not be resolved;
-     * `rbac_group_id` remains the stable key.
+     * Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is available. Null if the group has been deleted or its name could not be resolved; `rbac_group_id` remains the stable key.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_name")
-    val rbacGroupName: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_name") val rbacGroupName: String? = null,
     /**
      * Tagged user identifier (e.g. `user_...`). Present only when the request grouped by `user_id`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String? = null
 )
 
-/** Response for GET /v1/organizations/analytics/apps/chat/projects. */
+/**
+ * Response for GET /v1/organizations/analytics/apps/chat/projects.
+ */
 data class BetaAnalyticsProjectsResponse(
-    /** Required array value serialized in the `data` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data")
-    val `data`: List<BetaAnalyticsProjectActivity>,
-    /** Opaque cursor for the next page, or null if no more results */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaAnalyticsProjectActivity>,
+    /**
+     * Opaque cursor for the next page, or null if no more results
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )

@@ -3,13 +3,20 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaRbacRoleList` API schema. */
+/**
+ * Typed representation of the `BetaRbacRoleList` API schema.
+ */
 data class BetaRbacRoleList(
-    /** Required array value serialized in the `data` wire field. */
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaRbacRole>,
-    /** Indicates whether there are more results beyond this page. */
+    /**
+     * Indicates whether there are more results beyond this page.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
-    /** Opaque cursor for the next page. Pass as the `page` parameter on the next request. */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    /**
+     * Opaque cursor for the next page. Pass as the `page` parameter on the next request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )

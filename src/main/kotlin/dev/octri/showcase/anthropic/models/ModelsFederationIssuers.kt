@@ -4,104 +4,142 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Partial update. Set fields are applied; omitted fields are unchanged. Setting `jwks` replaces the whole JWKS configuration at once.
+ * Partial update. Set fields are applied; omitted fields are unchanged. Setting `jwks` replaces the
+ * whole JWKS configuration at once.
  */
 data class BetaFederationIssuerUpdateParams(
     /**
-     * Whether the jwt-bearer exchange enforces JTI single-use (replay protection) for tokens from this issuer. Applies only to assertions carrying a `jti` claim; tokens without one are accepted without single-use enforcement.
+     * Whether the jwt-bearer exchange enforces JTI single-use (replay protection) for tokens from
+     * this issuer. Applies only to assertions carrying a `jti` claim; tokens without one are
+     * accepted without single-use enforcement.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("check_jti") val checkJti: Boolean? = null,
     /**
-     * Replaces the `iss` claim value to match against. For discovery-mode issuers without a `discovery_base`, this is also the URL Anthropic fetches the OIDC discovery document and signing keys from, so changing it repoints the JWKS source. Changing the issuer URL to a well-known shared platform is rejected while any live rule under this issuer would not constrain tenant identity.
+     * Replaces the `iss` claim value to match against. For discovery-mode issuers without a
+     * `discovery_base`, this is also the URL Anthropic fetches the OIDC discovery document and
+     * signing keys from, so changing it repoints the JWKS source. Changing the issuer URL to a
+     * well-known shared platform is rejected while any live rule under this issuer would not
+     * constrain tenant identity.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("issuer_url") val issuerUrl: String? = null,
-    /**
-     * Replaces the entire JWKS configuration.
-     */
+    /** Replaces the entire JWKS configuration. */
     val jwks: BetaFederationIssuerUpdateParamsJwks? = null,
     /**
-     * Only `false` is accepted, to re-enable polling after the system pauses it. Polling is paused automatically; sending `true` is rejected.
+     * Only `false` is accepted, to re-enable polling after the system pauses it. Polling is paused
+     * automatically; sending `true` is rejected.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("jwks_polling_disabled") val jwksPollingDisabled: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("jwks_polling_disabled")
+    val jwksPollingDisabled: Boolean? = null,
     /**
-     * Maximum allowed iat→exp spread for assertions from this issuer (1-176400 seconds, i.e. up to 49h). Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
+     * Maximum allowed iat→exp spread for assertions from this issuer (1-176400 seconds, i.e. up to
+     * 49h). Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_jwt_lifetime_seconds") val maxJwtLifetimeSeconds: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("max_jwt_lifetime_seconds")
+    val maxJwtLifetimeSeconds: Long? = null,
     /**
-     * Replaces the slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
+     * Replaces the slug identifier (lowercase, digits, hyphens). Unique within the organization; a
+     * duplicate name returns 409.
      */
-    val name: String? = null
+    val name: String? = null,
 )
 
-/**
- * Replaces the entire JWKS configuration.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaFederationIssuerUpdateParamsJwks::class)
+/** Replaces the entire JWKS configuration. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaFederationIssuerUpdateParamsJwks::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaJwksDiscovery::class, name = "discovery"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaJwksExplicitUrl::class, name = "explicit_url"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaJwksInline::class, name = "inline")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaJwksDiscovery::class,
+        name = "discovery",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaJwksExplicitUrl::class,
+        name = "explicit_url",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaJwksInline::class,
+        name = "inline",
+    ),
 )
 sealed interface BetaFederationIssuerUpdateParamsJwks
 
-/** A [BetaFederationIssuerUpdateParamsJwks] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaFederationIssuerUpdateParamsJwks @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaFederationIssuerUpdateParamsJwks] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaFederationIssuerUpdateParamsJwks
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaFederationIssuerUpdateParamsJwks {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * JWKS via the issuer's OIDC discovery document.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** JWKS via the issuer's OIDC discovery document. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaJwksDiscovery(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaJwksDiscoveryTypeEnum,
-    /**
-     * Optional custom CA (PEM) for TLS verification of the JWKS fetch.
-     */
+    /** Optional custom CA (PEM) for TLS verification of the JWKS fetch. */
     @com.fasterxml.jackson.annotation.JsonProperty("ca_cert_pem") val caCertPem: String? = null,
-    /**
-     * Set when the discovery URL differs from `issuer_url`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("discovery_base") val discoveryBase: String? = null
-) : BetaFederationIssuerJwks, BetaFederationIssuerCreateParamsJwks, BetaFederationIssuerUpdateParamsJwks
+    /** Set when the discovery URL differs from `issuer_url`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("discovery_base")
+    val discoveryBase: String? = null,
+) :
+    BetaFederationIssuerJwks,
+    BetaFederationIssuerCreateParamsJwks,
+    BetaFederationIssuerUpdateParamsJwks
 
-/**
- * JWKS fetched from a fixed endpoint.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** JWKS fetched from a fixed endpoint. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaJwksExplicitUrl(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaJwksExplicitUrlTypeEnum,
-    /**
-     * JWKS endpoint.
-     */
+    /** JWKS endpoint. */
     val url: String,
-    /**
-     * Optional custom CA (PEM) for TLS verification of the JWKS fetch.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("ca_cert_pem") val caCertPem: String? = null
-) : BetaFederationIssuerJwks, BetaFederationIssuerCreateParamsJwks, BetaFederationIssuerUpdateParamsJwks
+    /** Optional custom CA (PEM) for TLS verification of the JWKS fetch. */
+    @com.fasterxml.jackson.annotation.JsonProperty("ca_cert_pem") val caCertPem: String? = null,
+) :
+    BetaFederationIssuerJwks,
+    BetaFederationIssuerCreateParamsJwks,
+    BetaFederationIssuerUpdateParamsJwks
 
-/**
- * JWKS supplied directly; no network fetch.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** JWKS supplied directly; no network fetch. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaJwksInline(
-    /**
-     * Inline JWK objects.
-     */
+    /** Inline JWK objects. */
     val keys: List<Map<String, Any>>,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaJwksInlineTypeEnum
-) : BetaFederationIssuerJwks, BetaFederationIssuerCreateParamsJwks, BetaFederationIssuerUpdateParamsJwks
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaJwksInlineTypeEnum,
+) :
+    BetaFederationIssuerJwks,
+    BetaFederationIssuerCreateParamsJwks,
+    BetaFederationIssuerUpdateParamsJwks

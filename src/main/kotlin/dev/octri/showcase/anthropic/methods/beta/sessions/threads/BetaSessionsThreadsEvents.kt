@@ -13,7 +13,6 @@ import dev.octri.showcase.anthropic.SdkClient
 
 object BetaSessionsThreadsEvents {
 
-
     /** Parameters for [listBetaSessionsThreadsEvents]. */
     data class ListBetaSessionsThreadsEventsRequest(
         val sessionId: String,
@@ -22,48 +21,94 @@ object BetaSessionsThreadsEvents {
         val page: String? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the cursor for subsequent results and `limit` to control the requested page size.
+     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the
+     * cursor for subsequent results and `limit` to control the requested page size.
      *
      * @param sessionId Path parameter session_id
      * @param threadId Path parameter thread_id
      * @param limit Query parameter for limit
      * @param page Query parameter for page
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsThreadsEvents(clientConfig: ClientConfig, request: ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionThreadEvents {
-        return SdkClient.request<BetaManagedAgentsListSessionThreadEvents>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/threads/${SdkClient.encodePathSegment(request.threadId)}/events?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "listBetaSessionsThreadsEvents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun listBetaSessionsThreadsEvents(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsThreadsEventsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessionThreadEvents {
+        return SdkClient.request<BetaManagedAgentsListSessionThreadEvents>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/threads/${SdkClient.encodePathSegment(request.threadId)}/events?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "listBetaSessionsThreadsEvents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the cursor for subsequent results and `limit` to control the requested page size.
+     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the
+     * cursor for subsequent results and `limit` to control the requested page size.
      *
      * @param sessionId Path parameter session_id
      * @param threadId Path parameter thread_id
      * @param limit Query parameter for limit
      * @param page Query parameter for page
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsThreadsEventsPaginated(clientConfig: ClientConfig, request: ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean) {
+    fun listBetaSessionsThreadsEventsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsThreadsEventsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaSessionsThreadsEvents(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaSessionsThreadsEvents(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -80,10 +125,16 @@ object BetaSessionsThreadsEvents {
         val hasMore: Boolean,
     )
 
-    fun listBetaSessionsThreadsEventsPages(clientConfig: ClientConfig, request: ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null, yieldPage: (ListBetaSessionsThreadsEventsPage) -> Boolean) {
+    fun listBetaSessionsThreadsEventsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsThreadsEventsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaSessionsThreadsEventsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaSessionsThreadsEvents(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaSessionsThreadsEvents(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -93,7 +144,4 @@ object BetaSessionsThreadsEvents {
             cursor = nextCursor
         }
     }
-
-
-
 }

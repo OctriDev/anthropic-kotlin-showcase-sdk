@@ -13,49 +13,114 @@ import dev.octri.showcase.anthropic.SdkClient
 
 object BetaOrganizationsRateLimits {
 
-
     /**
-     * List Messages API rate limits for your organization. Each entry corresponds to one rate-limit group (either a model family or an API-surface category such as the Files API or Message Batches) and contains the set of limiter values that apply to it. When `limit` is omitted, every matching entry is returned in a single page; when `limit` truncates the result, follow `next_page` to fetch the remaining entries.
+     * List Messages API rate limits for your organization. Each entry corresponds to one rate-limit
+     * group (either a model family or an API-surface category such as the Files API or Message
+     * Batches) and contains the set of limiter values that apply to it. When `limit` is omitted,
+     * every matching entry is returned in a single page; when `limit` truncates the result, follow
+     * `next_page` to fetch the remaining entries.
      *
-     * @param model Filter to the single entry containing this model. Accepts full
-     *   model names and aliases. Returns 404 if the model is not found or has no rate
-     *   limits for this organization.
+     * @param model Filter to the single entry containing this model. Accepts full model names and
+     *   aliases. Returns 404 if the model is not found or has no rate limits for this organization.
      * @param groupType Filter by group type.
-     * @param limit Maximum number of items to return per page. Ranges from `1` to
-     *   `1000`. When omitted, every remaining entry is returned in a single page and
-     *   `next_page` is `null`.
+     * @param limit Maximum number of items to return per page. Ranges from `1` to `1000`. When
+     *   omitted, every remaining entry is returned in a single page and `next_page` is `null`.
      * @param page Opaque cursor from a previous response's `next_page`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsRateLimits(clientConfig: ClientConfig, model: SdkClient.SdkOptional<String?>? = null, groupType: SdkClient.SdkOptional<ListBetaOrganizationsRateLimitsParameterVariant0Enum?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaRateLimitListResponse {
-        return SdkClient.request<BetaRateLimitListResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/rate_limits?beta=true", config = clientConfig, query = mapOf("model" to SdkClient.queryValue(model, "form", true), "group_type" to
-    SdkClient.queryValue(groupType, "form", true), "limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "listBetaOrganizationsRateLimits", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun listBetaOrganizationsRateLimits(
+        clientConfig: ClientConfig,
+        model: SdkClient.SdkOptional<String?>? = null,
+        groupType: SdkClient.SdkOptional<ListBetaOrganizationsRateLimitsParameterVariant0Enum?>? =
+            null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaRateLimitListResponse {
+        return SdkClient.request<BetaRateLimitListResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/rate_limits?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "model" to SdkClient.queryValue(model, "form", true),
+                            "group_type" to SdkClient.queryValue(groupType, "form", true),
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "listBetaOrganizationsRateLimits",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * List Messages API rate limits for your organization. Each entry corresponds to one rate-limit group (either a model family or an API-surface category such as the Files API or Message Batches) and contains the set of limiter values that apply to it. When `limit` is omitted, every matching entry is returned in a single page; when `limit` truncates the result, follow `next_page` to fetch the remaining entries.
+     * List Messages API rate limits for your organization. Each entry corresponds to one rate-limit
+     * group (either a model family or an API-surface category such as the Files API or Message
+     * Batches) and contains the set of limiter values that apply to it. When `limit` is omitted,
+     * every matching entry is returned in a single page; when `limit` truncates the result, follow
+     * `next_page` to fetch the remaining entries.
      *
-     * @param model Filter to the single entry containing this model. Accepts full
-     *   model names and aliases. Returns 404 if the model is not found or has no rate
-     *   limits for this organization.
+     * @param model Filter to the single entry containing this model. Accepts full model names and
+     *   aliases. Returns 404 if the model is not found or has no rate limits for this organization.
      * @param groupType Filter by group type.
-     * @param limit Maximum number of items to return per page. Ranges from `1` to
-     *   `1000`. When omitted, every remaining entry is returned in a single page and
-     *   `next_page` is `null`.
+     * @param limit Maximum number of items to return per page. Ranges from `1` to `1000`. When
+     *   omitted, every remaining entry is returned in a single page and `next_page` is `null`.
      * @param page Opaque cursor from a previous response's `next_page`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsRateLimitsPaginated(clientConfig: ClientConfig, model: SdkClient.SdkOptional<String?>? = null, groupType: SdkClient.SdkOptional<ListBetaOrganizationsRateLimitsParameterVariant0Enum?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaRateLimit) -> Boolean) {
+    fun listBetaOrganizationsRateLimitsPaginated(
+        clientConfig: ClientConfig,
+        model: SdkClient.SdkOptional<String?>? = null,
+        groupType: SdkClient.SdkOptional<ListBetaOrganizationsRateLimitsParameterVariant0Enum?>? =
+            null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaRateLimit) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaOrganizationsRateLimits(clientConfig, model, groupType, limit, cursor, anthropicVersion, options)
+            val page =
+                listBetaOrganizationsRateLimits(
+                    clientConfig,
+                    model,
+                    groupType,
+                    limit,
+                    cursor,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -72,10 +137,29 @@ object BetaOrganizationsRateLimits {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsRateLimitsPages(clientConfig: ClientConfig, model: SdkClient.SdkOptional<String?>? = null, groupType: SdkClient.SdkOptional<ListBetaOrganizationsRateLimitsParameterVariant0Enum?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsRateLimitsPage) -> Boolean) {
+    fun listBetaOrganizationsRateLimitsPages(
+        clientConfig: ClientConfig,
+        model: SdkClient.SdkOptional<String?>? = null,
+        groupType: SdkClient.SdkOptional<ListBetaOrganizationsRateLimitsParameterVariant0Enum?>? =
+            null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaOrganizationsRateLimitsPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaOrganizationsRateLimits(clientConfig, model, groupType, limit, cursor, anthropicVersion, options)
+            val page =
+                listBetaOrganizationsRateLimits(
+                    clientConfig,
+                    model,
+                    groupType,
+                    limit,
+                    cursor,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -85,7 +169,4 @@ object BetaOrganizationsRateLimits {
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
-
-
-
 }

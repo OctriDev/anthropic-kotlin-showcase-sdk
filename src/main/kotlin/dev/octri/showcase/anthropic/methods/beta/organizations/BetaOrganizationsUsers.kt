@@ -15,67 +15,169 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsUsers {
 
-
     /**
-     * Retrieves an organization member by user ID. Use this endpoint to inspect the member's email address, name, organization role, and join timestamp. The returned role identifies the member's permissions within the organization.
+     * Retrieves an organization member by user ID. Use this endpoint to inspect the member's email
+     * address, name, organization role, and join timestamp. The returned role identifies the
+     * member's permissions within the organization.
      *
      * Retrieve a member of the organization by user ID.
      *
      * @param userId ID of the User.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsUsers(clientConfig: ClientConfig, userId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaUser {
-        return SdkClient.request<BetaUser>(SdkClient.RequestSpec("GET", "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        userId: String,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaUser {
+        return SdkClient.request<BetaUser>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaOrganizationsUsers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Updates an organization member's role. Provide the new `role` in the request body; accepted values depend on the organization type, and the API does not allow assigning the admin role. The response returns the updated organization user object.
+     * Updates an organization member's role. Provide the new `role` in the request body; accepted
+     * values depend on the organization type, and the API does not allow assigning the admin role.
+     * The response returns the updated organization user object.
      *
      * Update a member's organization role.
      *
      * @param userId ID of the User.
-     * @param role New role for the User. The accepted values depend on the
-     *   organization type. Console and API organizations accept `user`, `developer`,
-     *   `billing`, and `claude_code_user`; `admin` cannot be assigned through the API.
-     *   Claude Enterprise organizations accept `user` and `managed`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param role New role for the User. The accepted values depend on the organization type.
+     *   Console and API organizations accept `user`, `developer`, `billing`, and
+     *   `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise
+     *   organizations accept `user` and `managed`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun updateBetaOrganizationsUsers(clientConfig: ClientConfig, userId: String, role: BetaUpdateUserParamsRoleEnum, anthropicVersion: String? = null, options: RequestOptions? = null): BetaUser {
-        return SdkClient.request<BetaUser>(SdkClient.RequestSpec("POST", "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("role" to (role)), operationId = "updateBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun updateBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        userId: String,
+        role: BetaUpdateUserParamsRoleEnum,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaUser {
+        return SdkClient.request<BetaUser>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("role" to (role)),
+                    operationId = "updateBetaOrganizationsUsers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Removes a user from the organization. Supply the user's `user_id` and authenticate with an Admin API key in the `x-api-key` header. The response identifies the deleted user.
+     * Removes a user from the organization. Supply the user's `user_id` and authenticate with an
+     * Admin API key in the `x-api-key` header. The response identifies the deleted user.
      *
      * Remove a member from the organization.
      *
      * @param userId ID of the User.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun deleteBetaOrganizationsUsers(clientConfig: ClientConfig, userId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaDeleteUserResponse {
-        return SdkClient.request<BetaDeleteUserResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun deleteBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        userId: String,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaDeleteUserResponse {
+        return SdkClient.request<BetaDeleteUserResponse>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "deleteBetaOrganizationsUsers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [listBetaOrganizationsUsers]. */
     data class ListBetaOrganizationsUsersRequest(
@@ -84,52 +186,95 @@ object BetaOrganizationsUsers {
         val limit: Long? = null,
         val email: String? = null,
         val roles: List<String>? = null,
-        val anthropicVersion: String? = null
+        val anthropicVersion: String? = null,
     )
 
     /**
-     * Lists members of the organization, with cursor-based pagination and optional filters. Use `before_id` or `after_id` to navigate pages, and filter by `email` or one or more `roles[]` values. The response includes pagination cursors and a `has_more` flag.
+     * Lists members of the organization, with cursor-based pagination and optional filters. Use
+     * `before_id` or `after_id` to navigate pages, and filter by `email` or one or more `roles[]`
+     * values. The response includes pagination cursors and a `has_more` flag.
      *
      * List the organization's members.
      *
-     * @param beforeId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately before this object.
-     * @param afterId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately after this object.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
-     *   `1` to `1000`.
+     * @param beforeId ID of the object to use as a cursor for pagination. When provided, returns
+     *   the page of results immediately before this object.
+     * @param afterId ID of the object to use as a cursor for pagination. When provided, returns the
+     *   page of results immediately after this object.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
      * @param email Filter by user email.
-     * @param roles Filter to items whose `role` equals one of the supplied values.
-     *   Repeatable; values are OR'ed together. Accepted values depend on the
-     *   organization type: Console and API organizations accept `user`, `developer`,
-     *   `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations
-     *   accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param roles Filter to items whose `role` equals one of the supplied values. Repeatable;
+     *   values are OR'ed together. Accepted values depend on the organization type: Console and API
+     *   organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`;
+     *   Claude Enterprise organizations accept `user`, `owner`, `primary_owner`,
+     *   `membership_admin`, and `managed`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsUsers(clientConfig: ClientConfig, request: ListBetaOrganizationsUsersRequest, options: RequestOptions? = null): BetaListResponseUser {
+    fun listBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsUsersRequest,
+        options: RequestOptions? = null,
+    ): BetaListResponseUser {
         validateListBetaOrganizationsUsersRequest(request)
 
-        return SdkClient.request<BetaListResponseUser>(SdkClient.RequestSpec("GET", "/v1/organizations/users?beta=true", config = clientConfig, query = mapOf("before_id" to
-    SdkClient.queryValue(request.beforeId, "form", true), "after_id" to
-    SdkClient.queryValue(request.afterId, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true), "email" to SdkClient.queryValue(request.email, "form", true), "roles[]" to
-    SdkClient.queryValue(request.roles, "form", true)), operationId = "listBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaListResponseUser>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/users?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "before_id" to SdkClient.queryValue(request.beforeId, "form", true),
+                            "after_id" to SdkClient.queryValue(request.afterId, "form", true),
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "email" to SdkClient.queryValue(request.email, "form", true),
+                            "roles[]" to SdkClient.queryValue(request.roles, "form", true),
+                        ),
+                    operationId = "listBetaOrganizationsUsers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateListBetaOrganizationsUsersRequest(request: ListBetaOrganizationsUsersRequest) {
+    private fun validateListBetaOrganizationsUsersRequest(
+        request: ListBetaOrganizationsUsersRequest
+    ) {
         if (request.limit != null) {
-            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "limit",
+                request.limit,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.email != null) {
             Validation.validateEmail("email", request.email)
-}
+        }
     }
-
-
-
-
-
-
 }

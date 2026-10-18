@@ -3,16 +3,11 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `ServerToolUsage` API schema.
- */
+/** Typed representation of the `ServerToolUsage` API schema. */
 data class ServerToolUsage(
-    /**
-     * The number of web fetch tool requests.
-     */
+    /** The number of web fetch tool requests. */
     @com.fasterxml.jackson.annotation.JsonProperty("web_fetch_requests") val webFetchRequests: Long,
-    /**
-     * The number of web search tool requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("web_search_requests") val webSearchRequests: Long
+    /** The number of web search tool requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("web_search_requests")
+    val webSearchRequests: Long,
 )

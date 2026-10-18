@@ -18,7 +18,6 @@ import dev.octri.showcase.anthropic.SdkClient
 
 object BetaUserProfiles {
 
-
     /** Parameters for [createBetaUserProfiles]. */
     data class CreateBetaUserProfilesRequest(
         val anthropicVersion: String? = null,
@@ -27,42 +26,80 @@ object BetaUserProfiles {
         val name: SdkClient.SdkOptional<String?>? = null,
         val accessType: BetaUserProfileAccessType? = null,
         val externalUserOnboardedAt: BetaTimestamp? = null,
-        val metadata: Map<String, String>? = null
+        val metadata: Map<String, String>? = null,
     )
 
     /**
-     * Creates a user profile for an individual or company represented by your platform. Set `access_type` to `application` or `passthrough` to describe how your platform uses the API for that entity; all request fields are optional.
+     * Creates a user profile for an individual or company represented by your platform. Set
+     * `access_type` to `application` or `passthrough` to describe how your platform uses the API
+     * for that entity; all request fields are optional.
      *
-     * @param externalId Platform's own identifier for this user. Not enforced
-     *   unique. Maximum 255 characters.
-     * @param name Optional for all profiles. Real-world name of the entity this
-     *   profile represents (company or individual); for a company the platform resells
-     *   Claude access to (`access_type` `passthrough`), that company's name where
-     *   known. Maximum 255 characters.
-     * @param accessType How the platform uses the API for this entity. `application`
-     *   (default): the profile represents an individual end-user of the platform's
-     *   product. `passthrough`: the profile identifies a company the platform resells
-     *   Claude access to.
-     * @param externalUserOnboardedAt When the entity this profile represents opened
-     *   its account with the platform, in RFC 3339 format: for an `application`
-     *   profile, when the end-user signed up; for a `passthrough` profile, when the
-     *   company became the platform's customer. Must be a complete timestamp no more
-     *   than 1 minute in the future. Optional.
-     * @param metadata Free-form key-value data to attach to this user profile.
-     *   Maximum 16 keys, with keys up to 64 characters and values up to 512
-     *   characters. Values must be non-empty strings.
+     * @param externalId Platform's own identifier for this user. Not enforced unique. Maximum 255
+     *   characters.
+     * @param name Optional for all profiles. Real-world name of the entity this profile represents
+     *   (company or individual); for a company the platform resells Claude access to (`access_type`
+     *   `passthrough`), that company's name where known. Maximum 255 characters.
+     * @param accessType How the platform uses the API for this entity. `application` (default): the
+     *   profile represents an individual end-user of the platform's product. `passthrough`: the
+     *   profile identifies a company the platform resells Claude access to.
+     * @param externalUserOnboardedAt When the entity this profile represents opened its account
+     *   with the platform, in RFC 3339 format: for an `application` profile, when the end-user
+     *   signed up; for a `passthrough` profile, when the company became the platform's customer.
+     *   Must be a complete timestamp no more than 1 minute in the future. Optional.
+     * @param metadata Free-form key-value data to attach to this user profile. Maximum 16 keys,
+     *   with keys up to 64 characters and values up to 512 characters. Values must be non-empty
+     *   strings.
      */
-    fun createBetaUserProfiles(clientConfig: ClientConfig, request: CreateBetaUserProfilesRequest, options: RequestOptions? = null): BetaUserProfile {
-        return SdkClient.request<BetaUserProfile>(SdkClient.RequestSpec("POST", "/v1/user_profiles?beta=true", config = clientConfig, body = SdkClient.bodyMap("external_id" to
-    (request.externalId ?: SdkClient.SdkOptional.Omitted), "name" to (request.name ?: SdkClient.SdkOptional.Omitted), "access_type" to (SdkClient.omitIfNull(request.accessType)), "external_user_onboarded_at" to
-    (SdkClient.omitIfNull(request.externalUserOnboardedAt)), "metadata" to (SdkClient.omitIfNull(request.metadata))), operationId = "createBetaUserProfiles", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun createBetaUserProfiles(
+        clientConfig: ClientConfig,
+        request: CreateBetaUserProfilesRequest,
+        options: RequestOptions? = null,
+    ): BetaUserProfile {
+        return SdkClient.request<BetaUserProfile>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/user_profiles?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "external_id" to (request.externalId ?: SdkClient.SdkOptional.Omitted),
+                            "name" to (request.name ?: SdkClient.SdkOptional.Omitted),
+                            "access_type" to (SdkClient.omitIfNull(request.accessType)),
+                            "external_user_onboarded_at" to
+                                (SdkClient.omitIfNull(request.externalUserOnboardedAt)),
+                            "metadata" to (SdkClient.omitIfNull(request.metadata)),
+                        ),
+                    operationId = "createBetaUserProfiles",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [listBetaUserProfiles]. */
     data class ListBetaUserProfilesRequest(
@@ -71,36 +108,82 @@ object BetaUserProfiles {
         val order: BetaUserProfileListOrder? = null,
         val orderBy: BetaUserProfileListOrderBy? = null,
         val anthropicVersion: String? = null,
-        val anthropicBeta: List<AnthropicBeta>? = null
+        val anthropicBeta: List<AnthropicBeta>? = null,
     )
 
     /**
-     * Lists user profiles in a paginated response. Use `order` and `order_by` to control sorting, and pass the returned `next_page` cursor as `page` to retrieve subsequent results.
+     * Lists user profiles in a paginated response. Use `order` and `order_by` to control sorting,
+     * and pass the returned `next_page` cursor as `page` to retrieve subsequent results.
      *
      * @param limit Query parameter for limit
      * @param page Query parameter for page
      * @param order Query parameter for order
      * @param orderBy Query parameter for order_by
      */
-    fun listBetaUserProfiles(clientConfig: ClientConfig, request: ListBetaUserProfilesRequest, options: RequestOptions? = null): BetaListUserProfilesResponse {
-        return SdkClient.request<BetaListUserProfilesResponse>(SdkClient.RequestSpec("GET", "/v1/user_profiles?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "order" to SdkClient.queryValue(request.order, "form", true), "order_by" to
-    SdkClient.queryValue(request.orderBy, "form", true)), operationId = "listBetaUserProfiles", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun listBetaUserProfiles(
+        clientConfig: ClientConfig,
+        request: ListBetaUserProfilesRequest,
+        options: RequestOptions? = null,
+    ): BetaListUserProfilesResponse {
+        return SdkClient.request<BetaListUserProfilesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/user_profiles?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "order" to SdkClient.queryValue(request.order, "form", true),
+                            "order_by" to SdkClient.queryValue(request.orderBy, "form", true),
+                        ),
+                    operationId = "listBetaUserProfiles",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists user profiles in a paginated response. Use `order` and `order_by` to control sorting, and pass the returned `next_page` cursor as `page` to retrieve subsequent results.
+     * Lists user profiles in a paginated response. Use `order` and `order_by` to control sorting,
+     * and pass the returned `next_page` cursor as `page` to retrieve subsequent results.
      *
      * @param limit Query parameter for limit
      * @param page Query parameter for page
      * @param order Query parameter for order
      * @param orderBy Query parameter for order_by
      */
-    fun listBetaUserProfilesPaginated(clientConfig: ClientConfig, request: ListBetaUserProfilesRequest, options: RequestOptions? = null, yieldFn: (BetaUserProfile) -> Boolean) {
+    fun listBetaUserProfilesPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaUserProfilesRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaUserProfile) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaUserProfiles(clientConfig, request.copy(page = cursor), options)
@@ -120,7 +203,12 @@ object BetaUserProfiles {
         val hasMore: Boolean,
     )
 
-    fun listBetaUserProfilesPages(clientConfig: ClientConfig, request: ListBetaUserProfilesRequest, options: RequestOptions? = null, yieldPage: (ListBetaUserProfilesPage) -> Boolean) {
+    fun listBetaUserProfilesPages(
+        clientConfig: ClientConfig,
+        request: ListBetaUserProfilesRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaUserProfilesPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaUserProfiles(clientConfig, request.copy(page = cursor), options)
@@ -134,22 +222,54 @@ object BetaUserProfiles {
         }
     }
 
-
-
     /**
-     * Retrieves a user profile by its identifier. Use `user_profile_id` to select the profile; the response includes its profile details, trust grants, metadata, and timestamps.
+     * Retrieves a user profile by its identifier. Use `user_profile_id` to select the profile; the
+     * response includes its profile details, trust grants, metadata, and timestamps.
      *
      * @param userProfileId Path parameter user_profile_id
      */
-    fun retrieveBetaUserProfiles(clientConfig: ClientConfig, userProfileId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaUserProfile {
-        return SdkClient.request<BetaUserProfile>(SdkClient.RequestSpec("GET", "/v1/user_profiles/${SdkClient.encodePathSegment(userProfileId)}?beta=true", config = clientConfig, operationId = "retrieveBetaUserProfiles", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaUserProfiles(
+        clientConfig: ClientConfig,
+        userProfileId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaUserProfile {
+        return SdkClient.request<BetaUserProfile>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/user_profiles/${SdkClient.encodePathSegment(userProfileId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaUserProfiles",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [updateBetaUserProfiles]. */
     data class UpdateBetaUserProfilesRequest(
@@ -160,54 +280,126 @@ object BetaUserProfiles {
         val metadata: Map<String, String>? = null,
         val name: SdkClient.SdkOptional<String?>? = null,
         val accessType: SdkClient.SdkOptional<BetaUserProfileAccessType?>? = null,
-        val externalUserOnboardedAt: BetaTimestamp? = null
+        val externalUserOnboardedAt: BetaTimestamp? = null,
     )
 
     /**
-     * Updates the supplied fields on a user profile while leaving omitted fields unchanged. Use `metadata` to merge key-value pairs, and provide a complete RFC 3339 timestamp for `external_user_onboarded_at` if setting it.
+     * Updates the supplied fields on a user profile while leaving omitted fields unchanged. Use
+     * `metadata` to merge key-value pairs, and provide a complete RFC 3339 timestamp for
+     * `external_user_onboarded_at` if setting it.
      *
      * @param userProfileId Path parameter user_profile_id
-     * @param externalId If present, replaces the stored external_id. Omit to leave
-     *   unchanged. Maximum 255 characters.
-     * @param metadata Key-value pairs to merge into the stored metadata. Keys
-     *   provided overwrite existing values. To remove a key, set its value to an empty
-     *   string. Keys not provided are left unchanged. Maximum 16 keys, with keys up to
-     *   64 characters and values up to 512 characters.
-     * @param name If present, replaces the stored name. Omit to leave unchanged.
+     * @param externalId If present, replaces the stored external_id. Omit to leave unchanged.
      *   Maximum 255 characters.
-     * @param accessType If present, replaces the stored access type. Omit to leave
-     *   unchanged.
-     * @param externalUserOnboardedAt If present, replaces the stored account
-     *   creation time. Omit to leave unchanged; once set, the value cannot be cleared
-     *   and `null` is rejected. Must be a complete RFC 3339 timestamp no more than 1
-     *   minute in the future.
+     * @param metadata Key-value pairs to merge into the stored metadata. Keys provided overwrite
+     *   existing values. To remove a key, set its value to an empty string. Keys not provided are
+     *   left unchanged. Maximum 16 keys, with keys up to 64 characters and values up to 512
+     *   characters.
+     * @param name If present, replaces the stored name. Omit to leave unchanged. Maximum 255
+     *   characters.
+     * @param accessType If present, replaces the stored access type. Omit to leave unchanged.
+     * @param externalUserOnboardedAt If present, replaces the stored account creation time. Omit to
+     *   leave unchanged; once set, the value cannot be cleared and `null` is rejected. Must be a
+     *   complete RFC 3339 timestamp no more than 1 minute in the future.
      */
-    fun updateBetaUserProfiles(clientConfig: ClientConfig, request: UpdateBetaUserProfilesRequest, options: RequestOptions? = null): BetaUserProfile {
-        return SdkClient.request<BetaUserProfile>(SdkClient.RequestSpec("POST", "/v1/user_profiles/${SdkClient.encodePathSegment(request.userProfileId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("external_id" to
-    (request.externalId ?: SdkClient.SdkOptional.Omitted), "metadata" to (SdkClient.omitIfNull(request.metadata)), "name" to (request.name ?: SdkClient.SdkOptional.Omitted), "access_type" to
-    (request.accessType ?: SdkClient.SdkOptional.Omitted), "external_user_onboarded_at" to
-    (SdkClient.omitIfNull(request.externalUserOnboardedAt))), operationId = "updateBetaUserProfiles", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun updateBetaUserProfiles(
+        clientConfig: ClientConfig,
+        request: UpdateBetaUserProfilesRequest,
+        options: RequestOptions? = null,
+    ): BetaUserProfile {
+        return SdkClient.request<BetaUserProfile>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/user_profiles/${SdkClient.encodePathSegment(request.userProfileId)}?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "external_id" to (request.externalId ?: SdkClient.SdkOptional.Omitted),
+                            "metadata" to (SdkClient.omitIfNull(request.metadata)),
+                            "name" to (request.name ?: SdkClient.SdkOptional.Omitted),
+                            "access_type" to (request.accessType ?: SdkClient.SdkOptional.Omitted),
+                            "external_user_onboarded_at" to
+                                (SdkClient.omitIfNull(request.externalUserOnboardedAt)),
+                        ),
+                    operationId = "updateBetaUserProfiles",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * Creates an enrollment URL for a user profile to send to the represented end user. Use `user_profile_id` to select the profile, then send the returned URL before its `expires_at` time.
+     * Creates an enrollment URL for a user profile to send to the represented end user. Use
+     * `user_profile_id` to select the profile, then send the returned URL before its `expires_at`
+     * time.
      *
      * @param userProfileId Path parameter user_profile_id
      */
-    fun createBetaUserProfilesEnrollmentUrl(clientConfig: ClientConfig, userProfileId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaEnrollmentUrl {
-        return SdkClient.request<BetaEnrollmentUrl>(SdkClient.RequestSpec("POST", "/v1/user_profiles/${SdkClient.encodePathSegment(userProfileId)}/enrollment_url?beta=true", config = clientConfig, operationId = "createBetaUserProfilesEnrollmentUrl", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun createBetaUserProfilesEnrollmentUrl(
+        clientConfig: ClientConfig,
+        userProfileId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaEnrollmentUrl {
+        return SdkClient.request<BetaEnrollmentUrl>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/user_profiles/${SdkClient.encodePathSegment(userProfileId)}/enrollment_url?beta=true",
+                    config = clientConfig,
+                    operationId = "createBetaUserProfilesEnrollmentUrl",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

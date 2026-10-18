@@ -5,102 +5,84 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaDeletedSkill` API schema.
- */
+/** Typed representation of the `BetaDeletedSkill` API schema. */
 data class BetaDeletedSkill(
-    /**
-     * Unique identifier for the skill. The format and length of IDs may change over time.
-     */
+    /** Unique identifier for the skill. The format and length of IDs may change over time. */
     val id: String,
-    /**
-     * Deleted object type. For Skills, this is always `"skill_deleted"`.
-     */
-    val type: BetaDeletedSkillTypeEnum
+    /** Deleted object type. For Skills, this is always `"skill_deleted"`. */
+    val type: BetaDeletedSkillTypeEnum,
 )
 
-/**
- * Typed representation of the `Body_create_skill_v1_skills_post` API schema.
- */
+/** Typed representation of the `Body_create_skill_v1_skills_post` API schema. */
 data class BodyCreateSkillV1SkillsPost(
     /**
-     * Files to upload for the skill. All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+     * Files to upload for the skill. All files must be in the same top-level directory and must
+     * include a SKILL.md file at the root of that directory.
      */
     val files: List<ByteArray>,
     /**
-     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
+     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived
+     * from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null,
 )
 
-/**
- * Typed representation of the `DeletedSkill` API schema.
- */
+/** Typed representation of the `DeletedSkill` API schema. */
 data class DeletedSkill(
-    /**
-     * Unique identifier for the skill. The format and length of IDs may change over time.
-     */
+    /** Unique identifier for the skill. The format and length of IDs may change over time. */
     val id: String,
-    /**
-     * Deleted object type. For Skills, this is always `"skill_deleted"`.
-     */
-    val type: DeletedSkillTypeEnum
+    /** Deleted object type. For Skills, this is always `"skill_deleted"`. */
+    val type: DeletedSkillTypeEnum,
 )
 
-/**
- * Typed representation of the `ListSkillsResponse` API schema.
- */
+/** Typed representation of the `ListSkillsResponse` API schema. */
 data class ListSkillsResponse(
-    /**
-     * List of skills.
-     */
+    /** List of skills. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<Skill>,
     /**
-     * Token for fetching the next page of results. If `null`, there are no more results available. Pass this value to the `page` parameter in the next request to get the next page.
+     * Token for fetching the next page of results. If `null`, there are no more results available.
+     * Pass this value to the `page` parameter in the next request to get the next page.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 )
 
-/**
- * Typed representation of the `Skill` API schema.
- */
+/** Typed representation of the `Skill` API schema. */
 data class Skill(
-    /**
-     * ISO 8601 timestamp of when the skill was created.
-     */
+    /** ISO 8601 timestamp of when the skill was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     /**
-     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
+     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived
+     * from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String,
-    /**
-     * Unique identifier for the skill. The format and length of IDs may change over time.
-     */
+    /** Unique identifier for the skill. The format and length of IDs may change over time. */
     val id: String,
     /**
-     * ID of the newest Skill Version — what `latest` references resolve to. Always set: a Skill holds at least one version.
+     * ID of the newest Skill Version — what `latest` references resolve to. Always set: a Skill
+     * holds at least one version.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("latest_version_id") val latestVersionId: String,
     /**
-     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user; private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an installed plugin
+     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user;
+     * private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only *
+     * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an
+     * installed plugin
      */
     val source: SkillSource,
-    /**
-     * Object type. For Skills, this is always `"skill"`.
-     */
+    /** Object type. For Skills, this is always `"skill"`. */
     val type: SkillTypeEnum,
-    /**
-     * ISO 8601 timestamp of when the skill was last updated.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
+    /** ISO 8601 timestamp of when the skill was last updated. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
 )
 
-/**
- * Typed representation of the `SkillSource` API schema.
- */
+/** Typed representation of the `SkillSource` API schema. */
 data class SkillSource(
     /**
-     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user; private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an installed plugin
+     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user;
+     * private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only *
+     * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an
+     * installed plugin
      */
     val type: SkillSourceTypeEnum
 )

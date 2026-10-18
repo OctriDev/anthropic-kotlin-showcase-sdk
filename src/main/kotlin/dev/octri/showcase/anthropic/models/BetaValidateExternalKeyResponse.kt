@@ -4,19 +4,17 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Result of a validation roundtrip against the customer's KMS. HTTP 200 for both outcomes — the operation completed; `status` says whether the key works.
+ * Result of a validation roundtrip against the customer's KMS. HTTP 200 for both outcomes — the
+ * operation completed; `status` says whether the key works.
  */
 data class BetaValidateExternalKeyResponse(
-    /**
-     * Error message when status is `failure`. Null otherwise.
-     */
+    /** Error message when status is `failure`. Null otherwise. */
     @com.fasterxml.jackson.annotation.JsonProperty("error", required = true) val error: String?,
     /**
-     * `success` — encrypt/decrypt roundtrip succeeded. `failure` — the roundtrip failed or timed out; see `error`.
+     * `success` — encrypt/decrypt roundtrip succeeded. `failure` — the roundtrip failed or timed
+     * out; see `error`.
      */
     val status: BetaValidateExternalKeyResponseStatusEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaValidateExternalKeyResponseTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaValidateExternalKeyResponseTypeEnum,
 )

@@ -3,24 +3,15 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaListResponse_ModelInfo_` API schema.
- */
+/** Typed representation of the `BetaListResponse_ModelInfo_` API schema. */
 data class BetaListResponseModelInfo(
-    /**
-     * Required array value serialized in the `data` wire field.
-     */
+    /** Required array value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaModelInfo>,
-    /**
-     * First ID in the `data` list. Can be used as the `before_id` for the previous page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true) val firstId: String?,
-    /**
-     * Indicates if there are more results in the requested page direction.
-     */
+    /** First ID in the `data` list. Can be used as the `before_id` for the previous page. */
+    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true)
+    val firstId: String?,
+    /** Indicates if there are more results in the requested page direction. */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
-    /**
-     * Last ID in the `data` list. Can be used as the `after_id` for the next page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?
+    /** Last ID in the `data` list. Can be used as the `after_id` for the next page. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?,
 )

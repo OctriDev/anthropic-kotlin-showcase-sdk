@@ -3,287 +3,422 @@
 
 package dev.octri.showcase.anthropic
 
-typealias UnknownBetaManagedAgentsArchiveMemoryStoreResponse = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsArchiveMemoryStoreResponse
+typealias UnknownBetaManagedAgentsArchiveMemoryStoreResponse =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsArchiveMemoryStoreResponse
 
-typealias UnknownBetaManagedAgentsBudget = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsBudget
+typealias UnknownBetaManagedAgentsBudget =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsBudget
 
-typealias UnknownBetaManagedAgentsCreateMemoryStoreResponse = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCreateMemoryStoreResponse
+typealias UnknownBetaManagedAgentsCreateMemoryStoreResponse =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCreateMemoryStoreResponse
 
-typealias UnknownBetaManagedAgentsCredentialAuth = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialAuth
+typealias UnknownBetaManagedAgentsCredentialAuth =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialAuth
 
-typealias UnknownBetaManagedAgentsCredentialCreateAuth = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialCreateAuth
+typealias UnknownBetaManagedAgentsCredentialCreateAuth =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialCreateAuth
 
-typealias UnknownBetaManagedAgentsCredentialNetworkingParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialNetworkingParams
+typealias UnknownBetaManagedAgentsCredentialNetworkingParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialNetworkingParams
 
-typealias UnknownBetaManagedAgentsCredentialNetworkingResponse = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialNetworkingResponse
+typealias UnknownBetaManagedAgentsCredentialNetworkingResponse =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialNetworkingResponse
 
-typealias UnknownBetaManagedAgentsCredentialUpdateAuth = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialUpdateAuth
+typealias UnknownBetaManagedAgentsCredentialUpdateAuth =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsCredentialUpdateAuth
 
-typealias UnknownBetaManagedAgentsDeleteMemoryStoreResponse = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeleteMemoryStoreResponse
+typealias UnknownBetaManagedAgentsDeleteMemoryStoreResponse =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeleteMemoryStoreResponse
 
-typealias UnknownBetaManagedAgentsDeploymentInitialEvent = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentInitialEvent
+typealias UnknownBetaManagedAgentsDeploymentInitialEvent =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentInitialEvent
 
-typealias UnknownBetaManagedAgentsDeploymentInitialEventParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentInitialEventParams
+typealias UnknownBetaManagedAgentsDeploymentInitialEventParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentInitialEventParams
 
-typealias UnknownBetaManagedAgentsDeploymentPausedReason = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentPausedReason
+typealias UnknownBetaManagedAgentsDeploymentPausedReason =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentPausedReason
 
-typealias UnknownBetaManagedAgentsDeploymentPausedReasonError = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentPausedReasonError
+typealias UnknownBetaManagedAgentsDeploymentPausedReasonError =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDeploymentPausedReasonError
 
-typealias UnknownBetaManagedAgentsDocumentSource = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDocumentSource
+typealias UnknownBetaManagedAgentsDocumentSource =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsDocumentSource
 
-typealias UnknownBetaManagedAgentsEffort = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEffort
+typealias UnknownBetaManagedAgentsEffort =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEffort
 
-typealias UnknownBetaManagedAgentsError = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsError
+typealias UnknownBetaManagedAgentsError =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsError
 
-typealias UnknownBetaManagedAgentsEventDeltaEventDelta = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEventDeltaEventDelta
+typealias UnknownBetaManagedAgentsEventDeltaEventDelta =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEventDeltaEventDelta
 
-typealias UnknownBetaManagedAgentsEventParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEventParams
+typealias UnknownBetaManagedAgentsEventParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEventParams
 
-typealias UnknownBetaManagedAgentsEventStartEventEvent = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEventStartEventEvent
+typealias UnknownBetaManagedAgentsEventStartEventEvent =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsEventStartEventEvent
 
-typealias UnknownBetaManagedAgentsGetMemoryStoreResponse = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsGetMemoryStoreResponse
+typealias UnknownBetaManagedAgentsGetMemoryStoreResponse =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsGetMemoryStoreResponse
 
-typealias UnknownBetaManagedAgentsGetSessionResource = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsGetSessionResource
+typealias UnknownBetaManagedAgentsGetSessionResource =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsGetSessionResource
 
-typealias UnknownBetaManagedAgentsImageSource = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsImageSource
+typealias UnknownBetaManagedAgentsImageSource =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsImageSource
 
-typealias UnknownBetaManagedAgentsInputEvent = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsInputEvent
+typealias UnknownBetaManagedAgentsInputEvent =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsInputEvent
 
-typealias UnknownBetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth
+typealias UnknownBetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth
 
-typealias UnknownBetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth
+typealias UnknownBetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth
 
-typealias UnknownBetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth
+typealias UnknownBetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth
 
-typealias UnknownBetaManagedAgentsMCPServer = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMCPServer
+typealias UnknownBetaManagedAgentsMCPServer =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMCPServer
 
-typealias UnknownBetaManagedAgentsMCPServerParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMCPServerParams
+typealias UnknownBetaManagedAgentsMCPServerParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMCPServerParams
 
-typealias UnknownBetaManagedAgentsMemoryListItem = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMemoryListItem
+typealias UnknownBetaManagedAgentsMemoryListItem =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMemoryListItem
 
-typealias UnknownBetaManagedAgentsMultiagent = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMultiagent
+typealias UnknownBetaManagedAgentsMultiagent =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMultiagent
 
-typealias UnknownBetaManagedAgentsMultiagentParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMultiagentParams
+typealias UnknownBetaManagedAgentsMultiagentParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMultiagentParams
 
-typealias UnknownBetaManagedAgentsMultiagentRosterEntry = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMultiagentRosterEntry
+typealias UnknownBetaManagedAgentsMultiagentRosterEntry =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsMultiagentRosterEntry
 
-typealias UnknownBetaManagedAgentsPermissionPolicy = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsPermissionPolicy
+typealias UnknownBetaManagedAgentsPermissionPolicy =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsPermissionPolicy
 
-typealias UnknownBetaManagedAgentsPrecondition = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsPrecondition
+typealias UnknownBetaManagedAgentsPrecondition =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsPrecondition
 
-typealias UnknownBetaManagedAgentsRepositoryCheckout = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRepositoryCheckout
+typealias UnknownBetaManagedAgentsRepositoryCheckout =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRepositoryCheckout
 
-typealias UnknownBetaManagedAgentsRetryStatus = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRetryStatus
+typealias UnknownBetaManagedAgentsRetryStatus =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRetryStatus
 
-typealias UnknownBetaManagedAgentsRubric = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRubric
+typealias UnknownBetaManagedAgentsRubric =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRubric
 
-typealias UnknownBetaManagedAgentsRubricParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRubricParams
+typealias UnknownBetaManagedAgentsRubricParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRubricParams
 
-typealias UnknownBetaManagedAgentsRunError = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRunError
+typealias UnknownBetaManagedAgentsRunError =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsRunError
 
-typealias UnknownBetaManagedAgentsSchedule = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSchedule
+typealias UnknownBetaManagedAgentsSchedule =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSchedule
 
-typealias UnknownBetaManagedAgentsScheduleParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsScheduleParams
+typealias UnknownBetaManagedAgentsScheduleParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsScheduleParams
 
-typealias UnknownBetaManagedAgentsSessionErrorEventError = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionErrorEventError
+typealias UnknownBetaManagedAgentsSessionErrorEventError =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionErrorEventError
 
-typealias UnknownBetaManagedAgentsSessionEvent = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionEvent
+typealias UnknownBetaManagedAgentsSessionEvent =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionEvent
 
-typealias UnknownBetaManagedAgentsSessionInitialEventParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionInitialEventParams
+typealias UnknownBetaManagedAgentsSessionInitialEventParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionInitialEventParams
 
-typealias UnknownBetaManagedAgentsSessionMultiagent = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionMultiagent
+typealias UnknownBetaManagedAgentsSessionMultiagent =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionMultiagent
 
-typealias UnknownBetaManagedAgentsSessionResource = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionResource
+typealias UnknownBetaManagedAgentsSessionResource =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionResource
 
-typealias UnknownBetaManagedAgentsSessionResourceConfig = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionResourceConfig
+typealias UnknownBetaManagedAgentsSessionResourceConfig =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionResourceConfig
 
-typealias UnknownBetaManagedAgentsSessionResourceParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionResourceParams
+typealias UnknownBetaManagedAgentsSessionResourceParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionResourceParams
 
-typealias UnknownBetaManagedAgentsSessionRosterEntry = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionRosterEntry
+typealias UnknownBetaManagedAgentsSessionRosterEntry =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionRosterEntry
 
-typealias UnknownBetaManagedAgentsSessionStatusIdleEventStopReason = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionStatusIdleEventStopReason
+typealias UnknownBetaManagedAgentsSessionStatusIdleEventStopReason =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionStatusIdleEventStopReason
 
-typealias UnknownBetaManagedAgentsSessionThreadAgentEntry = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionThreadAgentEntry
+typealias UnknownBetaManagedAgentsSessionThreadAgentEntry =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionThreadAgentEntry
 
-typealias UnknownBetaManagedAgentsSessionThreadStatusIdleEventStopReason = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionThreadStatusIdleEventStopReason
+typealias UnknownBetaManagedAgentsSessionThreadStatusIdleEventStopReason =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSessionThreadStatusIdleEventStopReason
 
-typealias UnknownBetaManagedAgentsSkill = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSkill
+typealias UnknownBetaManagedAgentsSkill =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSkill
 
-typealias UnknownBetaManagedAgentsSkillParams = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSkillParams
+typealias UnknownBetaManagedAgentsSkillParams =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSkillParams
 
-typealias UnknownBetaManagedAgentsStreamSessionEvents = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsStreamSessionEvents
+typealias UnknownBetaManagedAgentsStreamSessionEvents =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsStreamSessionEvents
 
-typealias UnknownBetaManagedAgentsStreamSessionThreadEvents = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsStreamSessionThreadEvents
+typealias UnknownBetaManagedAgentsStreamSessionThreadEvents =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsStreamSessionThreadEvents
 
-typealias UnknownBetaManagedAgentsSystemContentBlock = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSystemContentBlock
+typealias UnknownBetaManagedAgentsSystemContentBlock =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsSystemContentBlock
 
-typealias UnknownBetaManagedAgentsToolResultContentBlock = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsToolResultContentBlock
+typealias UnknownBetaManagedAgentsToolResultContentBlock =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsToolResultContentBlock
 
-typealias UnknownBetaManagedAgentsTriggerContext = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsTriggerContext
+typealias UnknownBetaManagedAgentsTriggerContext =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsTriggerContext
 
-typealias UnknownBetaManagedAgentsUpdateMemoryStoreResponse = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsUpdateMemoryStoreResponse
+typealias UnknownBetaManagedAgentsUpdateMemoryStoreResponse =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsUpdateMemoryStoreResponse
 
-typealias UnknownBetaManagedAgentsUpdateSessionResource = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsUpdateSessionResource
+typealias UnknownBetaManagedAgentsUpdateSessionResource =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsUpdateSessionResource
 
-typealias UnknownBetaManagedAgentsUserContentBlock = dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsUserContentBlock
+typealias UnknownBetaManagedAgentsUserContentBlock =
+    dev.octri.showcase.anthropic.models.UnknownBetaManagedAgentsUserContentBlock
 
-typealias UnknownBetaMemoryTool20250818Command = dev.octri.showcase.anthropic.models.UnknownBetaMemoryTool20250818Command
+typealias UnknownBetaMemoryTool20250818Command =
+    dev.octri.showcase.anthropic.models.UnknownBetaMemoryTool20250818Command
 
-typealias UnknownBetaMessageBatchIndividualResponseResult = dev.octri.showcase.anthropic.models.UnknownBetaMessageBatchIndividualResponseResult
+typealias UnknownBetaMessageBatchIndividualResponseResult =
+    dev.octri.showcase.anthropic.models.UnknownBetaMessageBatchIndividualResponseResult
 
-typealias UnknownBetaMessageStreamEvent = dev.octri.showcase.anthropic.models.UnknownBetaMessageStreamEvent
+typealias UnknownBetaMessageStreamEvent =
+    dev.octri.showcase.anthropic.models.UnknownBetaMessageStreamEvent
 
 typealias UnknownBetaOutputBehavior = dev.octri.showcase.anthropic.models.UnknownBetaOutputBehavior
 
-typealias UnknownBetaPublicEnvironmentCreateRequestConfig = dev.octri.showcase.anthropic.models.UnknownBetaPublicEnvironmentCreateRequestConfig
+typealias UnknownBetaPublicEnvironmentCreateRequestConfig =
+    dev.octri.showcase.anthropic.models.UnknownBetaPublicEnvironmentCreateRequestConfig
 
-typealias UnknownBetaPublicEnvironmentUpdateRequestConfig = dev.octri.showcase.anthropic.models.UnknownBetaPublicEnvironmentUpdateRequestConfig
+typealias UnknownBetaPublicEnvironmentUpdateRequestConfig =
+    dev.octri.showcase.anthropic.models.UnknownBetaPublicEnvironmentUpdateRequestConfig
 
-typealias UnknownBetaRbacRolePermissionResource = dev.octri.showcase.anthropic.models.UnknownBetaRbacRolePermissionResource
+typealias UnknownBetaRbacRolePermissionResource =
+    dev.octri.showcase.anthropic.models.UnknownBetaRbacRolePermissionResource
 
-typealias UnknownBetaRequestAdvisorToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaRequestAdvisorToolResultBlockContent
+typealias UnknownBetaRequestAdvisorToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestAdvisorToolResultBlockContent
 
-typealias UnknownBetaRequestBashCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaRequestBashCodeExecutionToolResultBlockContent
+typealias UnknownBetaRequestBashCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestBashCodeExecutionToolResultBlockContent
 
-typealias UnknownBetaRequestBrowserStateBlockStateChangesItem = dev.octri.showcase.anthropic.models.UnknownBetaRequestBrowserStateBlockStateChangesItem
+typealias UnknownBetaRequestBrowserStateBlockStateChangesItem =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestBrowserStateBlockStateChangesItem
 
-typealias UnknownBetaRequestCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaRequestCodeExecutionToolResultBlockContent
+typealias UnknownBetaRequestCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestCodeExecutionToolResultBlockContent
 
-typealias UnknownBetaRequestDocumentBlockSource = dev.octri.showcase.anthropic.models.UnknownBetaRequestDocumentBlockSource
+typealias UnknownBetaRequestDocumentBlockSource =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestDocumentBlockSource
 
-typealias UnknownBetaRequestImageBlockSource = dev.octri.showcase.anthropic.models.UnknownBetaRequestImageBlockSource
+typealias UnknownBetaRequestImageBlockSource =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestImageBlockSource
 
-typealias UnknownBetaRequestServerToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaRequestServerToolUseBlockCaller
+typealias UnknownBetaRequestServerToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestServerToolUseBlockCaller
 
-typealias UnknownBetaRequestTextBlockCitationsItem = dev.octri.showcase.anthropic.models.UnknownBetaRequestTextBlockCitationsItem
+typealias UnknownBetaRequestTextBlockCitationsItem =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestTextBlockCitationsItem
 
-typealias UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent
+typealias UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent
 
-typealias UnknownBetaRequestToolAdditionBlockTool = dev.octri.showcase.anthropic.models.UnknownBetaRequestToolAdditionBlockTool
+typealias UnknownBetaRequestToolAdditionBlockTool =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestToolAdditionBlockTool
 
-typealias UnknownBetaRequestToolRemovalBlockTool = dev.octri.showcase.anthropic.models.UnknownBetaRequestToolRemovalBlockTool
+typealias UnknownBetaRequestToolRemovalBlockTool =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestToolRemovalBlockTool
 
-typealias UnknownBetaRequestToolResultBlockContentItem = dev.octri.showcase.anthropic.models.UnknownBetaRequestToolResultBlockContentItem
+typealias UnknownBetaRequestToolResultBlockContentItem =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestToolResultBlockContentItem
 
-typealias UnknownBetaRequestToolSearchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaRequestToolSearchToolResultBlockContent
+typealias UnknownBetaRequestToolSearchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestToolSearchToolResultBlockContent
 
-typealias UnknownBetaRequestToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaRequestToolUseBlockCaller
+typealias UnknownBetaRequestToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestToolUseBlockCaller
 
-typealias UnknownBetaRequestWebFetchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaRequestWebFetchToolResultBlockCaller
+typealias UnknownBetaRequestWebFetchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestWebFetchToolResultBlockCaller
 
-typealias UnknownBetaRequestWebFetchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaRequestWebFetchToolResultBlockContent
+typealias UnknownBetaRequestWebFetchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestWebFetchToolResultBlockContent
 
-typealias UnknownBetaRequestWebSearchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaRequestWebSearchToolResultBlockCaller
+typealias UnknownBetaRequestWebSearchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaRequestWebSearchToolResultBlockCaller
 
-typealias UnknownBetaResponseAdvisorToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaResponseAdvisorToolResultBlockContent
+typealias UnknownBetaResponseAdvisorToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseAdvisorToolResultBlockContent
 
-typealias UnknownBetaResponseBashCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaResponseBashCodeExecutionToolResultBlockContent
+typealias UnknownBetaResponseBashCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseBashCodeExecutionToolResultBlockContent
 
-typealias UnknownBetaResponseCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaResponseCodeExecutionToolResultBlockContent
+typealias UnknownBetaResponseCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseCodeExecutionToolResultBlockContent
 
-typealias UnknownBetaResponseContextManagementAppliedEditsItem = dev.octri.showcase.anthropic.models.UnknownBetaResponseContextManagementAppliedEditsItem
+typealias UnknownBetaResponseContextManagementAppliedEditsItem =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseContextManagementAppliedEditsItem
 
-typealias UnknownBetaResponseDocumentBlockSource = dev.octri.showcase.anthropic.models.UnknownBetaResponseDocumentBlockSource
+typealias UnknownBetaResponseDocumentBlockSource =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseDocumentBlockSource
 
-typealias UnknownBetaResponseServerToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaResponseServerToolUseBlockCaller
+typealias UnknownBetaResponseServerToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseServerToolUseBlockCaller
 
-typealias UnknownBetaResponseTextBlockCitationsItem = dev.octri.showcase.anthropic.models.UnknownBetaResponseTextBlockCitationsItem
+typealias UnknownBetaResponseTextBlockCitationsItem =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseTextBlockCitationsItem
 
-typealias UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent
+typealias UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent
 
-typealias UnknownBetaResponseToolSearchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaResponseToolSearchToolResultBlockContent
+typealias UnknownBetaResponseToolSearchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseToolSearchToolResultBlockContent
 
-typealias UnknownBetaResponseToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaResponseToolUseBlockCaller
+typealias UnknownBetaResponseToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseToolUseBlockCaller
 
-typealias UnknownBetaResponseWebFetchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaResponseWebFetchToolResultBlockCaller
+typealias UnknownBetaResponseWebFetchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseWebFetchToolResultBlockCaller
 
-typealias UnknownBetaResponseWebFetchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownBetaResponseWebFetchToolResultBlockContent
+typealias UnknownBetaResponseWebFetchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseWebFetchToolResultBlockContent
 
-typealias UnknownBetaResponseWebSearchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownBetaResponseWebSearchToolResultBlockCaller
+typealias UnknownBetaResponseWebSearchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownBetaResponseWebSearchToolResultBlockCaller
 
-typealias UnknownBetaSpendLimitIncreaseRequestSchemaResolvedBy = dev.octri.showcase.anthropic.models.UnknownBetaSpendLimitIncreaseRequestSchemaResolvedBy
+typealias UnknownBetaSpendLimitIncreaseRequestSchemaResolvedBy =
+    dev.octri.showcase.anthropic.models.UnknownBetaSpendLimitIncreaseRequestSchemaResolvedBy
 
-typealias UnknownBetaSpendLimitScope = dev.octri.showcase.anthropic.models.UnknownBetaSpendLimitScope
+typealias UnknownBetaSpendLimitScope =
+    dev.octri.showcase.anthropic.models.UnknownBetaSpendLimitScope
 
-typealias UnknownBetaSpendSummarySource = dev.octri.showcase.anthropic.models.UnknownBetaSpendSummarySource
+typealias UnknownBetaSpendSummarySource =
+    dev.octri.showcase.anthropic.models.UnknownBetaSpendSummarySource
 
-typealias UnknownBetaThinkingConfigParam = dev.octri.showcase.anthropic.models.UnknownBetaThinkingConfigParam
+typealias UnknownBetaThinkingConfigParam =
+    dev.octri.showcase.anthropic.models.UnknownBetaThinkingConfigParam
 
 typealias UnknownBetaToolChoice = dev.octri.showcase.anthropic.models.UnknownBetaToolChoice
 
-typealias UnknownBetaUsageIterationsItem = dev.octri.showcase.anthropic.models.UnknownBetaUsageIterationsItem
+typealias UnknownBetaUsageIterationsItem =
+    dev.octri.showcase.anthropic.models.UnknownBetaUsageIterationsItem
 
-typealias UnknownBetaWebhookEventData = dev.octri.showcase.anthropic.models.UnknownBetaWebhookEventData
+typealias UnknownBetaWebhookEventData =
+    dev.octri.showcase.anthropic.models.UnknownBetaWebhookEventData
 
-typealias UnknownCitationsDeltaCitation = dev.octri.showcase.anthropic.models.UnknownCitationsDeltaCitation
+typealias UnknownCitationsDeltaCitation =
+    dev.octri.showcase.anthropic.models.UnknownCitationsDeltaCitation
 
 typealias UnknownContentBlock = dev.octri.showcase.anthropic.models.UnknownContentBlock
 
-typealias UnknownContentBlockDeltaEventDelta = dev.octri.showcase.anthropic.models.UnknownContentBlockDeltaEventDelta
+typealias UnknownContentBlockDeltaEventDelta =
+    dev.octri.showcase.anthropic.models.UnknownContentBlockDeltaEventDelta
 
-typealias UnknownContentBlockSourceContentItem = dev.octri.showcase.anthropic.models.UnknownContentBlockSourceContentItem
+typealias UnknownContentBlockSourceContentItem =
+    dev.octri.showcase.anthropic.models.UnknownContentBlockSourceContentItem
 
-typealias UnknownContentBlockStartEventContentBlock = dev.octri.showcase.anthropic.models.UnknownContentBlockStartEventContentBlock
+typealias UnknownContentBlockStartEventContentBlock =
+    dev.octri.showcase.anthropic.models.UnknownContentBlockStartEventContentBlock
 
 typealias UnknownErrorResponseError = dev.octri.showcase.anthropic.models.UnknownErrorResponseError
 
 typealias UnknownInputContentBlock = dev.octri.showcase.anthropic.models.UnknownInputContentBlock
 
-typealias UnknownMessageBatchIndividualResponseResult = dev.octri.showcase.anthropic.models.UnknownMessageBatchIndividualResponseResult
+typealias UnknownMessageBatchIndividualResponseResult =
+    dev.octri.showcase.anthropic.models.UnknownMessageBatchIndividualResponseResult
 
 typealias UnknownMessageStreamEvent = dev.octri.showcase.anthropic.models.UnknownMessageStreamEvent
 
-typealias UnknownRequestBashCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownRequestBashCodeExecutionToolResultBlockContent
+typealias UnknownRequestBashCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownRequestBashCodeExecutionToolResultBlockContent
 
-typealias UnknownRequestBrowserStateBlockStateChangesItem = dev.octri.showcase.anthropic.models.UnknownRequestBrowserStateBlockStateChangesItem
+typealias UnknownRequestBrowserStateBlockStateChangesItem =
+    dev.octri.showcase.anthropic.models.UnknownRequestBrowserStateBlockStateChangesItem
 
-typealias UnknownRequestCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownRequestCodeExecutionToolResultBlockContent
+typealias UnknownRequestCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownRequestCodeExecutionToolResultBlockContent
 
-typealias UnknownRequestDocumentBlockSource = dev.octri.showcase.anthropic.models.UnknownRequestDocumentBlockSource
+typealias UnknownRequestDocumentBlockSource =
+    dev.octri.showcase.anthropic.models.UnknownRequestDocumentBlockSource
 
-typealias UnknownRequestImageBlockSource = dev.octri.showcase.anthropic.models.UnknownRequestImageBlockSource
+typealias UnknownRequestImageBlockSource =
+    dev.octri.showcase.anthropic.models.UnknownRequestImageBlockSource
 
-typealias UnknownRequestServerToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownRequestServerToolUseBlockCaller
+typealias UnknownRequestServerToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownRequestServerToolUseBlockCaller
 
-typealias UnknownRequestTextBlockCitationsItem = dev.octri.showcase.anthropic.models.UnknownRequestTextBlockCitationsItem
+typealias UnknownRequestTextBlockCitationsItem =
+    dev.octri.showcase.anthropic.models.UnknownRequestTextBlockCitationsItem
 
-typealias UnknownRequestTextEditorCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownRequestTextEditorCodeExecutionToolResultBlockContent
+typealias UnknownRequestTextEditorCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownRequestTextEditorCodeExecutionToolResultBlockContent
 
-typealias UnknownRequestToolResultBlockContentItem = dev.octri.showcase.anthropic.models.UnknownRequestToolResultBlockContentItem
+typealias UnknownRequestToolResultBlockContentItem =
+    dev.octri.showcase.anthropic.models.UnknownRequestToolResultBlockContentItem
 
-typealias UnknownRequestToolSearchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownRequestToolSearchToolResultBlockContent
+typealias UnknownRequestToolSearchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownRequestToolSearchToolResultBlockContent
 
-typealias UnknownRequestToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownRequestToolUseBlockCaller
+typealias UnknownRequestToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownRequestToolUseBlockCaller
 
-typealias UnknownRequestWebFetchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownRequestWebFetchToolResultBlockCaller
+typealias UnknownRequestWebFetchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownRequestWebFetchToolResultBlockCaller
 
-typealias UnknownRequestWebFetchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownRequestWebFetchToolResultBlockContent
+typealias UnknownRequestWebFetchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownRequestWebFetchToolResultBlockContent
 
-typealias UnknownRequestWebSearchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownRequestWebSearchToolResultBlockCaller
+typealias UnknownRequestWebSearchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownRequestWebSearchToolResultBlockCaller
 
-typealias UnknownResponseBashCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownResponseBashCodeExecutionToolResultBlockContent
+typealias UnknownResponseBashCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownResponseBashCodeExecutionToolResultBlockContent
 
-typealias UnknownResponseCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownResponseCodeExecutionToolResultBlockContent
+typealias UnknownResponseCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownResponseCodeExecutionToolResultBlockContent
 
-typealias UnknownResponseDocumentBlockSource = dev.octri.showcase.anthropic.models.UnknownResponseDocumentBlockSource
+typealias UnknownResponseDocumentBlockSource =
+    dev.octri.showcase.anthropic.models.UnknownResponseDocumentBlockSource
 
-typealias UnknownResponseServerToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownResponseServerToolUseBlockCaller
+typealias UnknownResponseServerToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownResponseServerToolUseBlockCaller
 
-typealias UnknownResponseTextBlockCitationsItem = dev.octri.showcase.anthropic.models.UnknownResponseTextBlockCitationsItem
+typealias UnknownResponseTextBlockCitationsItem =
+    dev.octri.showcase.anthropic.models.UnknownResponseTextBlockCitationsItem
 
-typealias UnknownResponseTextEditorCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownResponseTextEditorCodeExecutionToolResultBlockContent
+typealias UnknownResponseTextEditorCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownResponseTextEditorCodeExecutionToolResultBlockContent
 
-typealias UnknownResponseToolSearchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownResponseToolSearchToolResultBlockContent
+typealias UnknownResponseToolSearchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownResponseToolSearchToolResultBlockContent
 
-typealias UnknownResponseToolUseBlockCaller = dev.octri.showcase.anthropic.models.UnknownResponseToolUseBlockCaller
+typealias UnknownResponseToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownResponseToolUseBlockCaller
 
-typealias UnknownResponseWebFetchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownResponseWebFetchToolResultBlockCaller
+typealias UnknownResponseWebFetchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownResponseWebFetchToolResultBlockCaller
 
-typealias UnknownResponseWebFetchToolResultBlockContent = dev.octri.showcase.anthropic.models.UnknownResponseWebFetchToolResultBlockContent
+typealias UnknownResponseWebFetchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.UnknownResponseWebFetchToolResultBlockContent
 
-typealias UnknownResponseWebSearchToolResultBlockCaller = dev.octri.showcase.anthropic.models.UnknownResponseWebSearchToolResultBlockCaller
+typealias UnknownResponseWebSearchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.UnknownResponseWebSearchToolResultBlockCaller
 
-typealias UnknownThinkingConfigParam = dev.octri.showcase.anthropic.models.UnknownThinkingConfigParam
+typealias UnknownThinkingConfigParam =
+    dev.octri.showcase.anthropic.models.UnknownThinkingConfigParam
 
 typealias UnknownToolChoice = dev.octri.showcase.anthropic.models.UnknownToolChoice
 
@@ -303,66 +438,88 @@ typealias URLPDFSourceTypeEnum = dev.octri.showcase.anthropic.models.URLPDFSourc
 
 typealias Usage = dev.octri.showcase.anthropic.models.Usage
 
-typealias UsageServiceTierVariant0Enum = dev.octri.showcase.anthropic.models.UsageServiceTierVariant0Enum
+typealias UsageServiceTierVariant0Enum =
+    dev.octri.showcase.anthropic.models.UsageServiceTierVariant0Enum
 
 typealias UserLocation = dev.octri.showcase.anthropic.models.UserLocation
 
 typealias UserLocationTypeEnum = dev.octri.showcase.anthropic.models.UserLocationTypeEnum
 
-typealias ValueBetaManagedAgentsCreateSessionAgentUnionParams = dev.octri.showcase.anthropic.models.ValueBetaManagedAgentsCreateSessionAgentUnionParams
+typealias ValueBetaManagedAgentsCreateSessionAgentUnionParams =
+    dev.octri.showcase.anthropic.models.ValueBetaManagedAgentsCreateSessionAgentUnionParams
 
-typealias ValueBetaManagedAgentsModel = dev.octri.showcase.anthropic.models.ValueBetaManagedAgentsModel
+typealias ValueBetaManagedAgentsModel =
+    dev.octri.showcase.anthropic.models.ValueBetaManagedAgentsModel
 
-typealias ValueBetaManagedAgentsMultiagentRosterEntryParams = dev.octri.showcase.anthropic.models.ValueBetaManagedAgentsMultiagentRosterEntryParams
+typealias ValueBetaManagedAgentsMultiagentRosterEntryParams =
+    dev.octri.showcase.anthropic.models.ValueBetaManagedAgentsMultiagentRosterEntryParams
 
 typealias ValueModel = dev.octri.showcase.anthropic.models.ValueModel
 
 typealias WebFetchTool20250910 = dev.octri.showcase.anthropic.models.WebFetchTool20250910
 
-typealias WebFetchTool20250910NameEnum = dev.octri.showcase.anthropic.models.WebFetchTool20250910NameEnum
+typealias WebFetchTool20250910NameEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20250910NameEnum
 
-typealias WebFetchTool20250910TypeEnum = dev.octri.showcase.anthropic.models.WebFetchTool20250910TypeEnum
+typealias WebFetchTool20250910TypeEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20250910TypeEnum
 
 typealias WebFetchTool20260209 = dev.octri.showcase.anthropic.models.WebFetchTool20260209
 
-typealias WebFetchTool20260209NameEnum = dev.octri.showcase.anthropic.models.WebFetchTool20260209NameEnum
+typealias WebFetchTool20260209NameEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20260209NameEnum
 
-typealias WebFetchTool20260209TypeEnum = dev.octri.showcase.anthropic.models.WebFetchTool20260209TypeEnum
+typealias WebFetchTool20260209TypeEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20260209TypeEnum
 
 typealias WebFetchTool20260309 = dev.octri.showcase.anthropic.models.WebFetchTool20260309
 
-typealias WebFetchTool20260309NameEnum = dev.octri.showcase.anthropic.models.WebFetchTool20260309NameEnum
+typealias WebFetchTool20260309NameEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20260309NameEnum
 
-typealias WebFetchTool20260309TypeEnum = dev.octri.showcase.anthropic.models.WebFetchTool20260309TypeEnum
+typealias WebFetchTool20260309TypeEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20260309TypeEnum
 
 typealias WebFetchTool20260318 = dev.octri.showcase.anthropic.models.WebFetchTool20260318
 
-typealias WebFetchTool20260318NameEnum = dev.octri.showcase.anthropic.models.WebFetchTool20260318NameEnum
+typealias WebFetchTool20260318NameEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20260318NameEnum
 
-typealias WebFetchTool20260318ResponseInclusionEnum = dev.octri.showcase.anthropic.models.WebFetchTool20260318ResponseInclusionEnum
+typealias WebFetchTool20260318ResponseInclusionEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20260318ResponseInclusionEnum
 
-typealias WebFetchTool20260318TypeEnum = dev.octri.showcase.anthropic.models.WebFetchTool20260318TypeEnum
+typealias WebFetchTool20260318TypeEnum =
+    dev.octri.showcase.anthropic.models.WebFetchTool20260318TypeEnum
 
-typealias WebFetchToolResultErrorCode = dev.octri.showcase.anthropic.models.WebFetchToolResultErrorCode
+typealias WebFetchToolResultErrorCode =
+    dev.octri.showcase.anthropic.models.WebFetchToolResultErrorCode
 
 typealias WebSearchTool20250305 = dev.octri.showcase.anthropic.models.WebSearchTool20250305
 
-typealias WebSearchTool20250305NameEnum = dev.octri.showcase.anthropic.models.WebSearchTool20250305NameEnum
+typealias WebSearchTool20250305NameEnum =
+    dev.octri.showcase.anthropic.models.WebSearchTool20250305NameEnum
 
-typealias WebSearchTool20250305TypeEnum = dev.octri.showcase.anthropic.models.WebSearchTool20250305TypeEnum
+typealias WebSearchTool20250305TypeEnum =
+    dev.octri.showcase.anthropic.models.WebSearchTool20250305TypeEnum
 
 typealias WebSearchTool20260209 = dev.octri.showcase.anthropic.models.WebSearchTool20260209
 
-typealias WebSearchTool20260209NameEnum = dev.octri.showcase.anthropic.models.WebSearchTool20260209NameEnum
+typealias WebSearchTool20260209NameEnum =
+    dev.octri.showcase.anthropic.models.WebSearchTool20260209NameEnum
 
-typealias WebSearchTool20260209TypeEnum = dev.octri.showcase.anthropic.models.WebSearchTool20260209TypeEnum
+typealias WebSearchTool20260209TypeEnum =
+    dev.octri.showcase.anthropic.models.WebSearchTool20260209TypeEnum
 
 typealias WebSearchTool20260318 = dev.octri.showcase.anthropic.models.WebSearchTool20260318
 
-typealias WebSearchTool20260318NameEnum = dev.octri.showcase.anthropic.models.WebSearchTool20260318NameEnum
+typealias WebSearchTool20260318NameEnum =
+    dev.octri.showcase.anthropic.models.WebSearchTool20260318NameEnum
 
-typealias WebSearchTool20260318ResponseInclusionEnum = dev.octri.showcase.anthropic.models.WebSearchTool20260318ResponseInclusionEnum
+typealias WebSearchTool20260318ResponseInclusionEnum =
+    dev.octri.showcase.anthropic.models.WebSearchTool20260318ResponseInclusionEnum
 
-typealias WebSearchTool20260318TypeEnum = dev.octri.showcase.anthropic.models.WebSearchTool20260318TypeEnum
+typealias WebSearchTool20260318TypeEnum =
+    dev.octri.showcase.anthropic.models.WebSearchTool20260318TypeEnum
 
-typealias WebSearchToolResultErrorCode = dev.octri.showcase.anthropic.models.WebSearchToolResultErrorCode
+typealias WebSearchToolResultErrorCode =
+    dev.octri.showcase.anthropic.models.WebSearchToolResultErrorCode

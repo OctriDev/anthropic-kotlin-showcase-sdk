@@ -3,47 +3,37 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaCreateDreamRequest` API schema.
- */
+/** Typed representation of the `BetaCreateDreamRequest` API schema. */
 data class BetaCreateDreamRequest(
-    /**
-     * Required array value serialized in the `inputs` wire field.
-     */
+    /** Required array value serialized in the `inputs` wire field. */
     val inputs: List<BetaDreamInput>,
-    /**
-     * Required API value serialized in the `model` wire field.
-     */
+    /** Required API value serialized in the `model` wire field. */
     val model: BetaDreamModelParams,
-    /**
-     * Optional API value serialized in the `instructions` wire field.
-     */
+    /** Optional API value serialized in the `instructions` wire field. */
     val instructions: String? = null,
-    /**
-     * Optional object value serialized in the `output_behavior` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_behavior") val outputBehavior: BetaOutputBehavior? = null
+    /** Optional object value serialized in the `output_behavior` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("output_behavior")
+    val outputBehavior: BetaOutputBehavior? = null,
 )
 
-/**
- * Model identifier and configuration applied to every pipeline stage.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Model identifier and configuration applied to every pipeline stage. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaDreamModelConfigParams(
-    /**
-     * Model identifier, e.g. "claude-opus-5". 1-256 characters.
-     */
+    /** Model identifier, e.g. "claude-opus-5". 1-256 characters. */
     val id: String,
-    /**
-     * Inference speed mode. Defaults to `standard`.
-     */
-    val speed: BetaSpeed? = null
+    /** Inference speed mode. Defaults to `standard`. */
+    val speed: BetaSpeed? = null,
 ) : BetaDreamModelParams
 
-/**
- * Typed representation of the `BetaDreamModelParams` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = BetaDreamModelParams.Deserializer::class)
+/** Typed representation of the `BetaDreamModelParams` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = BetaDreamModelParams.Deserializer::class
+)
 sealed interface BetaDreamModelParams {
     /** Chooses the branch this payload is shaped like. */
     class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<BetaDreamModelParams>() {
@@ -53,7 +43,8 @@ sealed interface BetaDreamModelParams {
         ): BetaDreamModelParams {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out BetaDreamModelParams>> = listOf(BetaDreamModelConfigParams::class.java)
+            val objectTypes: List<Class<out BetaDreamModelParams>> =
+                listOf(BetaDreamModelConfigParams::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -62,27 +53,39 @@ sealed interface BetaDreamModelParams {
                 }
             }
             return when {
-                node.isTextual -> StringBetaDreamModelParams(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, BetaDreamModelParams::class.java, "no BetaDreamModelParams branch accepts this payload")
+                node.isTextual ->
+                    StringBetaDreamModelParams(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        BetaDreamModelParams::class.java,
+                        "no BetaDreamModelParams branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringBetaDreamModelParams(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : BetaDreamModelParams
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringBetaDreamModelParams(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : BetaDreamModelParams
 
-/**
- * Typed representation of the `BetaListDreamsResponse` API schema.
- */
+/** Typed representation of the `BetaListDreamsResponse` API schema. */
 data class BetaListDreamsResponse(
-    /**
-     * Required array value serialized in the `data` wire field.
-     */
+    /** Required array value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaDream>,
-    /**
-     * Required `string` value serialized in the `next_page` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    /** Required `string` value serialized in the `next_page` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 )

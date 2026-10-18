@@ -7,17 +7,68 @@ import java.time.LocalDate
 
 class BetaOrganizationsAnalyticsArtifactsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for grouped queries, which paginate. The cube can be broken out per product, per member, or per RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the `read:analytics` scope.
+     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full
+     * (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for
+     * grouped queries, which paginate. The cube can be broken out per product, per member, or per
+     * RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the
+     * `read:analytics` scope.
      */
-    fun list(date: LocalDate, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?>? = null, filter: SdkClient.SdkOptional<List<String>?>? = null, options: RequestOptions? = null): BetaAnalyticsArtifactsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsArtifacts.listBetaOrganizationsAnalyticsArtifacts(clientConfig, date, limit, page, groupBy, filter, options)
+    fun list(
+        date: LocalDate,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        groupBy:
+            SdkClient.SdkOptional<
+                List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?
+            >? =
+            null,
+        filter: SdkClient.SdkOptional<List<String>?>? = null,
+        options: RequestOptions? = null,
+    ): BetaAnalyticsArtifactsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsArtifacts
+            .listBetaOrganizationsAnalyticsArtifacts(
+                clientConfig,
+                date,
+                limit,
+                page,
+                groupBy,
+                filter,
+                options,
+            )
     }
 
     /**
-     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for grouped queries, which paginate. The cube can be broken out per product, per member, or per RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the `read:analytics` scope.
+     * Get artifact-creation activity for a given day, broken out by MIME type. Returns the full
+     * (`artifact_type`, `is_shared`) cube for the organization; `next_page` is null except for
+     * grouped queries, which paginate. The cube can be broken out per product, per member, or per
+     * RBAC group via `group_by[]`, and scoped via `filter[]`. Requires an API key with the
+     * `read:analytics` scope.
      */
-    fun listPaginated(date: LocalDate, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?>? = null, filter: SdkClient.SdkOptional<List<String>?>? = null, options: RequestOptions? = null, yieldFn: (BetaAnalyticsArtifactActivity) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsArtifacts.listBetaOrganizationsAnalyticsArtifactsPaginated(clientConfig, date, limit, page, groupBy, filter, options, yieldFn)
+    fun listPaginated(
+        date: LocalDate,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        groupBy:
+            SdkClient.SdkOptional<
+                List<ListBetaOrganizationsAnalyticsArtifactsParameterItemEnum>?
+            >? =
+            null,
+        filter: SdkClient.SdkOptional<List<String>?>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaAnalyticsArtifactActivity) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsArtifacts
+            .listBetaOrganizationsAnalyticsArtifactsPaginated(
+                clientConfig,
+                date,
+                limit,
+                page,
+                groupBy,
+                filter,
+                options,
+                yieldFn,
+            )
     }
-
 }

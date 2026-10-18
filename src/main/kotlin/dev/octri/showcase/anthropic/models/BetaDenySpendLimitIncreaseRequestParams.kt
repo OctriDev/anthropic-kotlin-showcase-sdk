@@ -3,12 +3,9 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaDenySpendLimitIncreaseRequestParams` API schema.
- */
+/** Typed representation of the `BetaDenySpendLimitIncreaseRequestParams` API schema. */
 data class BetaDenySpendLimitIncreaseRequestParams(
-    /**
-     * Optional `boolean` value serialized in the `suppress_notification` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("suppress_notification") val suppressNotification: Boolean? = null
+    /** Optional `boolean` value serialized in the `suppress_notification` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("suppress_notification")
+    val suppressNotification: Boolean? = null
 )

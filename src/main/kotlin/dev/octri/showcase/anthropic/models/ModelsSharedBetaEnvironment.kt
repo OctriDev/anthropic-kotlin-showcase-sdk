@@ -3,97 +3,97 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * `cloud` environment configuration.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** `cloud` environment configuration. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaCloudConfig(
-    /**
-     * Network configuration policy.
-     */
+    /** Network configuration policy. */
     val networking: BetaCloudConfigNetworking,
-    /**
-     * Package manager configuration.
-     */
+    /** Package manager configuration. */
     val packages: BetaPackages,
-    /**
-     * Environment type
-     */
-    val type: BetaCloudConfigTypeEnum
+    /** Environment type */
+    val type: BetaCloudConfigTypeEnum,
 ) : BetaEnvironmentConfig
 
-/**
- * Unified Environment resource for both cloud and self-hosted environments.
- */
+/** Unified Environment resource for both cloud and self-hosted environments. */
 data class BetaEnvironment(
-    /**
-     * RFC 3339 timestamp when environment was archived, or null if not archived
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: String?,
-    /**
-     * Environment configuration (either Anthropic Cloud or self-hosted)
-     */
+    /** RFC 3339 timestamp when environment was archived, or null if not archived */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
+    val archivedAt: String?,
+    /** Environment configuration (either Anthropic Cloud or self-hosted) */
     val config: BetaEnvironmentConfig,
-    /**
-     * RFC 3339 timestamp when environment was created
-     */
+    /** RFC 3339 timestamp when environment was created */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /**
-     * User-provided description for the environment; null when unset
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * Environment identifier (e.g., 'env_...')
-     */
+    /** User-provided description for the environment; null when unset */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** Environment identifier (e.g., 'env_...') */
     val id: String,
-    /**
-     * User-provided metadata key-value pairs
-     */
+    /** User-provided metadata key-value pairs */
     val metadata: Map<String, String>,
-    /**
-     * Human-readable name for the environment
-     */
+    /** Human-readable name for the environment */
     val name: String,
-    /**
-     * The type of object (always 'environment')
-     */
+    /** The type of object (always 'environment') */
     val type: BetaEnvironmentTypeEnum,
-    /**
-     * RFC 3339 timestamp when environment was last updated
-     */
+    /** RFC 3339 timestamp when environment was last updated */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
     /**
-     * The visibility scope for this environment. 'organization' means visible to all accounts. 'account' means visible only to the owning account.
+     * The visibility scope for this environment. 'organization' means visible to all accounts.
+     * 'account' means visible only to the owning account.
      */
-    val scope: BetaEnvironmentScopeEnum? = null
+    val scope: BetaEnvironmentScopeEnum? = null,
 )
 
-/**
- * Environment configuration (either Anthropic Cloud or self-hosted)
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaEnvironmentConfig::class)
+/** Environment configuration (either Anthropic Cloud or self-hosted) */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaEnvironmentConfig::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCloudConfig::class, name = "cloud"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaSelfHostedConfig::class, name = "self_hosted")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaCloudConfig::class,
+        name = "cloud",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaSelfHostedConfig::class,
+        name = "self_hosted",
+    ),
 )
 sealed interface BetaEnvironmentConfig
 
 /** A [BetaEnvironmentConfig] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaEnvironmentConfig @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaEnvironmentConfig
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaEnvironmentConfig {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Configuration for self-hosted environments.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration for self-hosted environments. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaSelfHostedConfig(
-    /**
-     * Environment type
-     */
+    /** Environment type */
     val type: BetaSelfHostedConfigTypeEnum
 ) : BetaEnvironmentConfig

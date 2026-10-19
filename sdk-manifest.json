@@ -128592,40 +128592,21 @@
         {
           "name": "allowed_inference_geos",
           "required": false,
-          "type": "anyOf",
+          "type": "array",
           "format": null,
           "ref": null,
           "nullable": true,
-          "items": null,
+          "items": {
+            "type": "ref",
+            "format": null,
+            "ref": "BetaAllowedInferenceGeo",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
           "mapValue": null,
-          "variants": [
-            {
-              "type": "array",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": {
-                "type": "ref",
-                "format": null,
-                "ref": "BetaAllowedInferenceGeo",
-                "nullable": false,
-                "items": null,
-                "mapValue": null,
-                "variants": null
-              },
-              "mapValue": null,
-              "variants": null
-            },
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            }
-          ]
+          "variants": null
         },
         {
           "name": "default_inference_geo",
@@ -128688,40 +128669,21 @@
         {
           "name": "allowed_inference_geos",
           "required": false,
-          "type": "anyOf",
+          "type": "array",
           "format": null,
           "ref": null,
           "nullable": true,
-          "items": null,
+          "items": {
+            "type": "ref",
+            "format": null,
+            "ref": "BetaAllowedInferenceGeo",
+            "nullable": false,
+            "items": null,
+            "mapValue": null,
+            "variants": null
+          },
           "mapValue": null,
-          "variants": [
-            {
-              "type": "array",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": {
-                "type": "ref",
-                "format": null,
-                "ref": "BetaAllowedInferenceGeo",
-                "nullable": false,
-                "items": null,
-                "mapValue": null,
-                "variants": null
-              },
-              "mapValue": null,
-              "variants": null
-            },
-            {
-              "type": "string",
-              "format": null,
-              "ref": null,
-              "nullable": false,
-              "items": null,
-              "mapValue": null,
-              "variants": null
-            }
-          ]
+          "variants": null
         },
         {
           "name": "default_inference_geo",

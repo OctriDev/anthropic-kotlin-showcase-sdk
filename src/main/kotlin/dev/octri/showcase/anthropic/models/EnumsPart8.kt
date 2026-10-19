@@ -4,45 +4,6 @@
 package dev.octri.showcase.anthropic.models
 
 /** Required enumerated value serialized in the `type` wire field. */
-class BetaManagedAgentsDeletedMemoryTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is BetaManagedAgentsDeletedMemoryTypeEnum && value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val MEMORY_DELETED = BetaManagedAgentsDeletedMemoryTypeEnum("memory_deleted")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = BetaManagedAgentsDeletedMemoryTypeEnum(value)
-    }
-}
-
-/** Required enumerated value serialized in the `type` wire field. */
-enum class BetaManagedAgentsDeletedMemoryStoreTypeEnum(
-    @com.fasterxml.jackson.annotation.JsonValue val value: String
-) {
-    MEMORY_STORE_DELETED("memory_store_deleted");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) =
-            values().find { it.value == v }
-                ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/** Required enumerated value serialized in the `type` wire field. */
 class BetaManagedAgentsDeletedSessionTypeEnum
 private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
     override fun equals(other: Any?): Boolean =
@@ -651,6 +612,40 @@ enum class BetaManagedAgentsEventStartEventAgentMessagePreviewTypeEnum(
     @com.fasterxml.jackson.annotation.JsonValue val value: String
 ) {
     AGENT_MESSAGE("agent.message");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+enum class BetaManagedAgentsEventStartEventAgentThinkingPreviewTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    AGENT_THINKING("agent.thinking");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+enum class BetaManagedAgentsEventStartEventTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    EVENT_START("event_start");
 
     override fun toString() = value
 

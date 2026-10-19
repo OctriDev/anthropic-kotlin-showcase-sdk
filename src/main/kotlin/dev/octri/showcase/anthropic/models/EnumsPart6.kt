@@ -3,40 +3,6 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Required `string` value serialized in the `type` wire field. */
-enum class BetaGatewayTimeoutErrorTypeEnum(
-    @com.fasterxml.jackson.annotation.JsonValue val value: String
-) {
-    TIMEOUT_ERROR("timeout_error");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) =
-            values().find { it.value == v }
-                ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/** Required `string` value serialized in the `type` wire field. */
-enum class BetaGcpExternalKeyConfigTypeEnum(
-    @com.fasterxml.jackson.annotation.JsonValue val value: String
-) {
-    GCP("gcp");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) =
-            values().find { it.value == v }
-                ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
 /** Typed representation of the `BetaInferenceGeo` API schema. */
 class BetaInferenceGeo
 private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
@@ -625,6 +591,52 @@ enum class BetaManagedAgentsAgentThreadMessageSentEventTypeEnum(
     @com.fasterxml.jackson.annotation.JsonValue val value: String
 ) {
     AGENT_THREAD_MESSAGE_SENT("agent.thread_message_sent");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Built-in agent tool identifier. */
+class BetaManagedAgentsAgentToolName
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is BetaManagedAgentsAgentToolName && value == other.value
+
+    override fun hashCode(): Int = value.hashCode()
+
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val BASH = BetaManagedAgentsAgentToolName("bash")
+        @JvmField val EDIT = BetaManagedAgentsAgentToolName("edit")
+        @JvmField val READ = BetaManagedAgentsAgentToolName("read")
+        @JvmField val WRITE = BetaManagedAgentsAgentToolName("write")
+        @JvmField val GLOB = BetaManagedAgentsAgentToolName("glob")
+        @JvmField val GREP = BetaManagedAgentsAgentToolName("grep")
+        @JvmField val WEB_FETCH = BetaManagedAgentsAgentToolName("web_fetch")
+        @JvmField val WEB_SEARCH = BetaManagedAgentsAgentToolName("web_search")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = BetaManagedAgentsAgentToolName(value)
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+enum class BetaManagedAgentsAgentToolResultEventTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    AGENT_TOOL_RESULT("agent.tool_result");
 
     override fun toString() = value
 

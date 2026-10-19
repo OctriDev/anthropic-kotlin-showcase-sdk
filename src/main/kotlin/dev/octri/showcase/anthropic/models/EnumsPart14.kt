@@ -4,57 +4,6 @@
 package dev.octri.showcase.anthropic.models
 
 /** Required `string` value serialized in the `type` wire field. */
-enum class BetaManagedAgentsWriteToolConfigTypeEnum(
-    @com.fasterxml.jackson.annotation.JsonValue val value: String
-) {
-    WRITE("write");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) =
-            values().find { it.value == v }
-                ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/** Must be "write". */
-enum class BetaManagedAgentsWriteToolConfigParamsNameEnum(
-    @com.fasterxml.jackson.annotation.JsonValue val value: String
-) {
-    WRITE("write");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) =
-            values().find { it.value == v }
-                ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/** Optional `string` value serialized in the `type` wire field. */
-enum class BetaManagedAgentsWriteToolConfigParamsTypeEnum(
-    @com.fasterxml.jackson.annotation.JsonValue val value: String
-) {
-    WRITE("write");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) =
-            values().find { it.value == v }
-                ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/** Required `string` value serialized in the `type` wire field. */
 enum class BetaMCPToolsetTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     MCP_TOOLSET("mcp_toolset");
 
@@ -632,6 +581,55 @@ enum class BetaOutputBehaviorCreateNewTypeEnum(
     @com.fasterxml.jackson.annotation.JsonValue val value: String
 ) {
     CREATE_NEW("create_new");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+enum class BetaOutputBehaviorUpdateExistingTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    UPDATE_EXISTING("update_existing");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Required `string` value serialized in the `type` wire field. */
+enum class BetaOverloadedErrorTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    OVERLOADED_ERROR("overloaded_error");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Package configuration type */
+enum class BetaPackagesTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    PACKAGES("packages");
 
     override fun toString() = value
 

@@ -4,53 +4,6 @@
 package dev.octri.showcase.anthropic.models
 
 /** Required enumerated value serialized in the `type` wire field. */
-class BetaManagedAgentsOutcomeEvaluationResourceTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is BetaManagedAgentsOutcomeEvaluationResourceTypeEnum && value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val OUTCOME_EVALUATION =
-            BetaManagedAgentsOutcomeEvaluationResourceTypeEnum("outcome_evaluation")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = BetaManagedAgentsOutcomeEvaluationResourceTypeEnum(value)
-    }
-}
-
-/** MIME type of the text content. Must be "text/plain". */
-class BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum && value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val TEXT_PLAIN = BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum("text/plain")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum(value)
-    }
-}
-
-/** Required enumerated value serialized in the `type` wire field. */
 enum class BetaManagedAgentsPlainTextDocumentSourceTypeEnum(
     @com.fasterxml.jackson.annotation.JsonValue val value: String
 ) {
@@ -639,6 +592,62 @@ enum class BetaManagedAgentsSessionStatusTerminatedEventTypeEnum(
     @com.fasterxml.jackson.annotation.JsonValue val value: String
 ) {
     SESSION_STATUS_TERMINATED("session.status_terminated");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+class BetaManagedAgentsSessionThreadTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is BetaManagedAgentsSessionThreadTypeEnum && value == other.value
+
+    override fun hashCode(): Int = value.hashCode()
+
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val SESSION_THREAD = BetaManagedAgentsSessionThreadTypeEnum("session_thread")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = BetaManagedAgentsSessionThreadTypeEnum(value)
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+enum class BetaManagedAgentsSessionThreadAgentTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    AGENT("agent");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+enum class BetaManagedAgentsSessionThreadCreatedEventTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    SESSION_THREAD_CREATED("session.thread_created");
 
     override fun toString() = value
 

@@ -16,7 +16,6 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsTunnels {
 
-
     /** Parameters for [listBetaOrganizationsTunnels]. */
     data class ListBetaOrganizationsTunnelsRequest(
         val anthropicBeta: List<AnthropicBeta>,
@@ -24,66 +23,127 @@ object BetaOrganizationsTunnels {
         val limit: Long? = null,
         val workspaceId: SdkClient.SdkOptional<String?>? = null,
         val includeArchived: Boolean? = null,
-        val anthropicVersion: String? = null
+        val anthropicVersion: String? = null,
     )
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. List the organization's tunnels. Results…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * List the organization's tunnels. Results…
      *
-     * @param anthropicBeta This endpoint is in beta: requests must send
-     *   `mcp-tunnels-2026-05-19` in this header.
-     * @param page Opaque pagination cursor from a previous response's `next_page`.
-     *   Omit to fetch the first page.
+     * @param anthropicBeta This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in
+     *   this header.
+     * @param page Opaque pagination cursor from a previous response's `next_page`. Omit to fetch
+     *   the first page.
      * @param limit Maximum number of tunnels to return in a single page.
-     * @param workspaceId Return only tunnels in this Workspace. Accepts a
-     *   `wrkspc_`-prefixed Workspace ID; omit to list tunnels across all Workspaces.
-     * @param includeArchived Include archived tunnels in the results. Archived
-     *   tunnels are excluded by default.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param workspaceId Return only tunnels in this Workspace. Accepts a `wrkspc_`-prefixed
+     *   Workspace ID; omit to list tunnels across all Workspaces.
+     * @param includeArchived Include archived tunnels in the results. Archived tunnels are excluded
+     *   by default.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun listBetaOrganizationsTunnels(clientConfig: ClientConfig, request: ListBetaOrganizationsTunnelsRequest, options: RequestOptions? = null): BetaTunnelListResponse {
+    fun listBetaOrganizationsTunnels(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsTunnelsRequest,
+        options: RequestOptions? = null,
+    ): BetaTunnelListResponse {
         validateListBetaOrganizationsTunnelsRequest(request)
 
-        return SdkClient.request<BetaTunnelListResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/tunnels?beta=true", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(request.page, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true), "workspace_id" to
-    SdkClient.queryValue(request.workspaceId, "form", true), "include_archived" to
-    SdkClient.queryValue(request.includeArchived, "form", true)), operationId = "listBetaOrganizationsTunnels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaTunnelListResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/tunnels?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "workspace_id" to
+                                SdkClient.queryValue(request.workspaceId, "form", true),
+                            "include_archived" to
+                                SdkClient.queryValue(request.includeArchived, "form", true),
+                        ),
+                    operationId = "listBetaOrganizationsTunnels",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateListBetaOrganizationsTunnelsRequest(request: ListBetaOrganizationsTunnelsRequest) {
+    private fun validateListBetaOrganizationsTunnelsRequest(
+        request: ListBetaOrganizationsTunnelsRequest
+    ) {
         if (request.limit != null) {
-            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "limit",
+                request.limit,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
     }
-
-
-
-
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. List the organization's tunnels. Results…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * List the organization's tunnels. Results…
      *
-     * @param anthropicBeta This endpoint is in beta: requests must send
-     *   `mcp-tunnels-2026-05-19` in this header.
-     * @param page Opaque pagination cursor from a previous response's `next_page`.
-     *   Omit to fetch the first page.
+     * @param anthropicBeta This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in
+     *   this header.
+     * @param page Opaque pagination cursor from a previous response's `next_page`. Omit to fetch
+     *   the first page.
      * @param limit Maximum number of tunnels to return in a single page.
-     * @param workspaceId Return only tunnels in this Workspace. Accepts a
-     *   `wrkspc_`-prefixed Workspace ID; omit to list tunnels across all Workspaces.
-     * @param includeArchived Include archived tunnels in the results. Archived
-     *   tunnels are excluded by default.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param workspaceId Return only tunnels in this Workspace. Accepts a `wrkspc_`-prefixed
+     *   Workspace ID; omit to list tunnels across all Workspaces.
+     * @param includeArchived Include archived tunnels in the results. Archived tunnels are excluded
+     *   by default.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun listBetaOrganizationsTunnelsPaginated(clientConfig: ClientConfig, request: ListBetaOrganizationsTunnelsRequest, options: RequestOptions? = null, yieldFn: (BetaOrganizationTunnel) -> Boolean) {
+    fun listBetaOrganizationsTunnelsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsTunnelsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaOrganizationTunnel) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaOrganizationsTunnels(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaOrganizationsTunnels(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -100,10 +160,16 @@ object BetaOrganizationsTunnels {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsTunnelsPages(clientConfig: ClientConfig, request: ListBetaOrganizationsTunnelsRequest, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsTunnelsPage) -> Boolean) {
+    fun listBetaOrganizationsTunnelsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsTunnelsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaOrganizationsTunnelsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaOrganizationsTunnels(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaOrganizationsTunnels(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -114,92 +180,247 @@ object BetaOrganizationsTunnels {
         }
     }
 
-
-
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. Retrieve a single tunnel in the caller's…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * Retrieve a single tunnel in the caller's…
      *
      * @param tunnelId ID of the Tunnel.
-     * @param anthropicBeta This endpoint is in beta: requests must send
-     *   `mcp-tunnels-2026-05-19` in this header.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param anthropicBeta This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in
+     *   this header.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun retrieveBetaOrganizationsTunnels(clientConfig: ClientConfig, tunnelId: String, anthropicBeta: List<AnthropicBeta>, anthropicVersion: String? = null, options: RequestOptions? = null): BetaOrganizationTunnel {
-        return SdkClient.request<BetaOrganizationTunnel>(SdkClient.RequestSpec("GET", "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsTunnels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaOrganizationsTunnels(
+        clientConfig: ClientConfig,
+        tunnelId: String,
+        anthropicBeta: List<AnthropicBeta>,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationTunnel {
+        return SdkClient.request<BetaOrganizationTunnel>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaOrganizationsTunnels",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. Archive a tunnel. Archival is…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * Archive a tunnel. Archival is…
      *
      * @param tunnelId ID of the Tunnel.
-     * @param anthropicBeta This endpoint is in beta: requests must send
-     *   `mcp-tunnels-2026-05-19` in this header.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param anthropicBeta This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in
+     *   this header.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun archiveBetaOrganizationsTunnels(clientConfig: ClientConfig, tunnelId: String, anthropicBeta: List<AnthropicBeta>, anthropicVersion: String? = null, options: RequestOptions? = null): BetaOrganizationTunnel {
-        return SdkClient.request<BetaOrganizationTunnel>(SdkClient.RequestSpec("POST", "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaOrganizationsTunnels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun archiveBetaOrganizationsTunnels(
+        clientConfig: ClientConfig,
+        tunnelId: String,
+        anthropicBeta: List<AnthropicBeta>,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationTunnel {
+        return SdkClient.request<BetaOrganizationTunnel>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}/archive?beta=true",
+                    config = clientConfig,
+                    operationId = "archiveBetaOrganizationsTunnels",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. Return the tunnel's current connection…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * Return the tunnel's current connection…
      *
      * @param tunnelId ID of the Tunnel.
-     * @param anthropicBeta This endpoint is in beta: requests must send
-     *   `mcp-tunnels-2026-05-19` in this header.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param anthropicBeta This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in
+     *   this header.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun revealBetaOrganizationsTunnelsToken(clientConfig: ClientConfig, tunnelId: String, anthropicBeta: List<AnthropicBeta>, anthropicVersion: String? = null, options: RequestOptions? = null): BetaOrganizationTunnelToken {
-        return SdkClient.request<BetaOrganizationTunnelToken>(SdkClient.RequestSpec("POST", "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}/reveal_token?beta=true", config = clientConfig, operationId = "revealBetaOrganizationsTunnelsToken", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun revealBetaOrganizationsTunnelsToken(
+        clientConfig: ClientConfig,
+        tunnelId: String,
+        anthropicBeta: List<AnthropicBeta>,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationTunnelToken {
+        return SdkClient.request<BetaOrganizationTunnelToken>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}/reveal_token?beta=true",
+                    config = clientConfig,
+                    operationId = "revealBetaOrganizationsTunnelsToken",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * Rotates a tunnel's token, invalidating the previous token for new connections and returning a fresh value. Established connections remain active, but connectors restarted after rotation must use the new token; provide `reason` to record operational context. This operation is closing down and will be removed after the migration window; use the replacement tunnel endpoint for new integrations.
+     * Rotates a tunnel's token, invalidating the previous token for new connections and returning a
+     * fresh value. Established connections remain active, but connectors restarted after rotation
+     * must use the new token; provide `reason` to record operational context. This operation is
+     * closing down and will be removed after the migration window; use the replacement tunnel
+     * endpoint for new integrations.
      *
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. Invalidate the tunnel's current token for…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * Invalidate the tunnel's current token for…
      *
      * @param tunnelId ID of the Tunnel.
-     * @param anthropicBeta This endpoint is in beta: requests must send
-     *   `mcp-tunnels-2026-05-19` in this header.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param anthropicBeta This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in
+     *   this header.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun rotateBetaOrganizationsTunnelsToken(clientConfig: ClientConfig, tunnelId: String, anthropicBeta: List<AnthropicBeta>, anthropicVersion: String? = null, body: BetaRotateTunnelTokenParams? = null, options: RequestOptions? = null): BetaOrganizationTunnelToken {
-        return SdkClient.request<BetaOrganizationTunnelToken>(SdkClient.RequestSpec("POST", "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}/rotate_token?beta=true", config = clientConfig, body = body, operationId = "rotateBetaOrganizationsTunnelsToken", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun rotateBetaOrganizationsTunnelsToken(
+        clientConfig: ClientConfig,
+        tunnelId: String,
+        anthropicBeta: List<AnthropicBeta>,
+        anthropicVersion: String? = null,
+        body: BetaRotateTunnelTokenParams? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationTunnelToken {
+        return SdkClient.request<BetaOrganizationTunnelToken>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/tunnels/${SdkClient.encodePathSegment(tunnelId)}/rotate_token?beta=true",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "rotateBetaOrganizationsTunnelsToken",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

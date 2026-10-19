@@ -3,60 +3,53 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaDataResidencyUpdateParams` API schema.
- */
+/** Typed representation of the `BetaDataResidencyUpdateParams` API schema. */
 data class BetaDataResidencyUpdateParams(
     /**
-     * Permitted inference geo values. Use 'unrestricted' to allow all geos, or a list of specific geos.
+     * Permitted inference geo values. Use 'unrestricted' to allow all geos, or a list of specific
+     * geos.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos") val allowedInferenceGeos: List<BetaAllowedInferenceGeo>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos")
+    val allowedInferenceGeos: List<BetaAllowedInferenceGeo>? = null,
     /**
-     * Default inference geo applied when requests omit the parameter. Must be a member of `allowed_inference_geos` unless `allowed_inference_geos` is `"unrestricted"`.
+     * Default inference geo applied when requests omit the parameter. Must be a member of
+     * `allowed_inference_geos` unless `allowed_inference_geos` is `"unrestricted"`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_inference_geo") val defaultInferenceGeo: BetaInferenceGeo? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("default_inference_geo")
+    val defaultInferenceGeo: BetaInferenceGeo? = null,
 )
 
-/**
- * Typed representation of the `BetaRemoveFederationRuleWorkspaceResponse` API schema.
- */
+/** Typed representation of the `BetaRemoveFederationRuleWorkspaceResponse` API schema. */
 data class BetaRemoveFederationRuleWorkspaceResponse(
-    /**
-     * Tagged ID of the federation rule.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("federation_rule_id") val federationRuleId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Tagged ID of the federation rule. */
+    @com.fasterxml.jackson.annotation.JsonProperty("federation_rule_id")
+    val federationRuleId: String,
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRemoveFederationRuleWorkspaceResponseTypeEnum,
-    /**
-     * Tagged ID of the workspace named in the delete request. Removal is idempotent.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String
+    /** Tagged ID of the workspace named in the delete request. Removal is idempotent. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
 )
 
-/**
- * Partial update — omitted fields are unchanged.
- */
+/** Partial update — omitted fields are unchanged. */
 data class BetaWorkspaceUpdateParams(
+    /** Data residency configuration for the workspace. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data_residency")
+    val dataResidency: BetaDataResidencyUpdateParams? = null,
+    /** Hex color code representing the Workspace in the Anthropic Console. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_color")
+    val displayColor: String? = null,
     /**
-     * Data residency configuration for the workspace.
+     * ID of the customer-managed encryption key (CMEK) configuration to use for this Workspace.
+     * Setting this field requires CMEK to be enabled for your organization. When set, data stored
+     * for this Workspace is encrypted with the referenced key. Create key configurations with the
+     * External Keys API. On Claude Platform on AWS the value is the AWS KMS key ARN, and the key
+     * must be a single-Region key in the same AWS account and Region as the Workspace. On that
+     * platform the key is…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_residency") val dataResidency: BetaDataResidencyUpdateParams? = null,
-    /**
-     * Hex color code representing the Workspace in the Anthropic Console.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_color") val displayColor: String? = null,
-    /**
-     * ID of the customer-managed encryption key (CMEK) configuration to use for this Workspace. Setting this field requires CMEK to be enabled for your organization. When set, data stored for this Workspace is encrypted with the referenced key. Create key configurations with the External Keys API. On Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a single-Region key in the same AWS account and Region as the Workspace. On that platform the key is…
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_key_id") val externalKeyId: String? = null,
-    /**
-     * Name of the Workspace.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("external_key_id")
+    val externalKeyId: String? = null,
+    /** Name of the Workspace. */
     val name: String? = null,
-    /**
-     * User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
-     */
-    val tags: Map<String, String>? = null
+    /** User-defined tags as string key-value pairs. Keys may not begin with `anthropic`. */
+    val tags: Map<String, String>? = null,
 )

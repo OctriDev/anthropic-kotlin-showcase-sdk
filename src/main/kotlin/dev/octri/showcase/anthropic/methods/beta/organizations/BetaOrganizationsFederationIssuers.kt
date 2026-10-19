@@ -16,7 +16,6 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsFederationIssuers {
 
-
     /** Parameters for [createBetaOrganizationsFederationIssuers]. */
     data class CreateBetaOrganizationsFederationIssuersRequest(
         val issuerUrl: String,
@@ -25,91 +24,204 @@ object BetaOrganizationsFederationIssuers {
         val anthropicVersion: String? = null,
         val checkJti: SdkClient.SdkOptional<Boolean?>? = null,
         val jwks: BetaFederationIssuerCreateParamsJwks? = null,
-        val maxJwtLifetimeSeconds: SdkClient.SdkOptional<Long?>? = null
+        val maxJwtLifetimeSeconds: SdkClient.SdkOptional<Long?>? = null,
     )
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Register an OIDC issuer that Anthropic will trust for workload identity federation in your organization. The `jwks` field controls how the issuer's signing keys are obtained and takes one of three shapes selected by `type`: `discovery` (resolve keys through OIDC…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Register an OIDC issuer that Anthropic will trust for workload
+     * identity federation in your organization. The `jwks` field controls how the issuer's signing
+     * keys are obtained and takes one of three shapes selected by `type`: `discovery` (resolve keys
+     * through OIDC…
      *
      * @param issuerUrl The `iss` claim value to match against.
-     * @param name Slug identifier (lowercase, digits, hyphens). Unique within the
-     *   organization; a duplicate name returns 409.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param checkJti Whether the jwt-bearer exchange enforces JTI single-use
-     *   (replay protection) for tokens from this issuer. Defaults to true. Applies
-     *   only to assertions carrying a `jti` claim; tokens without one are accepted
-     *   without single-use enforcement.
+     * @param name Slug identifier (lowercase, digits, hyphens). Unique within the organization; a
+     *   duplicate name returns 409.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param checkJti Whether the jwt-bearer exchange enforces JTI single-use (replay protection)
+     *   for tokens from this issuer. Defaults to true. Applies only to assertions carrying a `jti`
+     *   claim; tokens without one are accepted without single-use enforcement.
      * @param jwks How signing keys are obtained. Defaults to OIDC discovery.
-     * @param maxJwtLifetimeSeconds Maximum allowed iat→exp spread for assertions
-     *   from this issuer (1-176400 seconds, i.e. up to 49h). Defaults to 3600 (1h).
-     *   Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
+     * @param maxJwtLifetimeSeconds Maximum allowed iat→exp spread for assertions from this issuer
+     *   (1-176400 seconds, i.e. up to 49h). Defaults to 3600 (1h). Assertions must carry both `iat`
+     *   and `exp`; a missing `iat` is rejected.
      */
-    fun createBetaOrganizationsFederationIssuers(clientConfig: ClientConfig, request: CreateBetaOrganizationsFederationIssuersRequest, options: RequestOptions? = null): BetaFederationIssuer {
+    fun createBetaOrganizationsFederationIssuers(
+        clientConfig: ClientConfig,
+        request: CreateBetaOrganizationsFederationIssuersRequest,
+        options: RequestOptions? = null,
+    ): BetaFederationIssuer {
         validateCreateBetaOrganizationsFederationIssuersRequest(request)
 
-        return SdkClient.request<BetaFederationIssuer>(SdkClient.RequestSpec("POST", "/v1/organizations/federation_issuers?beta=true", config = clientConfig, body = SdkClient.bodyMap("issuer_url" to (request.issuerUrl), "name" to (request.name), "check_jti" to
-    (request.checkJti ?: SdkClient.SdkOptional.Omitted), "jwks" to (SdkClient.omitIfNull(request.jwks)), "max_jwt_lifetime_seconds" to
-    (request.maxJwtLifetimeSeconds ?: SdkClient.SdkOptional.Omitted)), operationId = "createBetaOrganizationsFederationIssuers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaFederationIssuer>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/federation_issuers?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "issuer_url" to (request.issuerUrl),
+                            "name" to (request.name),
+                            "check_jti" to (request.checkJti ?: SdkClient.SdkOptional.Omitted),
+                            "jwks" to (SdkClient.omitIfNull(request.jwks)),
+                            "max_jwt_lifetime_seconds" to
+                                (request.maxJwtLifetimeSeconds ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    operationId = "createBetaOrganizationsFederationIssuers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateCreateBetaOrganizationsFederationIssuersRequest(request: CreateBetaOrganizationsFederationIssuersRequest) {
+    private fun validateCreateBetaOrganizationsFederationIssuersRequest(
+        request: CreateBetaOrganizationsFederationIssuersRequest
+    ) {
         Validation.validateLength("issuer_url", request.issuerUrl, Validation.LengthOpts(min = 1))
 
         Validation.validateLength("name", request.name, Validation.LengthOpts(min = 1, max = 255))
     }
 
-
-
-
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List federation issuers in your organization. Archived issuers are excluded unless `include_archived=true`.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List federation issuers in your organization. Archived issuers
+     * are excluded unless `include_archived=true`.
      *
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
      * @param includeArchived Include archived resources. Defaults to false.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsFederationIssuers(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaFederationIssuerListResponse {
+    fun listBetaOrganizationsFederationIssuers(
+        clientConfig: ClientConfig,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaFederationIssuerListResponse {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 100.0))
-}
+        }
 
-        return SdkClient.request<BetaFederationIssuerListResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/federation_issuers?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true), "include_archived" to
-    SdkClient.queryValue(includeArchived, "form", true)), operationId = "listBetaOrganizationsFederationIssuers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaFederationIssuerListResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/federation_issuers?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "include_archived" to
+                                SdkClient.queryValue(includeArchived, "form", true),
+                        ),
+                    operationId = "listBetaOrganizationsFederationIssuers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List federation issuers in your organization. Archived issuers are excluded unless `include_archived=true`.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List federation issuers in your organization. Archived issuers
+     * are excluded unless `include_archived=true`.
      *
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
      * @param includeArchived Include archived resources. Defaults to false.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsFederationIssuersPaginated(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaFederationIssuer) -> Boolean) {
+    fun listBetaOrganizationsFederationIssuersPaginated(
+        clientConfig: ClientConfig,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaFederationIssuer) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaOrganizationsFederationIssuers(clientConfig, limit, cursor, includeArchived, anthropicBeta, anthropicVersion, options)
+            val page =
+                listBetaOrganizationsFederationIssuers(
+                    clientConfig,
+                    limit,
+                    cursor,
+                    includeArchived,
+                    anthropicBeta,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -126,10 +238,28 @@ object BetaOrganizationsFederationIssuers {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsFederationIssuersPages(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsFederationIssuersPage) -> Boolean) {
+    fun listBetaOrganizationsFederationIssuersPages(
+        clientConfig: ClientConfig,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaOrganizationsFederationIssuersPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaOrganizationsFederationIssuers(clientConfig, limit, cursor, includeArchived, anthropicBeta, anthropicVersion, options)
+            val page =
+                listBetaOrganizationsFederationIssuers(
+                    clientConfig,
+                    limit,
+                    cursor,
+                    includeArchived,
+                    anthropicBeta,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -140,27 +270,61 @@ object BetaOrganizationsFederationIssuers {
         }
     }
 
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Retrieve a federation issuer by its ID (`fdis_...`).
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Retrieve a federation issuer by its ID (`fdis_...`).
      *
      * @param federationIssuerId ID of the federation issuer.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsFederationIssuers(clientConfig: ClientConfig, federationIssuerId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaFederationIssuer {
-        return SdkClient.request<BetaFederationIssuer>(SdkClient.RequestSpec("GET", "/v1/organizations/federation_issuers/${SdkClient.encodePathSegment(federationIssuerId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsFederationIssuers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaOrganizationsFederationIssuers(
+        clientConfig: ClientConfig,
+        federationIssuerId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaFederationIssuer {
+        return SdkClient.request<BetaFederationIssuer>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/federation_issuers/${SdkClient.encodePathSegment(federationIssuerId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaOrganizationsFederationIssuers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [updateBetaOrganizationsFederationIssuers]. */
     data class UpdateBetaOrganizationsFederationIssuersRequest(
@@ -172,70 +336,150 @@ object BetaOrganizationsFederationIssuers {
         val jwks: SdkClient.SdkOptional<BetaFederationIssuerUpdateParamsJwks?>? = null,
         val jwksPollingDisabled: SdkClient.SdkOptional<Boolean?>? = null,
         val maxJwtLifetimeSeconds: SdkClient.SdkOptional<Long?>? = null,
-        val name: SdkClient.SdkOptional<String?>? = null
+        val name: SdkClient.SdkOptional<String?>? = null,
     )
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Partially update a federation issuer. Setting `jwks` replaces the full JWKS shape at once. Archived issuers cannot be updated; this returns 400. Create a new issuer instead. Updating an issuer that backs a rule with a scope outside `workspace:developer` or…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Partially update a federation issuer. Setting `jwks` replaces
+     * the full JWKS shape at once. Archived issuers cannot be updated; this returns 400. Create a
+     * new issuer instead. Updating an issuer that backs a rule with a scope outside
+     * `workspace:developer` or…
      *
      * @param federationIssuerId ID of the federation issuer to update.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param checkJti Whether the jwt-bearer exchange enforces JTI single-use
-     *   (replay protection) for tokens from this issuer. Applies only to assertions
-     *   carrying a `jti` claim; tokens without one are accepted without single-use
-     *   enforcement.
-     * @param issuerUrl Replaces the `iss` claim value to match against. For
-     *   discovery-mode issuers without a `discovery_base`, this is also the URL
-     *   Anthropic fetches the OIDC discovery document and signing keys from, so
-     *   changing it repoints the JWKS source. Changing the issuer URL to a well-known
-     *   shared platform is rejected while any live rule under this issuer would not
-     *   constrain tenant identity.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param checkJti Whether the jwt-bearer exchange enforces JTI single-use (replay protection)
+     *   for tokens from this issuer. Applies only to assertions carrying a `jti` claim; tokens
+     *   without one are accepted without single-use enforcement.
+     * @param issuerUrl Replaces the `iss` claim value to match against. For discovery-mode issuers
+     *   without a `discovery_base`, this is also the URL Anthropic fetches the OIDC discovery
+     *   document and signing keys from, so changing it repoints the JWKS source. Changing the
+     *   issuer URL to a well-known shared platform is rejected while any live rule under this
+     *   issuer would not constrain tenant identity.
      * @param jwks Replaces the entire JWKS configuration.
-     * @param jwksPollingDisabled Only `false` is accepted, to re-enable polling
-     *   after the system pauses it. Polling is paused automatically; sending `true` is
-     *   rejected.
-     * @param maxJwtLifetimeSeconds Maximum allowed iat→exp spread for assertions
-     *   from this issuer (1-176400 seconds, i.e. up to 49h). Assertions must carry
-     *   both `iat` and `exp`; a missing `iat` is rejected.
-     * @param name Replaces the slug identifier (lowercase, digits, hyphens). Unique
-     *   within the organization; a duplicate name returns 409.
+     * @param jwksPollingDisabled Only `false` is accepted, to re-enable polling after the system
+     *   pauses it. Polling is paused automatically; sending `true` is rejected.
+     * @param maxJwtLifetimeSeconds Maximum allowed iat→exp spread for assertions from this issuer
+     *   (1-176400 seconds, i.e. up to 49h). Assertions must carry both `iat` and `exp`; a missing
+     *   `iat` is rejected.
+     * @param name Replaces the slug identifier (lowercase, digits, hyphens). Unique within the
+     *   organization; a duplicate name returns 409.
      */
-    fun updateBetaOrganizationsFederationIssuers(clientConfig: ClientConfig, request: UpdateBetaOrganizationsFederationIssuersRequest, options: RequestOptions? = null): BetaFederationIssuer {
-        return SdkClient.request<BetaFederationIssuer>(SdkClient.RequestSpec("POST", "/v1/organizations/federation_issuers/${SdkClient.encodePathSegment(request.federationIssuerId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("check_jti" to
-    (request.checkJti ?: SdkClient.SdkOptional.Omitted), "issuer_url" to
-    (request.issuerUrl ?: SdkClient.SdkOptional.Omitted), "jwks" to (request.jwks ?: SdkClient.SdkOptional.Omitted), "jwks_polling_disabled" to
-    (request.jwksPollingDisabled ?: SdkClient.SdkOptional.Omitted), "max_jwt_lifetime_seconds" to
-    (request.maxJwtLifetimeSeconds ?: SdkClient.SdkOptional.Omitted), "name" to (request.name ?: SdkClient.SdkOptional.Omitted)), operationId = "updateBetaOrganizationsFederationIssuers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun updateBetaOrganizationsFederationIssuers(
+        clientConfig: ClientConfig,
+        request: UpdateBetaOrganizationsFederationIssuersRequest,
+        options: RequestOptions? = null,
+    ): BetaFederationIssuer {
+        return SdkClient.request<BetaFederationIssuer>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/federation_issuers/${SdkClient.encodePathSegment(request.federationIssuerId)}?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "check_jti" to (request.checkJti ?: SdkClient.SdkOptional.Omitted),
+                            "issuer_url" to (request.issuerUrl ?: SdkClient.SdkOptional.Omitted),
+                            "jwks" to (request.jwks ?: SdkClient.SdkOptional.Omitted),
+                            "jwks_polling_disabled" to
+                                (request.jwksPollingDisabled ?: SdkClient.SdkOptional.Omitted),
+                            "max_jwt_lifetime_seconds" to
+                                (request.maxJwtLifetimeSeconds ?: SdkClient.SdkOptional.Omitted),
+                            "name" to (request.name ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    operationId = "updateBetaOrganizationsFederationIssuers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Archive a federation issuer. Idempotent; re-archiving returns the issuer with its original `archived_at`. Rejected with 400 if any live (non-archived) federation rule still references the issuer; archive those rules first (a rule's issuer cannot be changed), or…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Archive a federation issuer. Idempotent; re-archiving returns
+     * the issuer with its original `archived_at`. Rejected with 400 if any live (non-archived)
+     * federation rule still references the issuer; archive those rules first (a rule's issuer
+     * cannot be changed), or…
      *
      * @param federationIssuerId ID of the federation issuer to archive.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun archiveBetaOrganizationsFederationIssuers(clientConfig: ClientConfig, federationIssuerId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaFederationIssuer {
-        return SdkClient.request<BetaFederationIssuer>(SdkClient.RequestSpec("POST", "/v1/organizations/federation_issuers/${SdkClient.encodePathSegment(federationIssuerId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaOrganizationsFederationIssuers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun archiveBetaOrganizationsFederationIssuers(
+        clientConfig: ClientConfig,
+        federationIssuerId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaFederationIssuer {
+        return SdkClient.request<BetaFederationIssuer>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/federation_issuers/${SdkClient.encodePathSegment(federationIssuerId)}/archive?beta=true",
+                    config = clientConfig,
+                    operationId = "archiveBetaOrganizationsFederationIssuers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

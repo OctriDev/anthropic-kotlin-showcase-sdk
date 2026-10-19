@@ -5,52 +5,31 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Information about the container used in the request (for the code execution tool)
- */
+/** Information about the container used in the request (for the code execution tool) */
 data class Container(
-    /**
-     * The time at which the container will expire.
-     */
+    /** The time at which the container will expire. */
     @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: OffsetDateTime,
-    /**
-     * Identifier for the container used in this request
-     */
+    /** Identifier for the container used in this request */
     val id: String,
-    /**
-     * Skills loaded in the container
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("skills", required = true) val skills: List<ContainerSkill>?
+    /** Skills loaded in the container */
+    @com.fasterxml.jackson.annotation.JsonProperty("skills", required = true)
+    val skills: List<ContainerSkill>?,
 )
 
-/**
- * Container parameters with skills to be loaded.
- */
+/** Container parameters with skills to be loaded. */
 data class ContainerParams(
-    /**
-     * Container id
-     */
+    /** Container id */
     val id: String? = null,
-    /**
-     * List of skills to load in the container
-     */
-    val skills: List<SkillParams>? = null
+    /** List of skills to load in the container */
+    val skills: List<SkillParams>? = null,
 )
 
-/**
- * A skill that was loaded in a container (response model).
- */
+/** A skill that was loaded in a container (response model). */
 data class ContainerSkill(
-    /**
-     * Skill ID
-     */
+    /** Skill ID */
     @com.fasterxml.jackson.annotation.JsonProperty("skill_id") val skillId: String,
-    /**
-     * Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
-     */
+    /** Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined) */
     val type: ContainerSkillTypeEnum,
-    /**
-     * The resolved version: a skill version ID for custom skills.
-     */
-    val version: String
+    /** The resolved version: a skill version ID for custom skills. */
+    val version: String,
 )

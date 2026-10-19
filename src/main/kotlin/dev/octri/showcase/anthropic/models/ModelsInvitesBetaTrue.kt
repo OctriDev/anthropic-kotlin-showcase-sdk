@@ -3,42 +3,35 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaCreateInviteParams` API schema.
- */
+/** Typed representation of the `BetaCreateInviteParams` API schema. */
 data class BetaCreateInviteParams(
-    /**
-     * Email of the User.
-     */
+    /** Email of the User. */
     val email: String,
     /**
-     * Role for the invited User. The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
+     * Role for the invited User. The accepted values depend on the organization type. Console and
+     * API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin`
+     * cannot be assigned through the API. Claude Enterprise organizations accept `user` and
+     * `managed`.
      */
     val role: BetaCreateInviteParamsRoleEnum,
     /**
-     * RBAC group IDs to assign to the User when the Invite is accepted. A non-empty array is accepted only for a Claude Enterprise organization with RBAC groups, and requires the key to carry the `write:rbac_groups` scope.
+     * RBAC group IDs to assign to the User when the Invite is accepted. A non-empty array is
+     * accepted only for a Claude Enterprise organization with RBAC groups, and requires the key to
+     * carry the `write:rbac_groups` scope.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_ids") val rbacGroupIds: List<String>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_ids")
+    val rbacGroupIds: List<String>? = null,
 )
 
-/**
- * Typed representation of the `BetaListResponse_InviteSchema_` API schema.
- */
+/** Typed representation of the `BetaListResponse_InviteSchema_` API schema. */
 data class BetaListResponseInviteSchema(
-    /**
-     * Required array value serialized in the `data` wire field.
-     */
+    /** Required array value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaInviteSchema>,
-    /**
-     * First ID in the `data` list. Can be used as the `before_id` for the previous page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true) val firstId: String?,
-    /**
-     * Indicates if there are more results in the requested page direction.
-     */
+    /** First ID in the `data` list. Can be used as the `before_id` for the previous page. */
+    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true)
+    val firstId: String?,
+    /** Indicates if there are more results in the requested page direction. */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
-    /**
-     * Last ID in the `data` list. Can be used as the `after_id` for the next page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?
+    /** Last ID in the `data` list. Can be used as the `after_id` for the next page. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?,
 )

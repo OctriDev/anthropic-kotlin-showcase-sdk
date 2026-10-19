@@ -15,7 +15,6 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsAnalyticsSkills {
 
-
     /** Parameters for [listBetaOrganizationsAnalyticsSkills]. */
     data class ListBetaOrganizationsAnalyticsSkillsRequest(
         val date: SdkClient.SdkOptional<String?>? = null,
@@ -23,132 +22,186 @@ object BetaOrganizationsAnalyticsSkills {
         val endingDate: SdkClient.SdkOptional<String?>? = null,
         val limit: SdkClient.SdkOptional<Long?>? = null,
         val page: SdkClient.SdkOptional<String?>? = null,
-        val groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsSkillsParameterItemEnum>?>? = null,
+        val groupBy:
+            SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsSkillsParameterItemEnum>?>? =
+            null,
         val filter: SdkClient.SdkOptional<List<String>?>? = null,
         val orderBy: SdkClient.SdkOptional<String?>? = null,
-        val order: SdkClient.SdkOptional<ListBetaOrganizationsAnalyticsSkillsParameterVariant0Enum?>? = null
+        val order:
+            SdkClient.SdkOptional<ListBetaOrganizationsAnalyticsSkillsParameterVariant0Enum?>? =
+            null,
     )
 
     /**
-     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per member, per RBAC group, or per product surface, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage
+     * metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per
+     * member, per RBAC group, or per product surface, and `filter[]` to scope results; the
+     * parameter descriptions list the supported dimensions. Available to organizations on a Claude
+     * Enterprise plan. Requires an API key with the `read:analytics` scope.
      *
-     * @param date UTC date in YYYY-MM-DD format. The day to get skill usage for.
-     *   Data is typically available with a 1-day lag (varies by query; the error for a
-     *   too-recent date names the latest available day) and may be revised by a few
-     *   percent over the following days. No earlier than 2026-01-01.
-     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range
-     *   (inclusive). Enables rollup mode: one row per entity aggregated over the whole
-     *   range — addable counters are summed across days, and a distinct count is never
-     *   summed where summing could double-count (a field's range value is recomputed
-     *   exactly over the window, approximate via HLL with typical error under 2%,
-     *   null, or — for the creation-event counts, whose per-day values cannot overlap
-     *   — a per-day sum that is itself exact;…
-     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range
-     *   (exclusive); only valid with `starting_date`. Data is typically available with
-     *   a 1-day lag (varies by query; the error for a too-recent date names the latest
-     *   available day), so this can be at most today — which is also the default when
-     *   omitted, resolved once when the first page is served and reused for the rest
-     *   of the pagination sequence. At most 366 days after `starting_date`.
+     * @param date UTC date in YYYY-MM-DD format. The day to get skill usage for. Data is typically
+     *   available with a 1-day lag (varies by query; the error for a too-recent date names the
+     *   latest available day) and may be revised by a few percent over the following days. No
+     *   earlier than 2026-01-01.
+     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range (inclusive). Enables
+     *   rollup mode: one row per entity aggregated over the whole range — addable counters are
+     *   summed across days, and a distinct count is never summed where summing could double-count
+     *   (a field's range value is recomputed exactly over the window, approximate via HLL with
+     *   typical error under 2%, null, or — for the creation-event counts, whose per-day values
+     *   cannot overlap — a per-day sum that is itself exact;…
+     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range (exclusive); only
+     *   valid with `starting_date`. Data is typically available with a 1-day lag (varies by query;
+     *   the error for a too-recent date names the latest available day), so this can be at most
+     *   today — which is also the default when omitted, resolved once when the first page is served
+     *   and reused for the rest of the pagination sequence. At most 366 days after `starting_date`.
      * @param limit Number of results per page (1-1000, default 100).
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param groupBy Dimensions to break results out by (e.g. `group_by[]=user_id`).
-     *   Supported on this endpoint: `product`, `rbac_group_id`, `user_id`. Grouped
-     *   rows carry the requested dimension values as additional fields and paginate
-     *   like ungrouped responses via `next_page`; an unsupported dimension returns
-     *   400. `rbac_group_id` attributes a user to every group they held at any point
-     *   during each covered UTC day, so grouped rows are not an exclusive partition
-     *   and can sum above org-level totals.…
-     * @param filter Filters as `dimension:value`, e.g.
-     *   `filter[]=rbac_group_id:{id}`. Repeat the param for OR within a dimension and
-     *   across dimensions for AND. Supported dimensions on this endpoint: `product`,
-     *   `rbac_group_id`, `share_status`, `skill_name`, `user_id`. Value forms:
-     *   `product` is one of `chat`, `claude_code`, `cowork`, or `office_agent`;
-     *   `rbac_group_id` takes the tagged id (`rbac_group_...`, as emitted in responses
-     *   and by the spend-limits API) or a bare group UUID, and matches…
-     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its
-     *   rankable metrics (metrics default to descending; a few metrics rank in
-     *   date-range mode only, per the endpoint's documented orderable set).
-     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the
-     *   endpoint's sort column and to `desc` when `order_by` names a metric (a top-N
-     *   ranking). Applies to `order_by`, or to the endpoint's default sort field when
-     *   `order_by` is omitted.
+     * @param groupBy Dimensions to break results out by (e.g. `group_by[]=user_id`). Supported on
+     *   this endpoint: `product`, `rbac_group_id`, `user_id`. Grouped rows carry the requested
+     *   dimension values as additional fields and paginate like ungrouped responses via
+     *   `next_page`; an unsupported dimension returns
+     *     400. `rbac_group_id` attributes a user to every group they held at any point during each
+     *          covered UTC day, so grouped rows are not an exclusive partition and can sum above
+     *          org-level totals.…
+     *
+     * @param filter Filters as `dimension:value`, e.g. `filter[]=rbac_group_id:{id}`. Repeat the
+     *   param for OR within a dimension and across dimensions for AND. Supported dimensions on this
+     *   endpoint: `product`, `rbac_group_id`, `share_status`, `skill_name`, `user_id`. Value forms:
+     *   `product` is one of `chat`, `claude_code`, `cowork`, or `office_agent`; `rbac_group_id`
+     *   takes the tagged id (`rbac_group_...`, as emitted in responses and by the spend-limits API)
+     *   or a bare group UUID, and matches…
+     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its rankable metrics
+     *   (metrics default to descending; a few metrics rank in date-range mode only, per the
+     *   endpoint's documented orderable set).
+     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the endpoint's sort
+     *   column and to `desc` when `order_by` names a metric (a top-N ranking). Applies to
+     *   `order_by`, or to the endpoint's default sort field when `order_by` is omitted.
      */
-    fun listBetaOrganizationsAnalyticsSkills(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null): BetaAnalyticsSkillsResponse {
+    fun listBetaOrganizationsAnalyticsSkills(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsAnalyticsSkillsRequest,
+        options: RequestOptions? = null,
+    ): BetaAnalyticsSkillsResponse {
         validateListBetaOrganizationsAnalyticsSkillsRequest(request)
 
-        return SdkClient.request<BetaAnalyticsSkillsResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/analytics/skills?beta=true", config = clientConfig, query = mapOf("date" to SdkClient.queryValue(request.date, "form", true), "starting_date" to
-    SdkClient.queryValue(request.startingDate, "form", true), "ending_date" to
-    SdkClient.queryValue(request.endingDate, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "group_by[]" to
-    SdkClient.queryValue(request.groupBy, "form", true), "filter[]" to
-    SdkClient.queryValue(request.filter, "form", true), "order_by" to
-    SdkClient.queryValue(request.orderBy, "form", true), "order" to SdkClient.queryValue(request.order, "form", true)), operationId = "listBetaOrganizationsAnalyticsSkills", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaAnalyticsSkillsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/analytics/skills?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "date" to SdkClient.queryValue(request.date, "form", true),
+                            "starting_date" to
+                                SdkClient.queryValue(request.startingDate, "form", true),
+                            "ending_date" to SdkClient.queryValue(request.endingDate, "form", true),
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "group_by[]" to SdkClient.queryValue(request.groupBy, "form", true),
+                            "filter[]" to SdkClient.queryValue(request.filter, "form", true),
+                            "order_by" to SdkClient.queryValue(request.orderBy, "form", true),
+                            "order" to SdkClient.queryValue(request.order, "form", true),
+                        ),
+                    operationId = "listBetaOrganizationsAnalyticsSkills",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateListBetaOrganizationsAnalyticsSkillsRequest(request: ListBetaOrganizationsAnalyticsSkillsRequest) {
+    private fun validateListBetaOrganizationsAnalyticsSkillsRequest(
+        request: ListBetaOrganizationsAnalyticsSkillsRequest
+    ) {
         val groupByValue = request.groupBy?.getOrNull()
-if (groupByValue != null) {
+        if (groupByValue != null) {
             Validation.validateItems("group_by[]", groupByValue, Validation.LengthOpts(max = 100))
-}
+        }
 
         val filterValue = request.filter?.getOrNull()
-if (filterValue != null) {
+        if (filterValue != null) {
             Validation.validateItems("filter[]", filterValue, Validation.LengthOpts(max = 100))
-}
+        }
     }
 
-
-
-
-
     /**
-     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per member, per RBAC group, or per product surface, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage
+     * metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per
+     * member, per RBAC group, or per product surface, and `filter[]` to scope results; the
+     * parameter descriptions list the supported dimensions. Available to organizations on a Claude
+     * Enterprise plan. Requires an API key with the `read:analytics` scope.
      *
-     * @param date UTC date in YYYY-MM-DD format. The day to get skill usage for.
-     *   Data is typically available with a 1-day lag (varies by query; the error for a
-     *   too-recent date names the latest available day) and may be revised by a few
-     *   percent over the following days. No earlier than 2026-01-01.
-     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range
-     *   (inclusive). Enables rollup mode: one row per entity aggregated over the whole
-     *   range — addable counters are summed across days, and a distinct count is never
-     *   summed where summing could double-count (a field's range value is recomputed
-     *   exactly over the window, approximate via HLL with typical error under 2%,
-     *   null, or — for the creation-event counts, whose per-day values cannot overlap
-     *   — a per-day sum that is itself exact;…
-     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range
-     *   (exclusive); only valid with `starting_date`. Data is typically available with
-     *   a 1-day lag (varies by query; the error for a too-recent date names the latest
-     *   available day), so this can be at most today — which is also the default when
-     *   omitted, resolved once when the first page is served and reused for the rest
-     *   of the pagination sequence. At most 366 days after `starting_date`.
+     * @param date UTC date in YYYY-MM-DD format. The day to get skill usage for. Data is typically
+     *   available with a 1-day lag (varies by query; the error for a too-recent date names the
+     *   latest available day) and may be revised by a few percent over the following days. No
+     *   earlier than 2026-01-01.
+     * @param startingDate UTC date in YYYY-MM-DD format. Start of a date range (inclusive). Enables
+     *   rollup mode: one row per entity aggregated over the whole range — addable counters are
+     *   summed across days, and a distinct count is never summed where summing could double-count
+     *   (a field's range value is recomputed exactly over the window, approximate via HLL with
+     *   typical error under 2%, null, or — for the creation-event counts, whose per-day values
+     *   cannot overlap — a per-day sum that is itself exact;…
+     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range (exclusive); only
+     *   valid with `starting_date`. Data is typically available with a 1-day lag (varies by query;
+     *   the error for a too-recent date names the latest available day), so this can be at most
+     *   today — which is also the default when omitted, resolved once when the first page is served
+     *   and reused for the rest of the pagination sequence. At most 366 days after `starting_date`.
      * @param limit Number of results per page (1-1000, default 100).
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param groupBy Dimensions to break results out by (e.g. `group_by[]=user_id`).
-     *   Supported on this endpoint: `product`, `rbac_group_id`, `user_id`. Grouped
-     *   rows carry the requested dimension values as additional fields and paginate
-     *   like ungrouped responses via `next_page`; an unsupported dimension returns
-     *   400. `rbac_group_id` attributes a user to every group they held at any point
-     *   during each covered UTC day, so grouped rows are not an exclusive partition
-     *   and can sum above org-level totals.…
-     * @param filter Filters as `dimension:value`, e.g.
-     *   `filter[]=rbac_group_id:{id}`. Repeat the param for OR within a dimension and
-     *   across dimensions for AND. Supported dimensions on this endpoint: `product`,
-     *   `rbac_group_id`, `share_status`, `skill_name`, `user_id`. Value forms:
-     *   `product` is one of `chat`, `claude_code`, `cowork`, or `office_agent`;
-     *   `rbac_group_id` takes the tagged id (`rbac_group_...`, as emitted in responses
-     *   and by the spend-limits API) or a bare group UUID, and matches…
-     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its
-     *   rankable metrics (metrics default to descending; a few metrics rank in
-     *   date-range mode only, per the endpoint's documented orderable set).
-     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the
-     *   endpoint's sort column and to `desc` when `order_by` names a metric (a top-N
-     *   ranking). Applies to `order_by`, or to the endpoint's default sort field when
-     *   `order_by` is omitted.
+     * @param groupBy Dimensions to break results out by (e.g. `group_by[]=user_id`). Supported on
+     *   this endpoint: `product`, `rbac_group_id`, `user_id`. Grouped rows carry the requested
+     *   dimension values as additional fields and paginate like ungrouped responses via
+     *   `next_page`; an unsupported dimension returns
+     *     400. `rbac_group_id` attributes a user to every group they held at any point during each
+     *          covered UTC day, so grouped rows are not an exclusive partition and can sum above
+     *          org-level totals.…
+     *
+     * @param filter Filters as `dimension:value`, e.g. `filter[]=rbac_group_id:{id}`. Repeat the
+     *   param for OR within a dimension and across dimensions for AND. Supported dimensions on this
+     *   endpoint: `product`, `rbac_group_id`, `share_status`, `skill_name`, `user_id`. Value forms:
+     *   `product` is one of `chat`, `claude_code`, `cowork`, or `office_agent`; `rbac_group_id`
+     *   takes the tagged id (`rbac_group_...`, as emitted in responses and by the spend-limits API)
+     *   or a bare group UUID, and matches…
+     * @param orderBy Sort field. Restricted to the endpoint's sort column plus its rankable metrics
+     *   (metrics default to descending; a few metrics rank in date-range mode only, per the
+     *   endpoint's documented orderable set).
+     * @param order Sort direction: `asc` or `desc`. Defaults to `asc` for the endpoint's sort
+     *   column and to `desc` when `order_by` names a metric (a top-N ranking). Applies to
+     *   `order_by`, or to the endpoint's default sort field when `order_by` is omitted.
      */
-    fun listBetaOrganizationsAnalyticsSkillsPaginated(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsSkillActivity) -> Boolean) {
+    fun listBetaOrganizationsAnalyticsSkillsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsAnalyticsSkillsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaAnalyticsSkillActivity) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaOrganizationsAnalyticsSkills(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaOrganizationsAnalyticsSkills(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -165,10 +218,20 @@ if (filterValue != null) {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsAnalyticsSkillsPages(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsAnalyticsSkillsPage) -> Boolean) {
+    fun listBetaOrganizationsAnalyticsSkillsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsAnalyticsSkillsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaOrganizationsAnalyticsSkillsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaOrganizationsAnalyticsSkills(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaOrganizationsAnalyticsSkills(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -178,7 +241,4 @@ if (filterValue != null) {
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
-
-
-
 }

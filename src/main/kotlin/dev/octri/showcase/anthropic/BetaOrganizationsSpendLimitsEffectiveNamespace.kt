@@ -3,20 +3,68 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsSpendLimitsEffectiveNamespace(private val clientConfig: ClientConfig) {
     /**
-     * List each member's effective spend limit and period-to-date spend. Returns one row per (member, period) the member resolves a spend limit for, with the `source` scope the spend limit was inherited from. Paginates by member, so a member's periods never split across pages.
+     * List each member's effective spend limit and period-to-date spend. Returns one row per
+     * (member, period) the member resolves a spend limit for, with the `source` scope the spend
+     * limit was inherited from. Paginates by member, so a member's periods never split across
+     * pages.
      */
-    fun retrieve(userIds: SdkClient.SdkOptional<List<String>?>? = null, period: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?>? = null, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaListEffectiveSpendLimitsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.spendLimits.BetaOrganizationsSpendLimitsEffective.retrieveBetaOrganizationsSpendLimitsEffective(clientConfig, userIds, period, limit, page, anthropicVersion, options)
+    fun retrieve(
+        userIds: SdkClient.SdkOptional<List<String>?>? = null,
+        period:
+            SdkClient.SdkOptional<
+                List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?
+            >? =
+            null,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaListEffectiveSpendLimitsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.spendLimits
+            .BetaOrganizationsSpendLimitsEffective
+            .retrieveBetaOrganizationsSpendLimitsEffective(
+                clientConfig,
+                userIds,
+                period,
+                limit,
+                page,
+                anthropicVersion,
+                options,
+            )
     }
 
     /**
-     * List each member's effective spend limit and period-to-date spend. Returns one row per (member, period) the member resolves a spend limit for, with the `source` scope the spend limit was inherited from. Paginates by member, so a member's periods never split across pages.
+     * List each member's effective spend limit and period-to-date spend. Returns one row per
+     * (member, period) the member resolves a spend limit for, with the `source` scope the spend
+     * limit was inherited from. Paginates by member, so a member's periods never split across
+     * pages.
      */
-    fun retrievePaginated(userIds: SdkClient.SdkOptional<List<String>?>? = null, period: SdkClient.SdkOptional<List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?>? = null, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaSpendSummary) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.spendLimits.BetaOrganizationsSpendLimitsEffective.retrieveBetaOrganizationsSpendLimitsEffectivePaginated(clientConfig, userIds, period, limit, page, anthropicVersion, options, yieldFn)
+    fun retrievePaginated(
+        userIds: SdkClient.SdkOptional<List<String>?>? = null,
+        period:
+            SdkClient.SdkOptional<
+                List<RetrieveBetaOrganizationsSpendLimitsEffectiveParameterItemEnum>?
+            >? =
+            null,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaSpendSummary) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.spendLimits
+            .BetaOrganizationsSpendLimitsEffective
+            .retrieveBetaOrganizationsSpendLimitsEffectivePaginated(
+                clientConfig,
+                userIds,
+                period,
+                limit,
+                page,
+                anthropicVersion,
+                options,
+                yieldFn,
+            )
     }
-
 }

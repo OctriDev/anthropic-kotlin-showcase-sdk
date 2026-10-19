@@ -3,26 +3,21 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Partial update. `name` is immutable.
- */
+/** Partial update. `name` is immutable. */
 data class BetaServiceAccountUpdateParams(
     /**
-     * Replaces the description. Omit to leave unchanged; send `null` to clear (the field is stored as an empty string).
+     * Replaces the description. Omit to leave unchanged; send `null` to clear (the field is stored
+     * as an empty string).
      */
     val description: String? = null,
-    /**
-     * Replaces the org-level role. Omit or send `null` to leave unchanged.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_role") val organizationRole: BetaServiceAccountUpdateParamsOrganizationRoleVariant0Enum? = null
+    /** Replaces the org-level role. Omit or send `null` to leave unchanged. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_role")
+    val organizationRole: BetaServiceAccountUpdateParamsOrganizationRoleVariant0Enum? = null,
 )
 
-/**
- * Typed representation of the `BetaServiceAccountWorkspaceMemberUpdateParams` API schema.
- */
+/** Typed representation of the `BetaServiceAccountWorkspaceMemberUpdateParams` API schema. */
 data class BetaServiceAccountWorkspaceMemberUpdateParams(
-    /**
-     * New role for the service account in this workspace.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_role") val workspaceRole: BetaNoBillingWorkspaceRoleSchema
+    /** New role for the service account in this workspace. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_role")
+    val workspaceRole: BetaNoBillingWorkspaceRoleSchema
 )

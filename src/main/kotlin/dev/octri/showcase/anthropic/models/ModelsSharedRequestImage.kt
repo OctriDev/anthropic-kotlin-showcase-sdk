@@ -3,81 +3,104 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `Base64ImageSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `Base64ImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class Base64ImageSource(
-    /**
-     * Required `byte`-formatted value serialized in the `data` wire field.
-     */
+    /** Required `byte`-formatted value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
-    /**
-     * Required enumerated value serialized in the `media_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: Base64ImageSourceMediaTypeEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: Base64ImageSourceTypeEnum
+    /** Required enumerated value serialized in the `media_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
+    val mediaType: Base64ImageSourceMediaTypeEnum,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: Base64ImageSourceTypeEnum,
 ) : RequestImageBlockSource
 
-/**
- * Typed representation of the `FileImageSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `FileImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class FileImageSource(
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: FileImageSourceTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: FileImageSourceTypeEnum,
 ) : RequestImageBlockSource
 
-/**
- * Required API value serialized in the `source` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestImageBlockSource::class)
+/** Required API value serialized in the `source` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownRequestImageBlockSource::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = Base64ImageSource::class, name = "base64"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = Base64ImageSource::class,
+        name = "base64",
+    ),
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = URLImageSource::class, name = "url"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = FileImageSource::class, name = "file")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = FileImageSource::class,
+        name = "file",
+    ),
 )
 sealed interface RequestImageBlockSource
 
 /** A [RequestImageBlockSource] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRequestImageBlockSource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRequestImageBlockSource
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RequestImageBlockSource {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
 /**
- * Configures the transformations the server applies to this image before the model observes it. Each key names a condition the server transforms images for; its value selects the transformation applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting the field.
+ * Configures the transformations the server applies to this image before the model observes it.
+ * Each key names a condition the server transforms images for; its value selects the transformation
+ * applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting
+ * the field.
  */
 data class RequestImageTransformations(
     /**
-     * What the server does when this image exceeds the model's maximum image size. `"downsize"` (the default) scales the image down to fit, which changes the dimensions the model observes without telling you. `"error"` instead rejects the request with a 400 error naming the image's dimensions and the largest dimensions that fit, so you can scale the image deliberately — your image is never silently scaled down.
+     * What the server does when this image exceeds the model's maximum image size. `"downsize"`
+     * (the default) scales the image down to fit, which changes the dimensions the model observes
+     * without telling you. `"error"` instead rejects the request with a 400 error naming the
+     * image's dimensions and the largest dimensions that fit, so you can scale the image
+     * deliberately — your image is never silently scaled down.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("oversized_image") val oversizedImage: RequestImageTransformationsOversizedImageEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("oversized_image")
+    val oversizedImage: RequestImageTransformationsOversizedImageEnum? = null
 )
 
-/**
- * Typed representation of the `URLImageSource` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `URLImageSource` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class URLImageSource(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: URLImageSourceTypeEnum,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `string` value serialized in the `url` wire field. */
+    val url: String,
 ) : RequestImageBlockSource

@@ -3,34 +3,86 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaSessionsEventsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists events for a session in pages, ordered by the event processing time. Use `types[]` and the `created_at` filters to narrow the events, and use `page` to continue from a previous response's cursor. Set `order` to choose chronological or reverse-chronological order.
+     * Lists events for a session in pages, ordered by the event processing time. Use `types[]` and
+     * the `created_at` filters to narrow the events, and use `page` to continue from a previous
+     * response's cursor. Set `order` to choose chronological or reverse-chronological order.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.ListBetaSessionsEventsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionEvents {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.listBetaSessionsEvents(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.ListBetaSessionsEventsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessionEvents {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents
+            .listBetaSessionsEvents(clientConfig, request, options)
     }
 
     /**
-     * Lists events for a session in pages, ordered by the event processing time. Use `types[]` and the `created_at` filters to narrow the events, and use `page` to continue from a previous response's cursor. Set `order` to choose chronological or reverse-chronological order.
+     * Lists events for a session in pages, ordered by the event processing time. Use `types[]` and
+     * the `created_at` filters to narrow the events, and use `page` to continue from a previous
+     * response's cursor. Set `order` to choose chronological or reverse-chronological order.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.ListBetaSessionsEventsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.listBetaSessionsEventsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.ListBetaSessionsEventsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents
+            .listBetaSessionsEventsPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Submits events to a session, including user messages, interrupts, and tool execution confirmations. Provide the events as an array in `events`; each event must match one of the supported event types and include that type's required fields. The response contains the events that were successfully sent to the session.
+     * Submits events to a session, including user messages, interrupts, and tool execution
+     * confirmations. Provide the events as an array in `events`; each event must match one of the
+     * supported event types and include that type's required fields. The response contains the
+     * events that were successfully sent to the session.
      */
-    fun create(sessionId: String, events: List<BetaManagedAgentsEventParams>, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSendSessionEvents {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.createBetaSessionsEvents(clientConfig, sessionId, events, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun create(
+        sessionId: String,
+        events: List<BetaManagedAgentsEventParams>,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSendSessionEvents {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents
+            .createBetaSessionsEvents(
+                clientConfig,
+                sessionId,
+                events,
+                anthropicVersion,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Streams events from a session as server-sent events. Set `event_deltas[]` to receive best-effort previews for `agent.message` or `agent.thinking` events before the complete event arrives; the final event contains the complete content when produced. If a model request ends early with an error or interrupt, its terminal `span.model_request_end` closes the preview without a final event.
+     * Streams events from a session as server-sent events. Set `event_deltas[]` to receive
+     * best-effort previews for `agent.message` or `agent.thinking` events before the complete event
+     * arrives; the final event contains the complete content when produced. If a model request ends
+     * early with an error or interrupt, its terminal `span.model_request_end` closes the preview
+     * without a final event.
      */
-    fun stream(sessionId: String, eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsStreamSessionEvents {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents.streamBetaSessionsEvents(clientConfig, sessionId, eventDeltas, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun stream(
+        sessionId: String,
+        eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsStreamSessionEvents {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsEvents
+            .streamBetaSessionsEvents(
+                clientConfig,
+                sessionId,
+                eventDeltas,
+                anthropicVersion,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
-
 }

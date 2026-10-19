@@ -14,162 +14,62 @@ import dev.octri.showcase.anthropic.SdkClient
 
 object BetaOrganizationsSpendLimits {
 
+
     /**
-     * Retrieves a configured spend limit by its unique identifier, including its amount, currency,
-     * scope, and reset period. Use `spend_limit_id` to look up a specific limit and inspect its
-     * current configuration and timestamps.
+     * Retrieves a configured spend limit by its unique identifier, including its amount, currency, scope, and reset period. Use `spend_limit_id` to look up a specific limit and inspect its current configuration and timestamps.
      *
      * Retrieve a spend limit by ID.
      *
      * @param spendLimitId ID of the Spend Limit.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsSpendLimits(
-        clientConfig: ClientConfig,
-        spendLimitId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaSpendLimit {
-        return SdkClient.request<BetaSpendLimit>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/spend_limits/${SdkClient.encodePathSegment(spendLimitId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "retrieveBetaOrganizationsSpendLimits",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun retrieveBetaOrganizationsSpendLimits(clientConfig: ClientConfig, spendLimitId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaSpendLimit {
+        return SdkClient.request<BetaSpendLimit>(SdkClient.RequestSpec("GET", "/v1/organizations/spend_limits/${SdkClient.encodePathSegment(spendLimitId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsSpendLimits", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Delete a per-user spend limit override. The member falls back to any inherited spend limit at
-     * that period. Seat-tier, group, and organization-level rows cannot be deleted via this
-     * endpoint.
+     * Delete a per-user spend limit override. The member falls back to any inherited spend limit at that period. Seat-tier, group, and organization-level rows cannot be deleted via this endpoint.
      *
      * @param spendLimitId ID of the Spend Limit.
      */
-    fun deleteBetaOrganizationsSpendLimits(
-        clientConfig: ClientConfig,
-        spendLimitId: String,
-        options: RequestOptions? = null,
-    ): BetaDeleteSpendLimitResponse {
-        return SdkClient.request<BetaDeleteSpendLimitResponse>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/v1/organizations/spend_limits/${SdkClient.encodePathSegment(spendLimitId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "deleteBetaOrganizationsSpendLimits",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun deleteBetaOrganizationsSpendLimits(clientConfig: ClientConfig, spendLimitId: String, options: RequestOptions? = null): BetaDeleteSpendLimitResponse {
+        return SdkClient.request<BetaDeleteSpendLimitResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/spend_limits/${SdkClient.encodePathSegment(spendLimitId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsSpendLimits", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Creates or replaces a per-user spend limit override keyed by `scope` and `period`. Supply
-     * `amount` and a user scope; `period` can be daily, monthly, or weekly, and setting an existing
-     * scope-period pair overwrites its limit. A `null` amount sets an explicit no-limit override
-     * for that scope and period only.
+     * Creates or replaces a per-user spend limit override keyed by `scope` and `period`. Supply `amount` and a user scope; `period` can be daily, monthly, or weekly, and setting an existing scope-period pair overwrites its limit. A `null` amount sets an explicit no-limit override for that scope and period only.
      *
-     * Set a per-user spend limit override. Upsert keyed on (scope, period): setting a limit that
-     * already exists overwrites it in place. Only `scope.type: "user"` is accepted; seat-tier,
-     * group, and organization-level defaults are configured in claude.ai.
+     * Set a per-user spend limit override. Upsert keyed on (scope, period): setting a limit that already exists overwrites it in place. Only `scope.type: "user"` is accepted; seat-tier, group, and organization-level defaults are configured in claude.ai.
      *
-     * @param amount Limit amount as a non-negative integer decimal string in the minor unit of the
-     *   organization's billing currency (cents for USD): "50000" is $500.00. `null` sets an
-     *   explicit no-limit override for this scope and `period` only — each period resolves
-     *   independently, so caps for other periods still apply.
+     * @param amount Limit amount as a non-negative integer decimal string in the
+     *   minor unit of the organization's billing currency (cents for USD): "50000" is
+     *   $500.00. `null` sets an explicit no-limit override for this scope and `period`
+     *   only — each period resolves independently, so caps for other periods still
+     *   apply.
      * @param scope Scope selecting a single member of the organization.
      * @param period Optional enumerated value serialized in the `period` wire field.
      */
-    fun createBetaOrganizationsSpendLimits(
-        clientConfig: ClientConfig,
-        amount: String?,
-        scope: BetaUserScope,
-        period: BetaSetSpendLimitParamsPeriodEnum? = null,
-        options: RequestOptions? = null,
-    ): BetaSpendLimit {
-        return SdkClient.request<BetaSpendLimit>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/spend_limits?beta=true",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "amount" to (amount),
-                            "scope" to (scope),
-                            "period" to (SdkClient.omitIfNull(period)),
-                        ),
-                    operationId = "createBetaOrganizationsSpendLimits",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun createBetaOrganizationsSpendLimits(clientConfig: ClientConfig, amount: String?, scope: BetaUserScope, period: BetaSetSpendLimitParamsPeriodEnum? = null, options: RequestOptions? = null): BetaSpendLimit {
+        return SdkClient.request<BetaSpendLimit>(SdkClient.RequestSpec("POST", "/v1/organizations/spend_limits?beta=true", config = clientConfig, body = SdkClient.bodyMap("amount" to (amount), "scope" to (scope), "period" to (SdkClient.omitIfNull(period))), operationId = "createBetaOrganizationsSpendLimits", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
 }

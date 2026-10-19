@@ -3,26 +3,40 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Request parameters for creating a tunnel. */
+/**
+ * Request parameters for creating a tunnel.
+ */
 data class BetaCreateTunnelRequest(
-    /** Optional human-readable name for the tunnel (1-255 characters). */
+    /**
+     * Optional human-readable name for the tunnel (1-255 characters).
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null
 )
 
-/** A paginated list of tunnels. */
+/**
+ * A paginated list of tunnels.
+ */
 data class BetaListTunnelsResponse(
-    /** List of tunnels, ordered by created_at descending. */
+    /**
+     * List of tunnels, ordered by created_at descending.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaTunnel>,
-    /** Pagination cursor for the next page, or null if no more results. */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    /**
+     * Pagination cursor for the next page, or null if no more results.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )
 
-/** Typed representation of the `BetaTunnelListResponse` API schema. */
+/**
+ * Typed representation of the `BetaTunnelListResponse` API schema.
+ */
 data class BetaTunnelListResponse(
-    /** Required array value serialized in the `data` wire field. */
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaOrganizationTunnel>,
-    /** Opaque cursor for the next page, or `null` if there are no more results. */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    /**
+     * Opaque cursor for the next page, or `null` if there are no more results.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )

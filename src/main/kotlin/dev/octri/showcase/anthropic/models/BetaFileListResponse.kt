@@ -3,13 +3,16 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaFileListResponse` API schema. */
+/**
+ * Typed representation of the `BetaFileListResponse` API schema.
+ */
 data class BetaFileListResponse(
-    /** List of file metadata objects. */
+    /**
+     * List of file metadata objects.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaFileMetadataSchema>,
     /**
-     * Opaque cursor for the next page. Supply as `?page=` to fetch the next page; null when there
-     * are no more results.
+     * Opaque cursor for the next page. Supply as `?page=` to fetch the next page; null when there are no more results.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
 )

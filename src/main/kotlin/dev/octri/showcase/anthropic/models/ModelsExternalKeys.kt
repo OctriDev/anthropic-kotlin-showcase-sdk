@@ -3,141 +3,119 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaAwsExternalKeyConfig` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaAwsExternalKeyConfig` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaAwsExternalKeyConfig(
     /**
-     * Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in
-     * your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs
-     * are rejected.
+     * Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("kms_arn") val kmsArn: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaAwsExternalKeyConfigTypeEnum,
-    /** AWS region. Derived from `kms_arn` if omitted. */
+    /**
+     * AWS region. Derived from `kms_arn` if omitted.
+     */
     val region: String? = null,
     /**
-     * IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role
-     * (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is
-     * ignored.
+     * IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("role_arn") val roleArn: String? = null,
-) :
-    BetaExternalKeyProviderConfig,
-    BetaExternalKeyCreateParamsProviderConfig,
-    BetaExternalKeyUpdateParamsProviderConfig
+    @com.fasterxml.jackson.annotation.JsonProperty("role_arn") val roleArn: String? = null
+) : BetaExternalKeyProviderConfig, BetaExternalKeyCreateParamsProviderConfig, BetaExternalKeyUpdateParamsProviderConfig
 
-/** Azure Key Vault provider configuration. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Azure Key Vault provider configuration.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaAzureExternalKeyConfigParams(
-    /** Name of the key within the vault. */
+    /**
+     * Name of the key within the vault.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("key_name") val keyName: String,
-    /** Azure AD tenant ID. */
+    /**
+     * Azure AD tenant ID.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tenant_id") val tenantId: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaAzureExternalKeyConfigParamsTypeEnum,
     /**
-     * Key Vault data-plane URI — `{vault-name}.vault.azure.net` or
-     * `{hsm-name}.managedhsm.azure.net`.
+     * Key Vault data-plane URI — `{vault-name}.vault.azure.net` or `{hsm-name}.managedhsm.azure.net`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("vault_uri") val vaultUri: String,
     /**
-     * Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if
-     * using a single-tenant app registration in the customer's directory.
+     * Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null
 ) : BetaExternalKeyCreateParamsProviderConfig, BetaExternalKeyUpdateParamsProviderConfig
 
-/** Typed representation of the `BetaDeleteExternalKeyResponse` API schema. */
+/**
+ * Typed representation of the `BetaDeleteExternalKeyResponse` API schema.
+ */
 data class BetaDeleteExternalKeyResponse(
-    /** ID of the deleted External Key. */
+    /**
+     * ID of the deleted External Key.
+     */
     val id: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaDeleteExternalKeyResponseTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaDeleteExternalKeyResponseTypeEnum
 )
 
 /**
- * Partial update — omitted fields are unchanged. `display_name` is always editable. `geo` and
- * `provider_config` cannot be changed once any workspace references this config.
+ * Partial update — omitted fields are unchanged. `display_name` is always editable. `geo` and `provider_config` cannot be changed once any workspace references this config.
  */
 data class BetaExternalKeyUpdateParams(
-    /** Human-friendly display name. */
+    /**
+     * Human-friendly display name.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null,
-    /** Data residency geo. Only `us` is supported. */
+    /**
+     * Data residency geo. Only `us` is supported.
+     */
     val geo: BetaExternalKeyUpdateParamsGeoVariant0Enum? = null,
-    /** KMS provider identity and auth coordinates. */
-    @com.fasterxml.jackson.annotation.JsonProperty("provider_config")
-    val providerConfig: BetaExternalKeyUpdateParamsProviderConfig? = null,
+    /**
+     * KMS provider identity and auth coordinates.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("provider_config") val providerConfig: BetaExternalKeyUpdateParamsProviderConfig? = null
 )
 
-/** KMS provider identity and auth coordinates. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaExternalKeyUpdateParamsProviderConfig::class,
-)
+/**
+ * KMS provider identity and auth coordinates.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaExternalKeyUpdateParamsProviderConfig::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAwsExternalKeyConfig::class,
-        name = "aws",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaGcpExternalKeyConfig::class,
-        name = "gcp",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAzureExternalKeyConfigParams::class,
-        name = "azure",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAwsExternalKeyConfig::class, name = "aws"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaGcpExternalKeyConfig::class, name = "gcp"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAzureExternalKeyConfigParams::class, name = "azure")
 )
 sealed interface BetaExternalKeyUpdateParamsProviderConfig
 
-/**
- * A [BetaExternalKeyUpdateParamsProviderConfig] whose `type` names no branch this SDK knows, kept
- * as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaExternalKeyUpdateParamsProviderConfig
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaExternalKeyUpdateParamsProviderConfig] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaExternalKeyUpdateParamsProviderConfig @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaExternalKeyUpdateParamsProviderConfig {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaGcpExternalKeyConfig` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaGcpExternalKeyConfig` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaGcpExternalKeyConfig(
-    /** Full resource name of the Cloud KMS key. */
+    /**
+     * Full resource name of the Cloud KMS key.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("key_name") val keyName: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaGcpExternalKeyConfigTypeEnum,
-) :
-    BetaExternalKeyProviderConfig,
-    BetaExternalKeyCreateParamsProviderConfig,
-    BetaExternalKeyUpdateParamsProviderConfig
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaGcpExternalKeyConfigTypeEnum
+) : BetaExternalKeyProviderConfig, BetaExternalKeyCreateParamsProviderConfig, BetaExternalKeyUpdateParamsProviderConfig

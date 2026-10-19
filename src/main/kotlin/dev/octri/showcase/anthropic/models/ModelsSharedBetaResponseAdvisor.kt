@@ -3,105 +3,75 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaResponseAdvisorRedactedResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaResponseAdvisorRedactedResultBlock` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaResponseAdvisorRedactedResultBlock(
     /**
      * Opaque blob containing the advisor's output. Round-trip verbatim; do not inspect or modify.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_content")
-    val encryptedContent: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("encrypted_content") val encryptedContent: String,
     /**
      * The advisor sub-inference's stop reason (same values as the top-level message `stop_reason`).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true)
-    val stopReason: String?,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaResponseAdvisorRedactedResultBlockTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true) val stopReason: String?,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaResponseAdvisorRedactedResultBlockTypeEnum
 ) : BetaResponseAdvisorToolResultBlockContent
 
-/** Typed representation of the `BetaResponseAdvisorResultBlock` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaResponseAdvisorResultBlock` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaResponseAdvisorResultBlock(
     /**
-     * The advisor sub-inference's stop reason (same values as the top-level message `stop_reason`).
-     * `max_tokens` indicates the advisor's output was truncated at the tool's `max_tokens` value or
-     * the advisor model's policy cap.
+     * The advisor sub-inference's stop reason (same values as the top-level message `stop_reason`). `max_tokens` indicates the advisor's output was truncated at the tool's `max_tokens` value or the advisor model's policy cap.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true)
-    val stopReason: String?,
-    /** Required `string` value serialized in the `text` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true) val stopReason: String?,
+    /**
+     * Required `string` value serialized in the `text` wire field.
+     */
     val text: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaResponseAdvisorResultBlockTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaResponseAdvisorResultBlockTypeEnum
 ) : BetaResponseAdvisorToolResultBlockContent
 
-/** Required API value serialized in the `content` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaResponseAdvisorToolResultBlockContent::class,
-)
+/**
+ * Required API value serialized in the `content` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaResponseAdvisorToolResultBlockContent::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaResponseAdvisorToolResultError::class,
-        name = "advisor_tool_result_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaResponseAdvisorResultBlock::class,
-        name = "advisor_result",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaResponseAdvisorRedactedResultBlock::class,
-        name = "advisor_redacted_result",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseAdvisorToolResultError::class, name = "advisor_tool_result_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseAdvisorResultBlock::class, name = "advisor_result"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseAdvisorRedactedResultBlock::class, name = "advisor_redacted_result")
 )
 sealed interface BetaResponseAdvisorToolResultBlockContent
 
-/**
- * A [BetaResponseAdvisorToolResultBlockContent] whose `type` names no branch this SDK knows, kept
- * as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaResponseAdvisorToolResultBlockContent
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaResponseAdvisorToolResultBlockContent] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaResponseAdvisorToolResultBlockContent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaResponseAdvisorToolResultBlockContent {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaResponseAdvisorToolResultError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaResponseAdvisorToolResultError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaResponseAdvisorToolResultError(
-    /** Required enumerated value serialized in the `error_code` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
-    val errorCode: BetaAdvisorToolResultErrorCode,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaResponseAdvisorToolResultErrorTypeEnum,
+    /**
+     * Required enumerated value serialized in the `error_code` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: BetaAdvisorToolResultErrorCode,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaResponseAdvisorToolResultErrorTypeEnum
 ) : BetaResponseAdvisorToolResultBlockContent

@@ -3,70 +3,54 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaExternalKeyCreateParams` API schema. */
+/**
+ * Typed representation of the `BetaExternalKeyCreateParams` API schema.
+ */
 data class BetaExternalKeyCreateParams(
-    /** KMS provider identity and auth coordinates. */
-    @com.fasterxml.jackson.annotation.JsonProperty("provider_config")
-    val providerConfig: BetaExternalKeyCreateParamsProviderConfig,
-    /** Human-friendly display name. */
+    /**
+     * KMS provider identity and auth coordinates.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("provider_config") val providerConfig: BetaExternalKeyCreateParamsProviderConfig,
+    /**
+     * Human-friendly display name.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null,
-    /** Data residency geo. Only `us` is supported. */
-    val geo: BetaExternalKeyCreateParamsGeoEnum? = null,
+    /**
+     * Data residency geo. Only `us` is supported.
+     */
+    val geo: BetaExternalKeyCreateParamsGeoEnum? = null
 )
 
-/** KMS provider identity and auth coordinates. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaExternalKeyCreateParamsProviderConfig::class,
-)
+/**
+ * KMS provider identity and auth coordinates.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaExternalKeyCreateParamsProviderConfig::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAwsExternalKeyConfig::class,
-        name = "aws",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaGcpExternalKeyConfig::class,
-        name = "gcp",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAzureExternalKeyConfigParams::class,
-        name = "azure",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAwsExternalKeyConfig::class, name = "aws"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaGcpExternalKeyConfig::class, name = "gcp"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAzureExternalKeyConfigParams::class, name = "azure")
 )
 sealed interface BetaExternalKeyCreateParamsProviderConfig
 
-/**
- * A [BetaExternalKeyCreateParamsProviderConfig] whose `type` names no branch this SDK knows, kept
- * as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaExternalKeyCreateParamsProviderConfig
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaExternalKeyCreateParamsProviderConfig] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaExternalKeyCreateParamsProviderConfig @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaExternalKeyCreateParamsProviderConfig {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Opaque-cursor page of external keys, ordered by creation time (newest first). */
+/**
+ * Opaque-cursor page of external keys, ordered by creation time (newest first).
+ */
 data class BetaExternalKeyListResponse(
-    /** Required array value serialized in the `data` wire field. */
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaExternalKey>,
     /**
-     * Opaque cursor for the next page, or null if no more results. Pass as `?page=` to fetch the
-     * next page.
+     * Opaque cursor for the next page, or null if no more results. Pass as `?page=` to fetch the next page.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )

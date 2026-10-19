@@ -3,12 +3,20 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaOrganizationSchema` API schema. */
+/**
+ * Typed representation of the `BetaOrganizationSchema` API schema.
+ */
 data class BetaOrganizationSchema(
-    /** ID of the Organization. */
+    /**
+     * ID of the Organization.
+     */
     val id: String,
-    /** Name of the Organization. */
+    /**
+     * Name of the Organization.
+     */
     val name: String,
-    /** Object type. For Organizations, this is always `"organization"`. */
-    val type: BetaOrganizationSchemaTypeEnum,
+    /**
+     * Object type. For Organizations, this is always `"organization"`.
+     */
+    val type: BetaOrganizationSchemaTypeEnum
 )

@@ -3,31 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaSessionsThreadsEventsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the
-     * cursor for subsequent results and `limit` to control the requested page size.
+     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the cursor for subsequent results and `limit` to control the requested page size.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsListSessionThreadEvents {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents
-            .listBetaSessionsThreadsEvents(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionThreadEvents {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.listBetaSessionsThreadsEvents(clientConfig, request, options)
     }
 
     /**
-     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the
-     * cursor for subsequent results and `limit` to control the requested page size.
+     * Lists events for a specific execution thread, ordered by processing time. Use `page` as the cursor for subsequent results and `limit` to control the requested page size.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents
-            .listBetaSessionsThreadsEventsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.listBetaSessionsThreadsEventsPaginated(clientConfig, request, options, yieldFn)
     }
+
 }

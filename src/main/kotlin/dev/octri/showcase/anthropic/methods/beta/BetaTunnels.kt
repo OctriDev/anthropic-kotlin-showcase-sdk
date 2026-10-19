@@ -14,74 +14,30 @@ import dev.octri.showcase.anthropic.SdkClient
 
 object BetaTunnels {
 
+
     /**
-     * Creates a tunnel and provisions a fresh hostname for routing MCP traffic. Send the required
-     * `anthropic-beta` header; the tunnel rejects MCP traffic until you add at least one CA
-     * certificate. Creation is not idempotent, and this research-preview API may change without a
-     * deprecation period.
+     * Creates a tunnel and provisions a fresh hostname for routing MCP traffic. Send the required `anthropic-beta` header; the tunnel rejects MCP traffic until you add at least one CA certificate. Creation is not idempotent, and this research-preview API may change without a deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta:
-     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
-     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
-     * window. Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel; it
-     * is not idempotent. The new tunnel rejects MCP traffic until at least one CA certificate is
-     * added.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel; it is not idempotent. The new tunnel rejects MCP traffic until at least one CA certificate is added.
      *
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
-     * @param displayName Optional human-readable name for the tunnel (1-255 characters).
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     * @param displayName Optional human-readable name for the tunnel (1-255
+     *   characters).
      */
-    fun createBetaTunnels(
-        clientConfig: ClientConfig,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        displayName: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): BetaTunnel {
-        return SdkClient.request<BetaTunnel>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/tunnels?beta=true",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "display_name" to (displayName ?: SdkClient.SdkOptional.Omitted)
-                        ),
-                    operationId = "createBetaTunnels",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun createBetaTunnels(clientConfig: ClientConfig, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaTunnel {
+        return SdkClient.request<BetaTunnel>(SdkClient.RequestSpec("POST", "/v1/tunnels?beta=true", config = clientConfig, body = SdkClient.bodyMap("display_name" to
+    (displayName ?: SdkClient.SdkOptional.Omitted)), operationId = "createBetaTunnels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [listBetaTunnels]. */
     data class ListBetaTunnelsRequest(
@@ -90,106 +46,52 @@ object BetaTunnels {
         val includeArchived: Boolean? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null,
+        val anthropicWorkspaceId: String? = null
     )
 
     /**
-     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default.
-     * Use `page` to continue through results and `include_archived` to include archived tunnels;
-     * this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and
-     * may change without a deprecation period.
+     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default. Use `page` to continue through results and `include_archived` to include archived tunnels; this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta:
-     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
-     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
-     * window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels
-     * are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels are excluded unless include_archived is set.
      *
-     * @param limit Maximum number of tunnels to return per page. Defaults to 20, maximum 1000.
+     * @param limit Maximum number of tunnels to return per page. Defaults to 20,
+     *   maximum 1000.
      * @param page Opaque pagination cursor from a previous `list_tunnels` response.
-     * @param includeArchived Whether to include archived tunnels in the results. Defaults to false.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param includeArchived Whether to include archived tunnels in the results.
+     *   Defaults to false.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaTunnels(
-        clientConfig: ClientConfig,
-        request: ListBetaTunnelsRequest,
-        options: RequestOptions? = null,
-    ): BetaListTunnelsResponse {
-        return SdkClient.request<BetaListTunnelsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/tunnels?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "limit" to SdkClient.queryValue(request.limit, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                            "include_archived" to
-                                SdkClient.queryValue(request.includeArchived, "form", true),
-                        ),
-                    operationId = "listBetaTunnels",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun listBetaTunnels(clientConfig: ClientConfig, request: ListBetaTunnelsRequest, options: RequestOptions? = null): BetaListTunnelsResponse {
+        return SdkClient.request<BetaListTunnelsResponse>(SdkClient.RequestSpec("GET", "/v1/tunnels?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "include_archived" to
+    SdkClient.queryValue(request.includeArchived, "form", true)), operationId = "listBetaTunnels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
     /**
-     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default.
-     * Use `page` to continue through results and `include_archived` to include archived tunnels;
-     * this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and
-     * may change without a deprecation period.
+     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default. Use `page` to continue through results and `include_archived` to include archived tunnels; this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta:
-     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
-     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
-     * window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels
-     * are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels are excluded unless include_archived is set.
      *
-     * @param limit Maximum number of tunnels to return per page. Defaults to 20, maximum 1000.
+     * @param limit Maximum number of tunnels to return per page. Defaults to 20,
+     *   maximum 1000.
      * @param page Opaque pagination cursor from a previous `list_tunnels` response.
-     * @param includeArchived Whether to include archived tunnels in the results. Defaults to false.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param includeArchived Whether to include archived tunnels in the results.
+     *   Defaults to false.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaTunnelsPaginated(
-        clientConfig: ClientConfig,
-        request: ListBetaTunnelsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaTunnel) -> Boolean,
-    ) {
+    fun listBetaTunnelsPaginated(clientConfig: ClientConfig, request: ListBetaTunnelsRequest, options: RequestOptions? = null, yieldFn: (BetaTunnel) -> Boolean) {
         var cursor = request.page
         while (true) {
             val page = listBetaTunnels(clientConfig, request.copy(page = cursor), options)
@@ -209,12 +111,7 @@ object BetaTunnels {
         val hasMore: Boolean,
     )
 
-    fun listBetaTunnelsPages(
-        clientConfig: ClientConfig,
-        request: ListBetaTunnelsRequest,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaTunnelsPage) -> Boolean,
-    ) {
+    fun listBetaTunnelsPages(clientConfig: ClientConfig, request: ListBetaTunnelsRequest, options: RequestOptions? = null, yieldPage: (ListBetaTunnelsPage) -> Boolean) {
         var cursor = request.page
         while (true) {
             val page = listBetaTunnels(clientConfig, request.copy(page = cursor), options)
@@ -228,262 +125,95 @@ object BetaTunnels {
         }
     }
 
-    /**
-     * Retrieves a tunnel by its identifier, including its assigned hostname and archive state. Send
-     * the required `anthropic-beta` header to use this research-preview API, which may change
-     * without a deprecation period.
-     *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta:
-     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
-     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
-     * window. Fetches a tunnel by ID.
-     *
-     * @param tunnelId Path parameter tunnel_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
-     */
-    fun retrieveBetaTunnels(
-        clientConfig: ClientConfig,
-        tunnelId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaTunnel {
-        return SdkClient.request<BetaTunnel>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "retrieveBetaTunnels",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
-    }
+
 
     /**
-     * Archives a tunnel, invalidating its token and retiring its hostname. Archiving also archives
-     * every non-archived certificate on the tunnel, and repeating the request for an already
-     * archived tunnel returns its record unchanged. This action is irreversible; send the required
-     * `anthropic-beta` header to use the research-preview API.
+     * Retrieves a tunnel by its identifier, including its assigned hostname and archive state. Send the required `anthropic-beta` header to use this research-preview API, which may change without a deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta:
-     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
-     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
-     * window. Archives a tunnel. Archival is irreversible: every non-archived certificate on the
-     * tunnel is archived in the same operation, the hostname is retired and never re-allocated, and
-     * the tunnel token is invalidated.…
+     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Fetches a tunnel by ID.
      *
      * @param tunnelId Path parameter tunnel_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun archiveBetaTunnels(
-        clientConfig: ClientConfig,
-        tunnelId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaTunnel {
-        return SdkClient.request<BetaTunnel>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/archive?beta=true",
-                    config = clientConfig,
-                    operationId = "archiveBetaTunnels",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun retrieveBetaTunnels(clientConfig: ClientConfig, tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnel {
+        return SdkClient.request<BetaTunnel>(SdkClient.RequestSpec("GET", "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}?beta=true", config = clientConfig, operationId = "retrieveBetaTunnels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
 
-    /**
-     * Reveals the connector token for a tunnel; repeated calls return the same token until it is
-     * rotated. Treat the returned token as a credential, and use this POST operation so the value
-     * does not appear in intermediary access logs. Send the required `anthropic-beta` header to use
-     * the research-preview API.
-     *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta:
-     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
-     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
-     * window. Reveals a tunnel's connector token. The value is fetched live on each call; Anthropic
-     * does not store it. Repeated calls return the same value until the token is rotated. Exposed
-     * as POST so the token does not…
-     *
-     * @param tunnelId Path parameter tunnel_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
-     */
-    fun revealBetaTunnelsToken(
-        clientConfig: ClientConfig,
-        tunnelId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaTunnelToken {
-        return SdkClient.request<BetaTunnelToken>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/reveal_token?beta=true",
-                    config = clientConfig,
-                    operationId = "revealBetaTunnelsToken",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
-    }
+
+
+
+
+
 
     /**
-     * Rotates a tunnel's connector token and returns a fresh value, invalidating the current token
-     * for new connections. Established connections are not severed, but restart the connector with
-     * the new token. Send the required `anthropic-beta` header to use this research-preview API.
+     * Archives a tunnel, invalidating its token and retiring its hostname. Archiving also archives every non-archived certificate on the tunnel, and repeating the request for an already archived tunnel returns its record unchanged. This action is irreversible; send the required `anthropic-beta` header to use the research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta:
-     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
-     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
-     * window. Rotates a tunnel's connector token. Rotation invalidates the current token for new
-     * connections and returns a fresh value; established connections are not severed. A connector
-     * restarted after rotation must use…
+     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Archives a tunnel. Archival is irreversible: every non-archived certificate on the tunnel is archived in the same operation, the hostname is retired and never re-allocated, and the tunnel token is invalidated.…
      *
      * @param tunnelId Path parameter tunnel_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     */
+    fun archiveBetaTunnels(clientConfig: ClientConfig, tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnel {
+        return SdkClient.request<BetaTunnel>(SdkClient.RequestSpec("POST", "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaTunnels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    }
+
+
+
+
+
+
+
+    /**
+     * Reveals the connector token for a tunnel; repeated calls return the same token until it is rotated. Treat the returned token as a credential, and use this POST operation so the value does not appear in intermediary access logs. Send the required `anthropic-beta` header to use the research-preview API.
+     *
+     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Reveals a tunnel's connector token. The value is fetched live on each call; Anthropic does not store it. Repeated calls return the same value until the token is rotated. Exposed as POST so the token does not…
+     *
+     * @param tunnelId Path parameter tunnel_id
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     */
+    fun revealBetaTunnelsToken(clientConfig: ClientConfig, tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelToken {
+        return SdkClient.request<BetaTunnelToken>(SdkClient.RequestSpec("POST", "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/reveal_token?beta=true", config = clientConfig, operationId = "revealBetaTunnelsToken", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    }
+
+
+
+
+
+
+
+    /**
+     * Rotates a tunnel's connector token and returns a fresh value, invalidating the current token for new connections. Established connections are not severed, but restart the connector with the new token. Send the required `anthropic-beta` header to use this research-preview API.
+     *
+     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Rotates a tunnel's connector token. Rotation invalidates the current token for new connections and returns a fresh value; established connections are not severed. A connector restarted after rotation must use…
+     *
+     * @param tunnelId Path parameter tunnel_id
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      * @param reason Optional free-text reason for the rotation, recorded for audit.
      */
-    fun rotateBetaTunnelsToken(
-        clientConfig: ClientConfig,
-        tunnelId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        reason: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): BetaTunnelToken {
-        return SdkClient.request<BetaTunnelToken>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/rotate_token?beta=true",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("reason" to (reason ?: SdkClient.SdkOptional.Omitted)),
-                    operationId = "rotateBetaTunnelsToken",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun rotateBetaTunnelsToken(clientConfig: ClientConfig, tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, reason: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaTunnelToken {
+        return SdkClient.request<BetaTunnelToken>(SdkClient.RequestSpec("POST", "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/rotate_token?beta=true", config = clientConfig, body = SdkClient.bodyMap("reason" to (reason ?: SdkClient.SdkOptional.Omitted)), operationId = "rotateBetaTunnelsToken", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
 }

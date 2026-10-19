@@ -3,118 +3,34 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsFederationRulesWorkspacesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Enable a federation rule for a workspace. Idempotent;
-     * re-enabling returns the existing enablement. The rule and workspace must both belong to your
-     * organization. Membership of the rule's target service account in this workspace is not
-     * checked at enablement: token…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Enable a federation rule for a workspace. Idempotent; re-enabling returns the existing enablement. The rule and workspace must both belong to your organization. Membership of the rule's target service account in this workspace is not checked at enablement: token…
      */
-    fun create(
-        federationRuleId: String,
-        workspaceId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaFederationRuleWorkspace {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.federationRules
-            .BetaOrganizationsFederationRulesWorkspaces
-            .createBetaOrganizationsFederationRulesWorkspaces(
-                clientConfig,
-                federationRuleId,
-                workspaceId,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-            )
+    fun create(federationRuleId: String, workspaceId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaFederationRuleWorkspace {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.federationRules.BetaOrganizationsFederationRulesWorkspaces.createBetaOrganizationsFederationRulesWorkspaces(clientConfig, federationRuleId, workspaceId, anthropicBeta, anthropicVersion, options)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. List workspaces where this federation rule is enabled. Returns
-     * all workspace enablements in a single response; the `limit` and `page` parameters are
-     * accepted but have no effect, and `next_page` is always `null`. Returns explicit per-workspace
-     * enablements only; for…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List workspaces where this federation rule is enabled. Returns all workspace enablements in a single response; the `limit` and `page` parameters are accepted but have no effect, and `next_page` is always `null`. Returns explicit per-workspace enablements only; for…
      */
-    fun list(
-        federationRuleId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaFederationRuleWorkspaceListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.federationRules
-            .BetaOrganizationsFederationRulesWorkspaces
-            .listBetaOrganizationsFederationRulesWorkspaces(
-                clientConfig,
-                federationRuleId,
-                limit,
-                page,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-            )
+    fun list(federationRuleId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaFederationRuleWorkspaceListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.federationRules.BetaOrganizationsFederationRulesWorkspaces.listBetaOrganizationsFederationRulesWorkspaces(clientConfig, federationRuleId, limit, page, anthropicBeta, anthropicVersion, options)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. List workspaces where this federation rule is enabled. Returns
-     * all workspace enablements in a single response; the `limit` and `page` parameters are
-     * accepted but have no effect, and `next_page` is always `null`. Returns explicit per-workspace
-     * enablements only; for…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List workspaces where this federation rule is enabled. Returns all workspace enablements in a single response; the `limit` and `page` parameters are accepted but have no effect, and `next_page` is always `null`. Returns explicit per-workspace enablements only; for…
      */
-    fun listPaginated(
-        federationRuleId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaFederationRuleWorkspace) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.federationRules
-            .BetaOrganizationsFederationRulesWorkspaces
-            .listBetaOrganizationsFederationRulesWorkspacesPaginated(
-                clientConfig,
-                federationRuleId,
-                limit,
-                page,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-                yieldFn,
-            )
+    fun listPaginated(federationRuleId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaFederationRuleWorkspace) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.federationRules.BetaOrganizationsFederationRulesWorkspaces.listBetaOrganizationsFederationRulesWorkspacesPaginated(clientConfig, federationRuleId, limit, page, anthropicBeta, anthropicVersion, options, yieldFn)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Disable a federation rule for a workspace. Idempotent;
-     * succeeds even if the enablement was already removed. OAuth callers may only manage rules
-     * whose `oauth_scope` is `workspace:developer` or `workspace:inference`; other scopes require a
-     * Console session.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Disable a federation rule for a workspace. Idempotent; succeeds even if the enablement was already removed. OAuth callers may only manage rules whose `oauth_scope` is `workspace:developer` or `workspace:inference`; other scopes require a Console session.
      */
-    fun delete(
-        federationRuleId: String,
-        workspaceId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaRemoveFederationRuleWorkspaceResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.federationRules
-            .BetaOrganizationsFederationRulesWorkspaces
-            .deleteBetaOrganizationsFederationRulesWorkspaces(
-                clientConfig,
-                federationRuleId,
-                workspaceId,
-                anthropicBeta,
-                anthropicVersion,
-                options,
-            )
+    fun delete(federationRuleId: String, workspaceId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaRemoveFederationRuleWorkspaceResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.federationRules.BetaOrganizationsFederationRulesWorkspaces.deleteBetaOrganizationsFederationRulesWorkspaces(clientConfig, federationRuleId, workspaceId, anthropicBeta, anthropicVersion, options)
     }
+
 }

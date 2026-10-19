@@ -3,121 +3,41 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsWorkspacesMembersNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves a user's membership in a workspace. Supply both `workspace_id` and `user_id` to
-     * identify the membership. The response includes the user's workspace role.
+     * Retrieves a user's membership in a workspace. Supply both `workspace_id` and `user_id` to identify the membership. The response includes the user's workspace role.
      */
-    fun retrieve(
-        workspaceId: String,
-        userId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaWorkspaceMemberSchema {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces
-            .BetaOrganizationsWorkspacesMembers
-            .retrieveBetaOrganizationsWorkspacesMembers(
-                clientConfig,
-                workspaceId,
-                userId,
-                anthropicVersion,
-                options,
-            )
+    fun retrieve(workspaceId: String, userId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaWorkspaceMemberSchema {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces.BetaOrganizationsWorkspacesMembers.retrieveBetaOrganizationsWorkspacesMembers(clientConfig, workspaceId, userId, anthropicVersion, options)
     }
 
     /**
-     * Updates a user's role in a workspace. Supply `workspace_role` with the new role and use the
-     * path parameters to identify the workspace membership. The role must be one of the defined
-     * workspace roles.
+     * Updates a user's role in a workspace. Supply `workspace_role` with the new role and use the path parameters to identify the workspace membership. The role must be one of the defined workspace roles.
      */
-    fun update(
-        userId: String,
-        workspaceId: String,
-        workspaceRole: BetaWorkspaceRoleSchema,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaWorkspaceMemberSchema {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces
-            .BetaOrganizationsWorkspacesMembers
-            .updateBetaOrganizationsWorkspacesMembers(
-                clientConfig,
-                userId,
-                workspaceId,
-                workspaceRole,
-                anthropicVersion,
-                options,
-            )
+    fun update(userId: String, workspaceId: String, workspaceRole: BetaWorkspaceRoleSchema, anthropicVersion: String? = null, options: RequestOptions? = null): BetaWorkspaceMemberSchema {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces.BetaOrganizationsWorkspacesMembers.updateBetaOrganizationsWorkspacesMembers(clientConfig, userId, workspaceId, workspaceRole, anthropicVersion, options)
     }
 
     /**
-     * Removes a user's membership from a workspace. Identify the membership with `workspace_id` and
-     * `user_id`, and authenticate with an Admin API key in the `x-api-key` header. The response
-     * identifies the deleted workspace membership.
+     * Removes a user's membership from a workspace. Identify the membership with `workspace_id` and `user_id`, and authenticate with an Admin API key in the `x-api-key` header. The response identifies the deleted workspace membership.
      */
-    fun delete(
-        userId: String,
-        workspaceId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaDeleteWorkspaceMemberResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces
-            .BetaOrganizationsWorkspacesMembers
-            .deleteBetaOrganizationsWorkspacesMembers(
-                clientConfig,
-                userId,
-                workspaceId,
-                anthropicVersion,
-                options,
-            )
+    fun delete(userId: String, workspaceId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaDeleteWorkspaceMemberResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces.BetaOrganizationsWorkspacesMembers.deleteBetaOrganizationsWorkspacesMembers(clientConfig, userId, workspaceId, anthropicVersion, options)
     }
 
     /**
-     * Lists members of a specified workspace. Use `before_id` or `after_id` to navigate the
-     * results, and `limit` to control the page size. The response includes cursor IDs and a
-     * `has_more` flag.
+     * Lists members of a specified workspace. Use `before_id` or `after_id` to navigate the results, and `limit` to control the page size. The response includes cursor IDs and a `has_more` flag.
      */
-    fun list(
-        workspaceId: String,
-        beforeId: String? = null,
-        afterId: String? = null,
-        limit: Long? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaListResponseWorkspaceMemberSchema {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces
-            .BetaOrganizationsWorkspacesMembers
-            .listBetaOrganizationsWorkspacesMembers(
-                clientConfig,
-                workspaceId,
-                beforeId,
-                afterId,
-                limit,
-                anthropicVersion,
-                options,
-            )
+    fun list(workspaceId: String, beforeId: String? = null, afterId: String? = null, limit: Long? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaListResponseWorkspaceMemberSchema {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces.BetaOrganizationsWorkspacesMembers.listBetaOrganizationsWorkspacesMembers(clientConfig, workspaceId, beforeId, afterId, limit, anthropicVersion, options)
     }
 
     /**
-     * Creates a membership for a user in a specified workspace. Supply `user_id` and
-     * `workspace_role`; the role must be one of the supported non-billing workspace roles. The
-     * response contains the new workspace member and its assigned role.
+     * Creates a membership for a user in a specified workspace. Supply `user_id` and `workspace_role`; the role must be one of the supported non-billing workspace roles. The response contains the new workspace member and its assigned role.
      */
-    fun create(
-        workspaceId: String,
-        userId: String,
-        workspaceRole: BetaNoBillingWorkspaceRoleSchema,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaWorkspaceMemberSchema {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces
-            .BetaOrganizationsWorkspacesMembers
-            .createBetaOrganizationsWorkspacesMembers(
-                clientConfig,
-                workspaceId,
-                userId,
-                workspaceRole,
-                anthropicVersion,
-                options,
-            )
+    fun create(workspaceId: String, userId: String, workspaceRole: BetaNoBillingWorkspaceRoleSchema, anthropicVersion: String? = null, options: RequestOptions? = null): BetaWorkspaceMemberSchema {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces.BetaOrganizationsWorkspacesMembers.createBetaOrganizationsWorkspacesMembers(clientConfig, workspaceId, userId, workspaceRole, anthropicVersion, options)
     }
+
 }

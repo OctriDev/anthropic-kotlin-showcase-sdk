@@ -3,74 +3,52 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Request parameters for creating a `memory_store`. */
+/**
+ * Request parameters for creating a `memory_store`.
+ */
 data class BetaManagedAgentsCreateMemoryStoreRequest(
     /**
-     * Human-readable name for the store. Required; 1–255 characters; no control characters. The
-     * mount-path slug under `/mnt/memory/` is derived from this name (lowercased, non-alphanumeric
-     * runs collapsed to a hyphen). Names need not be unique within a workspace.
+     * Human-readable name for the store. Required; 1–255 characters; no control characters. The mount-path slug under `/mnt/memory/` is derived from this name (lowercased, non-alphanumeric runs collapsed to a hyphen). Names need not be unique within a workspace.
      */
     val name: String,
     /**
-     * Free-text description of what the store contains, up to 1024 characters. Included in the
-     * agent's system prompt when the store is attached, so word it to be useful to the agent.
+     * Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent.
      */
     val description: String? = null,
     /**
-     * Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to).
-     * Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Not visible to the agent.
+     * Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Not visible to the agent.
      */
-    val metadata: Map<String, String>? = null,
+    val metadata: Map<String, String>? = null
 )
 
-/** Response from creating a `memory_store`. Returns the created store. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsCreateMemoryStoreResponse::class,
-)
+/**
+ * Response from creating a `memory_store`. Returns the created store.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsCreateMemoryStoreResponse::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsMemoryStore::class,
-        name = "memory_store",
-    )
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStore::class, name = "memory_store")
 )
 sealed interface BetaManagedAgentsCreateMemoryStoreResponse
 
-/**
- * A [BetaManagedAgentsCreateMemoryStoreResponse] whose `type` names no branch this SDK knows, kept
- * as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsCreateMemoryStoreResponse
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsCreateMemoryStoreResponse] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsCreateMemoryStoreResponse @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsCreateMemoryStoreResponse {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** A page of `memory_store` results, ordered by `created_at` descending (newest first). */
+/**
+ * A page of `memory_store` results, ordered by `created_at` descending (newest first).
+ */
 data class BetaManagedAgentsListMemoryStoresResponse(
     /**
-     * Memory stores on this page, newest first. Empty when there are no stores matching the
-     * filters.
+     * Memory stores on this page, newest first. Empty when there are no stores matching the filters.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("data")
-    val `data`: List<BetaManagedAgentsMemoryStore>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsMemoryStore>? = null,
     /**
-     * Opaque cursor for the next page (a `page_...` value). Pass as `page` on the next request.
-     * `null` when there are no more results.
+     * Opaque cursor for the next page (a `page_...` value). Pass as `page` on the next request. `null` when there are no more results.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
 )

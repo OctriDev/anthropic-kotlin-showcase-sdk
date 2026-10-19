@@ -3,39 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsAnalyticsUsersNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics
-     * for each user in the organization, sorted by email address. Use `group_by[]` for
-     * per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a
-     * chat project. Available to organizations on a Claude Enterprise plan. Requires an API key
-     * with the `read:analytics` scope.
+     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics for each user in the organization, sorted by email address. Use `group_by[]` for per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a chat project. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsers.ListBetaOrganizationsAnalyticsUsersRequest,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsUsersResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsUsers
-            .listBetaOrganizationsAnalyticsUsers(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsers.ListBetaOrganizationsAnalyticsUsersRequest, options: RequestOptions? = null): BetaAnalyticsUsersResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsers.listBetaOrganizationsAnalyticsUsers(clientConfig, request, options)
     }
 
     /**
-     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics
-     * for each user in the organization, sorted by email address. Use `group_by[]` for
-     * per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a
-     * chat project. Available to organizations on a Claude Enterprise plan. Requires an API key
-     * with the `read:analytics` scope.
+     * Get per-user activity for a given day, with cursor-based pagination. Returns activity metrics for each user in the organization, sorted by email address. Use `group_by[]` for per-RBAC-group aggregates, or `filter[]` to scope results to specific members, groups, or a chat project. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsers.ListBetaOrganizationsAnalyticsUsersRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsUserActivity) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsUsers
-            .listBetaOrganizationsAnalyticsUsersPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsers.ListBetaOrganizationsAnalyticsUsersRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsUserActivity) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUsers.listBetaOrganizationsAnalyticsUsersPaginated(clientConfig, request, options, yieldFn)
     }
+
 }

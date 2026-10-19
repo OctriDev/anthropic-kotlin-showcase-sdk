@@ -3,6 +3,7 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaNamespace(clientConfig: ClientConfig) {
     val messages: BetaMessagesNamespace
     val models: BetaModelsNamespace
@@ -19,7 +20,6 @@ class BetaNamespace(clientConfig: ClientConfig) {
     val tunnels: BetaTunnelsNamespace
     val dreams: BetaDreamsNamespace
     val organizations: BetaOrganizationsNamespace
-
     init {
         messages = BetaMessagesNamespace(clientConfig)
         models = BetaModelsNamespace(clientConfig)

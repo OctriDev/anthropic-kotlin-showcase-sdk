@@ -4,199 +4,195 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * An asynchronous memory-consolidation job that reads a memory store plus a set of session
- * transcripts and writes consolidated memories into an output memory store — a new store by
- * default, or an existing store chosen via output_behavior. The Dreams API is in research preview:
- * the request and response shapes are volatile and may change without the deprecation period that
- * applies to generally-available endpoints.
+ * An asynchronous memory-consolidation job that reads a memory store plus a set of session transcripts and writes consolidated memories into an output memory store — a new store by default, or an existing store chosen via output_behavior. The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
  */
 data class BetaDream(
-    /** Required enumerated value serialized in the `type` wire field. */
-    val type: BetaDreamTypeEnum,
-    /** Required `string` value serialized in the `id` wire field. */
-    val id: String,
-    /** Required array value serialized in the `inputs` wire field. */
-    val inputs: List<BetaDreamInput>,
-    /** Required array value serialized in the `outputs` wire field. */
-    val outputs: List<BetaDreamOutput>,
-    /** Lifecycle status of a Dream. */
-    val status: BetaDreamStatus,
-    /** A timestamp in RFC 3339 format */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
-    /** Required API value serialized in the `ended_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ended_at", required = true)
-    val endedAt: BetaTimestamp?,
-    /** Required API value serialized in the `archived_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
-    val archivedAt: BetaTimestamp?,
-    /** Required API value serialized in the `error` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("error", required = true)
-    val error: BetaDreamError?,
     /**
-     * Model identifier and configuration applied to every pipeline stage. Same wire shape as the
-     * Agents API ModelConfig.
+     * Required enumerated value serialized in the `type` wire field.
+     */
+    val type: BetaDreamTypeEnum,
+    /**
+     * Required `string` value serialized in the `id` wire field.
+     */
+    val id: String,
+    /**
+     * Required array value serialized in the `inputs` wire field.
+     */
+    val inputs: List<BetaDreamInput>,
+    /**
+     * Required array value serialized in the `outputs` wire field.
+     */
+    val outputs: List<BetaDreamOutput>,
+    /**
+     * Lifecycle status of a Dream.
+     */
+    val status: BetaDreamStatus,
+    /**
+     * A timestamp in RFC 3339 format
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
+    /**
+     * Required API value serialized in the `ended_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ended_at", required = true) val endedAt: BetaTimestamp?,
+    /**
+     * Required API value serialized in the `archived_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: BetaTimestamp?,
+    /**
+     * Required API value serialized in the `error` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("error", required = true) val error: BetaDreamError?,
+    /**
+     * Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents API ModelConfig.
      */
     val model: BetaDreamModelConfig,
-    /** Required `string` value serialized in the `instructions` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("instructions", required = true)
-    val instructions: String?,
-    /** Required `string` value serialized in the `session_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("session_id", required = true)
-    val sessionId: String?,
-    /** Cumulative token usage for the dream across every pipeline stage. */
+    /**
+     * Required `string` value serialized in the `instructions` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("instructions", required = true) val instructions: String?,
+    /**
+     * Required `string` value serialized in the `session_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("session_id", required = true) val sessionId: String?,
+    /**
+     * Cumulative token usage for the dream across every pipeline stage.
+     */
     val usage: BetaDreamUsage,
-    /** Required object value serialized in the `output_behavior` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_behavior")
-    val outputBehavior: BetaOutputBehavior,
+    /**
+     * Required object value serialized in the `output_behavior` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("output_behavior") val outputBehavior: BetaOutputBehavior
 )
 
-/** Failure detail for a Dream whose `status` is `failed`. */
+/**
+ * Failure detail for a Dream whose `status` is `failed`.
+ */
 data class BetaDreamError(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
+    val message: String
 )
 
-/** Typed representation of the `BetaDreamInput` API schema. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaDreamInput::class,
-)
+/**
+ * Typed representation of the `BetaDreamInput` API schema.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaDreamInput::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaDreamMemoryStoreInput::class,
-        name = "memory_store",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaDreamSessionsInput::class,
-        name = "sessions",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaDreamMemoryStoreInput::class, name = "memory_store"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaDreamSessionsInput::class, name = "sessions")
 )
 sealed interface BetaDreamInput
 
 /** A [BetaDreamInput] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaDreamInput
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaDreamInput @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaDreamInput {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * An input memory store the dream reads from. The dream never mutates this store unless it is also
- * the destination: with output_behavior {type: "update_existing"} the job consolidates this store
- * in place.
+ * An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaDreamMemoryStoreInput(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaDreamMemoryStoreInputTypeEnum,
-    /** Required `string` value serialized in the `memory_store_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
+    /**
+     * Required `string` value serialized in the `memory_store_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String
 ) : BetaDreamInput
 
-/** An output memory store the dream writes consolidated memories into. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * An output memory store the dream writes consolidated memories into.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaDreamMemoryStoreOutput(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaDreamMemoryStoreOutputTypeEnum,
-    /** Required `string` value serialized in the `memory_store_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String,
+    /**
+     * Required `string` value serialized in the `memory_store_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("memory_store_id") val memoryStoreId: String
 ) : BetaDreamOutput
 
 /**
- * Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents
- * API ModelConfig.
+ * Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents API ModelConfig.
  */
 data class BetaDreamModelConfig(
-    /** Model identifier, e.g. "claude-opus-5". 1-256 characters. */
+    /**
+     * Model identifier, e.g. "claude-opus-5". 1-256 characters.
+     */
     val id: String,
-    /** Inference speed mode. Defaults to `standard`. */
-    val speed: BetaSpeed? = null,
+    /**
+     * Inference speed mode. Defaults to `standard`.
+     */
+    val speed: BetaSpeed? = null
 )
 
-/** Typed representation of the `BetaDreamOutput` API schema. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaDreamOutput::class,
-)
+/**
+ * Typed representation of the `BetaDreamOutput` API schema.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaDreamOutput::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaDreamMemoryStoreOutput::class,
-        name = "memory_store",
-    )
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaDreamMemoryStoreOutput::class, name = "memory_store")
 )
 sealed interface BetaDreamOutput
 
 /** A [BetaDreamOutput] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaDreamOutput
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaDreamOutput @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaDreamOutput {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Input session transcripts the dream reads. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Input session transcripts the dream reads.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaDreamSessionsInput(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaDreamSessionsInputTypeEnum,
-    /** Required array value serialized in the `session_ids` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("session_ids") val sessionIds: List<String>,
+    /**
+     * Required array value serialized in the `session_ids` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("session_ids") val sessionIds: List<String>
 ) : BetaDreamInput
 
-/** Cumulative token usage for the dream across every pipeline stage. */
+/**
+ * Cumulative token usage for the dream across every pipeline stage.
+ */
 data class BetaDreamUsage(
-    /** Total uncached input tokens consumed across every pipeline stage. */
+    /**
+     * Total uncached input tokens consumed across every pipeline stage.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Int,
-    /** Total output tokens generated across every pipeline stage. */
+    /**
+     * Total output tokens generated across every pipeline stage.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Int,
-    /** Total tokens read from prompt cache. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens")
-    val cacheReadInputTokens: Int,
-    /** Total tokens used to create prompt-cache entries (sum of all TTL tiers). */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens")
-    val cacheCreationInputTokens: Int,
+    /**
+     * Total tokens read from prompt cache.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens") val cacheReadInputTokens: Int,
+    /**
+     * Total tokens used to create prompt-cache entries (sum of all TTL tiers).
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens") val cacheCreationInputTokens: Int
 )

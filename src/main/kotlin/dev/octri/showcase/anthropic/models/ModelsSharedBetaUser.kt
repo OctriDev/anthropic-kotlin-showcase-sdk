@@ -5,84 +5,114 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/** Typed representation of the `BetaUser` API schema. */
+/**
+ * Typed representation of the `BetaUser` API schema.
+ */
 data class BetaUser(
-    /** RFC 3339 datetime string indicating when the User joined the Organization. */
+    /**
+     * RFC 3339 datetime string indicating when the User joined the Organization.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("added_at") val addedAt: OffsetDateTime,
-    /** Email of the User. */
+    /**
+     * Email of the User.
+     */
     val email: String,
-    /** ID of the User. */
+    /**
+     * ID of the User.
+     */
     val id: String,
-    /** Name of the User. */
+    /**
+     * Name of the User.
+     */
     val name: String,
-    /** Organization role of the User. */
+    /**
+     * Organization role of the User.
+     */
     val role: BetaOrganizationRoleSchema,
-    /** Object type. For Users, this is always `"user"`. */
-    val type: BetaUserTypeEnum,
+    /**
+     * Object type. For Users, this is always `"user"`.
+     */
+    val type: BetaUserTypeEnum
 )
 
-/** Typed representation of the `BetaUserLocation` API schema. */
+/**
+ * Typed representation of the `BetaUserLocation` API schema.
+ */
 data class BetaUserLocation(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaUserLocationTypeEnum,
-    /** The city of the user. */
+    /**
+     * The city of the user.
+     */
     val city: String? = null,
-    /** The two letter ISO country code of the user. */
+    /**
+     * The two letter ISO country code of the user.
+     */
     val country: String? = null,
-    /** The region of the user. */
+    /**
+     * The region of the user.
+     */
     val region: String? = null,
-    /** The IANA timezone of the user. */
-    val timezone: String? = null,
+    /**
+     * The IANA timezone of the user.
+     */
+    val timezone: String? = null
 )
 
-/** Typed representation of the `BetaUserProfile` API schema. */
+/**
+ * Typed representation of the `BetaUserProfile` API schema.
+ */
 data class BetaUserProfile(
-    /** Unique identifier for this user profile, prefixed `uprof_`. */
+    /**
+     * Unique identifier for this user profile, prefixed `uprof_`.
+     */
     val id: String,
-    /** Object type. Always `user_profile`. */
+    /**
+     * Object type. Always `user_profile`.
+     */
     val type: BetaUserProfileTypeEnum,
     /**
-     * Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in
-     * flight.
+     * Trust grants for this profile, keyed by grant name. Key omitted when no grant is active or in flight.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("trust_grants")
-    val trustGrants: Map<String, BetaUserProfileTrustGrant>,
-    /** When this user profile was created, in RFC 3339 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("trust_grants") val trustGrants: Map<String, BetaUserProfileTrustGrant>,
+    /**
+     * When this user profile was created, in RFC 3339 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
     /**
      * Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
      */
     val metadata: Map<String, String>,
     /**
-     * When this user profile was last modified, in RFC 3339 format. Trust-grant status changes also
-     * bump this timestamp.
+     * When this user profile was last modified, in RFC 3339 format. Trust-grant status changes also bump this timestamp.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: BetaTimestamp,
-    /** Platform's own identifier for this user. Not enforced unique. */
+    /**
+     * Platform's own identifier for this user. Not enforced unique.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("external_id") val externalId: String? = null,
     /**
-     * Real-world name of the entity this profile represents (company or individual). For a company
-     * the platform resells Claude access to (`access_type` `passthrough`) this is that company's
-     * name.
+     * Real-world name of the entity this profile represents (company or individual). For a company the platform resells Claude access to (`access_type` `passthrough`) this is that company's name.
      */
     val name: String? = null,
     /**
-     * How the platform uses the API for this entity: `application` (default) or `passthrough`.
-     * Present under the `user-profiles-2026-08-18` beta header.
+     * How the platform uses the API for this entity: `application` (default) or `passthrough`. Present under the `user-profiles-2026-08-18` beta header.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("access_type")
-    val accessType: BetaUserProfileAccessType? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("access_type") val accessType: BetaUserProfileAccessType? = null,
     /**
-     * When the entity this profile represents opened its account with the platform, as stated by
-     * the platform, in RFC 3339 format (UTC). `null` until the platform supplies one. Present under
-     * the `user-profiles-2026-08-18` beta header.
+     * When the entity this profile represents opened its account with the platform, as stated by the platform, in RFC 3339 format (UTC). `null` until the platform supplies one. Present under the `user-profiles-2026-08-18` beta header.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_user_onboarded_at")
-    val externalUserOnboardedAt: BetaTimestamp? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("external_user_onboarded_at") val externalUserOnboardedAt: BetaTimestamp? = null
 )
 
-/** Typed representation of the `BetaUserProfileTrustGrant` API schema. */
+/**
+ * Typed representation of the `BetaUserProfileTrustGrant` API schema.
+ */
 data class BetaUserProfileTrustGrant(
-    /** Status of the trust grant. */
+    /**
+     * Status of the trust grant.
+     */
     val status: BetaUserProfileTrustGrantStatusEnum
 )

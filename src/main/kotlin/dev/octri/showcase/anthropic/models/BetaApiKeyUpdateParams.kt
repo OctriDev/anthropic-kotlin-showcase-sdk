@@ -3,10 +3,16 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaApiKeyUpdateParams` API schema. */
+/**
+ * Typed representation of the `BetaApiKeyUpdateParams` API schema.
+ */
 data class BetaApiKeyUpdateParams(
-    /** Name of the API key. */
+    /**
+     * Name of the API key.
+     */
     val name: String? = null,
-    /** Status of the API key. */
-    val status: BetaApiKeyUpdateParamsStatusVariant0Enum? = null,
+    /**
+     * Status of the API key.
+     */
+    val status: BetaApiKeyUpdateParamsStatusVariant0Enum? = null
 )

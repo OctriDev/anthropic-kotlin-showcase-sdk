@@ -3,109 +3,81 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaBase64ImageSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaBase64ImageSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaBase64ImageSource(
-    /** Required `byte`-formatted value serialized in the `data` wire field. */
+    /**
+     * Required `byte`-formatted value serialized in the `data` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: ByteArray,
-    /** Required enumerated value serialized in the `media_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("media_type")
-    val mediaType: BetaBase64ImageSourceMediaTypeEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBase64ImageSourceTypeEnum,
+    /**
+     * Required enumerated value serialized in the `media_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("media_type") val mediaType: BetaBase64ImageSourceMediaTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaBase64ImageSourceTypeEnum
 ) : BetaRequestImageBlockSource
 
-/** Typed representation of the `BetaFileImageSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaFileImageSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaFileImageSource(
-    /** Required `string` value serialized in the `file_id` wire field. */
+    /**
+     * Required `string` value serialized in the `file_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaFileImageSourceTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaFileImageSourceTypeEnum
 ) : BetaRequestImageBlockSource
 
-/** Required API value serialized in the `source` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaRequestImageBlockSource::class,
-)
+/**
+ * Required API value serialized in the `source` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaRequestImageBlockSource::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaBase64ImageSource::class,
-        name = "base64",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaURLImageSource::class,
-        name = "url",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaFileImageSource::class,
-        name = "file",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBase64ImageSource::class, name = "base64"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaURLImageSource::class, name = "url"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaFileImageSource::class, name = "file")
 )
 sealed interface BetaRequestImageBlockSource
 
-/**
- * A [BetaRequestImageBlockSource] whose `type` names no branch this SDK knows, kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaRequestImageBlockSource
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaRequestImageBlockSource] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaRequestImageBlockSource @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaRequestImageBlockSource {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * Configures the transformations the server applies to this image before the model observes it.
- * Each key names a condition the server transforms images for; its value selects the transformation
- * applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting
- * the field.
+ * Configures the transformations the server applies to this image before the model observes it. Each key names a condition the server transforms images for; its value selects the transformation applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting the field.
  */
 data class BetaRequestImageTransformations(
     /**
-     * What the server does when this image exceeds the model's maximum image size. `"downsize"`
-     * (the default) scales the image down to fit, which changes the dimensions the model observes
-     * without telling you. `"error"` instead rejects the request with a 400 error naming the
-     * image's dimensions and the largest dimensions that fit, so you can scale the image
-     * deliberately — your image is never silently scaled down.
+     * What the server does when this image exceeds the model's maximum image size. `"downsize"` (the default) scales the image down to fit, which changes the dimensions the model observes without telling you. `"error"` instead rejects the request with a 400 error naming the image's dimensions and the largest dimensions that fit, so you can scale the image deliberately — your image is never silently scaled down.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("oversized_image")
-    val oversizedImage: BetaRequestImageTransformationsOversizedImageEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("oversized_image") val oversizedImage: BetaRequestImageTransformationsOversizedImageEnum? = null
 )
 
-/** Typed representation of the `BetaURLImageSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaURLImageSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaURLImageSource(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaURLImageSourceTypeEnum,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String
 ) : BetaRequestImageBlockSource

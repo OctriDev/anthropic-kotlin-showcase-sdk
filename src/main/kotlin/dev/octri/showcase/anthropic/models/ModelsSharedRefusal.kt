@@ -3,20 +3,20 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Structured information about a refusal. */
+/**
+ * Structured information about a refusal.
+ */
 data class RefusalStopDetails(
     /**
-     * The policy category that triggered the refusal. `null` when the refusal doesn't map to a
-     * named category.
+     * The policy category that triggered the refusal. `null` when the refusal doesn't map to a named category.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("category", required = true)
-    val category: RefusalCategory?,
+    @com.fasterxml.jackson.annotation.JsonProperty("category", required = true) val category: RefusalCategory?,
     /**
-     * Human-readable explanation of the refusal. This text is not guaranteed to be stable. `null`
-     * when no explanation is available for the category.
+     * Human-readable explanation of the refusal. This text is not guaranteed to be stable. `null` when no explanation is available for the category.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("explanation", required = true)
-    val explanation: String?,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: RefusalStopDetailsTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("explanation", required = true) val explanation: String?,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: RefusalStopDetailsTypeEnum
 )

@@ -6,185 +6,173 @@ package dev.octri.showcase.anthropic.models
 import java.time.OffsetDateTime
 
 /**
- * Registered external OIDC identity provider. Records an external IdP the organization trusts for
- * the RFC 7523 jwt-bearer grant. The `issuer_url` must match the JWT `iss` claim exactly.
+ * Registered external OIDC identity provider. Records an external IdP the organization trusts for the RFC 7523 jwt-bearer grant. The `issuer_url` must match the JWT `iss` claim exactly.
  */
 data class BetaFederationIssuer(
-    /** If set, all rules referencing this issuer reject token exchange. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
-    val archivedAt: String?,
-    /** Tagged ID (`user_`/`svac_`) of the actor that archived this issuer. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_by_actor_id", required = true)
-    val archivedByActorId: String?,
     /**
-     * Whether the jwt-bearer exchange enforces JTI single-use (replay protection) for tokens from
-     * this issuer. Applies only to assertions carrying a `jti` claim; tokens without one are
-     * accepted without single-use enforcement.
+     * If set, all rules referencing this issuer reject token exchange.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: String?,
+    /**
+     * Tagged ID (`user_`/`svac_`) of the actor that archived this issuer.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_by_actor_id", required = true) val archivedByActorId: String?,
+    /**
+     * Whether the jwt-bearer exchange enforces JTI single-use (replay protection) for tokens from this issuer. Applies only to assertions carrying a `jti` claim; tokens without one are accepted without single-use enforcement.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("check_jti") val checkJti: Boolean,
-    /** When this issuer was created. */
+    /**
+     * When this issuer was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Tagged ID (`user_`/`svac_`) of the actor that created this issuer. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_by_actor_id", required = true)
-    val createdByActorId: String?,
-    /** Tagged ID of the federation issuer. */
+    /**
+     * Tagged ID (`user_`/`svac_`) of the actor that created this issuer.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_by_actor_id", required = true) val createdByActorId: String?,
+    /**
+     * Tagged ID of the federation issuer.
+     */
     val id: String,
-    /** The `iss` claim value. Incoming JWTs must match exactly. */
+    /**
+     * The `iss` claim value. Incoming JWTs must match exactly.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issuer_url") val issuerUrl: String,
-    /** How signing keys are obtained for signature verification. */
+    /**
+     * How signing keys are obtained for signature verification.
+     */
     val jwks: BetaFederationIssuerJwks,
     /**
-     * If set, Anthropic's JWKS poller has paused polling for this issuer after repeated fetch
-     * failures. Re-enable by sending `jwks_polling_disabled: false` via the issuer update endpoint
-     * (POST) once the upstream JWKS endpoint is fixed. An OAuth caller cannot send this when the
-     * issuer backs a rule with any scope other than `workspace:developer` or `workspace:inference`;
-     * use a Console session.
+     * If set, Anthropic's JWKS poller has paused polling for this issuer after repeated fetch failures. Re-enable by sending `jwks_polling_disabled: false` via the issuer update endpoint (POST) once the upstream JWKS endpoint is fixed. An OAuth caller cannot send this when the issuer backs a rule with any scope other than `workspace:developer` or `workspace:inference`; use a Console session.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("jwks_polling_disabled_at", required = true)
-    val jwksPollingDisabledAt: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("jwks_polling_disabled_at", required = true) val jwksPollingDisabledAt: String?,
     /**
-     * Maximum allowed iat→exp spread for assertions from this issuer (1-176400 seconds, i.e. up to
-     * 49h). Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
+     * Maximum allowed iat→exp spread for assertions from this issuer (1-176400 seconds, i.e. up to 49h). Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_jwt_lifetime_seconds")
-    val maxJwtLifetimeSeconds: Long,
-    /** Admin-chosen slug identifier. */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_jwt_lifetime_seconds") val maxJwtLifetimeSeconds: Long,
+    /**
+     * Admin-chosen slug identifier.
+     */
     val name: String,
     /**
-     * Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer
-     * retrieval and list responses, including archived issuers. Typically null for inline-key
-     * issuers (no polling), or when poll status is temporarily unavailable or polling has not
-     * started yet.
+     * Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("poll_status", required = true)
-    val pollStatus: BetaIssuerPollStatus?,
-    /** Required `string` value serialized in the `type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("poll_status", required = true) val pollStatus: BetaIssuerPollStatus?,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaFederationIssuerTypeEnum,
-    /** When this issuer was last updated. */
+    /**
+     * When this issuer was last updated.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Tagged ID (`user_`/`svac_`) of the actor that last updated this issuer. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_by_actor_id", required = true)
-    val updatedByActorId: String?,
+    /**
+     * Tagged ID (`user_`/`svac_`) of the actor that last updated this issuer.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_by_actor_id", required = true) val updatedByActorId: String?
 )
 
-/** How signing keys are obtained for signature verification. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaFederationIssuerJwks::class,
-)
+/**
+ * How signing keys are obtained for signature verification.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaFederationIssuerJwks::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaJwksDiscovery::class,
-        name = "discovery",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaJwksExplicitUrl::class,
-        name = "explicit_url",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaJwksInline::class,
-        name = "inline",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaJwksDiscovery::class, name = "discovery"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaJwksExplicitUrl::class, name = "explicit_url"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaJwksInline::class, name = "inline")
 )
 sealed interface BetaFederationIssuerJwks
 
 /** A [BetaFederationIssuerJwks] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaFederationIssuerJwks
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaFederationIssuerJwks @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaFederationIssuerJwks {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * Authorization rule binding an external OIDC identity to Anthropic. Evaluates the match conditions
- * and mints an OAuth access token for the resolved target, scoped to a single workspace where the
- * rule is enabled (chosen by the caller at exchange time when the rule is enabled for more than
- * one). For rules enabled via `workspace_ids` or `applies_to_all_workspaces`, the target service
- * account must be a member of that workspace (it is implicitly a member of the default workspace);…
+ * Authorization rule binding an external OIDC identity to Anthropic. Evaluates the match conditions and mints an OAuth access token for the resolved target, scoped to a single workspace where the rule is enabled (chosen by the caller at exchange time when the rule is enabled for more than one). For rules enabled via `workspace_ids` or `applies_to_all_workspaces`, the target service account must be a member of that workspace (it is implicitly a member of the default workspace);…
  */
 data class BetaFederationRule(
     /**
-     * When true, this rule is enabled for every workspace in the org (including ones created after
-     * the rule). `workspace_ids` is ignored at exchange time.
+     * When true, this rule is enabled for every workspace in the org (including ones created after the rule). `workspace_ids` is ignored at exchange time.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("applies_to_all_workspaces")
-    val appliesToAllWorkspaces: Boolean,
-    /** If set, this rule is archived and rejects token exchange. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
-    val archivedAt: String?,
-    /** Tagged ID (`user_`/`svac_`) of the actor that archived this rule. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_by_actor_id", required = true)
-    val archivedByActorId: String?,
-    /** CEL expressions extracting named values from claims. Not yet supported; always null. */
-    @com.fasterxml.jackson.annotation.JsonProperty("attributes", required = true)
-    val attributes: Map<String, String>?,
-    /** When this rule was created. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Tagged ID (`user_`/`svac_`) of the actor that created this rule. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_by_actor_id", required = true)
-    val createdByActorId: String?,
-    /** Optional free-text description. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Tagged ID of the federation rule. */
-    val id: String,
-    /** Tagged ID of the issuer whose tokens this rule accepts. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issuer_id") val issuerId: String,
-    /** Issuer's display name at read time. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issuer_name", required = true)
-    val issuerName: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("applies_to_all_workspaces") val appliesToAllWorkspaces: Boolean,
     /**
-     * Conditions the verified JWT must satisfy for this rule to apply. All populated matcher fields
-     * must pass.
+     * If set, this rule is archived and rejects token exchange.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: String?,
+    /**
+     * Tagged ID (`user_`/`svac_`) of the actor that archived this rule.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_by_actor_id", required = true) val archivedByActorId: String?,
+    /**
+     * CEL expressions extracting named values from claims. Not yet supported; always null.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("attributes", required = true) val attributes: Map<String, String>?,
+    /**
+     * When this rule was created.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * Tagged ID (`user_`/`svac_`) of the actor that created this rule.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_by_actor_id", required = true) val createdByActorId: String?,
+    /**
+     * Optional free-text description.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Tagged ID of the federation rule.
+     */
+    val id: String,
+    /**
+     * Tagged ID of the issuer whose tokens this rule accepts.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issuer_id") val issuerId: String,
+    /**
+     * Issuer's display name at read time.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issuer_name", required = true) val issuerName: String?,
+    /**
+     * Conditions the verified JWT must satisfy for this rule to apply. All populated matcher fields must pass.
      */
     val match: BetaRuleMatch,
-    /** Admin-chosen slug identifier. */
+    /**
+     * Admin-chosen slug identifier.
+     */
     val name: String,
-    /** Space-separated OAuth scopes granted on the minted token. */
+    /**
+     * Space-separated OAuth scopes granted on the minted token.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("oauth_scope") val oauthScope: String,
     /**
-     * Identity that tokens minted via this rule act as. Currently always a `service_account`
-     * target.
+     * Identity that tokens minted via this rule act as. Currently always a `service_account` target.
      */
     val target: BetaServiceAccountTarget,
     /**
-     * Lifetime in seconds of access tokens minted via this rule. Minted tokens are capped at
-     * `max(60, min(this value, 2 × remaining assertion validity))` seconds.
+     * Lifetime in seconds of access tokens minted via this rule. Minted tokens are capped at `max(60, min(this value, 2 × remaining assertion validity))` seconds.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_lifetime_seconds")
-    val tokenLifetimeSeconds: Long,
-    /** Required `string` value serialized in the `type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("token_lifetime_seconds") val tokenLifetimeSeconds: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaFederationRuleTypeEnum,
-    /** When this rule was last updated. */
+    /**
+     * When this rule was last updated.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Tagged ID (`user_`/`svac_`) of the actor that last updated this rule. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_by_actor_id", required = true)
-    val updatedByActorId: String?,
     /**
-     * Legacy single-workspace binding. Prefer `workspace_ids` and the
-     * `/federation_rules/{federation_rule_id}/workspaces` sub-resource for managing workspace
-     * enablement.
+     * Tagged ID (`user_`/`svac_`) of the actor that last updated this rule.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id", required = true)
-    val workspaceId: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_by_actor_id", required = true) val updatedByActorId: String?,
     /**
-     * Tagged IDs of the workspaces this rule is enabled for. May be empty for older rules that only
-     * carry the legacy `workspace_id` binding. Ignored at exchange time when
-     * `applies_to_all_workspaces` is true (the list may still be non-empty).
+     * Legacy single-workspace binding. Prefer `workspace_ids` and the `/federation_rules/{federation_rule_id}/workspaces` sub-resource for managing workspace enablement.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_ids") val workspaceIds: List<String>,
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id", required = true) val workspaceId: String?,
+    /**
+     * Tagged IDs of the workspaces this rule is enabled for. May be empty for older rules that only carry the legacy `workspace_id` binding. Ignored at exchange time when `applies_to_all_workspaces` is true (the list may still be non-empty).
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_ids") val workspaceIds: List<String>
 )

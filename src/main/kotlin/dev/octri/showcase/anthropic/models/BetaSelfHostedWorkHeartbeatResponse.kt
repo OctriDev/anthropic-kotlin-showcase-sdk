@@ -3,16 +3,28 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Response after recording a heartbeat for a work item. */
+/**
+ * Response after recording a heartbeat for a work item.
+ */
 data class BetaSelfHostedWorkHeartbeatResponse(
-    /** RFC 3339 timestamp of the actual heartbeat from DB */
+    /**
+     * RFC 3339 timestamp of the actual heartbeat from DB
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("last_heartbeat") val lastHeartbeat: String,
-    /** Whether the heartbeat succeeded in extending the lease */
+    /**
+     * Whether the heartbeat succeeded in extending the lease
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("lease_extended") val leaseExtended: Boolean,
-    /** Current state of the work item (active/stopping/stopped) */
+    /**
+     * Current state of the work item (active/stopping/stopped)
+     */
     val state: BetaSelfHostedWorkHeartbeatResponseStateEnum,
-    /** Effective TTL applied to the lease */
+    /**
+     * Effective TTL applied to the lease
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("ttl_seconds") val ttlSeconds: Long,
-    /** The type of response */
-    val type: BetaSelfHostedWorkHeartbeatResponseTypeEnum,
+    /**
+     * The type of response
+     */
+    val type: BetaSelfHostedWorkHeartbeatResponseTypeEnum
 )

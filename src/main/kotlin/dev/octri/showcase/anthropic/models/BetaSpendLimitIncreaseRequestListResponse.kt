@@ -3,12 +3,16 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaSpendLimitIncreaseRequestListResponse` API schema. */
+/**
+ * Typed representation of the `BetaSpendLimitIncreaseRequestListResponse` API schema.
+ */
 data class BetaSpendLimitIncreaseRequestListResponse(
-    /** Required array value serialized in the `data` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data")
-    val `data`: List<BetaSpendLimitIncreaseRequestSchema>,
-    /** Required `string` value serialized in the `next_page` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaSpendLimitIncreaseRequestSchema>,
+    /**
+     * Required `string` value serialized in the `next_page` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )

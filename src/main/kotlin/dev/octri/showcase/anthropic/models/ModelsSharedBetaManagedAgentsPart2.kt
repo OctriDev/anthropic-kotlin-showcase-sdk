@@ -4,356 +4,314 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * A hard spend ceiling. The session stops issuing new model requests once the tracked list cost
- * reaches `max_list_cost`.
+ * A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsBudgetLimit(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsBudgetLimitTypeEnum,
     /**
-     * Maximum list cost the session may accrue. List price is used regardless of any negotiated
-     * discount, so the cap fires at or before the actual charge.
+     * Maximum list cost the session may accrue. List price is used regardless of any negotiated discount, so the cap fires at or before the actual charge.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_list_cost")
-    val maxListCost: BetaMonetaryAmount,
+    @com.fasterxml.jackson.annotation.JsonProperty("max_list_cost") val maxListCost: BetaMonetaryAmount
 ) : BetaManagedAgentsBudget
 
-/** Prompt-cache creation token usage broken down by cache lifetime. */
+/**
+ * Prompt-cache creation token usage broken down by cache lifetime.
+ */
 data class BetaManagedAgentsCacheCreationUsage(
-    /** Tokens used to create 1-hour ephemeral cache entries. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_1h_input_tokens")
-    val ephemeral1hInputTokens: Int? = null,
-    /** Tokens used to create 5-minute ephemeral cache entries. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_5m_input_tokens")
-    val ephemeral5mInputTokens: Int? = null,
+    /**
+     * Tokens used to create 1-hour ephemeral cache entries.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_1h_input_tokens") val ephemeral1hInputTokens: Int? = null,
+    /**
+     * Tokens used to create 5-minute ephemeral cache entries.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_5m_input_tokens") val ephemeral5mInputTokens: Int? = null
 )
 
-/** Typed representation of the `BetaManagedAgentsCommitCheckout` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaManagedAgentsCommitCheckout` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCommitCheckout(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCommitCheckoutTypeEnum,
-    /** Full commit SHA to check out. */
-    val sha: String,
+    /**
+     * Full commit SHA to check out.
+     */
+    val sha: String
 ) : BetaManagedAgentsRepositoryCheckout
 
-/** Typed representation of the `BetaManagedAgentsConflictError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaManagedAgentsConflictError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsConflictError(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsConflictErrorTypeEnum,
-    /** Optional `string` value serialized in the `message` wire field. */
-    val message: String? = null,
+    /**
+     * Optional `string` value serialized in the `message` wire field.
+     */
+    val message: String? = null
 ) : BetaManagedAgentsError
 
-/** A credential stored in a vault. Sensitive fields are never returned in responses. */
+/**
+ * A credential stored in a vault. Sensitive fields are never returned in responses.
+ */
 data class BetaManagedAgentsCredential(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCredentialTypeEnum,
-    /** Unique identifier for the credential. */
+    /**
+     * Unique identifier for the credential.
+     */
     val id: String,
-    /** Identifier of the vault this credential belongs to. */
+    /**
+     * Identifier of the vault this credential belongs to.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("vault_id") val vaultId: String,
-    /** Arbitrary key-value metadata attached to the credential. */
+    /**
+     * Arbitrary key-value metadata attached to the credential.
+     */
     val metadata: Map<String, String>,
-    /** A timestamp in RFC 3339 format */
+    /**
+     * A timestamp in RFC 3339 format
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
-    /** A timestamp in RFC 3339 format */
+    /**
+     * A timestamp in RFC 3339 format
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: BetaTimestamp,
-    /** When the credential was archived. Null if not archived. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
-    val archivedAt: BetaTimestamp?,
-    /** Authentication configuration for this credential. */
+    /**
+     * When the credential was archived. Null if not archived.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: BetaTimestamp?,
+    /**
+     * Authentication configuration for this credential.
+     */
     val auth: BetaManagedAgentsCredentialAuth,
-    /** Human-readable name for the credential. */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null,
+    /**
+     * Human-readable name for the credential.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null
 )
 
-/** Authentication details for a credential. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsCredentialAuth::class,
-)
+/**
+ * Authentication details for a credential.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsCredentialAuth::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsMcpOauthAuthResponse::class,
-        name = "mcp_oauth",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsStaticBearerAuthResponse::class,
-        name = "static_bearer",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsEnvironmentVariableAuthResponse::class,
-        name = "environment_variable",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMcpOauthAuthResponse::class, name = "mcp_oauth"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsStaticBearerAuthResponse::class, name = "static_bearer"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsEnvironmentVariableAuthResponse::class, name = "environment_variable")
 )
 sealed interface BetaManagedAgentsCredentialAuth
 
-/**
- * A [BetaManagedAgentsCredentialAuth] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsCredentialAuth
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsCredentialAuth] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsCredentialAuth @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsCredentialAuth {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the
- * environment's network policy does not permit.
+ * An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCredentialHostUnreachableError(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCredentialHostUnreachableErrorTypeEnum,
-    /** Human-readable error description. */
+    /**
+     * Human-readable error description.
+     */
     val message: String,
-    /** What the client should do next. */
-    @com.fasterxml.jackson.annotation.JsonProperty("retry_status")
-    val retryStatus: BetaManagedAgentsRetryStatus,
-    /** ID of the vault containing the affected credential. */
+    /**
+     * What the client should do next.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("retry_status") val retryStatus: BetaManagedAgentsRetryStatus,
+    /**
+     * ID of the vault containing the affected credential.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("vault_id") val vaultId: String,
-    /** ID of the affected credential. */
-    @com.fasterxml.jackson.annotation.JsonProperty("credential_id") val credentialId: String,
+    /**
+     * ID of the affected credential.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("credential_id") val credentialId: String
 ) : BetaManagedAgentsSessionErrorEventError
 
-/** Typed representation of the `BetaManagedAgentsCredentialNetworkingParams` API schema. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsCredentialNetworkingParams::class,
-)
+/**
+ * Typed representation of the `BetaManagedAgentsCredentialNetworkingParams` API schema.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsCredentialNetworkingParams::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsUnrestrictedCredentialNetworkingParams::class,
-        name = "unrestricted",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsLimitedCredentialNetworkingParams::class,
-        name = "limited",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUnrestrictedCredentialNetworkingParams::class, name = "unrestricted"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsLimitedCredentialNetworkingParams::class, name = "limited")
 )
 sealed interface BetaManagedAgentsCredentialNetworkingParams
 
-/**
- * A [BetaManagedAgentsCredentialNetworkingParams] whose `type` names no branch this SDK knows, kept
- * as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsCredentialNetworkingParams
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsCredentialNetworkingParams] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsCredentialNetworkingParams @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsCredentialNetworkingParams {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaManagedAgentsCredentialNetworkingResponse` API schema. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsCredentialNetworkingResponse::class,
-)
+/**
+ * Typed representation of the `BetaManagedAgentsCredentialNetworkingResponse` API schema.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsCredentialNetworkingResponse::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsUnrestrictedCredentialNetworkingResponse::class,
-        name = "unrestricted",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsLimitedCredentialNetworkingResponse::class,
-        name = "limited",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUnrestrictedCredentialNetworkingResponse::class, name = "unrestricted"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsLimitedCredentialNetworkingResponse::class, name = "limited")
 )
 sealed interface BetaManagedAgentsCredentialNetworkingResponse
 
-/**
- * A [BetaManagedAgentsCredentialNetworkingResponse] whose `type` names no branch this SDK knows,
- * kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsCredentialNetworkingResponse
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsCredentialNetworkingResponse] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsCredentialNetworkingResponse @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsCredentialNetworkingResponse {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** 5-field POSIX cron schedule with computed runtime timestamps. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * 5-field POSIX cron schedule with computed runtime timestamps.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCronSchedule(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCronScheduleTypeEnum,
     /**
-     * 5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * *
-     * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron
-     * syntax - seconds or year fields, and the special characters L, W, #, and ? - is not
-     * supported, nor are predefined shortcuts (@daily).
+     * 5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
      */
     val expression: String,
-    /** IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). */
+    /**
+     * IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+     */
     val timezone: String,
     /**
-     * Time the most recent scheduled run actually started. Null until one completes; preserved
-     * after the deployment is archived. Manual runs do not update this.
+     * Time the most recent scheduled run actually started. Null until one completes; preserved after the deployment is archived. Manual runs do not update this.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_run_at")
-    val lastRunAt: BetaTimestamp? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_run_at") val lastRunAt: BetaTimestamp? = null,
     /**
-     * Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments
-     * (reflects what the schedule would do if unpaused); empty once the deployment is archived
-     * (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will
-     * actually start at or shortly after its listed time.
+     * Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("upcoming_runs_at")
-    val upcomingRunsAt: List<BetaTimestamp>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("upcoming_runs_at") val upcomingRunsAt: List<BetaTimestamp>? = null
 ) : BetaManagedAgentsSchedule
 
-/** 5-field POSIX cron schedule. Literal wall-clock matching in the configured timezone. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * 5-field POSIX cron schedule. Literal wall-clock matching in the configured timezone.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCronScheduleParams(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCronScheduleParamsTypeEnum,
     /**
-     * 5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * *
-     * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron
-     * syntax - seconds or year fields, and the special characters L, W, #, and ? - is not
-     * supported, nor are predefined shortcuts (@daily).
+     * 5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
      */
     val expression: String,
     /**
-     * Required. IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Validated against
-     * the IANA timezone database.
+     * Required. IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Validated against the IANA timezone database.
      */
-    val timezone: String,
+    val timezone: String
 ) : BetaManagedAgentsScheduleParams
 
-/** A resolved user-created custom skill. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * A resolved user-created custom skill.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCustomSkill(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCustomSkillTypeEnum,
-    /** Required `string` value serialized in the `skill_id` wire field. */
+    /**
+     * Required `string` value serialized in the `skill_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("skill_id") val skillId: String,
-    /** Required `string` value serialized in the `version` wire field. */
-    val version: String,
+    /**
+     * Required `string` value serialized in the `version` wire field.
+     */
+    val version: String
 ) : BetaManagedAgentsSkill
 
-/** A user-created custom skill. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * A user-created custom skill.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCustomSkillParams(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCustomSkillParamsTypeEnum,
-    /** Tagged ID of the custom skill (e.g., "skill_01XJ5..."). */
+    /**
+     * Tagged ID of the custom skill (e.g., "skill_01XJ5...").
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("skill_id") val skillId: String,
-    /** Version to pin. Defaults to latest if omitted. */
-    val version: String? = null,
+    /**
+     * Version to pin. Defaults to latest if omitted.
+     */
+    val version: String? = null
 ) : BetaManagedAgentsSkillParams
 
-/** A custom tool as returned in API responses. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * A custom tool as returned in API responses.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCustomTool(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCustomToolTypeEnum,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `description` wire field. */
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
     val description: String,
-    /** JSON Schema for custom tool input parameters. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_schema")
-    val inputSchema: BetaManagedAgentsCustomToolInputSchema,
+    /**
+     * JSON Schema for custom tool input parameters.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_schema") val inputSchema: BetaManagedAgentsCustomToolInputSchema
 ) : BetaManagedAgentsAgentTool
 
-/** JSON Schema for custom tool input parameters. */
+/**
+ * JSON Schema for custom tool input parameters.
+ */
 data class BetaManagedAgentsCustomToolInputSchema(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCustomToolInputSchemaTypeEnum,
-    /** Optional object value serialized in the `properties` wire field. */
+    /**
+     * Optional object value serialized in the `properties` wire field.
+     */
     val properties: Map<String, Any>? = null,
-    /** Optional array value serialized in the `required` wire field. */
-    val required: List<String>? = null,
+    /**
+     * Optional array value serialized in the `required` wire field.
+     */
+    val required: List<String>? = null
 ) {
     @field:com.fasterxml.jackson.annotation.JsonAnySetter
     @get:com.fasterxml.jackson.annotation.JsonAnyGetter
@@ -361,415 +319,302 @@ data class BetaManagedAgentsCustomToolInputSchema(
 }
 
 /**
- * A custom tool that is executed by the API client rather than the agent. When the agent calls this
- * tool, an `agent.custom_tool_use` event is emitted and the session goes idle, waiting for the
- * client to provide the result via a `user.custom_tool_result` event.
+ * A custom tool that is executed by the API client rather than the agent. When the agent calls this tool, an `agent.custom_tool_use` event is emitted and the session goes idle, waiting for the client to provide the result via a `user.custom_tool_result` event.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsCustomToolParams(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsCustomToolParamsTypeEnum,
-    /** Unique name for the tool. 1-128 characters; letters, digits, underscores, and hyphens. */
+    /**
+     * Unique name for the tool. 1-128 characters; letters, digits, underscores, and hyphens.
+     */
     val name: String,
     /**
      * Description of what the tool does, shown to the agent to help it decide when to use the tool.
      */
     val description: String,
-    /** JSON Schema defining the expected input parameters for the tool. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_schema")
-    val inputSchema: BetaManagedAgentsCustomToolInputSchema,
+    /**
+     * JSON Schema defining the expected input parameters for the tool.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_schema") val inputSchema: BetaManagedAgentsCustomToolInputSchema
 ) : BetaManagedAgentsAgentToolParams
 
 /**
- * A deployment is a configured instance of an agent — it binds the agent to everything needed to
- * run it autonomously: an environment, credentials, initial events, and an optional schedule.
+ * A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
  */
 data class BetaManagedAgentsDeployment(
-    /** Required enumerated value serialized in the `type` wire field. */
-    val type: BetaManagedAgentsDeploymentTypeEnum,
-    /** Unique identifier for this deployment. */
-    val id: String,
-    /** Human-readable name. */
-    val name: String,
-    /** Description of what the deployment does. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Reference to the agent this deployment runs, resolved to a concrete version. */
-    val agent: BetaManagedAgentsAgentReference,
-    /** ID of the `environment` where sessions run. */
-    @com.fasterxml.jackson.annotation.JsonProperty("environment_id") val environmentId: String,
-    /** Vault IDs supplying stored credentials for sessions created from this deployment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("vault_ids") val vaultIds: List<String>,
-    /** Events sent to each session immediately after creation. */
-    @com.fasterxml.jackson.annotation.JsonProperty("initial_events")
-    val initialEvents: List<BetaManagedAgentsDeploymentInitialEvent>,
     /**
-     * Resources attached to sessions created from this deployment. Echoes the input minus
-     * write-only credentials.
+     * Required enumerated value serialized in the `type` wire field.
+     */
+    val type: BetaManagedAgentsDeploymentTypeEnum,
+    /**
+     * Unique identifier for this deployment.
+     */
+    val id: String,
+    /**
+     * Human-readable name.
+     */
+    val name: String,
+    /**
+     * Description of what the deployment does.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Reference to the agent this deployment runs, resolved to a concrete version.
+     */
+    val agent: BetaManagedAgentsAgentReference,
+    /**
+     * ID of the `environment` where sessions run.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("environment_id") val environmentId: String,
+    /**
+     * Vault IDs supplying stored credentials for sessions created from this deployment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("vault_ids") val vaultIds: List<String>,
+    /**
+     * Events sent to each session immediately after creation.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("initial_events") val initialEvents: List<BetaManagedAgentsDeploymentInitialEvent>,
+    /**
+     * Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
      */
     val resources: List<BetaManagedAgentsSessionResourceConfig>,
-    /** Arbitrary key-value metadata. Maximum 16 pairs. */
+    /**
+     * Arbitrary key-value metadata. Maximum 16 pairs.
+     */
     val metadata: Map<String, String>,
     /**
-     * Recurring cron schedule. Presence enables scheduled execution; null means manual-only.
-     * Includes computed timestamps (next fire times, last run) on the cron variant.
+     * Recurring cron schedule. Presence enables scheduled execution; null means manual-only. Includes computed timestamps (next fire times, last run) on the cron variant.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("schedule", required = true)
-    val schedule: BetaManagedAgentsSchedule?,
+    @com.fasterxml.jackson.annotation.JsonProperty("schedule", required = true) val schedule: BetaManagedAgentsSchedule?,
     /**
-     * Computed status of the deployment: `active` or `paused`. Archived deployments report `active`
-     * with `archived_at` set.
+     * Computed status of the deployment: `active` or `paused`. Archived deployments report `active` with `archived_at` set.
      */
     val status: BetaManagedAgentsDeploymentStatus,
     /**
      * Why the deployment is `paused`. Non-null exactly when `status` is `paused`; null otherwise.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("paused_reason", required = true)
-    val pausedReason: BetaManagedAgentsDeploymentPausedReason?,
-    /** Time the deployment was created. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
-    /** Time the deployment was last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: BetaTimestamp,
-    /** Time the deployment was archived. Null if not archived. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
-    val archivedAt: BetaTimestamp?,
+    @com.fasterxml.jackson.annotation.JsonProperty("paused_reason", required = true) val pausedReason: BetaManagedAgentsDeploymentPausedReason?,
     /**
-     * Spend ceiling stamped onto each session created from this deployment. Absent when no budget
-     * is set.
+     * Time the deployment was created.
      */
-    val budget: BetaManagedAgentsBudget? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
+    /**
+     * Time the deployment was last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: BetaTimestamp,
+    /**
+     * Time the deployment was archived. Null if not archived.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: BetaTimestamp?,
+    /**
+     * Spend ceiling stamped onto each session created from this deployment. Absent when no budget is set.
+     */
+    val budget: BetaManagedAgentsBudget? = null
 )
 
 /**
- * An event sent to a session immediately after it is created. Supports `user.message`,
- * `user.define_outcome`, and `system.message`.
+ * An event sent to a session immediately after it is created. Supports `user.message`, `user.define_outcome`, and `system.message`.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsDeploymentInitialEvent::class,
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsDeploymentInitialEvent::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsDeploymentUserMessageEvent::class,
-        name = "user.message",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsDeploymentUserDefineOutcomeEvent::class,
-        name = "user.define_outcome",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsDeploymentSystemMessageEvent::class,
-        name = "system.message",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsDeploymentUserMessageEvent::class, name = "user.message"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsDeploymentUserDefineOutcomeEvent::class, name = "user.define_outcome"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsDeploymentSystemMessageEvent::class, name = "system.message")
 )
 sealed interface BetaManagedAgentsDeploymentInitialEvent
 
-/**
- * A [BetaManagedAgentsDeploymentInitialEvent] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsDeploymentInitialEvent
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsDeploymentInitialEvent] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsDeploymentInitialEvent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsDeploymentInitialEvent {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * An event sent to a session immediately after it is created. Supports `user.message`,
- * `user.define_outcome`, and `system.message`.
+ * An event sent to a session immediately after it is created. Supports `user.message`, `user.define_outcome`, and `system.message`.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsDeploymentInitialEventParams::class,
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsDeploymentInitialEventParams::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsUserMessageEventParams::class,
-        name = "user.message",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsUserDefineOutcomeEventParams::class,
-        name = "user.define_outcome",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsSystemMessageEventParams::class,
-        name = "system.message",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserMessageEventParams::class, name = "user.message"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUserDefineOutcomeEventParams::class, name = "user.define_outcome"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSystemMessageEventParams::class, name = "system.message")
 )
 sealed interface BetaManagedAgentsDeploymentInitialEventParams
 
-/**
- * A [BetaManagedAgentsDeploymentInitialEventParams] whose `type` names no branch this SDK knows,
- * kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsDeploymentInitialEventParams
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsDeploymentInitialEventParams] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsDeploymentInitialEventParams @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsDeploymentInitialEventParams {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Why a deployment is paused. Non-null exactly when `status` is `paused`. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsDeploymentPausedReason::class,
-)
+/**
+ * Why a deployment is paused. Non-null exactly when `status` is `paused`.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsDeploymentPausedReason::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsManualDeploymentPausedReason::class,
-        name = "manual",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsErrorDeploymentPausedReason::class,
-        name = "error",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsManualDeploymentPausedReason::class, name = "manual"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsErrorDeploymentPausedReason::class, name = "error")
 )
 sealed interface BetaManagedAgentsDeploymentPausedReason
 
-/**
- * A [BetaManagedAgentsDeploymentPausedReason] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsDeploymentPausedReason
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsDeploymentPausedReason] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsDeploymentPausedReason @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsDeploymentPausedReason {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** The error that triggered an auto-pause. Matches the failed run's `error.type`. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaManagedAgentsDeploymentPausedReasonError::class,
-)
+/**
+ * The error that triggered an auto-pause. Matches the failed run's `error.type`.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsDeploymentPausedReasonError::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError::class,
-        name = "environment_archived_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsAgentArchivedDeploymentPausedReasonError::class,
-        name = "agent_archived_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError::class,
-        name = "environment_not_found_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError::class,
-        name = "vault_not_found_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsFileNotFoundDeploymentPausedReasonError::class,
-        name = "file_not_found_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError::class,
-        name = "session_resource_not_found_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError::class,
-        name = "workspace_archived_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError::class,
-        name = "organization_disabled_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError::class,
-        name = "memory_store_archived_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError::class,
-        name = "skill_not_found_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsVaultArchivedDeploymentPausedReasonError::class,
-        name = "vault_archived_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsUnknownDeploymentPausedReasonError::class,
-        name = "unknown_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausX02929e4765::class,
-        name = "self_hosted_resources_unsupported_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError::class,
-        name = "mcp_egress_blocked_error",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError::class, name = "environment_archived_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsAgentArchivedDeploymentPausedReasonError::class, name = "agent_archived_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError::class, name = "environment_not_found_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError::class, name = "vault_not_found_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsFileNotFoundDeploymentPausedReasonError::class, name = "file_not_found_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError::class, name = "session_resource_not_found_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError::class, name = "workspace_archived_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError::class, name = "organization_disabled_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError::class, name = "memory_store_archived_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError::class, name = "skill_not_found_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsVaultArchivedDeploymentPausedReasonError::class, name = "vault_archived_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsUnknownDeploymentPausedReasonError::class, name = "unknown_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausX02929e4765::class, name = "self_hosted_resources_unsupported_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError::class, name = "mcp_egress_blocked_error")
 )
 sealed interface BetaManagedAgentsDeploymentPausedReasonError
 
-/**
- * A [BetaManagedAgentsDeploymentPausedReasonError] whose `type` names no branch this SDK knows,
- * kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaManagedAgentsDeploymentPausedReasonError
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaManagedAgentsDeploymentPausedReasonError] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaManagedAgentsDeploymentPausedReasonError @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaManagedAgentsDeploymentPausedReasonError {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * A persistent, append-only record of a single deployment execution. Records session creation
- * success or failure — no session lifecycle tracking.
+ * A persistent, append-only record of a single deployment execution. Records session creation success or failure — no session lifecycle tracking.
  */
 data class BetaManagedAgentsDeploymentRun(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsDeploymentRunTypeEnum,
-    /** Unique identifier for this run (`drun_...`). */
+    /**
+     * Unique identifier for this run (`drun_...`).
+     */
     val id: String,
-    /** ID of the deployment that produced this run. */
+    /**
+     * ID of the deployment that produced this run.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("deployment_id") val deploymentId: String,
-    /** What triggered this run and trigger-specific metadata. */
-    @com.fasterxml.jackson.annotation.JsonProperty("trigger_context")
-    val triggerContext: BetaManagedAgentsTriggerContext,
     /**
-     * Populated on success. Null on creation failure. Exactly one of `session_id` or `error` is
-     * non-null.
+     * What triggered this run and trigger-specific metadata.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("session_id", required = true)
-    val sessionId: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("trigger_context") val triggerContext: BetaManagedAgentsTriggerContext,
     /**
-     * Populated on creation failure. Null on success. Exactly one of `session_id` or `error` is
-     * non-null.
+     * Populated on success. Null on creation failure. Exactly one of `session_id` or `error` is non-null.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("error", required = true)
-    val error: BetaManagedAgentsRunError?,
+    @com.fasterxml.jackson.annotation.JsonProperty("session_id", required = true) val sessionId: String?,
+    /**
+     * Populated on creation failure. Null on success. Exactly one of `session_id` or `error` is non-null.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("error", required = true) val error: BetaManagedAgentsRunError?,
     /**
      * Snapshot of the agent at fire time. Always fully resolved — deployments pin agent + version.
      */
     val agent: BetaManagedAgentsAgentReference,
-    /** Time this run record was persisted. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
+    /**
+     * Time this run record was persisted.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp
 )
 
 /**
- * Privileged context for the accompanying turn and all subsequent turns, appended to the session's
- * system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+ * Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsDeploymentSystemMessageEvent(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsDeploymentSystemMessageEventTypeEnum,
-    /** System content blocks to append. Text-only. */
-    val content: List<BetaManagedAgentsSystemContentBlock>,
+    /**
+     * System content blocks to append. Text-only.
+     */
+    val content: List<BetaManagedAgentsSystemContentBlock>
 ) : BetaManagedAgentsDeploymentInitialEvent
 
-/** An outcome the agent should work toward. The agent begins work on receipt. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * An outcome the agent should work toward. The agent begins work on receipt.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsDeploymentUserDefineOutcomeEvent(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsDeploymentUserDefineOutcomeEventTypeEnum,
-    /** What the agent should produce. This is the task specification. */
+    /**
+     * What the agent should produce. This is the task specification.
+     */
     val description: String,
-    /** How to grade the outcome. Text or file reference. */
+    /**
+     * How to grade the outcome. Text or file reference.
+     */
     val rubric: BetaManagedAgentsRubric,
-    /** Eval→revision cycles before giving up. Default 3, max 20. */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_iterations") val maxIterations: Int? = null,
+    /**
+     * Eval→revision cycles before giving up. Default 3, max 20.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_iterations") val maxIterations: Int? = null
 ) : BetaManagedAgentsDeploymentInitialEvent
 
-/** A user message sent to the session. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * A user message sent to the session.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsDeploymentUserMessageEvent(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsDeploymentUserMessageEventTypeEnum,
-    /** Array of content blocks for the user message. */
-    val content: List<BetaManagedAgentsUserContentBlock>,
+    /**
+     * Array of content blocks for the user message.
+     */
+    val content: List<BetaManagedAgentsUserContentBlock>
 ) : BetaManagedAgentsDeploymentInitialEvent
 
 /**
  * Document content, either specified directly as base64 data, as text, or as a reference via a URL.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaManagedAgentsDocumentBlock(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: BetaManagedAgentsDocumentBlockTypeEnum,
-    /** The source of the document data. */
+    /**
+     * The source of the document data.
+     */
     val source: BetaManagedAgentsDocumentSource,
-    /** The title of the document. */
+    /**
+     * The title of the document.
+     */
     val title: String? = null,
-    /** Additional context about the document for the model. */
-    val context: String? = null,
+    /**
+     * Additional context about the document for the model.
+     */
+    val context: String? = null
 ) : BetaManagedAgentsToolResultContentBlock, BetaManagedAgentsUserContentBlock

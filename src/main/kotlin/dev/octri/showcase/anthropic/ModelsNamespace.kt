@@ -3,40 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class ModelsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * List available models. The Models API response can be used to determine which models are
-     * available for use in the API. More recently released models are listed first.
+     * List available models. The Models API response can be used to determine which models are available for use in the API. More recently released models are listed first.
      */
-    fun list(
-        request: dev.octri.showcase.anthropic.methods.Models.ListModelsRequest,
-        options: RequestOptions? = null,
-    ): ListResponseModelInfo {
-        return dev.octri.showcase.anthropic.methods.Models.listModels(
-            clientConfig,
-            request,
-            options,
-        )
+    fun list(request: dev.octri.showcase.anthropic.methods.Models.ListModelsRequest, options: RequestOptions? = null): ListResponseModelInfo {
+        return dev.octri.showcase.anthropic.methods.Models.listModels(clientConfig, request, options)
     }
 
     /**
-     * Get a specific model. The Models API response can be used to determine information about a
-     * specific model or resolve a model alias to a model ID.
+     * Get a specific model. The Models API response can be used to determine information about a specific model or resolve a model alias to a model ID.
      */
-    fun retrieve(
-        modelId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): ModelInfo {
-        return dev.octri.showcase.anthropic.methods.Models.retrieveModels(
-            clientConfig,
-            modelId,
-            anthropicVersion,
-            anthropicBeta,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun retrieve(modelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ModelInfo {
+        return dev.octri.showcase.anthropic.methods.Models.retrieveModels(clientConfig, modelId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
     }
+
 }

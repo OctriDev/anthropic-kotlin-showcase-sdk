@@ -4,115 +4,82 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * How the model should use the provided tools. The model can use a specific tool, any available
- * tool, decide by itself, or not use tools at all.
+ * How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownToolChoice::class,
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownToolChoice::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = ToolChoiceAuto::class,
-        name = "auto",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ToolChoiceAuto::class, name = "auto"),
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ToolChoiceAny::class, name = "any"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = ToolChoiceTool::class,
-        name = "tool",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = ToolChoiceNone::class,
-        name = "none",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ToolChoiceTool::class, name = "tool"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ToolChoiceNone::class, name = "none")
 )
 sealed interface ToolChoice
 
 /** A [ToolChoice] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownToolChoice
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownToolChoice @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : ToolChoice {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** The model will use any available tools. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * The model will use any available tools.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ToolChoiceAny(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: ToolChoiceAnyTypeEnum,
     /**
-     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will
-     * output exactly one tool use.
+     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will output exactly one tool use.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use")
-    val disableParallelToolUse: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use") val disableParallelToolUse: Boolean? = null
 ) : ToolChoice
 
-/** The model will automatically decide whether to use tools. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * The model will automatically decide whether to use tools.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ToolChoiceAuto(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: ToolChoiceAutoTypeEnum,
     /**
-     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will
-     * output at most one tool use.
+     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will output at most one tool use.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use")
-    val disableParallelToolUse: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use") val disableParallelToolUse: Boolean? = null
 ) : ToolChoice
 
-/** The model will not be allowed to use tools. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * The model will not be allowed to use tools.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ToolChoiceNone(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: ToolChoiceNoneTypeEnum
 ) : ToolChoice
 
-/** The model will use the specified tool with `tool_choice.name`. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * The model will use the specified tool with `tool_choice.name`.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ToolChoiceTool(
-    /** The name of the tool to use. */
+    /**
+     * The name of the tool to use.
+     */
     val name: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: ToolChoiceToolTypeEnum,
     /**
-     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will
-     * output exactly one tool use.
+     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will output exactly one tool use.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use")
-    val disableParallelToolUse: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use") val disableParallelToolUse: Boolean? = null
 ) : ToolChoice

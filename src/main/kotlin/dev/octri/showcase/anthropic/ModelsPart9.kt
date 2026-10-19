@@ -3,80 +3,55 @@
 
 package dev.octri.showcase.anthropic
 
-typealias BetaWebhookDeploymentArchivedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentArchivedEventDataTypeEnum
+typealias BetaWebhookDeploymentArchivedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentArchivedEventDataTypeEnum
 
-typealias BetaWebhookDeploymentCreatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentCreatedEventData
+typealias BetaWebhookDeploymentCreatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentCreatedEventData
 
-typealias BetaWebhookDeploymentCreatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentCreatedEventDataTypeEnum
+typealias BetaWebhookDeploymentCreatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentCreatedEventDataTypeEnum
 
-typealias BetaWebhookDeploymentDeletedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentDeletedEventData
+typealias BetaWebhookDeploymentDeletedEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentDeletedEventData
 
-typealias BetaWebhookDeploymentDeletedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentDeletedEventDataTypeEnum
+typealias BetaWebhookDeploymentDeletedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentDeletedEventDataTypeEnum
 
-typealias BetaWebhookDeploymentPausedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentPausedEventData
+typealias BetaWebhookDeploymentPausedEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentPausedEventData
 
-typealias BetaWebhookDeploymentPausedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentPausedEventDataTypeEnum
+typealias BetaWebhookDeploymentPausedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentPausedEventDataTypeEnum
 
-typealias BetaWebhookDeploymentRunFailedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunFailedEventData
+typealias BetaWebhookDeploymentRunFailedEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunFailedEventData
 
-typealias BetaWebhookDeploymentRunFailedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunFailedEventDataTypeEnum
+typealias BetaWebhookDeploymentRunFailedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunFailedEventDataTypeEnum
 
-typealias BetaWebhookDeploymentRunStartedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunStartedEventData
+typealias BetaWebhookDeploymentRunStartedEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunStartedEventData
 
-typealias BetaWebhookDeploymentRunStartedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunStartedEventDataTypeEnum
+typealias BetaWebhookDeploymentRunStartedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunStartedEventDataTypeEnum
 
-typealias BetaWebhookDeploymentRunSucceededEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunSucceededEventData
+typealias BetaWebhookDeploymentRunSucceededEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunSucceededEventData
 
-typealias BetaWebhookDeploymentRunSucceededEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunSucceededEventDataTypeEnum
+typealias BetaWebhookDeploymentRunSucceededEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentRunSucceededEventDataTypeEnum
 
-typealias BetaWebhookDeploymentUnpausedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUnpausedEventData
+typealias BetaWebhookDeploymentUnpausedEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUnpausedEventData
 
-typealias BetaWebhookDeploymentUnpausedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUnpausedEventDataTypeEnum
+typealias BetaWebhookDeploymentUnpausedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUnpausedEventDataTypeEnum
 
-typealias BetaWebhookDeploymentUpdatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUpdatedEventData
+typealias BetaWebhookDeploymentUpdatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUpdatedEventData
 
-typealias BetaWebhookDeploymentUpdatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUpdatedEventDataTypeEnum
+typealias BetaWebhookDeploymentUpdatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookDeploymentUpdatedEventDataTypeEnum
 
-typealias BetaWebhookEnvironmentArchivedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentArchivedEventData
+typealias BetaWebhookEnvironmentArchivedEventData = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentArchivedEventData
 
-typealias BetaWebhookEnvironmentArchivedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentArchivedEventDataTypeEnum
+typealias BetaWebhookEnvironmentArchivedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentArchivedEventDataTypeEnum
 
-typealias BetaWebhookEnvironmentCreatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentCreatedEventData
+typealias BetaWebhookEnvironmentCreatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentCreatedEventData
 
-typealias BetaWebhookEnvironmentCreatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentCreatedEventDataTypeEnum
+typealias BetaWebhookEnvironmentCreatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentCreatedEventDataTypeEnum
 
-typealias BetaWebhookEnvironmentDeletedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentDeletedEventData
+typealias BetaWebhookEnvironmentDeletedEventData = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentDeletedEventData
 
-typealias BetaWebhookEnvironmentDeletedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentDeletedEventDataTypeEnum
+typealias BetaWebhookEnvironmentDeletedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentDeletedEventDataTypeEnum
 
-typealias BetaWebhookEnvironmentUpdatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentUpdatedEventData
+typealias BetaWebhookEnvironmentUpdatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentUpdatedEventData
 
-typealias BetaWebhookEnvironmentUpdatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentUpdatedEventDataTypeEnum
+typealias BetaWebhookEnvironmentUpdatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookEnvironmentUpdatedEventDataTypeEnum
 
 typealias BetaWebhookEvent = dev.octri.showcase.anthropic.models.BetaWebhookEvent
 
@@ -84,197 +59,135 @@ typealias BetaWebhookEventData = dev.octri.showcase.anthropic.models.BetaWebhook
 
 typealias BetaWebhookEventTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookEventTypeEnum
 
-typealias BetaWebhookMemoryStoreArchivedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreArchivedEventData
+typealias BetaWebhookMemoryStoreArchivedEventData = dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreArchivedEventData
 
-typealias BetaWebhookMemoryStoreArchivedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreArchivedEventDataTypeEnum
+typealias BetaWebhookMemoryStoreArchivedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreArchivedEventDataTypeEnum
 
-typealias BetaWebhookMemoryStoreCreatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreCreatedEventData
+typealias BetaWebhookMemoryStoreCreatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreCreatedEventData
 
-typealias BetaWebhookMemoryStoreCreatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreCreatedEventDataTypeEnum
+typealias BetaWebhookMemoryStoreCreatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreCreatedEventDataTypeEnum
 
-typealias BetaWebhookMemoryStoreDeletedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreDeletedEventData
+typealias BetaWebhookMemoryStoreDeletedEventData = dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreDeletedEventData
 
-typealias BetaWebhookMemoryStoreDeletedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreDeletedEventDataTypeEnum
+typealias BetaWebhookMemoryStoreDeletedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookMemoryStoreDeletedEventDataTypeEnum
 
-typealias BetaWebhookSessionArchivedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionArchivedEventData
+typealias BetaWebhookSessionArchivedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionArchivedEventData
 
-typealias BetaWebhookSessionArchivedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionArchivedEventDataTypeEnum
+typealias BetaWebhookSessionArchivedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionArchivedEventDataTypeEnum
 
-typealias BetaWebhookSessionBudgetReachedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionBudgetReachedEventData
+typealias BetaWebhookSessionBudgetReachedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionBudgetReachedEventData
 
-typealias BetaWebhookSessionBudgetReachedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionBudgetReachedEventDataTypeEnum
+typealias BetaWebhookSessionBudgetReachedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionBudgetReachedEventDataTypeEnum
 
-typealias BetaWebhookSessionCreatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionCreatedEventData
+typealias BetaWebhookSessionCreatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionCreatedEventData
 
-typealias BetaWebhookSessionCreatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionCreatedEventDataTypeEnum
+typealias BetaWebhookSessionCreatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionCreatedEventDataTypeEnum
 
-typealias BetaWebhookSessionDeletedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionDeletedEventData
+typealias BetaWebhookSessionDeletedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionDeletedEventData
 
-typealias BetaWebhookSessionDeletedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionDeletedEventDataTypeEnum
+typealias BetaWebhookSessionDeletedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionDeletedEventDataTypeEnum
 
-typealias BetaWebhookSessionIdledEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionIdledEventData
+typealias BetaWebhookSessionIdledEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionIdledEventData
 
-typealias BetaWebhookSessionIdledEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionIdledEventDataTypeEnum
+typealias BetaWebhookSessionIdledEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionIdledEventDataTypeEnum
 
-typealias BetaWebhookSessionOutcomeEvaluationEndedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionOutcomeEvaluationEndedEventData
+typealias BetaWebhookSessionOutcomeEvaluationEndedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionOutcomeEvaluationEndedEventData
 
-typealias BetaWebhookSessionOutcomeEvaluationEndedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionOutcomeEvaluationEndedEventDataTypeEnum
+typealias BetaWebhookSessionOutcomeEvaluationEndedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionOutcomeEvaluationEndedEventDataTypeEnum
 
-typealias BetaWebhookSessionPendingEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionPendingEventData
+typealias BetaWebhookSessionPendingEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionPendingEventData
 
-typealias BetaWebhookSessionPendingEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionPendingEventDataTypeEnum
+typealias BetaWebhookSessionPendingEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionPendingEventDataTypeEnum
 
-typealias BetaWebhookSessionRequiresActionEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionRequiresActionEventData
+typealias BetaWebhookSessionRequiresActionEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionRequiresActionEventData
 
-typealias BetaWebhookSessionRequiresActionEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionRequiresActionEventDataTypeEnum
+typealias BetaWebhookSessionRequiresActionEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionRequiresActionEventDataTypeEnum
 
-typealias BetaWebhookSessionRunningEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionRunningEventData
+typealias BetaWebhookSessionRunningEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionRunningEventData
 
-typealias BetaWebhookSessionRunningEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionRunningEventDataTypeEnum
+typealias BetaWebhookSessionRunningEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionRunningEventDataTypeEnum
 
-typealias BetaWebhookSessionStatusIdledEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusIdledEventData
+typealias BetaWebhookSessionStatusIdledEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusIdledEventData
 
-typealias BetaWebhookSessionStatusIdledEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusIdledEventDataTypeEnum
+typealias BetaWebhookSessionStatusIdledEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusIdledEventDataTypeEnum
 
-typealias BetaWebhookSessionStatusRescheduledEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRescheduledEventData
+typealias BetaWebhookSessionStatusRescheduledEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRescheduledEventData
 
-typealias BetaWebhookSessionStatusRescheduledEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRescheduledEventDataTypeEnum
+typealias BetaWebhookSessionStatusRescheduledEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRescheduledEventDataTypeEnum
 
-typealias BetaWebhookSessionStatusRunStartedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRunStartedEventData
+typealias BetaWebhookSessionStatusRunStartedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRunStartedEventData
 
-typealias BetaWebhookSessionStatusRunStartedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRunStartedEventDataTypeEnum
+typealias BetaWebhookSessionStatusRunStartedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusRunStartedEventDataTypeEnum
 
-typealias BetaWebhookSessionStatusTerminatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusTerminatedEventData
+typealias BetaWebhookSessionStatusTerminatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusTerminatedEventData
 
-typealias BetaWebhookSessionStatusTerminatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusTerminatedEventDataTypeEnum
+typealias BetaWebhookSessionStatusTerminatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionStatusTerminatedEventDataTypeEnum
 
-typealias BetaWebhookSessionThreadCreatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadCreatedEventData
+typealias BetaWebhookSessionThreadCreatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadCreatedEventData
 
-typealias BetaWebhookSessionThreadCreatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadCreatedEventDataTypeEnum
+typealias BetaWebhookSessionThreadCreatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadCreatedEventDataTypeEnum
 
-typealias BetaWebhookSessionThreadIdledEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadIdledEventData
+typealias BetaWebhookSessionThreadIdledEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadIdledEventData
 
-typealias BetaWebhookSessionThreadIdledEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadIdledEventDataTypeEnum
+typealias BetaWebhookSessionThreadIdledEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadIdledEventDataTypeEnum
 
-typealias BetaWebhookSessionThreadTerminatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadTerminatedEventData
+typealias BetaWebhookSessionThreadTerminatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadTerminatedEventData
 
-typealias BetaWebhookSessionThreadTerminatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadTerminatedEventDataTypeEnum
+typealias BetaWebhookSessionThreadTerminatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionThreadTerminatedEventDataTypeEnum
 
-typealias BetaWebhookSessionUpdatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionUpdatedEventData
+typealias BetaWebhookSessionUpdatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookSessionUpdatedEventData
 
-typealias BetaWebhookSessionUpdatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookSessionUpdatedEventDataTypeEnum
+typealias BetaWebhookSessionUpdatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookSessionUpdatedEventDataTypeEnum
 
-typealias BetaWebhookVaultArchivedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultArchivedEventData
+typealias BetaWebhookVaultArchivedEventData = dev.octri.showcase.anthropic.models.BetaWebhookVaultArchivedEventData
 
-typealias BetaWebhookVaultArchivedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultArchivedEventDataTypeEnum
+typealias BetaWebhookVaultArchivedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookVaultArchivedEventDataTypeEnum
 
-typealias BetaWebhookVaultCreatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCreatedEventData
+typealias BetaWebhookVaultCreatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookVaultCreatedEventData
 
-typealias BetaWebhookVaultCreatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCreatedEventDataTypeEnum
+typealias BetaWebhookVaultCreatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookVaultCreatedEventDataTypeEnum
 
-typealias BetaWebhookVaultCredentialArchivedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialArchivedEventData
+typealias BetaWebhookVaultCredentialArchivedEventData = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialArchivedEventData
 
-typealias BetaWebhookVaultCredentialArchivedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialArchivedEventDataTypeEnum
+typealias BetaWebhookVaultCredentialArchivedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialArchivedEventDataTypeEnum
 
-typealias BetaWebhookVaultCredentialCreatedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialCreatedEventData
+typealias BetaWebhookVaultCredentialCreatedEventData = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialCreatedEventData
 
-typealias BetaWebhookVaultCredentialCreatedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialCreatedEventDataTypeEnum
+typealias BetaWebhookVaultCredentialCreatedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialCreatedEventDataTypeEnum
 
-typealias BetaWebhookVaultCredentialDeletedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialDeletedEventData
+typealias BetaWebhookVaultCredentialDeletedEventData = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialDeletedEventData
 
-typealias BetaWebhookVaultCredentialDeletedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialDeletedEventDataTypeEnum
+typealias BetaWebhookVaultCredentialDeletedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialDeletedEventDataTypeEnum
 
-typealias BetaWebhookVaultCredentialRefreshFailedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialRefreshFailedEventData
+typealias BetaWebhookVaultCredentialRefreshFailedEventData = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialRefreshFailedEventData
 
-typealias BetaWebhookVaultCredentialRefreshFailedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialRefreshFailedEventDataTypeEnum
+typealias BetaWebhookVaultCredentialRefreshFailedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookVaultCredentialRefreshFailedEventDataTypeEnum
 
-typealias BetaWebhookVaultDeletedEventData =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultDeletedEventData
+typealias BetaWebhookVaultDeletedEventData = dev.octri.showcase.anthropic.models.BetaWebhookVaultDeletedEventData
 
-typealias BetaWebhookVaultDeletedEventDataTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebhookVaultDeletedEventDataTypeEnum
+typealias BetaWebhookVaultDeletedEventDataTypeEnum = dev.octri.showcase.anthropic.models.BetaWebhookVaultDeletedEventDataTypeEnum
 
 typealias BetaWebSearchTool20250305 = dev.octri.showcase.anthropic.models.BetaWebSearchTool20250305
 
-typealias BetaWebSearchTool20250305NameEnum =
-    dev.octri.showcase.anthropic.models.BetaWebSearchTool20250305NameEnum
+typealias BetaWebSearchTool20250305NameEnum = dev.octri.showcase.anthropic.models.BetaWebSearchTool20250305NameEnum
 
-typealias BetaWebSearchTool20250305TypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebSearchTool20250305TypeEnum
+typealias BetaWebSearchTool20250305TypeEnum = dev.octri.showcase.anthropic.models.BetaWebSearchTool20250305TypeEnum
 
 typealias BetaWebSearchTool20260209 = dev.octri.showcase.anthropic.models.BetaWebSearchTool20260209
 
-typealias BetaWebSearchTool20260209NameEnum =
-    dev.octri.showcase.anthropic.models.BetaWebSearchTool20260209NameEnum
+typealias BetaWebSearchTool20260209NameEnum = dev.octri.showcase.anthropic.models.BetaWebSearchTool20260209NameEnum
 
-typealias BetaWebSearchTool20260209TypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebSearchTool20260209TypeEnum
+typealias BetaWebSearchTool20260209TypeEnum = dev.octri.showcase.anthropic.models.BetaWebSearchTool20260209TypeEnum
 
 typealias BetaWebSearchTool20260318 = dev.octri.showcase.anthropic.models.BetaWebSearchTool20260318
 
-typealias BetaWebSearchTool20260318NameEnum =
-    dev.octri.showcase.anthropic.models.BetaWebSearchTool20260318NameEnum
+typealias BetaWebSearchTool20260318NameEnum = dev.octri.showcase.anthropic.models.BetaWebSearchTool20260318NameEnum
 
-typealias BetaWebSearchTool20260318ResponseInclusionEnum =
-    dev.octri.showcase.anthropic.models.BetaWebSearchTool20260318ResponseInclusionEnum
+typealias BetaWebSearchTool20260318ResponseInclusionEnum = dev.octri.showcase.anthropic.models.BetaWebSearchTool20260318ResponseInclusionEnum
 
-typealias BetaWebSearchTool20260318TypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWebSearchTool20260318TypeEnum
+typealias BetaWebSearchTool20260318TypeEnum = dev.octri.showcase.anthropic.models.BetaWebSearchTool20260318TypeEnum
 
-typealias BetaWebSearchToolResultErrorCode =
-    dev.octri.showcase.anthropic.models.BetaWebSearchToolResultErrorCode
+typealias BetaWebSearchToolResultErrorCode = dev.octri.showcase.anthropic.models.BetaWebSearchToolResultErrorCode
 
 typealias BetaWorkspace = dev.octri.showcase.anthropic.models.BetaWorkspace
 
@@ -284,22 +197,17 @@ typealias BetaWorkspaceGeo = dev.octri.showcase.anthropic.models.BetaWorkspaceGe
 
 typealias BetaWorkspaceMemberSchema = dev.octri.showcase.anthropic.models.BetaWorkspaceMemberSchema
 
-typealias BetaWorkspaceMemberSchemaTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWorkspaceMemberSchemaTypeEnum
+typealias BetaWorkspaceMemberSchemaTypeEnum = dev.octri.showcase.anthropic.models.BetaWorkspaceMemberSchemaTypeEnum
 
 typealias BetaWorkspaceRateLimit = dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimit
 
-typealias BetaWorkspaceRateLimitGroupTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitGroupTypeEnum
+typealias BetaWorkspaceRateLimitGroupTypeEnum = dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitGroupTypeEnum
 
-typealias BetaWorkspaceRateLimitListResponse =
-    dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitListResponse
+typealias BetaWorkspaceRateLimitListResponse = dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitListResponse
 
-typealias BetaWorkspaceRateLimitTypeEnum =
-    dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitTypeEnum
+typealias BetaWorkspaceRateLimitTypeEnum = dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitTypeEnum
 
-typealias BetaWorkspaceRateLimitValue =
-    dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitValue
+typealias BetaWorkspaceRateLimitValue = dev.octri.showcase.anthropic.models.BetaWorkspaceRateLimitValue
 
 typealias BetaWorkspaceRoleSchema = dev.octri.showcase.anthropic.models.BetaWorkspaceRoleSchema
 
@@ -311,11 +219,9 @@ typealias BillingError = dev.octri.showcase.anthropic.models.BillingError
 
 typealias BillingErrorTypeEnum = dev.octri.showcase.anthropic.models.BillingErrorTypeEnum
 
-typealias BodyCreateSkillV1SkillsPost =
-    dev.octri.showcase.anthropic.models.BodyCreateSkillV1SkillsPost
+typealias BodyCreateSkillV1SkillsPost = dev.octri.showcase.anthropic.models.BodyCreateSkillV1SkillsPost
 
-typealias BodyCreateSkillVersionV1SkillsSkillIdVersionsPost =
-    dev.octri.showcase.anthropic.models.BodyCreateSkillVersionV1SkillsSkillIdVersionsPost
+typealias BodyCreateSkillVersionV1SkillsSkillIdVersionsPost = dev.octri.showcase.anthropic.models.BodyCreateSkillVersionV1SkillsSkillIdVersionsPost
 
 typealias BrowserCloseTabConfig = dev.octri.showcase.anthropic.models.BrowserCloseTabConfig
 
@@ -333,18 +239,15 @@ typealias BrowserHoldKeyConfig = dev.octri.showcase.anthropic.models.BrowserHold
 
 typealias BrowserHoverConfig = dev.octri.showcase.anthropic.models.BrowserHoverConfig
 
-typealias BrowserJavascriptExecConfig =
-    dev.octri.showcase.anthropic.models.BrowserJavascriptExecConfig
+typealias BrowserJavascriptExecConfig = dev.octri.showcase.anthropic.models.BrowserJavascriptExecConfig
 
 typealias BrowserKeyConfig = dev.octri.showcase.anthropic.models.BrowserKeyConfig
 
 typealias BrowserLeftClickConfig = dev.octri.showcase.anthropic.models.BrowserLeftClickConfig
 
-typealias BrowserLeftClickDragConfig =
-    dev.octri.showcase.anthropic.models.BrowserLeftClickDragConfig
+typealias BrowserLeftClickDragConfig = dev.octri.showcase.anthropic.models.BrowserLeftClickDragConfig
 
-typealias BrowserLeftMouseDownConfig =
-    dev.octri.showcase.anthropic.models.BrowserLeftMouseDownConfig
+typealias BrowserLeftMouseDownConfig = dev.octri.showcase.anthropic.models.BrowserLeftMouseDownConfig
 
 typealias BrowserLeftMouseUpConfig = dev.octri.showcase.anthropic.models.BrowserLeftMouseUpConfig
 
@@ -372,29 +275,21 @@ typealias BrowserScrollConfig = dev.octri.showcase.anthropic.models.BrowserScrol
 
 typealias BrowserScrollToConfig = dev.octri.showcase.anthropic.models.BrowserScrollToConfig
 
-typealias BrowserStateChangeDownloadCompleted =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadCompleted
+typealias BrowserStateChangeDownloadCompleted = dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadCompleted
 
-typealias BrowserStateChangeDownloadCompletedTypeEnum =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadCompletedTypeEnum
+typealias BrowserStateChangeDownloadCompletedTypeEnum = dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadCompletedTypeEnum
 
-typealias BrowserStateChangeDownloadFailed =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadFailed
+typealias BrowserStateChangeDownloadFailed = dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadFailed
 
-typealias BrowserStateChangeDownloadFailedTypeEnum =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadFailedTypeEnum
+typealias BrowserStateChangeDownloadFailedTypeEnum = dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadFailedTypeEnum
 
-typealias BrowserStateChangeDownloadStarted =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadStarted
+typealias BrowserStateChangeDownloadStarted = dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadStarted
 
-typealias BrowserStateChangeDownloadStartedTypeEnum =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadStartedTypeEnum
+typealias BrowserStateChangeDownloadStartedTypeEnum = dev.octri.showcase.anthropic.models.BrowserStateChangeDownloadStartedTypeEnum
 
-typealias BrowserStateChangeTabOpened =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeTabOpened
+typealias BrowserStateChangeTabOpened = dev.octri.showcase.anthropic.models.BrowserStateChangeTabOpened
 
-typealias BrowserStateChangeTabOpenedTypeEnum =
-    dev.octri.showcase.anthropic.models.BrowserStateChangeTabOpenedTypeEnum
+typealias BrowserStateChangeTabOpenedTypeEnum = dev.octri.showcase.anthropic.models.BrowserStateChangeTabOpenedTypeEnum
 
 typealias BrowserStateTabEntry = dev.octri.showcase.anthropic.models.BrowserStateTabEntry
 
@@ -402,8 +297,7 @@ typealias BrowserSwitchTabConfig = dev.octri.showcase.anthropic.models.BrowserSw
 
 typealias BrowserToolset20260801 = dev.octri.showcase.anthropic.models.BrowserToolset20260801
 
-typealias BrowserToolset20260801TypeEnum =
-    dev.octri.showcase.anthropic.models.BrowserToolset20260801TypeEnum
+typealias BrowserToolset20260801TypeEnum = dev.octri.showcase.anthropic.models.BrowserToolset20260801TypeEnum
 
 typealias BrowserToolsetConfigs = dev.octri.showcase.anthropic.models.BrowserToolsetConfigs
 
@@ -417,11 +311,9 @@ typealias BrowserZoomConfig = dev.octri.showcase.anthropic.models.BrowserZoomCon
 
 typealias CacheControlEphemeral = dev.octri.showcase.anthropic.models.CacheControlEphemeral
 
-typealias CacheControlEphemeralTtlEnum =
-    dev.octri.showcase.anthropic.models.CacheControlEphemeralTtlEnum
+typealias CacheControlEphemeralTtlEnum = dev.octri.showcase.anthropic.models.CacheControlEphemeralTtlEnum
 
-typealias CacheControlEphemeralTypeEnum =
-    dev.octri.showcase.anthropic.models.CacheControlEphemeralTypeEnum
+typealias CacheControlEphemeralTypeEnum = dev.octri.showcase.anthropic.models.CacheControlEphemeralTypeEnum
 
 typealias CacheCreation = dev.octri.showcase.anthropic.models.CacheCreation
 
@@ -439,48 +331,37 @@ typealias CitationsDeltaTypeEnum = dev.octri.showcase.anthropic.models.Citations
 
 typealias CodeExecutionTool20250522 = dev.octri.showcase.anthropic.models.CodeExecutionTool20250522
 
-typealias CodeExecutionTool20250522NameEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20250522NameEnum
+typealias CodeExecutionTool20250522NameEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20250522NameEnum
 
-typealias CodeExecutionTool20250522TypeEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20250522TypeEnum
+typealias CodeExecutionTool20250522TypeEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20250522TypeEnum
 
 typealias CodeExecutionTool20250825 = dev.octri.showcase.anthropic.models.CodeExecutionTool20250825
 
-typealias CodeExecutionTool20250825NameEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20250825NameEnum
+typealias CodeExecutionTool20250825NameEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20250825NameEnum
 
-typealias CodeExecutionTool20250825TypeEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20250825TypeEnum
+typealias CodeExecutionTool20250825TypeEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20250825TypeEnum
 
 typealias CodeExecutionTool20260120 = dev.octri.showcase.anthropic.models.CodeExecutionTool20260120
 
-typealias CodeExecutionTool20260120NameEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20260120NameEnum
+typealias CodeExecutionTool20260120NameEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20260120NameEnum
 
-typealias CodeExecutionTool20260120TypeEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20260120TypeEnum
+typealias CodeExecutionTool20260120TypeEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20260120TypeEnum
 
 typealias CodeExecutionTool20260521 = dev.octri.showcase.anthropic.models.CodeExecutionTool20260521
 
-typealias CodeExecutionTool20260521NameEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20260521NameEnum
+typealias CodeExecutionTool20260521NameEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20260521NameEnum
 
-typealias CodeExecutionTool20260521TypeEnum =
-    dev.octri.showcase.anthropic.models.CodeExecutionTool20260521TypeEnum
+typealias CodeExecutionTool20260521TypeEnum = dev.octri.showcase.anthropic.models.CodeExecutionTool20260521TypeEnum
 
-typealias CodeExecutionToolResultErrorCode =
-    dev.octri.showcase.anthropic.models.CodeExecutionToolResultErrorCode
+typealias CodeExecutionToolResultErrorCode = dev.octri.showcase.anthropic.models.CodeExecutionToolResultErrorCode
 
 typealias CompletionRequest = dev.octri.showcase.anthropic.models.CompletionRequest
 
 typealias CompletionResponse = dev.octri.showcase.anthropic.models.CompletionResponse
 
-typealias CompletionResponseTypeEnum =
-    dev.octri.showcase.anthropic.models.CompletionResponseTypeEnum
+typealias CompletionResponseTypeEnum = dev.octri.showcase.anthropic.models.CompletionResponseTypeEnum
 
-typealias ComputerCursorPositionConfig =
-    dev.octri.showcase.anthropic.models.ComputerCursorPositionConfig
+typealias ComputerCursorPositionConfig = dev.octri.showcase.anthropic.models.ComputerCursorPositionConfig
 
 typealias ComputerDoubleClickConfig = dev.octri.showcase.anthropic.models.ComputerDoubleClickConfig
 
@@ -490,11 +371,9 @@ typealias ComputerKeyConfig = dev.octri.showcase.anthropic.models.ComputerKeyCon
 
 typealias ComputerLeftClickConfig = dev.octri.showcase.anthropic.models.ComputerLeftClickConfig
 
-typealias ComputerLeftClickDragConfig =
-    dev.octri.showcase.anthropic.models.ComputerLeftClickDragConfig
+typealias ComputerLeftClickDragConfig = dev.octri.showcase.anthropic.models.ComputerLeftClickDragConfig
 
-typealias ComputerLeftMouseDownConfig =
-    dev.octri.showcase.anthropic.models.ComputerLeftMouseDownConfig
+typealias ComputerLeftMouseDownConfig = dev.octri.showcase.anthropic.models.ComputerLeftMouseDownConfig
 
 typealias ComputerLeftMouseUpConfig = dev.octri.showcase.anthropic.models.ComputerLeftMouseUpConfig
 
@@ -510,8 +389,7 @@ typealias ComputerScrollConfig = dev.octri.showcase.anthropic.models.ComputerScr
 
 typealias ComputerToolset20260801 = dev.octri.showcase.anthropic.models.ComputerToolset20260801
 
-typealias ComputerToolset20260801TypeEnum =
-    dev.octri.showcase.anthropic.models.ComputerToolset20260801TypeEnum
+typealias ComputerToolset20260801TypeEnum = dev.octri.showcase.anthropic.models.ComputerToolset20260801TypeEnum
 
 typealias ComputerToolsetConfigs = dev.octri.showcase.anthropic.models.ComputerToolsetConfigs
 
@@ -535,34 +413,26 @@ typealias ContentBlock = dev.octri.showcase.anthropic.models.ContentBlock
 
 typealias ContentBlockDeltaEvent = dev.octri.showcase.anthropic.models.ContentBlockDeltaEvent
 
-typealias ContentBlockDeltaEventDelta =
-    dev.octri.showcase.anthropic.models.ContentBlockDeltaEventDelta
+typealias ContentBlockDeltaEventDelta = dev.octri.showcase.anthropic.models.ContentBlockDeltaEventDelta
 
-typealias ContentBlockDeltaEventTypeEnum =
-    dev.octri.showcase.anthropic.models.ContentBlockDeltaEventTypeEnum
+typealias ContentBlockDeltaEventTypeEnum = dev.octri.showcase.anthropic.models.ContentBlockDeltaEventTypeEnum
 
 typealias ContentBlockSource = dev.octri.showcase.anthropic.models.ContentBlockSource
 
-typealias ContentBlockSourceContentItem =
-    dev.octri.showcase.anthropic.models.ContentBlockSourceContentItem
+typealias ContentBlockSourceContentItem = dev.octri.showcase.anthropic.models.ContentBlockSourceContentItem
 
-typealias ContentBlockSourceTypeEnum =
-    dev.octri.showcase.anthropic.models.ContentBlockSourceTypeEnum
+typealias ContentBlockSourceTypeEnum = dev.octri.showcase.anthropic.models.ContentBlockSourceTypeEnum
 
 typealias ContentBlockStartEvent = dev.octri.showcase.anthropic.models.ContentBlockStartEvent
 
-typealias ContentBlockStartEventContentBlock =
-    dev.octri.showcase.anthropic.models.ContentBlockStartEventContentBlock
+typealias ContentBlockStartEventContentBlock = dev.octri.showcase.anthropic.models.ContentBlockStartEventContentBlock
 
-typealias ContentBlockStartEventTypeEnum =
-    dev.octri.showcase.anthropic.models.ContentBlockStartEventTypeEnum
+typealias ContentBlockStartEventTypeEnum = dev.octri.showcase.anthropic.models.ContentBlockStartEventTypeEnum
 
 typealias ContentBlockStopEvent = dev.octri.showcase.anthropic.models.ContentBlockStopEvent
 
-typealias ContentBlockStopEventTypeEnum =
-    dev.octri.showcase.anthropic.models.ContentBlockStopEventTypeEnum
+typealias ContentBlockStopEventTypeEnum = dev.octri.showcase.anthropic.models.ContentBlockStopEventTypeEnum
 
-typealias ContextManagementCapability =
-    dev.octri.showcase.anthropic.models.ContextManagementCapability
+typealias ContextManagementCapability = dev.octri.showcase.anthropic.models.ContextManagementCapability
 
 typealias CountMessageTokensParams = dev.octri.showcase.anthropic.models.CountMessageTokensParams

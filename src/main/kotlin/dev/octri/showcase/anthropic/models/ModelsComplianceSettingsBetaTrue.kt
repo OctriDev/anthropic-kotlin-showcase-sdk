@@ -3,151 +3,108 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaComplianceSettings` API schema. */
+/**
+ * Typed representation of the `BetaComplianceSettings` API schema.
+ */
 data class BetaComplianceSettings(
-    /** Whether the Compliance API is enabled for this organization. */
+    /**
+     * Whether the Compliance API is enabled for this organization.
+     */
     val state: BetaComplianceSettingsState,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaComplianceSettingsTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaComplianceSettingsTypeEnum
 )
 
-/** Whether the Compliance API is enabled for this organization. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaComplianceSettingsState::class,
-)
+/**
+ * Whether the Compliance API is enabled for this organization.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaComplianceSettingsState::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaComplianceSettingsStateEnabled::class,
-        name = "enabled",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaComplianceSettingsStateDisabled::class,
-        name = "disabled",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaComplianceSettingsStateEnabled::class, name = "enabled"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaComplianceSettingsStateDisabled::class, name = "disabled")
 )
 sealed interface BetaComplianceSettingsState
 
-/**
- * A [BetaComplianceSettingsState] whose `type` names no branch this SDK knows, kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaComplianceSettingsState
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaComplianceSettingsState] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaComplianceSettingsState @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaComplianceSettingsState {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaComplianceSettingsStateDisabled` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaComplianceSettingsStateDisabled` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaComplianceSettingsStateDisabled(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaComplianceSettingsStateDisabledTypeEnum
 ) : BetaComplianceSettingsState
 
-/** Typed representation of the `BetaComplianceSettingsStateDisabledParams` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaComplianceSettingsStateDisabledParams` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaComplianceSettingsStateDisabledParams(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaComplianceSettingsStateDisabledParamsTypeEnum
 ) : BetaComplianceSettingsUpdateParamsState
 
-/** Typed representation of the `BetaComplianceSettingsStateEnabled` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaComplianceSettingsStateEnabled` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaComplianceSettingsStateEnabled(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaComplianceSettingsStateEnabledTypeEnum
 ) : BetaComplianceSettingsState
 
-/** Typed representation of the `BetaComplianceSettingsStateEnabledParams` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaComplianceSettingsStateEnabledParams` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaComplianceSettingsStateEnabledParams(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaComplianceSettingsStateEnabledParamsTypeEnum
 ) : BetaComplianceSettingsUpdateParamsState
 
-/** Typed representation of the `BetaComplianceSettingsUpdateParams` API schema. */
+/**
+ * Typed representation of the `BetaComplianceSettingsUpdateParams` API schema.
+ */
 data class BetaComplianceSettingsUpdateParams(
     /**
-     * Desired state. Accepts the string shorthand "enabled" or "disabled" in place of the object
-     * form; the response always returns the canonical object form.
+     * Desired state. Accepts the string shorthand "enabled" or "disabled" in place of the object form; the response always returns the canonical object form.
      */
     val state: BetaComplianceSettingsUpdateParamsState
 )
 
 /**
- * Desired state. Accepts the string shorthand "enabled" or "disabled" in place of the object form;
- * the response always returns the canonical object form.
+ * Desired state. Accepts the string shorthand "enabled" or "disabled" in place of the object form; the response always returns the canonical object form.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaComplianceSettingsUpdateParamsState::class,
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaComplianceSettingsUpdateParamsState::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaComplianceSettingsStateEnabledParams::class,
-        name = "enabled",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaComplianceSettingsStateDisabledParams::class,
-        name = "disabled",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaComplianceSettingsStateEnabledParams::class, name = "enabled"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaComplianceSettingsStateDisabledParams::class, name = "disabled")
 )
 sealed interface BetaComplianceSettingsUpdateParamsState
 
-/**
- * A [BetaComplianceSettingsUpdateParamsState] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaComplianceSettingsUpdateParamsState
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaComplianceSettingsUpdateParamsState] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaComplianceSettingsUpdateParamsState @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaComplianceSettingsUpdateParamsState {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }

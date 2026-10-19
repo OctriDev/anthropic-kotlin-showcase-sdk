@@ -3,18 +3,26 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaServerToolUsage` API schema. */
+/**
+ * Typed representation of the `BetaServerToolUsage` API schema.
+ */
 data class BetaServerToolUsage(
-    /** The number of web fetch tool requests. */
+    /**
+     * The number of web fetch tool requests.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("web_fetch_requests") val webFetchRequests: Long,
-    /** The number of web search tool requests. */
-    @com.fasterxml.jackson.annotation.JsonProperty("web_search_requests")
-    val webSearchRequests: Long,
+    /**
+     * The number of web search tool requests.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("web_search_requests") val webSearchRequests: Long
 )
 
-/** Typed representation of the `BetaServerToolUse` API schema. */
+/**
+ * Typed representation of the `BetaServerToolUse` API schema.
+ */
 data class BetaServerToolUse(
-    /** The number of web search requests made. */
-    @com.fasterxml.jackson.annotation.JsonProperty("web_search_requests")
-    val webSearchRequests: Long
+    /**
+     * The number of web search requests made.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("web_search_requests") val webSearchRequests: Long
 )

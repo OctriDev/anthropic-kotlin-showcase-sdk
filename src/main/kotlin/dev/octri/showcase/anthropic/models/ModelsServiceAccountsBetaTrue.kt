@@ -3,35 +3,48 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaServiceAccountCreateParams` API schema. */
+/**
+ * Typed representation of the `BetaServiceAccountCreateParams` API schema.
+ */
 data class BetaServiceAccountCreateParams(
     /**
-     * Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate
-     * name returns 409.
+     * Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
      */
     val name: String,
-    /** Optional free-text description. */
+    /**
+     * Optional free-text description.
+     */
     val description: String? = null,
-    /** Org-level role. Defaults to `developer`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_role")
-    val organizationRole: BetaServiceAccountCreateParamsOrganizationRoleEnum? = null,
+    /**
+     * Org-level role. Defaults to `developer`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_role") val organizationRole: BetaServiceAccountCreateParamsOrganizationRoleEnum? = null
 )
 
-/** Typed representation of the `BetaServiceAccountListResponse` API schema. */
+/**
+ * Typed representation of the `BetaServiceAccountListResponse` API schema.
+ */
 data class BetaServiceAccountListResponse(
-    /** Required array value serialized in the `data` wire field. */
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaServiceAccount>,
-    /** Opaque cursor for the next page, or null if no more results. */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    /**
+     * Opaque cursor for the next page, or null if no more results.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )
 
-/** Typed representation of the `BetaServiceAccountWorkspaceMemberCreateParams` API schema. */
+/**
+ * Typed representation of the `BetaServiceAccountWorkspaceMemberCreateParams` API schema.
+ */
 data class BetaServiceAccountWorkspaceMemberCreateParams(
-    /** Tagged service account ID to add. */
-    @com.fasterxml.jackson.annotation.JsonProperty("service_account_id")
-    val serviceAccountId: String,
-    /** Role to assign to the service account in this workspace. */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_role")
-    val workspaceRole: BetaNoBillingWorkspaceRoleSchema,
+    /**
+     * Tagged service account ID to add.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("service_account_id") val serviceAccountId: String,
+    /**
+     * Role to assign to the service account in this workspace.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_role") val workspaceRole: BetaNoBillingWorkspaceRoleSchema
 )

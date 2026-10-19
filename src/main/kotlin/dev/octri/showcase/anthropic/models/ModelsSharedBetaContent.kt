@@ -3,101 +3,184 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaContentBlock` API schema.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaContentBlock::class)
+/** Typed representation of the `BetaContentBlock` API schema. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaContentBlock::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseTextBlock::class, name = "text"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseThinkingBlock::class, name = "thinking"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseRedactedThinkingBlock::class, name = "redacted_thinking"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseToolUseBlock::class, name = "tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseServerToolUseBlock::class, name = "server_tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseWebSearchToolResultBlock::class, name = "web_search_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseWebFetchToolResultBlock::class, name = "web_fetch_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseAdvisorToolResultBlock::class, name = "advisor_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseCodeExecutionToolResultBlock::class, name = "code_execution_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseBashCodeExecutionToolResultBlock::class, name = "bash_code_execution_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseTextEditorCodeExecutionToolResultBlock::class, name = "text_editor_code_execution_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseToolSearchToolResultBlock::class, name = "tool_search_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseMCPToolUseBlock::class, name = "mcp_tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseMCPToolResultBlock::class, name = "mcp_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseContainerUploadBlock::class, name = "container_upload"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseCompactionBlock::class, name = "compaction"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseFallbackBlock::class, name = "fallback")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseTextBlock::class,
+        name = "text",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseThinkingBlock::class,
+        name = "thinking",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseRedactedThinkingBlock::class,
+        name = "redacted_thinking",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseToolUseBlock::class,
+        name = "tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseServerToolUseBlock::class,
+        name = "server_tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseWebSearchToolResultBlock::class,
+        name = "web_search_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseWebFetchToolResultBlock::class,
+        name = "web_fetch_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseAdvisorToolResultBlock::class,
+        name = "advisor_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseCodeExecutionToolResultBlock::class,
+        name = "code_execution_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseBashCodeExecutionToolResultBlock::class,
+        name = "bash_code_execution_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseTextEditorCodeExecutionToolResultBlock::class,
+        name = "text_editor_code_execution_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseToolSearchToolResultBlock::class,
+        name = "tool_search_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseMCPToolUseBlock::class,
+        name = "mcp_tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseMCPToolResultBlock::class,
+        name = "mcp_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseContainerUploadBlock::class,
+        name = "container_upload",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseCompactionBlock::class,
+        name = "compaction",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseFallbackBlock::class,
+        name = "fallback",
+    ),
 )
 sealed interface BetaContentBlock
 
 /** A [BetaContentBlock] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaContentBlock @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaContentBlock
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaContentBlock {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Required API value serialized in the `content[]` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaContentBlockSourceContentItem::class)
+/** Required API value serialized in the `content[]` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaContentBlockSourceContentItem::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestTextBlock::class, name = "text"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestImageBlock::class, name = "image")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestTextBlock::class,
+        name = "text",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestImageBlock::class,
+        name = "image",
+    ),
 )
 sealed interface BetaContentBlockSourceContentItem
 
-/** A [BetaContentBlockSourceContentItem] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaContentBlockSourceContentItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaContentBlockSourceContentItem] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaContentBlockSourceContentItem
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaContentBlockSourceContentItem {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `BetaRequestImageBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestImageBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestImageBlock(
-    /**
-     * Required API value serialized in the `source` wire field.
-     */
+    /** Required API value serialized in the `source` wire field. */
     val source: BetaRequestImageBlockSource,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestImageBlockTypeEnum,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
     /**
-     * Create a cache control breakpoint at this content block.
+     * Configures the transformations the server applies to this image before the model observes it.
+     * Each key names a condition the server transforms images for; its value selects the
+     * transformation applied. Omitted keys keep their default behavior, and an empty object is
+     * equivalent to omitting the field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * Configures the transformations the server applies to this image before the model observes it. Each key names a condition the server transforms images for; its value selects the transformation applied. Omitted keys keep their default behavior, and an empty object is equivalent to omitting the field.
-     */
-    val transformations: BetaRequestImageTransformations? = null
+    val transformations: BetaRequestImageTransformations? = null,
 ) : BetaInputContentBlock, BetaContentBlockSourceContentItem, BetaRequestToolResultBlockContentItem
 
-/**
- * Typed representation of the `BetaRequestTextBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestTextBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestTextBlock(
-    /**
-     * Required `string` value serialized in the `text` wire field.
-     */
+    /** Required `string` value serialized in the `text` wire field. */
     val text: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestTextBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * Optional array value serialized in the `citations` wire field.
-     */
-    val citations: List<BetaRequestTextBlockCitationsItem>? = null
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /** Optional array value serialized in the `citations` wire field. */
+    val citations: List<BetaRequestTextBlockCitationsItem>? = null,
 ) : BetaInputContentBlock, BetaContentBlockSourceContentItem, BetaRequestToolResultBlockContentItem

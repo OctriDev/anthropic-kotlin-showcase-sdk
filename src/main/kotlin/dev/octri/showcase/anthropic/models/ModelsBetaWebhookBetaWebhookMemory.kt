@@ -3,71 +3,56 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaWebhookMemoryStoreArchivedEventData` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaWebhookMemoryStoreArchivedEventData` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaWebhookMemoryStoreArchivedEventData(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaWebhookMemoryStoreArchivedEventDataTypeEnum,
-    /**
-     * ID of the memory store that triggered the event.
-     */
+    /** ID of the memory store that triggered the event. */
     val id: String,
-    /**
-     * Required `string` value serialized in the `organization_id` wire field.
-     */
+    /** Required `string` value serialized in the `organization_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: String,
-    /**
-     * Required `string` value serialized in the `workspace_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String
+    /** Required `string` value serialized in the `workspace_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
 ) : BetaWebhookEventData
 
-/**
- * Typed representation of the `BetaWebhookMemoryStoreCreatedEventData` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaWebhookMemoryStoreCreatedEventData` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaWebhookMemoryStoreCreatedEventData(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaWebhookMemoryStoreCreatedEventDataTypeEnum,
-    /**
-     * ID of the memory store that triggered the event.
-     */
+    /** ID of the memory store that triggered the event. */
     val id: String,
-    /**
-     * Required `string` value serialized in the `organization_id` wire field.
-     */
+    /** Required `string` value serialized in the `organization_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: String,
-    /**
-     * Required `string` value serialized in the `workspace_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String
+    /** Required `string` value serialized in the `workspace_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
 ) : BetaWebhookEventData
 
-/**
- * Typed representation of the `BetaWebhookMemoryStoreDeletedEventData` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaWebhookMemoryStoreDeletedEventData` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaWebhookMemoryStoreDeletedEventData(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaWebhookMemoryStoreDeletedEventDataTypeEnum,
-    /**
-     * ID of the memory store that triggered the event.
-     */
+    /** ID of the memory store that triggered the event. */
     val id: String,
-    /**
-     * Required `string` value serialized in the `organization_id` wire field.
-     */
+    /** Required `string` value serialized in the `organization_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: String,
-    /**
-     * Required `string` value serialized in the `workspace_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String
+    /** Required `string` value serialized in the `workspace_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
 ) : BetaWebhookEventData

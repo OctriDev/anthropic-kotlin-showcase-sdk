@@ -19,7 +19,6 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaSessionsResources {
 
-
     /** Parameters for [listBetaSessionsResources]. */
     data class ListBetaSessionsResourcesRequest(
         val sessionId: String,
@@ -27,45 +26,92 @@ object BetaSessionsResources {
         val page: String? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it returns all resources.
+     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from
+     * a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it
+     * returns all resources.
      *
      * @param sessionId Path parameter session_id
-     * @param limit Maximum number of resources to return per page (max 1000). If
-     *   omitted, returns all resources.
+     * @param limit Maximum number of resources to return per page (max 1000). If omitted, returns
+     *   all resources.
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsResources(clientConfig: ClientConfig, request: ListBetaSessionsResourcesRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionResources {
-        return SdkClient.request<BetaManagedAgentsListSessionResources>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/resources?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "listBetaSessionsResources", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun listBetaSessionsResources(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsResourcesRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessionResources {
+        return SdkClient.request<BetaManagedAgentsListSessionResources>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/resources?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "listBetaSessionsResources",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it returns all resources.
+     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from
+     * a previous `next_page` cursor; `limit` can cap the number returned at 1000, and omitting it
+     * returns all resources.
      *
      * @param sessionId Path parameter session_id
-     * @param limit Maximum number of resources to return per page (max 1000). If
-     *   omitted, returns all resources.
+     * @param limit Maximum number of resources to return per page (max 1000). If omitted, returns
+     *   all resources.
      * @param page Opaque cursor from a previous response's `next_page` field.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsResourcesPaginated(clientConfig: ClientConfig, request: ListBetaSessionsResourcesRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionResource) -> Boolean) {
+    fun listBetaSessionsResourcesPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsResourcesRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSessionResource) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessionsResources(clientConfig, request.copy(page = cursor), options)
@@ -85,7 +131,12 @@ object BetaSessionsResources {
         val hasMore: Boolean,
     )
 
-    fun listBetaSessionsResourcesPages(clientConfig: ClientConfig, request: ListBetaSessionsResourcesRequest, options: RequestOptions? = null, yieldPage: (ListBetaSessionsResourcesPage) -> Boolean) {
+    fun listBetaSessionsResourcesPages(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsResourcesRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaSessionsResourcesPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessionsResources(clientConfig, request.copy(page = cursor), options)
@@ -99,69 +150,180 @@ object BetaSessionsResources {
         }
     }
 
-
-
     /**
-     * Attaches a previously uploaded file to a session as a mounted resource. Supply the required `file_id`; optionally set `mount_path`, which defaults to `/mnt/session/uploads/<file_id>` when omitted.
+     * Attaches a previously uploaded file to a session as a mounted resource. Supply the required
+     * `file_id`; optionally set `mount_path`, which defaults to `/mnt/session/uploads/<file_id>`
+     * when omitted.
      *
      * @param sessionId Path parameter session_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun createBetaSessionsResources(clientConfig: ClientConfig, sessionId: String, body: BetaManagedAgentsAddSessionResourceParams, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsAddSessionResource {
-        return SdkClient.request<BetaManagedAgentsAddSessionResource>(SdkClient.RequestSpec("POST", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/resources?beta=true", config = clientConfig, body = body, operationId = "createBetaSessionsResources", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun createBetaSessionsResources(
+        clientConfig: ClientConfig,
+        sessionId: String,
+        body: BetaManagedAgentsAddSessionResourceParams,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsAddSessionResource {
+        return SdkClient.request<BetaManagedAgentsAddSessionResource>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/resources?beta=true",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "createBetaSessionsResources",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Retrieves a resource attached to a session, such as a mounted file, repository, or memory store. Use `session_id` and `resource_id` to identify the session and the specific resource.
+     * Retrieves a resource attached to a session, such as a mounted file, repository, or memory
+     * store. Use `session_id` and `resource_id` to identify the session and the specific resource.
      *
      * @param sessionId Path parameter session_id
      * @param resourceId Path parameter resource_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaSessionsResources(clientConfig: ClientConfig, sessionId: String, resourceId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsGetSessionResource {
-        return SdkClient.request<BetaManagedAgentsGetSessionResource>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/resources/${SdkClient.encodePathSegment(resourceId)}?beta=true", config = clientConfig, operationId = "retrieveBetaSessionsResources", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaSessionsResources(
+        clientConfig: ClientConfig,
+        sessionId: String,
+        resourceId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsGetSessionResource {
+        return SdkClient.request<BetaManagedAgentsGetSessionResource>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/resources/${SdkClient.encodePathSegment(resourceId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaSessionsResources",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a resource from a session. Use `session_id` and `resource_id` to identify the session and resource to remove. A successful response confirms deletion with the resource ID.
+     * Deletes a resource from a session. Use `session_id` and `resource_id` to identify the session
+     * and resource to remove. A successful response confirms deletion with the resource ID.
      *
      * @param sessionId Path parameter session_id
      * @param resourceId Path parameter resource_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun deleteBetaSessionsResources(clientConfig: ClientConfig, sessionId: String, resourceId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeleteSessionResource {
-        return SdkClient.request<BetaManagedAgentsDeleteSessionResource>(SdkClient.RequestSpec("DELETE", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/resources/${SdkClient.encodePathSegment(resourceId)}?beta=true", config = clientConfig, operationId = "deleteBetaSessionsResources", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun deleteBetaSessionsResources(
+        clientConfig: ClientConfig,
+        sessionId: String,
+        resourceId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeleteSessionResource {
+        return SdkClient.request<BetaManagedAgentsDeleteSessionResource>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/resources/${SdkClient.encodePathSegment(resourceId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "deleteBetaSessionsResources",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [updateBetaSessionsResources]. */
     data class UpdateBetaSessionsResourcesRequest(
@@ -170,36 +332,77 @@ object BetaSessionsResources {
         val authorizationToken: String,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * Updates the authorization token for a resource attached to a session. Supply `authorization_token` between 1 and 4096 characters; token rotation is currently supported only for `github_repository` resources.
+     * Updates the authorization token for a resource attached to a session. Supply
+     * `authorization_token` between 1 and 4096 characters; token rotation is currently supported
+     * only for `github_repository` resources.
      *
      * @param sessionId Path parameter session_id
      * @param resourceId Path parameter resource_id
-     * @param authorizationToken New authorization token for the resource. Currently
-     *   only `github_repository` resources support token rotation.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param authorizationToken New authorization token for the resource. Currently only
+     *   `github_repository` resources support token rotation.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun updateBetaSessionsResources(clientConfig: ClientConfig, request: UpdateBetaSessionsResourcesRequest, options: RequestOptions? = null): BetaManagedAgentsUpdateSessionResource {
+    fun updateBetaSessionsResources(
+        clientConfig: ClientConfig,
+        request: UpdateBetaSessionsResourcesRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsUpdateSessionResource {
         validateUpdateBetaSessionsResourcesRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsUpdateSessionResource>(SdkClient.RequestSpec("POST", "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/resources/${SdkClient.encodePathSegment(request.resourceId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("authorization_token" to (request.authorizationToken)), operationId = "updateBetaSessionsResources", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaManagedAgentsUpdateSessionResource>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/resources/${SdkClient.encodePathSegment(request.resourceId)}?beta=true",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("authorization_token" to (request.authorizationToken)),
+                    operationId = "updateBetaSessionsResources",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateUpdateBetaSessionsResourcesRequest(request: UpdateBetaSessionsResourcesRequest) {
-        Validation.validateLength("authorization_token", request.authorizationToken, Validation.LengthOpts(min = 1, max = 4096))
+    private fun validateUpdateBetaSessionsResourcesRequest(
+        request: UpdateBetaSessionsResourcesRequest
+    ) {
+        Validation.validateLength(
+            "authorization_token",
+            request.authorizationToken,
+            Validation.LengthOpts(min = 1, max = 4096),
+        )
     }
-
-
-
-
-
-
 }

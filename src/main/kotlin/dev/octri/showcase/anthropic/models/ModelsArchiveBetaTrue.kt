@@ -3,59 +3,93 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Response from archiving a `memory_store`. Returns the store with `archived_at` set.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsArchiveMemoryStoreResponse::class)
+/** Response from archiving a `memory_store`. Returns the store with `archived_at` set. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsArchiveMemoryStoreResponse::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStore::class, name = "memory_store")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsMemoryStore::class,
+        name = "memory_store",
+    )
 )
 sealed interface BetaManagedAgentsArchiveMemoryStoreResponse
 
-/** A [BetaManagedAgentsArchiveMemoryStoreResponse] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsArchiveMemoryStoreResponse @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsArchiveMemoryStoreResponse] whose `type` names no branch this SDK knows, kept
+ * as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsArchiveMemoryStoreResponse
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsArchiveMemoryStoreResponse {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
 /**
- * A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+ * A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to
+ * a session via `resources[]` to mount it as a directory the agent can read and write.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsMemoryStore(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsMemoryStoreTypeEnum,
     /**
-     * Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
+     * Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching
+     * the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
      */
     val id: String,
     /**
-     * Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
+     * Human-readable name for the store. 1–255 characters. The store's mount-path slug under
+     * `/mnt/memory/` is derived from this name.
      */
     val name: String,
-    /**
-     * Timestamp when the store was created.
-     */
+    /** Timestamp when the store was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: BetaTimestamp,
     /**
-     * Timestamp when the store's `name`, `description`, or `metadata` was last modified. Memory writes inside the store do not advance this.
+     * Timestamp when the store's `name`, `description`, or `metadata` was last modified. Memory
+     * writes inside the store do not advance this.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: BetaTimestamp,
     /**
-     * Free-text description of what the store contains, up to 1024 characters. Included in the agent's system prompt when the store is attached, so word it to be useful to the agent. Empty string when unset.
+     * Free-text description of what the store contains, up to 1024 characters. Included in the
+     * agent's system prompt when the store is attached, so word it to be useful to the agent. Empty
+     * string when unset.
      */
     val description: String? = null,
     /**
-     * Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
+     * Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to).
+     * Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list
+     * but not filterable.
      */
     val metadata: Map<String, String>? = null,
     /**
-     * Timestamp when the store was archived, or `null` if active. Set once and never cleared; archiving is one-way. Archived stores are read-only and cannot be attached to new sessions.
+     * Timestamp when the store was archived, or `null` if active. Set once and never cleared;
+     * archiving is one-way. Archived stores are read-only and cannot be attached to new sessions.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at") val archivedAt: BetaTimestamp? = null
-) : BetaManagedAgentsArchiveMemoryStoreResponse, BetaManagedAgentsCreateMemoryStoreResponse, BetaManagedAgentsGetMemoryStoreResponse, BetaManagedAgentsUpdateMemoryStoreResponse
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at")
+    val archivedAt: BetaTimestamp? = null,
+) :
+    BetaManagedAgentsArchiveMemoryStoreResponse,
+    BetaManagedAgentsCreateMemoryStoreResponse,
+    BetaManagedAgentsGetMemoryStoreResponse,
+    BetaManagedAgentsUpdateMemoryStoreResponse

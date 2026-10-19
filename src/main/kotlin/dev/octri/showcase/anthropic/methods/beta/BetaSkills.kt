@@ -15,37 +15,80 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaSkills {
 
-
     /**
-     * Creates a new Skill and its initial version from uploaded files. Include a `SKILL.md` file at the root of a single top-level directory; `display_name` can be omitted to derive it from the file's frontmatter. The response includes the created Skill and its latest version identifier.
+     * Creates a new Skill and its initial version from uploaded files. Include a `SKILL.md` file at
+     * the root of a single top-level directory; `display_name` can be omitted to derive it from the
+     * file's frontmatter. The response includes the created Skill and its latest version
+     * identifier.
      *
-     * @param files Files to upload for the skill. All files must be in the same
-     *   top-level directory and must include a SKILL.md file at the root of that
-     *   directory.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
-     * @param displayName Human-readable, single-line label for the Skill. Maximum
-     *   255 characters. Always set: derived from the SKILL.md frontmatter `name` when
-     *   omitted at creation. Not unique.
+     * @param files Files to upload for the skill. All files must be in the same top-level directory
+     *   and must include a SKILL.md file at the root of that directory.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param displayName Human-readable, single-line label for the Skill. Maximum 255 characters.
+     *   Always set: derived from the SKILL.md frontmatter `name` when omitted at creation. Not
+     *   unique.
      */
-    fun createBetaSkills(clientConfig: ClientConfig, files: List<SdkClient.UploadFile>, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaSkill {
-        return SdkClient.request<BetaSkill>(SdkClient.RequestSpec("POST", "/v1/skills?beta=true", config = clientConfig, body = SdkClient.bodyMap("files" to (files), "display_name" to
-    (displayName ?: SdkClient.SdkOptional.Omitted)), contentType = "multipart/form-data", operationId = "createBetaSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun createBetaSkills(
+        clientConfig: ClientConfig,
+        files: List<SdkClient.UploadFile>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaSkill {
+        return SdkClient.request<BetaSkill>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/skills?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "files" to (files),
+                            "display_name" to (displayName ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    contentType = "multipart/form-data",
+                    operationId = "createBetaSkills",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [listBetaSkills]. */
     data class ListBetaSkillsRequest(
@@ -54,72 +97,122 @@ object BetaSkills {
         val source: SdkClient.SdkOptional<String?>? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
         val anthropicVersion: String? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * Lists skills available to the authenticated user. Use `source` to filter the results to custom or Anthropic-created skills, and use the pagination token to retrieve additional pages. Use `page` and `limit` to paginate the results.
+     * Lists skills available to the authenticated user. Use `source` to filter the results to
+     * custom or Anthropic-created skills, and use the pagination token to retrieve additional
+     * pages. Use `page` and `limit` to paginate the results.
      *
-     * @param page Pagination token for fetching a specific page of results. Pass the
-     *   value from a previous response's `next_page` field to get the next page of
-     *   results.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
-     *   Defaults to `20`.
-     * @param source Filter skills by source. If provided, only skills from the
-     *   specified source will be returned: * `"custom"`: only return user-created
-     *   skills * `"anthropic"`: only return Anthropic-created skills
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param page Pagination token for fetching a specific page of results. Pass the value from a
+     *   previous response's `next_page` field to get the next page of results.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
+     *   `20`.
+     * @param source Filter skills by source. If provided, only skills from the specified source
+     *   will be returned: * `"custom"`: only return user-created skills * `"anthropic"`: only
+     *   return Anthropic-created skills
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSkills(clientConfig: ClientConfig, request: ListBetaSkillsRequest, options: RequestOptions? = null): BetaListSkillsResponse {
+    fun listBetaSkills(
+        clientConfig: ClientConfig,
+        request: ListBetaSkillsRequest,
+        options: RequestOptions? = null,
+    ): BetaListSkillsResponse {
         validateListBetaSkillsRequest(request)
 
-        return SdkClient.request<BetaListSkillsResponse>(SdkClient.RequestSpec("GET", "/v1/skills?beta=true", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(request.page, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true), "source" to
-    SdkClient.queryValue(request.source, "form", true)), operationId = "listBetaSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaListSkillsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/skills?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "source" to SdkClient.queryValue(request.source, "form", true),
+                        ),
+                    operationId = "listBetaSkills",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateListBetaSkillsRequest(request: ListBetaSkillsRequest) {
         if (request.limit != null) {
-            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "limit",
+                request.limit,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
     }
 
-
-
-
-
     /**
-     * Lists skills available to the authenticated user. Use `source` to filter the results to custom or Anthropic-created skills, and use the pagination token to retrieve additional pages. Use `page` and `limit` to paginate the results.
+     * Lists skills available to the authenticated user. Use `source` to filter the results to
+     * custom or Anthropic-created skills, and use the pagination token to retrieve additional
+     * pages. Use `page` and `limit` to paginate the results.
      *
-     * @param page Pagination token for fetching a specific page of results. Pass the
-     *   value from a previous response's `next_page` field to get the next page of
-     *   results.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
-     *   Defaults to `20`.
-     * @param source Filter skills by source. If provided, only skills from the
-     *   specified source will be returned: * `"custom"`: only return user-created
-     *   skills * `"anthropic"`: only return Anthropic-created skills
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param page Pagination token for fetching a specific page of results. Pass the value from a
+     *   previous response's `next_page` field to get the next page of results.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
+     *   `20`.
+     * @param source Filter skills by source. If provided, only skills from the specified source
+     *   will be returned: * `"custom"`: only return user-created skills * `"anthropic"`: only
+     *   return Anthropic-created skills
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSkillsPaginated(clientConfig: ClientConfig, request: ListBetaSkillsRequest, options: RequestOptions? = null, yieldFn: (BetaSkill) -> Boolean) {
+    fun listBetaSkillsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaSkillsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaSkill) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaSkills(clientConfig, request.copy(page = cursor), options)
@@ -139,7 +232,12 @@ object BetaSkills {
         val hasMore: Boolean,
     )
 
-    fun listBetaSkillsPages(clientConfig: ClientConfig, request: ListBetaSkillsRequest, options: RequestOptions? = null, yieldPage: (ListBetaSkillsPage) -> Boolean) {
+    fun listBetaSkillsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaSkillsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaSkillsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaSkills(clientConfig, request.copy(page = cursor), options)
@@ -153,58 +251,131 @@ object BetaSkills {
         }
     }
 
-
-
     /**
-     * Retrieves a Skill by its identifier. Use `skill_id` to select the Skill and, when applicable, `anthropic-workspace-id` to choose the workspace to access. The response includes the Skill's metadata and latest version identifier.
+     * Retrieves a Skill by its identifier. Use `skill_id` to select the Skill and, when applicable,
+     * `anthropic-workspace-id` to choose the workspace to access. The response includes the Skill's
+     * metadata and latest version identifier.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaSkills(clientConfig: ClientConfig, skillId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSkill {
-        return SdkClient.request<BetaSkill>(SdkClient.RequestSpec("GET", "/v1/skills/${SdkClient.encodePathSegment(skillId)}?beta=true", config = clientConfig, operationId = "retrieveBetaSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaSkills(
+        clientConfig: ClientConfig,
+        skillId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSkill {
+        return SdkClient.request<BetaSkill>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaSkills",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a Skill identified by its `skill_id` path parameter. Use this operation when you want to remove a Skill from the selected workspace. The response confirms deletion with the Skill identifier and a deletion type.
+     * Deletes a Skill identified by its `skill_id` path parameter. Use this operation when you want
+     * to remove a Skill from the selected workspace. The response confirms deletion with the Skill
+     * identifier and a deletion type.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun deleteBetaSkills(clientConfig: ClientConfig, skillId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaDeletedSkill {
-        return SdkClient.request<BetaDeletedSkill>(SdkClient.RequestSpec("DELETE", "/v1/skills/${SdkClient.encodePathSegment(skillId)}?beta=true", config = clientConfig, operationId = "deleteBetaSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun deleteBetaSkills(
+        clientConfig: ClientConfig,
+        skillId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaDeletedSkill {
+        return SdkClient.request<BetaDeletedSkill>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "deleteBetaSkills",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

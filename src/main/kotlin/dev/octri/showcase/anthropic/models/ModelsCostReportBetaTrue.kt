@@ -5,186 +5,201 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaAnalyticsCostBucketedResponse` API schema.
- */
+/** Typed representation of the `BetaAnalyticsCostBucketedResponse` API schema. */
 data class BetaAnalyticsCostBucketedResponse(
     /**
-     * Time buckets for this page, oldest first: one per `bucket_width` interval, including intervals with no data (their `results` list is empty). A page holds at most `limit` buckets.
+     * Time buckets for this page, oldest first: one per `bucket_width` interval, including
+     * intervals with no data (their `results` list is empty). A page holds at most `limit` buckets.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaAnalyticsCostReportTimeBucket>,
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaAnalyticsCostReportTimeBucket>,
     /**
-     * RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours but not final until about 30 days after the usage date (late-arriving events, reconciliation adjustments).
+     * RFC 3339 timestamp of the export this response was served from. Null when no export yet
+     * covers any part of the requested range, in which case every bucket's `results` list is empty.
+     * Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this
+     * value or earlier. Data is typically refreshed every 4 hours but not final until about 30 days
+     * after the usage date (late-arriving events, reconciliation adjustments).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_refreshed_at", required = true) val dataRefreshedAt: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("data_refreshed_at", required = true)
+    val dataRefreshedAt: String?,
     /**
-     * Whether another page is available. When true, pass `next_page` as the `page` parameter to fetch it.
+     * Whether another page is available. When true, pass `next_page` as the `page` parameter to
+     * fetch it.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
     /**
-     * Opaque cursor for the next page, or null when `has_more` is false. Pass it as the `page` parameter, keeping the other parameters unchanged. A cursor can expire after the underlying data refreshes; the request then returns HTTP 410 and pagination must restart from the first page.
+     * Opaque cursor for the next page, or null when `has_more` is false. Pass it as the `page`
+     * parameter, keeping the other parameters unchanged. A cursor can expire after the underlying
+     * data refreshes; the request then returns HTTP 410 and pagination must restart from the first
+     * page.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?,
-    /**
-     * ID of the Organization.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: String
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
+    /** ID of the Organization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: String,
 )
 
-/**
- * Typed representation of the `BetaAnalyticsCostBucketedResult` API schema.
- */
+/** Typed representation of the `BetaAnalyticsCostBucketedResult` API schema. */
 data class BetaAnalyticsCostBucketedResult(
-    /**
-     * Amount (post-discount, pre-credit) in fractional cents.
-     */
+    /** Amount (post-discount, pre-credit) in fractional cents. */
     val amount: String,
     /**
-     * Context-window pricing tier of the usage or cost. Null unless `context_window` is in `group_by[]`; it can also be null on grouped rows with no context-window tier, such as code execution.
+     * Context-window pricing tier of the usage or cost. Null unless `context_window` is in
+     * `group_by[]`; it can also be null on grouped rows with no context-window tier, such as code
+     * execution.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("context_window", required = true) val contextWindow: BetaMessagesUsageReportContextWindow?,
+    @com.fasterxml.jackson.annotation.JsonProperty("context_window", required = true)
+    val contextWindow: BetaMessagesUsageReportContextWindow?,
     /**
      * Cost component when `group_by[]=cost_type`; null otherwise (amount is the combined total).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cost_type", required = true) val costType: BetaAnalyticsCostType?,
-    /**
-     * Currency code for the cost amount. Currently always `"USD"`.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cost_type", required = true)
+    val costType: BetaAnalyticsCostType?,
+    /** Currency code for the cost amount. Currently always `"USD"`. */
     val currency: BetaAnalyticsCostBucketedResultCurrencyEnum,
     /**
-     * Inference region of the usage or cost. Null unless `inference_geo` is in `group_by[]`; it can also be null on grouped rows where the region is not set (the rows that `inference_geos[]=not_available` matches).
+     * Inference region of the usage or cost. Null unless `inference_geo` is in `group_by[]`; it can
+     * also be null on grouped rows where the region is not set (the rows that
+     * `inference_geos[]=not_available` matches).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo", required = true) val inferenceGeo: BetaInferenceGeo?,
-    /**
-     * List-price amount (pre-discount) in fractional cents.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo", required = true)
+    val inferenceGeo: BetaInferenceGeo?,
+    /** List-price amount (pre-discount) in fractional cents. */
     @com.fasterxml.jackson.annotation.JsonProperty("list_amount") val listAmount: String,
     /**
-     * Model that produced the usage or cost, as a model name in the form the `models[]` filter accepts (for example, `claude-opus-5`). Null unless `model` is in `group_by[]`; it can also be null on grouped rows whose usage or cost is not attributed to a specific model, such as code execution.
+     * Model that produced the usage or cost, as a model name in the form the `models[]` filter
+     * accepts (for example, `claude-opus-5`). Null unless `model` is in `group_by[]`; it can also
+     * be null on grouped rows whose usage or cost is not attributed to a specific model, such as
+     * code execution.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("model", required = true) val model: String?,
     /**
-     * Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, and `claude-tag`. `claude-tag` is Claude Tag, the Claude product in Slack. Some unattributed usage is reported as "other".
+     * Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it
+     * can also be null on grouped rows whose usage cannot be attributed to a known surface. Values
+     * include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`,
+     * and `claude-tag`. `claude-tag` is Claude Tag, the Claude product in Slack. Some unattributed
+     * usage is reported as "other".
      */
     @com.fasterxml.jackson.annotation.JsonProperty("product", required = true) val product: String?,
     /**
-     * RBAC group (team) the usage is attributed to, in the public tagged `rbac_group_...` spelling — the same spelling the activity resources use for this key, so the same team has one id across resources and it round-trips as an `rbac_group_ids[]` filter value. Populated only when `rbac_group_id` is in `group_by[]`. Any-membership semantics: a user in several groups contributes their full usage to each of those groups' rows, so the named-group rows overlap and their sum can…
+     * RBAC group (team) the usage is attributed to, in the public tagged `rbac_group_...` spelling
+     * — the same spelling the activity resources use for this key, so the same team has one id
+     * across resources and it round-trips as an `rbac_group_ids[]` filter value. Populated only
+     * when `rbac_group_id` is in `group_by[]`. Any-membership semantics: a user in several groups
+     * contributes their full usage to each of those groups' rows, so the named-group rows overlap
+     * and their sum can…
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_id", required = true) val rbacGroupId: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("rbac_group_id", required = true)
+    val rbacGroupId: String?,
     /**
-     * Number of API requests in this row's scope. Null when `group_by` includes `cost_type` or `token_type` (the count has no per-component attribution; read it from the ungrouped response). For sandbox / code-execution events, this counts execution spans rather than HTTP requests (these rows surface with `product: null`).
+     * Number of API requests in this row's scope. Null when `group_by` includes `cost_type` or
+     * `token_type` (the count has no per-component attribution; read it from the ungrouped
+     * response). For sandbox / code-execution events, this counts execution spans rather than HTTP
+     * requests (these rows surface with `product: null`).
      */
     @com.fasterxml.jackson.annotation.JsonProperty("requests", required = true) val requests: Long?,
     /**
-     * Slack channel the usage originated from. Populated only when `slack_channel_id` is in `group_by[]`; null for usage outside Slack (and for rows recorded before channel attribution was enabled).
+     * Slack channel the usage originated from. Populated only when `slack_channel_id` is in
+     * `group_by[]`; null for usage outside Slack (and for rows recorded before channel attribution
+     * was enabled).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("slack_channel_id", required = true) val slackChannelId: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("slack_channel_id", required = true)
+    val slackChannelId: String?,
     /**
-     * Inference speed mode of the usage or cost: `fast` or `standard`. Null unless `speed` is in `group_by[]`.
+     * Inference speed mode of the usage or cost: `fast` or `standard`. Null unless `speed` is in
+     * `group_by[]`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("speed", required = true) val speed: BetaAnalyticsCostBucketedResultSpeedVariant0Enum?,
-    /**
-     * Token type when `group_by[]=token_type` and `cost_type=tokens`; null otherwise.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_type", required = true) val tokenType: BetaCostReportTokenType?
+    @com.fasterxml.jackson.annotation.JsonProperty("speed", required = true)
+    val speed: BetaAnalyticsCostBucketedResultSpeedVariant0Enum?,
+    /** Token type when `group_by[]=token_type` and `cost_type=tokens`; null otherwise. */
+    @com.fasterxml.jackson.annotation.JsonProperty("token_type", required = true)
+    val tokenType: BetaCostReportTokenType?,
 )
 
-/**
- * Typed representation of the `BetaAnalyticsCostReportTimeBucket` API schema.
- */
+/** Typed representation of the `BetaAnalyticsCostReportTimeBucket` API schema. */
 data class BetaAnalyticsCostReportTimeBucket(
-    /**
-     * End of the time bucket (exclusive) in RFC 3339 format.
-     */
+    /** End of the time bucket (exclusive) in RFC 3339 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("ending_at") val endingAt: OffsetDateTime,
     /**
-     * Rows for this time bucket. Empty when the bucket has no data; otherwise a single combined row when `group_by[]` is omitted, or one row per group (subject to the per-bucket group cap described on the `group_by[]` parameter).
+     * Rows for this time bucket. Empty when the bucket has no data; otherwise a single combined row
+     * when `group_by[]` is omitted, or one row per group (subject to the per-bucket group cap
+     * described on the `group_by[]` parameter).
      */
     val results: List<BetaAnalyticsCostBucketedResult>,
-    /**
-     * Start of the time bucket (inclusive) in RFC 3339 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("starting_at") val startingAt: OffsetDateTime
+    /** Start of the time bucket (inclusive) in RFC 3339 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("starting_at") val startingAt: OffsetDateTime,
 )
 
-/**
- * Typed representation of the `BetaCostReportItem` API schema.
- */
+/** Typed representation of the `BetaCostReportItem` API schema. */
 data class BetaCostReportItem(
-    /**
-     * Currency code for the cost amount. Currently always `"USD"`.
-     */
+    /** Currency code for the cost amount. Currently always `"USD"`. */
     val currency: String,
     /**
-     * Cost amount in lowest currency units (e.g. cents) as a decimal string. For example, `"123.45"` in `"USD"` represents `$1.23`.
+     * Cost amount in lowest currency units (e.g. cents) as a decimal string. For example,
+     * `"123.45"` in `"USD"` represents `$1.23`.
      */
     val amount: String,
     /**
-     * ID of the Workspace this cost is associated with. `null` if not grouping by workspace or for the default workspace.
+     * ID of the Workspace this cost is associated with. `null` if not grouping by workspace or for
+     * the default workspace.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id", required = true) val workspaceId: String?,
-    /**
-     * Description of the cost item. `null` if not grouping by description.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * Type of cost. `null` if not grouping by description.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cost_type", required = true) val costType: BetaCostType?,
-    /**
-     * Input context window used. `null` if not grouping by description or for non-token costs.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("context_window", required = true) val contextWindow: BetaMessagesUsageReportContextWindow?,
-    /**
-     * Model name used. `null` if not grouping by description or for non-token costs.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id", required = true)
+    val workspaceId: String?,
+    /** Description of the cost item. `null` if not grouping by description. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** Type of cost. `null` if not grouping by description. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cost_type", required = true)
+    val costType: BetaCostType?,
+    /** Input context window used. `null` if not grouping by description or for non-token costs. */
+    @com.fasterxml.jackson.annotation.JsonProperty("context_window", required = true)
+    val contextWindow: BetaMessagesUsageReportContextWindow?,
+    /** Model name used. `null` if not grouping by description or for non-token costs. */
     @com.fasterxml.jackson.annotation.JsonProperty("model", required = true) val model: String?,
+    /** Service tier used. `null` if not grouping by description or for non-token costs. */
+    @com.fasterxml.jackson.annotation.JsonProperty("service_tier", required = true)
+    val serviceTier: BetaCostReportServiceTier?,
+    /** Type of token. `null` if not grouping by description or for non-token costs. */
+    @com.fasterxml.jackson.annotation.JsonProperty("token_type", required = true)
+    val tokenType: BetaCostReportTokenType?,
     /**
-     * Service tier used. `null` if not grouping by description or for non-token costs.
+     * Inference geo used matching requests' `inference_geo` parameter if set, otherwise the
+     * workspace's `default_inference_geo`. For models that do not support specifying
+     * `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference
+     * geo.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("service_tier", required = true) val serviceTier: BetaCostReportServiceTier?,
-    /**
-     * Type of token. `null` if not grouping by description or for non-token costs.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_type", required = true) val tokenType: BetaCostReportTokenType?,
-    /**
-     * Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`. For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo", required = true) val inferenceGeo: BetaInferenceGeoFilter?
+    @com.fasterxml.jackson.annotation.JsonProperty("inference_geo", required = true)
+    val inferenceGeo: BetaInferenceGeoFilter?,
 )
 
-/**
- * Typed representation of the `BetaCostReportTimeBucket` API schema.
- */
+/** Typed representation of the `BetaCostReportTimeBucket` API schema. */
 data class BetaCostReportTimeBucket(
-    /**
-     * Start of the time bucket (inclusive) in RFC 3339 format.
-     */
+    /** Start of the time bucket (inclusive) in RFC 3339 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("starting_at") val startingAt: OffsetDateTime,
-    /**
-     * End of the time bucket (exclusive) in RFC 3339 format.
-     */
+    /** End of the time bucket (exclusive) in RFC 3339 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("ending_at") val endingAt: OffsetDateTime,
     /**
-     * List of cost items for this time bucket. There may be multiple items if one or more `group_by[]` parameters are specified.
+     * List of cost items for this time bucket. There may be multiple items if one or more
+     * `group_by[]` parameters are specified.
      */
-    val results: List<BetaCostReportItem>
+    val results: List<BetaCostReportItem>,
 )
 
-/**
- * Typed representation of the `BetaGetCostReportResponse` API schema.
- */
+/** Typed representation of the `BetaGetCostReportResponse` API schema. */
 data class BetaGetCostReportResponse(
     /**
-     * List of time buckets for this page, oldest first: one per `bucket_width` interval, including intervals with no costs (their `results` list is empty). A page holds at most `limit` buckets.
+     * List of time buckets for this page, oldest first: one per `bucket_width` interval, including
+     * intervals with no costs (their `results` list is empty). A page holds at most `limit`
+     * buckets.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaCostReportTimeBucket>,
-    /**
-     * Indicates if there are more results.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaCostReportTimeBucket>,
+    /** Indicates if there are more results. */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
     /**
-     * Opaque cursor for the next page, or `null` when `has_more` is false. Pass it as the `page` parameter in the next request.
+     * Opaque cursor for the next page, or `null` when `has_more` is false. Pass it as the `page`
+     * parameter in the next request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 )

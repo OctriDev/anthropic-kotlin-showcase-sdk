@@ -3,141 +3,194 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Required API value serialized in the `citations[]` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaResponseTextBlockCitationsItem::class)
+/** Required API value serialized in the `citations[]` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaResponseTextBlockCitationsItem::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseCharLocationCitation::class, name = "char_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponsePageLocationCitation::class, name = "page_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseContentBlockLocationCitation::class, name = "content_block_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseWebSearchResultLocationCitation::class, name = "web_search_result_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseSearchResultLocationCitation::class, name = "search_result_location")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseCharLocationCitation::class,
+        name = "char_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponsePageLocationCitation::class,
+        name = "page_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseContentBlockLocationCitation::class,
+        name = "content_block_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseWebSearchResultLocationCitation::class,
+        name = "web_search_result_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseSearchResultLocationCitation::class,
+        name = "search_result_location",
+    ),
 )
 sealed interface BetaResponseTextBlockCitationsItem
 
-/** A [BetaResponseTextBlockCitationsItem] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaResponseTextBlockCitationsItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaResponseTextBlockCitationsItem] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaResponseTextBlockCitationsItem
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaResponseTextBlockCitationsItem {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
 /**
  * Typed representation of the `BetaResponseTextEditorCodeExecutionCreateResultBlock` API schema.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseTextEditorCodeExecutionCreateResultBlock(
-    /**
-     * Required `boolean` value serialized in the `is_file_update` wire field.
-     */
+    /** Required `boolean` value serialized in the `is_file_update` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_file_update") val isFileUpdate: Boolean,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseTextEditorCodeExecutionCreateResultBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseTextEditorCodeExecutionCreateResultBlockTypeEnum,
 ) : BetaResponseTextEditorCodeExecutionToolResultBlockContent
 
 /**
- * Typed representation of the `BetaResponseTextEditorCodeExecutionStrReplaceResultBlock` API schema.
+ * Typed representation of the `BetaResponseTextEditorCodeExecutionStrReplaceResultBlock` API
+ * schema.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseTextEditorCodeExecutionStrReplaceResultBlock(
-    /**
-     * Required array value serialized in the `lines` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("lines", required = true) val lines: List<String>?,
-    /**
-     * Required `integer` value serialized in the `new_lines` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("new_lines", required = true) val newLines: Long?,
-    /**
-     * Required `integer` value serialized in the `new_start` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("new_start", required = true) val newStart: Long?,
-    /**
-     * Required `integer` value serialized in the `old_lines` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("old_lines", required = true) val oldLines: Long?,
-    /**
-     * Required `integer` value serialized in the `old_start` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("old_start", required = true) val oldStart: Long?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseTextEditorCodeExecutionStrReplaceResultBlockTypeEnum
+    /** Required array value serialized in the `lines` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("lines", required = true)
+    val lines: List<String>?,
+    /** Required `integer` value serialized in the `new_lines` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("new_lines", required = true)
+    val newLines: Long?,
+    /** Required `integer` value serialized in the `new_start` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("new_start", required = true)
+    val newStart: Long?,
+    /** Required `integer` value serialized in the `old_lines` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("old_lines", required = true)
+    val oldLines: Long?,
+    /** Required `integer` value serialized in the `old_start` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("old_start", required = true)
+    val oldStart: Long?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseTextEditorCodeExecutionStrReplaceResultBlockTypeEnum,
 ) : BetaResponseTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Required API value serialized in the `content` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent::class)
+/** Required API value serialized in the `content` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseTextEditorCodeExecutionToolResultError::class, name = "text_editor_code_execution_tool_result_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseTextEditorCodeExecutionViewResultBlock::class, name = "text_editor_code_execution_view_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseTextEditorCodeExecutionCreateResultBlock::class, name = "text_editor_code_execution_create_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaResponseTextEditorCodeExecutionStrReplaceResultBlock::class, name = "text_editor_code_execution_str_replace_result")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseTextEditorCodeExecutionToolResultError::class,
+        name = "text_editor_code_execution_tool_result_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseTextEditorCodeExecutionViewResultBlock::class,
+        name = "text_editor_code_execution_view_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseTextEditorCodeExecutionCreateResultBlock::class,
+        name = "text_editor_code_execution_create_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaResponseTextEditorCodeExecutionStrReplaceResultBlock::class,
+        name = "text_editor_code_execution_str_replace_result",
+    ),
 )
 sealed interface BetaResponseTextEditorCodeExecutionToolResultBlockContent
 
-/** A [BetaResponseTextEditorCodeExecutionToolResultBlockContent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaResponseTextEditorCodeExecutionToolResultBlockContent] whose `type` names no branch this
+ * SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaResponseTextEditorCodeExecutionToolResultBlockContent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaResponseTextEditorCodeExecutionToolResultBlockContent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `BetaResponseTextEditorCodeExecutionToolResultError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaResponseTextEditorCodeExecutionToolResultError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseTextEditorCodeExecutionToolResultError(
-    /**
-     * Required enumerated value serialized in the `error_code` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: BetaTextEditorCodeExecutionToolResultErrorCode,
-    /**
-     * Required `string` value serialized in the `error_message` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_message", required = true) val errorMessage: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseTextEditorCodeExecutionToolResultErrorTypeEnum
+    /** Required enumerated value serialized in the `error_code` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
+    val errorCode: BetaTextEditorCodeExecutionToolResultErrorCode,
+    /** Required `string` value serialized in the `error_message` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_message", required = true)
+    val errorMessage: String?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseTextEditorCodeExecutionToolResultErrorTypeEnum,
 ) : BetaResponseTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Typed representation of the `BetaResponseTextEditorCodeExecutionViewResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaResponseTextEditorCodeExecutionViewResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaResponseTextEditorCodeExecutionViewResultBlock(
-    /**
-     * Required `string` value serialized in the `content` wire field.
-     */
+    /** Required `string` value serialized in the `content` wire field. */
     val content: String,
-    /**
-     * Required enumerated value serialized in the `file_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("file_type") val fileType: BetaResponseTextEditorCodeExecutionViewResultBlockFileTypeEnum,
-    /**
-     * Required `integer` value serialized in the `num_lines` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("num_lines", required = true) val numLines: Long?,
-    /**
-     * Required `integer` value serialized in the `start_line` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_line", required = true) val startLine: Long?,
-    /**
-     * Required `integer` value serialized in the `total_lines` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_lines", required = true) val totalLines: Long?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaResponseTextEditorCodeExecutionViewResultBlockTypeEnum
+    /** Required enumerated value serialized in the `file_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_type")
+    val fileType: BetaResponseTextEditorCodeExecutionViewResultBlockFileTypeEnum,
+    /** Required `integer` value serialized in the `num_lines` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("num_lines", required = true)
+    val numLines: Long?,
+    /** Required `integer` value serialized in the `start_line` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_line", required = true)
+    val startLine: Long?,
+    /** Required `integer` value serialized in the `total_lines` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_lines", required = true)
+    val totalLines: Long?,
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaResponseTextEditorCodeExecutionViewResultBlockTypeEnum,
 ) : BetaResponseTextEditorCodeExecutionToolResultBlockContent

@@ -3,30 +3,20 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Configuration for a specific tool in an MCP toolset.
- */
+/** Configuration for a specific tool in an MCP toolset. */
 data class BetaMCPToolConfig(
-    /**
-     * Optional `boolean` value serialized in the `defer_loading` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `enabled` wire field.
-     */
-    val enabled: Boolean? = null
+    /** Optional `boolean` value serialized in the `defer_loading` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** Optional `boolean` value serialized in the `enabled` wire field. */
+    val enabled: Boolean? = null,
 )
 
-/**
- * Default configuration for tools in an MCP toolset.
- */
+/** Default configuration for tools in an MCP toolset. */
 data class BetaMCPToolDefaultConfig(
-    /**
-     * Optional `boolean` value serialized in the `defer_loading` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `enabled` wire field.
-     */
-    val enabled: Boolean? = null
+    /** Optional `boolean` value serialized in the `defer_loading` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** Optional `boolean` value serialized in the `enabled` wire field. */
+    val enabled: Boolean? = null,
 )

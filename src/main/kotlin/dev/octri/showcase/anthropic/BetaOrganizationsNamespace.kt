@@ -3,7 +3,6 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsNamespace(clientConfig: ClientConfig) {
     val invites: BetaOrganizationsInvitesNamespace
     val users: BetaOrganizationsUsersNamespace
@@ -24,6 +23,7 @@ class BetaOrganizationsNamespace(clientConfig: ClientConfig) {
     val rbacGroups: BetaOrganizationsRbacGroupsNamespace
     val rbacRoles: BetaOrganizationsRbacRolesNamespace
     val analytics: BetaOrganizationsAnalyticsNamespace
+
     init {
         invites = BetaOrganizationsInvitesNamespace(clientConfig)
         users = BetaOrganizationsUsersNamespace(clientConfig)
@@ -39,7 +39,8 @@ class BetaOrganizationsNamespace(clientConfig: ClientConfig) {
         serviceAccounts = BetaOrganizationsServiceAccountsNamespace(clientConfig)
         federationIssuers = BetaOrganizationsFederationIssuersNamespace(clientConfig)
         federationRules = BetaOrganizationsFederationRulesNamespace(clientConfig)
-        spendLimitIncreaseRequests = BetaOrganizationsSpendLimitIncreaseRequestsNamespace(clientConfig)
+        spendLimitIncreaseRequests =
+            BetaOrganizationsSpendLimitIncreaseRequestsNamespace(clientConfig)
         tunnels = BetaOrganizationsTunnelsNamespace(clientConfig)
         rbacGroups = BetaOrganizationsRbacGroupsNamespace(clientConfig)
         rbacRoles = BetaOrganizationsRbacRolesNamespace(clientConfig)

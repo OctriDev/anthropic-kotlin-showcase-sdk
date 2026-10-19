@@ -16,7 +16,6 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaDeploymentRuns {
 
-
     /** Parameters for [listBetaDeploymentRuns]. */
     data class ListBetaDeploymentRunsRequest(
         val limit: Int? = null,
@@ -30,92 +29,161 @@ object BetaDeploymentRuns {
         val createdAtLt: BetaTimestamp? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment, trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous response's `next_page` field, and set `limit` to control the page size.
+     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment,
+     * trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous
+     * response's `next_page` field, and set `limit` to control the page size.
      *
      * @param limit Maximum results per page. Default 20, maximum 1000.
-     * @param page Opaque pagination cursor. Pass `next_page` from the previous
-     *   response. Invalid or expired cursors return 400.
-     * @param deploymentId Filter to a specific deployment. Omit to list across all
-     *   deployments in the workspace. Filtering by a non-existent `deployment_id`
-     *   returns 200 with empty data.
-     * @param triggerType Filter runs by what triggered them. Omit to return all
-     *   runs.
-     * @param hasError Filter: true for runs with non-null `error`, false for runs
-     *   with non-null `session_id`. Omit for all.
+     * @param page Opaque pagination cursor. Pass `next_page` from the previous response. Invalid or
+     *   expired cursors return 400.
+     * @param deploymentId Filter to a specific deployment. Omit to list across all deployments in
+     *   the workspace. Filtering by a non-existent `deployment_id` returns 200 with empty data.
+     * @param triggerType Filter runs by what triggered them. Omit to return all runs.
+     * @param hasError Filter: true for runs with non-null `error`, false for runs with non-null
+     *   `session_id`. Omit for all.
      * @param createdAtGte Return runs created at or after this time (inclusive).
      * @param createdAtLte Return runs created at or before this time (inclusive).
      * @param createdAtGt Return runs created strictly after this time (exclusive).
      * @param createdAtLt Return runs created strictly before this time (exclusive).
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaDeploymentRuns(clientConfig: ClientConfig, request: ListBetaDeploymentRunsRequest, options: RequestOptions? = null): BetaManagedAgentsListDeploymentRunsData {
+    fun listBetaDeploymentRuns(
+        clientConfig: ClientConfig,
+        request: ListBetaDeploymentRunsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListDeploymentRunsData {
         validateListBetaDeploymentRunsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsListDeploymentRunsData>(SdkClient.RequestSpec("GET", "/v1/deployment_runs?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "deployment_id" to
-    SdkClient.queryValue(request.deploymentId, "form", true), "trigger_type" to
-    SdkClient.queryValue(request.triggerType, "form", true), "has_error" to
-    SdkClient.queryValue(request.hasError, "form", true), "created_at[gte]" to
-    SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"), "created_at[lte]" to
-    SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"), "created_at[gt]" to
-    SdkClient.queryValue(request.createdAtGt, "form", true, "date-time"), "created_at[lt]" to
-    SdkClient.queryValue(request.createdAtLt, "form", true, "date-time")), operationId = "listBetaDeploymentRuns", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaManagedAgentsListDeploymentRunsData>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/deployment_runs?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "deployment_id" to
+                                SdkClient.queryValue(request.deploymentId, "form", true),
+                            "trigger_type" to
+                                SdkClient.queryValue(request.triggerType, "form", true),
+                            "has_error" to SdkClient.queryValue(request.hasError, "form", true),
+                            "created_at[gte]" to
+                                SdkClient.queryValue(
+                                    request.createdAtGte,
+                                    "form",
+                                    true,
+                                    "date-time",
+                                ),
+                            "created_at[lte]" to
+                                SdkClient.queryValue(
+                                    request.createdAtLte,
+                                    "form",
+                                    true,
+                                    "date-time",
+                                ),
+                            "created_at[gt]" to
+                                SdkClient.queryValue(
+                                    request.createdAtGt,
+                                    "form",
+                                    true,
+                                    "date-time",
+                                ),
+                            "created_at[lt]" to
+                                SdkClient.queryValue(
+                                    request.createdAtLt,
+                                    "form",
+                                    true,
+                                    "date-time",
+                                ),
+                        ),
+                    operationId = "listBetaDeploymentRuns",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateListBetaDeploymentRunsRequest(request: ListBetaDeploymentRunsRequest) {
         if (request.createdAtGte != null) {
             Validation.validateDateTime("created_at[gte]", request.createdAtGte)
-}
+        }
 
         if (request.createdAtLte != null) {
             Validation.validateDateTime("created_at[lte]", request.createdAtLte)
-}
+        }
 
         if (request.createdAtGt != null) {
             Validation.validateDateTime("created_at[gt]", request.createdAtGt)
-}
+        }
 
         if (request.createdAtLt != null) {
             Validation.validateDateTime("created_at[lt]", request.createdAtLt)
-}
+        }
     }
 
-
-
-
-
     /**
-     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment, trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous response's `next_page` field, and set `limit` to control the page size.
+     * Lists deployment runs, sorted from newest to oldest, with optional filters for deployment,
+     * trigger type, outcome, and creation time. Use `page` as the opaque cursor from the previous
+     * response's `next_page` field, and set `limit` to control the page size.
      *
      * @param limit Maximum results per page. Default 20, maximum 1000.
-     * @param page Opaque pagination cursor. Pass `next_page` from the previous
-     *   response. Invalid or expired cursors return 400.
-     * @param deploymentId Filter to a specific deployment. Omit to list across all
-     *   deployments in the workspace. Filtering by a non-existent `deployment_id`
-     *   returns 200 with empty data.
-     * @param triggerType Filter runs by what triggered them. Omit to return all
-     *   runs.
-     * @param hasError Filter: true for runs with non-null `error`, false for runs
-     *   with non-null `session_id`. Omit for all.
+     * @param page Opaque pagination cursor. Pass `next_page` from the previous response. Invalid or
+     *   expired cursors return 400.
+     * @param deploymentId Filter to a specific deployment. Omit to list across all deployments in
+     *   the workspace. Filtering by a non-existent `deployment_id` returns 200 with empty data.
+     * @param triggerType Filter runs by what triggered them. Omit to return all runs.
+     * @param hasError Filter: true for runs with non-null `error`, false for runs with non-null
+     *   `session_id`. Omit for all.
      * @param createdAtGte Return runs created at or after this time (inclusive).
      * @param createdAtLte Return runs created at or before this time (inclusive).
      * @param createdAtGt Return runs created strictly after this time (exclusive).
      * @param createdAtLt Return runs created strictly before this time (exclusive).
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaDeploymentRunsPaginated(clientConfig: ClientConfig, request: ListBetaDeploymentRunsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsDeploymentRun) -> Boolean) {
+    fun listBetaDeploymentRunsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaDeploymentRunsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsDeploymentRun) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaDeploymentRuns(clientConfig, request.copy(page = cursor), options)
@@ -135,7 +203,12 @@ object BetaDeploymentRuns {
         val hasMore: Boolean,
     )
 
-    fun listBetaDeploymentRunsPages(clientConfig: ClientConfig, request: ListBetaDeploymentRunsRequest, options: RequestOptions? = null, yieldPage: (ListBetaDeploymentRunsPage) -> Boolean) {
+    fun listBetaDeploymentRunsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaDeploymentRunsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaDeploymentRunsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaDeploymentRuns(clientConfig, request.copy(page = cursor), options)
@@ -149,26 +222,60 @@ object BetaDeploymentRuns {
         }
     }
 
-
-
     /**
-     * Retrieves the record for a single deployment run, including whether session creation succeeded or failed. Use `deployment_run_id` to select the run and inspect `session_id` or `error` for its creation outcome.
+     * Retrieves the record for a single deployment run, including whether session creation
+     * succeeded or failed. Use `deployment_run_id` to select the run and inspect `session_id` or
+     * `error` for its creation outcome.
      *
      * @param deploymentRunId Path parameter deployment_run_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaDeploymentRuns(clientConfig: ClientConfig, deploymentRunId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeploymentRun {
-        return SdkClient.request<BetaManagedAgentsDeploymentRun>(SdkClient.RequestSpec("GET", "/v1/deployment_runs/${SdkClient.encodePathSegment(deploymentRunId)}?beta=true", config = clientConfig, operationId = "retrieveBetaDeploymentRuns", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaDeploymentRuns(
+        clientConfig: ClientConfig,
+        deploymentRunId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeploymentRun {
+        return SdkClient.request<BetaManagedAgentsDeploymentRun>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/deployment_runs/${SdkClient.encodePathSegment(deploymentRunId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaDeploymentRuns",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

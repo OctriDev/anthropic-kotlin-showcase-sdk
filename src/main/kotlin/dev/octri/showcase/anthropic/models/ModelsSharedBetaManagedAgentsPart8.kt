@@ -3,214 +3,214 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Configuration for the web_fetch tool.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration for the web_fetch tool. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWebFetchToolConfig(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWebFetchToolConfigTypeEnum,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: BetaManagedAgentsWebFetchToolConfigNameEnum,
-    /**
-     * Required `boolean` value serialized in the `enabled` wire field.
-     */
+    /** Required `boolean` value serialized in the `enabled` wire field. */
     val enabled: Boolean,
-    /**
-     * Permission policy for tool execution.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy,
-    /**
-     * Optional array value serialized in the `allowed_domains` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains") val allowedDomains: List<String>? = null,
-    /**
-     * Optional array value serialized in the `blocked_domains` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains") val blockedDomains: List<String>? = null,
-    /**
-     * Optional API value serialized in the `max_content_tokens` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens") val maxContentTokens: Int? = null
+    /** Permission policy for tool execution. */
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy,
+    /** Optional array value serialized in the `allowed_domains` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains")
+    val allowedDomains: List<String>? = null,
+    /** Optional array value serialized in the `blocked_domains` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains")
+    val blockedDomains: List<String>? = null,
+    /** Optional API value serialized in the `max_content_tokens` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens")
+    val maxContentTokens: Int? = null,
 ) : BetaManagedAgentsAgentToolConfigUnion
 
-/**
- * Configuration override for the web_fetch tool.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration override for the web_fetch tool. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWebFetchToolConfigParams(
-    /**
-     * Must be "web_fetch".
-     */
+    /** Must be "web_fetch". */
     val name: BetaManagedAgentsWebFetchToolConfigParamsNameEnum,
-    /**
-     * Optional `string` value serialized in the `type` wire field.
-     */
+    /** Optional `string` value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWebFetchToolConfigParamsTypeEnum? = null,
     /**
      * Whether this tool is enabled and available to Claude. Overrides the default_config setting.
      */
     val enabled: Boolean? = null,
     /**
-     * Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
+     * Permission policy for this tool. Controls whether tool calls are auto-approved or require
+     * confirmation.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null,
     /**
-     * Only fetch URLs whose host is one of these domains or a subdomain of one. Each entry is a plain hostname like "docs.example.com" (no scheme, port, or path). At most 64 entries; an empty list is rejected (omit the field instead). Cannot be combined with blocked_domains.
+     * Only fetch URLs whose host is one of these domains or a subdomain of one. Each entry is a
+     * plain hostname like "docs.example.com" (no scheme, port, or path). At most 64 entries; an
+     * empty list is rejected (omit the field instead). Cannot be combined with blocked_domains.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains") val allowedDomains: List<String>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains")
+    val allowedDomains: List<String>? = null,
     /**
-     * Never fetch URLs whose host is one of these domains or a subdomain of one. Each entry is a plain hostname like "ads.example.com" (no scheme, port, or path). At most 64 entries; an empty list is rejected (omit the field instead). Cannot be combined with allowed_domains.
+     * Never fetch URLs whose host is one of these domains or a subdomain of one. Each entry is a
+     * plain hostname like "ads.example.com" (no scheme, port, or path). At most 64 entries; an
+     * empty list is rejected (omit the field instead). Cannot be combined with allowed_domains.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains") val blockedDomains: List<String>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains")
+    val blockedDomains: List<String>? = null,
     /**
-     * Maximum number of tokens of fetched text content to include in context per call. Does not apply to binary content such as PDFs.
+     * Maximum number of tokens of fetched text content to include in context per call. Does not
+     * apply to binary content such as PDFs.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens") val maxContentTokens: Int? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens")
+    val maxContentTokens: Int? = null,
 ) : BetaManagedAgentsAgentToolConfigUnionParams
 
-/**
- * Configuration for the web_search tool.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration for the web_search tool. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWebSearchToolConfig(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWebSearchToolConfigTypeEnum,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: BetaManagedAgentsWebSearchToolConfigNameEnum,
-    /**
-     * Required `boolean` value serialized in the `enabled` wire field.
-     */
+    /** Required `boolean` value serialized in the `enabled` wire field. */
     val enabled: Boolean,
-    /**
-     * Permission policy for tool execution.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy,
-    /**
-     * Optional array value serialized in the `allowed_domains` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains") val allowedDomains: List<String>? = null,
-    /**
-     * Optional array value serialized in the `blocked_domains` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains") val blockedDomains: List<String>? = null,
-    /**
-     * Optional API value serialized in the `user_location` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_location") val userLocation: BetaManagedAgentsUserLocation? = null
+    /** Permission policy for tool execution. */
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy,
+    /** Optional array value serialized in the `allowed_domains` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains")
+    val allowedDomains: List<String>? = null,
+    /** Optional array value serialized in the `blocked_domains` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains")
+    val blockedDomains: List<String>? = null,
+    /** Optional API value serialized in the `user_location` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_location")
+    val userLocation: BetaManagedAgentsUserLocation? = null,
 ) : BetaManagedAgentsAgentToolConfigUnion
 
-/**
- * Configuration override for the web_search tool.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration override for the web_search tool. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWebSearchToolConfigParams(
-    /**
-     * Must be "web_search".
-     */
+    /** Must be "web_search". */
     val name: BetaManagedAgentsWebSearchToolConfigParamsNameEnum,
-    /**
-     * Optional `string` value serialized in the `type` wire field.
-     */
+    /** Optional `string` value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWebSearchToolConfigParamsTypeEnum? = null,
     /**
      * Whether this tool is enabled and available to Claude. Overrides the default_config setting.
      */
     val enabled: Boolean? = null,
     /**
-     * Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
+     * Permission policy for this tool. Controls whether tool calls are auto-approved or require
+     * confirmation.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null,
     /**
-     * Only return search results whose host is one of these domains or a subdomain of one. Each entry is a plain hostname like "docs.example.com" (no scheme or port; an optional path suffix is accepted). At most 64 entries; an empty list is rejected (omit the field instead). Cannot be combined with blocked_domains.
+     * Only return search results whose host is one of these domains or a subdomain of one. Each
+     * entry is a plain hostname like "docs.example.com" (no scheme or port; an optional path suffix
+     * is accepted). At most 64 entries; an empty list is rejected (omit the field instead). Cannot
+     * be combined with blocked_domains.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains") val allowedDomains: List<String>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains")
+    val allowedDomains: List<String>? = null,
     /**
-     * Never return search results whose host is one of these domains or a subdomain of one. Each entry is a plain hostname like "ads.example.com" (no scheme or port; an optional path suffix is accepted). At most 64 entries; an empty list is rejected (omit the field instead). Cannot be combined with allowed_domains.
+     * Never return search results whose host is one of these domains or a subdomain of one. Each
+     * entry is a plain hostname like "ads.example.com" (no scheme or port; an optional path suffix
+     * is accepted). At most 64 entries; an empty list is rejected (omit the field instead). Cannot
+     * be combined with allowed_domains.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains") val blockedDomains: List<String>? = null,
-    /**
-     * Approximate user location for search result localization.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_location") val userLocation: BetaManagedAgentsUserLocation? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains")
+    val blockedDomains: List<String>? = null,
+    /** Approximate user location for search result localization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_location")
+    val userLocation: BetaManagedAgentsUserLocation? = null,
 ) : BetaManagedAgentsAgentToolConfigUnionParams
 
-/**
- * The deployment's workspace was archived.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The deployment's workspace was archived. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonErrorTypeEnum
 ) : BetaManagedAgentsDeploymentPausedReasonError
 
-/**
- * The deployment's workspace was archived.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The deployment's workspace was archived. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWorkspaceArchivedRunError(
-    /**
-     * Required enumerated value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWorkspaceArchivedRunErrorTypeEnum,
-    /**
-     * Human-readable error description.
-     */
-    val message: String
+    /** Human-readable error description. */
+    val message: String,
 ) : BetaManagedAgentsRunError
 
-/**
- * Configuration for the write tool.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration for the write tool. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWriteToolConfig(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWriteToolConfigTypeEnum,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: BetaManagedAgentsWriteToolConfigNameEnum,
-    /**
-     * Required `boolean` value serialized in the `enabled` wire field.
-     */
+    /** Required `boolean` value serialized in the `enabled` wire field. */
     val enabled: Boolean,
-    /**
-     * Permission policy for tool execution.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy
+    /** Permission policy for tool execution. */
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy,
 ) : BetaManagedAgentsAgentToolConfigUnion
 
-/**
- * Configuration override for the write tool.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Configuration override for the write tool. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaManagedAgentsWriteToolConfigParams(
-    /**
-     * Must be "write".
-     */
+    /** Must be "write". */
     val name: BetaManagedAgentsWriteToolConfigParamsNameEnum,
-    /**
-     * Optional `string` value serialized in the `type` wire field.
-     */
+    /** Optional `string` value serialized in the `type` wire field. */
     val type: BetaManagedAgentsWriteToolConfigParamsTypeEnum? = null,
     /**
      * Whether this tool is enabled and available to Claude. Overrides the default_config setting.
      */
     val enabled: Boolean? = null,
     /**
-     * Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
+     * Permission policy for this tool. Controls whether tool calls are auto-approved or require
+     * confirmation.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy") val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("permission_policy")
+    val permissionPolicy: BetaManagedAgentsPermissionPolicy? = null,
 ) : BetaManagedAgentsAgentToolConfigUnionParams

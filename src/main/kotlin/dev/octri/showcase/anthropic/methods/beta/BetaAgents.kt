@@ -20,7 +20,6 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaAgents {
 
-
     /** Parameters for [createBetaAgents]. */
     data class CreateBetaAgentsRequest(
         val name: String,
@@ -34,52 +33,95 @@ object BetaAgents {
         val mcpServers: List<BetaManagedAgentsMCPServerParams>? = null,
         val skills: List<BetaManagedAgentsSkillParams>? = null,
         val metadata: Map<String, String>? = null,
-        val multiagent: SdkClient.SdkOptional<BetaManagedAgentsMultiagentParams?>? = null
+        val multiagent: SdkClient.SdkOptional<BetaManagedAgentsMultiagentParams?>? = null,
     )
 
     /**
-     * Creates an agent with a name and model configuration. Provide `name` and `model`, then optionally configure its instructions, tools, connected MCP servers, skills, metadata, and multiagent behavior. A successful response returns the created agent at version 1.
+     * Creates an agent with a name and model configuration. Provide `name` and `model`, then
+     * optionally configure its instructions, tools, connected MCP servers, skills, metadata, and
+     * multiagent behavior. A successful response returns the created agent at version 1.
      *
      * @param name Human-readable name for the agent.
-     * @param model Model identifier. Accepts the model string, e.g. `claude-opus-5`,
-     *   or a `model_config` object for additional configuration control
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param model Model identifier. Accepts the model string, e.g. `claude-opus-5`, or a
+     *   `model_config` object for additional configuration control
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      * @param description Description of what the agent does.
      * @param system System prompt for the agent.
-     * @param tools Tool configurations available to the agent. Maximum of 128 tools
-     *   across all toolsets allowed.
-     * @param mcpServers MCP servers this agent connects to. Maximum 20. Names must
-     *   be unique within the array. Every server must be referenced by an
-     *   `mcp_toolset` in `tools`; unreferenced servers are rejected. See the MCP
-     *   connector guide.
+     * @param tools Tool configurations available to the agent. Maximum of 128 tools across all
+     *   toolsets allowed.
+     * @param mcpServers MCP servers this agent connects to. Maximum 20. Names must be unique within
+     *   the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced
+     *   servers are rejected. See the MCP connector guide.
      * @param skills Skills available to the agent.
-     * @param metadata Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64
-     *   chars, values up to 512 chars.
-     * @param multiagent Multiagent orchestration configuration. Currently supports
-     *   the `coordinator` topology with a roster of 1-20 agents.
+     * @param metadata Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values
+     *   up to 512 chars.
+     * @param multiagent Multiagent orchestration configuration. Currently supports the
+     *   `coordinator` topology with a roster of 1-20 agents.
      */
-    fun createBetaAgents(clientConfig: ClientConfig, request: CreateBetaAgentsRequest, options: RequestOptions? = null): BetaManagedAgentsAgent {
+    fun createBetaAgents(
+        clientConfig: ClientConfig,
+        request: CreateBetaAgentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsAgent {
         validateCreateBetaAgentsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsAgent>(SdkClient.RequestSpec("POST", "/v1/agents?beta=true", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "model" to (request.model), "description" to
-    (request.description ?: SdkClient.SdkOptional.Omitted), "system" to
-    (request.system ?: SdkClient.SdkOptional.Omitted), "tools" to (SdkClient.omitIfNull(request.tools)), "mcp_servers" to (SdkClient.omitIfNull(request.mcpServers)), "skills" to (SdkClient.omitIfNull(request.skills)), "metadata" to (SdkClient.omitIfNull(request.metadata)), "multiagent" to
-    (request.multiagent ?: SdkClient.SdkOptional.Omitted)), operationId = "createBetaAgents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaManagedAgentsAgent>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/agents?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (request.name),
+                            "model" to (request.model),
+                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
+                            "system" to (request.system ?: SdkClient.SdkOptional.Omitted),
+                            "tools" to (SdkClient.omitIfNull(request.tools)),
+                            "mcp_servers" to (SdkClient.omitIfNull(request.mcpServers)),
+                            "skills" to (SdkClient.omitIfNull(request.skills)),
+                            "metadata" to (SdkClient.omitIfNull(request.metadata)),
+                            "multiagent" to (request.multiagent ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    operationId = "createBetaAgents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateCreateBetaAgentsRequest(request: CreateBetaAgentsRequest) {
         Validation.validateLength("name", request.name, Validation.LengthOpts(min = 1, max = 256))
     }
-
-
-
-
-
 
     /** Parameters for [listBetaAgents]. */
     data class ListBetaAgentsRequest(
@@ -90,62 +132,122 @@ object BetaAgents {
         val includeArchived: Boolean? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * Lists agents available in the selected workspace. Use the creation-time filters and `include_archived` to narrow the results, and use `page` to continue through the cursor-based results. Each response includes a `next_page` cursor when another page is available.
+     * Lists agents available in the selected workspace. Use the creation-time filters and
+     * `include_archived` to narrow the results, and use `page` to continue through the cursor-based
+     * results. Each response includes a `next_page` cursor when another page is available.
      *
      * @param limit Maximum results per page. Default 20, maximum 100.
      * @param page Opaque pagination cursor from a previous response.
      * @param createdAtGte Return agents created at or after this time (inclusive).
      * @param createdAtLte Return agents created at or before this time (inclusive).
      * @param includeArchived Include archived agents in results. Defaults to false.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaAgents(clientConfig: ClientConfig, request: ListBetaAgentsRequest, options: RequestOptions? = null): BetaManagedAgentsListAgents {
+    fun listBetaAgents(
+        clientConfig: ClientConfig,
+        request: ListBetaAgentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListAgents {
         validateListBetaAgentsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsListAgents>(SdkClient.RequestSpec("GET", "/v1/agents?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "created_at[gte]" to
-    SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"), "created_at[lte]" to
-    SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"), "include_archived" to
-    SdkClient.queryValue(request.includeArchived, "form", true)), operationId = "listBetaAgents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaManagedAgentsListAgents>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/agents?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "created_at[gte]" to
+                                SdkClient.queryValue(
+                                    request.createdAtGte,
+                                    "form",
+                                    true,
+                                    "date-time",
+                                ),
+                            "created_at[lte]" to
+                                SdkClient.queryValue(
+                                    request.createdAtLte,
+                                    "form",
+                                    true,
+                                    "date-time",
+                                ),
+                            "include_archived" to
+                                SdkClient.queryValue(request.includeArchived, "form", true),
+                        ),
+                    operationId = "listBetaAgents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateListBetaAgentsRequest(request: ListBetaAgentsRequest) {
         if (request.createdAtGte != null) {
             Validation.validateDateTime("created_at[gte]", request.createdAtGte)
-}
+        }
 
         if (request.createdAtLte != null) {
             Validation.validateDateTime("created_at[lte]", request.createdAtLte)
-}
+        }
     }
 
-
-
-
-
     /**
-     * Lists agents available in the selected workspace. Use the creation-time filters and `include_archived` to narrow the results, and use `page` to continue through the cursor-based results. Each response includes a `next_page` cursor when another page is available.
+     * Lists agents available in the selected workspace. Use the creation-time filters and
+     * `include_archived` to narrow the results, and use `page` to continue through the cursor-based
+     * results. Each response includes a `next_page` cursor when another page is available.
      *
      * @param limit Maximum results per page. Default 20, maximum 100.
      * @param page Opaque pagination cursor from a previous response.
      * @param createdAtGte Return agents created at or after this time (inclusive).
      * @param createdAtLte Return agents created at or before this time (inclusive).
      * @param includeArchived Include archived agents in results. Defaults to false.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaAgentsPaginated(clientConfig: ClientConfig, request: ListBetaAgentsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsAgent) -> Boolean) {
+    fun listBetaAgentsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaAgentsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsAgent) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaAgents(clientConfig, request.copy(page = cursor), options)
@@ -165,7 +267,12 @@ object BetaAgents {
         val hasMore: Boolean,
     )
 
-    fun listBetaAgentsPages(clientConfig: ClientConfig, request: ListBetaAgentsRequest, options: RequestOptions? = null, yieldPage: (ListBetaAgentsPage) -> Boolean) {
+    fun listBetaAgentsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaAgentsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaAgentsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaAgents(clientConfig, request.copy(page = cursor), options)
@@ -179,29 +286,66 @@ object BetaAgents {
         }
     }
 
-
-
     /**
-     * Retrieves an agent by its identifier. Supply `agent_id` to select the agent and optionally `version` to retrieve a particular version. Omit `version` to retrieve the most recent version.
+     * Retrieves an agent by its identifier. Supply `agent_id` to select the agent and optionally
+     * `version` to retrieve a particular version. Omit `version` to retrieve the most recent
+     * version.
      *
      * @param agentId Path parameter agent_id
-     * @param version Agent version. Omit for the most recent version. Must be at
-     *   least 1 if specified.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param version Agent version. Omit for the most recent version. Must be at least 1 if
+     *   specified.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaAgents(clientConfig: ClientConfig, agentId: String, version: Int? = null, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsAgent {
-        return SdkClient.request<BetaManagedAgentsAgent>(SdkClient.RequestSpec("GET", "/v1/agents/${SdkClient.encodePathSegment(agentId)}?beta=true", config = clientConfig, query = mapOf("version" to SdkClient.queryValue(version, "form", true)), operationId = "retrieveBetaAgents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaAgents(
+        clientConfig: ClientConfig,
+        agentId: String,
+        version: Int? = null,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsAgent {
+        return SdkClient.request<BetaManagedAgentsAgent>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/agents/${SdkClient.encodePathSegment(agentId)}?beta=true",
+                    config = clientConfig,
+                    query = mapOf("version" to SdkClient.queryValue(version, "form", true)),
+                    operationId = "retrieveBetaAgents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [updateBetaAgents]. */
     data class UpdateBetaAgentsRequest(
@@ -218,88 +362,161 @@ object BetaAgents {
         val mcpServers: SdkClient.SdkOptional<List<BetaManagedAgentsMCPServerParams>?>? = null,
         val skills: SdkClient.SdkOptional<List<BetaManagedAgentsSkillParams>?>? = null,
         val metadata: SdkClient.SdkOptional<Map<String, String>?>? = null,
-        val multiagent: SdkClient.SdkOptional<BetaManagedAgentsMultiagentParams?>? = null
+        val multiagent: SdkClient.SdkOptional<BetaManagedAgentsMultiagentParams?>? = null,
     )
 
     /**
-     * Updates the configuration of an existing agent. Send only the fields to change; omitted fields retain their current values, while fields such as `tools`, `mcp_servers`, and `skills` replace their complete existing collections when supplied. Use `version` to guard against concurrent updates, or omit it to apply the update unconditionally.
+     * Updates the configuration of an existing agent. Send only the fields to change; omitted
+     * fields retain their current values, while fields such as `tools`, `mcp_servers`, and `skills`
+     * replace their complete existing collections when supplied. Use `version` to guard against
+     * concurrent updates, or omit it to apply the update unconditionally.
      *
      * @param agentId Path parameter agent_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
-     * @param version The agent's current version, used to prevent concurrent
-     *   overwrites. Obtain this value from a create or retrieve response. Must be at
-     *   least 1 if specified. When supplied, the request fails if it does not match
-     *   the server's current version; omit to apply the update unconditionally.
-     * @param name Human-readable name. Must be non-empty. Omit to preserve. Cannot
-     *   be cleared.
-     * @param description Description. Omit to preserve; send empty string or null to
-     *   clear.
-     * @param model Model identifier. Accepts the model string, e.g. `claude-opus-5`,
-     *   or a `model_config` object for additional configuration control. Omit to
-     *   preserve. Cannot be cleared.
-     * @param system System prompt. Omit to preserve; send empty string or null to
-     *   clear.
-     * @param tools Tool configurations available to the agent. Full replacement.
-     *   Omit to preserve; send empty array or null to clear. Maximum of 128 tools
-     *   across all toolsets allowed.
-     * @param mcpServers MCP servers. Full replacement. Omit to preserve; send empty
-     *   array or `null` to clear. Names must be unique. Maximum 20. Every server must
-     *   be referenced by an `mcp_toolset` in the agent's resulting `tools`;
-     *   unreferenced servers are rejected. See the MCP connector guide.
-     * @param skills Skills. Full replacement. Omit to preserve; send empty array or
-     *   null to clear.
-     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null
-     *   to delete it. Omit the field to preserve. The stored bag is limited to 16 keys
-     *   (up to 64 chars each) with values up to 512 chars.
-     * @param multiagent Multiagent orchestration configuration. Full replacement.
-     *   Omit to preserve; send null to clear.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param version The agent's current version, used to prevent concurrent overwrites. Obtain
+     *   this value from a create or retrieve response. Must be at least 1 if specified. When
+     *   supplied, the request fails if it does not match the server's current version; omit to
+     *   apply the update unconditionally.
+     * @param name Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
+     * @param description Description. Omit to preserve; send empty string or null to clear.
+     * @param model Model identifier. Accepts the model string, e.g. `claude-opus-5`, or a
+     *   `model_config` object for additional configuration control. Omit to preserve. Cannot be
+     *   cleared.
+     * @param system System prompt. Omit to preserve; send empty string or null to clear.
+     * @param tools Tool configurations available to the agent. Full replacement. Omit to preserve;
+     *   send empty array or null to clear. Maximum of 128 tools across all toolsets allowed.
+     * @param mcpServers MCP servers. Full replacement. Omit to preserve; send empty array or `null`
+     *   to clear. Names must be unique. Maximum 20. Every server must be referenced by an
+     *   `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the
+     *   MCP connector guide.
+     * @param skills Skills. Full replacement. Omit to preserve; send empty array or null to clear.
+     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null to delete it.
+     *   Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with
+     *   values up to 512 chars.
+     * @param multiagent Multiagent orchestration configuration. Full replacement. Omit to preserve;
+     *   send null to clear.
      */
-    fun updateBetaAgents(clientConfig: ClientConfig, request: UpdateBetaAgentsRequest, options: RequestOptions? = null): BetaManagedAgentsAgent {
+    fun updateBetaAgents(
+        clientConfig: ClientConfig,
+        request: UpdateBetaAgentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsAgent {
         validateUpdateBetaAgentsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsAgent>(SdkClient.RequestSpec("POST", "/v1/agents/${SdkClient.encodePathSegment(request.agentId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("version" to (SdkClient.omitIfNull(request.version)), "name" to (SdkClient.omitIfNull(request.name)), "description" to
-    (request.description ?: SdkClient.SdkOptional.Omitted), "model" to (SdkClient.omitIfNull(request.model)), "system" to
-    (request.system ?: SdkClient.SdkOptional.Omitted), "tools" to (request.tools ?: SdkClient.SdkOptional.Omitted), "mcp_servers" to
-    (request.mcpServers ?: SdkClient.SdkOptional.Omitted), "skills" to
-    (request.skills ?: SdkClient.SdkOptional.Omitted), "metadata" to
-    (request.metadata ?: SdkClient.SdkOptional.Omitted), "multiagent" to
-    (request.multiagent ?: SdkClient.SdkOptional.Omitted)), operationId = "updateBetaAgents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaManagedAgentsAgent>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/agents/${SdkClient.encodePathSegment(request.agentId)}?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "version" to (SdkClient.omitIfNull(request.version)),
+                            "name" to (SdkClient.omitIfNull(request.name)),
+                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
+                            "model" to (SdkClient.omitIfNull(request.model)),
+                            "system" to (request.system ?: SdkClient.SdkOptional.Omitted),
+                            "tools" to (request.tools ?: SdkClient.SdkOptional.Omitted),
+                            "mcp_servers" to (request.mcpServers ?: SdkClient.SdkOptional.Omitted),
+                            "skills" to (request.skills ?: SdkClient.SdkOptional.Omitted),
+                            "metadata" to (request.metadata ?: SdkClient.SdkOptional.Omitted),
+                            "multiagent" to (request.multiagent ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    operationId = "updateBetaAgents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateUpdateBetaAgentsRequest(request: UpdateBetaAgentsRequest) {
         if (request.name != null) {
             Validation.validateLength("name", request.name, Validation.LengthOpts(max = 256))
-}
+        }
     }
-
-
-
-
-
 
     /**
-     * Archives an agent so it is marked as archived. Use `agent_id` to select the agent to archive. A successful response returns the agent object, including its archive timestamp.
+     * Archives an agent so it is marked as archived. Use `agent_id` to select the agent to archive.
+     * A successful response returns the agent object, including its archive timestamp.
      *
      * @param agentId Path parameter agent_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun archiveBetaAgents(clientConfig: ClientConfig, agentId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsAgent {
-        return SdkClient.request<BetaManagedAgentsAgent>(SdkClient.RequestSpec("POST", "/v1/agents/${SdkClient.encodePathSegment(agentId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaAgents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun archiveBetaAgents(
+        clientConfig: ClientConfig,
+        agentId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsAgent {
+        return SdkClient.request<BetaManagedAgentsAgent>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/agents/${SdkClient.encodePathSegment(agentId)}/archive?beta=true",
+                    config = clientConfig,
+                    operationId = "archiveBetaAgents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

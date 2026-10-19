@@ -16,37 +16,82 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsInvites {
 
-
     /**
-     * Invite a user to join the organization by email. On plans that draw members from a finite pool of purchased seats, the invite automatically consumes a seat from the lowest tier with availability; there is no seat-tier parameter. When no seat is free the request fails with a 400 error rather than purchasing a seat.
+     * Invite a user to join the organization by email. On plans that draw members from a finite
+     * pool of purchased seats, the invite automatically consumes a seat from the lowest tier with
+     * availability; there is no seat-tier parameter. When no seat is free the request fails with a
+     * 400 error rather than purchasing a seat.
      *
      * @param email Email of the User.
-     * @param role Role for the invited User. The accepted values depend on the
-     *   organization type. Console and API organizations accept `user`, `developer`,
-     *   `billing`, and `claude_code_user`; `admin` cannot be assigned through the API.
-     *   Claude Enterprise organizations accept `user` and `managed`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param rbacGroupIds RBAC group IDs to assign to the User when the Invite is
-     *   accepted. A non-empty array is accepted only for a Claude Enterprise
-     *   organization with RBAC groups, and requires the key to carry the
-     *   `write:rbac_groups` scope.
+     * @param role Role for the invited User. The accepted values depend on the organization type.
+     *   Console and API organizations accept `user`, `developer`, `billing`, and
+     *   `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise
+     *   organizations accept `user` and `managed`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param rbacGroupIds RBAC group IDs to assign to the User when the Invite is accepted. A
+     *   non-empty array is accepted only for a Claude Enterprise organization with RBAC groups, and
+     *   requires the key to carry the `write:rbac_groups` scope.
      */
-    fun createBetaOrganizationsInvites(clientConfig: ClientConfig, email: String, role: BetaCreateInviteParamsRoleEnum, anthropicVersion: String? = null, rbacGroupIds: List<String>? = null, options: RequestOptions? = null): BetaInviteSchema {
+    fun createBetaOrganizationsInvites(
+        clientConfig: ClientConfig,
+        email: String,
+        role: BetaCreateInviteParamsRoleEnum,
+        anthropicVersion: String? = null,
+        rbacGroupIds: List<String>? = null,
+        options: RequestOptions? = null,
+    ): BetaInviteSchema {
         Validation.validateEmail("email", email)
 
         if (rbacGroupIds != null) {
-            Validation.validateItems("rbac_group_ids", rbacGroupIds, Validation.LengthOpts(max = 100))
-}
+            Validation.validateItems(
+                "rbac_group_ids",
+                rbacGroupIds,
+                Validation.LengthOpts(max = 100),
+            )
+        }
 
-        return SdkClient.request<BetaInviteSchema>(SdkClient.RequestSpec("POST", "/v1/organizations/invites?beta=true", config = clientConfig, body = SdkClient.bodyMap("email" to (email), "role" to (role), "rbac_group_ids" to (SdkClient.omitIfNull(rbacGroupIds))), operationId = "createBetaOrganizationsInvites", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaInviteSchema>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/invites?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "email" to (email),
+                            "role" to (role),
+                            "rbac_group_ids" to (SdkClient.omitIfNull(rbacGroupIds)),
+                        ),
+                    operationId = "createBetaOrganizationsInvites",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [listBetaOrganizationsInvites]. */
     data class ListBetaOrganizationsInvitesRequest(
@@ -56,94 +101,204 @@ object BetaOrganizationsInvites {
         val statuses: List<ListBetaOrganizationsInvitesParameterItemEnum>? = null,
         val email: String? = null,
         val roles: List<String>? = null,
-        val anthropicVersion: String? = null
+        val anthropicVersion: String? = null,
     )
 
     /**
-     * Lists organization invites with optional cursor pagination and filters. Use `before_id` or `after_id` to navigate pages, and filter by invite status, email address, or role as needed. Results include pagination cursors and a `has_more` indicator.
+     * Lists organization invites with optional cursor pagination and filters. Use `before_id` or
+     * `after_id` to navigate pages, and filter by invite status, email address, or role as needed.
+     * Results include pagination cursors and a `has_more` indicator.
      *
      * List the organization's invites.
      *
-     * @param beforeId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately before this object.
-     * @param afterId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately after this object.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
-     *   `1` to `1000`.
-     * @param statuses Filter by Invite status. Repeatable; values are OR'ed
-     *   together. Omit to return `pending`, `accepted`, and `expired` Invites alike.
-     * @param email Filter by the email address the Invite was sent to. Matches the
-     *   same way as the Users list's `email` filter (normalized, case-insensitive).
-     * @param roles Filter to items whose `role` equals one of the supplied values.
-     *   Repeatable; values are OR'ed together. Accepted values depend on the
-     *   organization type: Console and API organizations accept `user`, `developer`,
-     *   `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations
-     *   accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param beforeId ID of the object to use as a cursor for pagination. When provided, returns
+     *   the page of results immediately before this object.
+     * @param afterId ID of the object to use as a cursor for pagination. When provided, returns the
+     *   page of results immediately after this object.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
+     * @param statuses Filter by Invite status. Repeatable; values are OR'ed together. Omit to
+     *   return `pending`, `accepted`, and `expired` Invites alike.
+     * @param email Filter by the email address the Invite was sent to. Matches the same way as the
+     *   Users list's `email` filter (normalized, case-insensitive).
+     * @param roles Filter to items whose `role` equals one of the supplied values. Repeatable;
+     *   values are OR'ed together. Accepted values depend on the organization type: Console and API
+     *   organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`;
+     *   Claude Enterprise organizations accept `user`, `owner`, `primary_owner`,
+     *   `membership_admin`, and `managed`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsInvites(clientConfig: ClientConfig, request: ListBetaOrganizationsInvitesRequest, options: RequestOptions? = null): BetaListResponseInviteSchema {
+    fun listBetaOrganizationsInvites(
+        clientConfig: ClientConfig,
+        request: ListBetaOrganizationsInvitesRequest,
+        options: RequestOptions? = null,
+    ): BetaListResponseInviteSchema {
         validateListBetaOrganizationsInvitesRequest(request)
 
-        return SdkClient.request<BetaListResponseInviteSchema>(SdkClient.RequestSpec("GET", "/v1/organizations/invites?beta=true", config = clientConfig, query = mapOf("before_id" to
-    SdkClient.queryValue(request.beforeId, "form", true), "after_id" to
-    SdkClient.queryValue(request.afterId, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true), "statuses[]" to
-    SdkClient.queryValue(request.statuses, "form", true), "email" to SdkClient.queryValue(request.email, "form", true), "roles[]" to
-    SdkClient.queryValue(request.roles, "form", true)), operationId = "listBetaOrganizationsInvites", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaListResponseInviteSchema>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/invites?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "before_id" to SdkClient.queryValue(request.beforeId, "form", true),
+                            "after_id" to SdkClient.queryValue(request.afterId, "form", true),
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "statuses[]" to SdkClient.queryValue(request.statuses, "form", true),
+                            "email" to SdkClient.queryValue(request.email, "form", true),
+                            "roles[]" to SdkClient.queryValue(request.roles, "form", true),
+                        ),
+                    operationId = "listBetaOrganizationsInvites",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateListBetaOrganizationsInvitesRequest(request: ListBetaOrganizationsInvitesRequest) {
+    private fun validateListBetaOrganizationsInvitesRequest(
+        request: ListBetaOrganizationsInvitesRequest
+    ) {
         if (request.limit != null) {
-            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "limit",
+                request.limit,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.email != null) {
             Validation.validateEmail("email", request.email)
-}
+        }
     }
 
-
-
-
-
-
     /**
-     * Retrieves an organization invite by its identifier. Use this endpoint to inspect the recipient, assigned role, status, and expiration details for a specific invite. The invite status indicates whether it is accepted, deleted, expired, or pending.
+     * Retrieves an organization invite by its identifier. Use this endpoint to inspect the
+     * recipient, assigned role, status, and expiration details for a specific invite. The invite
+     * status indicates whether it is accepted, deleted, expired, or pending.
      *
      * Retrieve an invite by ID.
      *
      * @param inviteId ID of the Invite.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsInvites(clientConfig: ClientConfig, inviteId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaInviteSchema {
-        return SdkClient.request<BetaInviteSchema>(SdkClient.RequestSpec("GET", "/v1/organizations/invites/${SdkClient.encodePathSegment(inviteId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsInvites", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaOrganizationsInvites(
+        clientConfig: ClientConfig,
+        inviteId: String,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaInviteSchema {
+        return SdkClient.request<BetaInviteSchema>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/invites/${SdkClient.encodePathSegment(inviteId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaOrganizationsInvites",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a pending organization invite. Provide the invite's identifier to remove it. The response confirms deletion with the invite ID and a deleted-object type.
+     * Deletes a pending organization invite. Provide the invite's identifier to remove it. The
+     * response confirms deletion with the invite ID and a deleted-object type.
      *
      * Delete a pending invite.
      *
      * @param inviteId ID of the Invite.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun deleteBetaOrganizationsInvites(clientConfig: ClientConfig, inviteId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaDeleteInviteResponse {
-        return SdkClient.request<BetaDeleteInviteResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/invites/${SdkClient.encodePathSegment(inviteId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsInvites", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun deleteBetaOrganizationsInvites(
+        clientConfig: ClientConfig,
+        inviteId: String,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaDeleteInviteResponse {
+        return SdkClient.request<BetaDeleteInviteResponse>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/v1/organizations/invites/${SdkClient.encodePathSegment(inviteId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "deleteBetaOrganizationsInvites",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

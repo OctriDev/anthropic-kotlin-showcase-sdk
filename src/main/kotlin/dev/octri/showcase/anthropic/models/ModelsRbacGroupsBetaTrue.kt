@@ -3,30 +3,21 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaCreateRbacGroupParams` API schema.
- */
+/** Typed representation of the `BetaCreateRbacGroupParams` API schema. */
 data class BetaCreateRbacGroupParams(
-    /**
-     * Name of the RBAC Group. Not uniqueness-enforced.
-     */
+    /** Name of the RBAC Group. Not uniqueness-enforced. */
     val name: String
 )
 
-/**
- * Typed representation of the `BetaRbacGroupList` API schema.
- */
+/** Typed representation of the `BetaRbacGroupList` API schema. */
 data class BetaRbacGroupList(
-    /**
-     * Required array value serialized in the `data` wire field.
-     */
+    /** Required array value serialized in the `data` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaRbacGroup>,
-    /**
-     * Indicates if there are more results in the requested page direction.
-     */
+    /** Indicates if there are more results in the requested page direction. */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
     /**
      * Token to provide in as `page` in the subsequent request to retrieve the next page of data.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 )

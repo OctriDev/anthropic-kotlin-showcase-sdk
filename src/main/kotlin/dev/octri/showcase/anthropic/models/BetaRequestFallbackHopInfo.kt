@@ -3,12 +3,8 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Identifies one hop of a fallback transition.
- */
+/** Identifies one hop of a fallback transition. */
 data class BetaRequestFallbackHopInfo(
-    /**
-     * The model that will complete your prompt. See models for additional details and options.
-     */
+    /** The model that will complete your prompt. See models for additional details and options. */
     val model: Model
 )

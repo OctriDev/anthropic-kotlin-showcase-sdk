@@ -3,296 +3,319 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaRequestCharLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestCharLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestCharLocationCitation(
-    /**
-     * Required `string` value serialized in the `cited_text` wire field.
-     */
+    /** Required `string` value serialized in the `cited_text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /**
-     * Required `integer` value serialized in the `document_index` wire field.
-     */
+    /** Required `integer` value serialized in the `document_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("document_index") val documentIndex: Long,
-    /**
-     * Required API value serialized in the `document_title` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true) val documentTitle: String?,
-    /**
-     * Required `integer` value serialized in the `end_char_index` wire field.
-     */
+    /** Required API value serialized in the `document_title` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true)
+    val documentTitle: String?,
+    /** Required `integer` value serialized in the `end_char_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("end_char_index") val endCharIndex: Long,
-    /**
-     * Required `integer` value serialized in the `start_char_index` wire field.
-     */
+    /** Required `integer` value serialized in the `start_char_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_char_index") val startCharIndex: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestCharLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaRequestCharLocationCitationTypeEnum,
 ) : BetaRequestTextBlockCitationsItem
 
-/**
- * Typed representation of the `BetaRequestContentBlockLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestContentBlockLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestContentBlockLocationCitation(
     /**
-     * The full text of the cited block range, concatenated. Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+     * The full text of the cited block range, concatenated. Always equals the contents of
+     * `content[start_block_index:end_block_index]` joined together. The text block is the minimal
+     * citable unit; this field is never a substring of a single block. Not counted toward output
+     * tokens, and not counted toward input tokens when sent back in subsequent turns.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /**
-     * Required `integer` value serialized in the `document_index` wire field.
-     */
+    /** Required `integer` value serialized in the `document_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("document_index") val documentIndex: Long,
+    /** Required API value serialized in the `document_title` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true)
+    val documentTitle: String?,
     /**
-     * Required API value serialized in the `document_title` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true) val documentTitle: String?,
-    /**
-     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always
+     * greater than `start_block_index`; a single-block citation has `end_block_index =
+     * start_block_index + 1`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_block_index") val endBlockIndex: Long,
-    /**
-     * 0-based index of the first cited block in the source's `content` array.
-     */
+    /** 0-based index of the first cited block in the source's `content` array. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_block_index") val startBlockIndex: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestContentBlockLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaRequestContentBlockLocationCitationTypeEnum,
 ) : BetaRequestTextBlockCitationsItem
 
-/**
- * Typed representation of the `BetaRequestPageLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestPageLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestPageLocationCitation(
-    /**
-     * Required `string` value serialized in the `cited_text` wire field.
-     */
+    /** Required `string` value serialized in the `cited_text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /**
-     * Required `integer` value serialized in the `document_index` wire field.
-     */
+    /** Required `integer` value serialized in the `document_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("document_index") val documentIndex: Long,
-    /**
-     * Required API value serialized in the `document_title` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true) val documentTitle: String?,
-    /**
-     * Required `integer` value serialized in the `end_page_number` wire field.
-     */
+    /** Required API value serialized in the `document_title` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true)
+    val documentTitle: String?,
+    /** Required `integer` value serialized in the `end_page_number` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("end_page_number") val endPageNumber: Long,
-    /**
-     * Required `integer` value serialized in the `start_page_number` wire field.
-     */
+    /** Required `integer` value serialized in the `start_page_number` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_page_number") val startPageNumber: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestPageLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaRequestPageLocationCitationTypeEnum,
 ) : BetaRequestTextBlockCitationsItem
 
-/**
- * Typed representation of the `BetaRequestSearchResultLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestSearchResultLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestSearchResultLocationCitation(
     /**
-     * The full text of the cited block range, concatenated. Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+     * The full text of the cited block range, concatenated. Always equals the contents of
+     * `content[start_block_index:end_block_index]` joined together. The text block is the minimal
+     * citable unit; this field is never a substring of a single block. Not counted toward output
+     * tokens, and not counted toward input tokens when sent back in subsequent turns.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
     /**
-     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always
+     * greater than `start_block_index`; a single-block citation has `end_block_index =
+     * start_block_index + 1`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_block_index") val endBlockIndex: Long,
     /**
-     * 0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results. Counted separately from `document_index`; server-side web search results are not included in this count.
+     * 0-based index of the cited search result among all `search_result` content blocks in the
+     * request, in the order they appear across messages and tool results. Counted separately from
+     * `document_index`; server-side web search results are not included in this count.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("search_result_index") val searchResultIndex: Long,
-    /**
-     * Required `string` value serialized in the `source` wire field.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("search_result_index")
+    val searchResultIndex: Long,
+    /** Required `string` value serialized in the `source` wire field. */
     val source: String,
-    /**
-     * 0-based index of the first cited block in the source's `content` array.
-     */
+    /** 0-based index of the first cited block in the source's `content` array. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_block_index") val startBlockIndex: Long,
-    /**
-     * Required `string` value serialized in the `title` wire field.
-     */
+    /** Required `string` value serialized in the `title` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestSearchResultLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaRequestSearchResultLocationCitationTypeEnum,
 ) : BetaRequestTextBlockCitationsItem
 
-/**
- * Required API value serialized in the `citations[]` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaRequestTextBlockCitationsItem::class)
+/** Required API value serialized in the `citations[]` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaRequestTextBlockCitationsItem::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestCharLocationCitation::class, name = "char_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestPageLocationCitation::class, name = "page_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestContentBlockLocationCitation::class, name = "content_block_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestWebSearchResultLocationCitation::class, name = "web_search_result_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestSearchResultLocationCitation::class, name = "search_result_location")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestCharLocationCitation::class,
+        name = "char_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestPageLocationCitation::class,
+        name = "page_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestContentBlockLocationCitation::class,
+        name = "content_block_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestWebSearchResultLocationCitation::class,
+        name = "web_search_result_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestSearchResultLocationCitation::class,
+        name = "search_result_location",
+    ),
 )
 sealed interface BetaRequestTextBlockCitationsItem
 
-/** A [BetaRequestTextBlockCitationsItem] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaRequestTextBlockCitationsItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaRequestTextBlockCitationsItem] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaRequestTextBlockCitationsItem
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaRequestTextBlockCitationsItem {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `BetaRequestTextEditorCodeExecutionCreateResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestTextEditorCodeExecutionCreateResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestTextEditorCodeExecutionCreateResultBlock(
-    /**
-     * Required `boolean` value serialized in the `is_file_update` wire field.
-     */
+    /** Required `boolean` value serialized in the `is_file_update` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_file_update") val isFileUpdate: Boolean,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaRequestTextEditorCodeExecutionCreateResultBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaRequestTextEditorCodeExecutionCreateResultBlockTypeEnum,
 ) : BetaRequestTextEditorCodeExecutionToolResultBlockContent
 
 /**
  * Typed representation of the `BetaRequestTextEditorCodeExecutionStrReplaceResultBlock` API schema.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestTextEditorCodeExecutionStrReplaceResultBlock(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum,
-    /**
-     * Optional array value serialized in the `lines` wire field.
-     */
+    /** Optional array value serialized in the `lines` wire field. */
     val lines: List<String>? = null,
-    /**
-     * Optional `integer` value serialized in the `new_lines` wire field.
-     */
+    /** Optional `integer` value serialized in the `new_lines` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("new_lines") val newLines: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `new_start` wire field.
-     */
+    /** Optional `integer` value serialized in the `new_start` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("new_start") val newStart: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `old_lines` wire field.
-     */
+    /** Optional `integer` value serialized in the `old_lines` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("old_lines") val oldLines: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `old_start` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("old_start") val oldStart: Long? = null
+    /** Optional `integer` value serialized in the `old_start` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("old_start") val oldStart: Long? = null,
 ) : BetaRequestTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Required API value serialized in the `content` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent::class)
+/** Required API value serialized in the `content` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestTextEditorCodeExecutionToolResultError::class, name = "text_editor_code_execution_tool_result_error"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestTextEditorCodeExecutionViewResultBlock::class, name = "text_editor_code_execution_view_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestTextEditorCodeExecutionCreateResultBlock::class, name = "text_editor_code_execution_create_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRequestTextEditorCodeExecutionStrReplaceResultBlock::class, name = "text_editor_code_execution_str_replace_result")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestTextEditorCodeExecutionToolResultError::class,
+        name = "text_editor_code_execution_tool_result_error",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestTextEditorCodeExecutionViewResultBlock::class,
+        name = "text_editor_code_execution_view_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestTextEditorCodeExecutionCreateResultBlock::class,
+        name = "text_editor_code_execution_create_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaRequestTextEditorCodeExecutionStrReplaceResultBlock::class,
+        name = "text_editor_code_execution_str_replace_result",
+    ),
 )
 sealed interface BetaRequestTextEditorCodeExecutionToolResultBlockContent
 
-/** A [BetaRequestTextEditorCodeExecutionToolResultBlockContent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaRequestTextEditorCodeExecutionToolResultBlockContent] whose `type` names no branch this
+ * SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaRequestTextEditorCodeExecutionToolResultBlockContent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaRequestTextEditorCodeExecutionToolResultBlockContent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `BetaRequestTextEditorCodeExecutionToolResultError` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestTextEditorCodeExecutionToolResultError` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestTextEditorCodeExecutionToolResultError(
-    /**
-     * Required enumerated value serialized in the `error_code` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: BetaTextEditorCodeExecutionToolResultErrorCode,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `error_code` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
+    val errorCode: BetaTextEditorCodeExecutionToolResultErrorCode,
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestTextEditorCodeExecutionToolResultErrorTypeEnum,
-    /**
-     * Optional `string` value serialized in the `error_message` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_message") val errorMessage: String? = null
+    /** Optional `string` value serialized in the `error_message` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_message")
+    val errorMessage: String? = null,
 ) : BetaRequestTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Typed representation of the `BetaRequestTextEditorCodeExecutionViewResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestTextEditorCodeExecutionViewResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestTextEditorCodeExecutionViewResultBlock(
-    /**
-     * Required `string` value serialized in the `content` wire field.
-     */
+    /** Required `string` value serialized in the `content` wire field. */
     val content: String,
-    /**
-     * Required enumerated value serialized in the `file_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("file_type") val fileType: BetaRequestTextEditorCodeExecutionViewResultBlockFileTypeEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required enumerated value serialized in the `file_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_type")
+    val fileType: BetaRequestTextEditorCodeExecutionViewResultBlockFileTypeEnum,
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestTextEditorCodeExecutionViewResultBlockTypeEnum,
-    /**
-     * Optional `integer` value serialized in the `num_lines` wire field.
-     */
+    /** Optional `integer` value serialized in the `num_lines` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("num_lines") val numLines: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `start_line` wire field.
-     */
+    /** Optional `integer` value serialized in the `start_line` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `total_lines` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_lines") val totalLines: Long? = null
+    /** Optional `integer` value serialized in the `total_lines` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_lines") val totalLines: Long? = null,
 ) : BetaRequestTextEditorCodeExecutionToolResultBlockContent
 
-/**
- * Typed representation of the `BetaRequestWebSearchResultLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestWebSearchResultLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestWebSearchResultLocationCitation(
-    /**
-     * Required `string` value serialized in the `cited_text` wire field.
-     */
+    /** Required `string` value serialized in the `cited_text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /**
-     * Required `string` value serialized in the `encrypted_index` wire field.
-     */
+    /** Required `string` value serialized in the `encrypted_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("encrypted_index") val encryptedIndex: String,
-    /**
-     * Required API value serialized in the `title` wire field.
-     */
+    /** Required API value serialized in the `title` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestWebSearchResultLocationCitationTypeEnum,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `string` value serialized in the `url` wire field. */
+    val url: String,
 ) : BetaRequestTextBlockCitationsItem

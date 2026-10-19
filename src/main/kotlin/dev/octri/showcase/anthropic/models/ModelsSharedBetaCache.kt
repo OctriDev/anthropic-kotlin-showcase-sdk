@@ -3,30 +3,23 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaCacheControlEphemeral` API schema.
- */
+/** Typed representation of the `BetaCacheControlEphemeral` API schema. */
 data class BetaCacheControlEphemeral(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaCacheControlEphemeralTypeEnum,
     /**
-     * The time-to-live for the cache control breakpoint. This may be one the following values: - `5m`: 5 minutes - `1h`: 1 hour Defaults to `5m`. See prompt caching pricing for details.
+     * The time-to-live for the cache control breakpoint. This may be one the following values: -
+     * `5m`: 5 minutes - `1h`: 1 hour Defaults to `5m`. See prompt caching pricing for details.
      */
-    val ttl: BetaCacheControlEphemeralTtlEnum? = null
+    val ttl: BetaCacheControlEphemeralTtlEnum? = null,
 )
 
-/**
- * Typed representation of the `BetaCacheCreation` API schema.
- */
+/** Typed representation of the `BetaCacheCreation` API schema. */
 data class BetaCacheCreation(
-    /**
-     * The number of input tokens used to create the 1 hour cache entry.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_1h_input_tokens") val ephemeral1hInputTokens: Long,
-    /**
-     * The number of input tokens used to create the 5 minute cache entry.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_5m_input_tokens") val ephemeral5mInputTokens: Long
+    /** The number of input tokens used to create the 1 hour cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_1h_input_tokens")
+    val ephemeral1hInputTokens: Long,
+    /** The number of input tokens used to create the 5 minute cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("ephemeral_5m_input_tokens")
+    val ephemeral5mInputTokens: Long,
 )

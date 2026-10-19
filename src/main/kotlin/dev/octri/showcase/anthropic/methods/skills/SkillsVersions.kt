@@ -13,80 +13,176 @@ import dev.octri.showcase.anthropic.SkillVersion
 
 object SkillsVersions {
 
-
     /**
-     * Creates a new version of a skill by uploading its files. Put all files in the same top-level directory and include `SKILL.md` at that directory's root. The response contains the created skill version and its generated identifier.
+     * Creates a new version of a skill by uploading its files. Put all files in the same top-level
+     * directory and include `SKILL.md` at that directory's root. The response contains the created
+     * skill version and its generated identifier.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param files Files to upload for the skill. All files must be in the same
-     *   top-level directory and must include a SKILL.md file at the root of that
-     *   directory.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param files Files to upload for the skill. All files must be in the same top-level directory
+     *   and must include a SKILL.md file at the root of that directory.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun createSkillsVersions(clientConfig: ClientConfig, skillId: String, files: List<SdkClient.UploadFile>, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SkillVersion {
-        return SdkClient.request<SkillVersion>(SdkClient.RequestSpec("POST", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions", config = clientConfig, body = SdkClient.bodyMap("files" to (files)), contentType = "multipart/form-data", operationId = "createSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+    fun createSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        files: List<SdkClient.UploadFile>,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SkillVersion {
+        return SdkClient.request<SkillVersion>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("files" to (files)),
+                    contentType = "multipart/form-data",
+                    operationId = "createSkillsVersions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to ErrorResponse::class.java,
+                            "401" to ErrorResponse::class.java,
+                            "403" to ErrorResponse::class.java,
+                            "404" to ErrorResponse::class.java,
+                            "408" to ErrorResponse::class.java,
+                            "409" to ErrorResponse::class.java,
+                            "412" to ErrorResponse::class.java,
+                            "413" to ErrorResponse::class.java,
+                            "429" to ErrorResponse::class.java,
+                            "431" to ErrorResponse::class.java,
+                            "499" to ErrorResponse::class.java,
+                            "500" to ErrorResponse::class.java,
+                            "501" to ErrorResponse::class.java,
+                            "503" to ErrorResponse::class.java,
+                            "504" to ErrorResponse::class.java,
+                            "529" to ErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists versions of a specific skill. Use `page` to continue from the previous response's `next_page` token and `limit` to control the number of results per page.
+     * Lists versions of a specific skill. Use `page` to continue from the previous response's
+     * `next_page` token and `limit` to control the number of results per page.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param page Optionally set to the `next_page` token from the previous
-     *   response.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
-     *   Defaults to `20`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
+     *   `20`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listSkillsVersions(clientConfig: ClientConfig, skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ListSkillVersionsResponse {
-        return SdkClient.request<ListSkillVersionsResponse>(SdkClient.RequestSpec("GET", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "limit" to SdkClient.queryValue(limit, "form", true)), operationId = "listSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+    fun listSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): ListSkillVersionsResponse {
+        return SdkClient.request<ListSkillVersionsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                        ),
+                    operationId = "listSkillsVersions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to ErrorResponse::class.java,
+                            "401" to ErrorResponse::class.java,
+                            "403" to ErrorResponse::class.java,
+                            "404" to ErrorResponse::class.java,
+                            "408" to ErrorResponse::class.java,
+                            "409" to ErrorResponse::class.java,
+                            "412" to ErrorResponse::class.java,
+                            "413" to ErrorResponse::class.java,
+                            "429" to ErrorResponse::class.java,
+                            "431" to ErrorResponse::class.java,
+                            "499" to ErrorResponse::class.java,
+                            "500" to ErrorResponse::class.java,
+                            "501" to ErrorResponse::class.java,
+                            "503" to ErrorResponse::class.java,
+                            "504" to ErrorResponse::class.java,
+                            "529" to ErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists versions of a specific skill. Use `page` to continue from the previous response's `next_page` token and `limit` to control the number of results per page.
+     * Lists versions of a specific skill. Use `page` to continue from the previous response's
+     * `next_page` token and `limit` to control the number of results per page.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param page Optionally set to the `next_page` token from the previous
-     *   response.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
-     *   Defaults to `20`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
+     *   `20`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listSkillsVersionsPaginated(clientConfig: ClientConfig, skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (SkillVersion) -> Boolean) {
+    fun listSkillsVersionsPaginated(
+        clientConfig: ClientConfig,
+        skillId: String,
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (SkillVersion) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listSkillsVersions(clientConfig, skillId, cursor, limit, anthropicVersion, anthropicWorkspaceId, options)
+            val page =
+                listSkillsVersions(
+                    clientConfig,
+                    skillId,
+                    cursor,
+                    limit,
+                    anthropicVersion,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -103,10 +199,28 @@ object SkillsVersions {
         val hasMore: Boolean,
     )
 
-    fun listSkillsVersionsPages(clientConfig: ClientConfig, skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldPage: (ListSkillsVersionsPage) -> Boolean) {
+    fun listSkillsVersionsPages(
+        clientConfig: ClientConfig,
+        skillId: String,
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListSkillsVersionsPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listSkillsVersions(clientConfig, skillId, cursor, limit, anthropicVersion, anthropicWorkspaceId, options)
+            val page =
+                listSkillsVersions(
+                    clientConfig,
+                    skillId,
+                    cursor,
+                    limit,
+                    anthropicVersion,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -117,59 +231,128 @@ object SkillsVersions {
         }
     }
 
-
-
     /**
-     * Retrieves a specific version of a skill. Use `version` to identify the version by its ID or request `latest` for the skill's most recent version. With the `skills-2025-10-02` beta header, identify the version by its Unix epoch timestamp instead.
+     * Retrieves a specific version of a skill. Use `version` to identify the version by its ID or
+     * request `latest` for the skill's most recent version. With the `skills-2025-10-02` beta
+     * header, identify the version by its Unix epoch timestamp instead.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param version Identifies the skill version: a version ID, or the literal
-     *   `latest` for the skill's most recent version. Requests carrying the
-     *   `skills-2025-10-02` beta header address versions by their Unix epoch timestamp
-     *   instead (e.g., "1759178010641129").
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param version Identifies the skill version: a version ID, or the literal `latest` for the
+     *   skill's most recent version. Requests carrying the `skills-2025-10-02` beta header address
+     *   versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveSkillsVersions(clientConfig: ClientConfig, skillId: String, version: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SkillVersion {
-        return SdkClient.request<SkillVersion>(SdkClient.RequestSpec("GET", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}", config = clientConfig, operationId = "retrieveSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+    fun retrieveSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SkillVersion {
+        return SdkClient.request<SkillVersion>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}",
+                    config = clientConfig,
+                    operationId = "retrieveSkillsVersions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to ErrorResponse::class.java,
+                            "401" to ErrorResponse::class.java,
+                            "403" to ErrorResponse::class.java,
+                            "404" to ErrorResponse::class.java,
+                            "408" to ErrorResponse::class.java,
+                            "409" to ErrorResponse::class.java,
+                            "412" to ErrorResponse::class.java,
+                            "413" to ErrorResponse::class.java,
+                            "429" to ErrorResponse::class.java,
+                            "431" to ErrorResponse::class.java,
+                            "499" to ErrorResponse::class.java,
+                            "500" to ErrorResponse::class.java,
+                            "501" to ErrorResponse::class.java,
+                            "503" to ErrorResponse::class.java,
+                            "504" to ErrorResponse::class.java,
+                            "529" to ErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a specific version of a skill. Supply the skill and version identifiers to select the version to remove. The response confirms the deletion with the deleted version's ID.
+     * Deletes a specific version of a skill. Supply the skill and version identifiers to select the
+     * version to remove. The response confirms the deletion with the deleted version's ID.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param version Identifies the skill version by its version ID. Requests
-     *   carrying the `skills-2025-10-02` beta header address versions by their Unix
-     *   epoch timestamp instead (e.g., "1759178010641129").
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param version Identifies the skill version by its version ID. Requests carrying the
+     *   `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead
+     *   (e.g., "1759178010641129").
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun deleteSkillsVersions(clientConfig: ClientConfig, skillId: String, version: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): DeletedSkillVersion {
-        return SdkClient.request<DeletedSkillVersion>(SdkClient.RequestSpec("DELETE", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}", config = clientConfig, operationId = "deleteSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+    fun deleteSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicVersion: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): DeletedSkillVersion {
+        return SdkClient.request<DeletedSkillVersion>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}",
+                    config = clientConfig,
+                    operationId = "deleteSkillsVersions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to ErrorResponse::class.java,
+                            "401" to ErrorResponse::class.java,
+                            "403" to ErrorResponse::class.java,
+                            "404" to ErrorResponse::class.java,
+                            "408" to ErrorResponse::class.java,
+                            "409" to ErrorResponse::class.java,
+                            "412" to ErrorResponse::class.java,
+                            "413" to ErrorResponse::class.java,
+                            "429" to ErrorResponse::class.java,
+                            "431" to ErrorResponse::class.java,
+                            "499" to ErrorResponse::class.java,
+                            "500" to ErrorResponse::class.java,
+                            "501" to ErrorResponse::class.java,
+                            "503" to ErrorResponse::class.java,
+                            "504" to ErrorResponse::class.java,
+                            "529" to ErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

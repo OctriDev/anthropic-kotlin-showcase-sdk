@@ -422,38 +422,6 @@ enum class Unrestricted(@com.fasterxml.jackson.annotation.JsonValue val value: S
 }
 
 /**
- * Optional `string` value serialized in the `allowed_inference_geos` wire field.
- */
-enum class Unrestricted918b8666(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    UNRESTRICTED("unrestricted");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
- * Optional `string` value serialized in the `allowed_inference_geos` wire field.
- */
-enum class Unrestricted678896b2(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    UNRESTRICTED("unrestricted");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
  * Deleted object type. For Skills, this is always `"skill_deleted"`.
  */
 enum class BetaDeletedSkillTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
@@ -586,6 +554,38 @@ enum class BetaDeleteSpendLimitResponseTypeEnum(@com.fasterxml.jackson.annotatio
  */
 enum class BetaDeleteUserResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     USER_DELETED("user_deleted");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Deleted object type. For Workspace Members, this is always `"workspace_member_deleted"`.
+ */
+enum class BetaDeleteWorkspaceMemberResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    WORKSPACE_MEMBER_DELETED("workspace_member_deleted");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Required `string` value serialized in the `type` wire field.
+ */
+enum class BetaDirectCallerTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    DIRECT("direct");
 
     override fun toString() = value
 

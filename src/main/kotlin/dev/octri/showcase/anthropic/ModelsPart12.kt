@@ -289,10 +289,6 @@ typealias UnknownToolChoice = dev.octri.showcase.anthropic.models.UnknownToolCho
 
 typealias Unrestricted = dev.octri.showcase.anthropic.models.Unrestricted
 
-typealias Unrestricted678896b2 = dev.octri.showcase.anthropic.models.Unrestricted678896b2
-
-typealias Unrestricted918b8666 = dev.octri.showcase.anthropic.models.Unrestricted918b8666
-
 typealias URLImageSource = dev.octri.showcase.anthropic.models.URLImageSource
 
 typealias URLImageSourceTypeEnum = dev.octri.showcase.anthropic.models.URLImageSourceTypeEnum

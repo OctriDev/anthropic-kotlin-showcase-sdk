@@ -6,38 +6,6 @@ package dev.octri.showcase.anthropic.models
 /**
  * Required enumerated value serialized in the `type` wire field.
  */
-enum class BetaManagedAgentsMemoryTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    MEMORY("memory");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
- * Required enumerated value serialized in the `type` wire field.
- */
-enum class BetaManagedAgentsMemoryPathConflictErrorTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    MEMORY_PATH_CONFLICT_ERROR("memory_path_conflict_error");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
- * Required enumerated value serialized in the `type` wire field.
- */
 enum class BetaManagedAgentsMemoryPreconditionFailedErrorTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     MEMORY_PRECONDITION_FAILED_ERROR("memory_precondition_failed_error");
 
@@ -592,5 +560,43 @@ enum class BetaManagedAgentsOrganizationDisabledRunErrorTypeEnum(@com.fasterxml.
         @JvmStatic
         fun fromValue(v: String) = values().find { it.value == v }
             ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Required enumerated value serialized in the `type` wire field.
+ */
+class BetaManagedAgentsOutcomeEvaluationResourceTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is BetaManagedAgentsOutcomeEvaluationResourceTypeEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val OUTCOME_EVALUATION = BetaManagedAgentsOutcomeEvaluationResourceTypeEnum("outcome_evaluation")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = BetaManagedAgentsOutcomeEvaluationResourceTypeEnum(value)
+    }
+}
+
+/**
+ * MIME type of the text content. Must be "text/plain".
+ */
+class BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val TEXT_PLAIN = BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum("text/plain")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = BetaManagedAgentsPlainTextDocumentSourceMediaTypeEnum(value)
     }
 }

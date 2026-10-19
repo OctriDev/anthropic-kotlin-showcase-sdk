@@ -4,64 +4,6 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Object type. For Skills, this is always `"skill"`.
- */
-enum class BetaSkillTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    SKILL("skill");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
- * Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
- */
-class BetaSkillParamsTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is BetaSkillParamsTypeEnum && value == other.value
-    override fun hashCode(): Int = value.hashCode()
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val ANTHROPIC = BetaSkillParamsTypeEnum("anthropic")
-        @JvmField val CUSTOM = BetaSkillParamsTypeEnum("custom")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = BetaSkillParamsTypeEnum(value)
-    }
-}
-
-/**
- * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user; private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an installed plugin
- */
-class BetaSkillSourceTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is BetaSkillSourceTypeEnum && value == other.value
-    override fun hashCode(): Int = value.hashCode()
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val CUSTOM = BetaSkillSourceTypeEnum("custom")
-        @JvmField val ANTHROPIC = BetaSkillSourceTypeEnum("anthropic")
-        @JvmField val ANTHROPIC_EXAMPLE = BetaSkillSourceTypeEnum("anthropic_example")
-        @JvmField val PLUGIN = BetaSkillSourceTypeEnum("plugin")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = BetaSkillSourceTypeEnum(value)
-    }
-}
-
-/**
  * Object type. For Skill Versions, this is always `"skill_version"`.
  */
 enum class BetaSkillVersionTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
@@ -598,5 +540,69 @@ class BetaThinkingPrefixMismatchBehavior private constructor(
 
         @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
         @JvmStatic fun fromValue(value: String) = BetaThinkingPrefixMismatchBehavior(value)
+    }
+}
+
+/**
+ * Required `string` value serialized in the `type` wire field.
+ */
+enum class BetaThinkingTurnsTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    THINKING_TURNS("thinking_turns");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * The budget type. Currently only 'tokens' is supported.
+ */
+enum class BetaTokenTaskBudgetTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    TOKENS("tokens");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Optional `string` value serialized in the `type` wire field.
+ */
+enum class BetaToolTypeVariant1Enum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    CUSTOM("custom");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Required `string` value serialized in the `type` wire field.
+ */
+enum class BetaToolChangeMCPToolReferenceTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    MCP_TOOL_REFERENCE("mcp_tool_reference");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }

@@ -4,38 +4,6 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Deleted object type. For Workspace Members, this is always `"workspace_member_deleted"`.
- */
-enum class BetaDeleteWorkspaceMemberResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    WORKSPACE_MEMBER_DELETED("workspace_member_deleted");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class BetaDirectCallerTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    DIRECT("direct");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
  * Required enumerated value serialized in the `type` wire field.
  */
 class BetaDreamTypeEnum private constructor(
@@ -592,6 +560,38 @@ enum class BetaFileMetadataSchemaTypeEnum(@com.fasterxml.jackson.annotation.Json
  */
 enum class BetaFileScopeTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     SESSION("session");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Required `string` value serialized in the `type` wire field.
+ */
+enum class BetaGatewayTimeoutErrorTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    TIMEOUT_ERROR("timeout_error");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Required `string` value serialized in the `type` wire field.
+ */
+enum class BetaGcpExternalKeyConfigTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    GCP("gcp");
 
     override fun toString() = value
 

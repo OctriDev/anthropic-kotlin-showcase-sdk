@@ -6,38 +6,6 @@ package dev.octri.showcase.anthropic.models
 /**
  * Required enumerated value serialized in the `type` wire field.
  */
-enum class BetaManagedAgentsEventStartEventAgentThinkingPreviewTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    AGENT_THINKING("agent.thinking");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
- * Required enumerated value serialized in the `type` wire field.
- */
-enum class BetaManagedAgentsEventStartEventTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    EVENT_START("event_start");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
-/**
- * Required enumerated value serialized in the `type` wire field.
- */
 enum class BetaManagedAgentsFileDocumentSourceTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     FILE("file");
 
@@ -604,6 +572,38 @@ enum class BetaManagedAgentsMCPToolsetTypeEnum(@com.fasterxml.jackson.annotation
  */
 enum class BetaManagedAgentsMCPToolsetParamsTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     MCP_TOOLSET("mcp_toolset");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Required enumerated value serialized in the `type` wire field.
+ */
+enum class BetaManagedAgentsMemoryTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    MEMORY("memory");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) = values().find { it.value == v }
+            ?: throw IllegalArgumentException("Unknown enum value: $v")
+    }
+}
+
+/**
+ * Required enumerated value serialized in the `type` wire field.
+ */
+enum class BetaManagedAgentsMemoryPathConflictErrorTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    MEMORY_PATH_CONFLICT_ERROR("memory_path_conflict_error");
 
     override fun toString() = value
 

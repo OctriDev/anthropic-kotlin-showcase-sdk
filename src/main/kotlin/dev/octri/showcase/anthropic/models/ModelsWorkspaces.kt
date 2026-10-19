@@ -10,7 +10,7 @@ data class BetaDataResidencyUpdateParams(
     /**
      * Permitted inference geo values. Use 'unrestricted' to allow all geos, or a list of specific geos.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos") val allowedInferenceGeos: Any? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_inference_geos") val allowedInferenceGeos: List<BetaAllowedInferenceGeo>? = null,
     /**
      * Default inference geo applied when requests omit the parameter. Must be a member of `allowed_inference_geos` unless `allowed_inference_geos` is `"unrestricted"`.
      */

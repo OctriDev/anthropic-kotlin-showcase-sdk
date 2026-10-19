@@ -3,52 +3,6 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Built-in agent tool identifier. */
-class BetaManagedAgentsAgentToolName
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is BetaManagedAgentsAgentToolName && value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val BASH = BetaManagedAgentsAgentToolName("bash")
-        @JvmField val EDIT = BetaManagedAgentsAgentToolName("edit")
-        @JvmField val READ = BetaManagedAgentsAgentToolName("read")
-        @JvmField val WRITE = BetaManagedAgentsAgentToolName("write")
-        @JvmField val GLOB = BetaManagedAgentsAgentToolName("glob")
-        @JvmField val GREP = BetaManagedAgentsAgentToolName("grep")
-        @JvmField val WEB_FETCH = BetaManagedAgentsAgentToolName("web_fetch")
-        @JvmField val WEB_SEARCH = BetaManagedAgentsAgentToolName("web_search")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = BetaManagedAgentsAgentToolName(value)
-    }
-}
-
-/** Required enumerated value serialized in the `type` wire field. */
-enum class BetaManagedAgentsAgentToolResultEventTypeEnum(
-    @com.fasterxml.jackson.annotation.JsonValue val value: String
-) {
-    AGENT_TOOL_RESULT("agent.tool_result");
-
-    override fun toString() = value
-
-    companion object {
-        @com.fasterxml.jackson.annotation.JsonCreator
-        @JvmStatic
-        fun fromValue(v: String) =
-            values().find { it.value == v }
-                ?: throw IllegalArgumentException("Unknown enum value: $v")
-    }
-}
-
 /** Required enumerated value serialized in the `type` wire field. */
 enum class BetaManagedAgentsAgentToolset20260401TypeEnum(
     @com.fasterxml.jackson.annotation.JsonValue val value: String
@@ -659,5 +613,44 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         )
         @JvmStatic
         fun fromValue(value: String) = BetaManagedAgentsDeletedCredentialTypeEnum(value)
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+class BetaManagedAgentsDeletedMemoryTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is BetaManagedAgentsDeletedMemoryTypeEnum && value == other.value
+
+    override fun hashCode(): Int = value.hashCode()
+
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val MEMORY_DELETED = BetaManagedAgentsDeletedMemoryTypeEnum("memory_deleted")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = BetaManagedAgentsDeletedMemoryTypeEnum(value)
+    }
+}
+
+/** Required enumerated value serialized in the `type` wire field. */
+enum class BetaManagedAgentsDeletedMemoryStoreTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
+    MEMORY_STORE_DELETED("memory_store_deleted");
+
+    override fun toString() = value
+
+    companion object {
+        @com.fasterxml.jackson.annotation.JsonCreator
+        @JvmStatic
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }

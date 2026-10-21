@@ -5,79 +5,94 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/** Typed representation of the `BetaSkill` API schema. */
+/**
+ * Typed representation of the `BetaSkill` API schema.
+ */
 data class BetaSkill(
-    /** ISO 8601 timestamp of when the skill was created. */
+    /**
+     * ISO 8601 timestamp of when the skill was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     /**
-     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived
-     * from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
+     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always set: derived from the SKILL.md frontmatter `name` when omitted at creation. Not unique.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String,
-    /** Unique identifier for the skill. The format and length of IDs may change over time. */
+    /**
+     * Unique identifier for the skill. The format and length of IDs may change over time.
+     */
     val id: String,
     /**
-     * ID of the newest Skill Version — what `latest` references resolve to. Always set: a Skill
-     * holds at least one version.
+     * ID of the newest Skill Version — what `latest` references resolve to. Always set: a Skill holds at least one version.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("latest_version_id") val latestVersionId: String,
     /**
-     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user;
-     * private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only *
-     * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an
-     * installed plugin
+     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user; private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an installed plugin
      */
     val source: BetaSkillSource,
-    /** Object type. For Skills, this is always `"skill"`. */
+    /**
+     * Object type. For Skills, this is always `"skill"`.
+     */
     val type: BetaSkillTypeEnum,
-    /** ISO 8601 timestamp of when the skill was last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * ISO 8601 timestamp of when the skill was last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
 )
 
-/** Specification for a skill to be loaded in a container (request model). */
+/**
+ * Specification for a skill to be loaded in a container (request model).
+ */
 data class BetaSkillParams(
-    /** Skill ID */
+    /**
+     * Skill ID
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("skill_id") val skillId: String,
-    /** Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined) */
+    /**
+     * Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
+     */
     val type: BetaSkillParamsTypeEnum,
-    /** Skill version or 'latest' for most recent version */
-    val version: String? = null,
+    /**
+     * Skill version or 'latest' for most recent version
+     */
+    val version: String? = null
 )
 
-/** Typed representation of the `BetaSkillSource` API schema. */
+/**
+ * Typed representation of the `BetaSkillSource` API schema.
+ */
 data class BetaSkillSource(
     /**
-     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user;
-     * private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only *
-     * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an
-     * installed plugin
+     * Where the Skill comes from. Possible values: * `"custom"`: authored by the platform user; private to their workspace * `"anthropic"`: published by Anthropic; shared and read-only * `"anthropic_example"`: Anthropic-published sample Skill * `"plugin"`: resolved from an installed plugin
      */
     val type: BetaSkillSourceTypeEnum
 )
 
-/** Typed representation of the `BetaSkillVersion` API schema. */
+/**
+ * Typed representation of the `BetaSkillVersion` API schema.
+ */
 data class BetaSkillVersion(
-    /** ISO 8601 timestamp of when the skill was created. */
+    /**
+     * ISO 8601 timestamp of when the skill was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     /**
-     * Description of the skill version. This is extracted from the SKILL.md file in the skill
-     * upload.
+     * Description of the skill version. This is extracted from the SKILL.md file in the skill upload.
      */
     val description: String,
     /**
-     * Unique identifier for this Skill Version. The id addresses the version in paths and pins it
-     * in references.
+     * Unique identifier for this Skill Version. The id addresses the version in paths and pins it in references.
      */
     val id: String,
     /**
-     * The Skill's immutable kebab-case slug, set at creation from the first upload's SKILL.md
-     * frontmatter `name` (or its enclosing directory). Every later upload must resolve to the same
-     * value. Also the top-level directory of the Skill's mounted files and the base name of a
-     * downloaded archive.
+     * The Skill's immutable kebab-case slug, set at creation from the first upload's SKILL.md frontmatter `name` (or its enclosing directory). Every later upload must resolve to the same value. Also the top-level directory of the Skill's mounted files and the base name of a downloaded archive.
      */
     val name: String,
-    /** Unique identifier for the skill. The format and length of IDs may change over time. */
+    /**
+     * Unique identifier for the skill. The format and length of IDs may change over time.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("skill_id") val skillId: String,
-    /** Object type. For Skill Versions, this is always `"skill_version"`. */
-    val type: BetaSkillVersionTypeEnum,
+    /**
+     * Object type. For Skill Versions, this is always `"skill_version"`.
+     */
+    val type: BetaSkillVersionTypeEnum
 )

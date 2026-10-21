@@ -13,79 +13,44 @@ import java.time.LocalDate
 
 object BetaOrganizationsAnalyticsSummaries {
 
+
     /**
-     * Get organization-wide activity summaries for a date range. Returns one entry per day from
-     * `starting_date` (inclusive) to `ending_date` (exclusive). Data is typically available with a
-     * 1-day lag and may be revised by a few percent over the following days: when `ending_date` is
-     * omitted it defaults to the most recent available day + 1, so the last entry covers the most
-     * recent available day. The series can be scoped to an RBAC group via
-     * `filter[]=rbac_group_id:{id}`. Available to…
+     * Get organization-wide activity summaries for a date range. Returns one entry per day from `starting_date` (inclusive) to `ending_date` (exclusive). Data is typically available with a 1-day lag and may be revised by a few percent over the following days: when `ending_date` is omitted it defaults to the most recent available day + 1, so the last entry covers the most recent available day. The series can be scoped to an RBAC group via `filter[]=rbac_group_id:{id}`. Available to…
      *
-     * @param startingDate UTC date in YYYY-MM-DD format. Start of the date range (inclusive). Data
-     *   is typically available with a 1-day lag (varies by query; the error for a too-recent date
-     *   names the latest available day) and may be revised by a few percent over the following
-     *   days. No earlier than 2026-01-01.
-     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range (exclusive). Data is
-     *   typically available with a 1-day lag, so this can be at most today — which is also the
-     *   default when omitted, making the last entry cover the most recent available day. Data may
-     *   be revised by a few percent over the following days. The range may span at most 366 days.
-     * @param filter Filters as `dimension:value`. Only `rbac_group_id` is supported (e.g.
-     *   `filter[]=rbac_group_id:{id}`); repeat the param to OR across groups. Scopes the whole day
-     *   series to members of the matching group(s), re-aggregated from member-level activity —
-     *   org-wide seat/invite fields and the adoption rates derived from them are null on scoped
-     *   rows. `rbac_group_id` accepts the tagged id (`rbac_group_...`, as emitted in responses and
-     *   by the spend-limits API) or a bare group UUID, and…
+     * @param startingDate UTC date in YYYY-MM-DD format. Start of the date range
+     *   (inclusive). Data is typically available with a 1-day lag (varies by query;
+     *   the error for a too-recent date names the latest available day) and may be
+     *   revised by a few percent over the following days. No earlier than 2026-01-01.
+     * @param endingDate UTC date in YYYY-MM-DD format. End of the date range
+     *   (exclusive). Data is typically available with a 1-day lag, so this can be at
+     *   most today — which is also the default when omitted, making the last entry
+     *   cover the most recent available day. Data may be revised by a few percent over
+     *   the following days. The range may span at most 366 days.
+     * @param filter Filters as `dimension:value`. Only `rbac_group_id` is supported
+     *   (e.g. `filter[]=rbac_group_id:{id}`); repeat the param to OR across groups.
+     *   Scopes the whole day series to members of the matching group(s), re-aggregated
+     *   from member-level activity — org-wide seat/invite fields and the adoption
+     *   rates derived from them are null on scoped rows. `rbac_group_id` accepts the
+     *   tagged id (`rbac_group_...`, as emitted in responses and by the spend-limits
+     *   API) or a bare group UUID, and…
      */
-    fun listBetaOrganizationsAnalyticsSummaries(
-        clientConfig: ClientConfig,
-        startingDate: LocalDate,
-        endingDate: SdkClient.SdkOptional<String?>? = null,
-        filter: SdkClient.SdkOptional<List<String>?>? = null,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsActivitySummaryResponse {
+    fun listBetaOrganizationsAnalyticsSummaries(clientConfig: ClientConfig, startingDate: LocalDate, endingDate: SdkClient.SdkOptional<String?>? = null, filter: SdkClient.SdkOptional<List<String>?>? = null, options: RequestOptions? = null): BetaAnalyticsActivitySummaryResponse {
         Validation.validateDate("starting_date", startingDate)
 
         val filterValue = filter?.getOrNull()
-        if (filterValue != null) {
+if (filterValue != null) {
             Validation.validateItems("filter[]", filterValue, Validation.LengthOpts(max = 100))
-        }
+}
 
-        return SdkClient.request<BetaAnalyticsActivitySummaryResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/analytics/summaries?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "starting_date" to
-                                SdkClient.queryValue(startingDate, "form", true, "date"),
-                            "ending_date" to SdkClient.queryValue(endingDate, "form", true),
-                            "filter[]" to SdkClient.queryValue(filter, "form", true),
-                        ),
-                    operationId = "listBetaOrganizationsAnalyticsSummaries",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaAnalyticsActivitySummaryResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/analytics/summaries?beta=true", config = clientConfig, query = mapOf("starting_date" to
+    SdkClient.queryValue(startingDate, "form", true, "date"), "ending_date" to
+    SdkClient.queryValue(endingDate, "form", true), "filter[]" to SdkClient.queryValue(filter, "form", true)), operationId = "listBetaOrganizationsAnalyticsSummaries", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
 }

@@ -5,176 +5,128 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/** Typed representation of the `BetaAttachedAttachment` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaAttachedAttachment` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaAttachedAttachment(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaAttachedAttachmentTypeEnum
 ) : BetaExternalKeyAttachment
 
-/** Typed representation of the `BetaAzureExternalKeyConfig` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaAzureExternalKeyConfig` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaAzureExternalKeyConfig(
-    /** Name of the key within the vault. */
+    /**
+     * Name of the key within the vault.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("key_name") val keyName: String,
-    /** Azure AD tenant ID. */
+    /**
+     * Azure AD tenant ID.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tenant_id") val tenantId: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaAzureExternalKeyConfigTypeEnum,
     /**
-     * Key Vault data-plane URI — `{vault-name}.vault.azure.net` or
-     * `{hsm-name}.managedhsm.azure.net`.
+     * Key Vault data-plane URI — `{vault-name}.vault.azure.net` or `{hsm-name}.managedhsm.azure.net`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("vault_uri") val vaultUri: String,
     /**
-     * Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if
-     * using a single-tenant app registration in the customer's directory.
+     * Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null
 ) : BetaExternalKeyProviderConfig
 
 /**
- * CMEK external key config belonging to the caller's organization. Configs are organization-scoped.
- * Workspaces attach to a config; once any workspace references it, the provider fields become
- * effectively immutable (existing encrypted data needs the config for decrypt).
+ * CMEK external key config belonging to the caller's organization. Configs are organization-scoped. Workspaces attach to a config; once any workspace references it, the provider fields become effectively immutable (existing encrypted data needs the config for decrypt).
  */
 data class BetaExternalKey(
     /**
-     * Whether any workspace uses this config to encrypt its data — counting live and archived
-     * workspaces (an archived workspace's data remains encrypted under the config), excluding
-     * deleted ones. Only an attached config is used by the encryption path; an `unattached` config
-     * is inert and can be deleted.
+     * Whether any workspace uses this config to encrypt its data — counting live and archived workspaces (an archived workspace's data remains encrypted under the config), excluding deleted ones. Only an attached config is used by the encryption path; an `unattached` config is inert and can be deleted.
      */
     val attachment: BetaExternalKeyAttachment,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Human-friendly display name. Null if none was set. */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_name", required = true)
-    val displayName: String?,
     /**
-     * Data residency geo. Selects which regional validator handles this key's encrypt/decrypt
-     * roundtrips.
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * Human-friendly display name. Null if none was set.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_name", required = true) val displayName: String?,
+    /**
+     * Data residency geo. Selects which regional validator handles this key's encrypt/decrypt roundtrips.
      */
     val geo: String,
     /**
-     * Identifier of the external key config. A tagged ID prefixed `ekey_`, or — for organizations
-     * on the Claude Platform on AWS — the AWS KMS key ARN.
+     * Identifier of the external key config. A tagged ID prefixed `ekey_`, or — for organizations on the Claude Platform on AWS — the AWS KMS key ARN.
      */
     val id: String,
-    /** KMS provider identity and auth coordinates. */
-    @com.fasterxml.jackson.annotation.JsonProperty("provider_config")
-    val providerConfig: BetaExternalKeyProviderConfig,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * KMS provider identity and auth coordinates.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("provider_config") val providerConfig: BetaExternalKeyProviderConfig,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaExternalKeyTypeEnum,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
 )
 
 /**
- * Whether any workspace uses this config to encrypt its data — counting live and archived
- * workspaces (an archived workspace's data remains encrypted under the config), excluding deleted
- * ones. Only an attached config is used by the encryption path; an `unattached` config is inert and
- * can be deleted.
+ * Whether any workspace uses this config to encrypt its data — counting live and archived workspaces (an archived workspace's data remains encrypted under the config), excluding deleted ones. Only an attached config is used by the encryption path; an `unattached` config is inert and can be deleted.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaExternalKeyAttachment::class,
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaExternalKeyAttachment::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAttachedAttachment::class,
-        name = "attached",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaUnattachedAttachment::class,
-        name = "unattached",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAttachedAttachment::class, name = "attached"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaUnattachedAttachment::class, name = "unattached")
 )
 sealed interface BetaExternalKeyAttachment
 
 /** A [BetaExternalKeyAttachment] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaExternalKeyAttachment
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaExternalKeyAttachment @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaExternalKeyAttachment {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** KMS provider identity and auth coordinates. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaExternalKeyProviderConfig::class,
-)
+/**
+ * KMS provider identity and auth coordinates.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaExternalKeyProviderConfig::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAwsExternalKeyConfig::class,
-        name = "aws",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaGcpExternalKeyConfig::class,
-        name = "gcp",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAzureExternalKeyConfig::class,
-        name = "azure",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAwsExternalKeyConfig::class, name = "aws"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaGcpExternalKeyConfig::class, name = "gcp"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAzureExternalKeyConfig::class, name = "azure")
 )
 sealed interface BetaExternalKeyProviderConfig
 
-/**
- * A [BetaExternalKeyProviderConfig] whose `type` names no branch this SDK knows, kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaExternalKeyProviderConfig
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaExternalKeyProviderConfig] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaExternalKeyProviderConfig @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaExternalKeyProviderConfig {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaUnattachedAttachment` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaUnattachedAttachment` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaUnattachedAttachment(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaUnattachedAttachmentTypeEnum
 ) : BetaExternalKeyAttachment

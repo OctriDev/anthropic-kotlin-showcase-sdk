@@ -3,136 +3,48 @@
 
 package dev.octri.showcase.anthropic
 
+
 class FilesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Uploads a file for use through the Files API. Send the file as multipart form data and
-     * optionally set `expires_in_seconds` to control how long its bytes remain available. The
-     * response includes file metadata and the expiration time when one is set.
+     * Uploads a file for use through the Files API. Send the file as multipart form data and optionally set `expires_in_seconds` to control how long its bytes remain available. The response includes file metadata and the expiration time when one is set.
      */
-    fun upload(
-        file: SdkClient.UploadFile,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        expiresInSeconds: Long? = null,
-        options: RequestOptions? = null,
-    ): FileMetadataSchema {
-        return dev.octri.showcase.anthropic.methods.Files.uploadFiles(
-            clientConfig,
-            file,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            expiresInSeconds,
-            options,
-        )
+    fun upload(file: SdkClient.UploadFile, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, expiresInSeconds: Long? = null, options: RequestOptions? = null): FileMetadataSchema {
+        return dev.octri.showcase.anthropic.methods.Files.uploadFiles(clientConfig, file, anthropicVersion, anthropicWorkspaceId, expiresInSeconds, options)
     }
 
     /**
-     * Lists file metadata for the authenticated user in the selected Workspace. Use `page` and
-     * `limit` to paginate the results, or use `ids[]` to request specific files; `ids[]` cannot be
-     * combined with either parameter and returns a single page. IDs that do not resolve to visible
-     * files are omitted.
+     * Lists file metadata for the authenticated user in the selected Workspace. Use `page` and `limit` to paginate the results, or use `ids[]` to request specific files; `ids[]` cannot be combined with either parameter and returns a single page. IDs that do not resolve to visible files are omitted.
      */
-    fun list(
-        page: SdkClient.SdkOptional<String?>? = null,
-        ids: SdkClient.SdkOptional<List<String>?>? = null,
-        limit: Long? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): FileListResponse {
-        return dev.octri.showcase.anthropic.methods.Files.listFiles(
-            clientConfig,
-            page,
-            ids,
-            limit,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun list(page: SdkClient.SdkOptional<String?>? = null, ids: SdkClient.SdkOptional<List<String>?>? = null, limit: Long? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): FileListResponse {
+        return dev.octri.showcase.anthropic.methods.Files.listFiles(clientConfig, page, ids, limit, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Lists file metadata for the authenticated user in the selected Workspace. Use `page` and
-     * `limit` to paginate the results, or use `ids[]` to request specific files; `ids[]` cannot be
-     * combined with either parameter and returns a single page. IDs that do not resolve to visible
-     * files are omitted.
+     * Lists file metadata for the authenticated user in the selected Workspace. Use `page` and `limit` to paginate the results, or use `ids[]` to request specific files; `ids[]` cannot be combined with either parameter and returns a single page. IDs that do not resolve to visible files are omitted.
      */
-    fun listPaginated(
-        page: SdkClient.SdkOptional<String?>? = null,
-        ids: SdkClient.SdkOptional<List<String>?>? = null,
-        limit: Long? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-        yieldFn: (FileMetadataSchema) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.Files.listFilesPaginated(
-            clientConfig,
-            page,
-            ids,
-            limit,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-            yieldFn,
-        )
+    fun listPaginated(page: SdkClient.SdkOptional<String?>? = null, ids: SdkClient.SdkOptional<List<String>?>? = null, limit: Long? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (FileMetadataSchema) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.Files.listFilesPaginated(clientConfig, page, ids, limit, anthropicVersion, anthropicWorkspaceId, options, yieldFn)
     }
 
     /**
-     * Retrieves metadata for a specific file. Use `file_id` to identify the file whose metadata you
-     * need, including its filename, MIME type, size, and availability. The response also includes
-     * the file's expiration time when applicable.
+     * Retrieves metadata for a specific file. Use `file_id` to identify the file whose metadata you need, including its filename, MIME type, size, and availability. The response also includes the file's expiration time when applicable.
      */
-    fun retrieve(
-        fileId: String,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): FileMetadataSchema {
-        return dev.octri.showcase.anthropic.methods.Files.retrieveFiles(
-            clientConfig,
-            fileId,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun retrieve(fileId: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): FileMetadataSchema {
+        return dev.octri.showcase.anthropic.methods.Files.retrieveFiles(clientConfig, fileId, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Deletes a specific file. Supply the file's `file_id` to remove it from the Files API. A
-     * successful response identifies the deleted file.
+     * Deletes a specific file. Supply the file's `file_id` to remove it from the Files API. A successful response identifies the deleted file.
      */
-    fun delete(
-        fileId: String,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): FileDeleteResponse {
-        return dev.octri.showcase.anthropic.methods.Files.deleteFiles(
-            clientConfig,
-            fileId,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun delete(fileId: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): FileDeleteResponse {
+        return dev.octri.showcase.anthropic.methods.Files.deleteFiles(clientConfig, fileId, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Retrieves the file bytes for a specific file. Supply `file_id` for the file whose content you
-     * want to download. The response contains the file content as an octet stream.
+     * Retrieves the file bytes for a specific file. Supply `file_id` for the file whose content you want to download. The response contains the file content as an octet stream.
      */
-    fun download(
-        fileId: String,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): ByteArray {
-        return dev.octri.showcase.anthropic.methods.Files.downloadFiles(
-            clientConfig,
-            fileId,
-            anthropicVersion,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun download(fileId: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ByteArray {
+        return dev.octri.showcase.anthropic.methods.Files.downloadFiles(clientConfig, fileId, anthropicVersion, anthropicWorkspaceId, options)
     }
+
 }

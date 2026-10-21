@@ -5,121 +5,190 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/** Indicates whether a capability is supported. */
+/**
+ * Indicates whether a capability is supported.
+ */
 data class CapabilitySupport(
-    /** Whether this capability is supported by the model. */
+    /**
+     * Whether this capability is supported by the model.
+     */
     val supported: Boolean
 )
 
-/** Context management capability details. */
+/**
+ * Context management capability details.
+ */
 data class ContextManagementCapability(
-    /** Whether the clear_thinking_20251015 strategy is supported. */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_thinking_20251015", required = true)
-    val clearThinking20251015: CapabilitySupport?,
-    /** Whether the clear_tool_uses_20250919 strategy is supported. */
-    @com.fasterxml.jackson.annotation.JsonProperty("clear_tool_uses_20250919", required = true)
-    val clearToolUses20250919: CapabilitySupport?,
-    /** Whether the compact_20260112 strategy is supported. */
-    @com.fasterxml.jackson.annotation.JsonProperty("compact_20260112", required = true)
-    val compact20260112: CapabilitySupport?,
-    /** Whether this capability is supported by the model. */
-    val supported: Boolean,
+    /**
+     * Whether the clear_thinking_20251015 strategy is supported.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("clear_thinking_20251015", required = true) val clearThinking20251015: CapabilitySupport?,
+    /**
+     * Whether the clear_tool_uses_20250919 strategy is supported.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("clear_tool_uses_20250919", required = true) val clearToolUses20250919: CapabilitySupport?,
+    /**
+     * Whether the compact_20260112 strategy is supported.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("compact_20260112", required = true) val compact20260112: CapabilitySupport?,
+    /**
+     * Whether this capability is supported by the model.
+     */
+    val supported: Boolean
 )
 
-/** Effort (reasoning_effort) capability details. */
+/**
+ * Effort (reasoning_effort) capability details.
+ */
 data class EffortCapability(
-    /** Whether the model supports high effort level. */
+    /**
+     * Whether the model supports high effort level.
+     */
     val high: CapabilitySupport,
-    /** Whether the model supports low effort level. */
+    /**
+     * Whether the model supports low effort level.
+     */
     val low: CapabilitySupport,
-    /** Whether the model supports max effort level. */
+    /**
+     * Whether the model supports max effort level.
+     */
     val max: CapabilitySupport,
-    /** Whether the model supports medium effort level. */
+    /**
+     * Whether the model supports medium effort level.
+     */
     val medium: CapabilitySupport,
-    /** Whether this capability is supported by the model. */
+    /**
+     * Whether this capability is supported by the model.
+     */
     val supported: Boolean,
-    /** Whether the model supports xhigh effort level. */
-    @com.fasterxml.jackson.annotation.JsonProperty("xhigh", required = true)
-    val xhigh: CapabilitySupport?,
+    /**
+     * Whether the model supports xhigh effort level.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("xhigh", required = true) val xhigh: CapabilitySupport?
 )
 
-/** Typed representation of the `ListResponse_ModelInfo_` API schema. */
+/**
+ * Typed representation of the `ListResponse_ModelInfo_` API schema.
+ */
 data class ListResponseModelInfo(
-    /** Required array value serialized in the `data` wire field. */
+    /**
+     * Required array value serialized in the `data` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<ModelInfo>,
-    /** First ID in the `data` list. Can be used as the `before_id` for the previous page. */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true)
-    val firstId: String?,
-    /** Indicates if there are more results in the requested page direction. */
+    /**
+     * First ID in the `data` list. Can be used as the `before_id` for the previous page.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("first_id", required = true) val firstId: String?,
+    /**
+     * Indicates if there are more results in the requested page direction.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("has_more") val hasMore: Boolean,
-    /** Last ID in the `data` list. Can be used as the `after_id` for the next page. */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?,
+    /**
+     * Last ID in the `data` list. Can be used as the `after_id` for the next page.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_id", required = true) val lastId: String?
 )
 
-/** Model capability information. */
+/**
+ * Model capability information.
+ */
 data class ModelCapabilities(
-    /** Whether the model supports the Batch API. */
+    /**
+     * Whether the model supports the Batch API.
+     */
     val batch: CapabilitySupport,
-    /** Whether the model supports citation generation. */
+    /**
+     * Whether the model supports citation generation.
+     */
     val citations: CapabilitySupport,
-    /** Whether the model supports code execution tools. */
-    @com.fasterxml.jackson.annotation.JsonProperty("code_execution")
-    val codeExecution: CapabilitySupport,
-    /** Context management support and available strategies. */
-    @com.fasterxml.jackson.annotation.JsonProperty("context_management")
-    val contextManagement: ContextManagementCapability,
-    /** Effort (reasoning_effort) support and available levels. */
+    /**
+     * Whether the model supports code execution tools.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("code_execution") val codeExecution: CapabilitySupport,
+    /**
+     * Context management support and available strategies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("context_management") val contextManagement: ContextManagementCapability,
+    /**
+     * Effort (reasoning_effort) support and available levels.
+     */
     val effort: EffortCapability,
-    /** Whether the model accepts image content blocks. */
+    /**
+     * Whether the model accepts image content blocks.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("image_input") val imageInput: CapabilitySupport,
-    /** Whether the model accepts PDF content blocks. */
+    /**
+     * Whether the model accepts PDF content blocks.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("pdf_input") val pdfInput: CapabilitySupport,
-    /** Whether the model supports structured output / JSON mode / strict tool schemas. */
-    @com.fasterxml.jackson.annotation.JsonProperty("structured_outputs")
-    val structuredOutputs: CapabilitySupport,
-    /** Thinking capability and supported type configurations. */
-    val thinking: ThinkingCapability,
+    /**
+     * Whether the model supports structured output / JSON mode / strict tool schemas.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("structured_outputs") val structuredOutputs: CapabilitySupport,
+    /**
+     * Thinking capability and supported type configurations.
+     */
+    val thinking: ThinkingCapability
 )
 
-/** Typed representation of the `ModelInfo` API schema. */
+/**
+ * Typed representation of the `ModelInfo` API schema.
+ */
 data class ModelInfo(
     /**
-     * Object mapping capability names to their support details. Keys are always present for all
-     * known capabilities.
+     * Object mapping capability names to their support details. Keys are always present for all known capabilities.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("capabilities", required = true)
-    val capabilities: ModelCapabilities?,
+    @com.fasterxml.jackson.annotation.JsonProperty("capabilities", required = true) val capabilities: ModelCapabilities?,
     /**
-     * RFC 3339 datetime string representing the time at which the model was released. May be set to
-     * an epoch value if the release date is unknown.
+     * RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** A human-readable name for the model. */
+    /**
+     * A human-readable name for the model.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String,
-    /** Unique model identifier. */
+    /**
+     * Unique model identifier.
+     */
     val id: String,
-    /** Maximum input context window size in tokens for this model. */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_input_tokens", required = true)
-    val maxInputTokens: Long?,
-    /** Maximum value for the `max_tokens` parameter when using this model. */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_tokens", required = true)
-    val maxTokens: Long?,
-    /** Object type. For Models, this is always `"model"`. */
-    val type: ModelInfoTypeEnum,
+    /**
+     * Maximum input context window size in tokens for this model.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_input_tokens", required = true) val maxInputTokens: Long?,
+    /**
+     * Maximum value for the `max_tokens` parameter when using this model.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_tokens", required = true) val maxTokens: Long?,
+    /**
+     * Object type. For Models, this is always `"model"`.
+     */
+    val type: ModelInfoTypeEnum
 )
 
-/** Thinking capability details. */
+/**
+ * Thinking capability details.
+ */
 data class ThinkingCapability(
-    /** Whether this capability is supported by the model. */
+    /**
+     * Whether this capability is supported by the model.
+     */
     val supported: Boolean,
-    /** Supported thinking type configurations. */
-    val types: ThinkingTypes,
+    /**
+     * Supported thinking type configurations.
+     */
+    val types: ThinkingTypes
 )
 
-/** Supported thinking type configurations. */
+/**
+ * Supported thinking type configurations.
+ */
 data class ThinkingTypes(
-    /** Whether the model supports thinking with type 'adaptive' (auto). */
+    /**
+     * Whether the model supports thinking with type 'adaptive' (auto).
+     */
     val adaptive: CapabilitySupport,
-    /** Whether the model supports thinking with type 'enabled'. */
-    val enabled: CapabilitySupport,
+    /**
+     * Whether the model supports thinking with type 'enabled'.
+     */
+    val enabled: CapabilitySupport
 )

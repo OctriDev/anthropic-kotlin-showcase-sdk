@@ -3,187 +3,127 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaCacheMissMessagesChanged` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaCacheMissMessagesChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaCacheMissMessagesChanged(
     /**
-     * Approximate number of input tokens that would have been read from cache had the prefix
-     * matched the previous request.
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens")
-    val cacheMissedInputTokens: Long,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaCacheMissMessagesChangedTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissMessagesChangedTypeEnum
 ) : BetaDiagnosticsCacheMissReason
 
-/** Typed representation of the `BetaCacheMissModelChanged` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaCacheMissModelChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaCacheMissModelChanged(
     /**
-     * Approximate number of input tokens that would have been read from cache had the prefix
-     * matched the previous request.
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens")
-    val cacheMissedInputTokens: Long,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaCacheMissModelChangedTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissModelChangedTypeEnum
 ) : BetaDiagnosticsCacheMissReason
 
-/** Typed representation of the `BetaCacheMissPreviousMessageNotFound` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaCacheMissPreviousMessageNotFound` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaCacheMissPreviousMessageNotFound(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaCacheMissPreviousMessageNotFoundTypeEnum
 ) : BetaDiagnosticsCacheMissReason
 
-/** Typed representation of the `BetaCacheMissSystemChanged` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaCacheMissSystemChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaCacheMissSystemChanged(
     /**
-     * Approximate number of input tokens that would have been read from cache had the prefix
-     * matched the previous request.
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens")
-    val cacheMissedInputTokens: Long,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaCacheMissSystemChangedTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissSystemChangedTypeEnum
 ) : BetaDiagnosticsCacheMissReason
 
-/** Typed representation of the `BetaCacheMissToolsChanged` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaCacheMissToolsChanged` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaCacheMissToolsChanged(
     /**
-     * Approximate number of input tokens that would have been read from cache had the prefix
-     * matched the previous request.
+     * Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens")
-    val cacheMissedInputTokens: Long,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaCacheMissToolsChangedTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_missed_input_tokens") val cacheMissedInputTokens: Long,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaCacheMissToolsChangedTypeEnum
 ) : BetaDiagnosticsCacheMissReason
 
-/** Typed representation of the `BetaCacheMissUnavailable` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaCacheMissUnavailable` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaCacheMissUnavailable(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaCacheMissUnavailableTypeEnum
 ) : BetaDiagnosticsCacheMissReason
 
 /**
- * Response envelope for request-level diagnostics. Present (possibly null) whenever the caller
- * supplied `diagnostics` on the request.
+ * Response envelope for request-level diagnostics. Present (possibly null) whenever the caller supplied `diagnostics` on the request.
  */
 data class BetaDiagnostics(
     /**
-     * Explains why the prompt cache could not fully reuse the prefix from the request identified by
-     * `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was
-     * serialized before the background comparison completed.
+     * Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_miss_reason", required = true)
-    val cacheMissReason: BetaDiagnosticsCacheMissReason?
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_miss_reason", required = true) val cacheMissReason: BetaDiagnosticsCacheMissReason?
 )
 
 /**
- * Explains why the prompt cache could not fully reuse the prefix from the request identified by
- * `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was
- * serialized before the background comparison completed.
+ * Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaDiagnosticsCacheMissReason::class,
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaDiagnosticsCacheMissReason::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCacheMissModelChanged::class,
-        name = "model_changed",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCacheMissSystemChanged::class,
-        name = "system_changed",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCacheMissToolsChanged::class,
-        name = "tools_changed",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCacheMissMessagesChanged::class,
-        name = "messages_changed",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCacheMissPreviousMessageNotFound::class,
-        name = "previous_message_not_found",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaCacheMissUnavailable::class,
-        name = "unavailable",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCacheMissModelChanged::class, name = "model_changed"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCacheMissSystemChanged::class, name = "system_changed"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCacheMissToolsChanged::class, name = "tools_changed"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCacheMissMessagesChanged::class, name = "messages_changed"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCacheMissPreviousMessageNotFound::class, name = "previous_message_not_found"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaCacheMissUnavailable::class, name = "unavailable")
 )
 sealed interface BetaDiagnosticsCacheMissReason
 
-/**
- * A [BetaDiagnosticsCacheMissReason] whose `type` names no branch this SDK knows, kept as received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaDiagnosticsCacheMissReason
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [BetaDiagnosticsCacheMissReason] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaDiagnosticsCacheMissReason @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaDiagnosticsCacheMissReason {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
 /**
- * Request-level diagnostics. Currently carries the previous response id for prompt-cache divergence
- * reporting.
+ * Request-level diagnostics. Currently carries the previous response id for prompt-cache divergence reporting.
  */
 data class BetaDiagnosticsParam(
     /**
-     * The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares
-     * that request's prompt fingerprint against this one and returns
-     * `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null`
-     * on the first turn to opt in without a prior message to compare.
+     * The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_message_id")
-    val previousMessageId: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_message_id") val previousMessageId: String? = null
 )

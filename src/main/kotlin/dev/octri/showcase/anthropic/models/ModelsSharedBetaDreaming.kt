@@ -3,229 +3,193 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaAPIError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaAPIError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaAPIError(
-    /** Required `string` value serialized in the `message` wire field. */
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
     val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaAPIErrorTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaAPIErrorTypeEnum
 ) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
 
-/** Typed representation of the `BetaAuthenticationError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaAuthenticationError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaAuthenticationError(
-    /** Required `string` value serialized in the `message` wire field. */
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
     val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaAuthenticationErrorTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaAuthenticationErrorTypeEnum
 ) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
 
-/** Typed representation of the `BetaBillingError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaBillingError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaBillingError(
-    /** Required `string` value serialized in the `message` wire field. */
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
     val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaBillingErrorTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaBillingErrorTypeEnum
 ) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
 
-/** Typed representation of the `BetaDreamingError` API schema. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownBetaDreamingError::class,
-)
+/**
+ * Typed representation of the `BetaDreamingError` API schema.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaDreamingError::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaInvalidRequestError::class,
-        name = "invalid_request_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAuthenticationError::class,
-        name = "authentication_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaBillingError::class,
-        name = "billing_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaPermissionError::class,
-        name = "permission_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaNotFoundError::class,
-        name = "not_found_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaRateLimitError::class,
-        name = "rate_limit_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaGatewayTimeoutError::class,
-        name = "timeout_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaAPIError::class,
-        name = "api_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaOverloadedError::class,
-        name = "overloaded_error",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BetaTargetStoreHeldError::class,
-        name = "conflict_error",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaInvalidRequestError::class, name = "invalid_request_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAuthenticationError::class, name = "authentication_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaBillingError::class, name = "billing_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaPermissionError::class, name = "permission_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaNotFoundError::class, name = "not_found_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaRateLimitError::class, name = "rate_limit_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaGatewayTimeoutError::class, name = "timeout_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaAPIError::class, name = "api_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaOverloadedError::class, name = "overloaded_error"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaTargetStoreHeldError::class, name = "conflict_error")
 )
 sealed interface BetaDreamingError
 
 /** A [BetaDreamingError] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownBetaDreamingError
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownBetaDreamingError @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : BetaDreamingError {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Typed representation of the `BetaDreamingErrorResponse` API schema. */
+/**
+ * Typed representation of the `BetaDreamingErrorResponse` API schema.
+ */
 data class BetaDreamingErrorResponse(
-    /** Always "error" for error responses */
+    /**
+     * Always "error" for error responses
+     */
     val type: BetaDreamingErrorResponseTypeEnum,
-    /** Required API value serialized in the `error` wire field. */
-    val error: BetaDreamingError,
+    /**
+     * Required API value serialized in the `error` wire field.
+     */
+    val error: BetaDreamingError
 ) : dev.octri.showcase.anthropic.ErrorBody
 
-/** Typed representation of the `BetaGatewayTimeoutError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BetaGatewayTimeoutError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaGatewayTimeoutError(
-    /** Required `string` value serialized in the `message` wire field. */
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
     val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaGatewayTimeoutErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaInvalidRequestError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaInvalidRequestError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaInvalidRequestErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaNotFoundError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaNotFoundError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaNotFoundErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaOverloadedError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaOverloadedError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaOverloadedErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaPermissionError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaPermissionError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaPermissionErrorTypeEnum,
-) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
-
-/** Typed representation of the `BetaRateLimitError` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BetaRateLimitError(
-    /** Required `string` value serialized in the `message` wire field. */
-    val message: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BetaRateLimitErrorTypeEnum,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaGatewayTimeoutErrorTypeEnum
 ) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
 
 /**
- * The `output_behavior.memory_store_id` target is still held by a prior `{type: "update_existing"}`
- * dream — one that is `pending` or `running`, or was canceled with its final writes still landing.
- * Rarely the named dream has just finished (`completed`/`failed`) and its execution is still
- * closing; an immediate retry then almost always succeeds. The message names the holding dream when
- * the server can identify it (rarely omitted); poll it to a terminal state or cancel it, then…
+ * Typed representation of the `BetaInvalidRequestError` API schema.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaInvalidRequestError(
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
+    val message: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaInvalidRequestErrorTypeEnum
+) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
+
+/**
+ * Typed representation of the `BetaNotFoundError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaNotFoundError(
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
+    val message: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaNotFoundErrorTypeEnum
+) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
+
+/**
+ * Typed representation of the `BetaOverloadedError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaOverloadedError(
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
+    val message: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaOverloadedErrorTypeEnum
+) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
+
+/**
+ * Typed representation of the `BetaPermissionError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaPermissionError(
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
+    val message: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaPermissionErrorTypeEnum
+) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
+
+/**
+ * Typed representation of the `BetaRateLimitError` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BetaRateLimitError(
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
+    val message: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BetaRateLimitErrorTypeEnum
+) : BetaManagedAgentsError, BetaDreamingError, BetaErrorResponseError
+
+/**
+ * The `output_behavior.memory_store_id` target is still held by a prior `{type: "update_existing"}` dream — one that is `pending` or `running`, or was canceled with its final writes still landing. Rarely the named dream has just finished (`completed`/`failed`) and its execution is still closing; an immediate retry then almost always succeeds. The message names the holding dream when the server can identify it (rarely omitted); poll it to a terminal state or cancel it, then…
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BetaTargetStoreHeldError(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BetaTargetStoreHeldErrorTypeEnum,
     /**
-     * Human-readable description of the conflict, naming the dream that holds the target store when
-     * the server can identify it.
+     * Human-readable description of the conflict, naming the dream that holds the target store when the server can identify it.
      */
-    val message: String? = null,
+    val message: String? = null
 ) : BetaDreamingError

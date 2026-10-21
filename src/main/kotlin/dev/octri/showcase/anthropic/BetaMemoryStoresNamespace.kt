@@ -3,149 +3,61 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaMemoryStoresNamespace(private val clientConfig: ClientConfig) {
     val memories: BetaMemoryStoresMemoriesNamespace
     val memoryVersions: BetaMemoryStoresMemoryVersionsNamespace
-
     init {
         memories = BetaMemoryStoresMemoriesNamespace(clientConfig)
         memoryVersions = BetaMemoryStoresMemoryVersionsNamespace(clientConfig)
     }
-
     /**
-     * Creates a named memory store in the selected Workspace for organizing agent memories. Provide
-     * a `name` and optionally include a `description` or bookkeeping `metadata`; the description is
-     * included in the agent's system prompt when the store is attached. The response contains the
-     * created store and its generated identifier.
+     * Creates a named memory store in the selected Workspace for organizing agent memories. Provide a `name` and optionally include a `description` or bookkeeping `metadata`; the description is included in the agent's system prompt when the store is attached. The response contains the created store and its generated identifier.
      */
-    fun create(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.CreateBetaMemoryStoresRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsCreateMemoryStoreResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.createBetaMemoryStores(
-            clientConfig,
-            request,
-            options,
-        )
+    fun create(request: dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.CreateBetaMemoryStoresRequest, options: RequestOptions? = null): BetaManagedAgentsCreateMemoryStoreResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.createBetaMemoryStores(clientConfig, request, options)
     }
 
     /**
-     * Lists memory stores available in the selected Workspace, ordered from newest to oldest. Use
-     * `include_archived` and the creation-time filters to refine the results, and pass `next_page`
-     * as `page` to continue through the list. Archived stores are excluded unless you request them.
+     * Lists memory stores available in the selected Workspace, ordered from newest to oldest. Use `include_archived` and the creation-time filters to refine the results, and pass `next_page` as `page` to continue through the list. Archived stores are excluded unless you request them.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.ListBetaMemoryStoresRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsListMemoryStoresResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.listBetaMemoryStores(
-            clientConfig,
-            request,
-            options,
-        )
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.ListBetaMemoryStoresRequest, options: RequestOptions? = null): BetaManagedAgentsListMemoryStoresResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.listBetaMemoryStores(clientConfig, request, options)
     }
 
     /**
-     * Lists memory stores available in the selected Workspace, ordered from newest to oldest. Use
-     * `include_archived` and the creation-time filters to refine the results, and pass `next_page`
-     * as `page` to continue through the list. Archived stores are excluded unless you request them.
+     * Lists memory stores available in the selected Workspace, ordered from newest to oldest. Use `include_archived` and the creation-time filters to refine the results, and pass `next_page` as `page` to continue through the list. Archived stores are excluded unless you request them.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.ListBetaMemoryStoresRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaManagedAgentsMemoryStore) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.listBetaMemoryStoresPaginated(
-            clientConfig,
-            request,
-            options,
-            yieldFn,
-        )
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.ListBetaMemoryStoresRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsMemoryStore) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.listBetaMemoryStoresPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves a memory store, including stores that have been archived. Use `memory_store_id` to
-     * identify the store; include `anthropic-workspace-id` only when your credentials can access
-     * multiple workspaces.
+     * Retrieves a memory store, including stores that have been archived. Use `memory_store_id` to identify the store; include `anthropic-workspace-id` only when your credentials can access multiple workspaces.
      */
-    fun retrieve(
-        memoryStoreId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsGetMemoryStoreResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.retrieveBetaMemoryStores(
-            clientConfig,
-            memoryStoreId,
-            anthropicVersion,
-            anthropicBeta,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun retrieve(memoryStoreId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsGetMemoryStoreResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.retrieveBetaMemoryStores(clientConfig, memoryStoreId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
     }
 
     /**
-     * Updates a memory store's name, description, or metadata. Supply only the fields you want to
-     * change; set a metadata key to `null` to delete it, and use an empty `description` to clear
-     * the description.
+     * Updates a memory store's name, description, or metadata. Supply only the fields you want to change; set a metadata key to `null` to delete it, and use an empty `description` to clear the description.
      */
-    fun update(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.UpdateBetaMemoryStoresRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsUpdateMemoryStoreResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.updateBetaMemoryStores(
-            clientConfig,
-            request,
-            options,
-        )
+    fun update(request: dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.UpdateBetaMemoryStoresRequest, options: RequestOptions? = null): BetaManagedAgentsUpdateMemoryStoreResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.updateBetaMemoryStores(clientConfig, request, options)
     }
 
     /**
-     * Deletes a memory store. Use `memory_store_id` to identify the store; deletion removes the
-     * store rather than archiving it. A successful response confirms the deleted store's
-     * identifier.
+     * Deletes a memory store. Use `memory_store_id` to identify the store; deletion removes the store rather than archiving it. A successful response confirms the deleted store's identifier.
      */
-    fun delete(
-        memoryStoreId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsDeleteMemoryStoreResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.deleteBetaMemoryStores(
-            clientConfig,
-            memoryStoreId,
-            anthropicVersion,
-            anthropicBeta,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun delete(memoryStoreId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeleteMemoryStoreResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.deleteBetaMemoryStores(clientConfig, memoryStoreId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
     }
 
     /**
-     * Archives a memory store by setting its `archived_at` timestamp. Use this operation when you
-     * want to retain the store while marking it as archived; the response includes the updated
-     * store.
+     * Archives a memory store by setting its `archived_at` timestamp. Use this operation when you want to retain the store while marking it as archived; the response includes the updated store.
      */
-    fun archive(
-        memoryStoreId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsArchiveMemoryStoreResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.archiveBetaMemoryStores(
-            clientConfig,
-            memoryStoreId,
-            anthropicVersion,
-            anthropicBeta,
-            anthropicWorkspaceId,
-            options,
-        )
+    fun archive(memoryStoreId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsArchiveMemoryStoreResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMemoryStores.archiveBetaMemoryStores(clientConfig, memoryStoreId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
     }
+
 }

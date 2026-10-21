@@ -3,134 +3,48 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaSkillsVersionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a new version for the Skill identified by `skill_id`, using the uploaded files as its
-     * contents. Include a `SKILL.md` file at the root of a single top-level directory in the
-     * multipart upload. The response includes the created version's identifier, name, description,
-     * and creation timestamp.
+     * Creates a new version for the Skill identified by `skill_id`, using the uploaded files as its contents. Include a `SKILL.md` file at the root of a single top-level directory in the multipart upload. The response includes the created version's identifier, name, description, and creation timestamp.
      */
-    fun create(
-        skillId: String,
-        files: List<SdkClient.UploadFile>,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaSkillVersion {
-        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions
-            .createBetaSkillsVersions(
-                clientConfig,
-                skillId,
-                files,
-                anthropicBeta,
-                anthropicVersion,
-                anthropicWorkspaceId,
-                options,
-            )
+    fun create(skillId: String, files: List<SdkClient.UploadFile>, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSkillVersion {
+        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.createBetaSkillsVersions(clientConfig, skillId, files, anthropicBeta, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Lists the versions associated with a Skill. Use `page` to continue from the previous
-     * response's `next_page` token and `limit` to control the number of results per page. Results
-     * include version metadata and a token for retrieving the next page when more versions are
-     * available.
+     * Lists the versions associated with a Skill. Use `page` to continue from the previous response's `next_page` token and `limit` to control the number of results per page. Results include version metadata and a token for retrieving the next page when more versions are available.
      */
-    fun list(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.ListBetaSkillsVersionsRequest,
-        options: RequestOptions? = null,
-    ): BetaListSkillVersionsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions
-            .listBetaSkillsVersions(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.ListBetaSkillsVersionsRequest, options: RequestOptions? = null): BetaListSkillVersionsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.listBetaSkillsVersions(clientConfig, request, options)
     }
 
     /**
-     * Lists the versions associated with a Skill. Use `page` to continue from the previous
-     * response's `next_page` token and `limit` to control the number of results per page. Results
-     * include version metadata and a token for retrieving the next page when more versions are
-     * available.
+     * Lists the versions associated with a Skill. Use `page` to continue from the previous response's `next_page` token and `limit` to control the number of results per page. Results include version metadata and a token for retrieving the next page when more versions are available.
      */
-    fun listPaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.ListBetaSkillsVersionsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaSkillVersion) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions
-            .listBetaSkillsVersionsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.ListBetaSkillsVersionsRequest, options: RequestOptions? = null, yieldFn: (BetaSkillVersion) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.listBetaSkillsVersionsPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves a specific version of a Skill. Use `skill_id` to select the Skill and `version` to
-     * identify the version by its ID or the literal `latest`; with the `skills-2025-10-02` beta,
-     * use its Unix epoch timestamp instead. The response contains the version's metadata, including
-     * its name and description.
+     * Retrieves a specific version of a Skill. Use `skill_id` to select the Skill and `version` to identify the version by its ID or the literal `latest`; with the `skills-2025-10-02` beta, use its Unix epoch timestamp instead. The response contains the version's metadata, including its name and description.
      */
-    fun retrieve(
-        skillId: String,
-        version: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaSkillVersion {
-        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions
-            .retrieveBetaSkillsVersions(
-                clientConfig,
-                skillId,
-                version,
-                anthropicBeta,
-                anthropicVersion,
-                anthropicWorkspaceId,
-                options,
-            )
+    fun retrieve(skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSkillVersion {
+        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.retrieveBetaSkillsVersions(clientConfig, skillId, version, anthropicBeta, anthropicVersion, anthropicWorkspaceId, options)
     }
 
     /**
-     * Deletes a specific version of a Skill using its Skill identifier and version identifier. Use
-     * this operation to remove a version when it is no longer needed; the version is identified by
-     * its ID, or by its Unix epoch timestamp when using the `skills-2025-10-02` beta. The response
-     * confirms deletion with the version identifier.
+     * Deletes a specific version of a Skill using its Skill identifier and version identifier. Use this operation to remove a version when it is no longer needed; the version is identified by its ID, or by its Unix epoch timestamp when using the `skills-2025-10-02` beta. The response confirms deletion with the version identifier.
      */
-    fun delete(
-        skillId: String,
-        version: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaDeletedSkillVersion {
-        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions
-            .deleteBetaSkillsVersions(
-                clientConfig,
-                skillId,
-                version,
-                anthropicBeta,
-                anthropicVersion,
-                anthropicWorkspaceId,
-                options,
-            )
+    fun delete(skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaDeletedSkillVersion {
+        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.deleteBetaSkillsVersions(clientConfig, skillId, version, anthropicBeta, anthropicVersion, anthropicWorkspaceId, options)
     }
 
-    /** Download a skill version's content as a zip archive. */
-    fun download(
-        skillId: String,
-        version: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): ByteArray {
-        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions
-            .downloadBetaSkillsVersions(
-                clientConfig,
-                skillId,
-                version,
-                anthropicBeta,
-                anthropicVersion,
-                anthropicWorkspaceId,
-                options,
-            )
+    /**
+     * Download a skill version's content as a zip archive.
+     */
+    fun download(skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ByteArray {
+        return dev.octri.showcase.anthropic.methods.beta.skills.BetaSkillsVersions.downloadBetaSkillsVersions(clientConfig, skillId, version, anthropicBeta, anthropicVersion, anthropicWorkspaceId, options)
     }
+
 }

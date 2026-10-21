@@ -14,135 +14,58 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsRbacGroupsMembers {
 
+
     /**
-     * Remove a User from an RBAC Group. Membership of groups provisioned by an identity provider
-     * (source type `"scim"`) cannot be modified via the API while an organization in the tenant
-     * uses SCIM provisioning. The RBAC Groups API is available to Claude Enterprise organizations
-     * only.
+     * Remove a User from an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API while an organization in the tenant uses SCIM provisioning. The RBAC Groups API is available to Claude Enterprise organizations only.
      *
      * @param groupId ID of the RBAC Group.
      * @param userId ID of the User.
      */
-    fun deleteBetaOrganizationsRbacGroupsMembers(
-        clientConfig: ClientConfig,
-        groupId: String,
-        userId: String,
-        options: RequestOptions? = null,
-    ): BetaDeleteRbacGroupMemberResponse {
-        return SdkClient.request<BetaDeleteRbacGroupMemberResponse>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/v1/organizations/rbac_groups/${SdkClient.encodePathSegment(groupId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "deleteBetaOrganizationsRbacGroupsMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun deleteBetaOrganizationsRbacGroupsMembers(clientConfig: ClientConfig, groupId: String, userId: String, options: RequestOptions? = null): BetaDeleteRbacGroupMemberResponse {
+        return SdkClient.request<BetaDeleteRbacGroupMemberResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/rbac_groups/${SdkClient.encodePathSegment(groupId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsRbacGroupsMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * List members of an RBAC Group. The RBAC Groups API is available to Claude Enterprise
-     * organizations only.
+     * List members of an RBAC Group. The RBAC Groups API is available to Claude Enterprise organizations only.
      *
      * @param groupId ID of the RBAC Group.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
-     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
+     *   `1` to `1000`.
+     * @param page Optionally set to the `next_page` token from the previous
+     *   response.
      */
-    fun listBetaOrganizationsRbacGroupsMembers(
-        clientConfig: ClientConfig,
-        groupId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): BetaRbacGroupMemberList {
+    fun listBetaOrganizationsRbacGroupsMembers(clientConfig: ClientConfig, groupId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaRbacGroupMemberList {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-        }
+}
 
-        return SdkClient.request<BetaRbacGroupMemberList>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/rbac_groups/${SdkClient.encodePathSegment(groupId)}/members?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "limit" to SdkClient.queryValue(limit, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "listBetaOrganizationsRbacGroupsMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaRbacGroupMemberList>(SdkClient.RequestSpec("GET", "/v1/organizations/rbac_groups/${SdkClient.encodePathSegment(groupId)}/members?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "listBetaOrganizationsRbacGroupsMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
     /**
-     * List members of an RBAC Group. The RBAC Groups API is available to Claude Enterprise
-     * organizations only.
+     * List members of an RBAC Group. The RBAC Groups API is available to Claude Enterprise organizations only.
      *
      * @param groupId ID of the RBAC Group.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
-     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
+     *   `1` to `1000`.
+     * @param page Optionally set to the `next_page` token from the previous
+     *   response.
      */
-    fun listBetaOrganizationsRbacGroupsMembersPaginated(
-        clientConfig: ClientConfig,
-        groupId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaRbacGroupMember) -> Boolean,
-    ) {
+    fun listBetaOrganizationsRbacGroupsMembersPaginated(clientConfig: ClientConfig, groupId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaRbacGroupMember) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                listBetaOrganizationsRbacGroupsMembers(
-                    clientConfig,
-                    groupId,
-                    limit,
-                    cursor,
-                    options,
-                )
+            val page = listBetaOrganizationsRbacGroupsMembers(clientConfig, groupId, limit, cursor, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -160,24 +83,10 @@ object BetaOrganizationsRbacGroupsMembers {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsRbacGroupsMembersPages(
-        clientConfig: ClientConfig,
-        groupId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaOrganizationsRbacGroupsMembersPage) -> Boolean,
-    ) {
+    fun listBetaOrganizationsRbacGroupsMembersPages(clientConfig: ClientConfig, groupId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsRbacGroupsMembersPage) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                listBetaOrganizationsRbacGroupsMembers(
-                    clientConfig,
-                    groupId,
-                    limit,
-                    cursor,
-                    options,
-                )
+            val page = listBetaOrganizationsRbacGroupsMembers(clientConfig, groupId, limit, cursor, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -188,50 +97,22 @@ object BetaOrganizationsRbacGroupsMembers {
         }
     }
 
+
+
     /**
-     * Add a User to an RBAC Group. Membership of groups provisioned by an identity provider (source
-     * type `"scim"`) cannot be modified via the API while an organization in the tenant uses SCIM
-     * provisioning. The RBAC Groups API is available to Claude Enterprise organizations only.
+     * Add a User to an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API while an organization in the tenant uses SCIM provisioning. The RBAC Groups API is available to Claude Enterprise organizations only.
      *
      * @param groupId ID of the RBAC Group.
      * @param userId ID of the User.
      */
-    fun createBetaOrganizationsRbacGroupsMembers(
-        clientConfig: ClientConfig,
-        groupId: String,
-        userId: String,
-        options: RequestOptions? = null,
-    ): BetaRbacGroupMember {
-        return SdkClient.request<BetaRbacGroupMember>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/rbac_groups/${SdkClient.encodePathSegment(groupId)}/members?beta=true",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("user_id" to (userId)),
-                    operationId = "createBetaOrganizationsRbacGroupsMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun createBetaOrganizationsRbacGroupsMembers(clientConfig: ClientConfig, groupId: String, userId: String, options: RequestOptions? = null): BetaRbacGroupMember {
+        return SdkClient.request<BetaRbacGroupMember>(SdkClient.RequestSpec("POST", "/v1/organizations/rbac_groups/${SdkClient.encodePathSegment(groupId)}/members?beta=true", config = clientConfig, body = SdkClient.bodyMap("user_id" to (userId)), operationId = "createBetaOrganizationsRbacGroupsMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
 }

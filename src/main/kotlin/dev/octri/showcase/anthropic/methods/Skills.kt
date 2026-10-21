@@ -14,195 +14,90 @@ import dev.octri.showcase.anthropic.Validation
 
 object Skills {
 
-    /**
-     * Creates a skill from uploaded files and creates its initial version. Provide the files in a
-     * single top-level directory with `SKILL.md` at that directory's root; optionally set
-     * `display_name` to a human-readable label. If omitted, the label is derived from the
-     * `SKILL.md` frontmatter name.
-     *
-     * @param files Files to upload for the skill. All files must be in the same top-level directory
-     *   and must include a SKILL.md file at the root of that directory.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
-     * @param displayName Human-readable, single-line label for the Skill. Maximum 255 characters.
-     *   Always set: derived from the SKILL.md frontmatter `name` when omitted at creation. Not
-     *   unique.
-     */
-    fun createSkills(
-        clientConfig: ClientConfig,
-        files: List<SdkClient.UploadFile>,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        displayName: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): Skill {
-        return SdkClient.request<Skill>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/skills",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "files" to (files),
-                            "display_name" to (displayName ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    contentType = "multipart/form-data",
-                    operationId = "createSkills",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to ErrorResponse::class.java,
-                            "401" to ErrorResponse::class.java,
-                            "403" to ErrorResponse::class.java,
-                            "404" to ErrorResponse::class.java,
-                            "408" to ErrorResponse::class.java,
-                            "409" to ErrorResponse::class.java,
-                            "412" to ErrorResponse::class.java,
-                            "413" to ErrorResponse::class.java,
-                            "429" to ErrorResponse::class.java,
-                            "431" to ErrorResponse::class.java,
-                            "499" to ErrorResponse::class.java,
-                            "500" to ErrorResponse::class.java,
-                            "501" to ErrorResponse::class.java,
-                            "503" to ErrorResponse::class.java,
-                            "504" to ErrorResponse::class.java,
-                            "529" to ErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
-    }
 
     /**
-     * Lists skills available to the authenticated user, with optional pagination and filtering by
-     * source. Use `source` to limit results to custom or Anthropic-created skills, and use `page`
-     * and `limit` to paginate the results. The response includes a `next_page` cursor when more
-     * results are available.
+     * Creates a skill from uploaded files and creates its initial version. Provide the files in a single top-level directory with `SKILL.md` at that directory's root; optionally set `display_name` to a human-readable label. If omitted, the label is derived from the `SKILL.md` frontmatter name.
      *
-     * @param page Pagination token for fetching a specific page of results. Pass the value from a
-     *   previous response's `next_page` field to get the next page of results.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
-     *   `20`.
-     * @param source Filter skills by source. If provided, only skills from the specified source
-     *   will be returned: * `"custom"`: only return user-created skills * `"anthropic"`: only
-     *   return Anthropic-created skills
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param files Files to upload for the skill. All files must be in the same
+     *   top-level directory and must include a SKILL.md file at the root of that
+     *   directory.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     * @param displayName Human-readable, single-line label for the Skill. Maximum
+     *   255 characters. Always set: derived from the SKILL.md frontmatter `name` when
+     *   omitted at creation. Not unique.
      */
-    fun listSkills(
-        clientConfig: ClientConfig,
-        page: SdkClient.SdkOptional<String?>? = null,
-        limit: Long? = null,
-        source: SdkClient.SdkOptional<String?>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): ListSkillsResponse {
+    fun createSkills(clientConfig: ClientConfig, files: List<SdkClient.UploadFile>, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): Skill {
+        return SdkClient.request<Skill>(SdkClient.RequestSpec("POST", "/v1/skills", config = clientConfig, body = SdkClient.bodyMap("files" to (files), "display_name" to
+    (displayName ?: SdkClient.SdkOptional.Omitted)), contentType = "multipart/form-data", operationId = "createSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+    }
+
+
+
+
+
+
+
+    /**
+     * Lists skills available to the authenticated user, with optional pagination and filtering by source. Use `source` to limit results to custom or Anthropic-created skills, and use `page` and `limit` to paginate the results. The response includes a `next_page` cursor when more results are available.
+     *
+     * @param page Pagination token for fetching a specific page of results. Pass the
+     *   value from a previous response's `next_page` field to get the next page of
+     *   results.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
+     *   Defaults to `20`.
+     * @param source Filter skills by source. If provided, only skills from the
+     *   specified source will be returned: * `"custom"`: only return user-created
+     *   skills * `"anthropic"`: only return Anthropic-created skills
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     */
+    fun listSkills(clientConfig: ClientConfig, page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ListSkillsResponse {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-        }
+}
 
-        return SdkClient.request<ListSkillsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/skills",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "limit" to SdkClient.queryValue(limit, "form", true),
-                            "source" to SdkClient.queryValue(source, "form", true),
-                        ),
-                    operationId = "listSkills",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to ErrorResponse::class.java,
-                            "401" to ErrorResponse::class.java,
-                            "403" to ErrorResponse::class.java,
-                            "404" to ErrorResponse::class.java,
-                            "408" to ErrorResponse::class.java,
-                            "409" to ErrorResponse::class.java,
-                            "412" to ErrorResponse::class.java,
-                            "413" to ErrorResponse::class.java,
-                            "429" to ErrorResponse::class.java,
-                            "431" to ErrorResponse::class.java,
-                            "499" to ErrorResponse::class.java,
-                            "500" to ErrorResponse::class.java,
-                            "501" to ErrorResponse::class.java,
-                            "503" to ErrorResponse::class.java,
-                            "504" to ErrorResponse::class.java,
-                            "529" to ErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<ListSkillsResponse>(SdkClient.RequestSpec("GET", "/v1/skills", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "limit" to SdkClient.queryValue(limit, "form", true), "source" to SdkClient.queryValue(source, "form", true)), operationId = "listSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
     }
 
+
+
+
+
+
     /**
-     * Lists skills available to the authenticated user, with optional pagination and filtering by
-     * source. Use `source` to limit results to custom or Anthropic-created skills, and use `page`
-     * and `limit` to paginate the results. The response includes a `next_page` cursor when more
-     * results are available.
+     * Lists skills available to the authenticated user, with optional pagination and filtering by source. Use `source` to limit results to custom or Anthropic-created skills, and use `page` and `limit` to paginate the results. The response includes a `next_page` cursor when more results are available.
      *
-     * @param page Pagination token for fetching a specific page of results. Pass the value from a
-     *   previous response's `next_page` field to get the next page of results.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
-     *   `20`.
-     * @param source Filter skills by source. If provided, only skills from the specified source
-     *   will be returned: * `"custom"`: only return user-created skills * `"anthropic"`: only
-     *   return Anthropic-created skills
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param page Pagination token for fetching a specific page of results. Pass the
+     *   value from a previous response's `next_page` field to get the next page of
+     *   results.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
+     *   Defaults to `20`.
+     * @param source Filter skills by source. If provided, only skills from the
+     *   specified source will be returned: * `"custom"`: only return user-created
+     *   skills * `"anthropic"`: only return Anthropic-created skills
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun listSkillsPaginated(
-        clientConfig: ClientConfig,
-        page: SdkClient.SdkOptional<String?>? = null,
-        limit: Long? = null,
-        source: SdkClient.SdkOptional<String?>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-        yieldFn: (Skill) -> Boolean,
-    ) {
+    fun listSkillsPaginated(clientConfig: ClientConfig, page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (Skill) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                listSkills(
-                    clientConfig,
-                    cursor,
-                    limit,
-                    source,
-                    anthropicVersion,
-                    anthropicWorkspaceId,
-                    options,
-                )
+            val page = listSkills(clientConfig, cursor, limit, source, anthropicVersion, anthropicWorkspaceId, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -219,28 +114,10 @@ object Skills {
         val hasMore: Boolean,
     )
 
-    fun listSkillsPages(
-        clientConfig: ClientConfig,
-        page: SdkClient.SdkOptional<String?>? = null,
-        limit: Long? = null,
-        source: SdkClient.SdkOptional<String?>? = null,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-        yieldPage: (ListSkillsPage) -> Boolean,
-    ) {
+    fun listSkillsPages(clientConfig: ClientConfig, page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldPage: (ListSkillsPage) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                listSkills(
-                    clientConfig,
-                    cursor,
-                    limit,
-                    source,
-                    anthropicVersion,
-                    anthropicWorkspaceId,
-                    options,
-                )
+            val page = listSkills(clientConfig, cursor, limit, source, anthropicVersion, anthropicWorkspaceId, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -251,120 +128,52 @@ object Skills {
         }
     }
 
-    /**
-     * Retrieves a skill by its unique identifier. Use `skill_id` to identify the skill and inspect
-     * its display name, source, timestamps, and latest version identifier. The identifier's format
-     * and length may change over time.
-     *
-     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
-     *   time.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
-     */
-    fun retrieveSkills(
-        clientConfig: ClientConfig,
-        skillId: String,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): Skill {
-        return SdkClient.request<Skill>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}",
-                    config = clientConfig,
-                    operationId = "retrieveSkills",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to ErrorResponse::class.java,
-                            "401" to ErrorResponse::class.java,
-                            "403" to ErrorResponse::class.java,
-                            "404" to ErrorResponse::class.java,
-                            "408" to ErrorResponse::class.java,
-                            "409" to ErrorResponse::class.java,
-                            "412" to ErrorResponse::class.java,
-                            "413" to ErrorResponse::class.java,
-                            "429" to ErrorResponse::class.java,
-                            "431" to ErrorResponse::class.java,
-                            "499" to ErrorResponse::class.java,
-                            "500" to ErrorResponse::class.java,
-                            "501" to ErrorResponse::class.java,
-                            "503" to ErrorResponse::class.java,
-                            "504" to ErrorResponse::class.java,
-                            "529" to ErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
-    }
+
 
     /**
-     * Deletes a skill identified by its unique identifier. Use `skill_id` to select the skill to
-     * remove. A successful response confirms the deletion and includes the skill's ID.
+     * Retrieves a skill by its unique identifier. Use `skill_id` to identify the skill and inspect its display name, source, timestamps, and latest version identifier. The identifier's format and length may change over time.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
-     *   time.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs
+     *   may change over time.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun deleteSkills(
-        clientConfig: ClientConfig,
-        skillId: String,
-        anthropicVersion: String? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): DeletedSkill {
-        return SdkClient.request<DeletedSkill>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/v1/skills/${SdkClient.encodePathSegment(skillId)}",
-                    config = clientConfig,
-                    operationId = "deleteSkills",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to ErrorResponse::class.java,
-                            "401" to ErrorResponse::class.java,
-                            "403" to ErrorResponse::class.java,
-                            "404" to ErrorResponse::class.java,
-                            "408" to ErrorResponse::class.java,
-                            "409" to ErrorResponse::class.java,
-                            "412" to ErrorResponse::class.java,
-                            "413" to ErrorResponse::class.java,
-                            "429" to ErrorResponse::class.java,
-                            "431" to ErrorResponse::class.java,
-                            "499" to ErrorResponse::class.java,
-                            "500" to ErrorResponse::class.java,
-                            "501" to ErrorResponse::class.java,
-                            "503" to ErrorResponse::class.java,
-                            "504" to ErrorResponse::class.java,
-                            "529" to ErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun retrieveSkills(clientConfig: ClientConfig, skillId: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): Skill {
+        return SdkClient.request<Skill>(SdkClient.RequestSpec("GET", "/v1/skills/${SdkClient.encodePathSegment(skillId)}", config = clientConfig, operationId = "retrieveSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
+    /**
+     * Deletes a skill identified by its unique identifier. Use `skill_id` to select the skill to remove. A successful response confirms the deletion and includes the skill's ID.
+     *
+     * @param skillId Unique identifier for the skill. The format and length of IDs
+     *   may change over time.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
+     */
+    fun deleteSkills(clientConfig: ClientConfig, skillId: String, anthropicVersion: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): DeletedSkill {
+        return SdkClient.request<DeletedSkill>(SdkClient.RequestSpec("DELETE", "/v1/skills/${SdkClient.encodePathSegment(skillId)}", config = clientConfig, operationId = "deleteSkills", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+    }
+
+
+
+
+
+
+
 }

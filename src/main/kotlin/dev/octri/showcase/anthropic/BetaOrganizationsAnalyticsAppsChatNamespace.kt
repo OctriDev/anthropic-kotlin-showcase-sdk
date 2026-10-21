@@ -3,9 +3,9 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsAnalyticsAppsChatNamespace(clientConfig: ClientConfig) {
     val projects: BetaOrganizationsAnalyticsAppsChatProjectsNamespace
-
     init {
         projects = BetaOrganizationsAnalyticsAppsChatProjectsNamespace(clientConfig)
     }

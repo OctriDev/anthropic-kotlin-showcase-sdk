@@ -5,43 +5,62 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/** Typed representation of the `BetaRbacGroup` API schema. */
+/**
+ * Typed representation of the `BetaRbacGroup` API schema.
+ */
 data class BetaRbacGroup(
-    /** RFC 3339 timestamp of when the RBAC Group was created. */
+    /**
+     * RFC 3339 timestamp of when the RBAC Group was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** ID of the RBAC Group. */
+    /**
+     * ID of the RBAC Group.
+     */
     val id: String,
-    /** Name of the RBAC Group. Not uniqueness-enforced. */
+    /**
+     * Name of the RBAC Group. Not uniqueness-enforced.
+     */
     val name: String,
     /**
-     * RBAC Role IDs attached to this RBAC Group. Role attachment is managed in the admin settings
-     * and is read-only on this API. `null` means role data was temporarily unavailable — retry to
-     * distinguish from an empty list.
+     * RBAC Role IDs attached to this RBAC Group. Role attachment is managed in the admin settings and is read-only on this API. `null` means role data was temporarily unavailable — retry to distinguish from an empty list.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("roles", required = true)
-    val roles: List<String>?,
+    @com.fasterxml.jackson.annotation.JsonProperty("roles", required = true) val roles: List<String>?,
     /**
-     * How the RBAC Group was created: `"direct"` for groups created directly (for example, in the
-     * organization's admin settings), `"scim"` for groups provisioned by the identity provider.
+     * How the RBAC Group was created: `"direct"` for groups created directly (for example, in the organization's admin settings), `"scim"` for groups provisioned by the identity provider.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("source_type")
-    val sourceType: BetaRbacGroupSourceTypeEnum,
-    /** Object type. For RBAC Groups, this is always `"rbac_group"`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("source_type") val sourceType: BetaRbacGroupSourceTypeEnum,
+    /**
+     * Object type. For RBAC Groups, this is always `"rbac_group"`.
+     */
     val type: BetaRbacGroupTypeEnum,
-    /** RFC 3339 timestamp of when the RBAC Group was last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * RFC 3339 timestamp of when the RBAC Group was last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
 )
 
-/** Typed representation of the `BetaRbacRole` API schema. */
+/**
+ * Typed representation of the `BetaRbacRole` API schema.
+ */
 data class BetaRbacRole(
-    /** RFC 3339 datetime string indicating when the RBAC Role was created. */
+    /**
+     * RFC 3339 datetime string indicating when the RBAC Role was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** ID of the RBAC Role. */
+    /**
+     * ID of the RBAC Role.
+     */
     val id: String,
-    /** Name of the RBAC Role. */
+    /**
+     * Name of the RBAC Role.
+     */
     val name: String,
-    /** Object type. For RBAC Roles, this is always `"rbac_role"`. */
+    /**
+     * Object type. For RBAC Roles, this is always `"rbac_role"`.
+     */
     val type: BetaRbacRoleTypeEnum,
-    /** RFC 3339 datetime string indicating when the RBAC Role was last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * RFC 3339 datetime string indicating when the RBAC Role was last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
 )

@@ -3,44 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsAnalyticsUserCostReportNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get per-user cost in USD across a date range. Returns one row per user, ranked by spend. Use
-     * this to see which users account for the most cost. Only cost attributable to a seat user is
-     * included; for organization-wide totals including direct API-key and automation traffic, use
-     * the bucketed `/v1/organizations/analytics/cost_report` endpoint. Available to organizations
-     * on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-user cost in USD across a date range. Returns one row per user, ranked by spend. Use this to see which users account for the most cost. Only cost attributable to a seat user is included; for organization-wide totals including direct API-key and automation traffic, use the bucketed `/v1/organizations/analytics/cost_report` endpoint. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun retrieve(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserCostReport.RetrieveBetaOrganizationsAnalyticsUserCostReportRequest,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsCostUsersResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsUserCostReport
-            .retrieveBetaOrganizationsAnalyticsUserCostReport(clientConfig, request, options)
+    fun retrieve(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserCostReport.RetrieveBetaOrganizationsAnalyticsUserCostReportRequest, options: RequestOptions? = null): BetaAnalyticsCostUsersResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserCostReport.retrieveBetaOrganizationsAnalyticsUserCostReport(clientConfig, request, options)
     }
 
     /**
-     * Get per-user cost in USD across a date range. Returns one row per user, ranked by spend. Use
-     * this to see which users account for the most cost. Only cost attributable to a seat user is
-     * included; for organization-wide totals including direct API-key and automation traffic, use
-     * the bucketed `/v1/organizations/analytics/cost_report` endpoint. Available to organizations
-     * on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-user cost in USD across a date range. Returns one row per user, ranked by spend. Use this to see which users account for the most cost. Only cost attributable to a seat user is included; for organization-wide totals including direct API-key and automation traffic, use the bucketed `/v1/organizations/analytics/cost_report` endpoint. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun retrievePaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserCostReport.RetrieveBetaOrganizationsAnalyticsUserCostReportRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsCostUsersItem) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsUserCostReport
-            .retrieveBetaOrganizationsAnalyticsUserCostReportPaginated(
-                clientConfig,
-                request,
-                options,
-                yieldFn,
-            )
+    fun retrievePaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserCostReport.RetrieveBetaOrganizationsAnalyticsUserCostReportRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsCostUsersItem) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserCostReport.retrieveBetaOrganizationsAnalyticsUserCostReportPaginated(clientConfig, request, options, yieldFn)
     }
+
 }

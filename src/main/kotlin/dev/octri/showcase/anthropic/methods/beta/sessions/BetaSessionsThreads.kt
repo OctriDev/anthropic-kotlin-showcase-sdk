@@ -15,6 +15,7 @@ import dev.octri.showcase.anthropic.SdkClient
 
 object BetaSessionsThreads {
 
+
     /** Parameters for [listBetaSessionsThreads]. */
     data class ListBetaSessionsThreadsRequest(
         val sessionId: String,
@@ -22,90 +23,45 @@ object BetaSessionsThreads {
         val page: String? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null,
+        val anthropicWorkspaceId: String? = null
     )
 
     /**
-     * Lists the execution threads belonging to a session, with the primary thread followed by child
-     * threads in spawn order. Use `page` to continue from the previous response's `next_page`
-     * cursor; `limit` controls page size and defaults to 1000.
+     * Lists the execution threads belonging to a session, with the primary thread followed by child threads in spawn order. Use `page` to continue from the previous response's `next_page` cursor; `limit` controls page size and defaults to 1000.
      *
      * @param sessionId Path parameter session_id
      * @param limit Maximum results per page. Defaults to 1000.
-     * @param page Opaque pagination cursor from a previous response's `next_page`. Forward-only.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param page Opaque pagination cursor from a previous response's `next_page`.
+     *   Forward-only.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsThreads(
-        clientConfig: ClientConfig,
-        request: ListBetaSessionsThreadsRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsListSessionThreads {
-        return SdkClient.request<BetaManagedAgentsListSessionThreads>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/threads?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "limit" to SdkClient.queryValue(request.limit, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "listBetaSessionsThreads",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun listBetaSessionsThreads(clientConfig: ClientConfig, request: ListBetaSessionsThreadsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionThreads {
+        return SdkClient.request<BetaManagedAgentsListSessionThreads>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/threads?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "listBetaSessionsThreads", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
     /**
-     * Lists the execution threads belonging to a session, with the primary thread followed by child
-     * threads in spawn order. Use `page` to continue from the previous response's `next_page`
-     * cursor; `limit` controls page size and defaults to 1000.
+     * Lists the execution threads belonging to a session, with the primary thread followed by child threads in spawn order. Use `page` to continue from the previous response's `next_page` cursor; `limit` controls page size and defaults to 1000.
      *
      * @param sessionId Path parameter session_id
      * @param limit Maximum results per page. Defaults to 1000.
-     * @param page Opaque pagination cursor from a previous response's `next_page`. Forward-only.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param page Opaque pagination cursor from a previous response's `next_page`.
+     *   Forward-only.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsThreadsPaginated(
-        clientConfig: ClientConfig,
-        request: ListBetaSessionsThreadsRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaManagedAgentsSessionThread) -> Boolean,
-    ) {
+    fun listBetaSessionsThreadsPaginated(clientConfig: ClientConfig, request: ListBetaSessionsThreadsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionThread) -> Boolean) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessionsThreads(clientConfig, request.copy(page = cursor), options)
@@ -125,12 +81,7 @@ object BetaSessionsThreads {
         val hasMore: Boolean,
     )
 
-    fun listBetaSessionsThreadsPages(
-        clientConfig: ClientConfig,
-        request: ListBetaSessionsThreadsRequest,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaSessionsThreadsPage) -> Boolean,
-    ) {
+    fun listBetaSessionsThreadsPages(clientConfig: ClientConfig, request: ListBetaSessionsThreadsRequest, options: RequestOptions? = null, yieldPage: (ListBetaSessionsThreadsPage) -> Boolean) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessionsThreads(clientConfig, request.copy(page = cursor), options)
@@ -144,64 +95,28 @@ object BetaSessionsThreads {
         }
     }
 
+
+
     /**
-     * Retrieves an execution thread from a session, including its status, agent snapshot, usage,
-     * and timing statistics. Supply both `session_id` and `thread_id` to identify the thread and
-     * its parent session.
+     * Retrieves an execution thread from a session, including its status, agent snapshot, usage, and timing statistics. Supply both `session_id` and `thread_id` to identify the thread and its parent session.
      *
      * @param sessionId Path parameter session_id
      * @param threadId Path parameter thread_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaSessionsThreads(
-        clientConfig: ClientConfig,
-        sessionId: String,
-        threadId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsSessionThread {
-        return SdkClient.request<BetaManagedAgentsSessionThread>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/threads/${SdkClient.encodePathSegment(threadId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "retrieveBetaSessionsThreads",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun retrieveBetaSessionsThreads(clientConfig: ClientConfig, sessionId: String, threadId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSessionThread {
+        return SdkClient.request<BetaManagedAgentsSessionThread>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/threads/${SdkClient.encodePathSegment(threadId)}?beta=true", config = clientConfig, operationId = "retrieveBetaSessionsThreads", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [streamBetaSessionsThreads]. */
     data class StreamBetaSessionsThreadsRequest(
@@ -210,133 +125,57 @@ object BetaSessionsThreads {
         val eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null,
+        val anthropicWorkspaceId: String? = null
     )
 
     /**
-     * Streams server-sent events from an execution thread, delivering events as they are produced.
-     * Use `event_deltas[]` to request best-effort previews for `agent.message` or `agent.thinking`;
-     * the final event carries complete content, while a model request that ends early may have no
-     * final event.
+     * Streams server-sent events from an execution thread, delivering events as they are produced. Use `event_deltas[]` to request best-effort previews for `agent.message` or `agent.thinking`; the final event carries complete content, while a model request that ends early may have no final event.
      *
      * @param sessionId Path parameter session_id
      * @param threadId Path parameter thread_id
-     * @param eventDeltas When set, this connection also receives streaming deltas (`event_start`,
-     *   `event_delta`) while an event is being produced, before the event itself arrives. Deltas
-     *   are best-effort; when the final event is produced it carries the complete content. A model
-     *   request that ends early (an error or interrupt) produces no final event — its terminal
-     *   `span.model_request_end` closes the preview. Accepts one or more event types to preview and
-     *   may be repeated: `agent.message` streams…
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param eventDeltas When set, this connection also receives streaming deltas
+     *   (`event_start`, `event_delta`) while an event is being produced, before the
+     *   event itself arrives. Deltas are best-effort; when the final event is produced
+     *   it carries the complete content. A model request that ends early (an error or
+     *   interrupt) produces no final event — its terminal `span.model_request_end`
+     *   closes the preview. Accepts one or more event types to preview and may be
+     *   repeated: `agent.message` streams…
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun streamBetaSessionsThreads(
-        clientConfig: ClientConfig,
-        request: StreamBetaSessionsThreadsRequest,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsStreamSessionThreadEvents {
-        return SdkClient.request<BetaManagedAgentsStreamSessionThreadEvents>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/threads/${SdkClient.encodePathSegment(request.threadId)}/stream?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "event_deltas[]" to
-                                SdkClient.queryValue(request.eventDeltas, "form", true)
-                        ),
-                    operationId = "streamBetaSessionsThreads",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun streamBetaSessionsThreads(clientConfig: ClientConfig, request: StreamBetaSessionsThreadsRequest, options: RequestOptions? = null): BetaManagedAgentsStreamSessionThreadEvents {
+        return SdkClient.request<BetaManagedAgentsStreamSessionThreadEvents>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/threads/${SdkClient.encodePathSegment(request.threadId)}/stream?beta=true", config = clientConfig, query = mapOf("event_deltas[]" to
+    SdkClient.queryValue(request.eventDeltas, "form", true)), operationId = "streamBetaSessionsThreads", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Archives an execution thread within a session and returns the updated thread record. Supply
-     * `session_id` and `thread_id` to identify the thread; if you select a Workspace with
-     * `anthropic-workspace-id`, it must match the credential's Workspace.
+     * Archives an execution thread within a session and returns the updated thread record. Supply `session_id` and `thread_id` to identify the thread; if you select a Workspace with `anthropic-workspace-id`, it must match the credential's Workspace.
      *
      * @param sessionId Path parameter session_id
      * @param threadId Path parameter thread_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
-     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
-     *   credentials that can act on more than one Workspace. A credential that belongs to a
-     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this
+     *   request. The value is a Workspace ID (for example,
+     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
+     *   on more than one Workspace. A credential that belongs to a specific Workspace
+     *   may omit it; if sent, it must match that Workspace.
      */
-    fun archiveBetaSessionsThreads(
-        clientConfig: ClientConfig,
-        sessionId: String,
-        threadId: String,
-        anthropicVersion: String? = null,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicWorkspaceId: String? = null,
-        options: RequestOptions? = null,
-    ): BetaManagedAgentsSessionThread {
-        return SdkClient.request<BetaManagedAgentsSessionThread>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/threads/${SdkClient.encodePathSegment(threadId)}/archive?beta=true",
-                    config = clientConfig,
-                    operationId = "archiveBetaSessionsThreads",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-workspace-id" to
-                                SdkClient.headerValue(anthropicWorkspaceId, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun archiveBetaSessionsThreads(clientConfig: ClientConfig, sessionId: String, threadId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSessionThread {
+        return SdkClient.request<BetaManagedAgentsSessionThread>(SdkClient.RequestSpec("POST", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/threads/${SdkClient.encodePathSegment(threadId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaSessionsThreads", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
 }

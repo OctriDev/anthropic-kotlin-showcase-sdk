@@ -3,99 +3,118 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaRateLimit` API schema. */
+/**
+ * Typed representation of the `BetaRateLimit` API schema.
+ */
 data class BetaRateLimit(
     /**
-     * The kind of rate-limit group this entry represents. `model_group` entries apply to a family
-     * of models (listed in `models`); other values apply to an API-surface category and have
-     * `models` set to `null`.
+     * The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("group_type")
-    val groupType: BetaRateLimitGroupTypeEnum,
-    /** Stable identifier for this rate-limit group within the organization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("group_type") val groupType: BetaRateLimitGroupTypeEnum,
+    /**
+     * Stable identifier for this rate-limit group within the organization.
+     */
     val id: String,
-    /** The limiter values that apply to this group. */
+    /**
+     * The limiter values that apply to this group.
+     */
     val limits: List<BetaRateLimitValue>,
     /**
-     * Model names this entry's limits apply to, including aliases. `null` when `group_type` is not
-     * `"model_group"`.
+     * Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("models", required = true)
-    val models: List<String>?,
-    /** Object type. Always `rate_limit` for organization rate-limit entries. */
-    val type: BetaRateLimitTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("models", required = true) val models: List<String>?,
+    /**
+     * Object type. Always `rate_limit` for organization rate-limit entries.
+     */
+    val type: BetaRateLimitTypeEnum
 )
 
-/** Typed representation of the `BetaRateLimitListResponse` API schema. */
+/**
+ * Typed representation of the `BetaRateLimitListResponse` API schema.
+ */
 data class BetaRateLimitListResponse(
-    /** Rate-limit entries for the organization, one per group. */
+    /**
+     * Rate-limit entries for the organization, one per group.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaRateLimit>,
     /**
-     * Opaque cursor for the next page of results, or `null` when no entries remain beyond this
-     * response.
+     * Opaque cursor for the next page of results, or `null` when no entries remain beyond this response.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )
 
-/** Typed representation of the `BetaRateLimitValue` API schema. */
+/**
+ * Typed representation of the `BetaRateLimitValue` API schema.
+ */
 data class BetaRateLimitValue(
-    /** The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`). */
+    /**
+     * The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+     */
     val type: String,
-    /** The configured limit value for this limiter type. */
-    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long,
+    /**
+     * The configured limit value for this limiter type.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long
 )
 
-/** Typed representation of the `BetaWorkspaceRateLimit` API schema. */
+/**
+ * Typed representation of the `BetaWorkspaceRateLimit` API schema.
+ */
 data class BetaWorkspaceRateLimit(
     /**
-     * The kind of rate-limit group this entry represents. `model_group` entries apply to a family
-     * of models (listed in `models`); other values apply to an API-surface category and have
-     * `models` set to `null`.
+     * The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("group_type")
-    val groupType: BetaWorkspaceRateLimitGroupTypeEnum,
+    @com.fasterxml.jackson.annotation.JsonProperty("group_type") val groupType: BetaWorkspaceRateLimitGroupTypeEnum,
     /**
-     * The limiter values overridden for this group in this workspace. Limiter types without a
-     * workspace override are omitted and inherit the organization value.
+     * The limiter values overridden for this group in this workspace. Limiter types without a workspace override are omitted and inherit the organization value.
      */
     val limits: List<BetaWorkspaceRateLimitValue>,
     /**
-     * Model names this entry's limits apply to, including aliases. `null` when `group_type` is not
-     * `"model_group"`.
+     * Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("models", required = true)
-    val models: List<String>?,
-    /** The `id` of the RateLimit group this override applies to. */
+    @com.fasterxml.jackson.annotation.JsonProperty("models", required = true) val models: List<String>?,
+    /**
+     * The `id` of the RateLimit group this override applies to.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("rate_limit_id") val rateLimitId: String,
-    /** Object type. Always `workspace_rate_limit` for workspace rate-limit entries. */
+    /**
+     * Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
+     */
     val type: BetaWorkspaceRateLimitTypeEnum,
-    /** ID of the Workspace this override applies to. */
-    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String,
+    /**
+     * ID of the Workspace this override applies to.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workspace_id") val workspaceId: String
 )
 
-/** Typed representation of the `BetaWorkspaceRateLimitListResponse` API schema. */
+/**
+ * Typed representation of the `BetaWorkspaceRateLimitListResponse` API schema.
+ */
 data class BetaWorkspaceRateLimitListResponse(
-    /** Rate-limit entries for the workspace, one per group that has at least one override. */
+    /**
+     * Rate-limit entries for the workspace, one per group that has at least one override.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaWorkspaceRateLimit>,
     /**
-     * Opaque cursor for the next page of results, or `null` when no entries remain beyond this
-     * response.
+     * Opaque cursor for the next page of results, or `null` when no entries remain beyond this response.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
-    val nextPage: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
 )
 
-/** Typed representation of the `BetaWorkspaceRateLimitValue` API schema. */
+/**
+ * Typed representation of the `BetaWorkspaceRateLimitValue` API schema.
+ */
 data class BetaWorkspaceRateLimitValue(
     /**
-     * The organization-level value for the same limiter type, for reference. `null` when the
-     * organization has no limit configured for this limiter type.
+     * The organization-level value for the same limiter type, for reference. `null` when the organization has no limit configured for this limiter type.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("org_limit", required = true)
-    val orgLimit: Long?,
-    /** The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`). */
+    @com.fasterxml.jackson.annotation.JsonProperty("org_limit", required = true) val orgLimit: Long?,
+    /**
+     * The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+     */
     val type: String,
-    /** The workspace-level override value for this limiter type. */
-    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long,
+    /**
+     * The workspace-level override value for this limiter type.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long
 )

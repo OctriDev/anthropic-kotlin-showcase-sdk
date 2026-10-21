@@ -3,653 +3,609 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BashTool_20250124` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `BashTool_20250124` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BashTool20250124(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: BashTool20250124NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BashTool20250124TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** Optional array value serialized in the `input_examples` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
-    val inputExamples: List<Map<String, JsonValue>>? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: BashTool20250124TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * Optional array value serialized in the `input_examples` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
 /**
- * The browser toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the
- * browser tool family. The model is served the family's tool with any members disabled via
- * ``configs`` removed from its schema.
+ * The browser toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the browser tool family. The model is served the family's tool with any members disabled via ``configs`` removed from its schema.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BrowserToolset20260801(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserToolset20260801TypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a
-     * member's defaults apply wherever its key is absent.
+     * Required `string` value serialized in the `type` wire field.
      */
-    val configs: BrowserToolsetConfigs? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: BrowserToolset20260801TypeEnum,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a member's defaults apply wherever its key is absent.
+     */
+    val configs: BrowserToolsetConfigs? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `CodeExecutionTool_20250522` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `CodeExecutionTool_20250522` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class CodeExecutionTool20250522(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: CodeExecutionTool20250522NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: CodeExecutionTool20250522TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: CodeExecutionTool20250522TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `CodeExecutionTool_20250825` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `CodeExecutionTool_20250825` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class CodeExecutionTool20250825(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: CodeExecutionTool20250825NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: CodeExecutionTool20250825TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: CodeExecutionTool20250825TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint). */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class CodeExecutionTool20260120(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: CodeExecutionTool20260120NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: CodeExecutionTool20260120TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: CodeExecutionTool20260120TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Code execution tool with REPL state persistence. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Code execution tool with REPL state persistence.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class CodeExecutionTool20260521(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: CodeExecutionTool20260521NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: CodeExecutionTool20260521TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: CodeExecutionTool20260521TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
 /**
- * The computer toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the
- * computer tool family. The model is served the family's tool with any members disabled via
- * ``configs`` removed from its schema. Every member is enabled by default, zoom included. The
- * single-tool options ``display_number`` and ``enable_zoom`` are not fields of a toolset entry — it
- * carries only ``type``, ``configs``, and ``cache_control``; zoom is controlled via
- * ``configs.zoom.enabled``.
+ * The computer toolset: a single ``tools\[\]`` entry (carrying no ``name``) that declares the computer tool family. The model is served the family's tool with any members disabled via ``configs`` removed from its schema. Every member is enabled by default, zoom included. The single-tool options ``display_number`` and ``enable_zoom`` are not fields of a toolset entry — it carries only ``type``, ``configs``, and ``cache_control``; zoom is controlled via ``configs.zoom.enabled``.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ComputerToolset20260801(
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: ComputerToolset20260801TypeEnum,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a
-     * member's defaults apply wherever its key is absent.
+     * Required `string` value serialized in the `type` wire field.
      */
-    val configs: ComputerToolsetConfigs? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: ComputerToolset20260801TypeEnum,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * Sparse per-member overrides, keyed by member name. Absent, null, and {} are equivalent; a member's defaults apply wherever its key is absent.
+     */
+    val configs: ComputerToolsetConfigs? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `MemoryTool_20250818` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `MemoryTool_20250818` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class MemoryTool20250818(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: MemoryTool20250818NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: MemoryTool20250818TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** Optional array value serialized in the `input_examples` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
-    val inputExamples: List<Map<String, JsonValue>>? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: MemoryTool20250818TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * Optional array value serialized in the `input_examples` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `TextEditor_20250124` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `TextEditor_20250124` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class TextEditor20250124(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: TextEditor20250124NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: TextEditor20250124TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** Optional array value serialized in the `input_examples` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
-    val inputExamples: List<Map<String, JsonValue>>? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: TextEditor20250124TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * Optional array value serialized in the `input_examples` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `TextEditor_20250429` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `TextEditor_20250429` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class TextEditor20250429(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: TextEditor20250429NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: TextEditor20250429TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required `string` value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** Optional array value serialized in the `input_examples` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
-    val inputExamples: List<Map<String, JsonValue>>? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: TextEditor20250429TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * Optional array value serialized in the `input_examples` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `TextEditor_20250728` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `TextEditor_20250728` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class TextEditor20250728(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: TextEditor20250728NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: TextEditor20250728TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Optional array value serialized in the `allowed_callers` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** Optional array value serialized in the `input_examples` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
-    val inputExamples: List<Map<String, JsonValue>>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
     /**
-     * Maximum number of characters to display when viewing a file. If not specified, defaults to
-     * displaying the full file.
+     * Create a cache control breakpoint at this content block.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_characters")
-    val maxCharacters: Long? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * Optional array value serialized in the `input_examples` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null,
+    /**
+     * Maximum number of characters to display when viewing a file. If not specified, defaults to displaying the full file.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_characters") val maxCharacters: Long? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `Tool` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `Tool` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class Tool(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: String,
     /**
-     * JSON schema for this tool's input. This defines the shape of the `input` that your tool
-     * accepts and that the model will produce.
+     * JSON schema for this tool's input. This defines the shape of the `input` that your tool accepts and that the model will produce.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("input_schema") val inputSchema: InputSchema,
-    /** Optional API value serialized in the `type` wire field. */
+    /**
+     * Optional API value serialized in the `type` wire field.
+     */
     val type: ToolTypeVariant1Enum? = null,
     /**
-     * Description of what this tool does. Tool descriptions should be as detailed as possible. The
-     * more information that the model has about what the tool is and how to use it, the better it
-     * will perform. You can use natural language descriptions to reinforce important aspects of the
-     * tool input JSON schema.
+     * Description of what this tool does. Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
      */
     val description: String? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
     val strict: Boolean? = null,
     /**
-     * Enable eager input streaming for this tool. When true, tool input parameters will be streamed
-     * incrementally as they are generated, and types will be inferred on-the-fly rather than
-     * buffering the full JSON output. When false, streaming is disabled for this tool even if the
-     * fine-grained-tool-streaming beta is active. When null (default), uses the default behavior
-     * based on beta headers.
+     * Enable eager input streaming for this tool. When true, tool input parameters will be streamed incrementally as they are generated, and types will be inferred on-the-fly rather than buffering the full JSON output. When false, streaming is disabled for this tool even if the fine-grained-tool-streaming beta is active. When null (default), uses the default behavior based on beta headers.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("eager_input_streaming")
-    val eagerInputStreaming: Boolean? = null,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("eager_input_streaming") val eagerInputStreaming: Boolean? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Optional array value serialized in the `allowed_callers` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** Optional array value serialized in the `input_examples` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
-    val inputExamples: List<Map<String, JsonValue>>? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * Optional array value serialized in the `input_examples` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `ToolSearchToolBM25_20251119` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `ToolSearchToolBM25_20251119` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ToolSearchToolBM2520251119(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: ToolSearchToolBM2520251119NameEnum,
-    /** Required enumerated value serialized in the `type` wire field. */
-    val type: ToolSearchToolBM2520251119TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required enumerated value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: ToolSearchToolBM2520251119TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `ToolSearchToolRegex_20251119` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `ToolSearchToolRegex_20251119` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ToolSearchToolRegex20251119(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: ToolSearchToolRegex20251119NameEnum,
-    /** Required enumerated value serialized in the `type` wire field. */
-    val type: ToolSearchToolRegex20251119TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * Required enumerated value serialized in the `type` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    val type: ToolSearchToolRegex20251119TypeEnum,
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `WebFetchTool_20250910` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `WebFetchTool_20250910` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebFetchTool20250910(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: WebFetchTool20250910NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: WebFetchTool20250910TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** List of domains to allow fetching from */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains")
-    val allowedDomains: List<String>? = null,
-    /** List of domains to block fetching from */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains")
-    val blockedDomains: List<String>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Citations configuration for fetched documents. Citations are disabled by default. */
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * List of domains to allow fetching from
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains") val allowedDomains: List<String>? = null,
+    /**
+     * List of domains to block fetching from
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains") val blockedDomains: List<String>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * Citations configuration for fetched documents. Citations are disabled by default.
+     */
     val citations: RequestCitationsConfig? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
     /**
-     * Maximum number of tokens used by including web page text content in the context. The limit is
-     * approximate and does not apply to binary content such as PDFs.
+     * Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens")
-    val maxContentTokens: Long? = null,
-    /** Maximum number of times the tool can be used in the API request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens") val maxContentTokens: Long? = null,
+    /**
+     * Maximum number of times the tool can be used in the API request.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("max_uses") val maxUses: Long? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Typed representation of the `WebFetchTool_20260209` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `WebFetchTool_20260209` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebFetchTool20260209(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: WebFetchTool20260209NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: WebFetchTool20260209TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** List of domains to allow fetching from */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains")
-    val allowedDomains: List<String>? = null,
-    /** List of domains to block fetching from */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains")
-    val blockedDomains: List<String>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Citations configuration for fetched documents. Citations are disabled by default. */
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * List of domains to allow fetching from
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains") val allowedDomains: List<String>? = null,
+    /**
+     * List of domains to block fetching from
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains") val blockedDomains: List<String>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * Citations configuration for fetched documents. Citations are disabled by default.
+     */
     val citations: RequestCitationsConfig? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
     /**
-     * Maximum number of tokens used by including web page text content in the context. The limit is
-     * approximate and does not apply to binary content such as PDFs.
+     * Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens")
-    val maxContentTokens: Long? = null,
-    /** Maximum number of times the tool can be used in the API request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens") val maxContentTokens: Long? = null,
+    /**
+     * Maximum number of times the tool can be used in the API request.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("max_uses") val maxUses: Long? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
-    val strict: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
+    val strict: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
 
-/** Web fetch tool with use_cache parameter for bypassing cached content. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Web fetch tool with use_cache parameter for bypassing cached content.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebFetchTool20260309(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: WebFetchTool20260309NameEnum,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: WebFetchTool20260309TypeEnum,
-    /** Optional array value serialized in the `allowed_callers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
-    val allowedCallers: List<AllowedCaller>? = null,
-    /** List of domains to allow fetching from */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains")
-    val allowedDomains: List<String>? = null,
-    /** List of domains to block fetching from */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains")
-    val blockedDomains: List<String>? = null,
-    /** Create a cache control breakpoint at this content block. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
-    val cacheControl: CacheControlEphemeral? = null,
-    /** Citations configuration for fetched documents. Citations are disabled by default. */
+    /**
+     * Optional array value serialized in the `allowed_callers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
+    /**
+     * List of domains to allow fetching from
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_domains") val allowedDomains: List<String>? = null,
+    /**
+     * List of domains to block fetching from
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_domains") val blockedDomains: List<String>? = null,
+    /**
+     * Create a cache control breakpoint at this content block.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
+    /**
+     * Citations configuration for fetched documents. Citations are disabled by default.
+     */
     val citations: RequestCitationsConfig? = null,
     /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via
-     * tool_reference from tool search.
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
-    val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
     /**
-     * Maximum number of tokens used by including web page text content in the context. The limit is
-     * approximate and does not apply to binary content such as PDFs.
+     * Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens")
-    val maxContentTokens: Long? = null,
-    /** Maximum number of times the tool can be used in the API request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_content_tokens") val maxContentTokens: Long? = null,
+    /**
+     * Maximum number of times the tool can be used in the API request.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("max_uses") val maxUses: Long? = null,
-    /** When true, guarantees schema validation on tool names and inputs */
+    /**
+     * When true, guarantees schema validation on tool names and inputs
+     */
     val strict: Boolean? = null,
     /**
-     * Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only
-     * set to false when the user explicitly requests fresh content or when fetching
-     * rapidly-changing sources.
+     * Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("use_cache") val useCache: Boolean? = null,
-) :
-    CountMessageTokensParamsToolsItem,
-    CreateMessageParamsToolsItem,
-    CreateMessageParamsWithoutStreamToolsItem
+    @com.fasterxml.jackson.annotation.JsonProperty("use_cache") val useCache: Boolean? = null
+) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem

@@ -16,293 +16,107 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsWorkspacesMembers {
 
+
     /**
-     * Retrieves a user's membership in a workspace. Supply both `workspace_id` and `user_id` to
-     * identify the membership. The response includes the user's workspace role.
+     * Retrieves a user's membership in a workspace. Supply both `workspace_id` and `user_id` to identify the membership. The response includes the user's workspace role.
      *
      * @param workspaceId ID of the Workspace.
      * @param userId ID of the User.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsWorkspacesMembers(
-        clientConfig: ClientConfig,
-        workspaceId: String,
-        userId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaWorkspaceMemberSchema {
-        return SdkClient.request<BetaWorkspaceMemberSchema>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "retrieveBetaOrganizationsWorkspacesMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun retrieveBetaOrganizationsWorkspacesMembers(clientConfig: ClientConfig, workspaceId: String, userId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaWorkspaceMemberSchema {
+        return SdkClient.request<BetaWorkspaceMemberSchema>(SdkClient.RequestSpec("GET", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsWorkspacesMembers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Updates a user's role in a workspace. Supply `workspace_role` with the new role and use the
-     * path parameters to identify the workspace membership. The role must be one of the defined
-     * workspace roles.
+     * Updates a user's role in a workspace. Supply `workspace_role` with the new role and use the path parameters to identify the workspace membership. The role must be one of the defined workspace roles.
      *
      * @param userId ID of the User.
      * @param workspaceId ID of the Workspace.
      * @param workspaceRole New workspace role for the User.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun updateBetaOrganizationsWorkspacesMembers(
-        clientConfig: ClientConfig,
-        userId: String,
-        workspaceId: String,
-        workspaceRole: BetaWorkspaceRoleSchema,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaWorkspaceMemberSchema {
-        return SdkClient.request<BetaWorkspaceMemberSchema>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("workspace_role" to (workspaceRole)),
-                    operationId = "updateBetaOrganizationsWorkspacesMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun updateBetaOrganizationsWorkspacesMembers(clientConfig: ClientConfig, userId: String, workspaceId: String, workspaceRole: BetaWorkspaceRoleSchema, anthropicVersion: String? = null, options: RequestOptions? = null): BetaWorkspaceMemberSchema {
+        return SdkClient.request<BetaWorkspaceMemberSchema>(SdkClient.RequestSpec("POST", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("workspace_role" to (workspaceRole)), operationId = "updateBetaOrganizationsWorkspacesMembers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Removes a user's membership from a workspace. Identify the membership with `workspace_id` and
-     * `user_id`, and authenticate with an Admin API key in the `x-api-key` header. The response
-     * identifies the deleted workspace membership.
+     * Removes a user's membership from a workspace. Identify the membership with `workspace_id` and `user_id`, and authenticate with an Admin API key in the `x-api-key` header. The response identifies the deleted workspace membership.
      *
      * @param userId ID of the User.
      * @param workspaceId ID of the Workspace.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun deleteBetaOrganizationsWorkspacesMembers(
-        clientConfig: ClientConfig,
-        userId: String,
-        workspaceId: String,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaDeleteWorkspaceMemberResponse {
-        return SdkClient.request<BetaDeleteWorkspaceMemberResponse>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "deleteBetaOrganizationsWorkspacesMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun deleteBetaOrganizationsWorkspacesMembers(clientConfig: ClientConfig, userId: String, workspaceId: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaDeleteWorkspaceMemberResponse {
+        return SdkClient.request<BetaDeleteWorkspaceMemberResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsWorkspacesMembers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Lists members of a specified workspace. Use `before_id` or `after_id` to navigate the
-     * results, and `limit` to control the page size. The response includes cursor IDs and a
-     * `has_more` flag.
+     * Lists members of a specified workspace. Use `before_id` or `after_id` to navigate the results, and `limit` to control the page size. The response includes cursor IDs and a `has_more` flag.
      *
      * @param workspaceId ID of the Workspace.
-     * @param beforeId ID of the object to use as a cursor for pagination. When provided, returns
-     *   the page of results immediately before this object.
-     * @param afterId ID of the object to use as a cursor for pagination. When provided, returns the
-     *   page of results immediately after this object.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param beforeId ID of the object to use as a cursor for pagination. When
+     *   provided, returns the page of results immediately before this object.
+     * @param afterId ID of the object to use as a cursor for pagination. When
+     *   provided, returns the page of results immediately after this object.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
+     *   `1` to `1000`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun listBetaOrganizationsWorkspacesMembers(
-        clientConfig: ClientConfig,
-        workspaceId: String,
-        beforeId: String? = null,
-        afterId: String? = null,
-        limit: Long? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaListResponseWorkspaceMemberSchema {
+    fun listBetaOrganizationsWorkspacesMembers(clientConfig: ClientConfig, workspaceId: String, beforeId: String? = null, afterId: String? = null, limit: Long? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaListResponseWorkspaceMemberSchema {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-        }
+}
 
-        return SdkClient.request<BetaListResponseWorkspaceMemberSchema>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "before_id" to SdkClient.queryValue(beforeId, "form", true),
-                            "after_id" to SdkClient.queryValue(afterId, "form", true),
-                            "limit" to SdkClient.queryValue(limit, "form", true),
-                        ),
-                    operationId = "listBetaOrganizationsWorkspacesMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaListResponseWorkspaceMemberSchema>(SdkClient.RequestSpec("GET", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members?beta=true", config = clientConfig, query = mapOf("before_id" to SdkClient.queryValue(beforeId, "form", true), "after_id" to SdkClient.queryValue(afterId, "form", true), "limit" to SdkClient.queryValue(limit, "form", true)), operationId = "listBetaOrganizationsWorkspacesMembers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Creates a membership for a user in a specified workspace. Supply `user_id` and
-     * `workspace_role`; the role must be one of the supported non-billing workspace roles. The
-     * response contains the new workspace member and its assigned role.
+     * Creates a membership for a user in a specified workspace. Supply `user_id` and `workspace_role`; the role must be one of the supported non-billing workspace roles. The response contains the new workspace member and its assigned role.
      *
      * @param workspaceId ID of the Workspace.
      * @param userId ID of the User.
-     * @param workspaceRole Role of the new Workspace Member. Cannot be `workspace_billing`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param workspaceRole Role of the new Workspace Member. Cannot be
+     *   `workspace_billing`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun createBetaOrganizationsWorkspacesMembers(
-        clientConfig: ClientConfig,
-        workspaceId: String,
-        userId: String,
-        workspaceRole: BetaNoBillingWorkspaceRoleSchema,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaWorkspaceMemberSchema {
-        return SdkClient.request<BetaWorkspaceMemberSchema>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members?beta=true",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "user_id" to (userId),
-                            "workspace_role" to (workspaceRole),
-                        ),
-                    operationId = "createBetaOrganizationsWorkspacesMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun createBetaOrganizationsWorkspacesMembers(clientConfig: ClientConfig, workspaceId: String, userId: String, workspaceRole: BetaNoBillingWorkspaceRoleSchema, anthropicVersion: String? = null, options: RequestOptions? = null): BetaWorkspaceMemberSchema {
+        return SdkClient.request<BetaWorkspaceMemberSchema>(SdkClient.RequestSpec("POST", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/members?beta=true", config = clientConfig, body = SdkClient.bodyMap("user_id" to (userId), "workspace_role" to (workspaceRole)), operationId = "createBetaOrganizationsWorkspacesMembers", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
 }

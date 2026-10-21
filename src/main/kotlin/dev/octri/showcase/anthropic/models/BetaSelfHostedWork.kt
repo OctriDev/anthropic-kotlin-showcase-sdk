@@ -4,45 +4,59 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Work resource representing a unit of work in a self-hosted environment. Work items are queued
- * when sessions are created or when long-dormant sessions receive new messages. The environment
- * worker polls for work to execute in a self-hosted sandbox.
+ * Work resource representing a unit of work in a self-hosted environment. Work items are queued when sessions are created or when long-dormant sessions receive new messages. The environment worker polls for work to execute in a self-hosted sandbox.
  */
 data class BetaSelfHostedWork(
     /**
      * RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("acknowledged_at", required = true)
-    val acknowledgedAt: String?,
-    /** RFC 3339 timestamp when work was created */
+    @com.fasterxml.jackson.annotation.JsonProperty("acknowledged_at", required = true) val acknowledgedAt: String?,
+    /**
+     * RFC 3339 timestamp when work was created
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /** The actual work to be performed */
+    /**
+     * The actual work to be performed
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: BetaSessionWorkData,
-    /** Environment identifier this work belongs to (e.g., `env_...`) */
+    /**
+     * Environment identifier this work belongs to (e.g., `env_...`)
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("environment_id") val environmentId: String,
-    /** Work identifier (e.g., 'work_...') */
+    /**
+     * Work identifier (e.g., 'work_...')
+     */
     val id: String,
-    /** RFC 3339 timestamp of the most recent heartbeat */
-    @com.fasterxml.jackson.annotation.JsonProperty("latest_heartbeat_at", required = true)
-    val latestHeartbeatAt: String?,
-    /** User-provided metadata key-value pairs associated with this work item */
+    /**
+     * RFC 3339 timestamp of the most recent heartbeat
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("latest_heartbeat_at", required = true) val latestHeartbeatAt: String?,
+    /**
+     * User-provided metadata key-value pairs associated with this work item
+     */
     val metadata: Map<String, String>,
     /**
-     * Credential payload used by the environment worker to execute this work item. May be populated
-     * when polling for work; null on all other retrieval paths.
+     * Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("secret", required = true) val secret: String?,
-    /** RFC 3339 timestamp when work execution started */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at", required = true)
-    val startedAt: String?,
-    /** Current state of the work item */
+    /**
+     * RFC 3339 timestamp when work execution started
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at", required = true) val startedAt: String?,
+    /**
+     * Current state of the work item
+     */
     val state: BetaSelfHostedWorkStateEnum,
-    /** RFC 3339 timestamp when stop was requested */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_requested_at", required = true)
-    val stopRequestedAt: String?,
-    /** RFC 3339 timestamp when work execution stopped */
-    @com.fasterxml.jackson.annotation.JsonProperty("stopped_at", required = true)
-    val stoppedAt: String?,
-    /** The type of object (always 'work') */
-    val type: BetaSelfHostedWorkTypeEnum,
+    /**
+     * RFC 3339 timestamp when stop was requested
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_requested_at", required = true) val stopRequestedAt: String?,
+    /**
+     * RFC 3339 timestamp when work execution stopped
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("stopped_at", required = true) val stoppedAt: String?,
+    /**
+     * The type of object (always 'work')
+     */
+    val type: BetaSelfHostedWorkTypeEnum
 )

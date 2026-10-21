@@ -3,46 +3,20 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsAnalyticsUserUsageReportNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen
-     * token metric. Use this to see which users consume the most tokens. Only usage attributable to
-     * a seat user is included; for organization-wide totals including direct API-key and automation
-     * traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to
-     * organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics`
-     * scope.
+     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen token metric. Use this to see which users consume the most tokens. Only usage attributable to a seat user is included; for organization-wide totals including direct API-key and automation traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun retrieve(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserUsageReport.RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest,
-        options: RequestOptions? = null,
-    ): BetaAnalyticsUsageUsersResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsUserUsageReport
-            .retrieveBetaOrganizationsAnalyticsUserUsageReport(clientConfig, request, options)
+    fun retrieve(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserUsageReport.RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest, options: RequestOptions? = null): BetaAnalyticsUsageUsersResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserUsageReport.retrieveBetaOrganizationsAnalyticsUserUsageReport(clientConfig, request, options)
     }
 
     /**
-     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen
-     * token metric. Use this to see which users consume the most tokens. Only usage attributable to
-     * a seat user is included; for organization-wide totals including direct API-key and automation
-     * traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to
-     * organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics`
-     * scope.
+     * Get per-user token usage across a date range. Returns one row per user, ranked by the chosen token metric. Use this to see which users consume the most tokens. Only usage attributable to a seat user is included; for organization-wide totals including direct API-key and automation traffic, use the bucketed `/v1/organizations/analytics/usage_report` endpoint. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun retrievePaginated(
-        request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserUsageReport.RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaAnalyticsUsageUsersItem) -> Boolean,
-    ) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
-            .BetaOrganizationsAnalyticsUserUsageReport
-            .retrieveBetaOrganizationsAnalyticsUserUsageReportPaginated(
-                clientConfig,
-                request,
-                options,
-                yieldFn,
-            )
+    fun retrievePaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserUsageReport.RetrieveBetaOrganizationsAnalyticsUserUsageReportRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsUsageUsersItem) -> Boolean) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsUserUsageReport.retrieveBetaOrganizationsAnalyticsUserUsageReportPaginated(clientConfig, request, options, yieldFn)
     }
+
 }

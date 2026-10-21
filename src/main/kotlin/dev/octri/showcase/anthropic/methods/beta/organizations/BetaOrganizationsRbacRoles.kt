@@ -15,74 +15,37 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsRbacRoles {
 
+
     /**
-     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise
-     * organizations only.
+     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise organizations only.
      *
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
-     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
+     *   `1` to `1000`.
+     * @param page Optionally set to the `next_page` token from the previous
+     *   response.
      */
-    fun listBetaOrganizationsRbacRoles(
-        clientConfig: ClientConfig,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): BetaRbacRoleList {
+    fun listBetaOrganizationsRbacRoles(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaRbacRoleList {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-        }
+}
 
-        return SdkClient.request<BetaRbacRoleList>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/rbac_roles?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "limit" to SdkClient.queryValue(limit, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "listBetaOrganizationsRbacRoles",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaRbacRoleList>(SdkClient.RequestSpec("GET", "/v1/organizations/rbac_roles?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "listBetaOrganizationsRbacRoles", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
     /**
-     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise
-     * organizations only.
+     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise organizations only.
      *
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
-     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
+     *   `1` to `1000`.
+     * @param page Optionally set to the `next_page` token from the previous
+     *   response.
      */
-    fun listBetaOrganizationsRbacRolesPaginated(
-        clientConfig: ClientConfig,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaRbacRole) -> Boolean,
-    ) {
+    fun listBetaOrganizationsRbacRolesPaginated(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaRbacRole) -> Boolean) {
         var cursor = page
         while (true) {
             val page = listBetaOrganizationsRbacRoles(clientConfig, limit, cursor, options)
@@ -103,13 +66,7 @@ object BetaOrganizationsRbacRoles {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsRbacRolesPages(
-        clientConfig: ClientConfig,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaOrganizationsRbacRolesPage) -> Boolean,
-    ) {
+    fun listBetaOrganizationsRbacRolesPages(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsRbacRolesPage) -> Boolean) {
         var cursor = page
         while (true) {
             val page = listBetaOrganizationsRbacRoles(clientConfig, limit, cursor, options)
@@ -123,125 +80,58 @@ object BetaOrganizationsRbacRoles {
         }
     }
 
-    /**
-     * Retrieve an RBAC Role by ID. The RBAC Roles API is available to Claude Enterprise
-     * organizations only.
-     *
-     * @param roleId ID of the RBAC Role.
-     */
-    fun retrieveBetaOrganizationsRbacRoles(
-        clientConfig: ClientConfig,
-        roleId: String,
-        options: RequestOptions? = null,
-    ): BetaRbacRole {
-        return SdkClient.request<BetaRbacRole>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/rbac_roles/${SdkClient.encodePathSegment(roleId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "retrieveBetaOrganizationsRbacRoles",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
-    }
+
 
     /**
-     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude
-     * Enterprise organizations only.
+     * Retrieve an RBAC Role by ID. The RBAC Roles API is available to Claude Enterprise organizations only.
      *
      * @param roleId ID of the RBAC Role.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
-     * @param page Optionally set to the `next_page` token from the previous response.
      */
-    fun permissionsBetaOrganizationsRbacRoles(
-        clientConfig: ClientConfig,
-        roleId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): BetaRbacRolePermissionList {
+    fun retrieveBetaOrganizationsRbacRoles(clientConfig: ClientConfig, roleId: String, options: RequestOptions? = null): BetaRbacRole {
+        return SdkClient.request<BetaRbacRole>(SdkClient.RequestSpec("GET", "/v1/organizations/rbac_roles/${SdkClient.encodePathSegment(roleId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsRbacRoles", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    }
+
+
+
+
+
+
+
+    /**
+     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude Enterprise organizations only.
+     *
+     * @param roleId ID of the RBAC Role.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
+     *   `1` to `1000`.
+     * @param page Optionally set to the `next_page` token from the previous
+     *   response.
+     */
+    fun permissionsBetaOrganizationsRbacRoles(clientConfig: ClientConfig, roleId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaRbacRolePermissionList {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-        }
+}
 
-        return SdkClient.request<BetaRbacRolePermissionList>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/rbac_roles/${SdkClient.encodePathSegment(roleId)}/permissions?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "limit" to SdkClient.queryValue(limit, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "permissionsBetaOrganizationsRbacRoles",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaRbacRolePermissionList>(SdkClient.RequestSpec("GET", "/v1/organizations/rbac_roles/${SdkClient.encodePathSegment(roleId)}/permissions?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "permissionsBetaOrganizationsRbacRoles", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
     /**
-     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude
-     * Enterprise organizations only.
+     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude Enterprise organizations only.
      *
      * @param roleId ID of the RBAC Role.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
-     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
+     *   `1` to `1000`.
+     * @param page Optionally set to the `next_page` token from the previous
+     *   response.
      */
-    fun permissionsBetaOrganizationsRbacRolesPaginated(
-        clientConfig: ClientConfig,
-        roleId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-        yieldFn: (BetaRbacRolePermission) -> Boolean,
-    ) {
+    fun permissionsBetaOrganizationsRbacRolesPaginated(clientConfig: ClientConfig, roleId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaRbacRolePermission) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                permissionsBetaOrganizationsRbacRoles(clientConfig, roleId, limit, cursor, options)
+            val page = permissionsBetaOrganizationsRbacRoles(clientConfig, roleId, limit, cursor, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -259,18 +149,10 @@ object BetaOrganizationsRbacRoles {
         val hasMore: Boolean,
     )
 
-    fun permissionsBetaOrganizationsRbacRolesPages(
-        clientConfig: ClientConfig,
-        roleId: String,
-        limit: Long? = null,
-        page: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-        yieldPage: (PermissionsBetaOrganizationsRbacRolesPage) -> Boolean,
-    ) {
+    fun permissionsBetaOrganizationsRbacRolesPages(clientConfig: ClientConfig, roleId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldPage: (PermissionsBetaOrganizationsRbacRolesPage) -> Boolean) {
         var cursor = page
         while (true) {
-            val page =
-                permissionsBetaOrganizationsRbacRoles(clientConfig, roleId, limit, cursor, options)
+            val page = permissionsBetaOrganizationsRbacRoles(clientConfig, roleId, limit, cursor, options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -280,4 +162,7 @@ object BetaOrganizationsRbacRoles {
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
+
+
+
 }

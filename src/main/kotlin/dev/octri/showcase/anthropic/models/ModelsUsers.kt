@@ -3,20 +3,26 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Typed representation of the `BetaDeleteUserResponse` API schema. */
+/**
+ * Typed representation of the `BetaDeleteUserResponse` API schema.
+ */
 data class BetaDeleteUserResponse(
-    /** ID of the User. */
+    /**
+     * ID of the User.
+     */
     val id: String,
-    /** Deleted object type. For Users, this is always `"user_deleted"`. */
-    val type: BetaDeleteUserResponseTypeEnum,
+    /**
+     * Deleted object type. For Users, this is always `"user_deleted"`.
+     */
+    val type: BetaDeleteUserResponseTypeEnum
 )
 
-/** Typed representation of the `BetaUpdateUserParams` API schema. */
+/**
+ * Typed representation of the `BetaUpdateUserParams` API schema.
+ */
 data class BetaUpdateUserParams(
     /**
-     * New role for the User. The accepted values depend on the organization type. Console and API
-     * organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot
-     * be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
+     * New role for the User. The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
      */
     val role: BetaUpdateUserParamsRoleEnum
 )

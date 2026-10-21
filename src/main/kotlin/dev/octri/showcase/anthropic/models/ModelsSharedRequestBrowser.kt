@@ -4,139 +4,106 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * A file download that finished during this call, reported with the same `download_id` as its
- * `download_started` — or without a prior `download_started`, when the download finished during the
- * call that started it (at most one state change per `download_id` per result).
+ * A file download that finished during this call, reported with the same `download_id` as its `download_started` — or without a prior `download_started`, when the download finished during the call that started it (at most one state change per `download_id` per result).
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class BrowserStateChangeDownloadCompleted(
     /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
+     * The caller-assigned identifier for this download, stable across the state changes reporting it.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: BrowserStateChangeDownloadCompletedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
+    /**
+     * The final post-redirect URL the download was served from.
+     */
     val url: String,
     /**
-     * Where the executor saved the file, on the executor's filesystem. Only included when another
-     * tool in the same environment can read the file at that path.
+     * Where the executor saved the file, on the executor's filesystem. Only included when another tool in the same environment can read the file at that path.
      */
     val path: String? = null,
-    /** The completed download's size. */
-    @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long? = null,
-) : RequestBrowserStateBlockStateChangesItem
-
-/** A file download that failed — or was cancelled — during this call. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserStateChangeDownloadFailed(
     /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
+     * The completed download's size.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserStateChangeDownloadFailedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
-    /** The failure or cancellation detail, when known. */
-    val error: String? = null,
-) : RequestBrowserStateBlockStateChangesItem
-
-/** A file download that started during this call. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserStateChangeDownloadStarted(
-    /**
-     * The caller-assigned identifier for this download, stable across the state changes reporting
-     * it.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserStateChangeDownloadStartedTypeEnum,
-    /** The final post-redirect URL the download was served from. */
-    val url: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("size_bytes") val sizeBytes: Long? = null
 ) : RequestBrowserStateBlockStateChangesItem
 
 /**
- * A tab this call's execution opened that remains open at its end — the creation delta of the
- * `tabs` inventory, not an event log. Carries only the `tab_id`; the tab's `title` and `url` live
- * on its `tabs` entry, which must include the same `tab_id`. A tab opened during a failed call gets
- * no deferred `tab_opened`; it simply appears in the next result's `tabs` inventory.
+ * A file download that failed — or was cancelled — during this call.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class BrowserStateChangeTabOpened(
-    /** The `tab_id` of the opened tab, present in `tabs`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tab_id") val tabId: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: BrowserStateChangeTabOpenedTypeEnum,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BrowserStateChangeDownloadFailed(
+    /**
+     * The caller-assigned identifier for this download, stable across the state changes reporting it.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BrowserStateChangeDownloadFailedTypeEnum,
+    /**
+     * The final post-redirect URL the download was served from.
+     */
+    val url: String,
+    /**
+     * The failure or cancellation detail, when known.
+     */
+    val error: String? = null
 ) : RequestBrowserStateBlockStateChangesItem
 
-/** Required API value serialized in the `state_changes[]` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownRequestBrowserStateBlockStateChangesItem::class,
-)
+/**
+ * A file download that started during this call.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BrowserStateChangeDownloadStarted(
+    /**
+     * The caller-assigned identifier for this download, stable across the state changes reporting it.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_id") val downloadId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BrowserStateChangeDownloadStartedTypeEnum,
+    /**
+     * The final post-redirect URL the download was served from.
+     */
+    val url: String
+) : RequestBrowserStateBlockStateChangesItem
+
+/**
+ * A tab this call's execution opened that remains open at its end — the creation delta of the `tabs` inventory, not an event log. Carries only the `tab_id`; the tab's `title` and `url` live on its `tabs` entry, which must include the same `tab_id`. A tab opened during a failed call gets no deferred `tab_opened`; it simply appears in the next result's `tabs` inventory.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class BrowserStateChangeTabOpened(
+    /**
+     * The `tab_id` of the opened tab, present in `tabs`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("tab_id") val tabId: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: BrowserStateChangeTabOpenedTypeEnum
+) : RequestBrowserStateBlockStateChangesItem
+
+/**
+ * Required API value serialized in the `state_changes[]` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownRequestBrowserStateBlockStateChangesItem::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BrowserStateChangeTabOpened::class,
-        name = "tab_opened",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BrowserStateChangeDownloadStarted::class,
-        name = "download_started",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BrowserStateChangeDownloadCompleted::class,
-        name = "download_completed",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = BrowserStateChangeDownloadFailed::class,
-        name = "download_failed",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BrowserStateChangeTabOpened::class, name = "tab_opened"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BrowserStateChangeDownloadStarted::class, name = "download_started"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BrowserStateChangeDownloadCompleted::class, name = "download_completed"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BrowserStateChangeDownloadFailed::class, name = "download_failed")
 )
 sealed interface RequestBrowserStateBlockStateChangesItem
 
-/**
- * A [RequestBrowserStateBlockStateChangesItem] whose `type` names no branch this SDK knows, kept as
- * received.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownRequestBrowserStateBlockStateChangesItem
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+/** A [RequestBrowserStateBlockStateChangesItem] whose `type` names no branch this SDK knows, kept as received. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownRequestBrowserStateBlockStateChangesItem @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : RequestBrowserStateBlockStateChangesItem {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }

@@ -16,6 +16,7 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsFederationRules {
 
+
     /** Parameters for [createBetaOrganizationsFederationRules]. */
     data class CreateBetaOrganizationsFederationRulesRequest(
         val issuerId: String,
@@ -29,121 +30,67 @@ object BetaOrganizationsFederationRules {
         val attributes: SdkClient.SdkOptional<Map<String, String>?>? = null,
         val description: SdkClient.SdkOptional<String?>? = null,
         val tokenLifetimeSeconds: Long? = null,
-        val workspaceId: SdkClient.SdkOptional<String?>? = null,
+        val workspaceId: SdkClient.SdkOptional<String?>? = null
     )
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Create a federation rule owned by your organization. The
-     * referenced issuer and the target service account must already exist in the same organization;
-     * invalid references are rejected with a 400 error. The workspace reference is validated.
-     * Membership is not checked at…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Create a federation rule owned by your organization. The referenced issuer and the target service account must already exist in the same organization; invalid references are rejected with a 400 error. The workspace reference is validated. Membership is not checked at…
      *
      * @param issuerId Tagged ID of the federation issuer.
-     * @param match Conditions the verified JWT must satisfy for this rule to apply. At least one of
-     *   `subject_prefix` (other than a wildcard-only value like `*`), `claims`, or `condition` is
-     *   required; `audience` alone is not sufficient.
-     * @param name Slug identifier (lowercase, digits, hyphens). Unique within the organization; a
-     *   duplicate name returns 409.
+     * @param match Conditions the verified JWT must satisfy for this rule to apply.
+     *   At least one of `subject_prefix` (other than a wildcard-only value like `*`),
+     *   `claims`, or `condition` is required; `audience` alone is not sufficient.
+     * @param name Slug identifier (lowercase, digits, hyphens). Unique within the
+     *   organization; a duplicate name returns 409.
      * @param oauthScope Space-separated OAuth scopes. OAuth callers may only set
-     *   `workspace:developer` or `workspace:inference`; other scopes (such as `org:admin`) require
-     *   a Console session.
-     * @param target Identity that tokens minted via this rule act as. Currently always a
-     *   `service_account` target.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
-     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
-     *   multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param appliesToAllWorkspaces When true, enable this rule for every workspace in the org
-     *   (including workspaces created later).
-     * @param attributes CEL expressions `{name: expr}` extracting named values from claims. Not yet
-     *   supported; any non-empty value is rejected with 400.
+     *   `workspace:developer` or `workspace:inference`; other scopes (such as
+     *   `org:admin`) require a Console session.
+     * @param target Identity that tokens minted via this rule act as. Currently
+     *   always a `service_account` target.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want
+     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
+     *   or specify the header multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param appliesToAllWorkspaces When true, enable this rule for every workspace
+     *   in the org (including workspaces created later).
+     * @param attributes CEL expressions `{name: expr}` extracting named values from
+     *   claims. Not yet supported; any non-empty value is rejected with 400.
      * @param description Optional free-text description.
-     * @param tokenLifetimeSeconds Lifetime in seconds for access tokens minted via this rule
-     *   (60-86400). Defaults to 3600 (1h). Minted tokens are capped at `max(60, min(this value, 2 ×
-     *   remaining assertion validity))` seconds.
-     * @param workspaceId Tagged ID of the workspace to enable this rule for. Required unless
-     *   `applies_to_all_workspaces` is true. Additional workspaces can be added via the
-     *   `/federation_rules/{federation_rule_id}/workspaces` sub-resource.
+     * @param tokenLifetimeSeconds Lifetime in seconds for access tokens minted via
+     *   this rule (60-86400). Defaults to 3600 (1h). Minted tokens are capped at
+     *   `max(60, min(this value, 2 × remaining assertion validity))` seconds.
+     * @param workspaceId Tagged ID of the workspace to enable this rule for.
+     *   Required unless `applies_to_all_workspaces` is true. Additional workspaces can
+     *   be added via the `/federation_rules/{federation_rule_id}/workspaces`
+     *   sub-resource.
      */
-    fun createBetaOrganizationsFederationRules(
-        clientConfig: ClientConfig,
-        request: CreateBetaOrganizationsFederationRulesRequest,
-        options: RequestOptions? = null,
-    ): BetaFederationRule {
+    fun createBetaOrganizationsFederationRules(clientConfig: ClientConfig, request: CreateBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null): BetaFederationRule {
         validateCreateBetaOrganizationsFederationRulesRequest(request)
 
-        return SdkClient.request<BetaFederationRule>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/federation_rules?beta=true",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "issuer_id" to (request.issuerId),
-                            "match" to (request.match),
-                            "name" to (request.name),
-                            "oauth_scope" to (request.oauthScope),
-                            "target" to (request.target),
-                            "applies_to_all_workspaces" to
-                                (SdkClient.omitIfNull(request.appliesToAllWorkspaces)),
-                            "attributes" to (request.attributes ?: SdkClient.SdkOptional.Omitted),
-                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
-                            "token_lifetime_seconds" to
-                                (SdkClient.omitIfNull(request.tokenLifetimeSeconds)),
-                            "workspace_id" to
-                                (request.workspaceId ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "createBetaOrganizationsFederationRules",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaFederationRule>(SdkClient.RequestSpec("POST", "/v1/organizations/federation_rules?beta=true", config = clientConfig, body = SdkClient.bodyMap("issuer_id" to (request.issuerId), "match" to (request.match), "name" to (request.name), "oauth_scope" to (request.oauthScope), "target" to (request.target), "applies_to_all_workspaces" to
+    (SdkClient.omitIfNull(request.appliesToAllWorkspaces)), "attributes" to
+    (request.attributes ?: SdkClient.SdkOptional.Omitted), "description" to
+    (request.description ?: SdkClient.SdkOptional.Omitted), "token_lifetime_seconds" to
+    (SdkClient.omitIfNull(request.tokenLifetimeSeconds)), "workspace_id" to
+    (request.workspaceId ?: SdkClient.SdkOptional.Omitted)), operationId = "createBetaOrganizationsFederationRules", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
-    private fun validateCreateBetaOrganizationsFederationRulesRequest(
-        request: CreateBetaOrganizationsFederationRulesRequest
-    ) {
+
+    private fun validateCreateBetaOrganizationsFederationRulesRequest(request: CreateBetaOrganizationsFederationRulesRequest) {
         Validation.validateLength("name", request.name, Validation.LengthOpts(min = 1, max = 255))
 
         Validation.validateLength("oauth_scope", request.oauthScope, Validation.LengthOpts(min = 1))
 
         if (request.tokenLifetimeSeconds != null) {
-            Validation.validateRange(
-                "token_lifetime_seconds",
-                request.tokenLifetimeSeconds,
-                Validation.RangeOpts(min = 60.0, max = 86400.0),
-            )
-        }
+            Validation.validateRange("token_lifetime_seconds", request.tokenLifetimeSeconds, Validation.RangeOpts(min = 60.0, max = 86400.0))
+}
     }
+
+
+
+
+
 
     /** Parameters for [listBetaOrganizationsFederationRules]. */
     data class ListBetaOrganizationsFederationRulesRequest(
@@ -152,120 +99,58 @@ object BetaOrganizationsFederationRules {
         val issuerId: SdkClient.SdkOptional<String?>? = null,
         val includeArchived: Boolean? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicVersion: String? = null,
+        val anthropicVersion: String? = null
     )
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. List federation rules in your organization. Optionally filter
-     * by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List federation rules in your organization. Optionally filter by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
      *
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
      * @param issuerId Filter to rules referencing this federation issuer.
      * @param includeArchived Include archived resources. Defaults to false.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
-     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
-     *   multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want
+     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
+     *   or specify the header multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun listBetaOrganizationsFederationRules(
-        clientConfig: ClientConfig,
-        request: ListBetaOrganizationsFederationRulesRequest,
-        options: RequestOptions? = null,
-    ): BetaFederationRuleListResponse {
+    fun listBetaOrganizationsFederationRules(clientConfig: ClientConfig, request: ListBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null): BetaFederationRuleListResponse {
         validateListBetaOrganizationsFederationRulesRequest(request)
 
-        return SdkClient.request<BetaFederationRuleListResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/federation_rules?beta=true",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "limit" to SdkClient.queryValue(request.limit, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                            "issuer_id" to SdkClient.queryValue(request.issuerId, "form", true),
-                            "include_archived" to
-                                SdkClient.queryValue(request.includeArchived, "form", true),
-                        ),
-                    operationId = "listBetaOrganizationsFederationRules",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<BetaFederationRuleListResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/federation_rules?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "issuer_id" to
+    SdkClient.queryValue(request.issuerId, "form", true), "include_archived" to
+    SdkClient.queryValue(request.includeArchived, "form", true)), operationId = "listBetaOrganizationsFederationRules", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
-    private fun validateListBetaOrganizationsFederationRulesRequest(
-        request: ListBetaOrganizationsFederationRulesRequest
-    ) {
+
+    private fun validateListBetaOrganizationsFederationRulesRequest(request: ListBetaOrganizationsFederationRulesRequest) {
         if (request.limit != null) {
-            Validation.validateRange(
-                "limit",
-                request.limit,
-                Validation.RangeOpts(min = 1.0, max = 100.0),
-            )
-        }
+            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 100.0))
+}
     }
+
+
+
+
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. List federation rules in your organization. Optionally filter
-     * by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List federation rules in your organization. Optionally filter by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
      *
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
      * @param issuerId Filter to rules referencing this federation issuer.
      * @param includeArchived Include archived resources. Defaults to false.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
-     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
-     *   multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want
+     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
+     *   or specify the header multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun listBetaOrganizationsFederationRulesPaginated(
-        clientConfig: ClientConfig,
-        request: ListBetaOrganizationsFederationRulesRequest,
-        options: RequestOptions? = null,
-        yieldFn: (BetaFederationRule) -> Boolean,
-    ) {
+    fun listBetaOrganizationsFederationRulesPaginated(clientConfig: ClientConfig, request: ListBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null, yieldFn: (BetaFederationRule) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page =
-                listBetaOrganizationsFederationRules(
-                    clientConfig,
-                    request.copy(page = cursor),
-                    options,
-                )
+            val page = listBetaOrganizationsFederationRules(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -282,20 +167,10 @@ object BetaOrganizationsFederationRules {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsFederationRulesPages(
-        clientConfig: ClientConfig,
-        request: ListBetaOrganizationsFederationRulesRequest,
-        options: RequestOptions? = null,
-        yieldPage: (ListBetaOrganizationsFederationRulesPage) -> Boolean,
-    ) {
+    fun listBetaOrganizationsFederationRulesPages(clientConfig: ClientConfig, request: ListBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsFederationRulesPage) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page =
-                listBetaOrganizationsFederationRules(
-                    clientConfig,
-                    request.copy(page = cursor),
-                    options,
-                )
+            val page = listBetaOrganizationsFederationRules(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -306,61 +181,27 @@ object BetaOrganizationsFederationRules {
         }
     }
 
+
+
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Retrieve a federation rule by its ID (`fdrl_...`).
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Retrieve a federation rule by its ID (`fdrl_...`).
      *
      * @param federationRuleId ID of the federation rule.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
-     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
-     *   multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want
+     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
+     *   or specify the header multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsFederationRules(
-        clientConfig: ClientConfig,
-        federationRuleId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaFederationRule {
-        return SdkClient.request<BetaFederationRule>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/v1/organizations/federation_rules/${SdkClient.encodePathSegment(federationRuleId)}?beta=true",
-                    config = clientConfig,
-                    operationId = "retrieveBetaOrganizationsFederationRules",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun retrieveBetaOrganizationsFederationRules(clientConfig: ClientConfig, federationRuleId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaFederationRule {
+        return SdkClient.request<BetaFederationRule>(SdkClient.RequestSpec("GET", "/v1/organizations/federation_rules/${SdkClient.encodePathSegment(federationRuleId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsFederationRules", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [updateBetaOrganizationsFederationRules]. */
     data class UpdateBetaOrganizationsFederationRulesRequest(
@@ -375,159 +216,80 @@ object BetaOrganizationsFederationRules {
         val oauthScope: SdkClient.SdkOptional<String?>? = null,
         val target: SdkClient.SdkOptional<BetaServiceAccountTarget?>? = null,
         val tokenLifetimeSeconds: SdkClient.SdkOptional<Long?>? = null,
-        val workspaceId: SdkClient.SdkOptional<String?>? = null,
+        val workspaceId: SdkClient.SdkOptional<String?>? = null
     )
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Partially update a federation rule. `issuer_id` is immutable.
-     * `match` and `target` are replaced as whole objects when set. Referenced service accounts and
-     * workspaces must exist in your organization; invalid references are rejected with a 400 error.
-     * Archived rules…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Partially update a federation rule. `issuer_id` is immutable. `match` and `target` are replaced as whole objects when set. Referenced service accounts and workspaces must exist in your organization; invalid references are rejected with a 400 error. Archived rules…
      *
      * @param federationRuleId ID of the federation rule to update.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
-     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
-     *   multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
-     * @param appliesToAllWorkspaces When true, enables this rule for every workspace in the org
-     *   (including workspaces created later). Setting `false` is rejected with 400 if no workspace
-     *   would remain enabled; a rule with only a legacy `workspace_id` binding continues to mint.
-     * @param attributes Replaces the CEL expressions `{name: expr}` extracting named values from
-     *   claims. Send null to clear them. Not yet supported; any non-empty value is rejected
-     *   with 400.
-     * @param description Replaces the description. Omit to leave unchanged; send `null` to clear
-     *   (the field is stored as an empty string).
-     * @param match Replaces the entire match object. All populated matcher fields must pass.
-     * @param name Replaces the slug identifier (lowercase, digits, hyphens). Unique within the
-     *   organization; a duplicate name returns 409.
-     * @param oauthScope Replaces the space-separated OAuth scopes granted on minted tokens. OAuth
-     *   callers may only set `workspace:developer` or `workspace:inference`; other scopes (such as
-     *   `org:admin`) require a Console session.
-     * @param target Replaces the entire target object. Currently always a `service_account` target.
-     * @param tokenLifetimeSeconds Replaces the lifetime in seconds for access tokens minted via
-     *   this rule (60-86400). Minted tokens are capped at `max(60, min(this value, 2 × remaining
-     *   assertion validity))` seconds.
-     * @param workspaceId Replaces the existing single workspace enablement (the previous one is
-     *   removed). Rejected with 400 if the rule is enabled for more than one workspace; use the
+     * @param anthropicBeta Optional header to specify the beta version(s) you want
+     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
+     *   or specify the header multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
+     * @param appliesToAllWorkspaces When true, enables this rule for every workspace
+     *   in the org (including workspaces created later). Setting `false` is rejected
+     *   with 400 if no workspace would remain enabled; a rule with only a legacy
+     *   `workspace_id` binding continues to mint.
+     * @param attributes Replaces the CEL expressions `{name: expr}` extracting named
+     *   values from claims. Send null to clear them. Not yet supported; any non-empty
+     *   value is rejected with 400.
+     * @param description Replaces the description. Omit to leave unchanged; send
+     *   `null` to clear (the field is stored as an empty string).
+     * @param match Replaces the entire match object. All populated matcher fields
+     *   must pass.
+     * @param name Replaces the slug identifier (lowercase, digits, hyphens). Unique
+     *   within the organization; a duplicate name returns 409.
+     * @param oauthScope Replaces the space-separated OAuth scopes granted on minted
+     *   tokens. OAuth callers may only set `workspace:developer` or
+     *   `workspace:inference`; other scopes (such as `org:admin`) require a Console
+     *   session.
+     * @param target Replaces the entire target object. Currently always a
+     *   `service_account` target.
+     * @param tokenLifetimeSeconds Replaces the lifetime in seconds for access tokens
+     *   minted via this rule (60-86400). Minted tokens are capped at `max(60, min(this
+     *   value, 2 × remaining assertion validity))` seconds.
+     * @param workspaceId Replaces the existing single workspace enablement (the
+     *   previous one is removed). Rejected with 400 if the rule is enabled for more
+     *   than one workspace; use the
      *   `/federation_rules/{federation_rule_id}/workspaces` sub-resource instead.
      */
-    fun updateBetaOrganizationsFederationRules(
-        clientConfig: ClientConfig,
-        request: UpdateBetaOrganizationsFederationRulesRequest,
-        options: RequestOptions? = null,
-    ): BetaFederationRule {
-        return SdkClient.request<BetaFederationRule>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/federation_rules/${SdkClient.encodePathSegment(request.federationRuleId)}?beta=true",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "applies_to_all_workspaces" to
-                                (request.appliesToAllWorkspaces ?: SdkClient.SdkOptional.Omitted),
-                            "attributes" to (request.attributes ?: SdkClient.SdkOptional.Omitted),
-                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
-                            "match" to (request.match ?: SdkClient.SdkOptional.Omitted),
-                            "name" to (request.name ?: SdkClient.SdkOptional.Omitted),
-                            "oauth_scope" to (request.oauthScope ?: SdkClient.SdkOptional.Omitted),
-                            "target" to (request.target ?: SdkClient.SdkOptional.Omitted),
-                            "token_lifetime_seconds" to
-                                (request.tokenLifetimeSeconds ?: SdkClient.SdkOptional.Omitted),
-                            "workspace_id" to
-                                (request.workspaceId ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "updateBetaOrganizationsFederationRules",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
-                            "anthropic-version" to
-                                SdkClient.headerValue(request.anthropicVersion, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun updateBetaOrganizationsFederationRules(clientConfig: ClientConfig, request: UpdateBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null): BetaFederationRule {
+        return SdkClient.request<BetaFederationRule>(SdkClient.RequestSpec("POST", "/v1/organizations/federation_rules/${SdkClient.encodePathSegment(request.federationRuleId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("applies_to_all_workspaces" to
+    (request.appliesToAllWorkspaces ?: SdkClient.SdkOptional.Omitted), "attributes" to
+    (request.attributes ?: SdkClient.SdkOptional.Omitted), "description" to
+    (request.description ?: SdkClient.SdkOptional.Omitted), "match" to (request.match ?: SdkClient.SdkOptional.Omitted), "name" to (request.name ?: SdkClient.SdkOptional.Omitted), "oauth_scope" to
+    (request.oauthScope ?: SdkClient.SdkOptional.Omitted), "target" to
+    (request.target ?: SdkClient.SdkOptional.Omitted), "token_lifetime_seconds" to
+    (request.tokenLifetimeSeconds ?: SdkClient.SdkOptional.Omitted), "workspace_id" to
+    (request.workspaceId ?: SdkClient.SdkOptional.Omitted)), operationId = "updateBetaOrganizationsFederationRules", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
-     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
-     * Manage WIF with the Admin API. Archive a federation rule. Token exchange through this rule
-     * stops immediately. Idempotent; re-archiving returns the rule with its original `archived_at`.
-     * Archiving clears the rule's workspace targeting (`workspace_id` and `workspace_ids` are
-     * emptied). Tokens already…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Archive a federation rule. Token exchange through this rule stops immediately. Idempotent; re-archiving returns the rule with its original `archived_at`. Archiving clears the rule's workspace targeting (`workspace_id` and `workspace_ids` are emptied). Tokens already…
      *
      * @param federationRuleId ID of the federation rule to archive.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
-     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
-     *   multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read more about
-     *   versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want
+     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
+     *   or specify the header multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read
+     *   more about versioning and our version history here.
      */
-    fun archiveBetaOrganizationsFederationRules(
-        clientConfig: ClientConfig,
-        federationRuleId: String,
-        anthropicBeta: List<AnthropicBeta>? = null,
-        anthropicVersion: String? = null,
-        options: RequestOptions? = null,
-    ): BetaFederationRule {
-        return SdkClient.request<BetaFederationRule>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/v1/organizations/federation_rules/${SdkClient.encodePathSegment(federationRuleId)}/archive?beta=true",
-                    config = clientConfig,
-                    operationId = "archiveBetaOrganizationsFederationRules",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    extraHeaders =
-                        SdkClient.headers(
-                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
-                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
-                        ),
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BetaErrorResponse::class.java,
-                            "401" to BetaErrorResponse::class.java,
-                            "403" to BetaErrorResponse::class.java,
-                            "404" to BetaErrorResponse::class.java,
-                            "408" to BetaErrorResponse::class.java,
-                            "409" to BetaErrorResponse::class.java,
-                            "412" to BetaErrorResponse::class.java,
-                            "413" to BetaErrorResponse::class.java,
-                            "429" to BetaErrorResponse::class.java,
-                            "431" to BetaErrorResponse::class.java,
-                            "499" to BetaErrorResponse::class.java,
-                            "500" to BetaErrorResponse::class.java,
-                            "501" to BetaErrorResponse::class.java,
-                            "503" to BetaErrorResponse::class.java,
-                            "504" to BetaErrorResponse::class.java,
-                            "529" to BetaErrorResponse::class.java,
-                        ),
-                )
-            )
-            .data
+    fun archiveBetaOrganizationsFederationRules(clientConfig: ClientConfig, federationRuleId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaFederationRule {
+        return SdkClient.request<BetaFederationRule>(SdkClient.RequestSpec("POST", "/v1/organizations/federation_rules/${SdkClient.encodePathSegment(federationRuleId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaOrganizationsFederationRules", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
+
+
+
+
+
+
+
 }

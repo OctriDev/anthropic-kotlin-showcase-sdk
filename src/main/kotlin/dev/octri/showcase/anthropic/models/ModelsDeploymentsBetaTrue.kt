@@ -3,55 +3,62 @@
 
 package dev.octri.showcase.anthropic.models
 
-/** Request parameters for creating a `deployment`. */
+/**
+ * Request parameters for creating a `deployment`.
+ */
 data class BetaManagedAgentsCreateDeploymentParams(
-    /** Human-readable name for the deployment. */
+    /**
+     * Human-readable name for the deployment.
+     */
     val name: String,
     /**
-     * Agent to deploy. Accepts the `agent` ID string, which pins the latest version, or an `agent`
-     * object with both id and version specified. The agent must exist and not be archived.
+     * Agent to deploy. Accepts the `agent` ID string, which pins the latest version, or an `agent` object with both id and version specified. The agent must exist and not be archived.
      */
     val agent: BetaManagedAgentsAgentUnionParams,
     /**
-     * ID of the `environment` defining the container configuration for sessions created from this
-     * deployment.
+     * ID of the `environment` defining the container configuration for sessions created from this deployment.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("environment_id") val environmentId: String,
-    /** Events to send to each session immediately after creation. At least 1, maximum 50. */
-    @com.fasterxml.jackson.annotation.JsonProperty("initial_events")
-    val initialEvents: List<BetaManagedAgentsDeploymentInitialEventParams>,
-    /** Description of what the deployment does. */
+    /**
+     * Events to send to each session immediately after creation. At least 1, maximum 50.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("initial_events") val initialEvents: List<BetaManagedAgentsDeploymentInitialEventParams>,
+    /**
+     * Description of what the deployment does.
+     */
     val description: String? = null,
     /**
-     * Vault IDs for stored credentials the agent can use during sessions created from this
-     * deployment. Maximum 50.
+     * Vault IDs for stored credentials the agent can use during sessions created from this deployment. Maximum 50.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("vault_ids") val vaultIds: List<String>? = null,
-    /** Resources (e.g. repositories, files) to mount into each session's container. Maximum 500. */
+    /**
+     * Resources (e.g. repositories, files) to mount into each session's container. Maximum 500.
+     */
     val resources: List<BetaManagedAgentsSessionResourceParams>? = null,
     /**
      * Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
      */
     val metadata: Map<String, String>? = null,
     /**
-     * Optional recurring cron schedule. When present, the deployment fires automatically. Both
-     * expression and timezone are required when schedule is set.
+     * Optional recurring cron schedule. When present, the deployment fires automatically. Both expression and timezone are required when schedule is set.
      */
     val schedule: BetaManagedAgentsScheduleParams? = null,
     /**
-     * Enforced spend ceiling stamped onto each session created from this deployment, copied at
-     * session-creation time. Omit to leave sessions uncapped. The deployment agent's model must
-     * have a public list price, or the request is rejected; a multiagent roster is re-validated in
-     * full when each fire copies the cap, which fails closed the same way.
+     * Enforced spend ceiling stamped onto each session created from this deployment, copied at session-creation time. Omit to leave sessions uncapped. The deployment agent's model must have a public list price, or the request is rejected; a multiagent roster is re-validated in full when each fire copies the cap, which fails closed the same way.
      */
-    val budget: BetaManagedAgentsBudget? = null,
+    val budget: BetaManagedAgentsBudget? = null
 )
 
-/** Paginated list of deployments. */
+/**
+ * Paginated list of deployments.
+ */
 data class BetaManagedAgentsListDeploymentsData(
-    /** List of deployments. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data")
-    val `data`: List<BetaManagedAgentsDeployment>,
-    /** Opaque cursor for the next page. Null when no more results. */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
+    /**
+     * List of deployments.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsDeployment>,
+    /**
+     * Opaque cursor for the next page. Null when no more results.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
 )

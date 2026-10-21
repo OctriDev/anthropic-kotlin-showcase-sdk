@@ -3,10 +3,10 @@
 
 package dev.octri.showcase.anthropic
 
+
 class BetaOrganizationsUsageReportNamespace(clientConfig: ClientConfig) {
     val messages: BetaOrganizationsUsageReportMessagesNamespace
     val claudeCode: BetaOrganizationsUsageReportClaudeCodeNamespace
-
     init {
         messages = BetaOrganizationsUsageReportMessagesNamespace(clientConfig)
         claudeCode = BetaOrganizationsUsageReportClaudeCodeNamespace(clientConfig)

@@ -7,8 +7,8 @@ import dev.octri.showcase.anthropic.BetaAnalyticsPluginActivity
 import dev.octri.showcase.anthropic.BetaAnalyticsPluginsResponse
 import dev.octri.showcase.anthropic.BetaErrorResponse
 import dev.octri.showcase.anthropic.ClientConfig
-import dev.octri.showcase.anthropic.ListBetaOrganizationsAnalyticsPluginsParameterItemEnum
-import dev.octri.showcase.anthropic.ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum
+import dev.octri.showcase.anthropic.ListBetaOrganizationAnalyticsPluginsParameterItemEnum
+import dev.octri.showcase.anthropic.ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum
 import dev.octri.showcase.anthropic.RequestOptions
 import dev.octri.showcase.anthropic.SdkClient
 import dev.octri.showcase.anthropic.Validation
@@ -16,17 +16,17 @@ import dev.octri.showcase.anthropic.Validation
 object BetaOrganizationsAnalyticsPlugins {
 
 
-    /** Parameters for [listBetaOrganizationsAnalyticsPlugins]. */
-    data class ListBetaOrganizationsAnalyticsPluginsRequest(
+    /** Parameters for [listBetaOrganizationAnalyticsPlugins]. */
+    data class ListBetaOrganizationAnalyticsPluginsRequest(
         val date: SdkClient.SdkOptional<String?>? = null,
         val startingDate: SdkClient.SdkOptional<String?>? = null,
         val endingDate: SdkClient.SdkOptional<String?>? = null,
         val limit: SdkClient.SdkOptional<Long?>? = null,
         val page: SdkClient.SdkOptional<String?>? = null,
-        val groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationsAnalyticsPluginsParameterItemEnum>?>? = null,
+        val groupBy: SdkClient.SdkOptional<List<ListBetaOrganizationAnalyticsPluginsParameterItemEnum>?>? = null,
         val filter: SdkClient.SdkOptional<List<String>?>? = null,
         val orderBy: SdkClient.SdkOptional<String?>? = null,
-        val order: SdkClient.SdkOptional<ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum?>? = null
+        val order: SdkClient.SdkOptional<ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum?>? = null
     )
 
     /**
@@ -74,19 +74,19 @@ object BetaOrganizationsAnalyticsPlugins {
      *   ranking). Applies to `order_by`, or to the endpoint's default sort field when
      *   `order_by` is omitted.
      */
-    fun listBetaOrganizationsAnalyticsPlugins(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsPluginsRequest, options: RequestOptions? = null): BetaAnalyticsPluginsResponse {
-        validateListBetaOrganizationsAnalyticsPluginsRequest(request)
+    fun listBetaOrganizationAnalyticsPlugins(clientConfig: ClientConfig, request: ListBetaOrganizationAnalyticsPluginsRequest, options: RequestOptions? = null): BetaAnalyticsPluginsResponse {
+        validateListBetaOrganizationAnalyticsPluginsRequest(request)
 
         return SdkClient.request<BetaAnalyticsPluginsResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/analytics/plugins?beta=true", config = clientConfig, query = mapOf("date" to SdkClient.queryValue(request.date, "form", true), "starting_date" to
     SdkClient.queryValue(request.startingDate, "form", true), "ending_date" to
     SdkClient.queryValue(request.endingDate, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "group_by[]" to
     SdkClient.queryValue(request.groupBy, "form", true), "filter[]" to
     SdkClient.queryValue(request.filter, "form", true), "order_by" to
-    SdkClient.queryValue(request.orderBy, "form", true), "order" to SdkClient.queryValue(request.order, "form", true)), operationId = "listBetaOrganizationsAnalyticsPlugins", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    SdkClient.queryValue(request.orderBy, "form", true), "order" to SdkClient.queryValue(request.order, "form", true)), operationId = "listBetaOrganizationAnalyticsPlugins", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
     }
 
 
-    private fun validateListBetaOrganizationsAnalyticsPluginsRequest(request: ListBetaOrganizationsAnalyticsPluginsRequest) {
+    private fun validateListBetaOrganizationAnalyticsPluginsRequest(request: ListBetaOrganizationAnalyticsPluginsRequest) {
         val groupByValue = request.groupBy?.getOrNull()
 if (groupByValue != null) {
             Validation.validateItems("group_by[]", groupByValue, Validation.LengthOpts(max = 100))
@@ -147,10 +147,10 @@ if (filterValue != null) {
      *   ranking). Applies to `order_by`, or to the endpoint's default sort field when
      *   `order_by` is omitted.
      */
-    fun listBetaOrganizationsAnalyticsPluginsPaginated(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsPluginsRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsPluginActivity) -> Boolean) {
+    fun listBetaOrganizationAnalyticsPluginsPaginated(clientConfig: ClientConfig, request: ListBetaOrganizationAnalyticsPluginsRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsPluginActivity) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page = listBetaOrganizationsAnalyticsPlugins(clientConfig, request.copy(page = cursor), options)
+            val page = listBetaOrganizationAnalyticsPlugins(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -161,21 +161,21 @@ if (filterValue != null) {
         }
     }
 
-    data class ListBetaOrganizationsAnalyticsPluginsPage(
+    data class ListBetaOrganizationAnalyticsPluginsPage(
         val data: BetaAnalyticsPluginsResponse,
         val items: List<BetaAnalyticsPluginActivity>,
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsAnalyticsPluginsPages(clientConfig: ClientConfig, request: ListBetaOrganizationsAnalyticsPluginsRequest, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsAnalyticsPluginsPage) -> Boolean) {
+    fun listBetaOrganizationAnalyticsPluginsPages(clientConfig: ClientConfig, request: ListBetaOrganizationAnalyticsPluginsRequest, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationAnalyticsPluginsPage) -> Boolean) {
         var cursor = request.page
         while (true) {
-            val page = listBetaOrganizationsAnalyticsPlugins(clientConfig, request.copy(page = cursor), options)
+            val page = listBetaOrganizationAnalyticsPlugins(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
             val hasMore = nextCursor != null
-            if (!yieldPage(ListBetaOrganizationsAnalyticsPluginsPage(page, items, hasMore))) return
+            if (!yieldPage(ListBetaOrganizationAnalyticsPluginsPage(page, items, hasMore))) return
             if (!hasMore) return
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }

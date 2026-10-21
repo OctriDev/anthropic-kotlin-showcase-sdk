@@ -118,38 +118,38 @@ class RetrieveBetaOrganizationsAnalyticsCostReportParameterItemEnumd8f8e89e priv
     }
 }
 
-class ListBetaOrganizationsAnalyticsPluginsParameterItemEnum private constructor(
+class ListBetaOrganizationAnalyticsPluginsParameterItemEnum private constructor(
     @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
 ) {
-    override fun equals(other: Any?): Boolean = other is ListBetaOrganizationsAnalyticsPluginsParameterItemEnum && value == other.value
+    override fun equals(other: Any?): Boolean = other is ListBetaOrganizationAnalyticsPluginsParameterItemEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PRODUCT = ListBetaOrganizationsAnalyticsPluginsParameterItemEnum("product")
-        @JvmField val RBAC_GROUP_ID = ListBetaOrganizationsAnalyticsPluginsParameterItemEnum("rbac_group_id")
-        @JvmField val USER_ID = ListBetaOrganizationsAnalyticsPluginsParameterItemEnum("user_id")
+        @JvmField val PRODUCT = ListBetaOrganizationAnalyticsPluginsParameterItemEnum("product")
+        @JvmField val RBAC_GROUP_ID = ListBetaOrganizationAnalyticsPluginsParameterItemEnum("rbac_group_id")
+        @JvmField val USER_ID = ListBetaOrganizationAnalyticsPluginsParameterItemEnum("user_id")
 
         @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ListBetaOrganizationsAnalyticsPluginsParameterItemEnum(value)
+        @JvmStatic fun fromValue(value: String) = ListBetaOrganizationAnalyticsPluginsParameterItemEnum(value)
     }
 }
 
-class ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum private constructor(
+class ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum private constructor(
     @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
 ) {
-    override fun equals(other: Any?): Boolean = other is ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum && value == other.value
+    override fun equals(other: Any?): Boolean = other is ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum && value == other.value
     override fun hashCode(): Int = value.hashCode()
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val ASC = ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum("asc")
-        @JvmField val DESC = ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum("desc")
+        @JvmField val ASC = ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum("asc")
+        @JvmField val DESC = ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum("desc")
 
         @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum(value)
+        @JvmStatic fun fromValue(value: String) = ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum(value)
     }
 }
 

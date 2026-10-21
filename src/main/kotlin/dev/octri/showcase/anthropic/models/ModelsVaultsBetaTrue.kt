@@ -3,30 +3,22 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Request parameters for creating a vault.
- */
+/** Request parameters for creating a vault. */
 data class BetaManagedAgentsCreateVaultRequest(
-    /**
-     * Human-readable name for the vault. 1-255 characters.
-     */
+    /** Human-readable name for the vault. 1-255 characters. */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String,
     /**
-     * Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+     * Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys up to 64 chars,
+     * values up to 512 chars.
      */
-    val metadata: Map<String, String>? = null
+    val metadata: Map<String, String>? = null,
 )
 
-/**
- * Response containing a paginated list of vaults.
- */
+/** Response containing a paginated list of vaults. */
 data class BetaManagedAgentsListVaultsResponse(
-    /**
-     * List of vaults.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsVault>? = null,
-    /**
-     * Pagination token for the next page, or null if no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** List of vaults. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsVault>? = null,
+    /** Pagination token for the next page, or null if no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 )

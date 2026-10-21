@@ -5,127 +5,129 @@ package dev.octri.showcase.anthropic.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `BetaApproveSpendLimitIncreaseRequestParams` API schema.
- */
+/** Typed representation of the `BetaApproveSpendLimitIncreaseRequestParams` API schema. */
 data class BetaApproveSpendLimitIncreaseRequestParams(
-    /**
-     * New per-user spend limit as a non-negative integer decimal string (minor units).
-     */
+    /** New per-user spend limit as a non-negative integer decimal string (minor units). */
     val amount: String,
-    /**
-     * Optional API value serialized in the `period` wire field.
-     */
+    /** Optional API value serialized in the `period` wire field. */
     val period: BetaApproveSpendLimitIncreaseRequestParamsPeriodVariant0Enum? = null,
-    /**
-     * Optional `boolean` value serialized in the `suppress_notification` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("suppress_notification") val suppressNotification: Boolean? = null
+    /** Optional `boolean` value serialized in the `suppress_notification` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("suppress_notification")
+    val suppressNotification: Boolean? = null,
 )
 
-/**
- * Typed representation of the `BetaApproveSpendLimitIncreaseRequestResponse` API schema.
- */
+/** Typed representation of the `BetaApproveSpendLimitIncreaseRequestResponse` API schema. */
 data class BetaApproveSpendLimitIncreaseRequestResponse(
     /**
-     * A user within the organization. `name` and `email_address` are null when the underlying account is unavailable or has been deleted; `deleted` is true only for deleted accounts.
+     * A user within the organization. `name` and `email_address` are null when the underlying
+     * account is unavailable or has been deleted; `deleted` is true only for deleted accounts.
      */
     val actor: BetaUserActorSchema,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
+    /** Required `string` value serialized in the `id` wire field. */
     val id: String,
-    /**
-     * Required enumerated value serialized in the `period` wire field.
-     */
+    /** Required enumerated value serialized in the `period` wire field. */
     val period: BetaApproveSpendLimitIncreaseRequestResponsePeriodEnum,
-    /**
-     * Required API value serialized in the `resolved_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("resolved_at", required = true) val resolvedAt: String?,
-    /**
-     * Required API value serialized in the `resolved_by` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("resolved_by", required = true) val resolvedBy: BetaApproveSpendLimitIncreaseRequestResponseResolvedBy?,
-    /**
-     * A configured spend limit: a cap on metered spend for one scope and period.
-     */
+    /** Required API value serialized in the `resolved_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("resolved_at", required = true)
+    val resolvedAt: String?,
+    /** Required API value serialized in the `resolved_by` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("resolved_by", required = true)
+    val resolvedBy: BetaApproveSpendLimitIncreaseRequestResponseResolvedBy?,
+    /** A configured spend limit: a cap on metered spend for one scope and period. */
     @com.fasterxml.jackson.annotation.JsonProperty("spend_limit") val spendLimit: BetaSpendLimit,
-    /**
-     * Required API value serialized in the `spend_summary` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("spend_summary", required = true) val spendSummary: BetaSpendSummary?,
-    /**
-     * Required enumerated value serialized in the `status` wire field.
-     */
+    /** Required API value serialized in the `spend_summary` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("spend_summary", required = true)
+    val spendSummary: BetaSpendSummary?,
+    /** Required enumerated value serialized in the `status` wire field. */
     val status: BetaApproveSpendLimitIncreaseRequestResponseStatusEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaApproveSpendLimitIncreaseRequestResponseTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaApproveSpendLimitIncreaseRequestResponseTypeEnum,
 )
 
-/**
- * Required API value serialized in the `resolved_by` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaApproveSpendLimitIncreaseRequestResponseResolvedBy::class)
+/** Required API value serialized in the `resolved_by` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaApproveSpendLimitIncreaseRequestResponseResolvedBy::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaUserActorSchema::class, name = "user_actor"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaScopedApiKeyActorSchema::class, name = "scoped_api_key_actor")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaUserActorSchema::class,
+        name = "user_actor",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaScopedApiKeyActorSchema::class,
+        name = "scoped_api_key_actor",
+    ),
 )
 sealed interface BetaApproveSpendLimitIncreaseRequestResponseResolvedBy
 
-/** A [BetaApproveSpendLimitIncreaseRequestResponseResolvedBy] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaApproveSpendLimitIncreaseRequestResponseResolvedBy @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaApproveSpendLimitIncreaseRequestResponseResolvedBy] whose `type` names no branch this SDK
+ * knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaApproveSpendLimitIncreaseRequestResponseResolvedBy
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaApproveSpendLimitIncreaseRequestResponseResolvedBy {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * A scoped Admin API key acting on behalf of the organization.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** A scoped Admin API key acting on behalf of the organization. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaScopedApiKeyActorSchema(
-    /**
-     * Required `string` value serialized in the `scoped_api_key_id` wire field.
-     */
+    /** Required `string` value serialized in the `scoped_api_key_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("scoped_api_key_id") val scopedApiKeyId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaScopedApiKeyActorSchemaTypeEnum
-) : BetaApproveSpendLimitIncreaseRequestResponseResolvedBy, BetaSpendLimitIncreaseRequestSchemaResolvedBy
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaScopedApiKeyActorSchemaTypeEnum,
+) :
+    BetaApproveSpendLimitIncreaseRequestResponseResolvedBy,
+    BetaSpendLimitIncreaseRequestSchemaResolvedBy
 
 /**
- * A user within the organization. `name` and `email_address` are null when the underlying account is unavailable or has been deleted; `deleted` is true only for deleted accounts.
+ * A user within the organization. `name` and `email_address` are null when the underlying account
+ * is unavailable or has been deleted; `deleted` is true only for deleted accounts.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaUserActorSchema(
-    /**
-     * True only when the underlying account has been deleted.
-     */
+    /** True only when the underlying account has been deleted. */
     val deleted: Boolean,
+    /** The user's email address. Null when the account is unavailable or has been deleted. */
+    @com.fasterxml.jackson.annotation.JsonProperty("email_address", required = true)
+    val emailAddress: String?,
     /**
-     * The user's email address. Null when the account is unavailable or has been deleted.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("email_address", required = true) val emailAddress: String?,
-    /**
-     * The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
+     * The user's current display name. Null when the account is unavailable, has been deleted, or
+     * has no name set.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
-    /**
-     * Actor type. Always `user_actor`.
-     */
+    /** Actor type. Always `user_actor`. */
     val type: BetaUserActorSchemaTypeEnum,
-    /**
-     * Tagged ID of the user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String
-) : BetaApproveSpendLimitIncreaseRequestResponseResolvedBy, BetaSpendLimitIncreaseRequestSchemaResolvedBy
+    /** Tagged ID of the user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_id") val userId: String,
+) :
+    BetaApproveSpendLimitIncreaseRequestResponseResolvedBy,
+    BetaSpendLimitIncreaseRequestSchemaResolvedBy

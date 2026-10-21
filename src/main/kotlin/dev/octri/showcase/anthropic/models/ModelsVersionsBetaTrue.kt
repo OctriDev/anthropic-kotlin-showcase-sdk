@@ -4,39 +4,33 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * Typed representation of the `BetaBody_create_skill_version_v1_skills__skill_id__versions_post` API schema.
+ * Typed representation of the `BetaBody_create_skill_version_v1_skills__skill_id__versions_post`
+ * API schema.
  */
 data class BetaBodyCreateSkillVersionV1SkillsSkillIdVersionsPost(
     /**
-     * Files to upload for the skill. All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+     * Files to upload for the skill. All files must be in the same top-level directory and must
+     * include a SKILL.md file at the root of that directory.
      */
     val files: List<ByteArray>
 )
 
-/**
- * Typed representation of the `BetaListSkillVersionsResponse` API schema.
- */
+/** Typed representation of the `BetaListSkillVersionsResponse` API schema. */
 data class BetaListSkillVersionsResponse(
-    /**
-     * List of skills.
-     */
+    /** List of skills. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaSkillVersion>,
     /**
-     * Token for fetching the next page of results. If `null`, there are no more results available. Pass this value to the `page` parameter in the next request to get the next page.
+     * Token for fetching the next page of results. If `null`, there are no more results available.
+     * Pass this value to the `page` parameter in the next request to get the next page.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 )
 
-/**
- * Paginated list of agent versions.
- */
+/** Paginated list of agent versions. */
 data class BetaManagedAgentsListAgentVersions(
-    /**
-     * Agent versions.
-     */
+    /** Agent versions. */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsAgent>,
-    /**
-     * Opaque cursor for the next page. Null when no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** Opaque cursor for the next page. Null when no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 )

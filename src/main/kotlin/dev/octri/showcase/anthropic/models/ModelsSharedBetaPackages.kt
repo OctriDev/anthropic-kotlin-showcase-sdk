@@ -3,70 +3,43 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Packages (and their versions) available in this environment.
- */
+/** Packages (and their versions) available in this environment. */
 data class BetaPackages(
-    /**
-     * Ubuntu/Debian packages to install
-     */
+    /** Ubuntu/Debian packages to install */
     val apt: List<String>,
-    /**
-     * Rust packages to install
-     */
+    /** Rust packages to install */
     val cargo: List<String>,
-    /**
-     * Ruby packages to install
-     */
+    /** Ruby packages to install */
     val gem: List<String>,
-    /**
-     * Go packages to install
-     */
+    /** Go packages to install */
     val go: List<String>,
-    /**
-     * Node.js packages to install
-     */
+    /** Node.js packages to install */
     val npm: List<String>,
-    /**
-     * Python packages to install
-     */
+    /** Python packages to install */
     val pip: List<String>,
-    /**
-     * Package configuration type
-     */
-    val type: BetaPackagesTypeEnum? = null
+    /** Package configuration type */
+    val type: BetaPackagesTypeEnum? = null,
 )
 
 /**
- * Specify packages (and optionally their versions) available in this environment. When versioning, use the version semantics relevant for the package manager, e.g. for `pip` use `package==1.0.0`. You are responsible for validating the package and version exist. Unversioned installs the latest. Under `limited` networking, requires `networking.allow_package_managers` to be `true`.
+ * Specify packages (and optionally their versions) available in this environment. When versioning,
+ * use the version semantics relevant for the package manager, e.g. for `pip` use `package==1.0.0`.
+ * You are responsible for validating the package and version exist. Unversioned installs the
+ * latest. Under `limited` networking, requires `networking.allow_package_managers` to be `true`.
  */
 data class BetaPackagesParams(
-    /**
-     * Ubuntu/Debian packages to install
-     */
+    /** Ubuntu/Debian packages to install */
     val apt: List<String>? = null,
-    /**
-     * Rust packages to install
-     */
+    /** Rust packages to install */
     val cargo: List<String>? = null,
-    /**
-     * Ruby packages to install
-     */
+    /** Ruby packages to install */
     val gem: List<String>? = null,
-    /**
-     * Go packages to install
-     */
+    /** Go packages to install */
     val go: List<String>? = null,
-    /**
-     * Node.js packages to install
-     */
+    /** Node.js packages to install */
     val npm: List<String>? = null,
-    /**
-     * Python packages to install
-     */
+    /** Python packages to install */
     val pip: List<String>? = null,
-    /**
-     * Package configuration type
-     */
-    val type: BetaPackagesParamsTypeEnum? = null
+    /** Package configuration type */
+    val type: BetaPackagesParamsTypeEnum? = null,
 )

@@ -3,20 +3,70 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsWorkspacesRateLimitsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * List rate-limit overrides configured for a workspace. Returns only the groups and limiter types that have a workspace-level override. Groups without overrides inherit the organization limits and are not listed; use `GET /v1/organizations/rate_limits` to see those. When `limit` is omitted, every matching entry is returned in a single page; when `limit` truncates the result, follow `next_page` to fetch the remaining entries.
+     * List rate-limit overrides configured for a workspace. Returns only the groups and limiter
+     * types that have a workspace-level override. Groups without overrides inherit the organization
+     * limits and are not listed; use `GET /v1/organizations/rate_limits` to see those. When `limit`
+     * is omitted, every matching entry is returned in a single page; when `limit` truncates the
+     * result, follow `next_page` to fetch the remaining entries.
      */
-    fun list(workspaceId: String, groupType: SdkClient.SdkOptional<ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaWorkspaceRateLimitListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces.BetaOrganizationsWorkspacesRateLimits.listBetaOrganizationsWorkspacesRateLimits(clientConfig, workspaceId, groupType, limit, page, anthropicVersion, options)
+    fun list(
+        workspaceId: String,
+        groupType:
+            SdkClient.SdkOptional<
+                ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum?
+            >? =
+            null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaWorkspaceRateLimitListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.workspaces
+            .BetaOrganizationsWorkspacesRateLimits
+            .listBetaOrganizationsWorkspacesRateLimits(
+                clientConfig,
+                workspaceId,
+                groupType,
+                limit,
+                page,
+                anthropicVersion,
+                options,
+            )
     }
 
     /**
-     * List rate-limit overrides configured for a workspace. Returns only the groups and limiter types that have a workspace-level override. Groups without overrides inherit the organization limits and are not listed; use `GET /v1/organizations/rate_limits` to see those. When `limit` is omitted, every matching entry is returned in a single page; when `limit` truncates the result, follow `next_page` to fetch the remaining entries.
+     * List rate-limit overrides configured for a workspace. Returns only the groups and limiter
+     * types that have a workspace-level override. Groups without overrides inherit the organization
+     * limits and are not listed; use `GET /v1/organizations/rate_limits` to see those. When `limit`
+     * is omitted, every matching entry is returned in a single page; when `limit` truncates the
+     * result, follow `next_page` to fetch the remaining entries.
      */
-    fun listPaginated(workspaceId: String, groupType: SdkClient.SdkOptional<ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaWorkspaceRateLimit) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.workspaces.BetaOrganizationsWorkspacesRateLimits.listBetaOrganizationsWorkspacesRateLimitsPaginated(clientConfig, workspaceId, groupType, limit, page, anthropicVersion, options, yieldFn)
+    fun listPaginated(
+        workspaceId: String,
+        groupType:
+            SdkClient.SdkOptional<
+                ListBetaOrganizationsWorkspacesRateLimitsParameterVariant0Enum?
+            >? =
+            null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaWorkspaceRateLimit) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.workspaces
+            .BetaOrganizationsWorkspacesRateLimits
+            .listBetaOrganizationsWorkspacesRateLimitsPaginated(
+                clientConfig,
+                workspaceId,
+                groupType,
+                limit,
+                page,
+                anthropicVersion,
+                options,
+                yieldFn,
+            )
     }
-
 }

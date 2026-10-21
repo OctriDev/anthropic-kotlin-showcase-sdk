@@ -3,59 +3,152 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaVaultsNamespace(private val clientConfig: ClientConfig) {
     val credentials: BetaVaultsCredentialsNamespace
+
     init {
         credentials = BetaVaultsCredentialsNamespace(clientConfig)
     }
+
     /**
-     * Creates a vault for storing credentials that agents can use during sessions. Supply a `display_name` between 1 and 255 characters, and optionally attach metadata; the response includes the new vault's identifier and timestamps.
+     * Creates a vault for storing credentials that agents can use during sessions. Supply a
+     * `display_name` between 1 and 255 characters, and optionally attach metadata; the response
+     * includes the new vault's identifier and timestamps.
      */
-    fun create(displayName: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, metadata: Map<String, String>? = null, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.createBetaVaults(clientConfig, displayName, anthropicVersion, anthropicBeta, anthropicWorkspaceId, metadata, options)
+    fun create(
+        displayName: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        metadata: Map<String, String>? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.createBetaVaults(
+            clientConfig,
+            displayName,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            metadata,
+            options,
+        )
     }
 
     /**
-     * Lists vaults available in the selected workspace, with optional pagination and archived-vault inclusion. Use `include_archived` to include archived vaults and pass `page` from a previous response to continue through the results.
+     * Lists vaults available in the selected workspace, with optional pagination and archived-vault
+     * inclusion. Use `include_archived` to include archived vaults and pass `page` from a previous
+     * response to continue through the results.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaVaults.ListBetaVaultsRequest, options: RequestOptions? = null): BetaManagedAgentsListVaultsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.listBetaVaults(clientConfig, request, options)
+    fun list(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaVaults.ListBetaVaultsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListVaultsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.listBetaVaults(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists vaults available in the selected workspace, with optional pagination and archived-vault inclusion. Use `include_archived` to include archived vaults and pass `page` from a previous response to continue through the results.
+     * Lists vaults available in the selected workspace, with optional pagination and archived-vault
+     * inclusion. Use `include_archived` to include archived vaults and pass `page` from a previous
+     * response to continue through the results.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaVaults.ListBetaVaultsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsVault) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.BetaVaults.listBetaVaultsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaVaults.ListBetaVaultsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsVault) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.BetaVaults.listBetaVaultsPaginated(
+            clientConfig,
+            request,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a vault that stores credentials for use by agents during sessions. Use `vault_id` to identify the vault; the response includes its display name, metadata, timestamps, and archive state.
+     * Retrieves a vault that stores credentials for use by agents during sessions. Use `vault_id`
+     * to identify the vault; the response includes its display name, metadata, timestamps, and
+     * archive state.
      */
-    fun retrieve(vaultId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.retrieveBetaVaults(clientConfig, vaultId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        vaultId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.retrieveBetaVaults(
+            clientConfig,
+            vaultId,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Updates a vault's human-readable name or metadata. Send `display_name` to change the name, or use `metadata` to add, replace, or delete individual keys; omitted metadata keys are preserved. The `anthropic-workspace-id` header must match the credential's Workspace when you use it.
+     * Updates a vault's human-readable name or metadata. Send `display_name` to change the name, or
+     * use `metadata` to add, replace, or delete individual keys; omitted metadata keys are
+     * preserved. The `anthropic-workspace-id` header must match the credential's Workspace when you
+     * use it.
      */
-    fun update(request: dev.octri.showcase.anthropic.methods.beta.BetaVaults.UpdateBetaVaultsRequest, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.updateBetaVaults(clientConfig, request, options)
+    fun update(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaVaults.UpdateBetaVaultsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.updateBetaVaults(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Deletes a vault. Use `vault_id` to identify the vault to remove, and send `anthropic-workspace-id` only when your credential can act on more than one Workspace. The response confirms deletion and includes the deleted vault's identifier.
+     * Deletes a vault. Use `vault_id` to identify the vault to remove, and send
+     * `anthropic-workspace-id` only when your credential can act on more than one Workspace. The
+     * response confirms deletion and includes the deleted vault's identifier.
      */
-    fun delete(vaultId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeletedVault {
-        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.deleteBetaVaults(clientConfig, vaultId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun delete(
+        vaultId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeletedVault {
+        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.deleteBetaVaults(
+            clientConfig,
+            vaultId,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Archives a vault so it is no longer active for use by agents during sessions. Use `vault_id` to select the vault, and provide `anthropic-workspace-id` when a multi-Workspace credential needs to target a specific Workspace. The response includes the vault's updated archive timestamp.
+     * Archives a vault so it is no longer active for use by agents during sessions. Use `vault_id`
+     * to select the vault, and provide `anthropic-workspace-id` when a multi-Workspace credential
+     * needs to target a specific Workspace. The response includes the vault's updated archive
+     * timestamp.
      */
-    fun archive(vaultId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.archiveBetaVaults(clientConfig, vaultId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun archive(
+        vaultId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return dev.octri.showcase.anthropic.methods.beta.BetaVaults.archiveBetaVaults(
+            clientConfig,
+            vaultId,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
-
 }

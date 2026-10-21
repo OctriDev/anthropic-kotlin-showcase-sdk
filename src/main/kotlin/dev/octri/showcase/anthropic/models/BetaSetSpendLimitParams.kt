@@ -3,20 +3,17 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaSetSpendLimitParams` API schema.
- */
+/** Typed representation of the `BetaSetSpendLimitParams` API schema. */
 data class BetaSetSpendLimitParams(
     /**
-     * Limit amount as a non-negative integer decimal string in the minor unit of the organization's billing currency (cents for USD): "50000" is $500.00. `null` sets an explicit no-limit override for this scope and `period` only — each period resolves independently, so caps for other periods still apply.
+     * Limit amount as a non-negative integer decimal string in the minor unit of the organization's
+     * billing currency (cents for USD): "50000" is $500.00. `null` sets an explicit no-limit
+     * override for this scope and `period` only — each period resolves independently, so caps for
+     * other periods still apply.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("amount", required = true) val amount: String?,
-    /**
-     * Scope selecting a single member of the organization.
-     */
+    /** Scope selecting a single member of the organization. */
     val scope: BetaUserScope,
-    /**
-     * Optional enumerated value serialized in the `period` wire field.
-     */
-    val period: BetaSetSpendLimitParamsPeriodEnum? = null
+    /** Optional enumerated value serialized in the `period` wire field. */
+    val period: BetaSetSpendLimitParamsPeriodEnum? = null,
 )

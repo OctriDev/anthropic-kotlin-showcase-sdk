@@ -3,34 +3,72 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaMemoryStoresMemoryVersionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists a memory store's version history, with the newest versions first. Use the available filters to narrow results by memory, actor, operation, or creation time, and use `page` to continue through the results. Choose `view` to control whether version content is included.
+     * Lists a memory store's version history, with the newest versions first. Use the available
+     * filters to narrow results by memory, actor, operation, or creation time, and use `page` to
+     * continue through the results. Choose `view` to control whether version content is included.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.ListBetaMemoryStoresMemoryVersionsRequest, options: RequestOptions? = null): BetaManagedAgentsListMemoryVersionsResult {
-        return dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.listBetaMemoryStoresMemoryVersions(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.ListBetaMemoryStoresMemoryVersionsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListMemoryVersionsResult {
+        return dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions
+            .listBetaMemoryStoresMemoryVersions(clientConfig, request, options)
     }
 
     /**
-     * Lists a memory store's version history, with the newest versions first. Use the available filters to narrow results by memory, actor, operation, or creation time, and use `page` to continue through the results. Choose `view` to control whether version content is included.
+     * Lists a memory store's version history, with the newest versions first. Use the available
+     * filters to narrow results by memory, actor, operation, or creation time, and use `page` to
+     * continue through the results. Choose `view` to control whether version content is included.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.ListBetaMemoryStoresMemoryVersionsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsMemoryVersion) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.listBetaMemoryStoresMemoryVersionsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.ListBetaMemoryStoresMemoryVersionsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsMemoryVersion) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions
+            .listBetaMemoryStoresMemoryVersionsPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves a specific immutable version from a memory store's version history. Use `view` to choose whether the response includes the version's content. Redacted versions and deleted-version records may have content and related path or hash values set to `null`.
+     * Retrieves a specific immutable version from a memory store's version history. Use `view` to
+     * choose whether the response includes the version's content. Redacted versions and
+     * deleted-version records may have content and related path or hash values set to `null`.
      */
-    fun retrieve(request: dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.RetrieveBetaMemoryStoresMemoryVersionsRequest, options: RequestOptions? = null): BetaManagedAgentsMemoryVersion {
-        return dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.retrieveBetaMemoryStoresMemoryVersions(clientConfig, request, options)
+    fun retrieve(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.RetrieveBetaMemoryStoresMemoryVersionsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsMemoryVersion {
+        return dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions
+            .retrieveBetaMemoryStoresMemoryVersions(clientConfig, request, options)
     }
 
     /**
-     * Redacts a specific version in a memory store's immutable history. Use this operation when the version's stored content and path must no longer be available; the version record remains, with its redaction details retained. The response returns the redacted version.
+     * Redacts a specific version in a memory store's immutable history. Use this operation when the
+     * version's stored content and path must no longer be available; the version record remains,
+     * with its redaction details retained. The response returns the redacted version.
      */
-    fun redact(memoryStoreId: String, memoryVersionId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsMemoryVersion {
-        return dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions.redactBetaMemoryStoresMemoryVersions(clientConfig, memoryStoreId, memoryVersionId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun redact(
+        memoryStoreId: String,
+        memoryVersionId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsMemoryVersion {
+        return dev.octri.showcase.anthropic.methods.beta.memoryStores.BetaMemoryStoresMemoryVersions
+            .redactBetaMemoryStoresMemoryVersions(
+                clientConfig,
+                memoryStoreId,
+                memoryVersionId,
+                anthropicVersion,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
-
 }

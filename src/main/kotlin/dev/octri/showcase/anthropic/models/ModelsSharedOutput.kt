@@ -3,26 +3,27 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `OutputConfig` API schema.
- */
+/** Typed representation of the `OutputConfig` API schema. */
 data class OutputConfig(
     /**
-     * How much effort the model should put into its response. Higher effort levels may result in more thorough analysis but take longer. Valid values are `low`, `medium`, `high`, `xhigh`, or `max`.
+     * How much effort the model should put into its response. Higher effort levels may result in
+     * more thorough analysis but take longer. Valid values are `low`, `medium`, `high`, `xhigh`, or
+     * `max`.
      */
     val effort: EffortLevel? = null,
-    /**
-     * A schema to specify Claude's output format in responses. See structured outputs
-     */
-    val format: JsonOutputFormat? = null
+    /** A schema to specify Claude's output format in responses. See structured outputs */
+    val format: JsonOutputFormat? = null,
 )
 
-/**
- * Typed representation of the `OutputTokensDetails` API schema.
- */
+/** Typed representation of the `OutputTokensDetails` API schema. */
 data class OutputTokensDetails(
     /**
-     * Number of output tokens the model generated as internal reasoning, including the thinking-block delimiter tokens. Reflects the raw reasoning the model produced, not the (possibly shorter) summarized thinking text returned in the response body. Computed by re-tokenizing the raw reasoning text, so it may differ from the model's exact generation count by a small number of tokens. Always ≤ `output_tokens`; `output_tokens - thinking_tokens` approximates the non-reasoning output.
+     * Number of output tokens the model generated as internal reasoning, including the
+     * thinking-block delimiter tokens. Reflects the raw reasoning the model produced, not the
+     * (possibly shorter) summarized thinking text returned in the response body. Computed by
+     * re-tokenizing the raw reasoning text, so it may differ from the model's exact generation
+     * count by a small number of tokens. Always ≤ `output_tokens`; `output_tokens -
+     * thinking_tokens` approximates the non-reasoning output.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("thinking_tokens") val thinkingTokens: Long
 )

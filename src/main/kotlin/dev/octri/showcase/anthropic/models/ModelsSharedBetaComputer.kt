@@ -3,314 +3,311 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * ``cursor_position``'s config overrides.
- */
+/** ``cursor_position``'s config overrides. */
 data class BetaComputerCursorPositionConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``double_click``'s config overrides.
- */
+/** ``double_click``'s config overrides. */
 data class BetaComputerDoubleClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``hold_key``'s config overrides.
- */
+/** ``hold_key``'s config overrides. */
 data class BetaComputerHoldKeyConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``key``'s config overrides.
- */
+/** ``key``'s config overrides. */
 data class BetaComputerKeyConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_click``'s config overrides.
- */
+/** ``left_click``'s config overrides. */
 data class BetaComputerLeftClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_click_drag``'s config overrides.
- */
+/** ``left_click_drag``'s config overrides. */
 data class BetaComputerLeftClickDragConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_mouse_down``'s config overrides.
- */
+/** ``left_mouse_down``'s config overrides. */
 data class BetaComputerLeftMouseDownConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``left_mouse_up``'s config overrides.
- */
+/** ``left_mouse_up``'s config overrides. */
 data class BetaComputerLeftMouseUpConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``middle_click``'s config overrides.
- */
+/** ``middle_click``'s config overrides. */
 data class BetaComputerMiddleClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``mouse_move``'s config overrides.
- */
+/** ``mouse_move``'s config overrides. */
 data class BetaComputerMouseMoveConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``right_click``'s config overrides.
- */
+/** ``right_click``'s config overrides. */
 data class BetaComputerRightClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``screenshot``'s config overrides.
- */
+/** ``screenshot``'s config overrides. */
 data class BetaComputerScreenshotConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``scroll``'s config overrides.
- */
+/** ``scroll``'s config overrides. */
 data class BetaComputerScrollConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
 /**
- * Per-member configuration for ``computer_toolset_20260801``: one optional field per member tool, keyed by the member name — the same name the member's ``tool_use`` blocks carry. Every member is an accepted key, and a member's defaults apply wherever its key is absent. Unknown keys are rejected: the field set is this toolset version's complete member set.
+ * Per-member configuration for ``computer_toolset_20260801``: one optional field per member tool,
+ * keyed by the member name — the same name the member's ``tool_use`` blocks carry. Every member is
+ * an accepted key, and a member's defaults apply wherever its key is absent. Unknown keys are
+ * rejected: the field set is this toolset version's complete member set.
  */
 data class BetaComputerToolsetConfigs(
-    /**
-     * Optional API value serialized in the `cursor_position` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cursor_position") val cursorPosition: BetaComputerCursorPositionConfig? = null,
-    /**
-     * Optional API value serialized in the `double_click` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("double_click") val doubleClick: BetaComputerDoubleClickConfig? = null,
-    /**
-     * Optional API value serialized in the `hold_key` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("hold_key") val holdKey: BetaComputerHoldKeyConfig? = null,
-    /**
-     * Optional API value serialized in the `key` wire field.
-     */
+    /** Optional API value serialized in the `cursor_position` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cursor_position")
+    val cursorPosition: BetaComputerCursorPositionConfig? = null,
+    /** Optional API value serialized in the `double_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("double_click")
+    val doubleClick: BetaComputerDoubleClickConfig? = null,
+    /** Optional API value serialized in the `hold_key` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("hold_key")
+    val holdKey: BetaComputerHoldKeyConfig? = null,
+    /** Optional API value serialized in the `key` wire field. */
     val key: BetaComputerKeyConfig? = null,
-    /**
-     * Optional API value serialized in the `left_click` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("left_click") val leftClick: BetaComputerLeftClickConfig? = null,
-    /**
-     * Optional API value serialized in the `left_click_drag` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("left_click_drag") val leftClickDrag: BetaComputerLeftClickDragConfig? = null,
-    /**
-     * Optional API value serialized in the `left_mouse_down` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_down") val leftMouseDown: BetaComputerLeftMouseDownConfig? = null,
-    /**
-     * Optional API value serialized in the `left_mouse_up` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_up") val leftMouseUp: BetaComputerLeftMouseUpConfig? = null,
-    /**
-     * Optional API value serialized in the `middle_click` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("middle_click") val middleClick: BetaComputerMiddleClickConfig? = null,
-    /**
-     * Optional API value serialized in the `mouse_move` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("mouse_move") val mouseMove: BetaComputerMouseMoveConfig? = null,
-    /**
-     * Optional API value serialized in the `right_click` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("right_click") val rightClick: BetaComputerRightClickConfig? = null,
-    /**
-     * Optional API value serialized in the `screenshot` wire field.
-     */
+    /** Optional API value serialized in the `left_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_click")
+    val leftClick: BetaComputerLeftClickConfig? = null,
+    /** Optional API value serialized in the `left_click_drag` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_click_drag")
+    val leftClickDrag: BetaComputerLeftClickDragConfig? = null,
+    /** Optional API value serialized in the `left_mouse_down` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_down")
+    val leftMouseDown: BetaComputerLeftMouseDownConfig? = null,
+    /** Optional API value serialized in the `left_mouse_up` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("left_mouse_up")
+    val leftMouseUp: BetaComputerLeftMouseUpConfig? = null,
+    /** Optional API value serialized in the `middle_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("middle_click")
+    val middleClick: BetaComputerMiddleClickConfig? = null,
+    /** Optional API value serialized in the `mouse_move` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("mouse_move")
+    val mouseMove: BetaComputerMouseMoveConfig? = null,
+    /** Optional API value serialized in the `right_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("right_click")
+    val rightClick: BetaComputerRightClickConfig? = null,
+    /** Optional API value serialized in the `screenshot` wire field. */
     val screenshot: BetaComputerScreenshotConfig? = null,
-    /**
-     * Optional API value serialized in the `scroll` wire field.
-     */
+    /** Optional API value serialized in the `scroll` wire field. */
     val scroll: BetaComputerScrollConfig? = null,
-    /**
-     * Optional API value serialized in the `triple_click` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("triple_click") val tripleClick: BetaComputerTripleClickConfig? = null,
-    /**
-     * Optional API value serialized in the `type` wire field.
-     */
+    /** Optional API value serialized in the `triple_click` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("triple_click")
+    val tripleClick: BetaComputerTripleClickConfig? = null,
+    /** Optional API value serialized in the `type` wire field. */
     val type: BetaComputerTypeConfig? = null,
-    /**
-     * Optional API value serialized in the `wait` wire field.
-     */
+    /** Optional API value serialized in the `wait` wire field. */
     val wait: BetaComputerWaitConfig? = null,
-    /**
-     * Optional API value serialized in the `zoom` wire field.
-     */
-    val zoom: BetaComputerZoomConfig? = null
+    /** Optional API value serialized in the `zoom` wire field. */
+    val zoom: BetaComputerZoomConfig? = null,
 )
 
-/**
- * ``triple_click``'s config overrides.
- */
+/** ``triple_click``'s config overrides. */
 data class BetaComputerTripleClickConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``type``'s config overrides.
- */
+/** ``type``'s config overrides. */
 data class BetaComputerTypeConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``wait``'s config overrides.
- */
+/** ``wait``'s config overrides. */
 data class BetaComputerWaitConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )
 
-/**
- * ``zoom``'s config overrides.
- */
+/** ``zoom``'s config overrides. */
 data class BetaComputerZoomConfig(
     /**
-     * Defer loading for this member. Must resolve to the same value on every enabled member of the toolset.
+     * Defer loading for this member. Must resolve to the same value on every enabled member of the
+     * toolset.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
     /**
-     * Whether this member is offered to the model. Default is per member, per the toolset's documentation. A member whose enabled resolves false is withheld from the served schema.
+     * Whether this member is offered to the model. Default is per member, per the toolset's
+     * documentation. A member whose enabled resolves false is withheld from the served schema.
      */
-    val enabled: Boolean? = null
+    val enabled: Boolean? = null,
 )

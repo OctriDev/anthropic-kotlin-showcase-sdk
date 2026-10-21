@@ -3,51 +3,143 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaTunnelsCertificatesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Registers a public CA certificate on a tunnel so Anthropic can verify the gateway's server certificate when terminating the inner TLS session. Each tunnel can have at most two non-archived certificates. Send a valid CA certificate in `ca_certificate_pem` and the required `anthropic-beta` header.
+     * Registers a public CA certificate on a tunnel so Anthropic can verify the gateway's server
+     * certificate when terminating the inner TLS session. Each tunnel can have at most two
+     * non-archived certificates. Send a valid CA certificate in `ca_certificate_pem` and the
+     * required `anthropic-beta` header.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's server certificate against this CA when it terminates the inner TLS session. A tunnel holds at most two non-archived certificates.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's
+     * server certificate against this CA when it terminates the inner TLS session. A tunnel holds
+     * at most two non-archived certificates.
      */
-    fun create(tunnelId: String, caCertificatePem: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelCertificate {
-        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.createBetaTunnelsCertificates(clientConfig, tunnelId, caCertificatePem, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun create(
+        tunnelId: String,
+        caCertificatePem: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelCertificate {
+        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates
+            .createBetaTunnelsCertificates(
+                clientConfig,
+                tunnelId,
+                caCertificatePem,
+                anthropicVersion,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest. Archived certificates are excluded by default; use `include_archived` to include them and `page` to continue through the results. Send the required `anthropic-beta` header to use this research-preview API.
+     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest.
+     * Archived certificates are excluded by default; use `include_archived` to include them and
+     * `page` to continue through the results. Send the required `anthropic-beta` header to use this
+     * research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists the certificates registered on a tunnel. Archived certificates are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Lists the certificates registered on a tunnel. Archived certificates are excluded
+     * unless include_archived is set.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.ListBetaTunnelsCertificatesRequest, options: RequestOptions? = null): BetaListTunnelCertificatesResponse {
-        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.listBetaTunnelsCertificates(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.ListBetaTunnelsCertificatesRequest,
+        options: RequestOptions? = null,
+    ): BetaListTunnelCertificatesResponse {
+        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates
+            .listBetaTunnelsCertificates(clientConfig, request, options)
     }
 
     /**
-     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest. Archived certificates are excluded by default; use `include_archived` to include them and `page` to continue through the results. Send the required `anthropic-beta` header to use this research-preview API.
+     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest.
+     * Archived certificates are excluded by default; use `include_archived` to include them and
+     * `page` to continue through the results. Send the required `anthropic-beta` header to use this
+     * research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists the certificates registered on a tunnel. Archived certificates are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Lists the certificates registered on a tunnel. Archived certificates are excluded
+     * unless include_archived is set.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.ListBetaTunnelsCertificatesRequest, options: RequestOptions? = null, yieldFn: (BetaTunnelCertificate) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.listBetaTunnelsCertificatesPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.ListBetaTunnelsCertificatesRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaTunnelCertificate) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates
+            .listBetaTunnelsCertificatesPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves a certificate registered on a tunnel by its identifier. Use `tunnel_id` and `certificate_id` to identify the certificate record, including its fingerprint and archive state. Send the required `anthropic-beta` header to use this research-preview API.
+     * Retrieves a certificate registered on a tunnel by its identifier. Use `tunnel_id` and
+     * `certificate_id` to identify the certificate record, including its fingerprint and archive
+     * state. Send the required `anthropic-beta` header to use this research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Fetches a tunnel certificate by ID.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Fetches a tunnel certificate by ID.
      */
-    fun retrieve(tunnelId: String, certificateId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelCertificate {
-        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.retrieveBetaTunnelsCertificates(clientConfig, tunnelId, certificateId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        tunnelId: String,
+        certificateId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelCertificate {
+        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates
+            .retrieveBetaTunnelsCertificates(
+                clientConfig,
+                tunnelId,
+                certificateId,
+                anthropicVersion,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Archives a tunnel certificate, removing it from the certificates Anthropic trusts for the tunnel while retaining the certificate record. You can archive the last active certificate, but the tunnel will reject MCP traffic until you add another certificate. Send the required `anthropic-beta` header to use this research-preview API.
+     * Archives a tunnel certificate, removing it from the certificates Anthropic trusts for the
+     * tunnel while retaining the certificate record. You can archive the last active certificate,
+     * but the tunnel will reject MCP traffic until you add another certificate. Send the required
+     * `anthropic-beta` header to use this research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Archives a tunnel certificate, removing it from the set Anthropic trusts for the tunnel. The certificate record is retained. Archiving the last non-archived certificate is permitted; the tunnel rejects MCP…
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Archives a tunnel certificate, removing it from the set Anthropic trusts for the
+     * tunnel. The certificate record is retained. Archiving the last non-archived certificate is
+     * permitted; the tunnel rejects MCP…
      */
-    fun archive(tunnelId: String, certificateId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelCertificate {
-        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates.archiveBetaTunnelsCertificates(clientConfig, tunnelId, certificateId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun archive(
+        tunnelId: String,
+        certificateId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelCertificate {
+        return dev.octri.showcase.anthropic.methods.beta.tunnels.BetaTunnelsCertificates
+            .archiveBetaTunnelsCertificates(
+                clientConfig,
+                tunnelId,
+                certificateId,
+                anthropicVersion,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
-
 }

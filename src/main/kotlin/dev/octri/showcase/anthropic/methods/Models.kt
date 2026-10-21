@@ -14,7 +14,6 @@ import dev.octri.showcase.anthropic.Validation
 
 object Models {
 
-
     /** Parameters for [listModels]. */
     data class ListModelsRequest(
         val beforeId: String? = null,
@@ -22,72 +21,150 @@ object Models {
         val limit: Long? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * List available models. The Models API response can be used to determine which models are available for use in the API. More recently released models are listed first.
+     * List available models. The Models API response can be used to determine which models are
+     * available for use in the API. More recently released models are listed first.
      *
-     * @param beforeId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately before this object.
-     * @param afterId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately after this object.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
-     *   `1` to `1000`.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param beforeId ID of the object to use as a cursor for pagination. When provided, returns
+     *   the page of results immediately before this object.
+     * @param afterId ID of the object to use as a cursor for pagination. When provided, returns the
+     *   page of results immediately after this object.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listModels(clientConfig: ClientConfig, request: ListModelsRequest, options: RequestOptions? = null): ListResponseModelInfo {
+    fun listModels(
+        clientConfig: ClientConfig,
+        request: ListModelsRequest,
+        options: RequestOptions? = null,
+    ): ListResponseModelInfo {
         validateListModelsRequest(request)
 
-        return SdkClient.request<ListResponseModelInfo>(SdkClient.RequestSpec("GET", "/v1/models", config = clientConfig, query = mapOf("before_id" to
-    SdkClient.queryValue(request.beforeId, "form", true), "after_id" to
-    SdkClient.queryValue(request.afterId, "form", true), "limit" to SdkClient.queryValue(request.limit, "form", true)), operationId = "listModels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+        return SdkClient.request<ListResponseModelInfo>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/models",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "before_id" to SdkClient.queryValue(request.beforeId, "form", true),
+                            "after_id" to SdkClient.queryValue(request.afterId, "form", true),
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                        ),
+                    operationId = "listModels",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to ErrorResponse::class.java,
+                            "401" to ErrorResponse::class.java,
+                            "403" to ErrorResponse::class.java,
+                            "404" to ErrorResponse::class.java,
+                            "408" to ErrorResponse::class.java,
+                            "409" to ErrorResponse::class.java,
+                            "412" to ErrorResponse::class.java,
+                            "413" to ErrorResponse::class.java,
+                            "429" to ErrorResponse::class.java,
+                            "431" to ErrorResponse::class.java,
+                            "499" to ErrorResponse::class.java,
+                            "500" to ErrorResponse::class.java,
+                            "501" to ErrorResponse::class.java,
+                            "503" to ErrorResponse::class.java,
+                            "504" to ErrorResponse::class.java,
+                            "529" to ErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateListModelsRequest(request: ListModelsRequest) {
         if (request.limit != null) {
-            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "limit",
+                request.limit,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
     }
-
-
-
-
-
 
     /**
-     * Get a specific model. The Models API response can be used to determine information about a specific model or resolve a model alias to a model ID.
+     * Get a specific model. The Models API response can be used to determine information about a
+     * specific model or resolve a model alias to a model ID.
      *
      * @param modelId Model identifier or alias.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveModels(clientConfig: ClientConfig, modelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ModelInfo {
-        return SdkClient.request<ModelInfo>(SdkClient.RequestSpec("GET", "/v1/models/${SdkClient.encodePathSegment(modelId)}", config = clientConfig, operationId = "retrieveModels", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to ErrorResponse::class.java, "401" to ErrorResponse::class.java, "403" to ErrorResponse::class.java, "404" to ErrorResponse::class.java, "408" to ErrorResponse::class.java, "409" to ErrorResponse::class.java, "412" to ErrorResponse::class.java, "413" to ErrorResponse::class.java, "429" to ErrorResponse::class.java, "431" to ErrorResponse::class.java, "499" to ErrorResponse::class.java, "500" to ErrorResponse::class.java, "501" to ErrorResponse::class.java, "503" to ErrorResponse::class.java, "504" to ErrorResponse::class.java, "529" to ErrorResponse::class.java))).data
+    fun retrieveModels(
+        clientConfig: ClientConfig,
+        modelId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): ModelInfo {
+        return SdkClient.request<ModelInfo>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/models/${SdkClient.encodePathSegment(modelId)}",
+                    config = clientConfig,
+                    operationId = "retrieveModels",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to ErrorResponse::class.java,
+                            "401" to ErrorResponse::class.java,
+                            "403" to ErrorResponse::class.java,
+                            "404" to ErrorResponse::class.java,
+                            "408" to ErrorResponse::class.java,
+                            "409" to ErrorResponse::class.java,
+                            "412" to ErrorResponse::class.java,
+                            "413" to ErrorResponse::class.java,
+                            "429" to ErrorResponse::class.java,
+                            "431" to ErrorResponse::class.java,
+                            "499" to ErrorResponse::class.java,
+                            "500" to ErrorResponse::class.java,
+                            "501" to ErrorResponse::class.java,
+                            "503" to ErrorResponse::class.java,
+                            "504" to ErrorResponse::class.java,
+                            "529" to ErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

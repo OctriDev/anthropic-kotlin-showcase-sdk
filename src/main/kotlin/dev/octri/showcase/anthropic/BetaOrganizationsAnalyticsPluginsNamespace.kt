@@ -3,20 +3,41 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsAnalyticsPluginsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get per-plugin install + invocation usage for a given day, with pagination. Returns plugin usage metrics for the organization across Cowork and Claude Code, sorted by plugin name. The `plugin_name` value `third-party` is an aggregate bucket, not a plugin: it collects plugin activity, from either surface, for which the reporting client did not provide a plugin name — so an organization's own plugins can contribute both to their own named rows and to this bucket. Use…
+     * Get per-plugin install + invocation usage for a given day, with pagination. Returns plugin
+     * usage metrics for the organization across Cowork and Claude Code, sorted by plugin name. The
+     * `plugin_name` value `third-party` is an aggregate bucket, not a plugin: it collects plugin
+     * activity, from either surface, for which the reporting client did not provide a plugin name —
+     * so an organization's own plugins can contribute both to their own named rows and to this
+     * bucket. Use…
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationAnalyticsPluginsRequest, options: RequestOptions? = null): BetaAnalyticsPluginsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.listBetaOrganizationAnalyticsPlugins(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationAnalyticsPluginsRequest,
+        options: RequestOptions? = null,
+    ): BetaAnalyticsPluginsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsPlugins
+            .listBetaOrganizationAnalyticsPlugins(clientConfig, request, options)
     }
 
     /**
-     * Get per-plugin install + invocation usage for a given day, with pagination. Returns plugin usage metrics for the organization across Cowork and Claude Code, sorted by plugin name. The `plugin_name` value `third-party` is an aggregate bucket, not a plugin: it collects plugin activity, from either surface, for which the reporting client did not provide a plugin name — so an organization's own plugins can contribute both to their own named rows and to this bucket. Use…
+     * Get per-plugin install + invocation usage for a given day, with pagination. Returns plugin
+     * usage metrics for the organization across Cowork and Claude Code, sorted by plugin name. The
+     * `plugin_name` value `third-party` is an aggregate bucket, not a plugin: it collects plugin
+     * activity, from either surface, for which the reporting client did not provide a plugin name —
+     * so an organization's own plugins can contribute both to their own named rows and to this
+     * bucket. Use…
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationAnalyticsPluginsRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsPluginActivity) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.listBetaOrganizationAnalyticsPluginsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationAnalyticsPluginsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaAnalyticsPluginActivity) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsPlugins
+            .listBetaOrganizationAnalyticsPluginsPaginated(clientConfig, request, options, yieldFn)
     }
-
 }

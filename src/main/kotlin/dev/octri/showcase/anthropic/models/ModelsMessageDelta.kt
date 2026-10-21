@@ -3,54 +3,50 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `MessageDelta` API schema.
- */
+/** Typed representation of the `MessageDelta` API schema. */
 data class MessageDelta(
     /**
-     * Information about the container used in this request. This will be non-null if a container tool (e.g. code execution) was used.
+     * Information about the container used in this request. This will be non-null if a container
+     * tool (e.g. code execution) was used.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("container", required = true) val container: Container?,
+    @com.fasterxml.jackson.annotation.JsonProperty("container", required = true)
+    val container: Container?,
     /**
-     * Structured information about why model output stopped. This is `null` when the `stop_reason` has no additional detail to report.
+     * Structured information about why model output stopped. This is `null` when the `stop_reason`
+     * has no additional detail to report.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_details", required = true) val stopDetails: RefusalStopDetails?,
-    /**
-     * Required API value serialized in the `stop_reason` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true) val stopReason: StopReason?,
-    /**
-     * Required `string` value serialized in the `stop_sequence` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_sequence", required = true) val stopSequence: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_details", required = true)
+    val stopDetails: RefusalStopDetails?,
+    /** Required API value serialized in the `stop_reason` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true)
+    val stopReason: StopReason?,
+    /** Required `string` value serialized in the `stop_sequence` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_sequence", required = true)
+    val stopSequence: String?,
 )
 
-/**
- * Typed representation of the `MessageDeltaUsage` API schema.
- */
+/** Typed representation of the `MessageDeltaUsage` API schema. */
 data class MessageDeltaUsage(
-    /**
-     * The cumulative number of input tokens used to create the cache entry.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens", required = true) val cacheCreationInputTokens: Long?,
-    /**
-     * The cumulative number of input tokens read from the cache.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens", required = true) val cacheReadInputTokens: Long?,
-    /**
-     * The cumulative number of input tokens which were used.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens", required = true) val inputTokens: Long?,
-    /**
-     * The cumulative number of output tokens which were used.
-     */
+    /** The cumulative number of input tokens used to create the cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens", required = true)
+    val cacheCreationInputTokens: Long?,
+    /** The cumulative number of input tokens read from the cache. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens", required = true)
+    val cacheReadInputTokens: Long?,
+    /** The cumulative number of input tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens", required = true)
+    val inputTokens: Long?,
+    /** The cumulative number of output tokens which were used. */
     @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
     /**
-     * Breakdown of output tokens by category. `output_tokens` remains the inclusive, authoritative total used for billing. This object provides a read-only decomposition for observability — for example, how many of the billed output tokens were spent on internal reasoning that may have been summarized before being returned to you.
+     * Breakdown of output tokens by category. `output_tokens` remains the inclusive, authoritative
+     * total used for billing. This object provides a read-only decomposition for observability —
+     * for example, how many of the billed output tokens were spent on internal reasoning that may
+     * have been summarized before being returned to you.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens_details", required = true) val outputTokensDetails: OutputTokensDetails?,
-    /**
-     * The number of server tool requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("server_tool_use", required = true) val serverToolUse: ServerToolUsage?
+    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens_details", required = true)
+    val outputTokensDetails: OutputTokensDetails?,
+    /** The number of server tool requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("server_tool_use", required = true)
+    val serverToolUse: ServerToolUsage?,
 )

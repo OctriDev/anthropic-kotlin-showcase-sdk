@@ -14,12 +14,12 @@ class BetaOrganizationsAnalyticsPluginsNamespace(private val clientConfig: Clien
      */
     fun list(
         request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationsAnalyticsPluginsRequest,
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationAnalyticsPluginsRequest,
         options: RequestOptions? = null,
     ): BetaAnalyticsPluginsResponse {
         return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
             .BetaOrganizationsAnalyticsPlugins
-            .listBetaOrganizationsAnalyticsPlugins(clientConfig, request, options)
+            .listBetaOrganizationAnalyticsPlugins(clientConfig, request, options)
     }
 
     /**
@@ -32,12 +32,12 @@ class BetaOrganizationsAnalyticsPluginsNamespace(private val clientConfig: Clien
      */
     fun listPaginated(
         request:
-            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationsAnalyticsPluginsRequest,
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsPlugins.ListBetaOrganizationAnalyticsPluginsRequest,
         options: RequestOptions? = null,
         yieldFn: (BetaAnalyticsPluginActivity) -> Boolean,
     ) {
         dev.octri.showcase.anthropic.methods.beta.organizations.analytics
             .BetaOrganizationsAnalyticsPlugins
-            .listBetaOrganizationsAnalyticsPluginsPaginated(clientConfig, request, options, yieldFn)
+            .listBetaOrganizationAnalyticsPluginsPaginated(clientConfig, request, options, yieldFn)
     }
 }

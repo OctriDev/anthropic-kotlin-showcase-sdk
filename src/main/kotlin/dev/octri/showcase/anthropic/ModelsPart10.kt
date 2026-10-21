@@ -122,6 +122,12 @@ typealias JsonOutputFormatTypeEnum = dev.octri.showcase.anthropic.models.JsonOut
 
 typealias JsonValue = dev.octri.showcase.anthropic.models.JsonValue
 
+typealias ListBetaOrganizationAnalyticsPluginsParameterItemEnum =
+    dev.octri.showcase.anthropic.models.ListBetaOrganizationAnalyticsPluginsParameterItemEnum
+
+typealias ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum =
+    dev.octri.showcase.anthropic.models.ListBetaOrganizationAnalyticsPluginsParameterVariant0Enum
+
 typealias ListBetaOrganizationsAnalyticsAppsChatProjectsParameterItemEnum =
     dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsAppsChatProjectsParameterItemEnum
 
@@ -136,12 +142,6 @@ typealias ListBetaOrganizationsAnalyticsConnectorsParameterItemEnum =
 
 typealias ListBetaOrganizationsAnalyticsConnectorsParameterVariant0Enum =
     dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsConnectorsParameterVariant0Enum
-
-typealias ListBetaOrganizationsAnalyticsPluginsParameterItemEnum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsPluginsParameterItemEnum
-
-typealias ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum =
-    dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsPluginsParameterVariant0Enum
 
 typealias ListBetaOrganizationsAnalyticsSkillsParameterItemEnum =
     dev.octri.showcase.anthropic.models.ListBetaOrganizationsAnalyticsSkillsParameterItemEnum

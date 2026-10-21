@@ -3,13 +3,21 @@
 
 package dev.octri.showcase.anthropic
 
-
 class CompletionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Legacy] Create a Text Completion. The Text Completions API is a legacy API. We recommend using the \[Messages API going forward. Future models and features will not be compatible with Text Completions. See our migration guide for guidance in migrating from Text Completions to Messages.
+     * Legacy] Create a Text Completion. The Text Completions API is a legacy API. We recommend
+     * using the \[Messages API going forward. Future models and features will not be compatible
+     * with Text Completions. See our migration guide for guidance in migrating from Text
+     * Completions to Messages.
      */
-    fun create(request: dev.octri.showcase.anthropic.methods.Completions.CreateCompletionsRequest, options: RequestOptions? = null): CompletionResponse {
-        return dev.octri.showcase.anthropic.methods.Completions.createCompletions(clientConfig, request, options)
+    fun create(
+        request: dev.octri.showcase.anthropic.methods.Completions.CreateCompletionsRequest,
+        options: RequestOptions? = null,
+    ): CompletionResponse {
+        return dev.octri.showcase.anthropic.methods.Completions.createCompletions(
+            clientConfig,
+            request,
+            options,
+        )
     }
-
 }

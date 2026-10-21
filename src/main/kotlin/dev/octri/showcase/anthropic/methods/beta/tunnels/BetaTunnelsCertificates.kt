@@ -14,32 +14,80 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaTunnelsCertificates {
 
-
     /**
-     * Registers a public CA certificate on a tunnel so Anthropic can verify the gateway's server certificate when terminating the inner TLS session. Each tunnel can have at most two non-archived certificates. Send a valid CA certificate in `ca_certificate_pem` and the required `anthropic-beta` header.
+     * Registers a public CA certificate on a tunnel so Anthropic can verify the gateway's server
+     * certificate when terminating the inner TLS session. Each tunnel can have at most two
+     * non-archived certificates. Send a valid CA certificate in `ca_certificate_pem` and the
+     * required `anthropic-beta` header.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's server certificate against this CA when it terminates the inner TLS session. A tunnel holds at most two non-archived certificates.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's
+     * server certificate against this CA when it terminates the inner TLS session. A tunnel holds
+     * at most two non-archived certificates.
      *
      * @param tunnelId Path parameter tunnel_id
-     * @param caCertificatePem PEM-encoded X.509 CA certificate. Must contain exactly
-     *   one certificate and no private-key material. Maximum 8KB.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param caCertificatePem PEM-encoded X.509 CA certificate. Must contain exactly one
+     *   certificate and no private-key material. Maximum 8KB.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun createBetaTunnelsCertificates(clientConfig: ClientConfig, tunnelId: String, caCertificatePem: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelCertificate {
-        Validation.validateLength("ca_certificate_pem", caCertificatePem, Validation.LengthOpts(max = 8192))
+    fun createBetaTunnelsCertificates(
+        clientConfig: ClientConfig,
+        tunnelId: String,
+        caCertificatePem: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelCertificate {
+        Validation.validateLength(
+            "ca_certificate_pem",
+            caCertificatePem,
+            Validation.LengthOpts(max = 8192),
+        )
 
-        return SdkClient.request<BetaTunnelCertificate>(SdkClient.RequestSpec("POST", "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/certificates?beta=true", config = clientConfig, body = SdkClient.bodyMap("ca_certificate_pem" to (caCertificatePem)), operationId = "createBetaTunnelsCertificates", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaTunnelCertificate>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/certificates?beta=true",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("ca_certificate_pem" to (caCertificatePem)),
+                    operationId = "createBetaTunnelsCertificates",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [listBetaTunnelsCertificates]. */
     data class ListBetaTunnelsCertificatesRequest(
@@ -49,59 +97,114 @@ object BetaTunnelsCertificates {
         val includeArchived: Boolean? = null,
         val anthropicVersion: String? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
     /**
-     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest. Archived certificates are excluded by default; use `include_archived` to include them and `page` to continue through the results. Send the required `anthropic-beta` header to use this research-preview API.
+     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest.
+     * Archived certificates are excluded by default; use `include_archived` to include them and
+     * `page` to continue through the results. Send the required `anthropic-beta` header to use this
+     * research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists the certificates registered on a tunnel. Archived certificates are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Lists the certificates registered on a tunnel. Archived certificates are excluded
+     * unless include_archived is set.
      *
      * @param tunnelId Path parameter tunnel_id
-     * @param limit Maximum number of certificates to return per page. Defaults to
-     *   20, maximum 1000.
-     * @param page Opaque pagination cursor from a previous
-     *   `list_tunnel_certificates` response.
-     * @param includeArchived Whether to include archived certificates in the
-     *   results. Defaults to false.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param limit Maximum number of certificates to return per page. Defaults to 20, maximum 1000.
+     * @param page Opaque pagination cursor from a previous `list_tunnel_certificates` response.
+     * @param includeArchived Whether to include archived certificates in the results. Defaults to
+     *   false.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaTunnelsCertificates(clientConfig: ClientConfig, request: ListBetaTunnelsCertificatesRequest, options: RequestOptions? = null): BetaListTunnelCertificatesResponse {
-        return SdkClient.request<BetaListTunnelCertificatesResponse>(SdkClient.RequestSpec("GET", "/v1/tunnels/${SdkClient.encodePathSegment(request.tunnelId)}/certificates?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "include_archived" to
-    SdkClient.queryValue(request.includeArchived, "form", true)), operationId = "listBetaTunnelsCertificates", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(request.anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun listBetaTunnelsCertificates(
+        clientConfig: ClientConfig,
+        request: ListBetaTunnelsCertificatesRequest,
+        options: RequestOptions? = null,
+    ): BetaListTunnelCertificatesResponse {
+        return SdkClient.request<BetaListTunnelCertificatesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/tunnels/${SdkClient.encodePathSegment(request.tunnelId)}/certificates?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(request.limit, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "include_archived" to
+                                SdkClient.queryValue(request.includeArchived, "form", true),
+                        ),
+                    operationId = "listBetaTunnelsCertificates",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to
+                                SdkClient.headerValue(request.anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest. Archived certificates are excluded by default; use `include_archived` to include them and `page` to continue through the results. Send the required `anthropic-beta` header to use this research-preview API.
+     * Lists certificates registered on a tunnel, ordered by creation time from newest to oldest.
+     * Archived certificates are excluded by default; use `include_archived` to include them and
+     * `page` to continue through the results. Send the required `anthropic-beta` header to use this
+     * research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists the certificates registered on a tunnel. Archived certificates are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Lists the certificates registered on a tunnel. Archived certificates are excluded
+     * unless include_archived is set.
      *
      * @param tunnelId Path parameter tunnel_id
-     * @param limit Maximum number of certificates to return per page. Defaults to
-     *   20, maximum 1000.
-     * @param page Opaque pagination cursor from a previous
-     *   `list_tunnel_certificates` response.
-     * @param includeArchived Whether to include archived certificates in the
-     *   results. Defaults to false.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param limit Maximum number of certificates to return per page. Defaults to 20, maximum 1000.
+     * @param page Opaque pagination cursor from a previous `list_tunnel_certificates` response.
+     * @param includeArchived Whether to include archived certificates in the results. Defaults to
+     *   false.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaTunnelsCertificatesPaginated(clientConfig: ClientConfig, request: ListBetaTunnelsCertificatesRequest, options: RequestOptions? = null, yieldFn: (BetaTunnelCertificate) -> Boolean) {
+    fun listBetaTunnelsCertificatesPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaTunnelsCertificatesRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaTunnelCertificate) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaTunnelsCertificates(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaTunnelsCertificates(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -118,10 +221,16 @@ object BetaTunnelsCertificates {
         val hasMore: Boolean,
     )
 
-    fun listBetaTunnelsCertificatesPages(clientConfig: ClientConfig, request: ListBetaTunnelsCertificatesRequest, options: RequestOptions? = null, yieldPage: (ListBetaTunnelsCertificatesPage) -> Boolean) {
+    fun listBetaTunnelsCertificatesPages(
+        clientConfig: ClientConfig,
+        request: ListBetaTunnelsCertificatesRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaTunnelsCertificatesPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaTunnelsCertificates(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaTunnelsCertificates(clientConfig, request.copy(page = cursor), options)
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -132,52 +241,134 @@ object BetaTunnelsCertificates {
         }
     }
 
-
-
     /**
-     * Retrieves a certificate registered on a tunnel by its identifier. Use `tunnel_id` and `certificate_id` to identify the certificate record, including its fingerprint and archive state. Send the required `anthropic-beta` header to use this research-preview API.
+     * Retrieves a certificate registered on a tunnel by its identifier. Use `tunnel_id` and
+     * `certificate_id` to identify the certificate record, including its fingerprint and archive
+     * state. Send the required `anthropic-beta` header to use this research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Fetches a tunnel certificate by ID.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Fetches a tunnel certificate by ID.
      *
      * @param tunnelId Path parameter tunnel_id
      * @param certificateId Path parameter certificate_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaTunnelsCertificates(clientConfig: ClientConfig, tunnelId: String, certificateId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelCertificate {
-        return SdkClient.request<BetaTunnelCertificate>(SdkClient.RequestSpec("GET", "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/certificates/${SdkClient.encodePathSegment(certificateId)}?beta=true", config = clientConfig, operationId = "retrieveBetaTunnelsCertificates", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaTunnelsCertificates(
+        clientConfig: ClientConfig,
+        tunnelId: String,
+        certificateId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelCertificate {
+        return SdkClient.request<BetaTunnelCertificate>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/certificates/${SdkClient.encodePathSegment(certificateId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaTunnelsCertificates",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Archives a tunnel certificate, removing it from the certificates Anthropic trusts for the tunnel while retaining the certificate record. You can archive the last active certificate, but the tunnel will reject MCP traffic until you add another certificate. Send the required `anthropic-beta` header to use this research-preview API.
+     * Archives a tunnel certificate, removing it from the certificates Anthropic trusts for the
+     * tunnel while retaining the certificate record. You can archive the last active certificate,
+     * but the tunnel will reject MCP traffic until you add another certificate. Send the required
+     * `anthropic-beta` header to use this research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Archives a tunnel certificate, removing it from the set Anthropic trusts for the tunnel. The certificate record is retained. Archiving the last non-archived certificate is permitted; the tunnel rejects MCP…
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Archives a tunnel certificate, removing it from the set Anthropic trusts for the
+     * tunnel. The certificate record is retained. Archiving the last non-archived certificate is
+     * permitted; the tunnel rejects MCP…
      *
      * @param tunnelId Path parameter tunnel_id
      * @param certificateId Path parameter certificate_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun archiveBetaTunnelsCertificates(clientConfig: ClientConfig, tunnelId: String, certificateId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelCertificate {
-        return SdkClient.request<BetaTunnelCertificate>(SdkClient.RequestSpec("POST", "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/certificates/${SdkClient.encodePathSegment(certificateId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaTunnelsCertificates", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-version" to SdkClient.headerValue(anthropicVersion, false), "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java))).data
+    fun archiveBetaTunnelsCertificates(
+        clientConfig: ClientConfig,
+        tunnelId: String,
+        certificateId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelCertificate {
+        return SdkClient.request<BetaTunnelCertificate>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/tunnels/${SdkClient.encodePathSegment(tunnelId)}/certificates/${SdkClient.encodePathSegment(certificateId)}/archive?beta=true",
+                    config = clientConfig,
+                    operationId = "archiveBetaTunnelsCertificates",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-workspace-id" to
+                                SdkClient.headerValue(anthropicWorkspaceId, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

@@ -3,56 +3,137 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsTunnelsCertificatesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. Register a public CA certificate for the…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * Register a public CA certificate for the…
      *
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun create(tunnelId: String, anthropicBeta: List<AnthropicBeta>, caCertificatePem: String, anthropicVersion: String? = null, options: RequestOptions? = null): BetaOrganizationTunnelCertificate {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.createBetaOrganizationsTunnelsCertificates(clientConfig, tunnelId, anthropicBeta, caCertificatePem, anthropicVersion, options)
+    fun create(
+        tunnelId: String,
+        anthropicBeta: List<AnthropicBeta>,
+        caCertificatePem: String,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationTunnelCertificate {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels
+            .BetaOrganizationsTunnelsCertificates
+            .createBetaOrganizationsTunnelsCertificates(
+                clientConfig,
+                tunnelId,
+                anthropicBeta,
+                caCertificatePem,
+                anthropicVersion,
+                options,
+            )
     }
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. List the certificates registered on a…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * List the certificates registered on a…
      *
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.ListBetaOrganizationsTunnelsCertificatesRequest, options: RequestOptions? = null): BetaTunnelCertificateListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.listBetaOrganizationsTunnelsCertificates(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.ListBetaOrganizationsTunnelsCertificatesRequest,
+        options: RequestOptions? = null,
+    ): BetaTunnelCertificateListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels
+            .BetaOrganizationsTunnelsCertificates
+            .listBetaOrganizationsTunnelsCertificates(clientConfig, request, options)
     }
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. List the certificates registered on a…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * List the certificates registered on a…
      *
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.ListBetaOrganizationsTunnelsCertificatesRequest, options: RequestOptions? = null, yieldFn: (BetaOrganizationTunnelCertificate) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.listBetaOrganizationsTunnelsCertificatesPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.ListBetaOrganizationsTunnelsCertificatesRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaOrganizationTunnelCertificate) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.tunnels
+            .BetaOrganizationsTunnelsCertificates
+            .listBetaOrganizationsTunnelsCertificatesPaginated(
+                clientConfig,
+                request,
+                options,
+                yieldFn,
+            )
     }
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. Retrieve a single certificate registered…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * Retrieve a single certificate registered…
      *
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun retrieve(tunnelId: String, certificateId: String, anthropicBeta: List<AnthropicBeta>, anthropicVersion: String? = null, options: RequestOptions? = null): BetaOrganizationTunnelCertificate {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.retrieveBetaOrganizationsTunnelsCertificates(clientConfig, tunnelId, certificateId, anthropicBeta, anthropicVersion, options)
+    fun retrieve(
+        tunnelId: String,
+        certificateId: String,
+        anthropicBeta: List<AnthropicBeta>,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationTunnelCertificate {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels
+            .BetaOrganizationsTunnelsCertificates
+            .retrieveBetaOrganizationsTunnelsCertificates(
+                clientConfig,
+                tunnelId,
+                certificateId,
+                anthropicBeta,
+                anthropicVersion,
+                options,
+            )
     }
 
     /**
-     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use `/v1/tunnels` with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window. Archive a certificate, removing it from…
+     * **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and
+     * will be removed after a migration window. New integrations should use `/v1/tunnels` with the
+     * `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the
+     * `workspace:manage_tunnels` scope. Existing integrations continue to work with the
+     * `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
+     * Archive a certificate, removing it from…
      *
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun archive(tunnelId: String, certificateId: String, anthropicBeta: List<AnthropicBeta>, anthropicVersion: String? = null, options: RequestOptions? = null): BetaOrganizationTunnelCertificate {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels.BetaOrganizationsTunnelsCertificates.archiveBetaOrganizationsTunnelsCertificates(clientConfig, tunnelId, certificateId, anthropicBeta, anthropicVersion, options)
+    fun archive(
+        tunnelId: String,
+        certificateId: String,
+        anthropicBeta: List<AnthropicBeta>,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaOrganizationTunnelCertificate {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.tunnels
+            .BetaOrganizationsTunnelsCertificates
+            .archiveBetaOrganizationsTunnelsCertificates(
+                clientConfig,
+                tunnelId,
+                certificateId,
+                anthropicBeta,
+                anthropicVersion,
+                options,
+            )
     }
-
 }

@@ -3,24 +3,44 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaMessagesNamespace(private val clientConfig: ClientConfig) {
     val batches: BetaMessagesBatchesNamespace
+
     init {
         batches = BetaMessagesBatchesNamespace(clientConfig)
     }
+
     /**
-     * Send a structured list of input messages with text and/or image content, and the model will generate the next message in the conversation. The Messages API can be used for either single queries or stateless multi-turn conversations. Learn more about the Messages API in our user guide
+     * Send a structured list of input messages with text and/or image content, and the model will
+     * generate the next message in the conversation. The Messages API can be used for either single
+     * queries or stateless multi-turn conversations. Learn more about the Messages API in our user
+     * guide
      */
-    fun create(request: dev.octri.showcase.anthropic.methods.beta.BetaMessages.CreateBetaMessagesRequest, options: RequestOptions? = null): BetaMessage {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMessages.createBetaMessages(clientConfig, request, options)
+    fun create(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaMessages.CreateBetaMessagesRequest,
+        options: RequestOptions? = null,
+    ): BetaMessage {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMessages.createBetaMessages(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Count the number of tokens in a Message. The Token Count API can be used to count the number of tokens in a Message, including tools, images, and documents, without creating it. Learn more about token counting in our user guide
+     * Count the number of tokens in a Message. The Token Count API can be used to count the number
+     * of tokens in a Message, including tools, images, and documents, without creating it. Learn
+     * more about token counting in our user guide
      */
-    fun countTokens(request: dev.octri.showcase.anthropic.methods.beta.BetaMessages.CountBetaMessagesTokensRequest, options: RequestOptions? = null): BetaCountMessageTokensResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaMessages.countBetaMessagesTokens(clientConfig, request, options)
+    fun countTokens(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaMessages.CountBetaMessagesTokensRequest,
+        options: RequestOptions? = null,
+    ): BetaCountMessageTokensResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaMessages.countBetaMessagesTokens(
+            clientConfig,
+            request,
+            options,
+        )
     }
-
 }

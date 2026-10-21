@@ -3,32 +3,19 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Effort (reasoning_effort) capability details.
- */
+/** Effort (reasoning_effort) capability details. */
 data class BetaEffortCapability(
-    /**
-     * Whether the model supports high effort level.
-     */
+    /** Whether the model supports high effort level. */
     val high: BetaCapabilitySupport,
-    /**
-     * Whether the model supports low effort level.
-     */
+    /** Whether the model supports low effort level. */
     val low: BetaCapabilitySupport,
-    /**
-     * Whether the model supports max effort level.
-     */
+    /** Whether the model supports max effort level. */
     val max: BetaCapabilitySupport,
-    /**
-     * Whether the model supports medium effort level.
-     */
+    /** Whether the model supports medium effort level. */
     val medium: BetaCapabilitySupport,
-    /**
-     * Whether this capability is supported by the model.
-     */
+    /** Whether this capability is supported by the model. */
     val supported: Boolean,
-    /**
-     * Whether the model supports xhigh effort level.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("xhigh", required = true) val xhigh: BetaCapabilitySupport?
+    /** Whether the model supports xhigh effort level. */
+    @com.fasterxml.jackson.annotation.JsonProperty("xhigh", required = true)
+    val xhigh: BetaCapabilitySupport?,
 )

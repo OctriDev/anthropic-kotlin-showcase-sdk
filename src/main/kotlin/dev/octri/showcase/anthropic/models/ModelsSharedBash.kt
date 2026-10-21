@@ -3,37 +3,38 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BashTool_20250124` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BashTool_20250124` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BashTool20250124(
     /**
      * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
      */
     val name: BashTool20250124NameEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BashTool20250124TypeEnum,
+    /** Optional array value serialized in the `allowed_callers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers")
+    val allowedCallers: List<AllowedCaller>? = null,
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: CacheControlEphemeral? = null,
     /**
-     * Optional array value serialized in the `allowed_callers` wire field.
+     * If true, tool will not be included in initial system prompt. Only loaded when returned via
+     * tool_reference from tool search.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_callers") val allowedCallers: List<AllowedCaller>? = null,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: CacheControlEphemeral? = null,
-    /**
-     * If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading") val deferLoading: Boolean? = null,
-    /**
-     * Optional array value serialized in the `input_examples` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_examples") val inputExamples: List<Map<String, JsonValue>>? = null,
-    /**
-     * When true, guarantees schema validation on tool names and inputs
-     */
-    val strict: Boolean? = null
-) : CountMessageTokensParamsToolsItem, CreateMessageParamsToolsItem, CreateMessageParamsWithoutStreamToolsItem
+    @com.fasterxml.jackson.annotation.JsonProperty("defer_loading")
+    val deferLoading: Boolean? = null,
+    /** Optional array value serialized in the `input_examples` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_examples")
+    val inputExamples: List<Map<String, JsonValue>>? = null,
+    /** When true, guarantees schema validation on tool names and inputs */
+    val strict: Boolean? = null,
+) :
+    CountMessageTokensParamsToolsItem,
+    CreateMessageParamsToolsItem,
+    CreateMessageParamsWithoutStreamToolsItem

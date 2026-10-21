@@ -3,73 +3,206 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaTunnelsNamespace(private val clientConfig: ClientConfig) {
     val certificates: BetaTunnelsCertificatesNamespace
+
     init {
         certificates = BetaTunnelsCertificatesNamespace(clientConfig)
     }
+
     /**
-     * Creates a tunnel and provisions a fresh hostname for routing MCP traffic. Send the required `anthropic-beta` header; the tunnel rejects MCP traffic until you add at least one CA certificate. Creation is not idempotent, and this research-preview API may change without a deprecation period.
+     * Creates a tunnel and provisions a fresh hostname for routing MCP traffic. Send the required
+     * `anthropic-beta` header; the tunnel rejects MCP traffic until you add at least one CA
+     * certificate. Creation is not idempotent, and this research-preview API may change without a
+     * deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel; it is not idempotent. The new tunnel rejects MCP traffic until at least one CA certificate is added.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel; it
+     * is not idempotent. The new tunnel rejects MCP traffic until at least one CA certificate is
+     * added.
      */
-    fun create(anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaTunnel {
-        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.createBetaTunnels(clientConfig, anthropicVersion, anthropicBeta, anthropicWorkspaceId, displayName, options)
+    fun create(
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnel {
+        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.createBetaTunnels(
+            clientConfig,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            displayName,
+            options,
+        )
     }
 
     /**
-     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default. Use `page` to continue through results and `include_archived` to include archived tunnels; this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period.
+     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default.
+     * Use `page` to continue through results and `include_archived` to include archived tunnels;
+     * this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and
+     * may change without a deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels
+     * are excluded unless include_archived is set.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaTunnels.ListBetaTunnelsRequest, options: RequestOptions? = null): BetaListTunnelsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.listBetaTunnels(clientConfig, request, options)
+    fun list(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaTunnels.ListBetaTunnelsRequest,
+        options: RequestOptions? = null,
+    ): BetaListTunnelsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.listBetaTunnels(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default. Use `page` to continue through results and `include_archived` to include archived tunnels; this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period.
+     * Lists tunnels in creation-time order, newest first, excluding archived tunnels by default.
+     * Use `page` to continue through results and `include_archived` to include archived tunnels;
+     * this research-preview API requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and
+     * may change without a deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels are excluded unless include_archived is set.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Lists tunnels. Results are ordered by creation time, newest first; archived tunnels
+     * are excluded unless include_archived is set.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaTunnels.ListBetaTunnelsRequest, options: RequestOptions? = null, yieldFn: (BetaTunnel) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.BetaTunnels.listBetaTunnelsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaTunnels.ListBetaTunnelsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaTunnel) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.BetaTunnels.listBetaTunnelsPaginated(
+            clientConfig,
+            request,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a tunnel by its identifier, including its assigned hostname and archive state. Send the required `anthropic-beta` header to use this research-preview API, which may change without a deprecation period.
+     * Retrieves a tunnel by its identifier, including its assigned hostname and archive state. Send
+     * the required `anthropic-beta` header to use this research-preview API, which may change
+     * without a deprecation period.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Fetches a tunnel by ID.
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Fetches a tunnel by ID.
      */
-    fun retrieve(tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnel {
-        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.retrieveBetaTunnels(clientConfig, tunnelId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        tunnelId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnel {
+        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.retrieveBetaTunnels(
+            clientConfig,
+            tunnelId,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Archives a tunnel, invalidating its token and retiring its hostname. Archiving also archives every non-archived certificate on the tunnel, and repeating the request for an already archived tunnel returns its record unchanged. This action is irreversible; send the required `anthropic-beta` header to use the research-preview API.
+     * Archives a tunnel, invalidating its token and retiring its hostname. Archiving also archives
+     * every non-archived certificate on the tunnel, and repeating the request for an already
+     * archived tunnel returns its record unchanged. This action is irreversible; send the required
+     * `anthropic-beta` header to use the research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Archives a tunnel. Archival is irreversible: every non-archived certificate on the tunnel is archived in the same operation, the hostname is retired and never re-allocated, and the tunnel token is invalidated.…
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Archives a tunnel. Archival is irreversible: every non-archived certificate on the
+     * tunnel is archived in the same operation, the hostname is retired and never re-allocated, and
+     * the tunnel token is invalidated.…
      */
-    fun archive(tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnel {
-        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.archiveBetaTunnels(clientConfig, tunnelId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun archive(
+        tunnelId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnel {
+        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.archiveBetaTunnels(
+            clientConfig,
+            tunnelId,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Reveals the connector token for a tunnel; repeated calls return the same token until it is rotated. Treat the returned token as a credential, and use this POST operation so the value does not appear in intermediary access logs. Send the required `anthropic-beta` header to use the research-preview API.
+     * Reveals the connector token for a tunnel; repeated calls return the same token until it is
+     * rotated. Treat the returned token as a credential, and use this POST operation so the value
+     * does not appear in intermediary access logs. Send the required `anthropic-beta` header to use
+     * the research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Reveals a tunnel's connector token. The value is fetched live on each call; Anthropic does not store it. Repeated calls return the same value until the token is rotated. Exposed as POST so the token does not…
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Reveals a tunnel's connector token. The value is fetched live on each call; Anthropic
+     * does not store it. Repeated calls return the same value until the token is rotated. Exposed
+     * as POST so the token does not…
      */
-    fun revealToken(tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaTunnelToken {
-        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.revealBetaTunnelsToken(clientConfig, tunnelId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, options)
+    fun revealToken(
+        tunnelId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelToken {
+        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.revealBetaTunnelsToken(
+            clientConfig,
+            tunnelId,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Rotates a tunnel's connector token and returns a fresh value, invalidating the current token for new connections. Established connections are not severed, but restart the connector with the new token. Send the required `anthropic-beta` header to use this research-preview API.
+     * Rotates a tunnel's connector token and returns a fresh value, invalidating the current token
+     * for new connections. Established connections are not severed, but restart the connector with
+     * the new token. Send the required `anthropic-beta` header to use this research-preview API.
      *
-     * The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window. Rotates a tunnel's connector token. Rotation invalidates the current token for new connections and returns a fresh value; established connections are not severed. A connector restarted after rotation must use…
+     * The Tunnels API is in research preview. It requires the `anthropic-beta:
+     * mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the
+     * Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration
+     * window. Rotates a tunnel's connector token. Rotation invalidates the current token for new
+     * connections and returns a fresh value; established connections are not severed. A connector
+     * restarted after rotation must use…
      */
-    fun rotateToken(tunnelId: String, anthropicVersion: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, reason: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaTunnelToken {
-        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.rotateBetaTunnelsToken(clientConfig, tunnelId, anthropicVersion, anthropicBeta, anthropicWorkspaceId, reason, options)
+    fun rotateToken(
+        tunnelId: String,
+        anthropicVersion: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        reason: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaTunnelToken {
+        return dev.octri.showcase.anthropic.methods.beta.BetaTunnels.rotateBetaTunnelsToken(
+            clientConfig,
+            tunnelId,
+            anthropicVersion,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            reason,
+            options,
+        )
     }
-
 }

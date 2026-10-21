@@ -3,84 +3,103 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaContextManagementResponse` API schema.
- */
+/** Typed representation of the `BetaContextManagementResponse` API schema. */
 data class BetaContextManagementResponse(
-    /**
-     * The original token count before context management was applied
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("original_input_tokens") val originalInputTokens: Long
+    /** The original token count before context management was applied */
+    @com.fasterxml.jackson.annotation.JsonProperty("original_input_tokens")
+    val originalInputTokens: Long
 )
 
-/**
- * Typed representation of the `BetaCountMessageTokensParams` API schema.
- */
+/** Typed representation of the `BetaCountMessageTokensParams` API schema. */
 data class BetaCountMessageTokensParams(
     /**
-     * Input messages. Our models are trained to operate on alternating `user` and `assistant` conversational turns. When creating a new `Message`, you specify the prior conversational turns with the `messages` parameter, and the model then generates the next `Message` in the conversation. Consecutive `user` or `assistant` turns in your request will be combined into a single turn. Each input message must be an object with a `role` and `content`. You can specify a single `user`-role…
+     * Input messages. Our models are trained to operate on alternating `user` and `assistant`
+     * conversational turns. When creating a new `Message`, you specify the prior conversational
+     * turns with the `messages` parameter, and the model then generates the next `Message` in the
+     * conversation. Consecutive `user` or `assistant` turns in your request will be combined into a
+     * single turn. Each input message must be an object with a `role` and `content`. You can
+     * specify a single `user`-role…
      */
     val messages: List<BetaInputMessage>,
-    /**
-     * The model that will complete your prompt. See models for additional details and options.
-     */
+    /** The model that will complete your prompt. See models for additional details and options. */
     val model: Model,
     /**
-     * Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+     * Top-level cache control automatically applies a cache_control marker to the last cacheable
+     * block in the request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
     /**
-     * Context management configuration. This allows you to control how Claude manages context across multiple requests, such as whether to clear function results or not.
+     * Context management configuration. This allows you to control how Claude manages context
+     * across multiple requests, such as whether to clear function results or not.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("context_management") val contextManagement: BetaContextManagementConfig? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("context_management")
+    val contextManagement: BetaContextManagementConfig? = null,
+    /** MCP servers to be utilized in this request */
+    @com.fasterxml.jackson.annotation.JsonProperty("mcp_servers")
+    val mcpServers: List<BetaRequestMCPServerURLDefinition>? = null,
+    /** Configuration options for the model's output, such as the output format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("output_config")
+    val outputConfig: BetaOutputConfig? = null,
     /**
-     * MCP servers to be utilized in this request
+     * Deprecated: Use `output_config.format` instead. See structured outputs A schema to specify
+     * Claude's output format in responses. This parameter will be removed in a future release.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("mcp_servers") val mcpServers: List<BetaRequestMCPServerURLDefinition>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("output_format")
+    val outputFormat: BetaJsonOutputFormat? = null,
     /**
-     * Configuration options for the model's output, such as the output format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_config") val outputConfig: BetaOutputConfig? = null,
-    /**
-     * Deprecated: Use `output_config.format` instead. See structured outputs A schema to specify Claude's output format in responses. This parameter will be removed in a future release.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_format") val outputFormat: BetaJsonOutputFormat? = null,
-    /**
-     * The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+     * The inference speed mode for this request. `"fast"` enables high output-tokens-per-second
+     * inference.
      */
     val speed: BetaSpeed? = null,
     /**
-     * System prompt. A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our guide to system prompts.
+     * System prompt. A system prompt is a way of providing context and instructions to Claude, such
+     * as specifying a particular goal or role. See our guide to system prompts.
      */
     val system: Any? = null,
     /**
-     * Configuration for enabling Claude's extended thinking. When enabled, responses include `thinking` content blocks showing Claude's thinking process before the final answer. Requires a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit. See extended thinking for details.
+     * Configuration for enabling Claude's extended thinking. When enabled, responses include
+     * `thinking` content blocks showing Claude's thinking process before the final answer. Requires
+     * a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit. See extended
+     * thinking for details.
      */
     val thinking: BetaThinkingConfigParam? = null,
     /**
-     * How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
+     * How the model should use the provided tools. The model can use a specific tool, any available
+     * tool, decide by itself, or not use tools at all.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("tool_choice") val toolChoice: BetaToolChoice? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("tool_choice")
+    val toolChoice: BetaToolChoice? = null,
     /**
-     * Definitions of tools that the model may use. If you include `tools` in your API request, the model may return `tool_use` content blocks that represent the model's use of those tools. You can then run those tools using the tool input generated by the model and then optionally return results back to the model using `tool_result` content blocks. There are two types of tools: **client tools** and **server tools**. The behavior described below applies to client tools. For server…
+     * Definitions of tools that the model may use. If you include `tools` in your API request, the
+     * model may return `tool_use` content blocks that represent the model's use of those tools. You
+     * can then run those tools using the tool input generated by the model and then optionally
+     * return results back to the model using `tool_result` content blocks. There are two types of
+     * tools: **client tools** and **server tools**. The behavior described below applies to client
+     * tools. For server…
      */
-    val tools: List<BetaCountMessageTokensParamsToolsItem>? = null
+    val tools: List<BetaCountMessageTokensParamsToolsItem>? = null,
 )
 
-/**
- * Required API value serialized in the `tools[]` wire field.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = BetaCountMessageTokensParamsToolsItem.Deserializer::class)
+/** Required API value serialized in the `tools[]` wire field. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = BetaCountMessageTokensParamsToolsItem.Deserializer::class
+)
 sealed interface BetaCountMessageTokensParamsToolsItem {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<BetaCountMessageTokensParamsToolsItem>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<BetaCountMessageTokensParamsToolsItem>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): BetaCountMessageTokensParamsToolsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType = BetaCountMessageTokensParamsToolsItemOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
+            val ownedType =
+                BetaCountMessageTokensParamsToolsItemOwnedTypes.firstOrNull { (keys, _) ->
+                        keys.any(node::has)
+                    }
+                    ?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -88,34 +107,69 @@ sealed interface BetaCountMessageTokensParamsToolsItem {
                     // Tried with the other branches below.
                 }
             }
-            val objectTypes: List<Class<out BetaCountMessageTokensParamsToolsItem>> = listOf(BetaTool::class.java, BetaBashTool20241022::class.java, BetaBashTool20250124::class.java, BetaCodeExecutionTool20250522::class.java, BetaCodeExecutionTool20250825::class.java, BetaCodeExecutionTool20260120::class.java, BetaCodeExecutionTool20260521::class.java, BetaBrowserToolset20260801::class.java, BetaComputerUseTool20241022::class.java, BetaMemoryTool20250818::class.java, BetaComputerUseTool20250124::class.java, BetaTextEditor20241022::class.java, BetaComputerUseTool20251124::class.java, BetaComputerToolset20260801::class.java, BetaTextEditor20250124::class.java, BetaTextEditor20250429::class.java, BetaTextEditor20250728::class.java, BetaWebSearchTool20250305::class.java, BetaWebFetchTool20250910::class.java, BetaWebSearchTool20260209::class.java, BetaWebFetchTool20260209::class.java, BetaWebFetchTool20260309::class.java, BetaWebSearchTool20260318::class.java, BetaWebFetchTool20260318::class.java, BetaAdvisorTool20260301::class.java, BetaToolSearchToolBM2520251119::class.java, BetaToolSearchToolRegex20251119::class.java, BetaMCPToolset::class.java)
-            dev.octri.showcase.anthropic.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
+            val objectTypes: List<Class<out BetaCountMessageTokensParamsToolsItem>> =
+                listOf(
+                    BetaTool::class.java,
+                    BetaBashTool20241022::class.java,
+                    BetaBashTool20250124::class.java,
+                    BetaCodeExecutionTool20250522::class.java,
+                    BetaCodeExecutionTool20250825::class.java,
+                    BetaCodeExecutionTool20260120::class.java,
+                    BetaCodeExecutionTool20260521::class.java,
+                    BetaBrowserToolset20260801::class.java,
+                    BetaComputerUseTool20241022::class.java,
+                    BetaMemoryTool20250818::class.java,
+                    BetaComputerUseTool20250124::class.java,
+                    BetaTextEditor20241022::class.java,
+                    BetaComputerUseTool20251124::class.java,
+                    BetaComputerToolset20260801::class.java,
+                    BetaTextEditor20250124::class.java,
+                    BetaTextEditor20250429::class.java,
+                    BetaTextEditor20250728::class.java,
+                    BetaWebSearchTool20250305::class.java,
+                    BetaWebFetchTool20250910::class.java,
+                    BetaWebSearchTool20260209::class.java,
+                    BetaWebFetchTool20260209::class.java,
+                    BetaWebFetchTool20260309::class.java,
+                    BetaWebSearchTool20260318::class.java,
+                    BetaWebFetchTool20260318::class.java,
+                    BetaAdvisorTool20260301::class.java,
+                    BetaToolSearchToolBM2520251119::class.java,
+                    BetaToolSearchToolRegex20251119::class.java,
+                    BetaMCPToolset::class.java,
+                )
+            dev.octri.showcase.anthropic.sdkObjectBranch(mapper, node, objectTypes)?.let {
+                return it
+            }
             return when {
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, BetaCountMessageTokensParamsToolsItem::class.java, "no BetaCountMessageTokensParamsToolsItem branch accepts this payload")
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        BetaCountMessageTokensParamsToolsItem::class.java,
+                        "no BetaCountMessageTokensParamsToolsItem branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-internal val BetaCountMessageTokensParamsToolsItemOwnedTypes: List<Pair<List<String>, Class<out BetaCountMessageTokensParamsToolsItem>>> = listOf(
-    listOf("description", "input_schema", "eager_input_streaming") to BetaTool::class.java,
-    listOf("enable_zoom") to BetaComputerUseTool20251124::class.java,
-    listOf("max_characters") to BetaTextEditor20250728::class.java,
-    listOf("caching", "max_tokens", "model") to BetaAdvisorTool20260301::class.java,
-    listOf("default_config", "mcp_server_name") to BetaMCPToolset::class.java,
-)
+internal val BetaCountMessageTokensParamsToolsItemOwnedTypes:
+    List<Pair<List<String>, Class<out BetaCountMessageTokensParamsToolsItem>>> =
+    listOf(
+        listOf("description", "input_schema", "eager_input_streaming") to BetaTool::class.java,
+        listOf("enable_zoom") to BetaComputerUseTool20251124::class.java,
+        listOf("max_characters") to BetaTextEditor20250728::class.java,
+        listOf("caching", "max_tokens", "model") to BetaAdvisorTool20260301::class.java,
+        listOf("default_config", "mcp_server_name") to BetaMCPToolset::class.java,
+    )
 
-/**
- * Typed representation of the `BetaCountMessageTokensResponse` API schema.
- */
+/** Typed representation of the `BetaCountMessageTokensResponse` API schema. */
 data class BetaCountMessageTokensResponse(
-    /**
-     * Information about context management applied to the message.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("context_management", required = true) val contextManagement: BetaContextManagementResponse?,
+    /** Information about context management applied to the message. */
+    @com.fasterxml.jackson.annotation.JsonProperty("context_management", required = true)
+    val contextManagement: BetaContextManagementResponse?,
     /**
      * The total number of tokens across the provided list of messages, system prompt, and tools.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long
+    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens") val inputTokens: Long,
 )

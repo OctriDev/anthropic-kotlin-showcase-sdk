@@ -3,49 +3,67 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `ResponseServerToolUseBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ResponseServerToolUseBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseServerToolUseBlock(
-    /**
-     * Required API value serialized in the `caller` wire field.
-     */
+    /** Required API value serialized in the `caller` wire field. */
     val caller: ResponseServerToolUseBlockCaller,
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
+    /** Required `string` value serialized in the `id` wire field. */
     val id: String,
-    /**
-     * Required object value serialized in the `input` wire field.
-     */
+    /** Required object value serialized in the `input` wire field. */
     val input: Map<String, Any>,
-    /**
-     * Required enumerated value serialized in the `name` wire field.
-     */
+    /** Required enumerated value serialized in the `name` wire field. */
     val name: ResponseServerToolUseBlockNameEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseServerToolUseBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseServerToolUseBlockTypeEnum,
 ) : ContentBlock, ContentBlockStartEventContentBlock
 
-/**
- * Required API value serialized in the `caller` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownResponseServerToolUseBlockCaller::class)
+/** Required API value serialized in the `caller` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownResponseServerToolUseBlockCaller::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = DirectCaller::class, name = "direct"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ServerToolCaller::class, name = "code_execution_20250825"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ServerToolCaller20260120::class, name = "code_execution_20260120")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = DirectCaller::class,
+        name = "direct",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ServerToolCaller::class,
+        name = "code_execution_20250825",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ServerToolCaller20260120::class,
+        name = "code_execution_20260120",
+    ),
 )
 sealed interface ResponseServerToolUseBlockCaller
 
-/** A [ResponseServerToolUseBlockCaller] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownResponseServerToolUseBlockCaller @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [ResponseServerToolUseBlockCaller] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownResponseServerToolUseBlockCaller
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : ResponseServerToolUseBlockCaller {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

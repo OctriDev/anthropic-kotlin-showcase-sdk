@@ -3,228 +3,205 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `ResponseCharLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ResponseCharLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseCharLocationCitation(
-    /**
-     * Required `string` value serialized in the `cited_text` wire field.
-     */
+    /** Required `string` value serialized in the `cited_text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /**
-     * Required `integer` value serialized in the `document_index` wire field.
-     */
+    /** Required `integer` value serialized in the `document_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("document_index") val documentIndex: Long,
-    /**
-     * Required `string` value serialized in the `document_title` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true) val documentTitle: String?,
-    /**
-     * Required `integer` value serialized in the `end_char_index` wire field.
-     */
+    /** Required `string` value serialized in the `document_title` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true)
+    val documentTitle: String?,
+    /** Required `integer` value serialized in the `end_char_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("end_char_index") val endCharIndex: Long,
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id", required = true) val fileId: String?,
-    /**
-     * Required `integer` value serialized in the `start_char_index` wire field.
-     */
+    /** Required `integer` value serialized in the `start_char_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_char_index") val startCharIndex: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseCharLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseCharLocationCitationTypeEnum,
 ) : CitationsDeltaCitation, ResponseTextBlockCitationsItem
 
-/**
- * Typed representation of the `ResponseCitationsConfig` API schema.
- */
+/** Typed representation of the `ResponseCitationsConfig` API schema. */
 data class ResponseCitationsConfig(
-    /**
-     * Required `boolean` value serialized in the `enabled` wire field.
-     */
+    /** Required `boolean` value serialized in the `enabled` wire field. */
     val enabled: Boolean
 )
 
-/**
- * Response model for a file uploaded to the container.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Response model for a file uploaded to the container. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseContainerUploadBlock(
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id") val fileId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseContainerUploadBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseContainerUploadBlockTypeEnum,
 ) : ContentBlock, ContentBlockStartEventContentBlock
 
-/**
- * Typed representation of the `ResponseContentBlockLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ResponseContentBlockLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseContentBlockLocationCitation(
     /**
-     * The full text of the cited block range, concatenated. Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+     * The full text of the cited block range, concatenated. Always equals the contents of
+     * `content[start_block_index:end_block_index]` joined together. The text block is the minimal
+     * citable unit; this field is never a substring of a single block. Not counted toward output
+     * tokens, and not counted toward input tokens when sent back in subsequent turns.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /**
-     * Required `integer` value serialized in the `document_index` wire field.
-     */
+    /** Required `integer` value serialized in the `document_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("document_index") val documentIndex: Long,
+    /** Required `string` value serialized in the `document_title` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true)
+    val documentTitle: String?,
     /**
-     * Required `string` value serialized in the `document_title` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true) val documentTitle: String?,
-    /**
-     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always
+     * greater than `start_block_index`; a single-block citation has `end_block_index =
+     * start_block_index + 1`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_block_index") val endBlockIndex: Long,
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id", required = true) val fileId: String?,
-    /**
-     * 0-based index of the first cited block in the source's `content` array.
-     */
+    /** 0-based index of the first cited block in the source's `content` array. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_block_index") val startBlockIndex: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseContentBlockLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseContentBlockLocationCitationTypeEnum,
 ) : CitationsDeltaCitation, ResponseTextBlockCitationsItem
 
-/**
- * Code execution result with encrypted stdout for PFC + web_search results.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Code execution result with encrypted stdout for PFC + web_search results. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseEncryptedCodeExecutionResultBlock(
-    /**
-     * Required array value serialized in the `content` wire field.
-     */
+    /** Required array value serialized in the `content` wire field. */
     val content: List<ResponseCodeExecutionOutputBlock>,
-    /**
-     * Required `string` value serialized in the `encrypted_stdout` wire field.
-     */
+    /** Required `string` value serialized in the `encrypted_stdout` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("encrypted_stdout") val encryptedStdout: String,
-    /**
-     * Required `integer` value serialized in the `return_code` wire field.
-     */
+    /** Required `integer` value serialized in the `return_code` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("return_code") val returnCode: Long,
-    /**
-     * Required `string` value serialized in the `stderr` wire field.
-     */
+    /** Required `string` value serialized in the `stderr` wire field. */
     val stderr: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseEncryptedCodeExecutionResultBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseEncryptedCodeExecutionResultBlockTypeEnum,
 ) : ResponseCodeExecutionToolResultBlockContent
 
-/**
- * Typed representation of the `ResponsePageLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ResponsePageLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponsePageLocationCitation(
-    /**
-     * Required `string` value serialized in the `cited_text` wire field.
-     */
+    /** Required `string` value serialized in the `cited_text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
-    /**
-     * Required `integer` value serialized in the `document_index` wire field.
-     */
+    /** Required `integer` value serialized in the `document_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("document_index") val documentIndex: Long,
-    /**
-     * Required `string` value serialized in the `document_title` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true) val documentTitle: String?,
-    /**
-     * Required `integer` value serialized in the `end_page_number` wire field.
-     */
+    /** Required `string` value serialized in the `document_title` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("document_title", required = true)
+    val documentTitle: String?,
+    /** Required `integer` value serialized in the `end_page_number` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("end_page_number") val endPageNumber: Long,
-    /**
-     * Required `string` value serialized in the `file_id` wire field.
-     */
+    /** Required `string` value serialized in the `file_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_id", required = true) val fileId: String?,
-    /**
-     * Required `integer` value serialized in the `start_page_number` wire field.
-     */
+    /** Required `integer` value serialized in the `start_page_number` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_page_number") val startPageNumber: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponsePageLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponsePageLocationCitationTypeEnum,
 ) : CitationsDeltaCitation, ResponseTextBlockCitationsItem
 
-/**
- * Typed representation of the `ResponseRedactedThinkingBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ResponseRedactedThinkingBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseRedactedThinkingBlock(
     /**
-     * The contents of this redacted thinking block, returned when portions of the model's thinking were safety-redacted. This field is opaque and encrypted, with no readable content. Pass `redacted_thinking` blocks back to the API unchanged when continuing a multi-turn conversation. See extended thinking for details.
+     * The contents of this redacted thinking block, returned when portions of the model's thinking
+     * were safety-redacted. This field is opaque and encrypted, with no readable content. Pass
+     * `redacted_thinking` blocks back to the API unchanged when continuing a multi-turn
+     * conversation. See extended thinking for details.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseRedactedThinkingBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseRedactedThinkingBlockTypeEnum,
 ) : ContentBlock, ContentBlockStartEventContentBlock
 
-/**
- * Typed representation of the `ResponseSearchResultLocationCitation` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ResponseSearchResultLocationCitation` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseSearchResultLocationCitation(
     /**
-     * The full text of the cited block range, concatenated. Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+     * The full text of the cited block range, concatenated. Always equals the contents of
+     * `content[start_block_index:end_block_index]` joined together. The text block is the minimal
+     * citable unit; this field is never a substring of a single block. Not counted toward output
+     * tokens, and not counted toward input tokens when sent back in subsequent turns.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("cited_text") val citedText: String,
     /**
-     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+     * Exclusive 0-based end index of the cited block range in the source's `content` array. Always
+     * greater than `start_block_index`; a single-block citation has `end_block_index =
+     * start_block_index + 1`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_block_index") val endBlockIndex: Long,
     /**
-     * 0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results. Counted separately from `document_index`; server-side web search results are not included in this count.
+     * 0-based index of the cited search result among all `search_result` content blocks in the
+     * request, in the order they appear across messages and tool results. Counted separately from
+     * `document_index`; server-side web search results are not included in this count.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("search_result_index") val searchResultIndex: Long,
-    /**
-     * Required `string` value serialized in the `source` wire field.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("search_result_index")
+    val searchResultIndex: Long,
+    /** Required `string` value serialized in the `source` wire field. */
     val source: String,
-    /**
-     * 0-based index of the first cited block in the source's `content` array.
-     */
+    /** 0-based index of the first cited block in the source's `content` array. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_block_index") val startBlockIndex: Long,
-    /**
-     * Required `string` value serialized in the `title` wire field.
-     */
+    /** Required `string` value serialized in the `title` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseSearchResultLocationCitationTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseSearchResultLocationCitationTypeEnum,
 ) : CitationsDeltaCitation, ResponseTextBlockCitationsItem
 
-/**
- * Typed representation of the `ResponseThinkingBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ResponseThinkingBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ResponseThinkingBlock(
     /**
-     * A value used to verify that this thinking block was generated by Claude when it is passed back to the API. This is an opaque field and should not be interpreted or parsed. When passing thinking blocks back to the API (required when using tools with extended thinking), pass them back exactly as received, with this field intact. See extended thinking for details.
+     * A value used to verify that this thinking block was generated by Claude when it is passed
+     * back to the API. This is an opaque field and should not be interpreted or parsed. When
+     * passing thinking blocks back to the API (required when using tools with extended thinking),
+     * pass them back exactly as received, with this field intact. See extended thinking for
+     * details.
      */
     val signature: String,
-    /**
-     * The text of Claude's thinking process for this block.
-     */
+    /** The text of Claude's thinking process for this block. */
     val thinking: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ResponseThinkingBlockTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ResponseThinkingBlockTypeEnum,
 ) : ContentBlock, ContentBlockStartEventContentBlock

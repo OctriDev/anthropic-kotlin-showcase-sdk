@@ -3,41 +3,76 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsRbacRolesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise organizations only.
+     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise
+     * organizations only.
      */
-    fun list(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaRbacRoleList {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles.listBetaOrganizationsRbacRoles(clientConfig, limit, page, options)
+    fun list(
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaRbacRoleList {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles
+            .listBetaOrganizationsRbacRoles(clientConfig, limit, page, options)
     }
 
     /**
-     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise organizations only.
+     * List RBAC Roles in the organization. The RBAC Roles API is available to Claude Enterprise
+     * organizations only.
      */
-    fun listPaginated(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaRbacRole) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles.listBetaOrganizationsRbacRolesPaginated(clientConfig, limit, page, options, yieldFn)
+    fun listPaginated(
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaRbacRole) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles
+            .listBetaOrganizationsRbacRolesPaginated(clientConfig, limit, page, options, yieldFn)
     }
 
     /**
-     * Retrieve an RBAC Role by ID. The RBAC Roles API is available to Claude Enterprise organizations only.
+     * Retrieve an RBAC Role by ID. The RBAC Roles API is available to Claude Enterprise
+     * organizations only.
      */
     fun retrieve(roleId: String, options: RequestOptions? = null): BetaRbacRole {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles.retrieveBetaOrganizationsRbacRoles(clientConfig, roleId, options)
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles
+            .retrieveBetaOrganizationsRbacRoles(clientConfig, roleId, options)
     }
 
     /**
-     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude Enterprise organizations only.
+     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude
+     * Enterprise organizations only.
      */
-    fun permissions(roleId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaRbacRolePermissionList {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles.permissionsBetaOrganizationsRbacRoles(clientConfig, roleId, limit, page, options)
+    fun permissions(
+        roleId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaRbacRolePermissionList {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles
+            .permissionsBetaOrganizationsRbacRoles(clientConfig, roleId, limit, page, options)
     }
 
     /**
-     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude Enterprise organizations only.
+     * List the permissions an RBAC Role grants. The RBAC Roles API is available to Claude
+     * Enterprise organizations only.
      */
-    fun permissionsPaginated(roleId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaRbacRolePermission) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles.permissionsBetaOrganizationsRbacRolesPaginated(clientConfig, roleId, limit, page, options, yieldFn)
+    fun permissionsPaginated(
+        roleId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaRbacRolePermission) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsRbacRoles
+            .permissionsBetaOrganizationsRbacRolesPaginated(
+                clientConfig,
+                roleId,
+                limit,
+                page,
+                options,
+                yieldFn,
+            )
     }
-
 }

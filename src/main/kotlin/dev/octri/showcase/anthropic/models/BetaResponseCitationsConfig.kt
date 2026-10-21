@@ -3,12 +3,8 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaResponseCitationsConfig` API schema.
- */
+/** Typed representation of the `BetaResponseCitationsConfig` API schema. */
 data class BetaResponseCitationsConfig(
-    /**
-     * Required `boolean` value serialized in the `enabled` wire field.
-     */
+    /** Required `boolean` value serialized in the `enabled` wire field. */
     val enabled: Boolean
 )

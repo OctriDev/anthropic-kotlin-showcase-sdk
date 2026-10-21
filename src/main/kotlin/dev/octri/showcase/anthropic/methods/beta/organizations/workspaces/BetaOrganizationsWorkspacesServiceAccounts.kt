@@ -16,48 +16,117 @@ import dev.octri.showcase.anthropic.Validation
 
 object BetaOrganizationsWorkspacesServiceAccounts {
 
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List the service accounts that are members of a workspace. Each entry includes the service account's `workspace_role`. Use `limit` and the `next_page` cursor to paginate. Archived workspaces return 400; use `GET /service_accounts/{id}/workspaces` to audit memberships…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List the service accounts that are members of a workspace.
+     * Each entry includes the service account's `workspace_role`. Use `limit` and the `next_page`
+     * cursor to paginate. Archived workspaces return 400; use `GET
+     * /service_accounts/{id}/workspaces` to audit memberships…
      *
      * @param workspaceId ID of the workspace.
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsWorkspacesServiceAccounts(clientConfig: ClientConfig, workspaceId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMemberListResponse {
+    fun listBetaOrganizationsWorkspacesServiceAccounts(
+        clientConfig: ClientConfig,
+        workspaceId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccountWorkspaceMemberListResponse {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 100.0))
-}
+        }
 
-        return SdkClient.request<BetaServiceAccountWorkspaceMemberListResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "listBetaOrganizationsWorkspacesServiceAccounts", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+        return SdkClient.request<BetaServiceAccountWorkspaceMemberListResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts?beta=true",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "listBetaOrganizationsWorkspacesServiceAccounts",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List the service accounts that are members of a workspace. Each entry includes the service account's `workspace_role`. Use `limit` and the `next_page` cursor to paginate. Archived workspaces return 400; use `GET /service_accounts/{id}/workspaces` to audit memberships…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List the service accounts that are members of a workspace.
+     * Each entry includes the service account's `workspace_role`. Use `limit` and the `next_page`
+     * cursor to paginate. Archived workspaces return 400; use `GET
+     * /service_accounts/{id}/workspaces` to audit memberships…
      *
      * @param workspaceId ID of the workspace.
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun listBetaOrganizationsWorkspacesServiceAccountsPaginated(clientConfig: ClientConfig, workspaceId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldFn: (BetaServiceAccountWorkspaceMember) -> Boolean) {
+    fun listBetaOrganizationsWorkspacesServiceAccountsPaginated(
+        clientConfig: ClientConfig,
+        workspaceId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaServiceAccountWorkspaceMember) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaOrganizationsWorkspacesServiceAccounts(clientConfig, workspaceId, limit, cursor, anthropicBeta, anthropicVersion, options)
+            val page =
+                listBetaOrganizationsWorkspacesServiceAccounts(
+                    clientConfig,
+                    workspaceId,
+                    limit,
+                    cursor,
+                    anthropicBeta,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -74,106 +143,292 @@ object BetaOrganizationsWorkspacesServiceAccounts {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsWorkspacesServiceAccountsPages(clientConfig: ClientConfig, workspaceId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsWorkspacesServiceAccountsPage) -> Boolean) {
+    fun listBetaOrganizationsWorkspacesServiceAccountsPages(
+        clientConfig: ClientConfig,
+        workspaceId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaOrganizationsWorkspacesServiceAccountsPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaOrganizationsWorkspacesServiceAccounts(clientConfig, workspaceId, limit, cursor, anthropicBeta, anthropicVersion, options)
+            val page =
+                listBetaOrganizationsWorkspacesServiceAccounts(
+                    clientConfig,
+                    workspaceId,
+                    limit,
+                    cursor,
+                    anthropicBeta,
+                    anthropicVersion,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
             val hasMore = nextCursor != null
-            if (!yieldPage(ListBetaOrganizationsWorkspacesServiceAccountsPage(page, items, hasMore))) return
+            if (
+                !yieldPage(ListBetaOrganizationsWorkspacesServiceAccountsPage(page, items, hasMore))
+            )
+                return
             if (!hasMore) return
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
 
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Add a service account to a workspace with the given `workspace_role`. The role determines what the service account can do in the workspace and which workspace-scoped permissions it can be granted when authenticating through federation. Every service account is already…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Add a service account to a workspace with the given
+     * `workspace_role`. The role determines what the service account can do in the workspace and
+     * which workspace-scoped permissions it can be granted when authenticating through federation.
+     * Every service account is already…
      *
      * @param workspaceId ID of the workspace.
      * @param serviceAccountId Tagged service account ID to add.
      * @param workspaceRole Role to assign to the service account in this workspace.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun createBetaOrganizationsWorkspacesServiceAccounts(clientConfig: ClientConfig, workspaceId: String, serviceAccountId: String, workspaceRole: BetaNoBillingWorkspaceRoleSchema, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMember {
-        return SdkClient.request<BetaServiceAccountWorkspaceMember>(SdkClient.RequestSpec("POST", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts?beta=true", config = clientConfig, body = SdkClient.bodyMap("service_account_id" to (serviceAccountId), "workspace_role" to (workspaceRole)), operationId = "createBetaOrganizationsWorkspacesServiceAccounts", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun createBetaOrganizationsWorkspacesServiceAccounts(
+        clientConfig: ClientConfig,
+        workspaceId: String,
+        serviceAccountId: String,
+        workspaceRole: BetaNoBillingWorkspaceRoleSchema,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccountWorkspaceMember {
+        return SdkClient.request<BetaServiceAccountWorkspaceMember>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts?beta=true",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "service_account_id" to (serviceAccountId),
+                            "workspace_role" to (workspaceRole),
+                        ),
+                    operationId = "createBetaOrganizationsWorkspacesServiceAccounts",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Retrieve a service account's membership in a workspace. Returns the membership record, including the service account's `workspace_role` in this workspace. Archived workspaces return 400. For the default workspace, returns the implicit (`implicit: true`) membership…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Retrieve a service account's membership in a workspace.
+     * Returns the membership record, including the service account's `workspace_role` in this
+     * workspace. Archived workspaces return 400. For the default workspace, returns the implicit
+     * (`implicit: true`) membership…
      *
      * @param workspaceId ID of the workspace.
      * @param serviceAccountId ID of the service account.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun retrieveBetaOrganizationsWorkspacesServiceAccounts(clientConfig: ClientConfig, workspaceId: String, serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMember {
-        return SdkClient.request<BetaServiceAccountWorkspaceMember>(SdkClient.RequestSpec("GET", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts/${SdkClient.encodePathSegment(serviceAccountId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsWorkspacesServiceAccounts", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun retrieveBetaOrganizationsWorkspacesServiceAccounts(
+        clientConfig: ClientConfig,
+        workspaceId: String,
+        serviceAccountId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccountWorkspaceMember {
+        return SdkClient.request<BetaServiceAccountWorkspaceMember>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts/${SdkClient.encodePathSegment(serviceAccountId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "retrieveBetaOrganizationsWorkspacesServiceAccounts",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Change a service account's role in a workspace. The new `workspace_role` replaces the current one. Only explicit memberships can be updated; to set a role on the implicit default-workspace membership, add the service account explicitly with `POST…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Change a service account's role in a workspace. The new
+     * `workspace_role` replaces the current one. Only explicit memberships can be updated; to set a
+     * role on the implicit default-workspace membership, add the service account explicitly with
+     * `POST…
      *
      * @param workspaceId ID of the workspace.
      * @param serviceAccountId ID of the service account.
      * @param workspaceRole New role for the service account in this workspace.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun updateBetaOrganizationsWorkspacesServiceAccounts(clientConfig: ClientConfig, workspaceId: String, serviceAccountId: String, workspaceRole: BetaNoBillingWorkspaceRoleSchema, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMember {
-        return SdkClient.request<BetaServiceAccountWorkspaceMember>(SdkClient.RequestSpec("POST", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts/${SdkClient.encodePathSegment(serviceAccountId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("workspace_role" to (workspaceRole)), operationId = "updateBetaOrganizationsWorkspacesServiceAccounts", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun updateBetaOrganizationsWorkspacesServiceAccounts(
+        clientConfig: ClientConfig,
+        workspaceId: String,
+        serviceAccountId: String,
+        workspaceRole: BetaNoBillingWorkspaceRoleSchema,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccountWorkspaceMember {
+        return SdkClient.request<BetaServiceAccountWorkspaceMember>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts/${SdkClient.encodePathSegment(serviceAccountId)}?beta=true",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("workspace_role" to (workspaceRole)),
+                    operationId = "updateBetaOrganizationsWorkspacesServiceAccounts",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Remove a service account from a workspace. Removal is idempotent (returns 200 even if the membership was already removed). A DELETE against the implicit default-workspace membership returns 200 but is a no-op and the membership persists; deleting an explicit…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Remove a service account from a workspace. Removal is
+     * idempotent (returns 200 even if the membership was already removed). A DELETE against the
+     * implicit default-workspace membership returns 200 but is a no-op and the membership persists;
+     * deleting an explicit…
      *
      * @param workspaceId ID of the workspace.
      * @param serviceAccountId ID of the service account.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicVersion The version of the Claude API you want to use. Read
-     *   more about versioning and our version history here.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicVersion The version of the Claude API you want to use. Read more about
+     *   versioning and our version history here.
      */
-    fun deleteBetaOrganizationsWorkspacesServiceAccounts(clientConfig: ClientConfig, workspaceId: String, serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicVersion: String? = null, options: RequestOptions? = null): BetaServiceAccountWorkspaceMemberDeleteResponse {
-        return SdkClient.request<BetaServiceAccountWorkspaceMemberDeleteResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts/${SdkClient.encodePathSegment(serviceAccountId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsWorkspacesServiceAccounts", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-version" to SdkClient.headerValue(anthropicVersion, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java))).data
+    fun deleteBetaOrganizationsWorkspacesServiceAccounts(
+        clientConfig: ClientConfig,
+        workspaceId: String,
+        serviceAccountId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicVersion: String? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccountWorkspaceMemberDeleteResponse {
+        return SdkClient.request<BetaServiceAccountWorkspaceMemberDeleteResponse>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/v1/organizations/workspaces/${SdkClient.encodePathSegment(workspaceId)}/service_accounts/${SdkClient.encodePathSegment(serviceAccountId)}?beta=true",
+                    config = clientConfig,
+                    operationId = "deleteBetaOrganizationsWorkspacesServiceAccounts",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    extraHeaders =
+                        SdkClient.headers(
+                            "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                            "anthropic-version" to SdkClient.headerValue(anthropicVersion, false),
+                        ),
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BetaErrorResponse::class.java,
+                            "401" to BetaErrorResponse::class.java,
+                            "403" to BetaErrorResponse::class.java,
+                            "404" to BetaErrorResponse::class.java,
+                            "408" to BetaErrorResponse::class.java,
+                            "409" to BetaErrorResponse::class.java,
+                            "412" to BetaErrorResponse::class.java,
+                            "413" to BetaErrorResponse::class.java,
+                            "429" to BetaErrorResponse::class.java,
+                            "431" to BetaErrorResponse::class.java,
+                            "499" to BetaErrorResponse::class.java,
+                            "500" to BetaErrorResponse::class.java,
+                            "501" to BetaErrorResponse::class.java,
+                            "503" to BetaErrorResponse::class.java,
+                            "504" to BetaErrorResponse::class.java,
+                            "529" to BetaErrorResponse::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

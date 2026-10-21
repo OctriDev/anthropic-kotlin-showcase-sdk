@@ -3,12 +3,8 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Request to stop a work item.
- */
+/** Request to stop a work item. */
 data class BetaSelfHostedWorkStopRequest(
-    /**
-     * If true, immediately stop work without graceful shutdown
-     */
+    /** If true, immediately stop work without graceful shutdown */
     val force: Boolean? = null
 )

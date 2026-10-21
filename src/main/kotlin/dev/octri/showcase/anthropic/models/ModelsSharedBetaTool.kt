@@ -4,96 +4,126 @@
 package dev.octri.showcase.anthropic.models
 
 /**
- * How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
+ * How the model should use the provided tools. The model can use a specific tool, any available
+ * tool, decide by itself, or not use tools at all.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaToolChoice::class)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaToolChoice::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaToolChoiceAuto::class, name = "auto"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaToolChoiceAny::class, name = "any"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaToolChoiceTool::class, name = "tool"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaToolChoiceNone::class, name = "none")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaToolChoiceAuto::class,
+        name = "auto",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaToolChoiceAny::class,
+        name = "any",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaToolChoiceTool::class,
+        name = "tool",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaToolChoiceNone::class,
+        name = "none",
+    ),
 )
 sealed interface BetaToolChoice
 
 /** A [BetaToolChoice] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaToolChoice @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaToolChoice
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaToolChoice {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * The model will use any available tools.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The model will use any available tools. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaToolChoiceAny(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaToolChoiceAnyTypeEnum,
     /**
-     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will output exactly one tool use.
+     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will
+     * output exactly one tool use.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use") val disableParallelToolUse: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use")
+    val disableParallelToolUse: Boolean? = null,
 ) : BetaToolChoice
 
-/**
- * The model will automatically decide whether to use tools.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The model will automatically decide whether to use tools. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaToolChoiceAuto(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaToolChoiceAutoTypeEnum,
     /**
-     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will output at most one tool use.
+     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will
+     * output at most one tool use.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use") val disableParallelToolUse: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use")
+    val disableParallelToolUse: Boolean? = null,
 ) : BetaToolChoice
 
-/**
- * The model will not be allowed to use tools.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The model will not be allowed to use tools. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaToolChoiceNone(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaToolChoiceNoneTypeEnum
 ) : BetaToolChoice
 
-/**
- * The model will use the specified tool with `tool_choice.name`.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** The model will use the specified tool with `tool_choice.name`. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaToolChoiceTool(
-    /**
-     * The name of the tool to use.
-     */
+    /** The name of the tool to use. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaToolChoiceToolTypeEnum,
     /**
-     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will output exactly one tool use.
+     * Whether to disable parallel tool use. Defaults to `false`. If set to `true`, the model will
+     * output exactly one tool use.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use") val disableParallelToolUse: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("disable_parallel_tool_use")
+    val disableParallelToolUse: Boolean? = null,
 ) : BetaToolChoice
 
-/**
- * Typed representation of the `BetaToolUsesKeep` API schema.
- */
+/** Typed representation of the `BetaToolUsesKeep` API schema. */
 data class BetaToolUsesKeep(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaToolUsesKeepTypeEnum,
-    /**
-     * Required `integer` value serialized in the `value` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long
+    /** Required `integer` value serialized in the `value` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Long,
 )

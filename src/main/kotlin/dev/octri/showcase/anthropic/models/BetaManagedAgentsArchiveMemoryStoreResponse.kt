@@ -3,20 +3,39 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Response from archiving a `memory_store`. Returns the store with `archived_at` set.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownBetaManagedAgentsArchiveMemoryStoreResponse::class)
+/** Response from archiving a `memory_store`. Returns the store with `archived_at` set. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownBetaManagedAgentsArchiveMemoryStoreResponse::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = BetaManagedAgentsMemoryStore::class, name = "memory_store")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = BetaManagedAgentsMemoryStore::class,
+        name = "memory_store",
+    )
 )
 sealed interface BetaManagedAgentsArchiveMemoryStoreResponse
 
-/** A [BetaManagedAgentsArchiveMemoryStoreResponse] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownBetaManagedAgentsArchiveMemoryStoreResponse @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [BetaManagedAgentsArchiveMemoryStoreResponse] whose `type` names no branch this SDK knows, kept
+ * as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownBetaManagedAgentsArchiveMemoryStoreResponse
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : BetaManagedAgentsArchiveMemoryStoreResponse {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }

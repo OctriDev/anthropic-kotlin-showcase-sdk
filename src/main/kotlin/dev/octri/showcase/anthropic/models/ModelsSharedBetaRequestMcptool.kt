@@ -3,60 +3,46 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Typed representation of the `BetaRequestMCPToolResultBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestMCPToolResultBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestMCPToolResultBlock(
-    /**
-     * Required `string` value serialized in the `tool_use_id` wire field.
-     */
+    /** Required `string` value serialized in the `tool_use_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tool_use_id") val toolUseId: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestMCPToolResultBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null,
-    /**
-     * Optional API value serialized in the `content` wire field.
-     */
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
+    /** Optional API value serialized in the `content` wire field. */
     val content: Any? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_error` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null
+    /** Optional `boolean` value serialized in the `is_error` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_error") val isError: Boolean? = null,
 ) : BetaInputContentBlock
 
-/**
- * Typed representation of the `BetaRequestMCPToolUseBlock` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `BetaRequestMCPToolUseBlock` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class BetaRequestMCPToolUseBlock(
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
+    /** Required `string` value serialized in the `id` wire field. */
     val id: String,
-    /**
-     * Required object value serialized in the `input` wire field.
-     */
+    /** Required object value serialized in the `input` wire field. */
     val input: Map<String, Any>,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * The name of the MCP server
-     */
+    /** The name of the MCP server */
     @com.fasterxml.jackson.annotation.JsonProperty("server_name") val serverName: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: BetaRequestMCPToolUseBlockTypeEnum,
-    /**
-     * Create a cache control breakpoint at this content block.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_control") val cacheControl: BetaCacheControlEphemeral? = null
+    /** Create a cache control breakpoint at this content block. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_control")
+    val cacheControl: BetaCacheControlEphemeral? = null,
 ) : BetaInputContentBlock

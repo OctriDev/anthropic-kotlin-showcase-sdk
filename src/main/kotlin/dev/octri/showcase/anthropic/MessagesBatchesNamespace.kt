@@ -3,96 +3,254 @@
 
 package dev.octri.showcase.anthropic
 
-
 class MessagesBatchesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Send a batch of Message creation requests. The Message Batches API can be used to process multiple Messages API requests at once. Once a Message Batch is created, it begins processing immediately. Batches can take up to 24 hours to complete. Learn more about the Message Batches API in our user guide
+     * Send a batch of Message creation requests. The Message Batches API can be used to process
+     * multiple Messages API requests at once. Once a Message Batch is created, it begins processing
+     * immediately. Batches can take up to 24 hours to complete. Learn more about the Message
+     * Batches API in our user guide
      */
-    fun create(requests: List<MessageBatchIndividualRequestParams>, anthropicUserProfileId: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): MessageBatch {
-        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.createMessagesBatches(clientConfig, requests, anthropicUserProfileId, anthropicWorkspaceId, options)
+    fun create(
+        requests: List<MessageBatchIndividualRequestParams>,
+        anthropicUserProfileId: String? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): MessageBatch {
+        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.createMessagesBatches(
+            clientConfig,
+            requests,
+            anthropicUserProfileId,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * List all Message Batches within a Workspace. Most recently created batches are returned first. Learn more about the Message Batches API in our user guide
+     * List all Message Batches within a Workspace. Most recently created batches are returned
+     * first. Learn more about the Message Batches API in our user guide
      */
-    fun list(beforeId: String? = null, afterId: String? = null, limit: Long? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ListResponseMessageBatch {
-        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.listMessagesBatches(clientConfig, beforeId, afterId, limit, anthropicWorkspaceId, options)
+    fun list(
+        beforeId: String? = null,
+        afterId: String? = null,
+        limit: Long? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): ListResponseMessageBatch {
+        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.listMessagesBatches(
+            clientConfig,
+            beforeId,
+            afterId,
+            limit,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * This endpoint is idempotent and can be used to poll for Message Batch completion. To access the results of a Message Batch, make a request to the `results_url` field in the response. Learn more about the Message Batches API in our user guide
+     * This endpoint is idempotent and can be used to poll for Message Batch completion. To access
+     * the results of a Message Batch, make a request to the `results_url` field in the response.
+     * Learn more about the Message Batches API in our user guide
      */
-    fun retrieve(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): MessageBatch {
-        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.retrieveMessagesBatches(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+    fun retrieve(
+        messageBatchId: String,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): MessageBatch {
+        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches
+            .retrieveMessagesBatches(clientConfig, messageBatchId, anthropicWorkspaceId, options)
     }
 
     /**
-     * Delete a Message Batch. Message Batches can only be deleted once they've finished processing. If you'd like to delete an in-progress batch, you must first cancel it. Learn more about the Message Batches API in our user guide
+     * Delete a Message Batch. Message Batches can only be deleted once they've finished processing.
+     * If you'd like to delete an in-progress batch, you must first cancel it. Learn more about the
+     * Message Batches API in our user guide
      */
-    fun delete(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): DeleteMessageBatchResponse {
-        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.deleteMessagesBatches(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+    fun delete(
+        messageBatchId: String,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): DeleteMessageBatchResponse {
+        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.deleteMessagesBatches(
+            clientConfig,
+            messageBatchId,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Batches may be canceled any time before processing ends. Once cancellation is initiated, the batch enters a `canceling` state, at which time the system may complete any in-progress, non-interruptible requests before finalizing cancellation. The number of canceled requests is specified in `request_counts`. To determine which requests were canceled, check the individual results within the batch. Note that cancellation may not result in any canceled requests if they were…
+     * Batches may be canceled any time before processing ends. Once cancellation is initiated, the
+     * batch enters a `canceling` state, at which time the system may complete any in-progress,
+     * non-interruptible requests before finalizing cancellation. The number of canceled requests is
+     * specified in `request_counts`. To determine which requests were canceled, check the
+     * individual results within the batch. Note that cancellation may not result in any canceled
+     * requests if they were…
      */
-    fun cancel(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): MessageBatch {
-        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.cancelMessagesBatches(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+    fun cancel(
+        messageBatchId: String,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): MessageBatch {
+        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.cancelMessagesBatches(
+            clientConfig,
+            messageBatchId,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Streams the results of a Message Batch as a `.jsonl` file. Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests. Learn more about the Message Batches API in our user guide
+     * Streams the results of a Message Batch as a `.jsonl` file. Each line in the file is a JSON
+     * object containing the result of a single request in the Message Batch. Results are not
+     * guaranteed to be in the same order as requests. Use the `custom_id` field to match results to
+     * requests. Learn more about the Message Batches API in our user guide
      */
-    fun results(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): MessageBatchIndividualResponse {
-        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.resultsMessagesBatches(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+    fun results(
+        messageBatchId: String,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): MessageBatchIndividualResponse {
+        return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.resultsMessagesBatches(
+            clientConfig,
+            messageBatchId,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [MessagesBatchesNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [MessagesBatchesNamespace], returning the [SdkResponse] envelope around
+     * each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Send a batch of Message creation requests. The Message Batches API can be used to process multiple Messages API requests at once. Once a Message Batch is created, it begins processing immediately. Batches can take up to 24 hours to complete. Learn more about the Message Batches API in our user guide
+         * Send a batch of Message creation requests. The Message Batches API can be used to process
+         * multiple Messages API requests at once. Once a Message Batch is created, it begins
+         * processing immediately. Batches can take up to 24 hours to complete. Learn more about the
+         * Message Batches API in our user guide
          */
-        fun create(requests: List<MessageBatchIndividualRequestParams>, anthropicUserProfileId: String? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<MessageBatch> {
-            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.createMessagesBatchesWithRawResponse(clientConfig, requests, anthropicUserProfileId, anthropicWorkspaceId, options)
+        fun create(
+            requests: List<MessageBatchIndividualRequestParams>,
+            anthropicUserProfileId: String? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<MessageBatch> {
+            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches
+                .createMessagesBatchesWithRawResponse(
+                    clientConfig,
+                    requests,
+                    anthropicUserProfileId,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * List all Message Batches within a Workspace. Most recently created batches are returned first. Learn more about the Message Batches API in our user guide
+         * List all Message Batches within a Workspace. Most recently created batches are returned
+         * first. Learn more about the Message Batches API in our user guide
          */
-        fun list(beforeId: String? = null, afterId: String? = null, limit: Long? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<ListResponseMessageBatch> {
-            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.listMessagesBatchesWithRawResponse(clientConfig, beforeId, afterId, limit, anthropicWorkspaceId, options)
+        fun list(
+            beforeId: String? = null,
+            afterId: String? = null,
+            limit: Long? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<ListResponseMessageBatch> {
+            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches
+                .listMessagesBatchesWithRawResponse(
+                    clientConfig,
+                    beforeId,
+                    afterId,
+                    limit,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * This endpoint is idempotent and can be used to poll for Message Batch completion. To access the results of a Message Batch, make a request to the `results_url` field in the response. Learn more about the Message Batches API in our user guide
+         * This endpoint is idempotent and can be used to poll for Message Batch completion. To
+         * access the results of a Message Batch, make a request to the `results_url` field in the
+         * response. Learn more about the Message Batches API in our user guide
          */
-        fun retrieve(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<MessageBatch> {
-            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.retrieveMessagesBatchesWithRawResponse(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+        fun retrieve(
+            messageBatchId: String,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<MessageBatch> {
+            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches
+                .retrieveMessagesBatchesWithRawResponse(
+                    clientConfig,
+                    messageBatchId,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Delete a Message Batch. Message Batches can only be deleted once they've finished processing. If you'd like to delete an in-progress batch, you must first cancel it. Learn more about the Message Batches API in our user guide
+         * Delete a Message Batch. Message Batches can only be deleted once they've finished
+         * processing. If you'd like to delete an in-progress batch, you must first cancel it. Learn
+         * more about the Message Batches API in our user guide
          */
-        fun delete(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<DeleteMessageBatchResponse> {
-            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.deleteMessagesBatchesWithRawResponse(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+        fun delete(
+            messageBatchId: String,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<DeleteMessageBatchResponse> {
+            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches
+                .deleteMessagesBatchesWithRawResponse(
+                    clientConfig,
+                    messageBatchId,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Batches may be canceled any time before processing ends. Once cancellation is initiated, the batch enters a `canceling` state, at which time the system may complete any in-progress, non-interruptible requests before finalizing cancellation. The number of canceled requests is specified in `request_counts`. To determine which requests were canceled, check the individual results within the batch. Note that cancellation may not result in any canceled requests if they were…
+         * Batches may be canceled any time before processing ends. Once cancellation is initiated,
+         * the batch enters a `canceling` state, at which time the system may complete any
+         * in-progress, non-interruptible requests before finalizing cancellation. The number of
+         * canceled requests is specified in `request_counts`. To determine which requests were
+         * canceled, check the individual results within the batch. Note that cancellation may not
+         * result in any canceled requests if they were…
          */
-        fun cancel(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<MessageBatch> {
-            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.cancelMessagesBatchesWithRawResponse(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+        fun cancel(
+            messageBatchId: String,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<MessageBatch> {
+            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches
+                .cancelMessagesBatchesWithRawResponse(
+                    clientConfig,
+                    messageBatchId,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Streams the results of a Message Batch as a `.jsonl` file. Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests. Learn more about the Message Batches API in our user guide
+         * Streams the results of a Message Batch as a `.jsonl` file. Each line in the file is a
+         * JSON object containing the result of a single request in the Message Batch. Results are
+         * not guaranteed to be in the same order as requests. Use the `custom_id` field to match
+         * results to requests. Learn more about the Message Batches API in our user guide
          */
-        fun results(messageBatchId: String, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<MessageBatchIndividualResponse> {
-            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches.resultsMessagesBatchesWithRawResponse(clientConfig, messageBatchId, anthropicWorkspaceId, options)
+        fun results(
+            messageBatchId: String,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<MessageBatchIndividualResponse> {
+            return dev.octri.showcase.anthropic.methods.messages.MessagesBatches
+                .resultsMessagesBatchesWithRawResponse(
+                    clientConfig,
+                    messageBatchId,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

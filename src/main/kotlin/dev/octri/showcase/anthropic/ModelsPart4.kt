@@ -3,436 +3,648 @@
 
 package dev.octri.showcase.anthropic
 
-typealias BetaManagedAgentsCustomToolTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsCustomToolTypeEnum
+typealias BetaManagedAgentsCustomToolTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsCustomToolTypeEnum
 
-typealias BetaManagedAgentsDeletedCredential = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedCredential
+typealias BetaManagedAgentsDeletedCredential =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedCredential
 
-typealias BetaManagedAgentsDeletedCredentialTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedCredentialTypeEnum
+typealias BetaManagedAgentsDeletedCredentialTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedCredentialTypeEnum
 
-typealias BetaManagedAgentsDeletedMemory = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemory
+typealias BetaManagedAgentsDeletedMemory =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemory
 
-typealias BetaManagedAgentsDeletedMemoryStore = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemoryStore
+typealias BetaManagedAgentsDeletedMemoryStore =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemoryStore
 
-typealias BetaManagedAgentsDeletedMemoryStoreTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemoryStoreTypeEnum
+typealias BetaManagedAgentsDeletedMemoryStoreTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemoryStoreTypeEnum
 
-typealias BetaManagedAgentsDeletedMemoryTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemoryTypeEnum
+typealias BetaManagedAgentsDeletedMemoryTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedMemoryTypeEnum
 
-typealias BetaManagedAgentsDeletedSession = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedSession
+typealias BetaManagedAgentsDeletedSession =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedSession
 
-typealias BetaManagedAgentsDeletedSessionTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedSessionTypeEnum
+typealias BetaManagedAgentsDeletedSessionTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedSessionTypeEnum
 
-typealias BetaManagedAgentsDeletedVault = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedVault
+typealias BetaManagedAgentsDeletedVault =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedVault
 
-typealias BetaManagedAgentsDeletedVaultTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedVaultTypeEnum
+typealias BetaManagedAgentsDeletedVaultTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeletedVaultTypeEnum
 
-typealias BetaManagedAgentsDeleteMemoryStoreResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeleteMemoryStoreResponse
+typealias BetaManagedAgentsDeleteMemoryStoreResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeleteMemoryStoreResponse
 
-typealias BetaManagedAgentsDeleteSessionResource = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeleteSessionResource
+typealias BetaManagedAgentsDeleteSessionResource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeleteSessionResource
 
-typealias BetaManagedAgentsDeleteSessionResourceTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeleteSessionResourceTypeEnum
+typealias BetaManagedAgentsDeleteSessionResourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeleteSessionResourceTypeEnum
 
-typealias BetaManagedAgentsDeployment = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeployment
+typealias BetaManagedAgentsDeployment =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeployment
 
-typealias BetaManagedAgentsDeploymentInitialEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentInitialEvent
+typealias BetaManagedAgentsDeploymentInitialEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentInitialEvent
 
-typealias BetaManagedAgentsDeploymentInitialEventParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentInitialEventParams
+typealias BetaManagedAgentsDeploymentInitialEventParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentInitialEventParams
 
-typealias BetaManagedAgentsDeploymentPausedReason = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentPausedReason
+typealias BetaManagedAgentsDeploymentPausedReason =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentPausedReason
 
-typealias BetaManagedAgentsDeploymentPausedReasonError = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentPausedReasonError
+typealias BetaManagedAgentsDeploymentPausedReasonError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentPausedReasonError
 
-typealias BetaManagedAgentsDeploymentRun = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentRun
+typealias BetaManagedAgentsDeploymentRun =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentRun
 
-typealias BetaManagedAgentsDeploymentRunTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentRunTypeEnum
+typealias BetaManagedAgentsDeploymentRunTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentRunTypeEnum
 
-typealias BetaManagedAgentsDeploymentStatus = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentStatus
+typealias BetaManagedAgentsDeploymentStatus =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentStatus
 
-typealias BetaManagedAgentsDeploymentSystemMessageEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentSystemMessageEvent
+typealias BetaManagedAgentsDeploymentSystemMessageEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentSystemMessageEvent
 
-typealias BetaManagedAgentsDeploymentSystemMessageEventTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentSystemMessageEventTypeEnum
+typealias BetaManagedAgentsDeploymentSystemMessageEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentSystemMessageEventTypeEnum
 
-typealias BetaManagedAgentsDeploymentTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentTypeEnum
+typealias BetaManagedAgentsDeploymentTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentTypeEnum
 
-typealias BetaManagedAgentsDeploymentUserDefineOutcomeEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserDefineOutcomeEvent
+typealias BetaManagedAgentsDeploymentUserDefineOutcomeEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserDefineOutcomeEvent
 
-typealias BetaManagedAgentsDeploymentUserDefineOutcomeEventTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserDefineOutcomeEventTypeEnum
+typealias BetaManagedAgentsDeploymentUserDefineOutcomeEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserDefineOutcomeEventTypeEnum
 
-typealias BetaManagedAgentsDeploymentUserMessageEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserMessageEvent
+typealias BetaManagedAgentsDeploymentUserMessageEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserMessageEvent
 
-typealias BetaManagedAgentsDeploymentUserMessageEventTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserMessageEventTypeEnum
+typealias BetaManagedAgentsDeploymentUserMessageEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDeploymentUserMessageEventTypeEnum
 
-typealias BetaManagedAgentsDocumentBlock = dev.octri.showcase.anthropic.models.BetaManagedAgentsDocumentBlock
+typealias BetaManagedAgentsDocumentBlock =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDocumentBlock
 
-typealias BetaManagedAgentsDocumentBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsDocumentBlockTypeEnum
+typealias BetaManagedAgentsDocumentBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDocumentBlockTypeEnum
 
-typealias BetaManagedAgentsDocumentSource = dev.octri.showcase.anthropic.models.BetaManagedAgentsDocumentSource
+typealias BetaManagedAgentsDocumentSource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsDocumentSource
 
-typealias BetaManagedAgentsEditToolConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfig
+typealias BetaManagedAgentsEditToolConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfig
 
-typealias BetaManagedAgentsEditToolConfigNameEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigNameEnum
+typealias BetaManagedAgentsEditToolConfigNameEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigNameEnum
 
-typealias BetaManagedAgentsEditToolConfigParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigParams
+typealias BetaManagedAgentsEditToolConfigParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigParams
 
-typealias BetaManagedAgentsEditToolConfigParamsNameEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigParamsNameEnum
+typealias BetaManagedAgentsEditToolConfigParamsNameEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigParamsNameEnum
 
-typealias BetaManagedAgentsEditToolConfigParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigParamsTypeEnum
+typealias BetaManagedAgentsEditToolConfigParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigParamsTypeEnum
 
-typealias BetaManagedAgentsEditToolConfigTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigTypeEnum
+typealias BetaManagedAgentsEditToolConfigTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEditToolConfigTypeEnum
 
 typealias BetaManagedAgentsEffort = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffort
 
-typealias BetaManagedAgentsEffortHigh = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortHigh
+typealias BetaManagedAgentsEffortHigh =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortHigh
 
-typealias BetaManagedAgentsEffortHighTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortHighTypeEnum
+typealias BetaManagedAgentsEffortHighTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortHighTypeEnum
 
-typealias BetaManagedAgentsEffortLevel = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortLevel
+typealias BetaManagedAgentsEffortLevel =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortLevel
 
-typealias BetaManagedAgentsEffortLow = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortLow
+typealias BetaManagedAgentsEffortLow =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortLow
 
-typealias BetaManagedAgentsEffortLowTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortLowTypeEnum
+typealias BetaManagedAgentsEffortLowTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortLowTypeEnum
 
-typealias BetaManagedAgentsEffortMax = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMax
+typealias BetaManagedAgentsEffortMax =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMax
 
-typealias BetaManagedAgentsEffortMaxTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMaxTypeEnum
+typealias BetaManagedAgentsEffortMaxTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMaxTypeEnum
 
-typealias BetaManagedAgentsEffortMedium = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMedium
+typealias BetaManagedAgentsEffortMedium =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMedium
 
-typealias BetaManagedAgentsEffortMediumTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMediumTypeEnum
+typealias BetaManagedAgentsEffortMediumTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortMediumTypeEnum
 
-typealias BetaManagedAgentsEffortParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortParams
+typealias BetaManagedAgentsEffortParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortParams
 
-typealias BetaManagedAgentsEffortXhigh = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortXhigh
+typealias BetaManagedAgentsEffortXhigh =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortXhigh
 
-typealias BetaManagedAgentsEffortXhighTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortXhighTypeEnum
+typealias BetaManagedAgentsEffortXhighTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEffortXhighTypeEnum
 
-typealias BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError
+typealias BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError
 
-typealias BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonErrorTypeEnum
+typealias BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonErrorTypeEnum
 
-typealias BetaManagedAgentsEnvironmentArchivedRunError = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedRunError
+typealias BetaManagedAgentsEnvironmentArchivedRunError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedRunError
 
-typealias BetaManagedAgentsEnvironmentArchivedRunErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedRunErrorTypeEnum
+typealias BetaManagedAgentsEnvironmentArchivedRunErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentArchivedRunErrorTypeEnum
 
-typealias BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError
+typealias BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError
 
-typealias BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonErrorTypeEnum
+typealias BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonErrorTypeEnum
 
-typealias BetaManagedAgentsEnvironmentNotFoundRunError = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundRunError
+typealias BetaManagedAgentsEnvironmentNotFoundRunError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundRunError
 
-typealias BetaManagedAgentsEnvironmentNotFoundRunErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundRunErrorTypeEnum
+typealias BetaManagedAgentsEnvironmentNotFoundRunErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentNotFoundRunErrorTypeEnum
 
-typealias BetaManagedAgentsEnvironmentVariableAuthResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableAuthResponse
+typealias BetaManagedAgentsEnvironmentVariableAuthResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableAuthResponse
 
-typealias BetaManagedAgentsEnvironmentVariableAuthResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableAuthResponseTypeEnum
+typealias BetaManagedAgentsEnvironmentVariableAuthResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableAuthResponseTypeEnum
 
-typealias BetaManagedAgentsEnvironmentVariableCreateParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableCreateParams
+typealias BetaManagedAgentsEnvironmentVariableCreateParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableCreateParams
 
-typealias BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnum
+typealias BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnum
 
-typealias BetaManagedAgentsEnvironmentVariableUpdateParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableUpdateParams
+typealias BetaManagedAgentsEnvironmentVariableUpdateParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableUpdateParams
 
-typealias BetaManagedAgentsEnvironmentVariableUpdateParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableUpdateParamsTypeEnum
+typealias BetaManagedAgentsEnvironmentVariableUpdateParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEnvironmentVariableUpdateParamsTypeEnum
 
 typealias BetaManagedAgentsError = dev.octri.showcase.anthropic.models.BetaManagedAgentsError
 
-typealias BetaManagedAgentsErrorDeploymentPausedReason = dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorDeploymentPausedReason
+typealias BetaManagedAgentsErrorDeploymentPausedReason =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorDeploymentPausedReason
 
-typealias BetaManagedAgentsErrorDeploymentPausedReasonTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorDeploymentPausedReasonTypeEnum
+typealias BetaManagedAgentsErrorDeploymentPausedReasonTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorDeploymentPausedReasonTypeEnum
 
-typealias BetaManagedAgentsErrorResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorResponse
+typealias BetaManagedAgentsErrorResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorResponse
 
-typealias BetaManagedAgentsErrorResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorResponseTypeEnum
+typealias BetaManagedAgentsErrorResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsErrorResponseTypeEnum
 
-typealias BetaManagedAgentsEventDeltaEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEvent
+typealias BetaManagedAgentsEventDeltaEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEvent
 
-typealias BetaManagedAgentsEventDeltaEventContentDelta = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventContentDelta
+typealias BetaManagedAgentsEventDeltaEventContentDelta =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventContentDelta
 
-typealias BetaManagedAgentsEventDeltaEventContentDeltaTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventContentDeltaTypeEnum
+typealias BetaManagedAgentsEventDeltaEventContentDeltaTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventContentDeltaTypeEnum
 
-typealias BetaManagedAgentsEventDeltaEventDelta = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventDelta
+typealias BetaManagedAgentsEventDeltaEventDelta =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventDelta
 
-typealias BetaManagedAgentsEventDeltaEventTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventTypeEnum
+typealias BetaManagedAgentsEventDeltaEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaEventTypeEnum
 
-typealias BetaManagedAgentsEventDeltaType = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaType
+typealias BetaManagedAgentsEventDeltaType =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventDeltaType
 
-typealias BetaManagedAgentsEventParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventParams
+typealias BetaManagedAgentsEventParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventParams
 
-typealias BetaManagedAgentsEventStartEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEvent
+typealias BetaManagedAgentsEventStartEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEvent
 
-typealias BetaManagedAgentsEventStartEventAgentMessagePreview = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentMessagePreview
+typealias BetaManagedAgentsEventStartEventAgentMessagePreview =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentMessagePreview
 
-typealias BetaManagedAgentsEventStartEventAgentMessagePreviewTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentMessagePreviewTypeEnum
+typealias BetaManagedAgentsEventStartEventAgentMessagePreviewTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentMessagePreviewTypeEnum
 
-typealias BetaManagedAgentsEventStartEventAgentThinkingPreview = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentThinkingPreview
+typealias BetaManagedAgentsEventStartEventAgentThinkingPreview =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentThinkingPreview
 
-typealias BetaManagedAgentsEventStartEventAgentThinkingPreviewTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentThinkingPreviewTypeEnum
+typealias BetaManagedAgentsEventStartEventAgentThinkingPreviewTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventAgentThinkingPreviewTypeEnum
 
-typealias BetaManagedAgentsEventStartEventEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventEvent
+typealias BetaManagedAgentsEventStartEventEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventEvent
 
-typealias BetaManagedAgentsEventStartEventTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventTypeEnum
+typealias BetaManagedAgentsEventStartEventTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsEventStartEventTypeEnum
 
-typealias BetaManagedAgentsFileDocumentSource = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileDocumentSource
+typealias BetaManagedAgentsFileDocumentSource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileDocumentSource
 
-typealias BetaManagedAgentsFileDocumentSourceTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileDocumentSourceTypeEnum
+typealias BetaManagedAgentsFileDocumentSourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileDocumentSourceTypeEnum
 
-typealias BetaManagedAgentsFileImageSource = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileImageSource
+typealias BetaManagedAgentsFileImageSource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileImageSource
 
-typealias BetaManagedAgentsFileImageSourceTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileImageSourceTypeEnum
+typealias BetaManagedAgentsFileImageSourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileImageSourceTypeEnum
 
-typealias BetaManagedAgentsFileNotFoundDeploymentPausedReasonError = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundDeploymentPausedReasonError
+typealias BetaManagedAgentsFileNotFoundDeploymentPausedReasonError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundDeploymentPausedReasonError
 
-typealias BetaManagedAgentsFileNotFoundDeploymentPausedReasonErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundDeploymentPausedReasonErrorTypeEnum
+typealias BetaManagedAgentsFileNotFoundDeploymentPausedReasonErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundDeploymentPausedReasonErrorTypeEnum
 
-typealias BetaManagedAgentsFileNotFoundRunError = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundRunError
+typealias BetaManagedAgentsFileNotFoundRunError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundRunError
 
-typealias BetaManagedAgentsFileNotFoundRunErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundRunErrorTypeEnum
+typealias BetaManagedAgentsFileNotFoundRunErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileNotFoundRunErrorTypeEnum
 
-typealias BetaManagedAgentsFileResource = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResource
+typealias BetaManagedAgentsFileResource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResource
 
-typealias BetaManagedAgentsFileResourceConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceConfig
+typealias BetaManagedAgentsFileResourceConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceConfig
 
-typealias BetaManagedAgentsFileResourceConfigTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceConfigTypeEnum
+typealias BetaManagedAgentsFileResourceConfigTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceConfigTypeEnum
 
-typealias BetaManagedAgentsFileResourceParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceParams
+typealias BetaManagedAgentsFileResourceParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceParams
 
-typealias BetaManagedAgentsFileResourceParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceParamsTypeEnum
+typealias BetaManagedAgentsFileResourceParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceParamsTypeEnum
 
-typealias BetaManagedAgentsFileResourceTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceTypeEnum
+typealias BetaManagedAgentsFileResourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileResourceTypeEnum
 
-typealias BetaManagedAgentsFileRubric = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubric
+typealias BetaManagedAgentsFileRubric =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubric
 
-typealias BetaManagedAgentsFileRubricParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubricParams
+typealias BetaManagedAgentsFileRubricParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubricParams
 
-typealias BetaManagedAgentsFileRubricParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubricParamsTypeEnum
+typealias BetaManagedAgentsFileRubricParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubricParamsTypeEnum
 
-typealias BetaManagedAgentsFileRubricTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubricTypeEnum
+typealias BetaManagedAgentsFileRubricTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsFileRubricTypeEnum
 
-typealias BetaManagedAgentsGetMemoryStoreResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsGetMemoryStoreResponse
+typealias BetaManagedAgentsGetMemoryStoreResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGetMemoryStoreResponse
 
-typealias BetaManagedAgentsGetSessionResource = dev.octri.showcase.anthropic.models.BetaManagedAgentsGetSessionResource
+typealias BetaManagedAgentsGetSessionResource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGetSessionResource
 
-typealias BetaManagedAgentsGitHubRepositoryResource = dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResource
+typealias BetaManagedAgentsGitHubRepositoryResource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResource
 
-typealias BetaManagedAgentsGitHubRepositoryResourceConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceConfig
+typealias BetaManagedAgentsGitHubRepositoryResourceConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceConfig
 
-typealias BetaManagedAgentsGitHubRepositoryResourceConfigTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceConfigTypeEnum
+typealias BetaManagedAgentsGitHubRepositoryResourceConfigTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceConfigTypeEnum
 
-typealias BetaManagedAgentsGitHubRepositoryResourceParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceParams
+typealias BetaManagedAgentsGitHubRepositoryResourceParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceParams
 
-typealias BetaManagedAgentsGitHubRepositoryResourceParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceParamsTypeEnum
+typealias BetaManagedAgentsGitHubRepositoryResourceParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceParamsTypeEnum
 
-typealias BetaManagedAgentsGitHubRepositoryResourceTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceTypeEnum
+typealias BetaManagedAgentsGitHubRepositoryResourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGitHubRepositoryResourceTypeEnum
 
-typealias BetaManagedAgentsGlobToolConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfig
+typealias BetaManagedAgentsGlobToolConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfig
 
-typealias BetaManagedAgentsGlobToolConfigNameEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigNameEnum
+typealias BetaManagedAgentsGlobToolConfigNameEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigNameEnum
 
-typealias BetaManagedAgentsGlobToolConfigParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigParams
+typealias BetaManagedAgentsGlobToolConfigParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigParams
 
-typealias BetaManagedAgentsGlobToolConfigParamsNameEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigParamsNameEnum
+typealias BetaManagedAgentsGlobToolConfigParamsNameEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigParamsNameEnum
 
-typealias BetaManagedAgentsGlobToolConfigParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigParamsTypeEnum
+typealias BetaManagedAgentsGlobToolConfigParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigParamsTypeEnum
 
-typealias BetaManagedAgentsGlobToolConfigTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigTypeEnum
+typealias BetaManagedAgentsGlobToolConfigTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGlobToolConfigTypeEnum
 
-typealias BetaManagedAgentsGrepToolConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfig
+typealias BetaManagedAgentsGrepToolConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfig
 
-typealias BetaManagedAgentsGrepToolConfigNameEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigNameEnum
+typealias BetaManagedAgentsGrepToolConfigNameEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigNameEnum
 
-typealias BetaManagedAgentsGrepToolConfigParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigParams
+typealias BetaManagedAgentsGrepToolConfigParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigParams
 
-typealias BetaManagedAgentsGrepToolConfigParamsNameEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigParamsNameEnum
+typealias BetaManagedAgentsGrepToolConfigParamsNameEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigParamsNameEnum
 
-typealias BetaManagedAgentsGrepToolConfigParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigParamsTypeEnum
+typealias BetaManagedAgentsGrepToolConfigParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigParamsTypeEnum
 
-typealias BetaManagedAgentsGrepToolConfigTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigTypeEnum
+typealias BetaManagedAgentsGrepToolConfigTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsGrepToolConfigTypeEnum
 
-typealias BetaManagedAgentsImageBlock = dev.octri.showcase.anthropic.models.BetaManagedAgentsImageBlock
+typealias BetaManagedAgentsImageBlock =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsImageBlock
 
-typealias BetaManagedAgentsImageBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsImageBlockTypeEnum
+typealias BetaManagedAgentsImageBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsImageBlockTypeEnum
 
-typealias BetaManagedAgentsImageSource = dev.octri.showcase.anthropic.models.BetaManagedAgentsImageSource
+typealias BetaManagedAgentsImageSource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsImageSource
 
-typealias BetaManagedAgentsInjectionLocationParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsInjectionLocationParams
+typealias BetaManagedAgentsInjectionLocationParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsInjectionLocationParams
 
-typealias BetaManagedAgentsInjectionLocationResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsInjectionLocationResponse
+typealias BetaManagedAgentsInjectionLocationResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsInjectionLocationResponse
 
-typealias BetaManagedAgentsInjectionLocationUpdateParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsInjectionLocationUpdateParams
+typealias BetaManagedAgentsInjectionLocationUpdateParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsInjectionLocationUpdateParams
 
-typealias BetaManagedAgentsInputEvent = dev.octri.showcase.anthropic.models.BetaManagedAgentsInputEvent
+typealias BetaManagedAgentsInputEvent =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsInputEvent
 
-typealias BetaManagedAgentsLimitedCredentialNetworkingParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingParams
+typealias BetaManagedAgentsLimitedCredentialNetworkingParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingParams
 
-typealias BetaManagedAgentsLimitedCredentialNetworkingParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingParamsTypeEnum
+typealias BetaManagedAgentsLimitedCredentialNetworkingParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingParamsTypeEnum
 
-typealias BetaManagedAgentsLimitedCredentialNetworkingResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingResponse
+typealias BetaManagedAgentsLimitedCredentialNetworkingResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingResponse
 
-typealias BetaManagedAgentsLimitedCredentialNetworkingResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingResponseTypeEnum
+typealias BetaManagedAgentsLimitedCredentialNetworkingResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsLimitedCredentialNetworkingResponseTypeEnum
 
-typealias BetaManagedAgentsListAgents = dev.octri.showcase.anthropic.models.BetaManagedAgentsListAgents
+typealias BetaManagedAgentsListAgents =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListAgents
 
-typealias BetaManagedAgentsListAgentVersions = dev.octri.showcase.anthropic.models.BetaManagedAgentsListAgentVersions
+typealias BetaManagedAgentsListAgentVersions =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListAgentVersions
 
-typealias BetaManagedAgentsListCredentialsResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsListCredentialsResponse
+typealias BetaManagedAgentsListCredentialsResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListCredentialsResponse
 
-typealias BetaManagedAgentsListDeploymentRunsData = dev.octri.showcase.anthropic.models.BetaManagedAgentsListDeploymentRunsData
+typealias BetaManagedAgentsListDeploymentRunsData =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListDeploymentRunsData
 
-typealias BetaManagedAgentsListDeploymentsData = dev.octri.showcase.anthropic.models.BetaManagedAgentsListDeploymentsData
+typealias BetaManagedAgentsListDeploymentsData =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListDeploymentsData
 
-typealias BetaManagedAgentsListMemoriesResult = dev.octri.showcase.anthropic.models.BetaManagedAgentsListMemoriesResult
+typealias BetaManagedAgentsListMemoriesResult =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListMemoriesResult
 
-typealias BetaManagedAgentsListMemoryStoresResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsListMemoryStoresResponse
+typealias BetaManagedAgentsListMemoryStoresResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListMemoryStoresResponse
 
-typealias BetaManagedAgentsListMemoryVersionsResult = dev.octri.showcase.anthropic.models.BetaManagedAgentsListMemoryVersionsResult
+typealias BetaManagedAgentsListMemoryVersionsResult =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListMemoryVersionsResult
 
-typealias BetaManagedAgentsListOrder = dev.octri.showcase.anthropic.models.BetaManagedAgentsListOrder
+typealias BetaManagedAgentsListOrder =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListOrder
 
-typealias BetaManagedAgentsListSessionEvents = dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionEvents
+typealias BetaManagedAgentsListSessionEvents =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionEvents
 
-typealias BetaManagedAgentsListSessionResources = dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionResources
+typealias BetaManagedAgentsListSessionResources =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionResources
 
-typealias BetaManagedAgentsListSessions = dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessions
+typealias BetaManagedAgentsListSessions =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessions
 
-typealias BetaManagedAgentsListSessionThreadEvents = dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionThreadEvents
+typealias BetaManagedAgentsListSessionThreadEvents =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionThreadEvents
 
-typealias BetaManagedAgentsListSessionThreads = dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionThreads
+typealias BetaManagedAgentsListSessionThreads =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListSessionThreads
 
-typealias BetaManagedAgentsListVaultsResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsListVaultsResponse
+typealias BetaManagedAgentsListVaultsResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsListVaultsResponse
 
-typealias BetaManagedAgentsManualDeploymentPausedReason = dev.octri.showcase.anthropic.models.BetaManagedAgentsManualDeploymentPausedReason
+typealias BetaManagedAgentsManualDeploymentPausedReason =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsManualDeploymentPausedReason
 
-typealias BetaManagedAgentsManualDeploymentPausedReasonTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsManualDeploymentPausedReasonTypeEnum
+typealias BetaManagedAgentsManualDeploymentPausedReasonTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsManualDeploymentPausedReasonTypeEnum
 
-typealias BetaManagedAgentsManualTriggerContext = dev.octri.showcase.anthropic.models.BetaManagedAgentsManualTriggerContext
+typealias BetaManagedAgentsManualTriggerContext =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsManualTriggerContext
 
-typealias BetaManagedAgentsManualTriggerContextTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsManualTriggerContextTypeEnum
+typealias BetaManagedAgentsManualTriggerContextTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsManualTriggerContextTypeEnum
 
-typealias BetaManagedAgentsMcpAuthenticationFailedError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpAuthenticationFailedError
+typealias BetaManagedAgentsMcpAuthenticationFailedError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpAuthenticationFailedError
 
-typealias BetaManagedAgentsMcpAuthenticationFailedErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpAuthenticationFailedErrorTypeEnum
+typealias BetaManagedAgentsMcpAuthenticationFailedErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpAuthenticationFailedErrorTypeEnum
 
-typealias BetaManagedAgentsMcpConnectionFailedError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpConnectionFailedError
+typealias BetaManagedAgentsMcpConnectionFailedError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpConnectionFailedError
 
-typealias BetaManagedAgentsMcpConnectionFailedErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpConnectionFailedErrorTypeEnum
+typealias BetaManagedAgentsMcpConnectionFailedErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpConnectionFailedErrorTypeEnum
 
-typealias BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError
+typealias BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError
 
-typealias BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonErrorTypeEnum
+typealias BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonErrorTypeEnum
 
-typealias BetaManagedAgentsMcpEgressBlockedRunError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedRunError
+typealias BetaManagedAgentsMcpEgressBlockedRunError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedRunError
 
-typealias BetaManagedAgentsMcpEgressBlockedRunErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedRunErrorTypeEnum
+typealias BetaManagedAgentsMcpEgressBlockedRunErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpEgressBlockedRunErrorTypeEnum
 
-typealias BetaManagedAgentsMcpOauthAuthResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthAuthResponse
+typealias BetaManagedAgentsMcpOauthAuthResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthAuthResponse
 
-typealias BetaManagedAgentsMcpOauthAuthResponseTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthAuthResponseTypeEnum
+typealias BetaManagedAgentsMcpOauthAuthResponseTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthAuthResponseTypeEnum
 
-typealias BetaManagedAgentsMcpOauthCreateParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthCreateParams
+typealias BetaManagedAgentsMcpOauthCreateParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthCreateParams
 
-typealias BetaManagedAgentsMcpOauthCreateParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthCreateParamsTypeEnum
+typealias BetaManagedAgentsMcpOauthCreateParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthCreateParamsTypeEnum
 
-typealias BetaManagedAgentsMcpOauthRefreshParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshParams
+typealias BetaManagedAgentsMcpOauthRefreshParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshParams
 
-typealias BetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth
+typealias BetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshParamsTokenEndpointAuth
 
-typealias BetaManagedAgentsMcpOauthRefreshResponse = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshResponse
+typealias BetaManagedAgentsMcpOauthRefreshResponse =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshResponse
 
-typealias BetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth
+typealias BetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshResponseTokenEndpointAuth
 
-typealias BetaManagedAgentsMcpOauthRefreshUpdateParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshUpdateParams
+typealias BetaManagedAgentsMcpOauthRefreshUpdateParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshUpdateParams
 
-typealias BetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth
+typealias BetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthRefreshUpdateParamsTokenEndpointAuth
 
-typealias BetaManagedAgentsMcpOauthUpdateParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthUpdateParams
+typealias BetaManagedAgentsMcpOauthUpdateParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthUpdateParams
 
-typealias BetaManagedAgentsMcpOauthUpdateParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthUpdateParamsTypeEnum
+typealias BetaManagedAgentsMcpOauthUpdateParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpOauthUpdateParamsTypeEnum
 
 typealias BetaManagedAgentsMcpProbe = dev.octri.showcase.anthropic.models.BetaManagedAgentsMcpProbe
 
-typealias BetaManagedAgentsMCPServer = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServer
+typealias BetaManagedAgentsMCPServer =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServer
 
-typealias BetaManagedAgentsMCPServerParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServerParams
+typealias BetaManagedAgentsMCPServerParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServerParams
 
-typealias BetaManagedAgentsMCPServerURLDefinition = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServerURLDefinition
+typealias BetaManagedAgentsMCPServerURLDefinition =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServerURLDefinition
 
-typealias BetaManagedAgentsMCPServerURLDefinitionTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServerURLDefinitionTypeEnum
+typealias BetaManagedAgentsMCPServerURLDefinitionTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPServerURLDefinitionTypeEnum
 
-typealias BetaManagedAgentsMCPToolConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolConfig
+typealias BetaManagedAgentsMCPToolConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolConfig
 
-typealias BetaManagedAgentsMCPToolConfigParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolConfigParams
+typealias BetaManagedAgentsMCPToolConfigParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolConfigParams
 
-typealias BetaManagedAgentsMCPToolset = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolset
+typealias BetaManagedAgentsMCPToolset =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolset
 
-typealias BetaManagedAgentsMCPToolsetDefaultConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetDefaultConfig
+typealias BetaManagedAgentsMCPToolsetDefaultConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetDefaultConfig
 
-typealias BetaManagedAgentsMCPToolsetDefaultConfigParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetDefaultConfigParams
+typealias BetaManagedAgentsMCPToolsetDefaultConfigParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetDefaultConfigParams
 
-typealias BetaManagedAgentsMCPToolsetParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetParams
+typealias BetaManagedAgentsMCPToolsetParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetParams
 
-typealias BetaManagedAgentsMCPToolsetParamsTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetParamsTypeEnum
+typealias BetaManagedAgentsMCPToolsetParamsTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetParamsTypeEnum
 
-typealias BetaManagedAgentsMCPToolsetTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetTypeEnum
+typealias BetaManagedAgentsMCPToolsetTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMCPToolsetTypeEnum
 
 typealias BetaManagedAgentsMemory = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemory
 
-typealias BetaManagedAgentsMemoryListItem = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryListItem
+typealias BetaManagedAgentsMemoryListItem =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryListItem
 
-typealias BetaManagedAgentsMemoryPathConflictError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPathConflictError
+typealias BetaManagedAgentsMemoryPathConflictError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPathConflictError
 
-typealias BetaManagedAgentsMemoryPathConflictErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPathConflictErrorTypeEnum
+typealias BetaManagedAgentsMemoryPathConflictErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPathConflictErrorTypeEnum
 
-typealias BetaManagedAgentsMemoryPreconditionFailedError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPreconditionFailedError
+typealias BetaManagedAgentsMemoryPreconditionFailedError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPreconditionFailedError
 
-typealias BetaManagedAgentsMemoryPreconditionFailedErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPreconditionFailedErrorTypeEnum
+typealias BetaManagedAgentsMemoryPreconditionFailedErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPreconditionFailedErrorTypeEnum
 
-typealias BetaManagedAgentsMemoryPrefix = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPrefix
+typealias BetaManagedAgentsMemoryPrefix =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPrefix
 
-typealias BetaManagedAgentsMemoryPrefixTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPrefixTypeEnum
+typealias BetaManagedAgentsMemoryPrefixTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryPrefixTypeEnum
 
-typealias BetaManagedAgentsMemoryStore = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStore
+typealias BetaManagedAgentsMemoryStore =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStore
 
-typealias BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError
+typealias BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError
 
-typealias BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonErrorTypeEnum
+typealias BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonErrorTypeEnum
 
-typealias BetaManagedAgentsMemoryStoreArchivedRunError = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedRunError
+typealias BetaManagedAgentsMemoryStoreArchivedRunError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedRunError
 
-typealias BetaManagedAgentsMemoryStoreArchivedRunErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedRunErrorTypeEnum
+typealias BetaManagedAgentsMemoryStoreArchivedRunErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreArchivedRunErrorTypeEnum
 
-typealias BetaManagedAgentsMemoryStoreResource = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResource
+typealias BetaManagedAgentsMemoryStoreResource =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResource
 
-typealias BetaManagedAgentsMemoryStoreResourceConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceConfig
+typealias BetaManagedAgentsMemoryStoreResourceConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceConfig
 
-typealias BetaManagedAgentsMemoryStoreResourceConfigTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceConfigTypeEnum
+typealias BetaManagedAgentsMemoryStoreResourceConfigTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceConfigTypeEnum
 
-typealias BetaManagedAgentsMemoryStoreResourceParam = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceParam
+typealias BetaManagedAgentsMemoryStoreResourceParam =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceParam
 
-typealias BetaManagedAgentsMemoryStoreResourceParamTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceParamTypeEnum
+typealias BetaManagedAgentsMemoryStoreResourceParamTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceParamTypeEnum
 
-typealias BetaManagedAgentsMemoryStoreResourceTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceTypeEnum
+typealias BetaManagedAgentsMemoryStoreResourceTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreResourceTypeEnum
 
-typealias BetaManagedAgentsMemoryStoreTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreTypeEnum
+typealias BetaManagedAgentsMemoryStoreTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryStoreTypeEnum
 
-typealias BetaManagedAgentsMemoryTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryTypeEnum
+typealias BetaManagedAgentsMemoryTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryTypeEnum
 
-typealias BetaManagedAgentsMemoryVersion = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryVersion
+typealias BetaManagedAgentsMemoryVersion =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryVersion
 
-typealias BetaManagedAgentsMemoryVersionOperation = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryVersionOperation
+typealias BetaManagedAgentsMemoryVersionOperation =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryVersionOperation
 
-typealias BetaManagedAgentsMemoryVersionTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryVersionTypeEnum
+typealias BetaManagedAgentsMemoryVersionTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryVersionTypeEnum
 
-typealias BetaManagedAgentsMemoryView = dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryView
+typealias BetaManagedAgentsMemoryView =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsMemoryView
 
 typealias BetaManagedAgentsModel = dev.octri.showcase.anthropic.models.BetaManagedAgentsModel
 
-typealias BetaManagedAgentsModelConfig = dev.octri.showcase.anthropic.models.BetaManagedAgentsModelConfig
+typealias BetaManagedAgentsModelConfig =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsModelConfig
 
-typealias BetaManagedAgentsModelConfigParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsModelConfigParams
+typealias BetaManagedAgentsModelConfigParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsModelConfigParams
 
-typealias BetaManagedAgentsModelOverloadedError = dev.octri.showcase.anthropic.models.BetaManagedAgentsModelOverloadedError
+typealias BetaManagedAgentsModelOverloadedError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsModelOverloadedError
 
-typealias BetaManagedAgentsModelOverloadedErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaManagedAgentsModelOverloadedErrorTypeEnum
+typealias BetaManagedAgentsModelOverloadedErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsModelOverloadedErrorTypeEnum
 
-typealias BetaManagedAgentsModelParams = dev.octri.showcase.anthropic.models.BetaManagedAgentsModelParams
+typealias BetaManagedAgentsModelParams =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsModelParams
 
-typealias BetaManagedAgentsModelRateLimitedError = dev.octri.showcase.anthropic.models.BetaManagedAgentsModelRateLimitedError
+typealias BetaManagedAgentsModelRateLimitedError =
+    dev.octri.showcase.anthropic.models.BetaManagedAgentsModelRateLimitedError

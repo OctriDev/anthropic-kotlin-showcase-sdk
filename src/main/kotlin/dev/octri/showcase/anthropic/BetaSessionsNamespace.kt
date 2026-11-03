@@ -3,111 +3,264 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaSessionsNamespace(private val clientConfig: ClientConfig) {
     val events: BetaSessionsEventsNamespace
     val threads: BetaSessionsThreadsNamespace
     val resources: BetaSessionsResourcesNamespace
+
     init {
         events = BetaSessionsEventsNamespace(clientConfig)
         threads = BetaSessionsThreadsNamespace(clientConfig)
         resources = BetaSessionsResourcesNamespace(clientConfig)
     }
+
     /**
-     * Creates a session using an agent and an environment, with optional resources, credentials, events, and a spend budget. Provide `agent` and `environment_id`; use `initial_events` to send events as the session is created, or omit it to create the session without initial events. The response contains the created session and its initial status.
+     * Creates a session using an agent and an environment, with optional resources, credentials,
+     * events, and a spend budget. Provide `agent` and `environment_id`; use `initial_events` to
+     * send events as the session is created, or omit it to create the session without initial
+     * events. The response contains the created session and its initial status.
      */
-    fun create(request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.CreateBetaSessionsRequest, options: RequestOptions? = null): BetaManagedAgentsSession {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.createBetaSessions(clientConfig, request, options)
+    fun create(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.CreateBetaSessionsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSession {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.createBetaSessions(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists sessions with cursor-based pagination and optional filters for creation time, agent, memory store, deployment, and status. Use `include_archived` to include archived sessions and `order` to choose the creation-time sort direction. Pass a returned cursor in `page` to navigate between pages.
+     * Lists sessions with cursor-based pagination and optional filters for creation time, agent,
+     * memory store, deployment, and status. Use `include_archived` to include archived sessions and
+     * `order` to choose the creation-time sort direction. Pass a returned cursor in `page` to
+     * navigate between pages.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.ListBetaSessionsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessions {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.listBetaSessions(clientConfig, request, options)
+    fun list(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.ListBetaSessionsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessions {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.listBetaSessions(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists sessions with cursor-based pagination and optional filters for creation time, agent, memory store, deployment, and status. Use `include_archived` to include archived sessions and `order` to choose the creation-time sort direction. Pass a returned cursor in `page` to navigate between pages.
+     * Lists sessions with cursor-based pagination and optional filters for creation time, agent,
+     * memory store, deployment, and status. Use `include_archived` to include archived sessions and
+     * `order` to choose the creation-time sort direction. Pass a returned cursor in `page` to
+     * navigate between pages.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.ListBetaSessionsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSession) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.BetaSessions.listBetaSessionsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.ListBetaSessionsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSession) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.BetaSessions.listBetaSessionsPaginated(
+            clientConfig,
+            request,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a session by its identifier, including its status, agent snapshot, resources, usage, and timing statistics. Use `session_id` to select the session you need to inspect. The response includes the session's archive timestamp when it has been archived.
+     * Retrieves a session by its identifier, including its status, agent snapshot, resources,
+     * usage, and timing statistics. Use `session_id` to select the session you need to inspect. The
+     * response includes the session's archive timestamp when it has been archived.
      */
-    fun retrieve(sessionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSession {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.retrieveBetaSessions(clientConfig, sessionId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        sessionId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSession {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.retrieveBetaSessions(
+            clientConfig,
+            sessionId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Updates selected properties of a session while preserving fields you omit. Use `title`, `metadata`, `agent`, or `budget` as needed; `vault_ids` is reserved and requests that set it are rejected. Mid-session agent updates can change only `tools` and `mcp_servers`, require a session that is not running, and replace those arrays in full.
+     * Updates selected properties of a session while preserving fields you omit. Use `title`,
+     * `metadata`, `agent`, or `budget` as needed; `vault_ids` is reserved and requests that set it
+     * are rejected. Mid-session agent updates can change only `tools` and `mcp_servers`, require a
+     * session that is not running, and replace those arrays in full.
      */
-    fun update(request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.UpdateBetaSessionsRequest, options: RequestOptions? = null): BetaManagedAgentsSession {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.updateBetaSessions(clientConfig, request, options)
+    fun update(
+        request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.UpdateBetaSessionsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSession {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.updateBetaSessions(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Deletes a session permanently. Supply the session identifier for the session you want to remove. A successful response confirms deletion and includes the deleted session's identifier.
+     * Deletes a session permanently. Supply the session identifier for the session you want to
+     * remove. A successful response confirms deletion and includes the deleted session's
+     * identifier.
      */
-    fun delete(sessionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeletedSession {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.deleteBetaSessions(clientConfig, sessionId, anthropicBeta, anthropicWorkspaceId, options)
+    fun delete(
+        sessionId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeletedSession {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.deleteBetaSessions(
+            clientConfig,
+            sessionId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Archives a session, marking it as archived while retaining its session record. Use this operation when the session should no longer be active; the response includes the session's `archived_at` value and other session details.
+     * Archives a session, marking it as archived while retaining its session record. Use this
+     * operation when the session should no longer be active; the response includes the session's
+     * `archived_at` value and other session details.
      */
-    fun archive(sessionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSession {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.archiveBetaSessions(clientConfig, sessionId, anthropicBeta, anthropicWorkspaceId, options)
+    fun archive(
+        sessionId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSession {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSessions.archiveBetaSessions(
+            clientConfig,
+            sessionId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaSessionsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaSessionsNamespace], returning the [SdkResponse] envelope around each
+     * result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Creates a session using an agent and an environment, with optional resources, credentials, events, and a spend budget. Provide `agent` and `environment_id`; use `initial_events` to send events as the session is created, or omit it to create the session without initial events. The response contains the created session and its initial status.
+         * Creates a session using an agent and an environment, with optional resources,
+         * credentials, events, and a spend budget. Provide `agent` and `environment_id`; use
+         * `initial_events` to send events as the session is created, or omit it to create the
+         * session without initial events. The response contains the created session and its initial
+         * status.
          */
-        fun create(request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.CreateBetaSessionsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsSession> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSessions.createBetaSessionsWithRawResponse(clientConfig, request, options)
+        fun create(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.BetaSessions.CreateBetaSessionsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsSession> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSessions
+                .createBetaSessionsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Lists sessions with cursor-based pagination and optional filters for creation time, agent, memory store, deployment, and status. Use `include_archived` to include archived sessions and `order` to choose the creation-time sort direction. Pass a returned cursor in `page` to navigate between pages.
+         * Lists sessions with cursor-based pagination and optional filters for creation time,
+         * agent, memory store, deployment, and status. Use `include_archived` to include archived
+         * sessions and `order` to choose the creation-time sort direction. Pass a returned cursor
+         * in `page` to navigate between pages.
          */
-        fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.ListBetaSessionsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListSessions> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSessions.listBetaSessionsWithRawResponse(clientConfig, request, options)
+        fun list(
+            request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.ListBetaSessionsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsListSessions> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSessions
+                .listBetaSessionsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Retrieves a session by its identifier, including its status, agent snapshot, resources, usage, and timing statistics. Use `session_id` to select the session you need to inspect. The response includes the session's archive timestamp when it has been archived.
+         * Retrieves a session by its identifier, including its status, agent snapshot, resources,
+         * usage, and timing statistics. Use `session_id` to select the session you need to inspect.
+         * The response includes the session's archive timestamp when it has been archived.
          */
-        fun retrieve(sessionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsSession> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSessions.retrieveBetaSessionsWithRawResponse(clientConfig, sessionId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            sessionId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsSession> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSessions
+                .retrieveBetaSessionsWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Updates selected properties of a session while preserving fields you omit. Use `title`, `metadata`, `agent`, or `budget` as needed; `vault_ids` is reserved and requests that set it are rejected. Mid-session agent updates can change only `tools` and `mcp_servers`, require a session that is not running, and replace those arrays in full.
+         * Updates selected properties of a session while preserving fields you omit. Use `title`,
+         * `metadata`, `agent`, or `budget` as needed; `vault_ids` is reserved and requests that set
+         * it are rejected. Mid-session agent updates can change only `tools` and `mcp_servers`,
+         * require a session that is not running, and replace those arrays in full.
          */
-        fun update(request: dev.octri.showcase.anthropic.methods.beta.BetaSessions.UpdateBetaSessionsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsSession> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSessions.updateBetaSessionsWithRawResponse(clientConfig, request, options)
+        fun update(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.BetaSessions.UpdateBetaSessionsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsSession> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSessions
+                .updateBetaSessionsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Deletes a session permanently. Supply the session identifier for the session you want to remove. A successful response confirms deletion and includes the deleted session's identifier.
+         * Deletes a session permanently. Supply the session identifier for the session you want to
+         * remove. A successful response confirms deletion and includes the deleted session's
+         * identifier.
          */
-        fun delete(sessionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeletedSession> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSessions.deleteBetaSessionsWithRawResponse(clientConfig, sessionId, anthropicBeta, anthropicWorkspaceId, options)
+        fun delete(
+            sessionId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeletedSession> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSessions
+                .deleteBetaSessionsWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Archives a session, marking it as archived while retaining its session record. Use this operation when the session should no longer be active; the response includes the session's `archived_at` value and other session details.
+         * Archives a session, marking it as archived while retaining its session record. Use this
+         * operation when the session should no longer be active; the response includes the
+         * session's `archived_at` value and other session details.
          */
-        fun archive(sessionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsSession> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSessions.archiveBetaSessionsWithRawResponse(clientConfig, sessionId, anthropicBeta, anthropicWorkspaceId, options)
+        fun archive(
+            sessionId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsSession> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSessions
+                .archiveBetaSessionsWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

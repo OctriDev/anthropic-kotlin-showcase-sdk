@@ -5,16 +5,11 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Response when listing work items with cursor-based pagination.
- */
+/** Response when listing work items with cursor-based pagination. */
 data class BetaSelfHostedWorkListResponse(
-    /**
-     * List of work items
-     */
+    /** List of work items */
     @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaSelfHostedWork>,
-    /**
-     * Opaque cursor for fetching the next page of results
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true) val nextPage: String?
+    /** Opaque cursor for fetching the next page of results */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page", required = true)
+    val nextPage: String?,
 ) : SdkResource()

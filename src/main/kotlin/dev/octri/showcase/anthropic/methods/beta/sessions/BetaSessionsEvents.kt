@@ -22,34 +22,37 @@ import dev.octri.showcase.anthropic.Validation
 object BetaSessionsEvents {
 
     /**
-     * Lists events for a session in pages, ordered by their processing time. Filter by event type or creation-time bounds, and use `page` with the cursor returned as `next_page` to continue through results. The `created_at` filters are applied to each event's `processed_at` value.
+     * Lists events for a session in pages, ordered by their processing time. Filter by event type
+     * or creation-time bounds, and use `page` with the cursor returned as `next_page` to continue
+     * through results. The `created_at` filters are applied to each event's `processed_at` value.
      *
      * @param sessionId Path parameter session_id
      * @param limit Query parameter for limit
      * @param page Opaque pagination cursor from a previous response's `next_page`.
-     * @param order Sort direction for results, ordered by the event's
-     *   `processed_at`. Defaults to `asc` (chronological).
-     * @param types Filter by event type. Values match the `type` field on returned
-     *   events (for example, `user.message` or `agent.tool_use`). Omit to return all
-     *   event types.
-     * @param createdAtGte Return events created at or after this time (inclusive).
-     *   Compared against the event's `processed_at` value.
-     * @param createdAtGt Return events created after this time (exclusive). Compared
+     * @param order Sort direction for results, ordered by the event's `processed_at`. Defaults to
+     *   `asc` (chronological).
+     * @param types Filter by event type. Values match the `type` field on returned events (for
+     *   example, `user.message` or `agent.tool_use`). Omit to return all event types.
+     * @param createdAtGte Return events created at or after this time (inclusive). Compared against
+     *   the event's `processed_at` value.
+     * @param createdAtGt Return events created after this time (exclusive). Compared against the
+     *   event's `processed_at` value.
+     * @param createdAtLte Return events created at or before this time (inclusive). Compared
      *   against the event's `processed_at` value.
-     * @param createdAtLte Return events created at or before this time (inclusive).
-     *   Compared against the event's `processed_at` value.
-     * @param createdAtLt Return events created before this time (exclusive).
-     *   Compared against the event's `processed_at` value.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param createdAtLt Return events created before this time (exclusive). Compared against the
+     *   event's `processed_at` value.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsEvents(clientConfig: ClientConfig, request: ListBetaSessionsEventsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionEvents {
+    fun listBetaSessionsEvents(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsEventsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessionEvents {
         return listBetaSessionsEventsWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [listBetaSessionsEvents]. */
     data class ListBetaSessionsEventsRequest(
@@ -63,70 +66,120 @@ object BetaSessionsEvents {
         val createdAtLte: BetaTimestamp? = null,
         val createdAtLt: BetaTimestamp? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
-    /** [listBetaSessionsEvents], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaSessionsEventsWithRawResponse(clientConfig: ClientConfig, request: ListBetaSessionsEventsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListSessionEvents> {
+    /**
+     * [listBetaSessionsEvents], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun listBetaSessionsEventsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsEventsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsListSessionEvents> {
         validateListBetaSessionsEventsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsListSessionEvents>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/events?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "order" to SdkClient.queryValue(request.order, "form", true), "types[]" to
-    SdkClient.queryValue(request.types, "form", true), "created_at[gte]" to
-    SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"), "created_at[gt]" to
-    SdkClient.queryValue(request.createdAtGt, "form", true, "date-time"), "created_at[lte]" to
-    SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"), "created_at[lt]" to
-    SdkClient.queryValue(request.createdAtLt, "form", true, "date-time")), operationId = "listBetaSessionsEvents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaManagedAgentsListSessionEvents>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/sessions/${SdkClient.encodePathSegment(request.sessionId)}/events?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "limit" to SdkClient.queryValue(request.limit, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                        "order" to SdkClient.queryValue(request.order, "form", true),
+                        "types[]" to SdkClient.queryValue(request.types, "form", true),
+                        "created_at[gte]" to
+                            SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"),
+                        "created_at[gt]" to
+                            SdkClient.queryValue(request.createdAtGt, "form", true, "date-time"),
+                        "created_at[lte]" to
+                            SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"),
+                        "created_at[lt]" to
+                            SdkClient.queryValue(request.createdAtLt, "form", true, "date-time"),
+                    ),
+                operationId = "listBetaSessionsEvents",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
 
     private fun validateListBetaSessionsEventsRequest(request: ListBetaSessionsEventsRequest) {
         if (request.createdAtGte != null) {
             Validation.validateDateTime("created_at[gte]", request.createdAtGte)
-}
+        }
 
         if (request.createdAtGt != null) {
             Validation.validateDateTime("created_at[gt]", request.createdAtGt)
-}
+        }
 
         if (request.createdAtLte != null) {
             Validation.validateDateTime("created_at[lte]", request.createdAtLte)
-}
+        }
 
         if (request.createdAtLt != null) {
             Validation.validateDateTime("created_at[lt]", request.createdAtLt)
-}
+        }
     }
 
-
-
-
-
     /**
-     * Lists events for a session in pages, ordered by their processing time. Filter by event type or creation-time bounds, and use `page` with the cursor returned as `next_page` to continue through results. The `created_at` filters are applied to each event's `processed_at` value.
+     * Lists events for a session in pages, ordered by their processing time. Filter by event type
+     * or creation-time bounds, and use `page` with the cursor returned as `next_page` to continue
+     * through results. The `created_at` filters are applied to each event's `processed_at` value.
      *
      * @param sessionId Path parameter session_id
      * @param limit Query parameter for limit
      * @param page Opaque pagination cursor from a previous response's `next_page`.
-     * @param order Sort direction for results, ordered by the event's
-     *   `processed_at`. Defaults to `asc` (chronological).
-     * @param types Filter by event type. Values match the `type` field on returned
-     *   events (for example, `user.message` or `agent.tool_use`). Omit to return all
-     *   event types.
-     * @param createdAtGte Return events created at or after this time (inclusive).
-     *   Compared against the event's `processed_at` value.
-     * @param createdAtGt Return events created after this time (exclusive). Compared
+     * @param order Sort direction for results, ordered by the event's `processed_at`. Defaults to
+     *   `asc` (chronological).
+     * @param types Filter by event type. Values match the `type` field on returned events (for
+     *   example, `user.message` or `agent.tool_use`). Omit to return all event types.
+     * @param createdAtGte Return events created at or after this time (inclusive). Compared against
+     *   the event's `processed_at` value.
+     * @param createdAtGt Return events created after this time (exclusive). Compared against the
+     *   event's `processed_at` value.
+     * @param createdAtLte Return events created at or before this time (inclusive). Compared
      *   against the event's `processed_at` value.
-     * @param createdAtLte Return events created at or before this time (inclusive).
-     *   Compared against the event's `processed_at` value.
-     * @param createdAtLt Return events created before this time (exclusive).
-     *   Compared against the event's `processed_at` value.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param createdAtLt Return events created before this time (exclusive). Compared against the
+     *   event's `processed_at` value.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSessionsEventsPaginated(clientConfig: ClientConfig, request: ListBetaSessionsEventsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean) {
+    fun listBetaSessionsEventsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsEventsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessionsEvents(clientConfig, request.copy(page = cursor), options)
@@ -146,7 +199,12 @@ object BetaSessionsEvents {
         val hasMore: Boolean,
     )
 
-    fun listBetaSessionsEventsPages(clientConfig: ClientConfig, request: ListBetaSessionsEventsRequest, options: RequestOptions? = null, yieldPage: (ListBetaSessionsEventsPage) -> Boolean) {
+    fun listBetaSessionsEventsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaSessionsEventsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaSessionsEventsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaSessionsEvents(clientConfig, request.copy(page = cursor), options)
@@ -160,65 +218,170 @@ object BetaSessionsEvents {
         }
     }
 
-
     /**
-     * Submits events to a session, including user messages, interrupts, and tool execution confirmations. Provide the required `events` array with the event payloads you want to send to the session. The response returns the events accepted for the session.
+     * Submits events to a session, including user messages, interrupts, and tool execution
+     * confirmations. Provide the required `events` array with the event payloads you want to send
+     * to the session. The response returns the events accepted for the session.
      *
      * @param sessionId Path parameter session_id
      * @param events Events to send to the `session`.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun createBetaSessionsEvents(clientConfig: ClientConfig, sessionId: String, events: List<BetaManagedAgentsEventParams>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSendSessionEvents {
-        return createBetaSessionsEventsWithRawResponse(clientConfig, sessionId, events, anthropicBeta, anthropicWorkspaceId, options).data
+    fun createBetaSessionsEvents(
+        clientConfig: ClientConfig,
+        sessionId: String,
+        events: List<BetaManagedAgentsEventParams>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSendSessionEvents {
+        return createBetaSessionsEventsWithRawResponse(
+                clientConfig,
+                sessionId,
+                events,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [createBetaSessionsEvents], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun createBetaSessionsEventsWithRawResponse(clientConfig: ClientConfig, sessionId: String, events: List<BetaManagedAgentsEventParams>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsSendSessionEvents> {
-        return SdkClient.request<BetaManagedAgentsSendSessionEvents>(SdkClient.RequestSpec("POST", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/events?beta=true", config = clientConfig, body = SdkClient.bodyMap("events" to (events)), operationId = "createBetaSessionsEvents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Streams events from a session as server-sent events. Set `event_deltas[]` to preview supported agent message or thinking events before their complete events arrive; deltas are best-effort, and an interrupted or failed model request may end without a final event. Use this operation when you need session events as they are produced rather than retrieving them in pages.
+     * [createBetaSessionsEvents], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun createBetaSessionsEventsWithRawResponse(
+        clientConfig: ClientConfig,
+        sessionId: String,
+        events: List<BetaManagedAgentsEventParams>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsSendSessionEvents> {
+        return SdkClient.request<BetaManagedAgentsSendSessionEvents>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/events?beta=true",
+                config = clientConfig,
+                body = SdkClient.bodyMap("events" to (events)),
+                operationId = "createBetaSessionsEvents",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Streams events from a session as server-sent events. Set `event_deltas[]` to preview
+     * supported agent message or thinking events before their complete events arrive; deltas are
+     * best-effort, and an interrupted or failed model request may end without a final event. Use
+     * this operation when you need session events as they are produced rather than retrieving them
+     * in pages.
      *
      * @param sessionId Path parameter session_id
-     * @param eventDeltas When set, this connection also receives streaming deltas
-     *   (`event_start`, `event_delta`) while an event is being produced, before the
-     *   event itself arrives. Deltas are best-effort; when the final event is produced
-     *   it carries the complete content. A model request that ends early (an error or
-     *   interrupt) produces no final event — its terminal `span.model_request_end`
-     *   closes the preview. Accepts one or more event types to preview and may be
-     *   repeated: `agent.message` streams…
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param eventDeltas When set, this connection also receives streaming deltas (`event_start`,
+     *   `event_delta`) while an event is being produced, before the event itself arrives. Deltas
+     *   are best-effort; when the final event is produced it carries the complete content. A model
+     *   request that ends early (an error or interrupt) produces no final event — its terminal
+     *   `span.model_request_end` closes the preview. Accepts one or more event types to preview and
+     *   may be repeated: `agent.message` streams…
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun streamBetaSessionsEvents(clientConfig: ClientConfig, sessionId: String, eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsStreamSessionEvents {
-        return streamBetaSessionsEventsWithRawResponse(clientConfig, sessionId, eventDeltas, anthropicBeta, anthropicWorkspaceId, options).data
+    fun streamBetaSessionsEvents(
+        clientConfig: ClientConfig,
+        sessionId: String,
+        eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsStreamSessionEvents {
+        return streamBetaSessionsEventsWithRawResponse(
+                clientConfig,
+                sessionId,
+                eventDeltas,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
 
-
-    /** [streamBetaSessionsEvents], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun streamBetaSessionsEventsWithRawResponse(clientConfig: ClientConfig, sessionId: String, eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsStreamSessionEvents> {
-        return SdkClient.request<BetaManagedAgentsStreamSessionEvents>(SdkClient.RequestSpec("GET", "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/events/stream?beta=true", config = clientConfig, query = mapOf("event_deltas[]" to
-    SdkClient.queryValue(eventDeltas, "form", true)), operationId = "streamBetaSessionsEvents", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
+    /**
+     * [streamBetaSessionsEvents], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun streamBetaSessionsEventsWithRawResponse(
+        clientConfig: ClientConfig,
+        sessionId: String,
+        eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsStreamSessionEvents> {
+        return SdkClient.request<BetaManagedAgentsStreamSessionEvents>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/sessions/${SdkClient.encodePathSegment(sessionId)}/events/stream?beta=true",
+                config = clientConfig,
+                query = mapOf("event_deltas[]" to SdkClient.queryValue(eventDeltas, "form", true)),
+                operationId = "streamBetaSessionsEvents",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }

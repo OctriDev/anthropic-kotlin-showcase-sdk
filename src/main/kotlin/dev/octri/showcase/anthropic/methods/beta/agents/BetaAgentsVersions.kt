@@ -15,48 +15,128 @@ import dev.octri.showcase.anthropic.SdkResponse
 object BetaAgentsVersions {
 
     /**
-     * Lists the versions recorded for a specific agent. Use `page` to continue from a previous response and `limit` to control the page size; the response provides a `next_page` cursor when more versions are available.
+     * Lists the versions recorded for a specific agent. Use `page` to continue from a previous
+     * response and `limit` to control the page size; the response provides a `next_page` cursor
+     * when more versions are available.
      *
      * @param agentId Path parameter agent_id
      * @param limit Maximum results per page. Default 20, maximum 100.
      * @param page Opaque pagination cursor.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaAgentsVersions(clientConfig: ClientConfig, agentId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsListAgentVersions {
-        return listBetaAgentsVersionsWithRawResponse(clientConfig, agentId, limit, page, anthropicBeta, anthropicWorkspaceId, options).data
+    fun listBetaAgentsVersions(
+        clientConfig: ClientConfig,
+        agentId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListAgentVersions {
+        return listBetaAgentsVersionsWithRawResponse(
+                clientConfig,
+                agentId,
+                limit,
+                page,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [listBetaAgentsVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaAgentsVersionsWithRawResponse(clientConfig: ClientConfig, agentId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListAgentVersions> {
-        return SdkClient.request<BetaManagedAgentsListAgentVersions>(SdkClient.RequestSpec("GET", "/v1/agents/${SdkClient.encodePathSegment(agentId)}/versions?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "listBetaAgentsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Lists the versions recorded for a specific agent. Use `page` to continue from a previous response and `limit` to control the page size; the response provides a `next_page` cursor when more versions are available.
+     * [listBetaAgentsVersions], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun listBetaAgentsVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        agentId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsListAgentVersions> {
+        return SdkClient.request<BetaManagedAgentsListAgentVersions>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/agents/${SdkClient.encodePathSegment(agentId)}/versions?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "limit" to SdkClient.queryValue(limit, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "listBetaAgentsVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Lists the versions recorded for a specific agent. Use `page` to continue from a previous
+     * response and `limit` to control the page size; the response provides a `next_page` cursor
+     * when more versions are available.
      *
      * @param agentId Path parameter agent_id
      * @param limit Maximum results per page. Default 20, maximum 100.
      * @param page Opaque pagination cursor.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaAgentsVersionsPaginated(clientConfig: ClientConfig, agentId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsAgent) -> Boolean) {
+    fun listBetaAgentsVersionsPaginated(
+        clientConfig: ClientConfig,
+        agentId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsAgent) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaAgentsVersions(clientConfig, agentId, limit, cursor, anthropicBeta, anthropicWorkspaceId, options)
+            val page =
+                listBetaAgentsVersions(
+                    clientConfig,
+                    agentId,
+                    limit,
+                    cursor,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -73,10 +153,28 @@ object BetaAgentsVersions {
         val hasMore: Boolean,
     )
 
-    fun listBetaAgentsVersionsPages(clientConfig: ClientConfig, agentId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldPage: (ListBetaAgentsVersionsPage) -> Boolean) {
+    fun listBetaAgentsVersionsPages(
+        clientConfig: ClientConfig,
+        agentId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaAgentsVersionsPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaAgentsVersions(clientConfig, agentId, limit, cursor, anthropicBeta, anthropicWorkspaceId, options)
+            val page =
+                listBetaAgentsVersions(
+                    clientConfig,
+                    agentId,
+                    limit,
+                    cursor,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -86,7 +184,4 @@ object BetaAgentsVersions {
             cursor = nextCursor
         }
     }
-
-
-
 }

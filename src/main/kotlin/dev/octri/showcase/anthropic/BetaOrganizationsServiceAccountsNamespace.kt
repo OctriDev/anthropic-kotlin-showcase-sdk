@@ -3,93 +3,303 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsServiceAccountsNamespace(private val clientConfig: ClientConfig) {
     val workspaces: BetaOrganizationsServiceAccountsWorkspacesNamespace
+
     init {
         workspaces = BetaOrganizationsServiceAccountsWorkspacesNamespace(clientConfig)
     }
+
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Create a service account. A service account is a named workload identity that federation rules target. `organization_role` is `developer` (default) or `admin`; a rule may only be created or retargeted to grant `org:admin` scope when the target's `organization_role` is…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Create a service account. A service account is a named
+     * workload identity that federation rules target. `organization_role` is `developer` (default)
+     * or `admin`; a rule may only be created or retargeted to grant `org:admin` scope when the
+     * target's `organization_role` is…
      */
-    fun create(name: String, anthropicBeta: List<AnthropicBeta>? = null, description: SdkClient.SdkOptional<String?>? = null, organizationRole: BetaServiceAccountCreateParamsOrganizationRoleEnum? = null, options: RequestOptions? = null): BetaServiceAccount {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.createBetaOrganizationsServiceAccounts(clientConfig, name, anthropicBeta, description, organizationRole, options)
+    fun create(
+        name: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        description: SdkClient.SdkOptional<String?>? = null,
+        organizationRole: BetaServiceAccountCreateParamsOrganizationRoleEnum? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccount {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsServiceAccounts
+            .createBetaOrganizationsServiceAccounts(
+                clientConfig,
+                name,
+                anthropicBeta,
+                description,
+                organizationRole,
+                options,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List service accounts in the caller's organization. Results are ordered by creation time, newest first. Use `limit` and the `next_page` cursor to paginate; set `include_archived=true` to include archived service accounts.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List service accounts in the caller's organization. Results
+     * are ordered by creation time, newest first. Use `limit` and the `next_page` cursor to
+     * paginate; set `include_archived=true` to include archived service accounts.
      */
-    fun list(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaServiceAccountListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.listBetaOrganizationsServiceAccounts(clientConfig, limit, page, includeArchived, anthropicBeta, options)
+    fun list(
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccountListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsServiceAccounts
+            .listBetaOrganizationsServiceAccounts(
+                clientConfig,
+                limit,
+                page,
+                includeArchived,
+                anthropicBeta,
+                options,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List service accounts in the caller's organization. Results are ordered by creation time, newest first. Use `limit` and the `next_page` cursor to paginate; set `include_archived=true` to include archived service accounts.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List service accounts in the caller's organization. Results
+     * are ordered by creation time, newest first. Use `limit` and the `next_page` cursor to
+     * paginate; set `include_archived=true` to include archived service accounts.
      */
-    fun listPaginated(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null, yieldFn: (BetaServiceAccount) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.listBetaOrganizationsServiceAccountsPaginated(clientConfig, limit, page, includeArchived, anthropicBeta, options, yieldFn)
+    fun listPaginated(
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaServiceAccount) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts
+            .listBetaOrganizationsServiceAccountsPaginated(
+                clientConfig,
+                limit,
+                page,
+                includeArchived,
+                anthropicBeta,
+                options,
+                yieldFn,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Retrieve a service account by its ID (`svac_...`).
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Retrieve a service account by its ID (`svac_...`).
      */
-    fun retrieve(serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaServiceAccount {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.retrieveBetaOrganizationsServiceAccounts(clientConfig, serviceAccountId, anthropicBeta, options)
+    fun retrieve(
+        serviceAccountId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccount {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsServiceAccounts
+            .retrieveBetaOrganizationsServiceAccounts(
+                clientConfig,
+                serviceAccountId,
+                anthropicBeta,
+                options,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Update a service account. Only `description` and `organization_role` are mutable; `name` cannot be changed. Archived service accounts cannot be updated; this returns 400. Setting `organization_role` to `admin` (even when unchanged) requires an interactive credential…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Update a service account. Only `description` and
+     * `organization_role` are mutable; `name` cannot be changed. Archived service accounts cannot
+     * be updated; this returns 400. Setting `organization_role` to `admin` (even when unchanged)
+     * requires an interactive credential…
      */
-    fun update(serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, description: SdkClient.SdkOptional<String?>? = null, organizationRole: SdkClient.SdkOptional<BetaServiceAccountUpdateParamsOrganizationRoleVariant0Enum?>? = null, options: RequestOptions? = null): BetaServiceAccount {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.updateBetaOrganizationsServiceAccounts(clientConfig, serviceAccountId, anthropicBeta, description, organizationRole, options)
+    fun update(
+        serviceAccountId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        description: SdkClient.SdkOptional<String?>? = null,
+        organizationRole:
+            SdkClient.SdkOptional<BetaServiceAccountUpdateParamsOrganizationRoleVariant0Enum?>? =
+            null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccount {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsServiceAccounts
+            .updateBetaOrganizationsServiceAccounts(
+                clientConfig,
+                serviceAccountId,
+                anthropicBeta,
+                description,
+                organizationRole,
+                options,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Archive a service account. Idempotent; re-archiving returns the service account with its original `archived_at`. Rejected with 400 if any live (non-archived) federation rule still targets this service account, same as issuer archival; archive those rules first or…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Archive a service account. Idempotent; re-archiving returns
+     * the service account with its original `archived_at`. Rejected with 400 if any live
+     * (non-archived) federation rule still targets this service account, same as issuer archival;
+     * archive those rules first or…
      */
-    fun archive(serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaServiceAccount {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.archiveBetaOrganizationsServiceAccounts(clientConfig, serviceAccountId, anthropicBeta, options)
+    fun archive(
+        serviceAccountId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaServiceAccount {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsServiceAccounts
+            .archiveBetaOrganizationsServiceAccounts(
+                clientConfig,
+                serviceAccountId,
+                anthropicBeta,
+                options,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaOrganizationsServiceAccountsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaOrganizationsServiceAccountsNamespace], returning the [SdkResponse]
+     * envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Create a service account. A service account is a named workload identity that federation rules target. `organization_role` is `developer` (default) or `admin`; a rule may only be created or retargeted to grant `org:admin` scope when the target's `organization_role` is…
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Create a service account. A service account
+         * is a named workload identity that federation rules target. `organization_role` is
+         * `developer` (default) or `admin`; a rule may only be created or retargeted to grant
+         * `org:admin` scope when the target's `organization_role` is…
          */
-        fun create(name: String, anthropicBeta: List<AnthropicBeta>? = null, description: SdkClient.SdkOptional<String?>? = null, organizationRole: BetaServiceAccountCreateParamsOrganizationRoleEnum? = null, options: RequestOptions? = null): SdkResponse<BetaServiceAccount> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.createBetaOrganizationsServiceAccountsWithRawResponse(clientConfig, name, anthropicBeta, description, organizationRole, options)
+        fun create(
+            name: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            description: SdkClient.SdkOptional<String?>? = null,
+            organizationRole: BetaServiceAccountCreateParamsOrganizationRoleEnum? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaServiceAccount> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsServiceAccounts
+                .createBetaOrganizationsServiceAccountsWithRawResponse(
+                    clientConfig,
+                    name,
+                    anthropicBeta,
+                    description,
+                    organizationRole,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List service accounts in the caller's organization. Results are ordered by creation time, newest first. Use `limit` and the `next_page` cursor to paginate; set `include_archived=true` to include archived service accounts.
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. List service accounts in the caller's
+         * organization. Results are ordered by creation time, newest first. Use `limit` and the
+         * `next_page` cursor to paginate; set `include_archived=true` to include archived service
+         * accounts.
          */
-        fun list(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): SdkResponse<BetaServiceAccountListResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.listBetaOrganizationsServiceAccountsWithRawResponse(clientConfig, limit, page, includeArchived, anthropicBeta, options)
+        fun list(
+            limit: Long? = null,
+            page: SdkClient.SdkOptional<String?>? = null,
+            includeArchived: Boolean? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaServiceAccountListResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsServiceAccounts
+                .listBetaOrganizationsServiceAccountsWithRawResponse(
+                    clientConfig,
+                    limit,
+                    page,
+                    includeArchived,
+                    anthropicBeta,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Retrieve a service account by its ID (`svac_...`).
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Retrieve a service account by its ID
+         * (`svac_...`).
          */
-        fun retrieve(serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): SdkResponse<BetaServiceAccount> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.retrieveBetaOrganizationsServiceAccountsWithRawResponse(clientConfig, serviceAccountId, anthropicBeta, options)
+        fun retrieve(
+            serviceAccountId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaServiceAccount> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsServiceAccounts
+                .retrieveBetaOrganizationsServiceAccountsWithRawResponse(
+                    clientConfig,
+                    serviceAccountId,
+                    anthropicBeta,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Update a service account. Only `description` and `organization_role` are mutable; `name` cannot be changed. Archived service accounts cannot be updated; this returns 400. Setting `organization_role` to `admin` (even when unchanged) requires an interactive credential…
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Update a service account. Only `description`
+         * and `organization_role` are mutable; `name` cannot be changed. Archived service accounts
+         * cannot be updated; this returns 400. Setting `organization_role` to `admin` (even when
+         * unchanged) requires an interactive credential…
          */
-        fun update(serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, description: SdkClient.SdkOptional<String?>? = null, organizationRole: SdkClient.SdkOptional<BetaServiceAccountUpdateParamsOrganizationRoleVariant0Enum?>? = null, options: RequestOptions? = null): SdkResponse<BetaServiceAccount> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.updateBetaOrganizationsServiceAccountsWithRawResponse(clientConfig, serviceAccountId, anthropicBeta, description, organizationRole, options)
+        fun update(
+            serviceAccountId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            description: SdkClient.SdkOptional<String?>? = null,
+            organizationRole:
+                SdkClient.SdkOptional<
+                    BetaServiceAccountUpdateParamsOrganizationRoleVariant0Enum?
+                >? =
+                null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaServiceAccount> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsServiceAccounts
+                .updateBetaOrganizationsServiceAccountsWithRawResponse(
+                    clientConfig,
+                    serviceAccountId,
+                    anthropicBeta,
+                    description,
+                    organizationRole,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Archive a service account. Idempotent; re-archiving returns the service account with its original `archived_at`. Rejected with 400 if any live (non-archived) federation rule still targets this service account, same as issuer archival; archive those rules first or…
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Archive a service account. Idempotent;
+         * re-archiving returns the service account with its original `archived_at`. Rejected with
+         * 400 if any live (non-archived) federation rule still targets this service account, same
+         * as issuer archival; archive those rules first or…
          */
-        fun archive(serviceAccountId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): SdkResponse<BetaServiceAccount> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsServiceAccounts.archiveBetaOrganizationsServiceAccountsWithRawResponse(clientConfig, serviceAccountId, anthropicBeta, options)
+        fun archive(
+            serviceAccountId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaServiceAccount> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsServiceAccounts
+                .archiveBetaOrganizationsServiceAccountsWithRawResponse(
+                    clientConfig,
+                    serviceAccountId,
+                    anthropicBeta,
+                    options,
+                )
         }
-
     }
 }

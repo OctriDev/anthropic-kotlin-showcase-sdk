@@ -5,323 +5,460 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Typed representation of the `CitationsDelta` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `CitationsDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class CitationsDelta(
-    /**
-     * Required API value serialized in the `citation` wire field.
-     */
+    /** Required API value serialized in the `citation` wire field. */
     val citation: CitationsDeltaCitation,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: CitationsDeltaTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: CitationsDeltaTypeEnum,
 ) : SdkResource(), ContentBlockDeltaEventDelta
 
-/**
- * Required API value serialized in the `citation` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownCitationsDeltaCitation::class)
+/** Required API value serialized in the `citation` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownCitationsDeltaCitation::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseCharLocationCitation::class, name = "char_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponsePageLocationCitation::class, name = "page_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseContentBlockLocationCitation::class, name = "content_block_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseWebSearchResultLocationCitation::class, name = "web_search_result_location"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseSearchResultLocationCitation::class, name = "search_result_location")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseCharLocationCitation::class,
+        name = "char_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponsePageLocationCitation::class,
+        name = "page_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseContentBlockLocationCitation::class,
+        name = "content_block_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseWebSearchResultLocationCitation::class,
+        name = "web_search_result_location",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseSearchResultLocationCitation::class,
+        name = "search_result_location",
+    ),
 )
 sealed interface CitationsDeltaCitation
 
 /** A [CitationsDeltaCitation] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownCitationsDeltaCitation @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownCitationsDeltaCitation
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : CitationsDeltaCitation {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `ContentBlockDeltaEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ContentBlockDeltaEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ContentBlockDeltaEvent(
-    /**
-     * Required API value serialized in the `delta` wire field.
-     */
+    /** Required API value serialized in the `delta` wire field. */
     val delta: ContentBlockDeltaEventDelta,
-    /**
-     * Required `integer` value serialized in the `index` wire field.
-     */
+    /** Required `integer` value serialized in the `index` wire field. */
     val index: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ContentBlockDeltaEventTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ContentBlockDeltaEventTypeEnum,
 ) : SdkResource(), MessageStreamEvent
 
-/**
- * Required API value serialized in the `delta` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownContentBlockDeltaEventDelta::class)
+/** Required API value serialized in the `delta` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownContentBlockDeltaEventDelta::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = TextContentBlockDelta::class, name = "text_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = InputJsonContentBlockDelta::class, name = "input_json_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = CitationsDelta::class, name = "citations_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ThinkingContentBlockDelta::class, name = "thinking_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SignatureContentBlockDelta::class, name = "signature_delta")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = TextContentBlockDelta::class,
+        name = "text_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = InputJsonContentBlockDelta::class,
+        name = "input_json_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = CitationsDelta::class,
+        name = "citations_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ThinkingContentBlockDelta::class,
+        name = "thinking_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SignatureContentBlockDelta::class,
+        name = "signature_delta",
+    ),
 )
 sealed interface ContentBlockDeltaEventDelta
 
-/** A [ContentBlockDeltaEventDelta] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownContentBlockDeltaEventDelta @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [ContentBlockDeltaEventDelta] whose `type` names no branch this SDK knows, kept as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownContentBlockDeltaEventDelta
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : ContentBlockDeltaEventDelta {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `ContentBlockStartEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ContentBlockStartEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ContentBlockStartEvent(
-    /**
-     * Required API value serialized in the `content_block` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_block") val contentBlock: ContentBlockStartEventContentBlock,
-    /**
-     * Required `integer` value serialized in the `index` wire field.
-     */
+    /** Required API value serialized in the `content_block` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("content_block")
+    val contentBlock: ContentBlockStartEventContentBlock,
+    /** Required `integer` value serialized in the `index` wire field. */
     val index: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ContentBlockStartEventTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ContentBlockStartEventTypeEnum,
 ) : SdkResource(), MessageStreamEvent
 
-/**
- * Required API value serialized in the `content_block` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownContentBlockStartEventContentBlock::class)
+/** Required API value serialized in the `content_block` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownContentBlockStartEventContentBlock::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseTextBlock::class, name = "text"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseThinkingBlock::class, name = "thinking"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseRedactedThinkingBlock::class, name = "redacted_thinking"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseToolUseBlock::class, name = "tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseServerToolUseBlock::class, name = "server_tool_use"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseWebSearchToolResultBlock::class, name = "web_search_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseWebFetchToolResultBlock::class, name = "web_fetch_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseCodeExecutionToolResultBlock::class, name = "code_execution_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseBashCodeExecutionToolResultBlock::class, name = "bash_code_execution_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseTextEditorCodeExecutionToolResultBlock::class, name = "text_editor_code_execution_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseToolSearchToolResultBlock::class, name = "tool_search_tool_result"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ResponseContainerUploadBlock::class, name = "container_upload")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseTextBlock::class,
+        name = "text",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseThinkingBlock::class,
+        name = "thinking",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseRedactedThinkingBlock::class,
+        name = "redacted_thinking",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseToolUseBlock::class,
+        name = "tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseServerToolUseBlock::class,
+        name = "server_tool_use",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseWebSearchToolResultBlock::class,
+        name = "web_search_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseWebFetchToolResultBlock::class,
+        name = "web_fetch_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseCodeExecutionToolResultBlock::class,
+        name = "code_execution_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseBashCodeExecutionToolResultBlock::class,
+        name = "bash_code_execution_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseTextEditorCodeExecutionToolResultBlock::class,
+        name = "text_editor_code_execution_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseToolSearchToolResultBlock::class,
+        name = "tool_search_tool_result",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ResponseContainerUploadBlock::class,
+        name = "container_upload",
+    ),
 )
 sealed interface ContentBlockStartEventContentBlock
 
-/** A [ContentBlockStartEventContentBlock] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownContentBlockStartEventContentBlock @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [ContentBlockStartEventContentBlock] whose `type` names no branch this SDK knows, kept as
+ * received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownContentBlockStartEventContentBlock
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : ContentBlockStartEventContentBlock {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `ContentBlockStopEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ContentBlockStopEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ContentBlockStopEvent(
-    /**
-     * Required `integer` value serialized in the `index` wire field.
-     */
+    /** Required `integer` value serialized in the `index` wire field. */
     val index: Long,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ContentBlockStopEventTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ContentBlockStopEventTypeEnum,
 ) : SdkResource(), MessageStreamEvent
 
-/**
- * Typed representation of the `InputJsonContentBlockDelta` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `InputJsonContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class InputJsonContentBlockDelta(
-    /**
-     * Required `string` value serialized in the `partial_json` wire field.
-     */
+    /** Required `string` value serialized in the `partial_json` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("partial_json") val partialJson: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: InputJsonContentBlockDeltaTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: InputJsonContentBlockDeltaTypeEnum,
 ) : SdkResource(), ContentBlockDeltaEventDelta
 
-/**
- * Typed representation of the `MessageDelta` API schema.
- */
+/** Typed representation of the `MessageDelta` API schema. */
 data class MessageDelta(
     /**
-     * Information about the container used in this request. This will be non-null if a container tool (e.g. code execution) was used.
+     * Information about the container used in this request. This will be non-null if a container
+     * tool (e.g. code execution) was used.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("container", required = true) val container: Container?,
+    @com.fasterxml.jackson.annotation.JsonProperty("container", required = true)
+    val container: Container?,
     /**
-     * Structured information about why model output stopped. This is `null` when the `stop_reason` has no additional detail to report.
+     * Structured information about why model output stopped. This is `null` when the `stop_reason`
+     * has no additional detail to report.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_details", required = true) val stopDetails: RefusalStopDetails?,
-    /**
-     * Required API value serialized in the `stop_reason` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true) val stopReason: StopReason?,
-    /**
-     * Required `string` value serialized in the `stop_sequence` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("stop_sequence", required = true) val stopSequence: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_details", required = true)
+    val stopDetails: RefusalStopDetails?,
+    /** Required API value serialized in the `stop_reason` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_reason", required = true)
+    val stopReason: StopReason?,
+    /** Required `string` value serialized in the `stop_sequence` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("stop_sequence", required = true)
+    val stopSequence: String?,
 ) : SdkResource()
 
-/**
- * Typed representation of the `MessageDeltaEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `MessageDeltaEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class MessageDeltaEvent(
-    /**
-     * Required object value serialized in the `delta` wire field.
-     */
+    /** Required object value serialized in the `delta` wire field. */
     val delta: MessageDelta,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: MessageDeltaEventTypeEnum,
     /**
-     * Billing and rate-limit usage. Anthropic's API bills and rate-limits by token counts, as tokens represent the underlying cost to our systems. Under the hood, the API transforms requests into a format suitable for the model. The model's output then goes through a parsing stage before becoming an API response. As a result, the token counts in `usage` will not match one-to-one with the exact visible content of an API request or response. For example, `output_tokens` will be…
+     * Billing and rate-limit usage. Anthropic's API bills and rate-limits by token counts, as
+     * tokens represent the underlying cost to our systems. Under the hood, the API transforms
+     * requests into a format suitable for the model. The model's output then goes through a parsing
+     * stage before becoming an API response. As a result, the token counts in `usage` will not
+     * match one-to-one with the exact visible content of an API request or response. For example,
+     * `output_tokens` will be…
      */
-    val usage: MessageDeltaUsage
+    val usage: MessageDeltaUsage,
 ) : SdkResource(), MessageStreamEvent
 
-/**
- * Typed representation of the `MessageDeltaUsage` API schema.
- */
+/** Typed representation of the `MessageDeltaUsage` API schema. */
 data class MessageDeltaUsage(
-    /**
-     * The cumulative number of input tokens used to create the cache entry.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens", required = true) val cacheCreationInputTokens: Long?,
-    /**
-     * The cumulative number of input tokens read from the cache.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens", required = true) val cacheReadInputTokens: Long?,
-    /**
-     * The cumulative number of input tokens which were used.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens", required = true) val inputTokens: Long?,
-    /**
-     * The cumulative number of output tokens which were used.
-     */
+    /** The cumulative number of input tokens used to create the cache entry. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_creation_input_tokens", required = true)
+    val cacheCreationInputTokens: Long?,
+    /** The cumulative number of input tokens read from the cache. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cache_read_input_tokens", required = true)
+    val cacheReadInputTokens: Long?,
+    /** The cumulative number of input tokens which were used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("input_tokens", required = true)
+    val inputTokens: Long?,
+    /** The cumulative number of output tokens which were used. */
     @com.fasterxml.jackson.annotation.JsonProperty("output_tokens") val outputTokens: Long,
     /**
-     * Breakdown of output tokens by category. `output_tokens` remains the inclusive, authoritative total used for billing. This object provides a read-only decomposition for observability — for example, how many of the billed output tokens were spent on internal reasoning that may have been summarized before being returned to you.
+     * Breakdown of output tokens by category. `output_tokens` remains the inclusive, authoritative
+     * total used for billing. This object provides a read-only decomposition for observability —
+     * for example, how many of the billed output tokens were spent on internal reasoning that may
+     * have been summarized before being returned to you.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens_details", required = true) val outputTokensDetails: OutputTokensDetails?,
-    /**
-     * The number of server tool requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("server_tool_use", required = true) val serverToolUse: ServerToolUsage?
+    @com.fasterxml.jackson.annotation.JsonProperty("output_tokens_details", required = true)
+    val outputTokensDetails: OutputTokensDetails?,
+    /** The number of server tool requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("server_tool_use", required = true)
+    val serverToolUse: ServerToolUsage?,
 ) : SdkResource()
 
-/**
- * Typed representation of the `MessageStartEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `MessageStartEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class MessageStartEvent(
-    /**
-     * Required object value serialized in the `message` wire field.
-     */
+    /** Required object value serialized in the `message` wire field. */
     val message: Message,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: MessageStartEventTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: MessageStartEventTypeEnum,
 ) : SdkResource(), MessageStreamEvent
 
-/**
- * Typed representation of the `MessageStopEvent` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `MessageStopEvent` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class MessageStopEvent(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: MessageStopEventTypeEnum
 ) : SdkResource(), MessageStreamEvent
 
-/**
- * Typed representation of the `MessageStreamEvent` API schema.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownMessageStreamEvent::class)
+/** Typed representation of the `MessageStreamEvent` API schema. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "type",
+    visible = true,
+    defaultImpl = UnknownMessageStreamEvent::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = MessageStartEvent::class, name = "message_start"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = MessageDeltaEvent::class, name = "message_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = MessageStopEvent::class, name = "message_stop"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ContentBlockStartEvent::class, name = "content_block_start"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ContentBlockDeltaEvent::class, name = "content_block_delta"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ContentBlockStopEvent::class, name = "content_block_stop")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = MessageStartEvent::class,
+        name = "message_start",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = MessageDeltaEvent::class,
+        name = "message_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = MessageStopEvent::class,
+        name = "message_stop",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ContentBlockStartEvent::class,
+        name = "content_block_start",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ContentBlockDeltaEvent::class,
+        name = "content_block_delta",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ContentBlockStopEvent::class,
+        name = "content_block_stop",
+    ),
 )
 sealed interface MessageStreamEvent
 
 /** A [MessageStreamEvent] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownMessageStreamEvent @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownMessageStreamEvent
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : MessageStreamEvent {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("type").asText()
+    val tag: String
+        get() = raw.path("type").asText()
 }
 
-/**
- * Typed representation of the `SignatureContentBlockDelta` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `SignatureContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class SignatureContentBlockDelta(
     /**
-     * The `signature` for this thinking block: an opaque value used to verify that the block was generated by Claude when it is passed back to the API. Delivered in a `signature_delta` event just before the block's `content_block_stop` event.
+     * The `signature` for this thinking block: an opaque value used to verify that the block was
+     * generated by Claude when it is passed back to the API. Delivered in a `signature_delta` event
+     * just before the block's `content_block_stop` event.
      */
     val signature: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: SignatureContentBlockDeltaTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: SignatureContentBlockDeltaTypeEnum,
 ) : SdkResource(), ContentBlockDeltaEventDelta
 
-/**
- * Typed representation of the `TextContentBlockDelta` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `TextContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class TextContentBlockDelta(
-    /**
-     * Required `string` value serialized in the `text` wire field.
-     */
+    /** Required `string` value serialized in the `text` wire field. */
     val text: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: TextContentBlockDeltaTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: TextContentBlockDeltaTypeEnum,
 ) : SdkResource(), ContentBlockDeltaEventDelta
 
-/**
- * Typed representation of the `ThinkingContentBlockDelta` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Typed representation of the `ThinkingContentBlockDelta` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ThinkingContentBlockDelta(
     /**
-     * The incremental `thinking` text for this content block. Concatenate the `thinking` values of successive `thinking_delta` events to assemble the block's full `thinking` value.
+     * The incremental `thinking` text for this content block. Concatenate the `thinking` values of
+     * successive `thinking_delta` events to assemble the block's full `thinking` value.
      */
     val thinking: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: ThinkingContentBlockDeltaTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: ThinkingContentBlockDeltaTypeEnum,
 ) : SdkResource(), ContentBlockDeltaEventDelta

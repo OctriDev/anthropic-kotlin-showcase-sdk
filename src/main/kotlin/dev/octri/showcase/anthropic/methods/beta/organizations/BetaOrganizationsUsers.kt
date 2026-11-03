@@ -17,115 +17,279 @@ import dev.octri.showcase.anthropic.Validation
 object BetaOrganizationsUsers {
 
     /**
-     * Retrieves an organization member by user ID. Use this endpoint to inspect the member's email address, name, organization role, and join timestamp. The returned role identifies the member's permissions within the organization.
+     * Retrieves an organization member by user ID. Use this endpoint to inspect the member's email
+     * address, name, organization role, and join timestamp. The returned role identifies the
+     * member's permissions within the organization.
      *
      * Retrieve a member of the organization by user ID.
      *
      * @param userId ID of the User.
      */
-    fun retrieveBetaOrganizationsUsers(clientConfig: ClientConfig, userId: String, options: RequestOptions? = null): BetaUser {
+    fun retrieveBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        userId: String,
+        options: RequestOptions? = null,
+    ): BetaUser {
         return retrieveBetaOrganizationsUsersWithRawResponse(clientConfig, userId, options).data
     }
 
-
-    /** [retrieveBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaOrganizationsUsersWithRawResponse(clientConfig: ClientConfig, userId: String, options: RequestOptions? = null): SdkResponse<BetaUser> {
-        return SdkClient.request<BetaUser>(SdkClient.RequestSpec("GET", "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+    /**
+     * [retrieveBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun retrieveBetaOrganizationsUsersWithRawResponse(
+        clientConfig: ClientConfig,
+        userId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaUser> {
+        return SdkClient.request<BetaUser>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaOrganizationsUsers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Updates an organization member's role. Provide the new `role` in the request body; accepted values depend on the organization type, and the API does not allow assigning the admin role. The response returns the updated organization user object.
+     * Updates an organization member's role. Provide the new `role` in the request body; accepted
+     * values depend on the organization type, and the API does not allow assigning the admin role.
+     * The response returns the updated organization user object.
      *
      * Update a member's organization role.
      *
      * @param userId ID of the User.
-     * @param role New role for the User. The accepted values depend on the
-     *   organization type. Console and API organizations accept `user`, `developer`,
-     *   `billing`, and `claude_code_user`; `admin` cannot be assigned through the API.
-     *   Claude Enterprise organizations accept `user` and `managed`.
+     * @param role New role for the User. The accepted values depend on the organization type.
+     *   Console and API organizations accept `user`, `developer`, `billing`, and
+     *   `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise
+     *   organizations accept `user` and `managed`.
      */
-    fun updateBetaOrganizationsUsers(clientConfig: ClientConfig, userId: String, role: BetaUpdateUserParamsRoleEnum, options: RequestOptions? = null): BetaUser {
+    fun updateBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        userId: String,
+        role: BetaUpdateUserParamsRoleEnum,
+        options: RequestOptions? = null,
+    ): BetaUser {
         return updateBetaOrganizationsUsersWithRawResponse(clientConfig, userId, role, options).data
     }
 
-
-    /** [updateBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun updateBetaOrganizationsUsersWithRawResponse(clientConfig: ClientConfig, userId: String, role: BetaUpdateUserParamsRoleEnum, options: RequestOptions? = null): SdkResponse<BetaUser> {
-        return SdkClient.request<BetaUser>(SdkClient.RequestSpec("POST", "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("role" to (role)), operationId = "updateBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+    /**
+     * [updateBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun updateBetaOrganizationsUsersWithRawResponse(
+        clientConfig: ClientConfig,
+        userId: String,
+        role: BetaUpdateUserParamsRoleEnum,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaUser> {
+        return SdkClient.request<BetaUser>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true",
+                config = clientConfig,
+                body = SdkClient.bodyMap("role" to (role)),
+                operationId = "updateBetaOrganizationsUsers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Removes a user from the organization. Supply the user's `user_id` and authenticate with an Admin API key in the `x-api-key` header. The response identifies the deleted user.
+     * Removes a user from the organization. Supply the user's `user_id` and authenticate with an
+     * Admin API key in the `x-api-key` header. The response identifies the deleted user.
      *
      * Remove a member from the organization.
      *
      * @param userId ID of the User.
      */
-    fun deleteBetaOrganizationsUsers(clientConfig: ClientConfig, userId: String, options: RequestOptions? = null): BetaDeleteUserResponse {
+    fun deleteBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        userId: String,
+        options: RequestOptions? = null,
+    ): BetaDeleteUserResponse {
         return deleteBetaOrganizationsUsersWithRawResponse(clientConfig, userId, options).data
     }
 
-
-    /** [deleteBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun deleteBetaOrganizationsUsersWithRawResponse(clientConfig: ClientConfig, userId: String, options: RequestOptions? = null): SdkResponse<BetaDeleteUserResponse> {
-        return SdkClient.request<BetaDeleteUserResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+    /**
+     * [deleteBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun deleteBetaOrganizationsUsersWithRawResponse(
+        clientConfig: ClientConfig,
+        userId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaDeleteUserResponse> {
+        return SdkClient.request<BetaDeleteUserResponse>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/v1/organizations/users/${SdkClient.encodePathSegment(userId)}?beta=true",
+                config = clientConfig,
+                operationId = "deleteBetaOrganizationsUsers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Lists members of the organization, with cursor-based pagination and optional filters. Use `before_id` or `after_id` to navigate pages, and filter by `email` or one or more `roles[]` values. The response includes pagination cursors and a `has_more` flag.
+     * Lists members of the organization, with cursor-based pagination and optional filters. Use
+     * `before_id` or `after_id` to navigate pages, and filter by `email` or one or more `roles[]`
+     * values. The response includes pagination cursors and a `has_more` flag.
      *
      * List the organization's members.
      *
-     * @param beforeId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately before this object.
-     * @param afterId ID of the object to use as a cursor for pagination. When
-     *   provided, returns the page of results immediately after this object.
-     * @param limit Number of items to return per page. Defaults to `20`. Ranges from
-     *   `1` to `1000`.
+     * @param beforeId ID of the object to use as a cursor for pagination. When provided, returns
+     *   the page of results immediately before this object.
+     * @param afterId ID of the object to use as a cursor for pagination. When provided, returns the
+     *   page of results immediately after this object.
+     * @param limit Number of items to return per page. Defaults to `20`. Ranges from `1` to `1000`.
      * @param email Filter by user email.
-     * @param roles Filter to items whose `role` equals one of the supplied values.
-     *   Repeatable; values are OR'ed together. Accepted values depend on the
-     *   organization type: Console and API organizations accept `user`, `developer`,
-     *   `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations
-     *   accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
+     * @param roles Filter to items whose `role` equals one of the supplied values. Repeatable;
+     *   values are OR'ed together. Accepted values depend on the organization type: Console and API
+     *   organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`;
+     *   Claude Enterprise organizations accept `user`, `owner`, `primary_owner`,
+     *   `membership_admin`, and `managed`.
      */
-    fun listBetaOrganizationsUsers(clientConfig: ClientConfig, beforeId: String? = null, afterId: String? = null, limit: Long? = null, email: String? = null, roles: List<String>? = null, options: RequestOptions? = null): BetaListResponseUser {
-        return listBetaOrganizationsUsersWithRawResponse(clientConfig, beforeId, afterId, limit, email, roles, options).data
+    fun listBetaOrganizationsUsers(
+        clientConfig: ClientConfig,
+        beforeId: String? = null,
+        afterId: String? = null,
+        limit: Long? = null,
+        email: String? = null,
+        roles: List<String>? = null,
+        options: RequestOptions? = null,
+    ): BetaListResponseUser {
+        return listBetaOrganizationsUsersWithRawResponse(
+                clientConfig,
+                beforeId,
+                afterId,
+                limit,
+                email,
+                roles,
+                options,
+            )
+            .data
     }
 
-
-    /** [listBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaOrganizationsUsersWithRawResponse(clientConfig: ClientConfig, beforeId: String? = null, afterId: String? = null, limit: Long? = null, email: String? = null, roles: List<String>? = null, options: RequestOptions? = null): SdkResponse<BetaListResponseUser> {
+    /**
+     * [listBetaOrganizationsUsers], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun listBetaOrganizationsUsersWithRawResponse(
+        clientConfig: ClientConfig,
+        beforeId: String? = null,
+        afterId: String? = null,
+        limit: Long? = null,
+        email: String? = null,
+        roles: List<String>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaListResponseUser> {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+        }
 
         if (email != null) {
             Validation.validateEmail("email", email)
-}
+        }
 
-        return SdkClient.request<BetaListResponseUser>(SdkClient.RequestSpec("GET", "/v1/organizations/users?beta=true", config = clientConfig, query = mapOf("before_id" to SdkClient.queryValue(beforeId, "form", true), "after_id" to SdkClient.queryValue(afterId, "form", true), "limit" to SdkClient.queryValue(limit, "form", true), "email" to SdkClient.queryValue(email, "form", true), "roles[]" to SdkClient.queryValue(roles, "form", true)), operationId = "listBetaOrganizationsUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaListResponseUser>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/organizations/users?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "before_id" to SdkClient.queryValue(beforeId, "form", true),
+                        "after_id" to SdkClient.queryValue(afterId, "form", true),
+                        "limit" to SdkClient.queryValue(limit, "form", true),
+                        "email" to SdkClient.queryValue(email, "form", true),
+                        "roles[]" to SdkClient.queryValue(roles, "form", true),
+                    ),
+                operationId = "listBetaOrganizationsUsers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }

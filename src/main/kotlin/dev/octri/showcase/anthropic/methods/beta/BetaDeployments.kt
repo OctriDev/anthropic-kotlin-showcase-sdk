@@ -24,41 +24,43 @@ import dev.octri.showcase.anthropic.Validation
 object BetaDeployments {
 
     /**
-     * Creates a deployment that binds an agent to an environment, initial events, and optional resources or a recurring schedule. Provide `name`, `agent`, `environment_id`, and at least one `initial_event`; the agent and environment must exist and the agent must not be archived.
+     * Creates a deployment that binds an agent to an environment, initial events, and optional
+     * resources or a recurring schedule. Provide `name`, `agent`, `environment_id`, and at least
+     * one `initial_event`; the agent and environment must exist and the agent must not be archived.
      *
      * @param name Human-readable name for the deployment.
-     * @param agent Agent to deploy. Accepts the `agent` ID string, which pins the
-     *   latest version, or an `agent` object with both id and version specified. The
-     *   agent must exist and not be archived.
-     * @param environmentId ID of the `environment` defining the container
-     *   configuration for sessions created from this deployment.
-     * @param initialEvents Events to send to each session immediately after
-     *   creation. At least 1, maximum 50.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param agent Agent to deploy. Accepts the `agent` ID string, which pins the latest version,
+     *   or an `agent` object with both id and version specified. The agent must exist and not be
+     *   archived.
+     * @param environmentId ID of the `environment` defining the container configuration for
+     *   sessions created from this deployment.
+     * @param initialEvents Events to send to each session immediately after creation. At least 1,
+     *   maximum 50.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      * @param description Description of what the deployment does.
-     * @param vaultIds Vault IDs for stored credentials the agent can use during
-     *   sessions created from this deployment. Maximum 50.
-     * @param resources Resources (e.g. repositories, files) to mount into each
-     *   session's container. Maximum 500.
-     * @param metadata Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64
-     *   chars, values up to 512 chars.
-     * @param schedule Optional recurring cron schedule. When present, the deployment
-     *   fires automatically. Both expression and timezone are required when schedule
-     *   is set.
-     * @param budget Enforced spend ceiling stamped onto each session created from
-     *   this deployment, copied at session-creation time. Omit to leave sessions
-     *   uncapped. The deployment agent's model must have a public list price, or the
-     *   request is rejected; a multiagent roster is re-validated in full when each
-     *   fire copies the cap, which fails closed the same way.
+     * @param vaultIds Vault IDs for stored credentials the agent can use during sessions created
+     *   from this deployment. Maximum 50.
+     * @param resources Resources (e.g. repositories, files) to mount into each session's container.
+     *   Maximum 500.
+     * @param metadata Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values
+     *   up to 512 chars.
+     * @param schedule Optional recurring cron schedule. When present, the deployment fires
+     *   automatically. Both expression and timezone are required when schedule is set.
+     * @param budget Enforced spend ceiling stamped onto each session created from this deployment,
+     *   copied at session-creation time. Omit to leave sessions uncapped. The deployment agent's
+     *   model must have a public list price, or the request is rejected; a multiagent roster is
+     *   re-validated in full when each fire copies the cap, which fails closed the same way.
      */
-    fun createBetaDeployments(clientConfig: ClientConfig, request: CreateBetaDeploymentsRequest, options: RequestOptions? = null): BetaManagedAgentsDeployment {
+    fun createBetaDeployments(
+        clientConfig: ClientConfig,
+        request: CreateBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
         return createBetaDeploymentsWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [createBetaDeployments]. */
     data class CreateBetaDeploymentsRequest(
@@ -73,55 +75,105 @@ object BetaDeployments {
         val resources: List<BetaManagedAgentsSessionResourceParams>? = null,
         val metadata: Map<String, String>? = null,
         val schedule: SdkClient.SdkOptional<BetaManagedAgentsScheduleParams?>? = null,
-        val budget: SdkClient.SdkOptional<BetaManagedAgentsBudget?>? = null
+        val budget: SdkClient.SdkOptional<BetaManagedAgentsBudget?>? = null,
     )
 
-    /** [createBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun createBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, request: CreateBetaDeploymentsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
+    /**
+     * [createBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun createBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CreateBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeployment> {
         validateCreateBetaDeploymentsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsDeployment>(SdkClient.RequestSpec("POST", "/v1/deployments?beta=true", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "agent" to (request.agent), "environment_id" to (request.environmentId), "initial_events" to (request.initialEvents), "description" to
-    (request.description ?: SdkClient.SdkOptional.Omitted), "vault_ids" to (SdkClient.omitIfNull(request.vaultIds)), "resources" to (SdkClient.omitIfNull(request.resources)), "metadata" to (SdkClient.omitIfNull(request.metadata)), "schedule" to
-    (request.schedule ?: SdkClient.SdkOptional.Omitted), "budget" to
-    (request.budget ?: SdkClient.SdkOptional.Omitted)), operationId = "createBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaManagedAgentsDeployment>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/deployments?beta=true",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "name" to (request.name),
+                        "agent" to (request.agent),
+                        "environment_id" to (request.environmentId),
+                        "initial_events" to (request.initialEvents),
+                        "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
+                        "vault_ids" to (SdkClient.omitIfNull(request.vaultIds)),
+                        "resources" to (SdkClient.omitIfNull(request.resources)),
+                        "metadata" to (SdkClient.omitIfNull(request.metadata)),
+                        "schedule" to (request.schedule ?: SdkClient.SdkOptional.Omitted),
+                        "budget" to (request.budget ?: SdkClient.SdkOptional.Omitted),
+                    ),
+                operationId = "createBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
 
     private fun validateCreateBetaDeploymentsRequest(request: CreateBetaDeploymentsRequest) {
         Validation.validateLength("name", request.name, Validation.LengthOpts(min = 1, max = 256))
 
-        Validation.validateLength("environment_id", request.environmentId, Validation.LengthOpts(min = 1, max = 128))
+        Validation.validateLength(
+            "environment_id",
+            request.environmentId,
+            Validation.LengthOpts(min = 1, max = 128),
+        )
     }
 
-
-
-
-
     /**
-     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle status, creation time, and archived status. Use `page` to paginate and `limit` to control page size; do not combine `status` with `include_archived`.
+     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle
+     * status, creation time, and archived status. Use `page` to paginate and `limit` to control
+     * page size; do not combine `status` with `include_archived`.
      *
      * @param limit Maximum results per page. Default 20, maximum 100.
      * @param page Opaque pagination cursor.
      * @param agentId Filter by agent ID.
-     * @param status Filter by status: `active` or `paused`. Omit for both. To
-     *   include archived deployments, use `include_archived` instead; the two cannot
-     *   be combined.
-     * @param createdAtGte Return deployments created at or after this time
-     *   (inclusive).
-     * @param createdAtLte Return deployments created at or before this time
-     *   (inclusive).
-     * @param includeArchived When true, includes archived deployments. Default:
-     *   false (exclude archived).
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param status Filter by status: `active` or `paused`. Omit for both. To include archived
+     *   deployments, use `include_archived` instead; the two cannot be combined.
+     * @param createdAtGte Return deployments created at or after this time (inclusive).
+     * @param createdAtLte Return deployments created at or before this time (inclusive).
+     * @param includeArchived When true, includes archived deployments. Default: false (exclude
+     *   archived).
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaDeployments(clientConfig: ClientConfig, request: ListBetaDeploymentsRequest, options: RequestOptions? = null): BetaManagedAgentsListDeploymentsData {
+    fun listBetaDeployments(
+        clientConfig: ClientConfig,
+        request: ListBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListDeploymentsData {
         return listBetaDeploymentsWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [listBetaDeployments]. */
     data class ListBetaDeploymentsRequest(
@@ -133,58 +185,104 @@ object BetaDeployments {
         val createdAtLte: BetaTimestamp? = null,
         val includeArchived: Boolean? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
-    /** [listBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, request: ListBetaDeploymentsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListDeploymentsData> {
+    /**
+     * [listBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun listBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsListDeploymentsData> {
         validateListBetaDeploymentsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsListDeploymentsData>(SdkClient.RequestSpec("GET", "/v1/deployments?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "agent_id" to
-    SdkClient.queryValue(request.agentId, "form", true), "status" to
-    SdkClient.queryValue(request.status, "form", true), "created_at[gte]" to
-    SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"), "created_at[lte]" to
-    SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"), "include_archived" to
-    SdkClient.queryValue(request.includeArchived, "form", true)), operationId = "listBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaManagedAgentsListDeploymentsData>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/deployments?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "limit" to SdkClient.queryValue(request.limit, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                        "agent_id" to SdkClient.queryValue(request.agentId, "form", true),
+                        "status" to SdkClient.queryValue(request.status, "form", true),
+                        "created_at[gte]" to
+                            SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"),
+                        "created_at[lte]" to
+                            SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"),
+                        "include_archived" to
+                            SdkClient.queryValue(request.includeArchived, "form", true),
+                    ),
+                operationId = "listBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
 
     private fun validateListBetaDeploymentsRequest(request: ListBetaDeploymentsRequest) {
         if (request.createdAtGte != null) {
             Validation.validateDateTime("created_at[gte]", request.createdAtGte)
-}
+        }
 
         if (request.createdAtLte != null) {
             Validation.validateDateTime("created_at[lte]", request.createdAtLte)
-}
+        }
     }
 
-
-
-
-
     /**
-     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle status, creation time, and archived status. Use `page` to paginate and `limit` to control page size; do not combine `status` with `include_archived`.
+     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle
+     * status, creation time, and archived status. Use `page` to paginate and `limit` to control
+     * page size; do not combine `status` with `include_archived`.
      *
      * @param limit Maximum results per page. Default 20, maximum 100.
      * @param page Opaque pagination cursor.
      * @param agentId Filter by agent ID.
-     * @param status Filter by status: `active` or `paused`. Omit for both. To
-     *   include archived deployments, use `include_archived` instead; the two cannot
-     *   be combined.
-     * @param createdAtGte Return deployments created at or after this time
-     *   (inclusive).
-     * @param createdAtLte Return deployments created at or before this time
-     *   (inclusive).
-     * @param includeArchived When true, includes archived deployments. Default:
-     *   false (exclude archived).
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param status Filter by status: `active` or `paused`. Omit for both. To include archived
+     *   deployments, use `include_archived` instead; the two cannot be combined.
+     * @param createdAtGte Return deployments created at or after this time (inclusive).
+     * @param createdAtLte Return deployments created at or before this time (inclusive).
+     * @param includeArchived When true, includes archived deployments. Default: false (exclude
+     *   archived).
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaDeploymentsPaginated(clientConfig: ClientConfig, request: ListBetaDeploymentsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsDeployment) -> Boolean) {
+    fun listBetaDeploymentsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsDeployment) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaDeployments(clientConfig, request.copy(page = cursor), options)
@@ -204,7 +302,12 @@ object BetaDeployments {
         val hasMore: Boolean,
     )
 
-    fun listBetaDeploymentsPages(clientConfig: ClientConfig, request: ListBetaDeploymentsRequest, options: RequestOptions? = null, yieldPage: (ListBetaDeploymentsPage) -> Boolean) {
+    fun listBetaDeploymentsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaDeploymentsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
             val page = listBetaDeployments(clientConfig, request.copy(page = cursor), options)
@@ -218,71 +321,122 @@ object BetaDeployments {
         }
     }
 
-
     /**
-     * Retrieves a deployment by its identifier, including its agent and environment references, configuration, schedule, and current status. Use this operation to inspect a deployment's settings and whether it is active or paused.
+     * Retrieves a deployment by its identifier, including its agent and environment references,
+     * configuration, schedule, and current status. Use this operation to inspect a deployment's
+     * settings and whether it is active or paused.
      *
      * @param deploymentId Path parameter deployment_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaDeployments(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return retrieveBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun retrieveBetaDeployments(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return retrieveBetaDeploymentsWithRawResponse(
+                clientConfig,
+                deploymentId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [retrieveBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-        return SdkClient.request<BetaManagedAgentsDeployment>(SdkClient.RequestSpec("GET", "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}?beta=true", config = clientConfig, operationId = "retrieveBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Updates a deployment's configuration while preserving any fields you omit. Use the body to change the agent, environment, events, resources, metadata, schedule, or budget; fields such as `vault_ids` and `initial_events` are replaced as a whole when supplied. The response contains the deployment's updated configuration and status.
+     * [retrieveBetaDeployments], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun retrieveBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeployment> {
+        return SdkClient.request<BetaManagedAgentsDeployment>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Updates a deployment's configuration while preserving any fields you omit. Use the body to
+     * change the agent, environment, events, resources, metadata, schedule, or budget; fields such
+     * as `vault_ids` and `initial_events` are replaced as a whole when supplied. The response
+     * contains the deployment's updated configuration and status.
      *
      * @param deploymentId Path parameter deployment_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
-     * @param name Human-readable name. Must be non-empty. Omit to preserve. Cannot
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param name Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
+     * @param description Description. Omit to preserve; send empty string or null to clear.
+     * @param agent Agent to deploy. Accepts the `agent` ID string, which re-pins to the latest
+     *   version, or an `agent` object with both id and version specified. Omit to preserve. Cannot
      *   be cleared.
-     * @param description Description. Omit to preserve; send empty string or null to
-     *   clear.
-     * @param agent Agent to deploy. Accepts the `agent` ID string, which re-pins to
-     *   the latest version, or an `agent` object with both id and version specified.
-     *   Omit to preserve. Cannot be cleared.
-     * @param environmentId ID of the `environment` where sessions run. Omit to
-     *   preserve. Cannot be cleared.
-     * @param vaultIds Vault IDs. Full replacement. Omit to preserve; send empty
-     *   array or null to clear. Maximum 50.
-     * @param initialEvents Initial events. Full replacement. Omit to preserve.
-     *   Cannot be cleared. At least 1, maximum 50.
-     * @param resources Session resources. Full replacement. Omit to preserve; send
-     *   empty array or null to clear. Maximum 500.
-     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null
-     *   to delete it. Omit the field to preserve. The stored bag is limited to 16 keys
-     *   (up to 64 chars each) with values up to 512 chars.
-     * @param schedule Cron schedule. Full replacement. Omit to preserve; send null
-     *   to clear (revert to manual-only).
-     * @param budget Spend ceiling for future sessions. Full replacement. Omit to
-     *   preserve; send null to clear (sessions created afterwards are uncapped). The
-     *   deployment agent's model must have a public list price, or the request is
-     *   rejected; a multiagent roster is re-validated in full when each fire copies
-     *   the cap, which fails closed the same way.
+     * @param environmentId ID of the `environment` where sessions run. Omit to preserve. Cannot be
+     *   cleared.
+     * @param vaultIds Vault IDs. Full replacement. Omit to preserve; send empty array or null to
+     *   clear. Maximum 50.
+     * @param initialEvents Initial events. Full replacement. Omit to preserve. Cannot be cleared.
+     *   At least 1, maximum 50.
+     * @param resources Session resources. Full replacement. Omit to preserve; send empty array or
+     *   null to clear. Maximum 500.
+     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null to delete it.
+     *   Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with
+     *   values up to 512 chars.
+     * @param schedule Cron schedule. Full replacement. Omit to preserve; send null to clear (revert
+     *   to manual-only).
+     * @param budget Spend ceiling for future sessions. Full replacement. Omit to preserve; send
+     *   null to clear (sessions created afterwards are uncapped). The deployment agent's model must
+     *   have a public list price, or the request is rejected; a multiagent roster is re-validated
+     *   in full when each fire copies the cap, which fails closed the same way.
      */
-    fun updateBetaDeployments(clientConfig: ClientConfig, request: UpdateBetaDeploymentsRequest, options: RequestOptions? = null): BetaManagedAgentsDeployment {
+    fun updateBetaDeployments(
+        clientConfig: ClientConfig,
+        request: UpdateBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
         return updateBetaDeploymentsWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [updateBetaDeployments]. */
     data class UpdateBetaDeploymentsRequest(
@@ -298,138 +452,381 @@ object BetaDeployments {
         val resources: SdkClient.SdkOptional<List<BetaManagedAgentsSessionResourceParams>?>? = null,
         val metadata: SdkClient.SdkOptional<Map<String, String>?>? = null,
         val schedule: SdkClient.SdkOptional<BetaManagedAgentsScheduleParams?>? = null,
-        val budget: SdkClient.SdkOptional<BetaManagedAgentsBudget?>? = null
+        val budget: SdkClient.SdkOptional<BetaManagedAgentsBudget?>? = null,
     )
 
-    /** [updateBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun updateBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, request: UpdateBetaDeploymentsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
+    /**
+     * [updateBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun updateBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: UpdateBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeployment> {
         validateUpdateBetaDeploymentsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsDeployment>(SdkClient.RequestSpec("POST", "/v1/deployments/${SdkClient.encodePathSegment(request.deploymentId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "description" to
-    (request.description ?: SdkClient.SdkOptional.Omitted), "agent" to (SdkClient.omitIfNull(request.agent)), "environment_id" to
-    (SdkClient.omitIfNull(request.environmentId)), "vault_ids" to
-    (request.vaultIds ?: SdkClient.SdkOptional.Omitted), "initial_events" to
-    (SdkClient.omitIfNull(request.initialEvents)), "resources" to
-    (request.resources ?: SdkClient.SdkOptional.Omitted), "metadata" to
-    (request.metadata ?: SdkClient.SdkOptional.Omitted), "schedule" to
-    (request.schedule ?: SdkClient.SdkOptional.Omitted), "budget" to
-    (request.budget ?: SdkClient.SdkOptional.Omitted)), operationId = "updateBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaManagedAgentsDeployment>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/deployments/${SdkClient.encodePathSegment(request.deploymentId)}?beta=true",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "name" to (SdkClient.omitIfNull(request.name)),
+                        "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
+                        "agent" to (SdkClient.omitIfNull(request.agent)),
+                        "environment_id" to (SdkClient.omitIfNull(request.environmentId)),
+                        "vault_ids" to (request.vaultIds ?: SdkClient.SdkOptional.Omitted),
+                        "initial_events" to (SdkClient.omitIfNull(request.initialEvents)),
+                        "resources" to (request.resources ?: SdkClient.SdkOptional.Omitted),
+                        "metadata" to (request.metadata ?: SdkClient.SdkOptional.Omitted),
+                        "schedule" to (request.schedule ?: SdkClient.SdkOptional.Omitted),
+                        "budget" to (request.budget ?: SdkClient.SdkOptional.Omitted),
+                    ),
+                operationId = "updateBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
 
     private fun validateUpdateBetaDeploymentsRequest(request: UpdateBetaDeploymentsRequest) {
         if (request.name != null) {
             Validation.validateLength("name", request.name, Validation.LengthOpts(max = 256))
-}
+        }
 
         if (request.environmentId != null) {
-            Validation.validateLength("environment_id", request.environmentId, Validation.LengthOpts(max = 128))
-}
+            Validation.validateLength(
+                "environment_id",
+                request.environmentId,
+                Validation.LengthOpts(max = 128),
+            )
+        }
     }
-
-
-
-
 
     /**
-     * Archives a deployment so you can remove it from active management while retaining its record. Use `deployment_id` to select the deployment to archive. The response returns the deployment object, whose archived state is indicated by `archived_at`.
+     * Archives a deployment so you can remove it from active management while retaining its record.
+     * Use `deployment_id` to select the deployment to archive. The response returns the deployment
+     * object, whose archived state is indicated by `archived_at`.
      *
      * @param deploymentId Path parameter deployment_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun archiveBetaDeployments(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return archiveBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun archiveBetaDeployments(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return archiveBetaDeploymentsWithRawResponse(
+                clientConfig,
+                deploymentId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [archiveBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun archiveBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-        return SdkClient.request<BetaManagedAgentsDeployment>(SdkClient.RequestSpec("POST", "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Pauses a deployment to stop it from running until it is unpaused. Use `deployment_id` to select the deployment whose execution you want to pause. The response returns the deployment object with its computed status and pause reason.
-     *
-     * @param deploymentId Path parameter deployment_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * [archiveBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
      */
-    fun pauseBetaDeployments(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return pauseBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun archiveBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeployment> {
+        return SdkClient.request<BetaManagedAgentsDeployment>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/archive?beta=true",
+                config = clientConfig,
+                operationId = "archiveBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-    /** [pauseBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun pauseBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-        return SdkClient.request<BetaManagedAgentsDeployment>(SdkClient.RequestSpec("POST", "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/pause?beta=true", config = clientConfig, operationId = "pauseBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Unpauses a deployment so it can run again. Use `deployment_id` to select the deployment whose execution you want to resume. The response returns the deployment object with its computed status.
+     * Pauses a deployment to stop it from running until it is unpaused. Use `deployment_id` to
+     * select the deployment whose execution you want to pause. The response returns the deployment
+     * object with its computed status and pause reason.
      *
      * @param deploymentId Path parameter deployment_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun unpauseBetaDeployments(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return unpauseBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun pauseBetaDeployments(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return pauseBetaDeploymentsWithRawResponse(
+                clientConfig,
+                deploymentId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [unpauseBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun unpauseBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-        return SdkClient.request<BetaManagedAgentsDeployment>(SdkClient.RequestSpec("POST", "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/unpause?beta=true", config = clientConfig, operationId = "unpauseBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Triggers an immediate run of a deployment and records the attempt as an append-only deployment run. Use `deployment_id` to choose which deployment to run; the response records whether session creation succeeded or failed. Use the returned run record's `session_id` or `error` to inspect the outcome.
+     * [pauseBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun pauseBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeployment> {
+        return SdkClient.request<BetaManagedAgentsDeployment>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/pause?beta=true",
+                config = clientConfig,
+                operationId = "pauseBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Unpauses a deployment so it can run again. Use `deployment_id` to select the deployment whose
+     * execution you want to resume. The response returns the deployment object with its computed
+     * status.
      *
      * @param deploymentId Path parameter deployment_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun runBetaDeployments(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeploymentRun {
-        return runBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun unpauseBetaDeployments(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return unpauseBetaDeploymentsWithRawResponse(
+                clientConfig,
+                deploymentId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
 
-
-    /** [runBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun runBetaDeploymentsWithRawResponse(clientConfig: ClientConfig, deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeploymentRun> {
-        return SdkClient.request<BetaManagedAgentsDeploymentRun>(SdkClient.RequestSpec("POST", "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/run?beta=true", config = clientConfig, operationId = "runBetaDeployments", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
+    /**
+     * [unpauseBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun unpauseBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeployment> {
+        return SdkClient.request<BetaManagedAgentsDeployment>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/unpause?beta=true",
+                config = clientConfig,
+                operationId = "unpauseBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
+    /**
+     * Triggers an immediate run of a deployment and records the attempt as an append-only
+     * deployment run. Use `deployment_id` to choose which deployment to run; the response records
+     * whether session creation succeeded or failed. Use the returned run record's `session_id` or
+     * `error` to inspect the outcome.
+     *
+     * @param deploymentId Path parameter deployment_id
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     */
+    fun runBetaDeployments(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeploymentRun {
+        return runBetaDeploymentsWithRawResponse(
+                clientConfig,
+                deploymentId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
+    }
 
-
-
-
-
-
+    /**
+     * [runBetaDeployments], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun runBetaDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeploymentRun> {
+        return SdkClient.request<BetaManagedAgentsDeploymentRun>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/deployments/${SdkClient.encodePathSegment(deploymentId)}/run?beta=true",
+                config = clientConfig,
+                operationId = "runBetaDeployments",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
 }

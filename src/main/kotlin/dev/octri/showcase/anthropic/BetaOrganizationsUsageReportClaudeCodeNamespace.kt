@@ -7,30 +7,79 @@ import java.time.LocalDate
 
 class BetaOrganizationsUsageReportClaudeCodeNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to analyze developer productivity and build custom dashboards.
+     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to
+     * analyze developer productivity and build custom dashboards.
      */
-    fun retrieve(startingAt: LocalDate, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaGetClaudeCodeUsageReportResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.usageReport.BetaOrganizationsUsageReportClaudeCode.retrieveBetaOrganizationsUsageReportClaudeCode(clientConfig, startingAt, limit, page, options)
+    fun retrieve(
+        startingAt: LocalDate,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaGetClaudeCodeUsageReportResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.usageReport
+            .BetaOrganizationsUsageReportClaudeCode
+            .retrieveBetaOrganizationsUsageReportClaudeCode(
+                clientConfig,
+                startingAt,
+                limit,
+                page,
+                options,
+            )
     }
 
     /**
-     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to analyze developer productivity and build custom dashboards.
+     * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to
+     * analyze developer productivity and build custom dashboards.
      */
-    fun retrievePaginated(startingAt: LocalDate, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaClaudeCodeUsageReportItem) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.usageReport.BetaOrganizationsUsageReportClaudeCode.retrieveBetaOrganizationsUsageReportClaudeCodePaginated(clientConfig, startingAt, limit, page, options, yieldFn)
+    fun retrievePaginated(
+        startingAt: LocalDate,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaClaudeCodeUsageReportItem) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.usageReport
+            .BetaOrganizationsUsageReportClaudeCode
+            .retrieveBetaOrganizationsUsageReportClaudeCodePaginated(
+                clientConfig,
+                startingAt,
+                limit,
+                page,
+                options,
+                yieldFn,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaOrganizationsUsageReportClaudeCodeNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaOrganizationsUsageReportClaudeCodeNamespace], returning the
+     * [SdkResponse] envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to analyze developer productivity and build custom dashboards.
+         * Retrieve daily aggregated usage metrics for Claude Code users. Enables organizations to
+         * analyze developer productivity and build custom dashboards.
          */
-        fun retrieve(startingAt: LocalDate, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): SdkResponse<BetaGetClaudeCodeUsageReportResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.usageReport.BetaOrganizationsUsageReportClaudeCode.retrieveBetaOrganizationsUsageReportClaudeCodeWithRawResponse(clientConfig, startingAt, limit, page, options)
+        fun retrieve(
+            startingAt: LocalDate,
+            limit: Long? = null,
+            page: SdkClient.SdkOptional<String?>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaGetClaudeCodeUsageReportResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations.usageReport
+                .BetaOrganizationsUsageReportClaudeCode
+                .retrieveBetaOrganizationsUsageReportClaudeCodeWithRawResponse(
+                    clientConfig,
+                    startingAt,
+                    limit,
+                    page,
+                    options,
+                )
         }
-
     }
 }

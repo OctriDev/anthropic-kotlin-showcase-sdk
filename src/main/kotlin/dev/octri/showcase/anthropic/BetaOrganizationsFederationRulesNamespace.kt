@@ -3,93 +3,272 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsFederationRulesNamespace(private val clientConfig: ClientConfig) {
     val workspaces: BetaOrganizationsFederationRulesWorkspacesNamespace
+
     init {
         workspaces = BetaOrganizationsFederationRulesWorkspacesNamespace(clientConfig)
     }
+
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Create a federation rule owned by your organization. The referenced issuer and the target service account must already exist in the same organization; invalid references are rejected with a 400 error. The workspace reference is validated. Membership is not checked at…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Create a federation rule owned by your organization. The
+     * referenced issuer and the target service account must already exist in the same organization;
+     * invalid references are rejected with a 400 error. The workspace reference is validated.
+     * Membership is not checked at…
      */
-    fun create(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.CreateBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null): BetaFederationRule {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.createBetaOrganizationsFederationRules(clientConfig, request, options)
+    fun create(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.CreateBetaOrganizationsFederationRulesRequest,
+        options: RequestOptions? = null,
+    ): BetaFederationRule {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsFederationRules
+            .createBetaOrganizationsFederationRules(clientConfig, request, options)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List federation rules in your organization. Optionally filter by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List federation rules in your organization. Optionally filter
+     * by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
      */
-    fun list(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, issuerId: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaFederationRuleListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.listBetaOrganizationsFederationRules(clientConfig, limit, page, issuerId, includeArchived, anthropicBeta, options)
+    fun list(
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        issuerId: SdkClient.SdkOptional<String?>? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaFederationRuleListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsFederationRules
+            .listBetaOrganizationsFederationRules(
+                clientConfig,
+                limit,
+                page,
+                issuerId,
+                includeArchived,
+                anthropicBeta,
+                options,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List federation rules in your organization. Optionally filter by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. List federation rules in your organization. Optionally filter
+     * by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
      */
-    fun listPaginated(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, issuerId: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null, yieldFn: (BetaFederationRule) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.listBetaOrganizationsFederationRulesPaginated(clientConfig, limit, page, issuerId, includeArchived, anthropicBeta, options, yieldFn)
+    fun listPaginated(
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        issuerId: SdkClient.SdkOptional<String?>? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaFederationRule) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules
+            .listBetaOrganizationsFederationRulesPaginated(
+                clientConfig,
+                limit,
+                page,
+                issuerId,
+                includeArchived,
+                anthropicBeta,
+                options,
+                yieldFn,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Retrieve a federation rule by its ID (`fdrl_...`).
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Retrieve a federation rule by its ID (`fdrl_...`).
      */
-    fun retrieve(federationRuleId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaFederationRule {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.retrieveBetaOrganizationsFederationRules(clientConfig, federationRuleId, anthropicBeta, options)
+    fun retrieve(
+        federationRuleId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaFederationRule {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsFederationRules
+            .retrieveBetaOrganizationsFederationRules(
+                clientConfig,
+                federationRuleId,
+                anthropicBeta,
+                options,
+            )
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Partially update a federation rule. `issuer_id` is immutable. `match` and `target` are replaced as whole objects when set. Referenced service accounts and workspaces must exist in your organization; invalid references are rejected with a 400 error. Archived rules…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Partially update a federation rule. `issuer_id` is immutable.
+     * `match` and `target` are replaced as whole objects when set. Referenced service accounts and
+     * workspaces must exist in your organization; invalid references are rejected with a 400 error.
+     * Archived rules…
      */
-    fun update(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.UpdateBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null): BetaFederationRule {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.updateBetaOrganizationsFederationRules(clientConfig, request, options)
+    fun update(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.UpdateBetaOrganizationsFederationRulesRequest,
+        options: RequestOptions? = null,
+    ): BetaFederationRule {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsFederationRules
+            .updateBetaOrganizationsFederationRules(clientConfig, request, options)
     }
 
     /**
-     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Archive a federation rule. Token exchange through this rule stops immediately. Idempotent; re-archiving returns the rule with its original `archived_at`. Archiving clears the rule's workspace targeting (`workspace_id` and `workspace_ids` are emptied). Tokens already…
+     * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope
+     * org:admin` or a workload identity federation rule; Admin API keys are not accepted. See
+     * Manage WIF with the Admin API. Archive a federation rule. Token exchange through this rule
+     * stops immediately. Idempotent; re-archiving returns the rule with its original `archived_at`.
+     * Archiving clears the rule's workspace targeting (`workspace_id` and `workspace_ids` are
+     * emptied). Tokens already…
      */
-    fun archive(federationRuleId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): BetaFederationRule {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.archiveBetaOrganizationsFederationRules(clientConfig, federationRuleId, anthropicBeta, options)
+    fun archive(
+        federationRuleId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        options: RequestOptions? = null,
+    ): BetaFederationRule {
+        return dev.octri.showcase.anthropic.methods.beta.organizations
+            .BetaOrganizationsFederationRules
+            .archiveBetaOrganizationsFederationRules(
+                clientConfig,
+                federationRuleId,
+                anthropicBeta,
+                options,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaOrganizationsFederationRulesNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaOrganizationsFederationRulesNamespace], returning the [SdkResponse]
+     * envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Create a federation rule owned by your organization. The referenced issuer and the target service account must already exist in the same organization; invalid references are rejected with a 400 error. The workspace reference is validated. Membership is not checked at…
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Create a federation rule owned by your
+         * organization. The referenced issuer and the target service account must already exist in
+         * the same organization; invalid references are rejected with a 400 error. The workspace
+         * reference is validated. Membership is not checked at…
          */
-        fun create(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.CreateBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null): SdkResponse<BetaFederationRule> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.createBetaOrganizationsFederationRulesWithRawResponse(clientConfig, request, options)
+        fun create(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.CreateBetaOrganizationsFederationRulesRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaFederationRule> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsFederationRules
+                .createBetaOrganizationsFederationRulesWithRawResponse(
+                    clientConfig,
+                    request,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. List federation rules in your organization. Optionally filter by issuer with `issuer_id`. Archived rules are excluded unless `include_archived=true`.
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. List federation rules in your organization.
+         * Optionally filter by issuer with `issuer_id`. Archived rules are excluded unless
+         * `include_archived=true`.
          */
-        fun list(limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, issuerId: SdkClient.SdkOptional<String?>? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): SdkResponse<BetaFederationRuleListResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.listBetaOrganizationsFederationRulesWithRawResponse(clientConfig, limit, page, issuerId, includeArchived, anthropicBeta, options)
+        fun list(
+            limit: Long? = null,
+            page: SdkClient.SdkOptional<String?>? = null,
+            issuerId: SdkClient.SdkOptional<String?>? = null,
+            includeArchived: Boolean? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaFederationRuleListResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsFederationRules
+                .listBetaOrganizationsFederationRulesWithRawResponse(
+                    clientConfig,
+                    limit,
+                    page,
+                    issuerId,
+                    includeArchived,
+                    anthropicBeta,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Retrieve a federation rule by its ID (`fdrl_...`).
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Retrieve a federation rule by its ID
+         * (`fdrl_...`).
          */
-        fun retrieve(federationRuleId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): SdkResponse<BetaFederationRule> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.retrieveBetaOrganizationsFederationRulesWithRawResponse(clientConfig, federationRuleId, anthropicBeta, options)
+        fun retrieve(
+            federationRuleId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaFederationRule> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsFederationRules
+                .retrieveBetaOrganizationsFederationRulesWithRawResponse(
+                    clientConfig,
+                    federationRuleId,
+                    anthropicBeta,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Partially update a federation rule. `issuer_id` is immutable. `match` and `target` are replaced as whole objects when set. Referenced service accounts and workspaces must exist in your organization; invalid references are rejected with a 400 error. Archived rules…
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Partially update a federation rule.
+         * `issuer_id` is immutable. `match` and `target` are replaced as whole objects when set.
+         * Referenced service accounts and workspaces must exist in your organization; invalid
+         * references are rejected with a 400 error. Archived rules…
          */
-        fun update(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.UpdateBetaOrganizationsFederationRulesRequest, options: RequestOptions? = null): SdkResponse<BetaFederationRule> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.updateBetaOrganizationsFederationRulesWithRawResponse(clientConfig, request, options)
+        fun update(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.UpdateBetaOrganizationsFederationRulesRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaFederationRule> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsFederationRules
+                .updateBetaOrganizationsFederationRulesWithRawResponse(
+                    clientConfig,
+                    request,
+                    options,
+                )
         }
 
         /**
-         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See Manage WIF with the Admin API. Archive a federation rule. Token exchange through this rule stops immediately. Idempotent; re-archiving returns the rule with its original `archived_at`. Archiving clears the rule's workspace targeting (`workspace_id` and `workspace_ids` are emptied). Tokens already…
+         * **Requires an OAuth access token with the `org:admin` scope**, from `ant auth login
+         * --scope org:admin` or a workload identity federation rule; Admin API keys are not
+         * accepted. See Manage WIF with the Admin API. Archive a federation rule. Token exchange
+         * through this rule stops immediately. Idempotent; re-archiving returns the rule with its
+         * original `archived_at`. Archiving clears the rule's workspace targeting (`workspace_id`
+         * and `workspace_ids` are emptied). Tokens already…
          */
-        fun archive(federationRuleId: String, anthropicBeta: List<AnthropicBeta>? = null, options: RequestOptions? = null): SdkResponse<BetaFederationRule> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsFederationRules.archiveBetaOrganizationsFederationRulesWithRawResponse(clientConfig, federationRuleId, anthropicBeta, options)
+        fun archive(
+            federationRuleId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaFederationRule> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsFederationRules
+                .archiveBetaOrganizationsFederationRulesWithRawResponse(
+                    clientConfig,
+                    federationRuleId,
+                    anthropicBeta,
+                    options,
+                )
         }
-
     }
 }

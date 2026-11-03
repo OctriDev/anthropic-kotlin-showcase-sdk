@@ -17,80 +17,222 @@ import dev.octri.showcase.anthropic.Validation
 object BetaVaults {
 
     /**
-     * Creates a vault for storing credentials that agents can use during sessions. Supply a `display_name` and optionally attach metadata to describe the vault. The response contains the created vault and its generated identifier.
+     * Creates a vault for storing credentials that agents can use during sessions. Supply a
+     * `display_name` and optionally attach metadata to describe the vault. The response contains
+     * the created vault and its generated identifier.
      *
      * @param displayName Human-readable name for the vault. 1-255 characters.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
-     * @param metadata Arbitrary key-value metadata to attach to the vault. Maximum
-     *   16 pairs, keys up to 64 chars, values up to 512 chars.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param metadata Arbitrary key-value metadata to attach to the vault. Maximum 16 pairs, keys
+     *   up to 64 chars, values up to 512 chars.
      */
-    fun createBetaVaults(clientConfig: ClientConfig, displayName: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, metadata: Map<String, String>? = null, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return createBetaVaultsWithRawResponse(clientConfig, displayName, anthropicBeta, anthropicWorkspaceId, metadata, options).data
+    fun createBetaVaults(
+        clientConfig: ClientConfig,
+        displayName: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        metadata: Map<String, String>? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return createBetaVaultsWithRawResponse(
+                clientConfig,
+                displayName,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                metadata,
+                options,
+            )
+            .data
     }
-
-
-    /** [createBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun createBetaVaultsWithRawResponse(clientConfig: ClientConfig, displayName: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, metadata: Map<String, String>? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsVault> {
-        Validation.validateLength("display_name", displayName, Validation.LengthOpts(min = 1, max = 255))
-
-        return SdkClient.request<BetaManagedAgentsVault>(SdkClient.RequestSpec("POST", "/v1/vaults?beta=true", config = clientConfig, body = SdkClient.bodyMap("display_name" to (displayName), "metadata" to (SdkClient.omitIfNull(metadata))), operationId = "createBetaVaults", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Lists vaults in the selected Workspace, with pagination for large result sets. Use `include_archived` to include archived vaults and pass the returned `next_page` token to retrieve another page. The response includes vault records and a next-page token when more results are available.
-     *
-     * @param limit Maximum number of vaults to return per page. Defaults to 20,
-     *   maximum 100.
-     * @param page Opaque pagination token from a previous `list_vaults` response.
-     * @param includeArchived Whether to include archived vaults in the results.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * [createBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
      */
-    fun listBetaVaults(clientConfig: ClientConfig, limit: Int? = null, page: String? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsListVaultsResponse {
-        return listBetaVaultsWithRawResponse(clientConfig, limit, page, includeArchived, anthropicBeta, anthropicWorkspaceId, options).data
+    fun createBetaVaultsWithRawResponse(
+        clientConfig: ClientConfig,
+        displayName: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        metadata: Map<String, String>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsVault> {
+        Validation.validateLength(
+            "display_name",
+            displayName,
+            Validation.LengthOpts(min = 1, max = 255),
+        )
+
+        return SdkClient.request<BetaManagedAgentsVault>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/vaults?beta=true",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "display_name" to (displayName),
+                        "metadata" to (SdkClient.omitIfNull(metadata)),
+                    ),
+                operationId = "createBetaVaults",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-    /** [listBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaVaultsWithRawResponse(clientConfig: ClientConfig, limit: Int? = null, page: String? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListVaultsResponse> {
-        return SdkClient.request<BetaManagedAgentsListVaultsResponse>(SdkClient.RequestSpec("GET", "/v1/vaults?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true), "include_archived" to
-    SdkClient.queryValue(includeArchived, "form", true)), operationId = "listBetaVaults", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Lists vaults in the selected Workspace, with pagination for large result sets. Use `include_archived` to include archived vaults and pass the returned `next_page` token to retrieve another page. The response includes vault records and a next-page token when more results are available.
+     * Lists vaults in the selected Workspace, with pagination for large result sets. Use
+     * `include_archived` to include archived vaults and pass the returned `next_page` token to
+     * retrieve another page. The response includes vault records and a next-page token when more
+     * results are available.
      *
-     * @param limit Maximum number of vaults to return per page. Defaults to 20,
-     *   maximum 100.
+     * @param limit Maximum number of vaults to return per page. Defaults to 20, maximum 100.
      * @param page Opaque pagination token from a previous `list_vaults` response.
      * @param includeArchived Whether to include archived vaults in the results.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaVaultsPaginated(clientConfig: ClientConfig, limit: Int? = null, page: String? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsVault) -> Boolean) {
+    fun listBetaVaults(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        page: String? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListVaultsResponse {
+        return listBetaVaultsWithRawResponse(
+                clientConfig,
+                limit,
+                page,
+                includeArchived,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
+    }
+
+    /**
+     * [listBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun listBetaVaultsWithRawResponse(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        page: String? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsListVaultsResponse> {
+        return SdkClient.request<BetaManagedAgentsListVaultsResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/vaults?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "limit" to SdkClient.queryValue(limit, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                        "include_archived" to SdkClient.queryValue(includeArchived, "form", true),
+                    ),
+                operationId = "listBetaVaults",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Lists vaults in the selected Workspace, with pagination for large result sets. Use
+     * `include_archived` to include archived vaults and pass the returned `next_page` token to
+     * retrieve another page. The response includes vault records and a next-page token when more
+     * results are available.
+     *
+     * @param limit Maximum number of vaults to return per page. Defaults to 20, maximum 100.
+     * @param page Opaque pagination token from a previous `list_vaults` response.
+     * @param includeArchived Whether to include archived vaults in the results.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     */
+    fun listBetaVaultsPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        page: String? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsVault) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaVaults(clientConfig, limit, cursor, includeArchived, anthropicBeta, anthropicWorkspaceId, options)
+            val page =
+                listBetaVaults(
+                    clientConfig,
+                    limit,
+                    cursor,
+                    includeArchived,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -107,10 +249,28 @@ object BetaVaults {
         val hasMore: Boolean,
     )
 
-    fun listBetaVaultsPages(clientConfig: ClientConfig, limit: Int? = null, page: String? = null, includeArchived: Boolean? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldPage: (ListBetaVaultsPage) -> Boolean) {
+    fun listBetaVaultsPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        page: String? = null,
+        includeArchived: Boolean? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaVaultsPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaVaults(clientConfig, limit, cursor, includeArchived, anthropicBeta, anthropicWorkspaceId, options)
+            val page =
+                listBetaVaults(
+                    clientConfig,
+                    limit,
+                    cursor,
+                    includeArchived,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -121,111 +281,316 @@ object BetaVaults {
         }
     }
 
-
     /**
-     * Retrieves a vault by its identifier. Use `vault_id` to select the vault whose display name, metadata, and archive state you need. The response contains the vault record and its timestamps.
+     * Retrieves a vault by its identifier. Use `vault_id` to select the vault whose display name,
+     * metadata, and archive state you need. The response contains the vault record and its
+     * timestamps.
      *
      * @param vaultId Path parameter vault_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaVaults(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return retrieveBetaVaultsWithRawResponse(clientConfig, vaultId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun retrieveBetaVaults(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return retrieveBetaVaultsWithRawResponse(
+                clientConfig,
+                vaultId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [retrieveBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaVaultsWithRawResponse(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsVault> {
-        return SdkClient.request<BetaManagedAgentsVault>(SdkClient.RequestSpec("GET", "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}?beta=true", config = clientConfig, operationId = "retrieveBetaVaults", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Updates a vault's display name or metadata. Supply `display_name` to change the name, or use `metadata` to add, replace, or delete individual metadata keys; omitted keys are preserved. A 200 response returns the updated vault.
-     *
-     * @param vaultId Path parameter vault_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
-     * @param displayName Updated human-readable name for the vault. 1-255
-     *   characters.
-     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null
-     *   to delete it. Omitted keys are preserved.
+     * [retrieveBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
      */
-    fun updateBetaVaults(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, metadata: SdkClient.SdkOptional<Map<String, String>?>? = null, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return updateBetaVaultsWithRawResponse(clientConfig, vaultId, anthropicBeta, anthropicWorkspaceId, displayName, metadata, options).data
+    fun retrieveBetaVaultsWithRawResponse(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsVault> {
+        return SdkClient.request<BetaManagedAgentsVault>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaVaults",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-    /** [updateBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun updateBetaVaultsWithRawResponse(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, metadata: SdkClient.SdkOptional<Map<String, String>?>? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsVault> {
-        return SdkClient.request<BetaManagedAgentsVault>(SdkClient.RequestSpec("POST", "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("display_name" to
-    (displayName ?: SdkClient.SdkOptional.Omitted), "metadata" to (metadata ?: SdkClient.SdkOptional.Omitted)), operationId = "updateBetaVaults", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Deletes a vault. Use the vault identifier to select the vault to remove; a successful response confirms the deletion and includes the deleted vault's identifier.
+     * Updates a vault's display name or metadata. Supply `display_name` to change the name, or use
+     * `metadata` to add, replace, or delete individual metadata keys; omitted keys are preserved. A
+     * 200 response returns the updated vault.
      *
      * @param vaultId Path parameter vault_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     * @param displayName Updated human-readable name for the vault. 1-255 characters.
+     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null to delete it.
+     *   Omitted keys are preserved.
      */
-    fun deleteBetaVaults(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeletedVault {
-        return deleteBetaVaultsWithRawResponse(clientConfig, vaultId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun updateBetaVaults(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        metadata: SdkClient.SdkOptional<Map<String, String>?>? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return updateBetaVaultsWithRawResponse(
+                clientConfig,
+                vaultId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                displayName,
+                metadata,
+                options,
+            )
+            .data
     }
-
-
-    /** [deleteBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun deleteBetaVaultsWithRawResponse(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeletedVault> {
-        return SdkClient.request<BetaManagedAgentsDeletedVault>(SdkClient.RequestSpec("DELETE", "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}?beta=true", config = clientConfig, operationId = "deleteBetaVaults", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Archives a vault that stores credentials for use by agents during sessions. Use the vault identifier to select the vault to archive; the response returns the vault record, including its archive timestamp.
+     * [updateBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun updateBetaVaultsWithRawResponse(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        metadata: SdkClient.SdkOptional<Map<String, String>?>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsVault> {
+        return SdkClient.request<BetaManagedAgentsVault>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}?beta=true",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "display_name" to (displayName ?: SdkClient.SdkOptional.Omitted),
+                        "metadata" to (metadata ?: SdkClient.SdkOptional.Omitted),
+                    ),
+                operationId = "updateBetaVaults",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Deletes a vault. Use the vault identifier to select the vault to remove; a successful
+     * response confirms the deletion and includes the deleted vault's identifier.
      *
      * @param vaultId Path parameter vault_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun archiveBetaVaults(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsVault {
-        return archiveBetaVaultsWithRawResponse(clientConfig, vaultId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun deleteBetaVaults(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeletedVault {
+        return deleteBetaVaultsWithRawResponse(
+                clientConfig,
+                vaultId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
 
-
-    /** [archiveBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun archiveBetaVaultsWithRawResponse(clientConfig: ClientConfig, vaultId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsVault> {
-        return SdkClient.request<BetaManagedAgentsVault>(SdkClient.RequestSpec("POST", "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}/archive?beta=true", config = clientConfig, operationId = "archiveBetaVaults", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java)))
+    /**
+     * [deleteBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun deleteBetaVaultsWithRawResponse(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsDeletedVault> {
+        return SdkClient.request<BetaManagedAgentsDeletedVault>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}?beta=true",
+                config = clientConfig,
+                operationId = "deleteBetaVaults",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
+    /**
+     * Archives a vault that stores credentials for use by agents during sessions. Use the vault
+     * identifier to select the vault to archive; the response returns the vault record, including
+     * its archive timestamp.
+     *
+     * @param vaultId Path parameter vault_id
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     */
+    fun archiveBetaVaults(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsVault {
+        return archiveBetaVaultsWithRawResponse(
+                clientConfig,
+                vaultId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
+    }
 
-
-
-
-
-
+    /**
+     * [archiveBetaVaults], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun archiveBetaVaultsWithRawResponse(
+        clientConfig: ClientConfig,
+        vaultId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsVault> {
+        return SdkClient.request<BetaManagedAgentsVault>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/vaults/${SdkClient.encodePathSegment(vaultId)}/archive?beta=true",
+                config = clientConfig,
+                operationId = "archiveBetaVaults",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
 }

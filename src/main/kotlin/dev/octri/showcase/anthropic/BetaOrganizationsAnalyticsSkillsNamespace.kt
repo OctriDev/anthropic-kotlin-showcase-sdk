@@ -3,33 +3,68 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsAnalyticsSkillsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per member, per RBAC group, or per product surface, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage
+     * metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per
+     * member, per RBAC group, or per product surface, and `filter[]` to scope results; the
+     * parameter descriptions list the supported dimensions. Available to organizations on a Claude
+     * Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null): BetaAnalyticsSkillsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.listBetaOrganizationsAnalyticsSkills(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest,
+        options: RequestOptions? = null,
+    ): BetaAnalyticsSkillsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsSkills
+            .listBetaOrganizationsAnalyticsSkills(clientConfig, request, options)
     }
 
     /**
-     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per member, per RBAC group, or per product surface, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+     * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage
+     * metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per
+     * member, per RBAC group, or per product surface, and `filter[]` to scope results; the
+     * parameter descriptions list the supported dimensions. Available to organizations on a Claude
+     * Enterprise plan. Requires an API key with the `read:analytics` scope.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null, yieldFn: (BetaAnalyticsSkillActivity) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.listBetaOrganizationsAnalyticsSkillsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaAnalyticsSkillActivity) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+            .BetaOrganizationsAnalyticsSkills
+            .listBetaOrganizationsAnalyticsSkillsPaginated(clientConfig, request, options, yieldFn)
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaOrganizationsAnalyticsSkillsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaOrganizationsAnalyticsSkillsNamespace], returning the [SdkResponse]
+     * envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out per member, per RBAC group, or per product surface, and `filter[]` to scope results; the parameter descriptions list the supported dimensions. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
+         * Get per-skill usage for a given day, with cursor-based pagination. Returns skill usage
+         * metrics for the organization, sorted by skill name. Use `group_by[]` to break usage out
+         * per member, per RBAC group, or per product surface, and `filter[]` to scope results; the
+         * parameter descriptions list the supported dimensions. Available to organizations on a
+         * Claude Enterprise plan. Requires an API key with the `read:analytics` scope.
          */
-        fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest, options: RequestOptions? = null): SdkResponse<BetaAnalyticsSkillsResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.listBetaOrganizationsAnalyticsSkillsWithRawResponse(clientConfig, request, options)
+        fun list(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.organizations.analytics.BetaOrganizationsAnalyticsSkills.ListBetaOrganizationsAnalyticsSkillsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaAnalyticsSkillsResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations.analytics
+                .BetaOrganizationsAnalyticsSkills
+                .listBetaOrganizationsAnalyticsSkillsWithRawResponse(clientConfig, request, options)
         }
-
     }
 }

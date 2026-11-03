@@ -19,26 +19,30 @@ import java.time.OffsetDateTime
 object BetaOrganizationsCostReport {
 
     /**
-     * Retrieves time-bucketed cost data for the organization. Use `starting_at` and optionally `ending_at` to set the RFC 3339 time range, and use `group_by[]` to group results by description or workspace. Follow the `next_page` cursor in each response to retrieve additional buckets.
+     * Retrieves time-bucketed cost data for the organization. Use `starting_at` and optionally
+     * `ending_at` to set the RFC 3339 time range, and use `group_by[]` to group results by
+     * description or workspace. Follow the `next_page` cursor in each response to retrieve
+     * additional buckets.
      *
-     * @param startingAt Time buckets that start on or after this RFC 3339 timestamp
-     *   will be returned. Each time bucket will be snapped to the start of the
-     *   minute/hour/day in UTC.
+     * @param startingAt Time buckets that start on or after this RFC 3339 timestamp will be
+     *   returned. Each time bucket will be snapped to the start of the minute/hour/day in UTC.
      * @param limit Maximum number of time buckets to return in the response.
-     * @param page Optionally set to the `next_page` token from the previous
-     *   response.
-     * @param endingAt Time buckets that end before this RFC 3339 timestamp will be
-     *   returned.
+     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param endingAt Time buckets that end before this RFC 3339 timestamp will be returned.
      * @param groupBy Group by any subset of the available options.
      * @param bucketWidth Time granularity of the response data.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
      */
-    fun retrieveBetaOrganizationsCostReport(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsCostReportRequest, options: RequestOptions? = null): BetaGetCostReportResponse {
-        return retrieveBetaOrganizationsCostReportWithRawResponse(clientConfig, request, options).data
+    fun retrieveBetaOrganizationsCostReport(
+        clientConfig: ClientConfig,
+        request: RetrieveBetaOrganizationsCostReportRequest,
+        options: RequestOptions? = null,
+    ): BetaGetCostReportResponse {
+        return retrieveBetaOrganizationsCostReportWithRawResponse(clientConfig, request, options)
+            .data
     }
-
 
     /** Parameters for [retrieveBetaOrganizationsCostReport]. */
     data class RetrieveBetaOrganizationsCostReportRequest(
@@ -48,54 +52,110 @@ object BetaOrganizationsCostReport {
         val endingAt: SdkClient.SdkOptional<String?>? = null,
         val groupBy: SdkClient.SdkOptional<List<BetaCostReportGroupBy>?>? = null,
         val bucketWidth: BetaCostReportTimeBucketWidth? = null,
-        val anthropicBeta: List<AnthropicBeta>? = null
+        val anthropicBeta: List<AnthropicBeta>? = null,
     )
 
-    /** [retrieveBetaOrganizationsCostReport], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaOrganizationsCostReportWithRawResponse(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsCostReportRequest, options: RequestOptions? = null): SdkResponse<BetaGetCostReportResponse> {
+    /**
+     * [retrieveBetaOrganizationsCostReport], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun retrieveBetaOrganizationsCostReportWithRawResponse(
+        clientConfig: ClientConfig,
+        request: RetrieveBetaOrganizationsCostReportRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaGetCostReportResponse> {
         validateRetrieveBetaOrganizationsCostReportRequest(request)
 
-        return SdkClient.request<BetaGetCostReportResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/cost_report?beta=true", config = clientConfig, query = mapOf("starting_at" to
-    SdkClient.queryValue(request.startingAt, "form", true, "date-time"), "limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "ending_at" to
-    SdkClient.queryValue(request.endingAt, "form", true), "group_by[]" to
-    SdkClient.queryValue(request.groupBy, "form", true), "bucket_width" to
-    SdkClient.queryValue(request.bucketWidth, "form", true)), operationId = "retrieveBetaOrganizationsCostReport", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaGetCostReportResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/organizations/cost_report?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "starting_at" to
+                            SdkClient.queryValue(request.startingAt, "form", true, "date-time"),
+                        "limit" to SdkClient.queryValue(request.limit, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                        "ending_at" to SdkClient.queryValue(request.endingAt, "form", true),
+                        "group_by[]" to SdkClient.queryValue(request.groupBy, "form", true),
+                        "bucket_width" to SdkClient.queryValue(request.bucketWidth, "form", true),
+                    ),
+                operationId = "retrieveBetaOrganizationsCostReport",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false)
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
-
-    private fun validateRetrieveBetaOrganizationsCostReportRequest(request: RetrieveBetaOrganizationsCostReportRequest) {
+    private fun validateRetrieveBetaOrganizationsCostReportRequest(
+        request: RetrieveBetaOrganizationsCostReportRequest
+    ) {
         Validation.validateDateTime("starting_at", request.startingAt)
 
         if (request.limit != null) {
-            Validation.validateRange("limit", request.limit, Validation.RangeOpts(min = 1.0, max = 31.0))
-}
+            Validation.validateRange(
+                "limit",
+                request.limit,
+                Validation.RangeOpts(min = 1.0, max = 31.0),
+            )
+        }
     }
 
-
-
-
-
     /**
-     * Retrieves time-bucketed cost data for the organization. Use `starting_at` and optionally `ending_at` to set the RFC 3339 time range, and use `group_by[]` to group results by description or workspace. Follow the `next_page` cursor in each response to retrieve additional buckets.
+     * Retrieves time-bucketed cost data for the organization. Use `starting_at` and optionally
+     * `ending_at` to set the RFC 3339 time range, and use `group_by[]` to group results by
+     * description or workspace. Follow the `next_page` cursor in each response to retrieve
+     * additional buckets.
      *
-     * @param startingAt Time buckets that start on or after this RFC 3339 timestamp
-     *   will be returned. Each time bucket will be snapped to the start of the
-     *   minute/hour/day in UTC.
+     * @param startingAt Time buckets that start on or after this RFC 3339 timestamp will be
+     *   returned. Each time bucket will be snapped to the start of the minute/hour/day in UTC.
      * @param limit Maximum number of time buckets to return in the response.
-     * @param page Optionally set to the `next_page` token from the previous
-     *   response.
-     * @param endingAt Time buckets that end before this RFC 3339 timestamp will be
-     *   returned.
+     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param endingAt Time buckets that end before this RFC 3339 timestamp will be returned.
      * @param groupBy Group by any subset of the available options.
      * @param bucketWidth Time granularity of the response data.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
      */
-    fun retrieveBetaOrganizationsCostReportPaginated(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsCostReportRequest, options: RequestOptions? = null, yieldFn: (BetaCostReportTimeBucket) -> Boolean) {
+    fun retrieveBetaOrganizationsCostReportPaginated(
+        clientConfig: ClientConfig,
+        request: RetrieveBetaOrganizationsCostReportRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaCostReportTimeBucket) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = retrieveBetaOrganizationsCostReport(clientConfig, request.copy(page = cursor), options)
+            val page =
+                retrieveBetaOrganizationsCostReport(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -113,10 +173,20 @@ object BetaOrganizationsCostReport {
         val hasMore: Boolean,
     )
 
-    fun retrieveBetaOrganizationsCostReportPages(clientConfig: ClientConfig, request: RetrieveBetaOrganizationsCostReportRequest, options: RequestOptions? = null, yieldPage: (RetrieveBetaOrganizationsCostReportPage) -> Boolean) {
+    fun retrieveBetaOrganizationsCostReportPages(
+        clientConfig: ClientConfig,
+        request: RetrieveBetaOrganizationsCostReportRequest,
+        options: RequestOptions? = null,
+        yieldPage: (RetrieveBetaOrganizationsCostReportPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = retrieveBetaOrganizationsCostReport(clientConfig, request.copy(page = cursor), options)
+            val page =
+                retrieveBetaOrganizationsCostReport(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -126,7 +196,4 @@ object BetaOrganizationsCostReport {
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
-
-
-
 }

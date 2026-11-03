@@ -3,117 +3,299 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaVaultsCredentialsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a credential in a vault for use by agents during sessions. Provide the required `auth` configuration and optionally set a display name or metadata. The response includes the created credential record, but sensitive fields are not returned.
+     * Creates a credential in a vault for use by agents during sessions. Provide the required
+     * `auth` configuration and optionally set a display name or metadata. The response includes the
+     * created credential record, but sensitive fields are not returned.
      */
-    fun create(request: dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.CreateBetaVaultsCredentialsRequest, options: RequestOptions? = null): BetaManagedAgentsCredential {
-        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.createBetaVaultsCredentials(clientConfig, request, options)
+    fun create(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.CreateBetaVaultsCredentialsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsCredential {
+        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .createBetaVaultsCredentials(clientConfig, request, options)
     }
 
     /**
-     * Lists credentials stored in a vault, with pagination and an option to include archived credentials. Use `limit` to set the page size and pass the returned `next_page` value as `page` to retrieve another page.
+     * Lists credentials stored in a vault, with pagination and an option to include archived
+     * credentials. Use `limit` to set the page size and pass the returned `next_page` value as
+     * `page` to retrieve another page.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.ListBetaVaultsCredentialsRequest, options: RequestOptions? = null): BetaManagedAgentsListCredentialsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.listBetaVaultsCredentials(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.ListBetaVaultsCredentialsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListCredentialsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .listBetaVaultsCredentials(clientConfig, request, options)
     }
 
     /**
-     * Lists credentials stored in a vault, with pagination and an option to include archived credentials. Use `limit` to set the page size and pass the returned `next_page` value as `page` to retrieve another page.
+     * Lists credentials stored in a vault, with pagination and an option to include archived
+     * credentials. Use `limit` to set the page size and pass the returned `next_page` value as
+     * `page` to retrieve another page.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.ListBetaVaultsCredentialsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsCredential) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.listBetaVaultsCredentialsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.ListBetaVaultsCredentialsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsCredential) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .listBetaVaultsCredentialsPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves a credential stored in a vault. Use both identifiers to select the credential within its vault; the response includes its metadata and authentication configuration but not sensitive fields.
+     * Retrieves a credential stored in a vault. Use both identifiers to select the credential
+     * within its vault; the response includes its metadata and authentication configuration but not
+     * sensitive fields.
      */
-    fun retrieve(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsCredential {
-        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.retrieveBetaVaultsCredentials(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        vaultId: String,
+        credentialId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsCredential {
+        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .retrieveBetaVaultsCredentials(
+                clientConfig,
+                vaultId,
+                credentialId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Updates a credential's display name, metadata, or authentication configuration. Supply only the fields you want to change; when updating `auth`, its type must remain the same as the stored credential's type. The response returns the updated credential without sensitive fields.
+     * Updates a credential's display name, metadata, or authentication configuration. Supply only
+     * the fields you want to change; when updating `auth`, its type must remain the same as the
+     * stored credential's type. The response returns the updated credential without sensitive
+     * fields.
      */
-    fun update(request: dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.UpdateBetaVaultsCredentialsRequest, options: RequestOptions? = null): BetaManagedAgentsCredential {
-        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.updateBetaVaultsCredentials(clientConfig, request, options)
+    fun update(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.UpdateBetaVaultsCredentialsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsCredential {
+        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .updateBetaVaultsCredentials(clientConfig, request, options)
     }
 
     /**
-     * Deletes a credential from a vault. Use the vault and credential identifiers to select the credential to remove; a successful response confirms the deletion and includes the credential's identifier.
+     * Deletes a credential from a vault. Use the vault and credential identifiers to select the
+     * credential to remove; a successful response confirms the deletion and includes the
+     * credential's identifier.
      */
-    fun delete(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeletedCredential {
-        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.deleteBetaVaultsCredentials(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+    fun delete(
+        vaultId: String,
+        credentialId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeletedCredential {
+        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .deleteBetaVaultsCredentials(
+                clientConfig,
+                vaultId,
+                credentialId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Archives a credential stored in a vault. Use the vault and credential identifiers to select the credential; the response returns the credential record with its archive state.
+     * Archives a credential stored in a vault. Use the vault and credential identifiers to select
+     * the credential; the response returns the credential record with its archive state.
      */
-    fun archive(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsCredential {
-        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.archiveBetaVaultsCredentials(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+    fun archive(
+        vaultId: String,
+        credentialId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsCredential {
+        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .archiveBetaVaultsCredentials(
+                clientConfig,
+                vaultId,
+                credentialId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Verifies a credential by probing its configured MCP server and reports the validation result. Use the vault and credential identifiers to select the credential; inspect the response's status and probe details to understand the outcome.
+     * Verifies a credential by probing its configured MCP server and reports the validation result.
+     * Use the vault and credential identifiers to select the credential; inspect the response's
+     * status and probe details to understand the outcome.
      */
-    fun validateMcpOauth(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsCredentialValidation {
-        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.validateBetaVaultsCredentialsMcpOauth(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+    fun validateMcpOauth(
+        vaultId: String,
+        credentialId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsCredentialValidation {
+        return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+            .validateBetaVaultsCredentialsMcpOauth(
+                clientConfig,
+                vaultId,
+                credentialId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaVaultsCredentialsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaVaultsCredentialsNamespace], returning the [SdkResponse] envelope
+     * around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Creates a credential in a vault for use by agents during sessions. Provide the required `auth` configuration and optionally set a display name or metadata. The response includes the created credential record, but sensitive fields are not returned.
+         * Creates a credential in a vault for use by agents during sessions. Provide the required
+         * `auth` configuration and optionally set a display name or metadata. The response includes
+         * the created credential record, but sensitive fields are not returned.
          */
-        fun create(request: dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.CreateBetaVaultsCredentialsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsCredential> {
-            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.createBetaVaultsCredentialsWithRawResponse(clientConfig, request, options)
+        fun create(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.CreateBetaVaultsCredentialsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsCredential> {
+            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+                .createBetaVaultsCredentialsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Lists credentials stored in a vault, with pagination and an option to include archived credentials. Use `limit` to set the page size and pass the returned `next_page` value as `page` to retrieve another page.
+         * Lists credentials stored in a vault, with pagination and an option to include archived
+         * credentials. Use `limit` to set the page size and pass the returned `next_page` value as
+         * `page` to retrieve another page.
          */
-        fun list(request: dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.ListBetaVaultsCredentialsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListCredentialsResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.listBetaVaultsCredentialsWithRawResponse(clientConfig, request, options)
+        fun list(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.ListBetaVaultsCredentialsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsListCredentialsResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+                .listBetaVaultsCredentialsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Retrieves a credential stored in a vault. Use both identifiers to select the credential within its vault; the response includes its metadata and authentication configuration but not sensitive fields.
+         * Retrieves a credential stored in a vault. Use both identifiers to select the credential
+         * within its vault; the response includes its metadata and authentication configuration but
+         * not sensitive fields.
          */
-        fun retrieve(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsCredential> {
-            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.retrieveBetaVaultsCredentialsWithRawResponse(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            vaultId: String,
+            credentialId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsCredential> {
+            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+                .retrieveBetaVaultsCredentialsWithRawResponse(
+                    clientConfig,
+                    vaultId,
+                    credentialId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Updates a credential's display name, metadata, or authentication configuration. Supply only the fields you want to change; when updating `auth`, its type must remain the same as the stored credential's type. The response returns the updated credential without sensitive fields.
+         * Updates a credential's display name, metadata, or authentication configuration. Supply
+         * only the fields you want to change; when updating `auth`, its type must remain the same
+         * as the stored credential's type. The response returns the updated credential without
+         * sensitive fields.
          */
-        fun update(request: dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.UpdateBetaVaultsCredentialsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsCredential> {
-            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.updateBetaVaultsCredentialsWithRawResponse(clientConfig, request, options)
+        fun update(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.UpdateBetaVaultsCredentialsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsCredential> {
+            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+                .updateBetaVaultsCredentialsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Deletes a credential from a vault. Use the vault and credential identifiers to select the credential to remove; a successful response confirms the deletion and includes the credential's identifier.
+         * Deletes a credential from a vault. Use the vault and credential identifiers to select the
+         * credential to remove; a successful response confirms the deletion and includes the
+         * credential's identifier.
          */
-        fun delete(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeletedCredential> {
-            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.deleteBetaVaultsCredentialsWithRawResponse(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+        fun delete(
+            vaultId: String,
+            credentialId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeletedCredential> {
+            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+                .deleteBetaVaultsCredentialsWithRawResponse(
+                    clientConfig,
+                    vaultId,
+                    credentialId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Archives a credential stored in a vault. Use the vault and credential identifiers to select the credential; the response returns the credential record with its archive state.
+         * Archives a credential stored in a vault. Use the vault and credential identifiers to
+         * select the credential; the response returns the credential record with its archive state.
          */
-        fun archive(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsCredential> {
-            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.archiveBetaVaultsCredentialsWithRawResponse(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+        fun archive(
+            vaultId: String,
+            credentialId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsCredential> {
+            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+                .archiveBetaVaultsCredentialsWithRawResponse(
+                    clientConfig,
+                    vaultId,
+                    credentialId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Verifies a credential by probing its configured MCP server and reports the validation result. Use the vault and credential identifiers to select the credential; inspect the response's status and probe details to understand the outcome.
+         * Verifies a credential by probing its configured MCP server and reports the validation
+         * result. Use the vault and credential identifiers to select the credential; inspect the
+         * response's status and probe details to understand the outcome.
          */
-        fun validateMcpOauth(vaultId: String, credentialId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsCredentialValidation> {
-            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials.validateBetaVaultsCredentialsMcpOauthWithRawResponse(clientConfig, vaultId, credentialId, anthropicBeta, anthropicWorkspaceId, options)
+        fun validateMcpOauth(
+            vaultId: String,
+            credentialId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsCredentialValidation> {
+            return dev.octri.showcase.anthropic.methods.beta.vaults.BetaVaultsCredentials
+                .validateBetaVaultsCredentialsMcpOauthWithRawResponse(
+                    clientConfig,
+                    vaultId,
+                    credentialId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

@@ -5,12 +5,11 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Request to update work item metadata.
- */
+/** Request to update work item metadata. */
 data class BetaSelfHostedWorkUpdateRequest(
     /**
-     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve existing metadata.
+     * Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field
+     * to preserve existing metadata.
      */
     val metadata: Map<String, String>
 ) : SdkResource()

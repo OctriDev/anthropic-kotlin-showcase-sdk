@@ -3,131 +3,338 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaDeploymentsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a deployment that binds an agent to an environment, initial events, and optional resources or a recurring schedule. Provide `name`, `agent`, `environment_id`, and at least one `initial_event`; the agent and environment must exist and the agent must not be archived.
+     * Creates a deployment that binds an agent to an environment, initial events, and optional
+     * resources or a recurring schedule. Provide `name`, `agent`, `environment_id`, and at least
+     * one `initial_event`; the agent and environment must exist and the agent must not be archived.
      */
-    fun create(request: dev.octri.showcase.anthropic.methods.beta.BetaDeployments.CreateBetaDeploymentsRequest, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.createBetaDeployments(clientConfig, request, options)
+    fun create(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeployments.CreateBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.createBetaDeployments(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle status, creation time, and archived status. Use `page` to paginate and `limit` to control page size; do not combine `status` with `include_archived`.
+     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle
+     * status, creation time, and archived status. Use `page` to paginate and `limit` to control
+     * page size; do not combine `status` with `include_archived`.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaDeployments.ListBetaDeploymentsRequest, options: RequestOptions? = null): BetaManagedAgentsListDeploymentsData {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.listBetaDeployments(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeployments.ListBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListDeploymentsData {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.listBetaDeployments(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle status, creation time, and archived status. Use `page` to paginate and `limit` to control page size; do not combine `status` with `include_archived`.
+     * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle
+     * status, creation time, and archived status. Use `page` to paginate and `limit` to control
+     * page size; do not combine `status` with `include_archived`.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaDeployments.ListBetaDeploymentsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsDeployment) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.BetaDeployments.listBetaDeploymentsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeployments.ListBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsDeployment) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.BetaDeployments.listBetaDeploymentsPaginated(
+            clientConfig,
+            request,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a deployment by its identifier, including its agent and environment references, configuration, schedule, and current status. Use this operation to inspect a deployment's settings and whether it is active or paused.
+     * Retrieves a deployment by its identifier, including its agent and environment references,
+     * configuration, schedule, and current status. Use this operation to inspect a deployment's
+     * settings and whether it is active or paused.
      */
-    fun retrieve(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.retrieveBetaDeployments(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.retrieveBetaDeployments(
+            clientConfig,
+            deploymentId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Updates a deployment's configuration while preserving any fields you omit. Use the body to change the agent, environment, events, resources, metadata, schedule, or budget; fields such as `vault_ids` and `initial_events` are replaced as a whole when supplied. The response contains the deployment's updated configuration and status.
+     * Updates a deployment's configuration while preserving any fields you omit. Use the body to
+     * change the agent, environment, events, resources, metadata, schedule, or budget; fields such
+     * as `vault_ids` and `initial_events` are replaced as a whole when supplied. The response
+     * contains the deployment's updated configuration and status.
      */
-    fun update(request: dev.octri.showcase.anthropic.methods.beta.BetaDeployments.UpdateBetaDeploymentsRequest, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.updateBetaDeployments(clientConfig, request, options)
+    fun update(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeployments.UpdateBetaDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.updateBetaDeployments(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Archives a deployment so you can remove it from active management while retaining its record. Use `deployment_id` to select the deployment to archive. The response returns the deployment object, whose archived state is indicated by `archived_at`.
+     * Archives a deployment so you can remove it from active management while retaining its record.
+     * Use `deployment_id` to select the deployment to archive. The response returns the deployment
+     * object, whose archived state is indicated by `archived_at`.
      */
-    fun archive(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.archiveBetaDeployments(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+    fun archive(
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.archiveBetaDeployments(
+            clientConfig,
+            deploymentId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Pauses a deployment to stop it from running until it is unpaused. Use `deployment_id` to select the deployment whose execution you want to pause. The response returns the deployment object with its computed status and pause reason.
+     * Pauses a deployment to stop it from running until it is unpaused. Use `deployment_id` to
+     * select the deployment whose execution you want to pause. The response returns the deployment
+     * object with its computed status and pause reason.
      */
-    fun pause(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.pauseBetaDeployments(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+    fun pause(
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.pauseBetaDeployments(
+            clientConfig,
+            deploymentId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Unpauses a deployment so it can run again. Use `deployment_id` to select the deployment whose execution you want to resume. The response returns the deployment object with its computed status.
+     * Unpauses a deployment so it can run again. Use `deployment_id` to select the deployment whose
+     * execution you want to resume. The response returns the deployment object with its computed
+     * status.
      */
-    fun unpause(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeployment {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.unpauseBetaDeployments(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+    fun unpause(
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeployment {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.unpauseBetaDeployments(
+            clientConfig,
+            deploymentId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Triggers an immediate run of a deployment and records the attempt as an append-only deployment run. Use `deployment_id` to choose which deployment to run; the response records whether session creation succeeded or failed. Use the returned run record's `session_id` or `error` to inspect the outcome.
+     * Triggers an immediate run of a deployment and records the attempt as an append-only
+     * deployment run. Use `deployment_id` to choose which deployment to run; the response records
+     * whether session creation succeeded or failed. Use the returned run record's `session_id` or
+     * `error` to inspect the outcome.
      */
-    fun run(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeploymentRun {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.runBetaDeployments(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+    fun run(
+        deploymentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeploymentRun {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.runBetaDeployments(
+            clientConfig,
+            deploymentId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaDeploymentsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaDeploymentsNamespace], returning the [SdkResponse] envelope around
+     * each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Creates a deployment that binds an agent to an environment, initial events, and optional resources or a recurring schedule. Provide `name`, `agent`, `environment_id`, and at least one `initial_event`; the agent and environment must exist and the agent must not be archived.
+         * Creates a deployment that binds an agent to an environment, initial events, and optional
+         * resources or a recurring schedule. Provide `name`, `agent`, `environment_id`, and at
+         * least one `initial_event`; the agent and environment must exist and the agent must not be
+         * archived.
          */
-        fun create(request: dev.octri.showcase.anthropic.methods.beta.BetaDeployments.CreateBetaDeploymentsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.createBetaDeploymentsWithRawResponse(clientConfig, request, options)
+        fun create(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.BetaDeployments.CreateBetaDeploymentsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeployment> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .createBetaDeploymentsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle status, creation time, and archived status. Use `page` to paginate and `limit` to control page size; do not combine `status` with `include_archived`.
+         * Lists deployments in the selected Workspace, with optional filters for agent, lifecycle
+         * status, creation time, and archived status. Use `page` to paginate and `limit` to control
+         * page size; do not combine `status` with `include_archived`.
          */
-        fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaDeployments.ListBetaDeploymentsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListDeploymentsData> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.listBetaDeploymentsWithRawResponse(clientConfig, request, options)
+        fun list(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.BetaDeployments.ListBetaDeploymentsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsListDeploymentsData> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .listBetaDeploymentsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Retrieves a deployment by its identifier, including its agent and environment references, configuration, schedule, and current status. Use this operation to inspect a deployment's settings and whether it is active or paused.
+         * Retrieves a deployment by its identifier, including its agent and environment references,
+         * configuration, schedule, and current status. Use this operation to inspect a deployment's
+         * settings and whether it is active or paused.
          */
-        fun retrieve(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.retrieveBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            deploymentId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeployment> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .retrieveBetaDeploymentsWithRawResponse(
+                    clientConfig,
+                    deploymentId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Updates a deployment's configuration while preserving any fields you omit. Use the body to change the agent, environment, events, resources, metadata, schedule, or budget; fields such as `vault_ids` and `initial_events` are replaced as a whole when supplied. The response contains the deployment's updated configuration and status.
+         * Updates a deployment's configuration while preserving any fields you omit. Use the body
+         * to change the agent, environment, events, resources, metadata, schedule, or budget;
+         * fields such as `vault_ids` and `initial_events` are replaced as a whole when supplied.
+         * The response contains the deployment's updated configuration and status.
          */
-        fun update(request: dev.octri.showcase.anthropic.methods.beta.BetaDeployments.UpdateBetaDeploymentsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.updateBetaDeploymentsWithRawResponse(clientConfig, request, options)
+        fun update(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.BetaDeployments.UpdateBetaDeploymentsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeployment> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .updateBetaDeploymentsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Archives a deployment so you can remove it from active management while retaining its record. Use `deployment_id` to select the deployment to archive. The response returns the deployment object, whose archived state is indicated by `archived_at`.
+         * Archives a deployment so you can remove it from active management while retaining its
+         * record. Use `deployment_id` to select the deployment to archive. The response returns the
+         * deployment object, whose archived state is indicated by `archived_at`.
          */
-        fun archive(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.archiveBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+        fun archive(
+            deploymentId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeployment> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .archiveBetaDeploymentsWithRawResponse(
+                    clientConfig,
+                    deploymentId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Pauses a deployment to stop it from running until it is unpaused. Use `deployment_id` to select the deployment whose execution you want to pause. The response returns the deployment object with its computed status and pause reason.
+         * Pauses a deployment to stop it from running until it is unpaused. Use `deployment_id` to
+         * select the deployment whose execution you want to pause. The response returns the
+         * deployment object with its computed status and pause reason.
          */
-        fun pause(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.pauseBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+        fun pause(
+            deploymentId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeployment> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .pauseBetaDeploymentsWithRawResponse(
+                    clientConfig,
+                    deploymentId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Unpauses a deployment so it can run again. Use `deployment_id` to select the deployment whose execution you want to resume. The response returns the deployment object with its computed status.
+         * Unpauses a deployment so it can run again. Use `deployment_id` to select the deployment
+         * whose execution you want to resume. The response returns the deployment object with its
+         * computed status.
          */
-        fun unpause(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeployment> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.unpauseBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+        fun unpause(
+            deploymentId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeployment> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .unpauseBetaDeploymentsWithRawResponse(
+                    clientConfig,
+                    deploymentId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Triggers an immediate run of a deployment and records the attempt as an append-only deployment run. Use `deployment_id` to choose which deployment to run; the response records whether session creation succeeded or failed. Use the returned run record's `session_id` or `error` to inspect the outcome.
+         * Triggers an immediate run of a deployment and records the attempt as an append-only
+         * deployment run. Use `deployment_id` to choose which deployment to run; the response
+         * records whether session creation succeeded or failed. Use the returned run record's
+         * `session_id` or `error` to inspect the outcome.
          */
-        fun run(deploymentId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeploymentRun> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments.runBetaDeploymentsWithRawResponse(clientConfig, deploymentId, anthropicBeta, anthropicWorkspaceId, options)
+        fun run(
+            deploymentId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeploymentRun> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeployments
+                .runBetaDeploymentsWithRawResponse(
+                    clientConfig,
+                    deploymentId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

@@ -19,7 +19,10 @@ import dev.octri.showcase.anthropic.Validation
 object BetaMemoryStoresMemoryVersions {
 
     /**
-     * Lists a memory store's version history, with optional filters for memory, actor, operation, and creation time. Results are ordered newest first; use `page` with the response's `next_page` cursor to continue through the history. Set `view` to choose whether version content is populated.
+     * Lists a memory store's version history, with optional filters for memory, actor, operation,
+     * and creation time. Results are ordered newest first; use `page` with the response's
+     * `next_page` cursor to continue through the history. Set `view` to choose whether version
+     * content is populated.
      *
      * @param memoryStoreId Path parameter memory_store_id
      * @param memoryId Query parameter for memory_id
@@ -28,21 +31,23 @@ object BetaMemoryStoresMemoryVersions {
      * @param serviceAccountId Query parameter for service_account_id
      * @param operation Query parameter for operation
      * @param createdAtGte Return versions created at or after this time (inclusive).
-     * @param createdAtLte Return versions created at or before this time
-     *   (inclusive).
+     * @param createdAtLte Return versions created at or before this time (inclusive).
      * @param limit Query parameter for limit
      * @param page Query parameter for page
      * @param view Query parameter for view
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaMemoryStoresMemoryVersions(clientConfig: ClientConfig, request: ListBetaMemoryStoresMemoryVersionsRequest, options: RequestOptions? = null): BetaManagedAgentsListMemoryVersionsResult {
-        return listBetaMemoryStoresMemoryVersionsWithRawResponse(clientConfig, request, options).data
+    fun listBetaMemoryStoresMemoryVersions(
+        clientConfig: ClientConfig,
+        request: ListBetaMemoryStoresMemoryVersionsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListMemoryVersionsResult {
+        return listBetaMemoryStoresMemoryVersionsWithRawResponse(clientConfig, request, options)
+            .data
     }
-
 
     /** Parameters for [listBetaMemoryStoresMemoryVersions]. */
     data class ListBetaMemoryStoresMemoryVersionsRequest(
@@ -58,40 +63,89 @@ object BetaMemoryStoresMemoryVersions {
         val page: String? = null,
         val view: BetaManagedAgentsMemoryView? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val anthropicWorkspaceId: String? = null
+        val anthropicWorkspaceId: String? = null,
     )
 
-    /** [listBetaMemoryStoresMemoryVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaMemoryStoresMemoryVersionsWithRawResponse(clientConfig: ClientConfig, request: ListBetaMemoryStoresMemoryVersionsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListMemoryVersionsResult> {
+    /**
+     * [listBetaMemoryStoresMemoryVersions], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun listBetaMemoryStoresMemoryVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListBetaMemoryStoresMemoryVersionsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsListMemoryVersionsResult> {
         validateListBetaMemoryStoresMemoryVersionsRequest(request)
 
-        return SdkClient.request<BetaManagedAgentsListMemoryVersionsResult>(SdkClient.RequestSpec("GET", "/v1/memory_stores/${SdkClient.encodePathSegment(request.memoryStoreId)}/memory_versions?beta=true", config = clientConfig, query = mapOf("memory_id" to
-    SdkClient.queryValue(request.memoryId, "form", true), "session_id" to
-    SdkClient.queryValue(request.sessionId, "form", true), "api_key_id" to
-    SdkClient.queryValue(request.apiKeyId, "form", true), "service_account_id" to
-    SdkClient.queryValue(request.serviceAccountId, "form", true), "operation" to
-    SdkClient.queryValue(request.operation, "form", true), "created_at[gte]" to
-    SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"), "created_at[lte]" to
-    SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"), "limit" to SdkClient.queryValue(request.limit, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "view" to SdkClient.queryValue(request.view, "form", true)), operationId = "listBetaMemoryStoresMemoryVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaManagedAgentsErrorResponse::class.java, "401" to BetaManagedAgentsErrorResponse::class.java, "403" to BetaManagedAgentsErrorResponse::class.java, "404" to BetaManagedAgentsErrorResponse::class.java, "408" to BetaManagedAgentsErrorResponse::class.java, "409" to BetaManagedAgentsErrorResponse::class.java, "412" to BetaManagedAgentsErrorResponse::class.java, "413" to BetaManagedAgentsErrorResponse::class.java, "429" to BetaManagedAgentsErrorResponse::class.java, "431" to BetaManagedAgentsErrorResponse::class.java, "499" to BetaManagedAgentsErrorResponse::class.java, "500" to BetaManagedAgentsErrorResponse::class.java, "501" to BetaManagedAgentsErrorResponse::class.java, "503" to BetaManagedAgentsErrorResponse::class.java, "504" to BetaManagedAgentsErrorResponse::class.java)))
+        return SdkClient.request<BetaManagedAgentsListMemoryVersionsResult>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/memory_stores/${SdkClient.encodePathSegment(request.memoryStoreId)}/memory_versions?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "memory_id" to SdkClient.queryValue(request.memoryId, "form", true),
+                        "session_id" to SdkClient.queryValue(request.sessionId, "form", true),
+                        "api_key_id" to SdkClient.queryValue(request.apiKeyId, "form", true),
+                        "service_account_id" to
+                            SdkClient.queryValue(request.serviceAccountId, "form", true),
+                        "operation" to SdkClient.queryValue(request.operation, "form", true),
+                        "created_at[gte]" to
+                            SdkClient.queryValue(request.createdAtGte, "form", true, "date-time"),
+                        "created_at[lte]" to
+                            SdkClient.queryValue(request.createdAtLte, "form", true, "date-time"),
+                        "limit" to SdkClient.queryValue(request.limit, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                        "view" to SdkClient.queryValue(request.view, "form", true),
+                    ),
+                operationId = "listBetaMemoryStoresMemoryVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaManagedAgentsErrorResponse::class.java,
+                        "401" to BetaManagedAgentsErrorResponse::class.java,
+                        "403" to BetaManagedAgentsErrorResponse::class.java,
+                        "404" to BetaManagedAgentsErrorResponse::class.java,
+                        "408" to BetaManagedAgentsErrorResponse::class.java,
+                        "409" to BetaManagedAgentsErrorResponse::class.java,
+                        "412" to BetaManagedAgentsErrorResponse::class.java,
+                        "413" to BetaManagedAgentsErrorResponse::class.java,
+                        "429" to BetaManagedAgentsErrorResponse::class.java,
+                        "431" to BetaManagedAgentsErrorResponse::class.java,
+                        "499" to BetaManagedAgentsErrorResponse::class.java,
+                        "500" to BetaManagedAgentsErrorResponse::class.java,
+                        "501" to BetaManagedAgentsErrorResponse::class.java,
+                        "503" to BetaManagedAgentsErrorResponse::class.java,
+                        "504" to BetaManagedAgentsErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
-
-    private fun validateListBetaMemoryStoresMemoryVersionsRequest(request: ListBetaMemoryStoresMemoryVersionsRequest) {
+    private fun validateListBetaMemoryStoresMemoryVersionsRequest(
+        request: ListBetaMemoryStoresMemoryVersionsRequest
+    ) {
         if (request.createdAtGte != null) {
             Validation.validateDateTime("created_at[gte]", request.createdAtGte)
-}
+        }
 
         if (request.createdAtLte != null) {
             Validation.validateDateTime("created_at[lte]", request.createdAtLte)
-}
+        }
     }
 
-
-
-
-
     /**
-     * Lists a memory store's version history, with optional filters for memory, actor, operation, and creation time. Results are ordered newest first; use `page` with the response's `next_page` cursor to continue through the history. Set `view` to choose whether version content is populated.
+     * Lists a memory store's version history, with optional filters for memory, actor, operation,
+     * and creation time. Results are ordered newest first; use `page` with the response's
+     * `next_page` cursor to continue through the history. Set `view` to choose whether version
+     * content is populated.
      *
      * @param memoryStoreId Path parameter memory_store_id
      * @param memoryId Query parameter for memory_id
@@ -100,21 +154,29 @@ object BetaMemoryStoresMemoryVersions {
      * @param serviceAccountId Query parameter for service_account_id
      * @param operation Query parameter for operation
      * @param createdAtGte Return versions created at or after this time (inclusive).
-     * @param createdAtLte Return versions created at or before this time
-     *   (inclusive).
+     * @param createdAtLte Return versions created at or before this time (inclusive).
      * @param limit Query parameter for limit
      * @param page Query parameter for page
      * @param view Query parameter for view
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaMemoryStoresMemoryVersionsPaginated(clientConfig: ClientConfig, request: ListBetaMemoryStoresMemoryVersionsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsMemoryVersion) -> Boolean) {
+    fun listBetaMemoryStoresMemoryVersionsPaginated(
+        clientConfig: ClientConfig,
+        request: ListBetaMemoryStoresMemoryVersionsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsMemoryVersion) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaMemoryStoresMemoryVersions(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaMemoryStoresMemoryVersions(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -131,10 +193,20 @@ object BetaMemoryStoresMemoryVersions {
         val hasMore: Boolean,
     )
 
-    fun listBetaMemoryStoresMemoryVersionsPages(clientConfig: ClientConfig, request: ListBetaMemoryStoresMemoryVersionsRequest, options: RequestOptions? = null, yieldPage: (ListBetaMemoryStoresMemoryVersionsPage) -> Boolean) {
+    fun listBetaMemoryStoresMemoryVersionsPages(
+        clientConfig: ClientConfig,
+        request: ListBetaMemoryStoresMemoryVersionsRequest,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaMemoryStoresMemoryVersionsPage) -> Boolean,
+    ) {
         var cursor = request.page
         while (true) {
-            val page = listBetaMemoryStoresMemoryVersions(clientConfig, request.copy(page = cursor), options)
+            val page =
+                listBetaMemoryStoresMemoryVersions(
+                    clientConfig,
+                    request.copy(page = cursor),
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -145,59 +217,166 @@ object BetaMemoryStoresMemoryVersions {
         }
     }
 
-
     /**
-     * Retrieves a specific immutable memory-version record from a memory store. Use `view` to choose whether the response includes the version's content; deleted or redacted versions can have content and related fields set to null.
+     * Retrieves a specific immutable memory-version record from a memory store. Use `view` to
+     * choose whether the response includes the version's content; deleted or redacted versions can
+     * have content and related fields set to null.
      *
      * @param memoryStoreId Path parameter memory_store_id
      * @param memoryVersionId Path parameter memory_version_id
      * @param view Query parameter for view
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaMemoryStoresMemoryVersions(clientConfig: ClientConfig, memoryStoreId: String, memoryVersionId: String, view: BetaManagedAgentsMemoryView? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsMemoryVersion {
-        return retrieveBetaMemoryStoresMemoryVersionsWithRawResponse(clientConfig, memoryStoreId, memoryVersionId, view, anthropicBeta, anthropicWorkspaceId, options).data
+    fun retrieveBetaMemoryStoresMemoryVersions(
+        clientConfig: ClientConfig,
+        memoryStoreId: String,
+        memoryVersionId: String,
+        view: BetaManagedAgentsMemoryView? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsMemoryVersion {
+        return retrieveBetaMemoryStoresMemoryVersionsWithRawResponse(
+                clientConfig,
+                memoryStoreId,
+                memoryVersionId,
+                view,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [retrieveBetaMemoryStoresMemoryVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaMemoryStoresMemoryVersionsWithRawResponse(clientConfig: ClientConfig, memoryStoreId: String, memoryVersionId: String, view: BetaManagedAgentsMemoryView? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsMemoryVersion> {
-        return SdkClient.request<BetaManagedAgentsMemoryVersion>(SdkClient.RequestSpec("GET", "/v1/memory_stores/${SdkClient.encodePathSegment(memoryStoreId)}/memory_versions/${SdkClient.encodePathSegment(memoryVersionId)}?beta=true", config = clientConfig, query = mapOf("view" to SdkClient.queryValue(view, "form", true)), operationId = "retrieveBetaMemoryStoresMemoryVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaManagedAgentsErrorResponse::class.java, "401" to BetaManagedAgentsErrorResponse::class.java, "403" to BetaManagedAgentsErrorResponse::class.java, "404" to BetaManagedAgentsErrorResponse::class.java, "408" to BetaManagedAgentsErrorResponse::class.java, "409" to BetaManagedAgentsErrorResponse::class.java, "412" to BetaManagedAgentsErrorResponse::class.java, "413" to BetaManagedAgentsErrorResponse::class.java, "429" to BetaManagedAgentsErrorResponse::class.java, "431" to BetaManagedAgentsErrorResponse::class.java, "499" to BetaManagedAgentsErrorResponse::class.java, "500" to BetaManagedAgentsErrorResponse::class.java, "501" to BetaManagedAgentsErrorResponse::class.java, "503" to BetaManagedAgentsErrorResponse::class.java, "504" to BetaManagedAgentsErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Redacts a memory version in a memory store, removing its content and path-related data from the version record. Use this operation when you need to redact a specific historical version; the response returns the updated version record with redaction details.
+     * [retrieveBetaMemoryStoresMemoryVersions], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun retrieveBetaMemoryStoresMemoryVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        memoryStoreId: String,
+        memoryVersionId: String,
+        view: BetaManagedAgentsMemoryView? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsMemoryVersion> {
+        return SdkClient.request<BetaManagedAgentsMemoryVersion>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/memory_stores/${SdkClient.encodePathSegment(memoryStoreId)}/memory_versions/${SdkClient.encodePathSegment(memoryVersionId)}?beta=true",
+                config = clientConfig,
+                query = mapOf("view" to SdkClient.queryValue(view, "form", true)),
+                operationId = "retrieveBetaMemoryStoresMemoryVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaManagedAgentsErrorResponse::class.java,
+                        "401" to BetaManagedAgentsErrorResponse::class.java,
+                        "403" to BetaManagedAgentsErrorResponse::class.java,
+                        "404" to BetaManagedAgentsErrorResponse::class.java,
+                        "408" to BetaManagedAgentsErrorResponse::class.java,
+                        "409" to BetaManagedAgentsErrorResponse::class.java,
+                        "412" to BetaManagedAgentsErrorResponse::class.java,
+                        "413" to BetaManagedAgentsErrorResponse::class.java,
+                        "429" to BetaManagedAgentsErrorResponse::class.java,
+                        "431" to BetaManagedAgentsErrorResponse::class.java,
+                        "499" to BetaManagedAgentsErrorResponse::class.java,
+                        "500" to BetaManagedAgentsErrorResponse::class.java,
+                        "501" to BetaManagedAgentsErrorResponse::class.java,
+                        "503" to BetaManagedAgentsErrorResponse::class.java,
+                        "504" to BetaManagedAgentsErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Redacts a memory version in a memory store, removing its content and path-related data from
+     * the version record. Use this operation when you need to redact a specific historical version;
+     * the response returns the updated version record with redaction details.
      *
      * @param memoryStoreId Path parameter memory_store_id
      * @param memoryVersionId Path parameter memory_version_id
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun redactBetaMemoryStoresMemoryVersions(clientConfig: ClientConfig, memoryStoreId: String, memoryVersionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsMemoryVersion {
-        return redactBetaMemoryStoresMemoryVersionsWithRawResponse(clientConfig, memoryStoreId, memoryVersionId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun redactBetaMemoryStoresMemoryVersions(
+        clientConfig: ClientConfig,
+        memoryStoreId: String,
+        memoryVersionId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsMemoryVersion {
+        return redactBetaMemoryStoresMemoryVersionsWithRawResponse(
+                clientConfig,
+                memoryStoreId,
+                memoryVersionId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
 
-
-    /** [redactBetaMemoryStoresMemoryVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun redactBetaMemoryStoresMemoryVersionsWithRawResponse(clientConfig: ClientConfig, memoryStoreId: String, memoryVersionId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsMemoryVersion> {
-        return SdkClient.request<BetaManagedAgentsMemoryVersion>(SdkClient.RequestSpec("POST", "/v1/memory_stores/${SdkClient.encodePathSegment(memoryStoreId)}/memory_versions/${SdkClient.encodePathSegment(memoryVersionId)}/redact?beta=true", config = clientConfig, operationId = "redactBetaMemoryStoresMemoryVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaManagedAgentsErrorResponse::class.java, "401" to BetaManagedAgentsErrorResponse::class.java, "403" to BetaManagedAgentsErrorResponse::class.java, "404" to BetaManagedAgentsErrorResponse::class.java, "408" to BetaManagedAgentsErrorResponse::class.java, "409" to BetaManagedAgentsErrorResponse::class.java, "412" to BetaManagedAgentsErrorResponse::class.java, "413" to BetaManagedAgentsErrorResponse::class.java, "429" to BetaManagedAgentsErrorResponse::class.java, "431" to BetaManagedAgentsErrorResponse::class.java, "499" to BetaManagedAgentsErrorResponse::class.java, "500" to BetaManagedAgentsErrorResponse::class.java, "501" to BetaManagedAgentsErrorResponse::class.java, "503" to BetaManagedAgentsErrorResponse::class.java, "504" to BetaManagedAgentsErrorResponse::class.java)))
+    /**
+     * [redactBetaMemoryStoresMemoryVersions], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun redactBetaMemoryStoresMemoryVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        memoryStoreId: String,
+        memoryVersionId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaManagedAgentsMemoryVersion> {
+        return SdkClient.request<BetaManagedAgentsMemoryVersion>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/memory_stores/${SdkClient.encodePathSegment(memoryStoreId)}/memory_versions/${SdkClient.encodePathSegment(memoryVersionId)}/redact?beta=true",
+                config = clientConfig,
+                operationId = "redactBetaMemoryStoresMemoryVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaManagedAgentsErrorResponse::class.java,
+                        "401" to BetaManagedAgentsErrorResponse::class.java,
+                        "403" to BetaManagedAgentsErrorResponse::class.java,
+                        "404" to BetaManagedAgentsErrorResponse::class.java,
+                        "408" to BetaManagedAgentsErrorResponse::class.java,
+                        "409" to BetaManagedAgentsErrorResponse::class.java,
+                        "412" to BetaManagedAgentsErrorResponse::class.java,
+                        "413" to BetaManagedAgentsErrorResponse::class.java,
+                        "429" to BetaManagedAgentsErrorResponse::class.java,
+                        "431" to BetaManagedAgentsErrorResponse::class.java,
+                        "499" to BetaManagedAgentsErrorResponse::class.java,
+                        "500" to BetaManagedAgentsErrorResponse::class.java,
+                        "501" to BetaManagedAgentsErrorResponse::class.java,
+                        "503" to BetaManagedAgentsErrorResponse::class.java,
+                        "504" to BetaManagedAgentsErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }

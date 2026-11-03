@@ -3,436 +3,641 @@
 
 package dev.octri.showcase.anthropic
 
-typealias BetaRequestBashCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestBashCodeExecutionToolResultErrorTypeEnum
+typealias BetaRequestBashCodeExecutionToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestBashCodeExecutionToolResultErrorTypeEnum
 
-typealias BetaRequestBrowserStateBlock = dev.octri.showcase.anthropic.models.BetaRequestBrowserStateBlock
+typealias BetaRequestBrowserStateBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestBrowserStateBlock
 
-typealias BetaRequestBrowserStateBlockStateChangesItem = dev.octri.showcase.anthropic.models.BetaRequestBrowserStateBlockStateChangesItem
+typealias BetaRequestBrowserStateBlockStateChangesItem =
+    dev.octri.showcase.anthropic.models.BetaRequestBrowserStateBlockStateChangesItem
 
-typealias BetaRequestBrowserStateBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestBrowserStateBlockTypeEnum
+typealias BetaRequestBrowserStateBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestBrowserStateBlockTypeEnum
 
-typealias BetaRequestCharLocationCitation = dev.octri.showcase.anthropic.models.BetaRequestCharLocationCitation
+typealias BetaRequestCharLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaRequestCharLocationCitation
 
-typealias BetaRequestCharLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestCharLocationCitationTypeEnum
+typealias BetaRequestCharLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestCharLocationCitationTypeEnum
 
-typealias BetaRequestCitationsConfig = dev.octri.showcase.anthropic.models.BetaRequestCitationsConfig
+typealias BetaRequestCitationsConfig =
+    dev.octri.showcase.anthropic.models.BetaRequestCitationsConfig
 
-typealias BetaRequestCodeExecutionOutputBlock = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionOutputBlock
+typealias BetaRequestCodeExecutionOutputBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionOutputBlock
 
-typealias BetaRequestCodeExecutionOutputBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionOutputBlockTypeEnum
+typealias BetaRequestCodeExecutionOutputBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionOutputBlockTypeEnum
 
-typealias BetaRequestCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionResultBlock
+typealias BetaRequestCodeExecutionResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionResultBlock
 
-typealias BetaRequestCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionResultBlockTypeEnum
+typealias BetaRequestCodeExecutionResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionResultBlockTypeEnum
 
-typealias BetaRequestCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultBlock
+typealias BetaRequestCodeExecutionToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultBlock
 
-typealias BetaRequestCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultBlockContent
+typealias BetaRequestCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultBlockContent
 
-typealias BetaRequestCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultBlockTypeEnum
+typealias BetaRequestCodeExecutionToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultBlockTypeEnum
 
-typealias BetaRequestCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultError
+typealias BetaRequestCodeExecutionToolResultError =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultError
 
-typealias BetaRequestCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultErrorTypeEnum
+typealias BetaRequestCodeExecutionToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestCodeExecutionToolResultErrorTypeEnum
 
-typealias BetaRequestCompactionBlock = dev.octri.showcase.anthropic.models.BetaRequestCompactionBlock
+typealias BetaRequestCompactionBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestCompactionBlock
 
-typealias BetaRequestCompactionBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestCompactionBlockTypeEnum
+typealias BetaRequestCompactionBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestCompactionBlockTypeEnum
 
-typealias BetaRequestContainerUploadBlock = dev.octri.showcase.anthropic.models.BetaRequestContainerUploadBlock
+typealias BetaRequestContainerUploadBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestContainerUploadBlock
 
-typealias BetaRequestContainerUploadBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestContainerUploadBlockTypeEnum
+typealias BetaRequestContainerUploadBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestContainerUploadBlockTypeEnum
 
-typealias BetaRequestContentBlockLocationCitation = dev.octri.showcase.anthropic.models.BetaRequestContentBlockLocationCitation
+typealias BetaRequestContentBlockLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaRequestContentBlockLocationCitation
 
-typealias BetaRequestContentBlockLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestContentBlockLocationCitationTypeEnum
+typealias BetaRequestContentBlockLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestContentBlockLocationCitationTypeEnum
 
 typealias BetaRequestCounts = dev.octri.showcase.anthropic.models.BetaRequestCounts
 
 typealias BetaRequestDocumentBlock = dev.octri.showcase.anthropic.models.BetaRequestDocumentBlock
 
-typealias BetaRequestDocumentBlockSource = dev.octri.showcase.anthropic.models.BetaRequestDocumentBlockSource
+typealias BetaRequestDocumentBlockSource =
+    dev.octri.showcase.anthropic.models.BetaRequestDocumentBlockSource
 
-typealias BetaRequestDocumentBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestDocumentBlockTypeEnum
+typealias BetaRequestDocumentBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestDocumentBlockTypeEnum
 
-typealias BetaRequestEncryptedCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.BetaRequestEncryptedCodeExecutionResultBlock
+typealias BetaRequestEncryptedCodeExecutionResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestEncryptedCodeExecutionResultBlock
 
-typealias BetaRequestEncryptedCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestEncryptedCodeExecutionResultBlockTypeEnum
+typealias BetaRequestEncryptedCodeExecutionResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestEncryptedCodeExecutionResultBlockTypeEnum
 
 typealias BetaRequestFallbackBlock = dev.octri.showcase.anthropic.models.BetaRequestFallbackBlock
 
-typealias BetaRequestFallbackBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestFallbackBlockTypeEnum
+typealias BetaRequestFallbackBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestFallbackBlockTypeEnum
 
-typealias BetaRequestFallbackHopInfo = dev.octri.showcase.anthropic.models.BetaRequestFallbackHopInfo
+typealias BetaRequestFallbackHopInfo =
+    dev.octri.showcase.anthropic.models.BetaRequestFallbackHopInfo
 
 typealias BetaRequestImageBlock = dev.octri.showcase.anthropic.models.BetaRequestImageBlock
 
-typealias BetaRequestImageBlockSource = dev.octri.showcase.anthropic.models.BetaRequestImageBlockSource
+typealias BetaRequestImageBlockSource =
+    dev.octri.showcase.anthropic.models.BetaRequestImageBlockSource
 
-typealias BetaRequestImageBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestImageBlockTypeEnum
+typealias BetaRequestImageBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestImageBlockTypeEnum
 
-typealias BetaRequestImageTransformations = dev.octri.showcase.anthropic.models.BetaRequestImageTransformations
+typealias BetaRequestImageTransformations =
+    dev.octri.showcase.anthropic.models.BetaRequestImageTransformations
 
-typealias BetaRequestImageTransformationsOversizedImageEnum = dev.octri.showcase.anthropic.models.BetaRequestImageTransformationsOversizedImageEnum
+typealias BetaRequestImageTransformationsOversizedImageEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestImageTransformationsOversizedImageEnum
 
-typealias BetaRequestMCPServerToolConfiguration = dev.octri.showcase.anthropic.models.BetaRequestMCPServerToolConfiguration
+typealias BetaRequestMCPServerToolConfiguration =
+    dev.octri.showcase.anthropic.models.BetaRequestMCPServerToolConfiguration
 
-typealias BetaRequestMCPServerURLDefinition = dev.octri.showcase.anthropic.models.BetaRequestMCPServerURLDefinition
+typealias BetaRequestMCPServerURLDefinition =
+    dev.octri.showcase.anthropic.models.BetaRequestMCPServerURLDefinition
 
-typealias BetaRequestMCPServerURLDefinitionTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestMCPServerURLDefinitionTypeEnum
+typealias BetaRequestMCPServerURLDefinitionTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestMCPServerURLDefinitionTypeEnum
 
-typealias BetaRequestMCPToolResultBlock = dev.octri.showcase.anthropic.models.BetaRequestMCPToolResultBlock
+typealias BetaRequestMCPToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestMCPToolResultBlock
 
-typealias BetaRequestMCPToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestMCPToolResultBlockTypeEnum
+typealias BetaRequestMCPToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestMCPToolResultBlockTypeEnum
 
-typealias BetaRequestMCPToolUseBlock = dev.octri.showcase.anthropic.models.BetaRequestMCPToolUseBlock
+typealias BetaRequestMCPToolUseBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestMCPToolUseBlock
 
-typealias BetaRequestMCPToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestMCPToolUseBlockTypeEnum
+typealias BetaRequestMCPToolUseBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestMCPToolUseBlockTypeEnum
 
-typealias BetaRequestPageLocationCitation = dev.octri.showcase.anthropic.models.BetaRequestPageLocationCitation
+typealias BetaRequestPageLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaRequestPageLocationCitation
 
-typealias BetaRequestPageLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestPageLocationCitationTypeEnum
+typealias BetaRequestPageLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestPageLocationCitationTypeEnum
 
-typealias BetaRequestRedactedThinkingBlock = dev.octri.showcase.anthropic.models.BetaRequestRedactedThinkingBlock
+typealias BetaRequestRedactedThinkingBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestRedactedThinkingBlock
 
-typealias BetaRequestRedactedThinkingBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestRedactedThinkingBlockTypeEnum
+typealias BetaRequestRedactedThinkingBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestRedactedThinkingBlockTypeEnum
 
-typealias BetaRequestSearchResultBlock = dev.octri.showcase.anthropic.models.BetaRequestSearchResultBlock
+typealias BetaRequestSearchResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestSearchResultBlock
 
-typealias BetaRequestSearchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestSearchResultBlockTypeEnum
+typealias BetaRequestSearchResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestSearchResultBlockTypeEnum
 
-typealias BetaRequestSearchResultLocationCitation = dev.octri.showcase.anthropic.models.BetaRequestSearchResultLocationCitation
+typealias BetaRequestSearchResultLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaRequestSearchResultLocationCitation
 
-typealias BetaRequestSearchResultLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestSearchResultLocationCitationTypeEnum
+typealias BetaRequestSearchResultLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestSearchResultLocationCitationTypeEnum
 
-typealias BetaRequestServerToolUseBlock = dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlock
+typealias BetaRequestServerToolUseBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlock
 
-typealias BetaRequestServerToolUseBlockCaller = dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlockCaller
+typealias BetaRequestServerToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlockCaller
 
-typealias BetaRequestServerToolUseBlockNameEnum = dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlockNameEnum
+typealias BetaRequestServerToolUseBlockNameEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlockNameEnum
 
-typealias BetaRequestServerToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlockTypeEnum
+typealias BetaRequestServerToolUseBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestServerToolUseBlockTypeEnum
 
 typealias BetaRequestTextBlock = dev.octri.showcase.anthropic.models.BetaRequestTextBlock
 
-typealias BetaRequestTextBlockCitationsItem = dev.octri.showcase.anthropic.models.BetaRequestTextBlockCitationsItem
+typealias BetaRequestTextBlockCitationsItem =
+    dev.octri.showcase.anthropic.models.BetaRequestTextBlockCitationsItem
 
-typealias BetaRequestTextBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestTextBlockTypeEnum
+typealias BetaRequestTextBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestTextBlockTypeEnum
 
-typealias BetaRequestTextEditorCodeExecutionCreateResultBlock = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionCreateResultBlock
+typealias BetaRequestTextEditorCodeExecutionCreateResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionCreateResultBlock
 
-typealias BetaRequestTextEditorCodeExecutionCreateResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionCreateResultBlockTypeEnum
+typealias BetaRequestTextEditorCodeExecutionCreateResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionCreateResultBlockTypeEnum
 
-typealias BetaRequestTextEditorCodeExecutionStrReplaceResultBlock = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionStrReplaceResultBlock
+typealias BetaRequestTextEditorCodeExecutionStrReplaceResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionStrReplaceResultBlock
 
-typealias BetaRequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum
+typealias BetaRequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionStrReplaceResultBlockTypeEnum
 
-typealias BetaRequestTextEditorCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultBlock
+typealias BetaRequestTextEditorCodeExecutionToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultBlock
 
-typealias BetaRequestTextEditorCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultBlockContent
+typealias BetaRequestTextEditorCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultBlockContent
 
-typealias BetaRequestTextEditorCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultBlockTypeEnum
+typealias BetaRequestTextEditorCodeExecutionToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultBlockTypeEnum
 
-typealias BetaRequestTextEditorCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultError
+typealias BetaRequestTextEditorCodeExecutionToolResultError =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultError
 
-typealias BetaRequestTextEditorCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultErrorTypeEnum
+typealias BetaRequestTextEditorCodeExecutionToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionToolResultErrorTypeEnum
 
-typealias BetaRequestTextEditorCodeExecutionViewResultBlock = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionViewResultBlock
+typealias BetaRequestTextEditorCodeExecutionViewResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionViewResultBlock
 
-typealias BetaRequestTextEditorCodeExecutionViewResultBlockFileTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionViewResultBlockFileTypeEnum
+typealias BetaRequestTextEditorCodeExecutionViewResultBlockFileTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionViewResultBlockFileTypeEnum
 
-typealias BetaRequestTextEditorCodeExecutionViewResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionViewResultBlockTypeEnum
+typealias BetaRequestTextEditorCodeExecutionViewResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestTextEditorCodeExecutionViewResultBlockTypeEnum
 
 typealias BetaRequestThinkingBlock = dev.octri.showcase.anthropic.models.BetaRequestThinkingBlock
 
-typealias BetaRequestThinkingBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestThinkingBlockTypeEnum
+typealias BetaRequestThinkingBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestThinkingBlockTypeEnum
 
-typealias BetaRequestToolAdditionBlock = dev.octri.showcase.anthropic.models.BetaRequestToolAdditionBlock
+typealias BetaRequestToolAdditionBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestToolAdditionBlock
 
-typealias BetaRequestToolAdditionBlockTool = dev.octri.showcase.anthropic.models.BetaRequestToolAdditionBlockTool
+typealias BetaRequestToolAdditionBlockTool =
+    dev.octri.showcase.anthropic.models.BetaRequestToolAdditionBlockTool
 
-typealias BetaRequestToolAdditionBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolAdditionBlockTypeEnum
+typealias BetaRequestToolAdditionBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolAdditionBlockTypeEnum
 
-typealias BetaRequestToolReferenceBlock = dev.octri.showcase.anthropic.models.BetaRequestToolReferenceBlock
+typealias BetaRequestToolReferenceBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestToolReferenceBlock
 
-typealias BetaRequestToolReferenceBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolReferenceBlockTypeEnum
+typealias BetaRequestToolReferenceBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolReferenceBlockTypeEnum
 
-typealias BetaRequestToolRemovalBlock = dev.octri.showcase.anthropic.models.BetaRequestToolRemovalBlock
+typealias BetaRequestToolRemovalBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestToolRemovalBlock
 
-typealias BetaRequestToolRemovalBlockTool = dev.octri.showcase.anthropic.models.BetaRequestToolRemovalBlockTool
+typealias BetaRequestToolRemovalBlockTool =
+    dev.octri.showcase.anthropic.models.BetaRequestToolRemovalBlockTool
 
-typealias BetaRequestToolRemovalBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolRemovalBlockTypeEnum
+typealias BetaRequestToolRemovalBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolRemovalBlockTypeEnum
 
-typealias BetaRequestToolResultBlock = dev.octri.showcase.anthropic.models.BetaRequestToolResultBlock
+typealias BetaRequestToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestToolResultBlock
 
-typealias BetaRequestToolResultBlockContentItem = dev.octri.showcase.anthropic.models.BetaRequestToolResultBlockContentItem
+typealias BetaRequestToolResultBlockContentItem =
+    dev.octri.showcase.anthropic.models.BetaRequestToolResultBlockContentItem
 
-typealias BetaRequestToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolResultBlockTypeEnum
+typealias BetaRequestToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolResultBlockTypeEnum
 
-typealias BetaRequestToolSearchToolResultBlock = dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultBlock
+typealias BetaRequestToolSearchToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultBlock
 
-typealias BetaRequestToolSearchToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultBlockContent
+typealias BetaRequestToolSearchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultBlockContent
 
-typealias BetaRequestToolSearchToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultBlockTypeEnum
+typealias BetaRequestToolSearchToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultBlockTypeEnum
 
-typealias BetaRequestToolSearchToolResultError = dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultError
+typealias BetaRequestToolSearchToolResultError =
+    dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultError
 
-typealias BetaRequestToolSearchToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultErrorTypeEnum
+typealias BetaRequestToolSearchToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolResultErrorTypeEnum
 
-typealias BetaRequestToolSearchToolSearchResultBlock = dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolSearchResultBlock
+typealias BetaRequestToolSearchToolSearchResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolSearchResultBlock
 
-typealias BetaRequestToolSearchToolSearchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolSearchResultBlockTypeEnum
+typealias BetaRequestToolSearchToolSearchResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolSearchToolSearchResultBlockTypeEnum
 
 typealias BetaRequestToolUseBlock = dev.octri.showcase.anthropic.models.BetaRequestToolUseBlock
 
-typealias BetaRequestToolUseBlockCaller = dev.octri.showcase.anthropic.models.BetaRequestToolUseBlockCaller
+typealias BetaRequestToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaRequestToolUseBlockCaller
 
-typealias BetaRequestToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestToolUseBlockTypeEnum
+typealias BetaRequestToolUseBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestToolUseBlockTypeEnum
 
-typealias BetaRequestWebFetchResultBlock = dev.octri.showcase.anthropic.models.BetaRequestWebFetchResultBlock
+typealias BetaRequestWebFetchResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchResultBlock
 
-typealias BetaRequestWebFetchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestWebFetchResultBlockTypeEnum
+typealias BetaRequestWebFetchResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchResultBlockTypeEnum
 
-typealias BetaRequestWebFetchToolResultBlock = dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlock
+typealias BetaRequestWebFetchToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlock
 
-typealias BetaRequestWebFetchToolResultBlockCaller = dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlockCaller
+typealias BetaRequestWebFetchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlockCaller
 
-typealias BetaRequestWebFetchToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlockContent
+typealias BetaRequestWebFetchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlockContent
 
-typealias BetaRequestWebFetchToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlockTypeEnum
+typealias BetaRequestWebFetchToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultBlockTypeEnum
 
-typealias BetaRequestWebFetchToolResultError = dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultError
+typealias BetaRequestWebFetchToolResultError =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultError
 
-typealias BetaRequestWebFetchToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultErrorTypeEnum
+typealias BetaRequestWebFetchToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestWebFetchToolResultErrorTypeEnum
 
-typealias BetaRequestWebSearchResultBlock = dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultBlock
+typealias BetaRequestWebSearchResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultBlock
 
-typealias BetaRequestWebSearchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultBlockTypeEnum
+typealias BetaRequestWebSearchResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultBlockTypeEnum
 
-typealias BetaRequestWebSearchResultLocationCitation = dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultLocationCitation
+typealias BetaRequestWebSearchResultLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultLocationCitation
 
-typealias BetaRequestWebSearchResultLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultLocationCitationTypeEnum
+typealias BetaRequestWebSearchResultLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchResultLocationCitationTypeEnum
 
-typealias BetaRequestWebSearchToolResultBlock = dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultBlock
+typealias BetaRequestWebSearchToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultBlock
 
-typealias BetaRequestWebSearchToolResultBlockCaller = dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultBlockCaller
+typealias BetaRequestWebSearchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultBlockCaller
 
-typealias BetaRequestWebSearchToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultBlockTypeEnum
+typealias BetaRequestWebSearchToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultBlockTypeEnum
 
-typealias BetaRequestWebSearchToolResultError = dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultError
+typealias BetaRequestWebSearchToolResultError =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultError
 
-typealias BetaRequestWebSearchToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultErrorTypeEnum
+typealias BetaRequestWebSearchToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaRequestWebSearchToolResultErrorTypeEnum
 
-typealias BetaResponseAdvisorRedactedResultBlock = dev.octri.showcase.anthropic.models.BetaResponseAdvisorRedactedResultBlock
+typealias BetaResponseAdvisorRedactedResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorRedactedResultBlock
 
-typealias BetaResponseAdvisorRedactedResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseAdvisorRedactedResultBlockTypeEnum
+typealias BetaResponseAdvisorRedactedResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorRedactedResultBlockTypeEnum
 
-typealias BetaResponseAdvisorResultBlock = dev.octri.showcase.anthropic.models.BetaResponseAdvisorResultBlock
+typealias BetaResponseAdvisorResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorResultBlock
 
-typealias BetaResponseAdvisorResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseAdvisorResultBlockTypeEnum
+typealias BetaResponseAdvisorResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorResultBlockTypeEnum
 
-typealias BetaResponseAdvisorToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultBlock
+typealias BetaResponseAdvisorToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultBlock
 
-typealias BetaResponseAdvisorToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultBlockContent
+typealias BetaResponseAdvisorToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultBlockContent
 
-typealias BetaResponseAdvisorToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultBlockTypeEnum
+typealias BetaResponseAdvisorToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultBlockTypeEnum
 
-typealias BetaResponseAdvisorToolResultError = dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultError
+typealias BetaResponseAdvisorToolResultError =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultError
 
-typealias BetaResponseAdvisorToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultErrorTypeEnum
+typealias BetaResponseAdvisorToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseAdvisorToolResultErrorTypeEnum
 
-typealias BetaResponseBashCodeExecutionOutputBlock = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionOutputBlock
+typealias BetaResponseBashCodeExecutionOutputBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionOutputBlock
 
-typealias BetaResponseBashCodeExecutionOutputBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionOutputBlockTypeEnum
+typealias BetaResponseBashCodeExecutionOutputBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionOutputBlockTypeEnum
 
-typealias BetaResponseBashCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionResultBlock
+typealias BetaResponseBashCodeExecutionResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionResultBlock
 
-typealias BetaResponseBashCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionResultBlockTypeEnum
+typealias BetaResponseBashCodeExecutionResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionResultBlockTypeEnum
 
-typealias BetaResponseBashCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultBlock
+typealias BetaResponseBashCodeExecutionToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultBlock
 
-typealias BetaResponseBashCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultBlockContent
+typealias BetaResponseBashCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultBlockContent
 
-typealias BetaResponseBashCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultBlockTypeEnum
+typealias BetaResponseBashCodeExecutionToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultBlockTypeEnum
 
-typealias BetaResponseBashCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultError
+typealias BetaResponseBashCodeExecutionToolResultError =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultError
 
-typealias BetaResponseBashCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultErrorTypeEnum
+typealias BetaResponseBashCodeExecutionToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseBashCodeExecutionToolResultErrorTypeEnum
 
-typealias BetaResponseCharLocationCitation = dev.octri.showcase.anthropic.models.BetaResponseCharLocationCitation
+typealias BetaResponseCharLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaResponseCharLocationCitation
 
-typealias BetaResponseCharLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseCharLocationCitationTypeEnum
+typealias BetaResponseCharLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseCharLocationCitationTypeEnum
 
-typealias BetaResponseCitationsConfig = dev.octri.showcase.anthropic.models.BetaResponseCitationsConfig
+typealias BetaResponseCitationsConfig =
+    dev.octri.showcase.anthropic.models.BetaResponseCitationsConfig
 
-typealias BetaResponseClearThinking20251015Edit = dev.octri.showcase.anthropic.models.BetaResponseClearThinking20251015Edit
+typealias BetaResponseClearThinking20251015Edit =
+    dev.octri.showcase.anthropic.models.BetaResponseClearThinking20251015Edit
 
-typealias BetaResponseClearThinking20251015EditTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseClearThinking20251015EditTypeEnum
+typealias BetaResponseClearThinking20251015EditTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseClearThinking20251015EditTypeEnum
 
-typealias BetaResponseClearToolUses20250919Edit = dev.octri.showcase.anthropic.models.BetaResponseClearToolUses20250919Edit
+typealias BetaResponseClearToolUses20250919Edit =
+    dev.octri.showcase.anthropic.models.BetaResponseClearToolUses20250919Edit
 
-typealias BetaResponseClearToolUses20250919EditTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseClearToolUses20250919EditTypeEnum
+typealias BetaResponseClearToolUses20250919EditTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseClearToolUses20250919EditTypeEnum
 
-typealias BetaResponseCodeExecutionOutputBlock = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionOutputBlock
+typealias BetaResponseCodeExecutionOutputBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionOutputBlock
 
-typealias BetaResponseCodeExecutionOutputBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionOutputBlockTypeEnum
+typealias BetaResponseCodeExecutionOutputBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionOutputBlockTypeEnum
 
-typealias BetaResponseCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionResultBlock
+typealias BetaResponseCodeExecutionResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionResultBlock
 
-typealias BetaResponseCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionResultBlockTypeEnum
+typealias BetaResponseCodeExecutionResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionResultBlockTypeEnum
 
-typealias BetaResponseCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultBlock
+typealias BetaResponseCodeExecutionToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultBlock
 
-typealias BetaResponseCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultBlockContent
+typealias BetaResponseCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultBlockContent
 
-typealias BetaResponseCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultBlockTypeEnum
+typealias BetaResponseCodeExecutionToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultBlockTypeEnum
 
-typealias BetaResponseCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultError
+typealias BetaResponseCodeExecutionToolResultError =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultError
 
-typealias BetaResponseCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultErrorTypeEnum
+typealias BetaResponseCodeExecutionToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseCodeExecutionToolResultErrorTypeEnum
 
-typealias BetaResponseCompactionBlock = dev.octri.showcase.anthropic.models.BetaResponseCompactionBlock
+typealias BetaResponseCompactionBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseCompactionBlock
 
-typealias BetaResponseCompactionBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseCompactionBlockTypeEnum
+typealias BetaResponseCompactionBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseCompactionBlockTypeEnum
 
-typealias BetaResponseContainerUploadBlock = dev.octri.showcase.anthropic.models.BetaResponseContainerUploadBlock
+typealias BetaResponseContainerUploadBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseContainerUploadBlock
 
-typealias BetaResponseContainerUploadBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseContainerUploadBlockTypeEnum
+typealias BetaResponseContainerUploadBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseContainerUploadBlockTypeEnum
 
-typealias BetaResponseContentBlockLocationCitation = dev.octri.showcase.anthropic.models.BetaResponseContentBlockLocationCitation
+typealias BetaResponseContentBlockLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaResponseContentBlockLocationCitation
 
-typealias BetaResponseContentBlockLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseContentBlockLocationCitationTypeEnum
+typealias BetaResponseContentBlockLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseContentBlockLocationCitationTypeEnum
 
-typealias BetaResponseContextManagement = dev.octri.showcase.anthropic.models.BetaResponseContextManagement
+typealias BetaResponseContextManagement =
+    dev.octri.showcase.anthropic.models.BetaResponseContextManagement
 
-typealias BetaResponseContextManagementAppliedEditsItem = dev.octri.showcase.anthropic.models.BetaResponseContextManagementAppliedEditsItem
+typealias BetaResponseContextManagementAppliedEditsItem =
+    dev.octri.showcase.anthropic.models.BetaResponseContextManagementAppliedEditsItem
 
 typealias BetaResponseDocumentBlock = dev.octri.showcase.anthropic.models.BetaResponseDocumentBlock
 
-typealias BetaResponseDocumentBlockSource = dev.octri.showcase.anthropic.models.BetaResponseDocumentBlockSource
+typealias BetaResponseDocumentBlockSource =
+    dev.octri.showcase.anthropic.models.BetaResponseDocumentBlockSource
 
-typealias BetaResponseDocumentBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseDocumentBlockTypeEnum
+typealias BetaResponseDocumentBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseDocumentBlockTypeEnum
 
-typealias BetaResponseEncryptedCodeExecutionResultBlock = dev.octri.showcase.anthropic.models.BetaResponseEncryptedCodeExecutionResultBlock
+typealias BetaResponseEncryptedCodeExecutionResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseEncryptedCodeExecutionResultBlock
 
-typealias BetaResponseEncryptedCodeExecutionResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseEncryptedCodeExecutionResultBlockTypeEnum
+typealias BetaResponseEncryptedCodeExecutionResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseEncryptedCodeExecutionResultBlockTypeEnum
 
 typealias BetaResponseFallbackBlock = dev.octri.showcase.anthropic.models.BetaResponseFallbackBlock
 
-typealias BetaResponseFallbackBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseFallbackBlockTypeEnum
+typealias BetaResponseFallbackBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseFallbackBlockTypeEnum
 
-typealias BetaResponseFallbackHopInfo = dev.octri.showcase.anthropic.models.BetaResponseFallbackHopInfo
+typealias BetaResponseFallbackHopInfo =
+    dev.octri.showcase.anthropic.models.BetaResponseFallbackHopInfo
 
-typealias BetaResponseMCPToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseMCPToolResultBlock
+typealias BetaResponseMCPToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseMCPToolResultBlock
 
-typealias BetaResponseMCPToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseMCPToolResultBlockTypeEnum
+typealias BetaResponseMCPToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseMCPToolResultBlockTypeEnum
 
-typealias BetaResponseMCPToolUseBlock = dev.octri.showcase.anthropic.models.BetaResponseMCPToolUseBlock
+typealias BetaResponseMCPToolUseBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseMCPToolUseBlock
 
-typealias BetaResponseMCPToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseMCPToolUseBlockTypeEnum
+typealias BetaResponseMCPToolUseBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseMCPToolUseBlockTypeEnum
 
-typealias BetaResponsePageLocationCitation = dev.octri.showcase.anthropic.models.BetaResponsePageLocationCitation
+typealias BetaResponsePageLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaResponsePageLocationCitation
 
-typealias BetaResponsePageLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaResponsePageLocationCitationTypeEnum
+typealias BetaResponsePageLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponsePageLocationCitationTypeEnum
 
-typealias BetaResponseRedactedThinkingBlock = dev.octri.showcase.anthropic.models.BetaResponseRedactedThinkingBlock
+typealias BetaResponseRedactedThinkingBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseRedactedThinkingBlock
 
-typealias BetaResponseRedactedThinkingBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseRedactedThinkingBlockTypeEnum
+typealias BetaResponseRedactedThinkingBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseRedactedThinkingBlockTypeEnum
 
-typealias BetaResponseSearchResultLocationCitation = dev.octri.showcase.anthropic.models.BetaResponseSearchResultLocationCitation
+typealias BetaResponseSearchResultLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaResponseSearchResultLocationCitation
 
-typealias BetaResponseSearchResultLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseSearchResultLocationCitationTypeEnum
+typealias BetaResponseSearchResultLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseSearchResultLocationCitationTypeEnum
 
-typealias BetaResponseServerToolUseBlock = dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlock
+typealias BetaResponseServerToolUseBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlock
 
-typealias BetaResponseServerToolUseBlockCaller = dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlockCaller
+typealias BetaResponseServerToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlockCaller
 
-typealias BetaResponseServerToolUseBlockNameEnum = dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlockNameEnum
+typealias BetaResponseServerToolUseBlockNameEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlockNameEnum
 
-typealias BetaResponseServerToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlockTypeEnum
+typealias BetaResponseServerToolUseBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseServerToolUseBlockTypeEnum
 
 typealias BetaResponseTextBlock = dev.octri.showcase.anthropic.models.BetaResponseTextBlock
 
-typealias BetaResponseTextBlockCitationsItem = dev.octri.showcase.anthropic.models.BetaResponseTextBlockCitationsItem
+typealias BetaResponseTextBlockCitationsItem =
+    dev.octri.showcase.anthropic.models.BetaResponseTextBlockCitationsItem
 
-typealias BetaResponseTextBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseTextBlockTypeEnum
+typealias BetaResponseTextBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseTextBlockTypeEnum
 
-typealias BetaResponseTextEditorCodeExecutionCreateResultBlock = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionCreateResultBlock
+typealias BetaResponseTextEditorCodeExecutionCreateResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionCreateResultBlock
 
-typealias BetaResponseTextEditorCodeExecutionCreateResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionCreateResultBlockTypeEnum
+typealias BetaResponseTextEditorCodeExecutionCreateResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionCreateResultBlockTypeEnum
 
-typealias BetaResponseTextEditorCodeExecutionStrReplaceResultBlock = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionStrReplaceResultBlock
+typealias BetaResponseTextEditorCodeExecutionStrReplaceResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionStrReplaceResultBlock
 
-typealias BetaResponseTextEditorCodeExecutionStrReplaceResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionStrReplaceResultBlockTypeEnum
+typealias BetaResponseTextEditorCodeExecutionStrReplaceResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionStrReplaceResultBlockTypeEnum
 
-typealias BetaResponseTextEditorCodeExecutionToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultBlock
+typealias BetaResponseTextEditorCodeExecutionToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultBlock
 
-typealias BetaResponseTextEditorCodeExecutionToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultBlockContent
+typealias BetaResponseTextEditorCodeExecutionToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultBlockContent
 
-typealias BetaResponseTextEditorCodeExecutionToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultBlockTypeEnum
+typealias BetaResponseTextEditorCodeExecutionToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultBlockTypeEnum
 
-typealias BetaResponseTextEditorCodeExecutionToolResultError = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultError
+typealias BetaResponseTextEditorCodeExecutionToolResultError =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultError
 
-typealias BetaResponseTextEditorCodeExecutionToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultErrorTypeEnum
+typealias BetaResponseTextEditorCodeExecutionToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionToolResultErrorTypeEnum
 
-typealias BetaResponseTextEditorCodeExecutionViewResultBlock = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionViewResultBlock
+typealias BetaResponseTextEditorCodeExecutionViewResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionViewResultBlock
 
-typealias BetaResponseTextEditorCodeExecutionViewResultBlockFileTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionViewResultBlockFileTypeEnum
+typealias BetaResponseTextEditorCodeExecutionViewResultBlockFileTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionViewResultBlockFileTypeEnum
 
-typealias BetaResponseTextEditorCodeExecutionViewResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionViewResultBlockTypeEnum
+typealias BetaResponseTextEditorCodeExecutionViewResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseTextEditorCodeExecutionViewResultBlockTypeEnum
 
 typealias BetaResponseThinkingBlock = dev.octri.showcase.anthropic.models.BetaResponseThinkingBlock
 
-typealias BetaResponseThinkingBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseThinkingBlockTypeEnum
+typealias BetaResponseThinkingBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseThinkingBlockTypeEnum
 
-typealias BetaResponseToolReferenceBlock = dev.octri.showcase.anthropic.models.BetaResponseToolReferenceBlock
+typealias BetaResponseToolReferenceBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseToolReferenceBlock
 
-typealias BetaResponseToolReferenceBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseToolReferenceBlockTypeEnum
+typealias BetaResponseToolReferenceBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseToolReferenceBlockTypeEnum
 
-typealias BetaResponseToolSearchToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultBlock
+typealias BetaResponseToolSearchToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultBlock
 
-typealias BetaResponseToolSearchToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultBlockContent
+typealias BetaResponseToolSearchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultBlockContent
 
-typealias BetaResponseToolSearchToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultBlockTypeEnum
+typealias BetaResponseToolSearchToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultBlockTypeEnum
 
-typealias BetaResponseToolSearchToolResultError = dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultError
+typealias BetaResponseToolSearchToolResultError =
+    dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultError
 
-typealias BetaResponseToolSearchToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultErrorTypeEnum
+typealias BetaResponseToolSearchToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolResultErrorTypeEnum
 
-typealias BetaResponseToolSearchToolSearchResultBlock = dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolSearchResultBlock
+typealias BetaResponseToolSearchToolSearchResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolSearchResultBlock
 
-typealias BetaResponseToolSearchToolSearchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolSearchResultBlockTypeEnum
+typealias BetaResponseToolSearchToolSearchResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseToolSearchToolSearchResultBlockTypeEnum
 
 typealias BetaResponseToolUseBlock = dev.octri.showcase.anthropic.models.BetaResponseToolUseBlock
 
-typealias BetaResponseToolUseBlockCaller = dev.octri.showcase.anthropic.models.BetaResponseToolUseBlockCaller
+typealias BetaResponseToolUseBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaResponseToolUseBlockCaller
 
-typealias BetaResponseToolUseBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseToolUseBlockTypeEnum
+typealias BetaResponseToolUseBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseToolUseBlockTypeEnum
 
-typealias BetaResponseWebFetchResultBlock = dev.octri.showcase.anthropic.models.BetaResponseWebFetchResultBlock
+typealias BetaResponseWebFetchResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchResultBlock
 
-typealias BetaResponseWebFetchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseWebFetchResultBlockTypeEnum
+typealias BetaResponseWebFetchResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchResultBlockTypeEnum
 
-typealias BetaResponseWebFetchToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlock
+typealias BetaResponseWebFetchToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlock
 
-typealias BetaResponseWebFetchToolResultBlockCaller = dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlockCaller
+typealias BetaResponseWebFetchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlockCaller
 
-typealias BetaResponseWebFetchToolResultBlockContent = dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlockContent
+typealias BetaResponseWebFetchToolResultBlockContent =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlockContent
 
-typealias BetaResponseWebFetchToolResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlockTypeEnum
+typealias BetaResponseWebFetchToolResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultBlockTypeEnum
 
-typealias BetaResponseWebFetchToolResultError = dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultError
+typealias BetaResponseWebFetchToolResultError =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultError
 
-typealias BetaResponseWebFetchToolResultErrorTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultErrorTypeEnum
+typealias BetaResponseWebFetchToolResultErrorTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseWebFetchToolResultErrorTypeEnum
 
-typealias BetaResponseWebSearchResultBlock = dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultBlock
+typealias BetaResponseWebSearchResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultBlock
 
-typealias BetaResponseWebSearchResultBlockTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultBlockTypeEnum
+typealias BetaResponseWebSearchResultBlockTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultBlockTypeEnum
 
-typealias BetaResponseWebSearchResultLocationCitation = dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultLocationCitation
+typealias BetaResponseWebSearchResultLocationCitation =
+    dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultLocationCitation
 
-typealias BetaResponseWebSearchResultLocationCitationTypeEnum = dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultLocationCitationTypeEnum
+typealias BetaResponseWebSearchResultLocationCitationTypeEnum =
+    dev.octri.showcase.anthropic.models.BetaResponseWebSearchResultLocationCitationTypeEnum
 
-typealias BetaResponseWebSearchToolResultBlock = dev.octri.showcase.anthropic.models.BetaResponseWebSearchToolResultBlock
+typealias BetaResponseWebSearchToolResultBlock =
+    dev.octri.showcase.anthropic.models.BetaResponseWebSearchToolResultBlock
 
-typealias BetaResponseWebSearchToolResultBlockCaller = dev.octri.showcase.anthropic.models.BetaResponseWebSearchToolResultBlockCaller
+typealias BetaResponseWebSearchToolResultBlockCaller =
+    dev.octri.showcase.anthropic.models.BetaResponseWebSearchToolResultBlockCaller

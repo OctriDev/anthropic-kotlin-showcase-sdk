@@ -3,79 +3,220 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaSkillsNamespace(private val clientConfig: ClientConfig) {
     val versions: BetaSkillsVersionsNamespace
+
     init {
         versions = BetaSkillsVersionsNamespace(clientConfig)
     }
+
     /**
-     * Creates a skill by uploading its files. Include all skill files in the same top-level directory, with `SKILL.md` at that directory's root; you can also provide a display name. The response returns the created skill and its latest version identifier.
+     * Creates a skill by uploading its files. Include all skill files in the same top-level
+     * directory, with `SKILL.md` at that directory's root; you can also provide a display name. The
+     * response returns the created skill and its latest version identifier.
      */
-    fun create(files: List<SdkClient.UploadFile>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaSkill {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.createBetaSkills(clientConfig, files, anthropicBeta, anthropicWorkspaceId, displayName, options)
+    fun create(
+        files: List<SdkClient.UploadFile>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaSkill {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.createBetaSkills(
+            clientConfig,
+            files,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            displayName,
+            options,
+        )
     }
 
     /**
-     * Lists skills available in the selected workspace, with cursor-based pagination and optional filtering by source. Pass `page` from a previous response to continue, and use `source` to return only custom or Anthropic-created skills.
+     * Lists skills available in the selected workspace, with cursor-based pagination and optional
+     * filtering by source. Pass `page` from a previous response to continue, and use `source` to
+     * return only custom or Anthropic-created skills.
      */
-    fun list(page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaListSkillsResponse {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.listBetaSkills(clientConfig, page, limit, source, anthropicBeta, anthropicWorkspaceId, options)
+    fun list(
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: Long? = null,
+        source: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaListSkillsResponse {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.listBetaSkills(
+            clientConfig,
+            page,
+            limit,
+            source,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Lists skills available in the selected workspace, with cursor-based pagination and optional filtering by source. Pass `page` from a previous response to continue, and use `source` to return only custom or Anthropic-created skills.
+     * Lists skills available in the selected workspace, with cursor-based pagination and optional
+     * filtering by source. Pass `page` from a previous response to continue, and use `source` to
+     * return only custom or Anthropic-created skills.
      */
-    fun listPaginated(page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (BetaSkill) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.BetaSkills.listBetaSkillsPaginated(clientConfig, page, limit, source, anthropicBeta, anthropicWorkspaceId, options, yieldFn)
+    fun listPaginated(
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: Long? = null,
+        source: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaSkill) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.BetaSkills.listBetaSkillsPaginated(
+            clientConfig,
+            page,
+            limit,
+            source,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a skill by its unique identifier. Use `skill_id` to select the skill; the response includes its display name, source, latest version identifier, and timestamps.
+     * Retrieves a skill by its unique identifier. Use `skill_id` to select the skill; the response
+     * includes its display name, source, latest version identifier, and timestamps.
      */
-    fun retrieve(skillId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSkill {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.retrieveBetaSkills(clientConfig, skillId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        skillId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSkill {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.retrieveBetaSkills(
+            clientConfig,
+            skillId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Deletes a skill from the workspace. Supply the skill's `skill_id` to identify the skill to remove; the response confirms deletion with the deleted skill's identifier.
+     * Deletes a skill from the workspace. Supply the skill's `skill_id` to identify the skill to
+     * remove; the response confirms deletion with the deleted skill's identifier.
      */
-    fun delete(skillId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaDeletedSkill {
-        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.deleteBetaSkills(clientConfig, skillId, anthropicBeta, anthropicWorkspaceId, options)
+    fun delete(
+        skillId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaDeletedSkill {
+        return dev.octri.showcase.anthropic.methods.beta.BetaSkills.deleteBetaSkills(
+            clientConfig,
+            skillId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaSkillsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaSkillsNamespace], returning the [SdkResponse] envelope around each
+     * result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Creates a skill by uploading its files. Include all skill files in the same top-level directory, with `SKILL.md` at that directory's root; you can also provide a display name. The response returns the created skill and its latest version identifier.
+         * Creates a skill by uploading its files. Include all skill files in the same top-level
+         * directory, with `SKILL.md` at that directory's root; you can also provide a display name.
+         * The response returns the created skill and its latest version identifier.
          */
-        fun create(files: List<SdkClient.UploadFile>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, displayName: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): SdkResponse<BetaSkill> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSkills.createBetaSkillsWithRawResponse(clientConfig, files, anthropicBeta, anthropicWorkspaceId, displayName, options)
+        fun create(
+            files: List<SdkClient.UploadFile>,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            displayName: SdkClient.SdkOptional<String?>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSkill> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSkills
+                .createBetaSkillsWithRawResponse(
+                    clientConfig,
+                    files,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    displayName,
+                    options,
+                )
         }
 
         /**
-         * Lists skills available in the selected workspace, with cursor-based pagination and optional filtering by source. Pass `page` from a previous response to continue, and use `source` to return only custom or Anthropic-created skills.
+         * Lists skills available in the selected workspace, with cursor-based pagination and
+         * optional filtering by source. Pass `page` from a previous response to continue, and use
+         * `source` to return only custom or Anthropic-created skills.
          */
-        fun list(page: SdkClient.SdkOptional<String?>? = null, limit: Long? = null, source: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaListSkillsResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSkills.listBetaSkillsWithRawResponse(clientConfig, page, limit, source, anthropicBeta, anthropicWorkspaceId, options)
+        fun list(
+            page: SdkClient.SdkOptional<String?>? = null,
+            limit: Long? = null,
+            source: SdkClient.SdkOptional<String?>? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaListSkillsResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSkills
+                .listBetaSkillsWithRawResponse(
+                    clientConfig,
+                    page,
+                    limit,
+                    source,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Retrieves a skill by its unique identifier. Use `skill_id` to select the skill; the response includes its display name, source, latest version identifier, and timestamps.
+         * Retrieves a skill by its unique identifier. Use `skill_id` to select the skill; the
+         * response includes its display name, source, latest version identifier, and timestamps.
          */
-        fun retrieve(skillId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSkill> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSkills.retrieveBetaSkillsWithRawResponse(clientConfig, skillId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            skillId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSkill> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSkills
+                .retrieveBetaSkillsWithRawResponse(
+                    clientConfig,
+                    skillId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Deletes a skill from the workspace. Supply the skill's `skill_id` to identify the skill to remove; the response confirms deletion with the deleted skill's identifier.
+         * Deletes a skill from the workspace. Supply the skill's `skill_id` to identify the skill
+         * to remove; the response confirms deletion with the deleted skill's identifier.
          */
-        fun delete(skillId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaDeletedSkill> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaSkills.deleteBetaSkillsWithRawResponse(clientConfig, skillId, anthropicBeta, anthropicWorkspaceId, options)
+        fun delete(
+            skillId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaDeletedSkill> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaSkills
+                .deleteBetaSkillsWithRawResponse(
+                    clientConfig,
+                    skillId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

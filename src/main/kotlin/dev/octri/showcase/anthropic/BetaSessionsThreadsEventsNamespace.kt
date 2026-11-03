@@ -3,33 +3,60 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaSessionsThreadsEventsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists events for a specific execution thread, ordered by `processed_at`. Use `page` to continue from a previous response's cursor and `limit` to control the number of events requested per page.
+     * Lists events for a specific execution thread, ordered by `processed_at`. Use `page` to
+     * continue from a previous response's cursor and `limit` to control the number of events
+     * requested per page.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null): BetaManagedAgentsListSessionThreadEvents {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.listBetaSessionsThreadsEvents(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessionThreadEvents {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents
+            .listBetaSessionsThreadsEvents(clientConfig, request, options)
     }
 
     /**
-     * Lists events for a specific execution thread, ordered by `processed_at`. Use `page` to continue from a previous response's cursor and `limit` to control the number of events requested per page.
+     * Lists events for a specific execution thread, ordered by `processed_at`. Use `page` to
+     * continue from a previous response's cursor and `limit` to control the number of events
+     * requested per page.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.listBetaSessionsThreadsEventsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSessionEvent) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents
+            .listBetaSessionsThreadsEventsPaginated(clientConfig, request, options, yieldFn)
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaSessionsThreadsEventsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaSessionsThreadsEventsNamespace], returning the [SdkResponse] envelope
+     * around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Lists events for a specific execution thread, ordered by `processed_at`. Use `page` to continue from a previous response's cursor and `limit` to control the number of events requested per page.
+         * Lists events for a specific execution thread, ordered by `processed_at`. Use `page` to
+         * continue from a previous response's cursor and `limit` to control the number of events
+         * requested per page.
          */
-        fun list(request: dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListSessionThreadEvents> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.listBetaSessionsThreadsEventsWithRawResponse(clientConfig, request, options)
+        fun list(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.sessions.threads.BetaSessionsThreadsEvents.ListBetaSessionsThreadsEventsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsListSessionThreadEvents> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.threads
+                .BetaSessionsThreadsEvents
+                .listBetaSessionsThreadsEventsWithRawResponse(clientConfig, request, options)
         }
-
     }
 }

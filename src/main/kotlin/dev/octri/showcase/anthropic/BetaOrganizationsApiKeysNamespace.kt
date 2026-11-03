@@ -3,54 +3,100 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsApiKeysNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves a specific API key by its ID. Use `api_key_id` to identify the key whose metadata you need. The response includes its status, scope, creation and expiration details, and a partially redacted key hint.
+     * Retrieves a specific API key by its ID. Use `api_key_id` to identify the key whose metadata
+     * you need. The response includes its status, scope, creation and expiration details, and a
+     * partially redacted key hint.
      */
     fun retrieve(apiKeyId: String, options: RequestOptions? = null): BetaApiKey {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.retrieveBetaOrganizationsApiKeys(clientConfig, apiKeyId, options)
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys
+            .retrieveBetaOrganizationsApiKeys(clientConfig, apiKeyId, options)
     }
 
     /**
-     * Updates an API key's name, status, or both. Include the fields you want to change; `name` can be a string or `null`, and `status` can be active, archived, inactive, or `null`. The response returns the API key object with its current metadata.
+     * Updates an API key's name, status, or both. Include the fields you want to change; `name` can
+     * be a string or `null`, and `status` can be active, archived, inactive, or `null`. The
+     * response returns the API key object with its current metadata.
      */
-    fun update(apiKeyId: String, name: SdkClient.SdkOptional<String?>? = null, status: SdkClient.SdkOptional<BetaApiKeyUpdateParamsStatusVariant0Enum?>? = null, options: RequestOptions? = null): BetaApiKey {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.updateBetaOrganizationsApiKeys(clientConfig, apiKeyId, name, status, options)
+    fun update(
+        apiKeyId: String,
+        name: SdkClient.SdkOptional<String?>? = null,
+        status: SdkClient.SdkOptional<BetaApiKeyUpdateParamsStatusVariant0Enum?>? = null,
+        options: RequestOptions? = null,
+    ): BetaApiKey {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys
+            .updateBetaOrganizationsApiKeys(clientConfig, apiKeyId, name, status, options)
     }
 
     /**
-     * Lists API keys in the organization, with optional filters for status, workspace, and creator. Use `before_id` or `after_id` to navigate pages and `limit` to set the page size. The response includes cursor IDs and a `has_more` flag.
+     * Lists API keys in the organization, with optional filters for status, workspace, and creator.
+     * Use `before_id` or `after_id` to navigate pages and `limit` to set the page size. The
+     * response includes cursor IDs and a `has_more` flag.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.ListBetaOrganizationsApiKeysRequest, options: RequestOptions? = null): BetaListResponseApiKey {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.listBetaOrganizationsApiKeys(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.ListBetaOrganizationsApiKeysRequest,
+        options: RequestOptions? = null,
+    ): BetaListResponseApiKey {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys
+            .listBetaOrganizationsApiKeys(clientConfig, request, options)
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaOrganizationsApiKeysNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaOrganizationsApiKeysNamespace], returning the [SdkResponse] envelope
+     * around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Retrieves a specific API key by its ID. Use `api_key_id` to identify the key whose metadata you need. The response includes its status, scope, creation and expiration details, and a partially redacted key hint.
+         * Retrieves a specific API key by its ID. Use `api_key_id` to identify the key whose
+         * metadata you need. The response includes its status, scope, creation and expiration
+         * details, and a partially redacted key hint.
          */
         fun retrieve(apiKeyId: String, options: RequestOptions? = null): SdkResponse<BetaApiKey> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.retrieveBetaOrganizationsApiKeysWithRawResponse(clientConfig, apiKeyId, options)
+            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys
+                .retrieveBetaOrganizationsApiKeysWithRawResponse(clientConfig, apiKeyId, options)
         }
 
         /**
-         * Updates an API key's name, status, or both. Include the fields you want to change; `name` can be a string or `null`, and `status` can be active, archived, inactive, or `null`. The response returns the API key object with its current metadata.
+         * Updates an API key's name, status, or both. Include the fields you want to change; `name`
+         * can be a string or `null`, and `status` can be active, archived, inactive, or `null`. The
+         * response returns the API key object with its current metadata.
          */
-        fun update(apiKeyId: String, name: SdkClient.SdkOptional<String?>? = null, status: SdkClient.SdkOptional<BetaApiKeyUpdateParamsStatusVariant0Enum?>? = null, options: RequestOptions? = null): SdkResponse<BetaApiKey> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.updateBetaOrganizationsApiKeysWithRawResponse(clientConfig, apiKeyId, name, status, options)
+        fun update(
+            apiKeyId: String,
+            name: SdkClient.SdkOptional<String?>? = null,
+            status: SdkClient.SdkOptional<BetaApiKeyUpdateParamsStatusVariant0Enum?>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaApiKey> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys
+                .updateBetaOrganizationsApiKeysWithRawResponse(
+                    clientConfig,
+                    apiKeyId,
+                    name,
+                    status,
+                    options,
+                )
         }
 
         /**
-         * Lists API keys in the organization, with optional filters for status, workspace, and creator. Use `before_id` or `after_id` to navigate pages and `limit` to set the page size. The response includes cursor IDs and a `has_more` flag.
+         * Lists API keys in the organization, with optional filters for status, workspace, and
+         * creator. Use `before_id` or `after_id` to navigate pages and `limit` to set the page
+         * size. The response includes cursor IDs and a `has_more` flag.
          */
-        fun list(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.ListBetaOrganizationsApiKeysRequest, options: RequestOptions? = null): SdkResponse<BetaListResponseApiKey> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.listBetaOrganizationsApiKeysWithRawResponse(clientConfig, request, options)
+        fun list(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys.ListBetaOrganizationsApiKeysRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaListResponseApiKey> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsApiKeys
+                .listBetaOrganizationsApiKeysWithRawResponse(clientConfig, request, options)
         }
-
     }
 }

@@ -5,16 +5,11 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Paginated list of events for a `session`.
- */
+/** Paginated list of events for a `session`. */
 data class BetaManagedAgentsListSessionEvents(
-    /**
-     * Events for the session, ordered by `processed_at`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsSessionEvent>? = null,
-    /**
-     * Opaque cursor for the next page. Null when no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** Events for the session, ordered by `processed_at`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsSessionEvent>? = null,
+    /** Opaque cursor for the next page. Null when no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 ) : SdkResource()

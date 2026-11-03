@@ -5,16 +5,11 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Paginated list of deployment runs. Sorted by `created_at` descending (most recent first).
- */
+/** Paginated list of deployment runs. Sorted by `created_at` descending (most recent first). */
 data class BetaManagedAgentsListDeploymentRunsData(
-    /**
-     * List of deployment runs.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsDeploymentRun>,
-    /**
-     * Opaque cursor for the next page. Null when no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** List of deployment runs. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsDeploymentRun>,
+    /** Opaque cursor for the next page. Null when no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 ) : SdkResource()

@@ -5,16 +5,11 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Paginated list of threads within a `session`.
- */
+/** Paginated list of threads within a `session`. */
 data class BetaManagedAgentsListSessionThreads(
-    /**
-     * Threads in the session, primary first then children in spawn order.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data") val `data`: List<BetaManagedAgentsSessionThread>? = null,
-    /**
-     * Opaque cursor for the next page. Null when no more results.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null
+    /** Threads in the session, primary first then children in spawn order. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data")
+    val `data`: List<BetaManagedAgentsSessionThread>? = null,
+    /** Opaque cursor for the next page. Null when no more results. */
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page") val nextPage: String? = null,
 ) : SdkResource()

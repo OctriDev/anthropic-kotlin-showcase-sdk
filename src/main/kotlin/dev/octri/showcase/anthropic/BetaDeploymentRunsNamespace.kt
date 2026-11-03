@@ -3,47 +3,107 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaDeploymentRunsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists deployment runs in the selected Workspace, sorted with the most recent runs first. Filter by deployment, trigger type, error state, or creation time, and use `page` to continue through the results. The response includes a `next_page` cursor when another page is available.
+     * Lists deployment runs in the selected Workspace, sorted with the most recent runs first.
+     * Filter by deployment, trigger type, error state, or creation time, and use `page` to continue
+     * through the results. The response includes a `next_page` cursor when another page is
+     * available.
      */
-    fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest, options: RequestOptions? = null): BetaManagedAgentsListDeploymentRunsData {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.listBetaDeploymentRuns(clientConfig, request, options)
+    fun list(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListDeploymentRunsData {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.listBetaDeploymentRuns(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists deployment runs in the selected Workspace, sorted with the most recent runs first. Filter by deployment, trigger type, error state, or creation time, and use `page` to continue through the results. The response includes a `next_page` cursor when another page is available.
+     * Lists deployment runs in the selected Workspace, sorted with the most recent runs first.
+     * Filter by deployment, trigger type, error state, or creation time, and use `page` to continue
+     * through the results. The response includes a `next_page` cursor when another page is
+     * available.
      */
-    fun listPaginated(request: dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsDeploymentRun) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.listBetaDeploymentRunsPaginated(clientConfig, request, options, yieldFn)
+    fun listPaginated(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsDeploymentRun) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns
+            .listBetaDeploymentRunsPaginated(clientConfig, request, options, yieldFn)
     }
 
     /**
-     * Retrieves the record for a specific deployment run. Use `deployment_run_id` to identify the run and inspect its trigger context, agent snapshot, and session-creation outcome. The run record is append-only and does not track the session lifecycle.
+     * Retrieves the record for a specific deployment run. Use `deployment_run_id` to identify the
+     * run and inspect its trigger context, agent snapshot, and session-creation outcome. The run
+     * record is append-only and does not track the session lifecycle.
      */
-    fun retrieve(deploymentRunId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeploymentRun {
-        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.retrieveBetaDeploymentRuns(clientConfig, deploymentRunId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        deploymentRunId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeploymentRun {
+        return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns
+            .retrieveBetaDeploymentRuns(
+                clientConfig,
+                deploymentRunId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaDeploymentRunsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaDeploymentRunsNamespace], returning the [SdkResponse] envelope around
+     * each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Lists deployment runs in the selected Workspace, sorted with the most recent runs first. Filter by deployment, trigger type, error state, or creation time, and use `page` to continue through the results. The response includes a `next_page` cursor when another page is available.
+         * Lists deployment runs in the selected Workspace, sorted with the most recent runs first.
+         * Filter by deployment, trigger type, error state, or creation time, and use `page` to
+         * continue through the results. The response includes a `next_page` cursor when another
+         * page is available.
          */
-        fun list(request: dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListDeploymentRunsData> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.listBetaDeploymentRunsWithRawResponse(clientConfig, request, options)
+        fun list(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.ListBetaDeploymentRunsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsListDeploymentRunsData> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns
+                .listBetaDeploymentRunsWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Retrieves the record for a specific deployment run. Use `deployment_run_id` to identify the run and inspect its trigger context, agent snapshot, and session-creation outcome. The run record is append-only and does not track the session lifecycle.
+         * Retrieves the record for a specific deployment run. Use `deployment_run_id` to identify
+         * the run and inspect its trigger context, agent snapshot, and session-creation outcome.
+         * The run record is append-only and does not track the session lifecycle.
          */
-        fun retrieve(deploymentRunId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeploymentRun> {
-            return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns.retrieveBetaDeploymentRunsWithRawResponse(clientConfig, deploymentRunId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            deploymentRunId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeploymentRun> {
+            return dev.octri.showcase.anthropic.methods.beta.BetaDeploymentRuns
+                .retrieveBetaDeploymentRunsWithRawResponse(
+                    clientConfig,
+                    deploymentRunId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

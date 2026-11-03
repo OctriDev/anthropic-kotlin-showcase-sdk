@@ -3,40 +3,99 @@
 
 package dev.octri.showcase.anthropic
 
-
 class ModelsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * List available models. The Models API response can be used to determine which models are available for use in the API. More recently released models are listed first.
+     * List available models. The Models API response can be used to determine which models are
+     * available for use in the API. More recently released models are listed first.
      */
-    fun list(beforeId: String? = null, afterId: String? = null, limit: Long? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ListResponseModelInfo {
-        return dev.octri.showcase.anthropic.methods.Models.listModels(clientConfig, beforeId, afterId, limit, anthropicBeta, anthropicWorkspaceId, options)
+    fun list(
+        beforeId: String? = null,
+        afterId: String? = null,
+        limit: Long? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): ListResponseModelInfo {
+        return dev.octri.showcase.anthropic.methods.Models.listModels(
+            clientConfig,
+            beforeId,
+            afterId,
+            limit,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
     /**
-     * Get a specific model. The Models API response can be used to determine information about a specific model or resolve a model alias to a model ID.
+     * Get a specific model. The Models API response can be used to determine information about a
+     * specific model or resolve a model alias to a model ID.
      */
-    fun retrieve(modelId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ModelInfo {
-        return dev.octri.showcase.anthropic.methods.Models.retrieveModels(clientConfig, modelId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        modelId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): ModelInfo {
+        return dev.octri.showcase.anthropic.methods.Models.retrieveModels(
+            clientConfig,
+            modelId,
+            anthropicBeta,
+            anthropicWorkspaceId,
+            options,
+        )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [ModelsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [ModelsNamespace], returning the [SdkResponse] envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * List available models. The Models API response can be used to determine which models are available for use in the API. More recently released models are listed first.
+         * List available models. The Models API response can be used to determine which models are
+         * available for use in the API. More recently released models are listed first.
          */
-        fun list(beforeId: String? = null, afterId: String? = null, limit: Long? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<ListResponseModelInfo> {
-            return dev.octri.showcase.anthropic.methods.Models.listModelsWithRawResponse(clientConfig, beforeId, afterId, limit, anthropicBeta, anthropicWorkspaceId, options)
+        fun list(
+            beforeId: String? = null,
+            afterId: String? = null,
+            limit: Long? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<ListResponseModelInfo> {
+            return dev.octri.showcase.anthropic.methods.Models.listModelsWithRawResponse(
+                clientConfig,
+                beforeId,
+                afterId,
+                limit,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
         }
 
         /**
-         * Get a specific model. The Models API response can be used to determine information about a specific model or resolve a model alias to a model ID.
+         * Get a specific model. The Models API response can be used to determine information about
+         * a specific model or resolve a model alias to a model ID.
          */
-        fun retrieve(modelId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<ModelInfo> {
-            return dev.octri.showcase.anthropic.methods.Models.retrieveModelsWithRawResponse(clientConfig, modelId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            modelId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<ModelInfo> {
+            return dev.octri.showcase.anthropic.methods.Models.retrieveModelsWithRawResponse(
+                clientConfig,
+                modelId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
         }
-
     }
 }

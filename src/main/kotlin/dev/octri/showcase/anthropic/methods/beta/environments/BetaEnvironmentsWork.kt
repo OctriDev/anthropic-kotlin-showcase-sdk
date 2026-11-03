@@ -18,54 +18,116 @@ import dev.octri.showcase.anthropic.Validation
 object BetaEnvironmentsWork {
 
     /**
-     * Retrieves queue statistics for an environment's work queue. Use the metrics to inspect queued and pending work and, when workers send `Anthropic-Worker-ID` with poll requests, the number of workers polling recently.
+     * Retrieves queue statistics for an environment's work queue. Use the metrics to inspect queued
+     * and pending work and, when workers send `Anthropic-Worker-ID` with poll requests, the number
+     * of workers polling recently.
      *
      * Get statistics about the work queue for an environment.
      *
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun retrieveBetaEnvironmentsWorkStats(clientConfig: ClientConfig, environmentId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSelfHostedWorkQueueStats {
-        return retrieveBetaEnvironmentsWorkStatsWithRawResponse(clientConfig, environmentId, anthropicBeta, authorization, anthropicWorkspaceId, options).data
+    fun retrieveBetaEnvironmentsWorkStats(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWorkQueueStats {
+        return retrieveBetaEnvironmentsWorkStatsWithRawResponse(
+                clientConfig,
+                environmentId,
+                anthropicBeta,
+                authorization,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [retrieveBetaEnvironmentsWorkStats], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaEnvironmentsWorkStatsWithRawResponse(clientConfig: ClientConfig, environmentId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWorkQueueStats> {
-        return SdkClient.request<BetaSelfHostedWorkQueueStats>(SdkClient.RequestSpec("GET", "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/stats?beta=true", config = clientConfig, operationId = "retrieveBetaEnvironmentsWorkStats", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "authorization" to SdkClient.headerValue(authorization, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Retrieves the next available work item from an environment's queue, optionally waiting for work to arrive. The SDK and CLI environment workers call this operation automatically; you generally do not need to invoke it directly.
-     *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Long poll for work items in the queue.
-     *
-     * @param blockMs How long to wait for work to arrive before returning. Must be
-     *   1-999 in milliseconds. Defaults to non-blocking (returns immediately if no
-     *   work is available).
-     * @param reclaimOlderThanMs Reclaim unacknowledged work items older than this
-     *   many milliseconds. If omitted, uses the default (5000ms).
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkerId Unique identifier for the specific worker polling,
-     *   used to track aggregated environment-level work metrics in Console
+     * [retrieveBetaEnvironmentsWorkStats], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
      */
-    fun pollBetaEnvironmentsWork(clientConfig: ClientConfig, request: PollBetaEnvironmentsWorkRequest, options: RequestOptions? = null): BetaSelfHostedWork {
-        return pollBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options).data
+    fun retrieveBetaEnvironmentsWorkStatsWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWorkQueueStats> {
+        return SdkClient.request<BetaSelfHostedWorkQueueStats>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/stats?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaEnvironmentsWorkStats",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "authorization" to SdkClient.headerValue(authorization, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
+    /**
+     * Retrieves the next available work item from an environment's queue, optionally waiting for
+     * work to arrive. The SDK and CLI environment workers call this operation automatically; you
+     * generally do not need to invoke it directly.
+     *
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Long poll for work
+     * items in the queue.
+     *
+     * @param blockMs How long to wait for work to arrive before returning. Must be 1-999 in
+     *   milliseconds. Defaults to non-blocking (returns immediately if no work is available).
+     * @param reclaimOlderThanMs Reclaim unacknowledged work items older than this many
+     *   milliseconds. If omitted, uses the default (5000ms).
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkerId Unique identifier for the specific worker polling, used to track
+     *   aggregated environment-level work metrics in Console
+     */
+    fun pollBetaEnvironmentsWork(
+        clientConfig: ClientConfig,
+        request: PollBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return pollBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options).data
+    }
 
     /** Parameters for [pollBetaEnvironmentsWork]. */
     data class PollBetaEnvironmentsWorkRequest(
@@ -74,64 +136,170 @@ object BetaEnvironmentsWork {
         val reclaimOlderThanMs: SdkClient.SdkOptional<Long?>? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
         val anthropicWorkerId: SdkClient.SdkOptional<String?>? = null,
-        val authorization: SdkClient.SdkOptional<String?>? = null
+        val authorization: SdkClient.SdkOptional<String?>? = null,
     )
 
-    /** [pollBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun pollBetaEnvironmentsWorkWithRawResponse(clientConfig: ClientConfig, request: PollBetaEnvironmentsWorkRequest, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-        return SdkClient.request<BetaSelfHostedWork>(SdkClient.RequestSpec("GET", "/v1/environments/${SdkClient.encodePathSegment(request.environmentId)}/work/poll?beta=true", config = clientConfig, query = mapOf("block_ms" to
-    SdkClient.queryValue(request.blockMs, "form", true), "reclaim_older_than_ms" to
-    SdkClient.queryValue(request.reclaimOlderThanMs, "form", true)), operationId = "pollBetaEnvironmentsWork", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "Anthropic-Worker-ID" to SdkClient.headerValue(request.anthropicWorkerId, false), "authorization" to SdkClient.headerValue(request.authorization, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
-
     /**
-     * Acknowledges receipt of a work item, moving it from the queue into the starting state. The SDK and CLI environment workers call this operation automatically as part of handling work in self-hosted environments.
-     *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting' and removing it from the queue.
-     *
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
+     * [pollBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
      */
-    fun ackBetaEnvironmentsWork(clientConfig: ClientConfig, environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaSelfHostedWork {
-        return ackBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, workId, anthropicBeta, authorization, options).data
+    fun pollBetaEnvironmentsWorkWithRawResponse(
+        clientConfig: ClientConfig,
+        request: PollBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWork> {
+        return SdkClient.request<BetaSelfHostedWork>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/environments/${SdkClient.encodePathSegment(request.environmentId)}/work/poll?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "block_ms" to SdkClient.queryValue(request.blockMs, "form", true),
+                        "reclaim_older_than_ms" to
+                            SdkClient.queryValue(request.reclaimOlderThanMs, "form", true),
+                    ),
+                operationId = "pollBetaEnvironmentsWork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "Anthropic-Worker-ID" to
+                            SdkClient.headerValue(request.anthropicWorkerId, false),
+                        "authorization" to SdkClient.headerValue(request.authorization, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-    /** [ackBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun ackBetaEnvironmentsWorkWithRawResponse(clientConfig: ClientConfig, environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-        return SdkClient.request<BetaSelfHostedWork>(SdkClient.RequestSpec("POST", "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/${SdkClient.encodePathSegment(workId)}/ack?beta=true", config = clientConfig, operationId = "ackBetaEnvironmentsWork", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "authorization" to SdkClient.headerValue(authorization, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Records a heartbeat for a work item to maintain its lease in a self-hosted environment. The SDK and CLI environment workers call this operation automatically; send the previous heartbeat value for conditional updates.
+     * Acknowledges receipt of a work item, moving it from the queue into the starting state. The
+     * SDK and CLI environment workers call this operation automatically as part of handling work in
+     * self-hosted environments.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Record a heartbeat for a work item to maintain the lease.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Acknowledge
+     * receipt of a work item, transitioning it from 'queued' to 'starting' and removing it from the
+     * queue.
+     *
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     */
+    fun ackBetaEnvironmentsWork(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        workId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return ackBetaEnvironmentsWorkWithRawResponse(
+                clientConfig,
+                environmentId,
+                workId,
+                anthropicBeta,
+                authorization,
+                options,
+            )
+            .data
+    }
+
+    /**
+     * [ackBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun ackBetaEnvironmentsWorkWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        workId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWork> {
+        return SdkClient.request<BetaSelfHostedWork>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/${SdkClient.encodePathSegment(workId)}/ack?beta=true",
+                config = clientConfig,
+                operationId = "ackBetaEnvironmentsWork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "authorization" to SdkClient.headerValue(authorization, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Records a heartbeat for a work item to maintain its lease in a self-hosted environment. The
+     * SDK and CLI environment workers call this operation automatically; send the previous
+     * heartbeat value for conditional updates.
+     *
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Record a heartbeat
+     * for a work item to maintain the lease.
      *
      * @param desiredTtlSeconds Desired TTL in seconds
-     * @param expectedLastHeartbeat Expected last_heartbeat for conditional update
-     *   (optimistic concurrency). Use literal 'NO_HEARTBEAT' to claim an unclaimed
-     *   lease (first heartbeat). For subsequent heartbeats, echo the server's previous
-     *   last_heartbeat value exactly. Returns 412 Precondition Failed if the actual
-     *   value doesn't match.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
+     * @param expectedLastHeartbeat Expected last_heartbeat for conditional update (optimistic
+     *   concurrency). Use literal 'NO_HEARTBEAT' to claim an unclaimed lease (first heartbeat). For
+     *   subsequent heartbeats, echo the server's previous last_heartbeat value exactly. Returns 412
+     *   Precondition Failed if the actual value doesn't match.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
      */
-    fun heartbeatBetaEnvironmentsWork(clientConfig: ClientConfig, request: HeartbeatBetaEnvironmentsWorkRequest, options: RequestOptions? = null): BetaSelfHostedWorkHeartbeatResponse {
+    fun heartbeatBetaEnvironmentsWork(
+        clientConfig: ClientConfig,
+        request: HeartbeatBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWorkHeartbeatResponse {
         return heartbeatBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [heartbeatBetaEnvironmentsWork]. */
     data class HeartbeatBetaEnvironmentsWorkRequest(
@@ -140,40 +308,87 @@ object BetaEnvironmentsWork {
         val desiredTtlSeconds: SdkClient.SdkOptional<Long?>? = null,
         val expectedLastHeartbeat: SdkClient.SdkOptional<String?>? = null,
         val anthropicBeta: List<AnthropicBeta>? = null,
-        val authorization: SdkClient.SdkOptional<String?>? = null
+        val authorization: SdkClient.SdkOptional<String?>? = null,
     )
 
-    /** [heartbeatBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun heartbeatBetaEnvironmentsWorkWithRawResponse(clientConfig: ClientConfig, request: HeartbeatBetaEnvironmentsWorkRequest, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWorkHeartbeatResponse> {
-        return SdkClient.request<BetaSelfHostedWorkHeartbeatResponse>(SdkClient.RequestSpec("POST", "/v1/environments/${SdkClient.encodePathSegment(request.environmentId)}/work/${SdkClient.encodePathSegment(request.workId)}/heartbeat?beta=true", config = clientConfig, query = mapOf("desired_ttl_seconds" to
-    SdkClient.queryValue(request.desiredTtlSeconds, "form", true), "expected_last_heartbeat" to
-    SdkClient.queryValue(request.expectedLastHeartbeat, "form", true)), operationId = "heartbeatBetaEnvironmentsWork", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "authorization" to SdkClient.headerValue(request.authorization, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+    /**
+     * [heartbeatBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun heartbeatBetaEnvironmentsWorkWithRawResponse(
+        clientConfig: ClientConfig,
+        request: HeartbeatBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWorkHeartbeatResponse> {
+        return SdkClient.request<BetaSelfHostedWorkHeartbeatResponse>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/environments/${SdkClient.encodePathSegment(request.environmentId)}/work/${SdkClient.encodePathSegment(request.workId)}/heartbeat?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "desired_ttl_seconds" to
+                            SdkClient.queryValue(request.desiredTtlSeconds, "form", true),
+                        "expected_last_heartbeat" to
+                            SdkClient.queryValue(request.expectedLastHeartbeat, "form", true),
+                    ),
+                operationId = "heartbeatBetaEnvironmentsWork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "authorization" to SdkClient.headerValue(request.authorization, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
 
     /**
-     * Stops a work item in a self-hosted environment, initiating a graceful shutdown or an immediate stop. The SDK and CLI environment workers call this operation automatically; set `force` to true only when you want to skip graceful shutdown.
+     * Stops a work item in a self-hosted environment, initiating a graceful shutdown or an
+     * immediate stop. The SDK and CLI environment workers call this operation automatically; set
+     * `force` to true only when you want to skip graceful shutdown.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Stop a work item, initiating graceful or forced shutdown.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Stop a work item,
+     * initiating graceful or forced shutdown.
      *
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      * @param force If true, immediately stop work without graceful shutdown
      */
-    fun stopBetaEnvironmentsWork(clientConfig: ClientConfig, request: StopBetaEnvironmentsWorkRequest, options: RequestOptions? = null): BetaSelfHostedWork {
+    fun stopBetaEnvironmentsWork(
+        clientConfig: ClientConfig,
+        request: StopBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
         return stopBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [stopBetaEnvironmentsWork]. */
     data class StopBetaEnvironmentsWorkRequest(
@@ -182,124 +397,371 @@ object BetaEnvironmentsWork {
         val anthropicBeta: List<AnthropicBeta>? = null,
         val authorization: SdkClient.SdkOptional<String?>? = null,
         val anthropicWorkspaceId: String? = null,
-        val force: Boolean? = null
+        val force: Boolean? = null,
     )
 
-    /** [stopBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun stopBetaEnvironmentsWorkWithRawResponse(clientConfig: ClientConfig, request: StopBetaEnvironmentsWorkRequest, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-        return SdkClient.request<BetaSelfHostedWork>(SdkClient.RequestSpec("POST", "/v1/environments/${SdkClient.encodePathSegment(request.environmentId)}/work/${SdkClient.encodePathSegment(request.workId)}/stop?beta=true", config = clientConfig, body = SdkClient.bodyMap("force" to (SdkClient.omitIfNull(request.force))), operationId = "stopBetaEnvironmentsWork", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false), "authorization" to SdkClient.headerValue(request.authorization, false), "anthropic-workspace-id" to SdkClient.headerValue(request.anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
-
     /**
-     * Retrieves detailed information about a specific work item in an environment. The SDK and CLI environment workers call this operation automatically as part of managing work in self-hosted environments.
-     *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Retrieve detailed information about a specific work item.
-     *
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * [stopBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
      */
-    fun retrieveBetaEnvironmentsWork(clientConfig: ClientConfig, environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSelfHostedWork {
-        return retrieveBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, workId, anthropicBeta, anthropicWorkspaceId, options).data
+    fun stopBetaEnvironmentsWorkWithRawResponse(
+        clientConfig: ClientConfig,
+        request: StopBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWork> {
+        return SdkClient.request<BetaSelfHostedWork>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/environments/${SdkClient.encodePathSegment(request.environmentId)}/work/${SdkClient.encodePathSegment(request.workId)}/stop?beta=true",
+                config = clientConfig,
+                body = SdkClient.bodyMap("force" to (SdkClient.omitIfNull(request.force))),
+                operationId = "stopBetaEnvironmentsWork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(request.anthropicBeta, false),
+                        "authorization" to SdkClient.headerValue(request.authorization, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(request.anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-    /** [retrieveBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaEnvironmentsWorkWithRawResponse(clientConfig: ClientConfig, environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-        return SdkClient.request<BetaSelfHostedWork>(SdkClient.RequestSpec("GET", "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/${SdkClient.encodePathSegment(workId)}?beta=true", config = clientConfig, operationId = "retrieveBetaEnvironmentsWork", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Updates metadata on a work item in a self-hosted environment using merge semantics. Set metadata keys to strings to add or replace values, or to null to delete them; omitting the `metadata` field is not supported. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+     * Retrieves detailed information about a specific work item in an environment. The SDK and CLI
+     * environment workers call this operation automatically as part of managing work in self-hosted
+     * environments.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Update work item metadata with merge semantics.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Retrieve detailed
+     * information about a specific work item.
      *
-     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null
-     *   to delete it. Omit the field to preserve existing metadata.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun updateBetaEnvironmentsWork(clientConfig: ClientConfig, environmentId: String, workId: String, metadata: Map<String, String>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSelfHostedWork {
-        return updateBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, workId, metadata, anthropicBeta, anthropicWorkspaceId, options).data
+    fun retrieveBetaEnvironmentsWork(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        workId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return retrieveBetaEnvironmentsWorkWithRawResponse(
+                clientConfig,
+                environmentId,
+                workId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [updateBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun updateBetaEnvironmentsWorkWithRawResponse(clientConfig: ClientConfig, environmentId: String, workId: String, metadata: Map<String, String>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-        return SdkClient.request<BetaSelfHostedWork>(SdkClient.RequestSpec("POST", "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/${SdkClient.encodePathSegment(workId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("metadata" to (metadata)), operationId = "updateBetaEnvironmentsWork", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Lists work items in a self-hosted environment for the environment worker to execute. Use `limit` to set the page size and pass the opaque `page` cursor from a previous response to continue through results. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+     * [retrieveBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun retrieveBetaEnvironmentsWorkWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        workId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWork> {
+        return SdkClient.request<BetaSelfHostedWork>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/${SdkClient.encodePathSegment(workId)}?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaEnvironmentsWork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Updates metadata on a work item in a self-hosted environment using merge semantics. Set
+     * metadata keys to strings to add or replace values, or to null to delete them; omitting the
+     * `metadata` field is not supported. The SDK and CLI environment workers call this operation
+     * automatically, so you do not need to invoke it directly.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. List work items in an environment.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Update work item
+     * metadata with merge semantics.
+     *
+     * @param metadata Metadata patch. Set a key to a string to upsert it, or to null to delete it.
+     *   Omit the field to preserve existing metadata.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     */
+    fun updateBetaEnvironmentsWork(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        workId: String,
+        metadata: Map<String, String>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return updateBetaEnvironmentsWorkWithRawResponse(
+                clientConfig,
+                environmentId,
+                workId,
+                metadata,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
+    }
+
+    /**
+     * [updateBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun updateBetaEnvironmentsWorkWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        workId: String,
+        metadata: Map<String, String>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWork> {
+        return SdkClient.request<BetaSelfHostedWork>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work/${SdkClient.encodePathSegment(workId)}?beta=true",
+                config = clientConfig,
+                body = SdkClient.bodyMap("metadata" to (metadata)),
+                operationId = "updateBetaEnvironmentsWork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Lists work items in a self-hosted environment for the environment worker to execute. Use
+     * `limit` to set the page size and pass the opaque `page` cursor from a previous response to
+     * continue through results. The SDK and CLI environment workers call this operation
+     * automatically, so you do not need to invoke it directly.
+     *
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. List work items in
+     * an environment.
      *
      * @param limit Maximum number of work items to return
      * @param page Opaque cursor from previous response for pagination
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
      */
-    fun listBetaEnvironmentsWork(clientConfig: ClientConfig, environmentId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaSelfHostedWorkListResponse {
-        return listBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, limit, page, anthropicBeta, authorization, options).data
+    fun listBetaEnvironmentsWork(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWorkListResponse {
+        return listBetaEnvironmentsWorkWithRawResponse(
+                clientConfig,
+                environmentId,
+                limit,
+                page,
+                anthropicBeta,
+                authorization,
+                options,
+            )
+            .data
     }
 
-
-    /** [listBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaEnvironmentsWorkWithRawResponse(clientConfig: ClientConfig, environmentId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWorkListResponse> {
+    /**
+     * [listBetaEnvironmentsWork], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun listBetaEnvironmentsWorkWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSelfHostedWorkListResponse> {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+        }
 
-        return SdkClient.request<BetaSelfHostedWorkListResponse>(SdkClient.RequestSpec("GET", "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "listBetaEnvironmentsWork", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "authorization" to SdkClient.headerValue(authorization, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaSelfHostedWorkListResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/environments/${SdkClient.encodePathSegment(environmentId)}/work?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "limit" to SdkClient.queryValue(limit, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "listBetaEnvironmentsWork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "authorization" to SdkClient.headerValue(authorization, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Lists work items in a self-hosted environment for the environment worker to execute. Use `limit` to set the page size and pass the opaque `page` cursor from a previous response to continue through results. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+     * Lists work items in a self-hosted environment for the environment worker to execute. Use
+     * `limit` to set the page size and pass the opaque `page` cursor from a previous response to
+     * continue through results. The SDK and CLI environment workers call this operation
+     * automatically, so you do not need to invoke it directly.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. List work items in an environment.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. List work items in
+     * an environment.
      *
      * @param limit Maximum number of work items to return
      * @param page Opaque cursor from previous response for pagination
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
      */
-    fun listBetaEnvironmentsWorkPaginated(clientConfig: ClientConfig, environmentId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaSelfHostedWork) -> Boolean) {
+    fun listBetaEnvironmentsWorkPaginated(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaSelfHostedWork) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaEnvironmentsWork(clientConfig, environmentId, limit, cursor, anthropicBeta, authorization, options)
+            val page =
+                listBetaEnvironmentsWork(
+                    clientConfig,
+                    environmentId,
+                    limit,
+                    cursor,
+                    anthropicBeta,
+                    authorization,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -316,10 +778,28 @@ object BetaEnvironmentsWork {
         val hasMore: Boolean,
     )
 
-    fun listBetaEnvironmentsWorkPages(clientConfig: ClientConfig, environmentId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldPage: (ListBetaEnvironmentsWorkPage) -> Boolean) {
+    fun listBetaEnvironmentsWorkPages(
+        clientConfig: ClientConfig,
+        environmentId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaEnvironmentsWorkPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaEnvironmentsWork(clientConfig, environmentId, limit, cursor, anthropicBeta, authorization, options)
+            val page =
+                listBetaEnvironmentsWork(
+                    clientConfig,
+                    environmentId,
+                    limit,
+                    cursor,
+                    anthropicBeta,
+                    authorization,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -329,7 +809,4 @@ object BetaEnvironmentsWork {
             cursor = SdkClient.SdkOptional.Present(nextCursor)
         }
     }
-
-
-
 }

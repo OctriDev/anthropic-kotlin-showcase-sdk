@@ -3,79 +3,241 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaSessionsThreadsNamespace(private val clientConfig: ClientConfig) {
     val events: BetaSessionsThreadsEventsNamespace
+
     init {
         events = BetaSessionsThreadsEventsNamespace(clientConfig)
     }
+
     /**
-     * Lists execution threads belonging to a session, with the primary thread first and child threads following in spawn order. Use `page` to continue from a previous response's cursor and `limit` to control the number of results per page.
+     * Lists execution threads belonging to a session, with the primary thread first and child
+     * threads following in spawn order. Use `page` to continue from a previous response's cursor
+     * and `limit` to control the number of results per page.
      */
-    fun list(sessionId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsListSessionThreads {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.listBetaSessionsThreads(clientConfig, sessionId, limit, page, anthropicBeta, anthropicWorkspaceId, options)
+    fun list(
+        sessionId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessionThreads {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+            .listBetaSessionsThreads(
+                clientConfig,
+                sessionId,
+                limit,
+                page,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Lists execution threads belonging to a session, with the primary thread first and child threads following in spawn order. Use `page` to continue from a previous response's cursor and `limit` to control the number of results per page.
+     * Lists execution threads belonging to a session, with the primary thread first and child
+     * threads following in spawn order. Use `page` to continue from a previous response's cursor
+     * and `limit` to control the number of results per page.
      */
-    fun listPaginated(sessionId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionThread) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.listBetaSessionsThreadsPaginated(clientConfig, sessionId, limit, page, anthropicBeta, anthropicWorkspaceId, options, yieldFn)
+    fun listPaginated(
+        sessionId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSessionThread) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+            .listBetaSessionsThreadsPaginated(
+                clientConfig,
+                sessionId,
+                limit,
+                page,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+                yieldFn,
+            )
     }
 
     /**
-     * Retrieves a specific execution thread from a session. Use `session_id` and `thread_id` to identify the thread and its parent session; the response includes the thread's status, agent snapshot, usage, and timing statistics.
+     * Retrieves a specific execution thread from a session. Use `session_id` and `thread_id` to
+     * identify the thread and its parent session; the response includes the thread's status, agent
+     * snapshot, usage, and timing statistics.
      */
-    fun retrieve(sessionId: String, threadId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSessionThread {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.retrieveBetaSessionsThreads(clientConfig, sessionId, threadId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        sessionId: String,
+        threadId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSessionThread {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+            .retrieveBetaSessionsThreads(
+                clientConfig,
+                sessionId,
+                threadId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Streams server-sent events for a specific session thread. Use `event_deltas[]` to request best-effort previews for supported event types; a final event contains complete content, while an interrupted model request may end without a final event.
+     * Streams server-sent events for a specific session thread. Use `event_deltas[]` to request
+     * best-effort previews for supported event types; a final event contains complete content,
+     * while an interrupted model request may end without a final event.
      */
-    fun stream(sessionId: String, threadId: String, eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsStreamSessionThreadEvents {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.streamBetaSessionsThreads(clientConfig, sessionId, threadId, eventDeltas, anthropicBeta, anthropicWorkspaceId, options)
+    fun stream(
+        sessionId: String,
+        threadId: String,
+        eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsStreamSessionThreadEvents {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+            .streamBetaSessionsThreads(
+                clientConfig,
+                sessionId,
+                threadId,
+                eventDeltas,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Archives a specific execution thread within a session. Use this operation when the thread should no longer remain active; the response returns the thread object with its archive timestamp.
+     * Archives a specific execution thread within a session. Use this operation when the thread
+     * should no longer remain active; the response returns the thread object with its archive
+     * timestamp.
      */
-    fun archive(sessionId: String, threadId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsSessionThread {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.archiveBetaSessionsThreads(clientConfig, sessionId, threadId, anthropicBeta, anthropicWorkspaceId, options)
+    fun archive(
+        sessionId: String,
+        threadId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsSessionThread {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+            .archiveBetaSessionsThreads(
+                clientConfig,
+                sessionId,
+                threadId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaSessionsThreadsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaSessionsThreadsNamespace], returning the [SdkResponse] envelope around
+     * each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Lists execution threads belonging to a session, with the primary thread first and child threads following in spawn order. Use `page` to continue from a previous response's cursor and `limit` to control the number of results per page.
+         * Lists execution threads belonging to a session, with the primary thread first and child
+         * threads following in spawn order. Use `page` to continue from a previous response's
+         * cursor and `limit` to control the number of results per page.
          */
-        fun list(sessionId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListSessionThreads> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.listBetaSessionsThreadsWithRawResponse(clientConfig, sessionId, limit, page, anthropicBeta, anthropicWorkspaceId, options)
+        fun list(
+            sessionId: String,
+            limit: Int? = null,
+            page: String? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsListSessionThreads> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+                .listBetaSessionsThreadsWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    limit,
+                    page,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Retrieves a specific execution thread from a session. Use `session_id` and `thread_id` to identify the thread and its parent session; the response includes the thread's status, agent snapshot, usage, and timing statistics.
+         * Retrieves a specific execution thread from a session. Use `session_id` and `thread_id` to
+         * identify the thread and its parent session; the response includes the thread's status,
+         * agent snapshot, usage, and timing statistics.
          */
-        fun retrieve(sessionId: String, threadId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsSessionThread> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.retrieveBetaSessionsThreadsWithRawResponse(clientConfig, sessionId, threadId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            sessionId: String,
+            threadId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsSessionThread> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+                .retrieveBetaSessionsThreadsWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    threadId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Streams server-sent events for a specific session thread. Use `event_deltas[]` to request best-effort previews for supported event types; a final event contains complete content, while an interrupted model request may end without a final event.
+         * Streams server-sent events for a specific session thread. Use `event_deltas[]` to request
+         * best-effort previews for supported event types; a final event contains complete content,
+         * while an interrupted model request may end without a final event.
          */
-        fun stream(sessionId: String, threadId: String, eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsStreamSessionThreadEvents> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.streamBetaSessionsThreadsWithRawResponse(clientConfig, sessionId, threadId, eventDeltas, anthropicBeta, anthropicWorkspaceId, options)
+        fun stream(
+            sessionId: String,
+            threadId: String,
+            eventDeltas: List<BetaManagedAgentsEventDeltaType>? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsStreamSessionThreadEvents> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+                .streamBetaSessionsThreadsWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    threadId,
+                    eventDeltas,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Archives a specific execution thread within a session. Use this operation when the thread should no longer remain active; the response returns the thread object with its archive timestamp.
+         * Archives a specific execution thread within a session. Use this operation when the thread
+         * should no longer remain active; the response returns the thread object with its archive
+         * timestamp.
          */
-        fun archive(sessionId: String, threadId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsSessionThread> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads.archiveBetaSessionsThreadsWithRawResponse(clientConfig, sessionId, threadId, anthropicBeta, anthropicWorkspaceId, options)
+        fun archive(
+            sessionId: String,
+            threadId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsSessionThread> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsThreads
+                .archiveBetaSessionsThreadsWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    threadId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

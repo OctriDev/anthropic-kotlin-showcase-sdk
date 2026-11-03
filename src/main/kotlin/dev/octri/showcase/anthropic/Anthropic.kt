@@ -3,7 +3,6 @@
 
 package dev.octri.showcase.anthropic
 
-
 class Anthropic(private val clientConfig: ClientConfig) {
     val messages: MessagesNamespace
     val completions: CompletionsNamespace
@@ -11,6 +10,7 @@ class Anthropic(private val clientConfig: ClientConfig) {
     val files: FilesNamespace
     val skills: SkillsNamespace
     val beta: BetaNamespace
+
     init {
         messages = MessagesNamespace(clientConfig)
         completions = CompletionsNamespace(clientConfig)
@@ -19,17 +19,16 @@ class Anthropic(private val clientConfig: ClientConfig) {
         skills = SkillsNamespace(clientConfig)
         beta = BetaNamespace(clientConfig)
     }
+
     /**
-     * Turns SDK logging on and configures it. Logging is OFF by default — this
-     * SDK reports nothing until you call this (or construct the client with
-     * logging enabled). Reports go to the endpoint this build was generated with,
-     * or to the endpoint you set; with neither, nothing is sent. Set
-     * enabled = false in the block to turn it off.
+     * Turns SDK logging on and configures it. Logging is OFF by default — this SDK reports nothing
+     * until you call this (or construct the client with logging enabled). Reports go to the
+     * endpoint this build was generated with, or to the endpoint you set; with neither, nothing is
+     * sent. Set enabled = false in the block to turn it off.
      */
     fun setLoggingConfig(block: LoggingConfig.() -> Unit = {}): LoggingConfig {
         clientConfig.logging.enabled = true
         clientConfig.logging.block()
         return clientConfig.logging
     }
-
 }

@@ -3,10 +3,10 @@
 
 package dev.octri.showcase.anthropic.models
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class BrowserStateChangeTabOpenedTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class BrowserStateChangeTabOpenedTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     TAB_OPENED("tab_opened");
 
     override fun toString() = value
@@ -14,15 +14,16 @@ enum class BrowserStateChangeTabOpenedTypeEnum(@com.fasterxml.jackson.annotation
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class BrowserToolset20260801TypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class BrowserToolset20260801TypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     BROWSER_TOOLSET_20260801("browser_toolset_20260801");
 
     override fun toString() = value
@@ -30,19 +31,23 @@ enum class BrowserToolset20260801TypeEnum(@com.fasterxml.jackson.annotation.Json
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
 /**
- * The time-to-live for the cache control breakpoint. This may be one the following values: - `5m`: 5 minutes - `1h`: 1 hour Defaults to `5m`. See prompt caching pricing for details.
+ * The time-to-live for the cache control breakpoint. This may be one the following values: - `5m`:
+ * 5 minutes - `1h`: 1 hour Defaults to `5m`. See prompt caching pricing for details.
  */
-class CacheControlEphemeralTtlEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CacheControlEphemeralTtlEnum && value == other.value
+class CacheControlEphemeralTtlEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CacheControlEphemeralTtlEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -50,15 +55,18 @@ class CacheControlEphemeralTtlEnum private constructor(
         @JvmField val V5M = CacheControlEphemeralTtlEnum("5m")
         @JvmField val V1H = CacheControlEphemeralTtlEnum("1h")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CacheControlEphemeralTtlEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CacheControlEphemeralTtlEnum(value)
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class CacheControlEphemeralTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class CacheControlEphemeralTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     EPHEMERAL("ephemeral");
 
     override fun toString() = value
@@ -66,14 +74,13 @@ enum class CacheControlEphemeralTypeEnum(@com.fasterxml.jackson.annotation.JsonV
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
+/** Required `string` value serialized in the `type` wire field. */
 enum class CanceledResultTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     CANCELED("canceled");
 
@@ -82,14 +89,13 @@ enum class CanceledResultTypeEnum(@com.fasterxml.jackson.annotation.JsonValue va
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
+/** Required `string` value serialized in the `type` wire field. */
 enum class CitationsDeltaTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     CITATIONS_DELTA("citations_delta");
 
@@ -98,15 +104,16 @@ enum class CitationsDeltaTypeEnum(@com.fasterxml.jackson.annotation.JsonValue va
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
- */
-enum class CodeExecutionTool20250522NameEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks. */
+enum class CodeExecutionTool20250522NameEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION("code_execution");
 
     override fun toString() = value
@@ -114,15 +121,16 @@ enum class CodeExecutionTool20250522NameEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class CodeExecutionTool20250522TypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class CodeExecutionTool20250522TypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION_20250522("code_execution_20250522");
 
     override fun toString() = value
@@ -130,15 +138,16 @@ enum class CodeExecutionTool20250522TypeEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
- */
-enum class CodeExecutionTool20250825NameEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks. */
+enum class CodeExecutionTool20250825NameEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION("code_execution");
 
     override fun toString() = value
@@ -146,15 +155,16 @@ enum class CodeExecutionTool20250825NameEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class CodeExecutionTool20250825TypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class CodeExecutionTool20250825TypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION_20250825("code_execution_20250825");
 
     override fun toString() = value
@@ -162,15 +172,16 @@ enum class CodeExecutionTool20250825TypeEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
- */
-enum class CodeExecutionTool20260120NameEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks. */
+enum class CodeExecutionTool20260120NameEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION("code_execution");
 
     override fun toString() = value
@@ -178,15 +189,16 @@ enum class CodeExecutionTool20260120NameEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class CodeExecutionTool20260120TypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class CodeExecutionTool20260120TypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION_20260120("code_execution_20260120");
 
     override fun toString() = value
@@ -194,15 +206,16 @@ enum class CodeExecutionTool20260120TypeEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks.
- */
-enum class CodeExecutionTool20260521NameEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Name of the tool. This is how the tool will be called by the model and in `tool_use` blocks. */
+enum class CodeExecutionTool20260521NameEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION("code_execution");
 
     override fun toString() = value
@@ -210,15 +223,16 @@ enum class CodeExecutionTool20260521NameEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class CodeExecutionTool20260521TypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class CodeExecutionTool20260521TypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CODE_EXECUTION_20260521("code_execution_20260521");
 
     override fun toString() = value
@@ -226,19 +240,20 @@ enum class CodeExecutionTool20260521TypeEnum(@com.fasterxml.jackson.annotation.J
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Typed representation of the `CodeExecutionToolResultErrorCode` API schema.
- */
-class CodeExecutionToolResultErrorCode private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeExecutionToolResultErrorCode && value == other.value
+/** Typed representation of the `CodeExecutionToolResultErrorCode` API schema. */
+class CodeExecutionToolResultErrorCode
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeExecutionToolResultErrorCode && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -246,17 +261,21 @@ class CodeExecutionToolResultErrorCode private constructor(
         @JvmField val INVALID_TOOL_INPUT = CodeExecutionToolResultErrorCode("invalid_tool_input")
         @JvmField val UNAVAILABLE = CodeExecutionToolResultErrorCode("unavailable")
         @JvmField val TOO_MANY_REQUESTS = CodeExecutionToolResultErrorCode("too_many_requests")
-        @JvmField val EXECUTION_TIME_EXCEEDED = CodeExecutionToolResultErrorCode("execution_time_exceeded")
+        @JvmField
+        val EXECUTION_TIME_EXCEEDED = CodeExecutionToolResultErrorCode("execution_time_exceeded")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeExecutionToolResultErrorCode(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeExecutionToolResultErrorCode(value)
     }
 }
 
-/**
- * Object type. For Text Completions, this is always `"completion"`.
- */
-enum class CompletionResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Object type. For Text Completions, this is always `"completion"`. */
+enum class CompletionResponseTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     COMPLETION("completion");
 
     override fun toString() = value
@@ -264,15 +283,16 @@ enum class CompletionResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValu
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class ComputerToolset20260801TypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class ComputerToolset20260801TypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     COMPUTER_TOOLSET_20260801("computer_toolset_20260801");
 
     override fun toString() = value
@@ -280,19 +300,20 @@ enum class ComputerToolset20260801TypeEnum(@com.fasterxml.jackson.annotation.Jso
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
- */
-class ContainerSkillTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ContainerSkillTypeEnum && value == other.value
+/** Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined) */
+class ContainerSkillTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ContainerSkillTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -300,15 +321,18 @@ class ContainerSkillTypeEnum private constructor(
         @JvmField val ANTHROPIC = ContainerSkillTypeEnum("anthropic")
         @JvmField val CUSTOM = ContainerSkillTypeEnum("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ContainerSkillTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ContainerSkillTypeEnum(value)
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class ContentBlockDeltaEventTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class ContentBlockDeltaEventTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CONTENT_BLOCK_DELTA("content_block_delta");
 
     override fun toString() = value
@@ -316,15 +340,16 @@ enum class ContentBlockDeltaEventTypeEnum(@com.fasterxml.jackson.annotation.Json
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class ContentBlockSourceTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class ContentBlockSourceTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CONTENT("content");
 
     override fun toString() = value
@@ -332,15 +357,16 @@ enum class ContentBlockSourceTypeEnum(@com.fasterxml.jackson.annotation.JsonValu
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class ContentBlockStartEventTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class ContentBlockStartEventTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CONTENT_BLOCK_START("content_block_start");
 
     override fun toString() = value
@@ -348,15 +374,16 @@ enum class ContentBlockStartEventTypeEnum(@com.fasterxml.jackson.annotation.Json
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class ContentBlockStopEventTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class ContentBlockStopEventTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     CONTENT_BLOCK_STOP("content_block_stop");
 
     override fun toString() = value
@@ -364,19 +391,24 @@ enum class ContentBlockStopEventTypeEnum(@com.fasterxml.jackson.annotation.JsonV
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
 /**
- * Determines whether to use priority capacity (if available) or standard capacity for this request. Anthropic offers different levels of service for your API requests. See service-tiers for details.
+ * Determines whether to use priority capacity (if available) or standard capacity for this request.
+ * Anthropic offers different levels of service for your API requests. See service-tiers for
+ * details.
  */
-class CreateMessageParamsServiceTierEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateMessageParamsServiceTierEnum && value == other.value
+class CreateMessageParamsServiceTierEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateMessageParamsServiceTierEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -384,34 +416,43 @@ class CreateMessageParamsServiceTierEnum private constructor(
         @JvmField val AUTO = CreateMessageParamsServiceTierEnum("auto")
         @JvmField val STANDARD_ONLY = CreateMessageParamsServiceTierEnum("standard_only")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateMessageParamsServiceTierEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateMessageParamsServiceTierEnum(value)
     }
 }
 
 /**
- * Determines whether to use priority capacity (if available) or standard capacity for this request. Anthropic offers different levels of service for your API requests. See service-tiers for details.
+ * Determines whether to use priority capacity (if available) or standard capacity for this request.
+ * Anthropic offers different levels of service for your API requests. See service-tiers for
+ * details.
  */
-class CreateMessageParamsWithoutStreamServiceTierEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateMessageParamsWithoutStreamServiceTierEnum && value == other.value
+class CreateMessageParamsWithoutStreamServiceTierEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateMessageParamsWithoutStreamServiceTierEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val AUTO = CreateMessageParamsWithoutStreamServiceTierEnum("auto")
-        @JvmField val STANDARD_ONLY = CreateMessageParamsWithoutStreamServiceTierEnum("standard_only")
+        @JvmField
+        val STANDARD_ONLY = CreateMessageParamsWithoutStreamServiceTierEnum("standard_only")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateMessageParamsWithoutStreamServiceTierEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateMessageParamsWithoutStreamServiceTierEnum(value)
     }
 }
 
-/**
- * Deleted object type. For Skills, this is always `"skill_deleted"`.
- */
+/** Deleted object type. For Skills, this is always `"skill_deleted"`. */
 enum class DeletedSkillTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     SKILL_DELETED("skill_deleted");
 
@@ -420,15 +461,16 @@ enum class DeletedSkillTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val 
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Deleted object type. For Skill Versions, this is always `"skill_version_deleted"`.
- */
-enum class DeletedSkillVersionTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Deleted object type. For Skill Versions, this is always `"skill_version_deleted"`. */
+enum class DeletedSkillVersionTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     SKILL_VERSION_DELETED("skill_version_deleted");
 
     override fun toString() = value
@@ -436,15 +478,16 @@ enum class DeletedSkillVersionTypeEnum(@com.fasterxml.jackson.annotation.JsonVal
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Deleted object type. For Message Batches, this is always `"message_batch_deleted"`.
- */
-enum class DeleteMessageBatchResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Deleted object type. For Message Batches, this is always `"message_batch_deleted"`. */
+enum class DeleteMessageBatchResponseTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     MESSAGE_BATCH_DELETED("message_batch_deleted");
 
     override fun toString() = value
@@ -452,14 +495,13 @@ enum class DeleteMessageBatchResponseTypeEnum(@com.fasterxml.jackson.annotation.
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
+/** Required `string` value serialized in the `type` wire field. */
 enum class DirectCallerTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     DIRECT("direct");
 
@@ -468,19 +510,19 @@ enum class DirectCallerTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val 
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * All possible effort levels.
- */
-class EffortLevel private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
+/** All possible effort levels. */
+class EffortLevel
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
     override fun equals(other: Any?): Boolean = other is EffortLevel && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -491,14 +533,15 @@ class EffortLevel private constructor(
         @JvmField val XHIGH = EffortLevel("xhigh")
         @JvmField val MAX = EffortLevel("max")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = EffortLevel(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = EffortLevel(value)
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
+/** Required `string` value serialized in the `type` wire field. */
 enum class ErroredResultTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     ERRORED("errored");
 
@@ -507,14 +550,13 @@ enum class ErroredResultTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
+/** Required `string` value serialized in the `type` wire field. */
 enum class ErrorResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     ERROR("error");
 
@@ -523,19 +565,19 @@ enum class ErrorResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Typed representation of the `ErrorType` API schema.
- */
-class ErrorType private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
+/** Typed representation of the `ErrorType` API schema. */
+class ErrorType
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
     override fun equals(other: Any?): Boolean = other is ErrorType && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -550,14 +592,15 @@ class ErrorType private constructor(
         @JvmField val API_ERROR = ErrorType("api_error")
         @JvmField val BILLING_ERROR = ErrorType("billing_error")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ErrorType(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ErrorType(value)
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
+/** Required `string` value serialized in the `type` wire field. */
 enum class ExpiredResultTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
     EXPIRED("expired");
 
@@ -566,15 +609,16 @@ enum class ExpiredResultTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Deleted object type. For file deletion, this is always `"file_deleted"`.
- */
-enum class FileDeleteResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Deleted object type. For file deletion, this is always `"file_deleted"`. */
+enum class FileDeleteResponseTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     FILE_DELETED("file_deleted");
 
     override fun toString() = value
@@ -582,15 +626,16 @@ enum class FileDeleteResponseTypeEnum(@com.fasterxml.jackson.annotation.JsonValu
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required `string` value serialized in the `type` wire field.
- */
-enum class FileDocumentSourceTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required `string` value serialized in the `type` wire field. */
+enum class FileDocumentSourceTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     FILE("file");
 
     override fun toString() = value
@@ -598,7 +643,8 @@ enum class FileDocumentSourceTypeEnum(@com.fasterxml.jackson.annotation.JsonValu
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }

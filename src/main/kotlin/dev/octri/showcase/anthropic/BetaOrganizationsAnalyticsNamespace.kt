@@ -3,7 +3,6 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsAnalyticsNamespace(clientConfig: ClientConfig) {
     val userUsageReport: BetaOrganizationsAnalyticsUserUsageReportNamespace
     val userCostReport: BetaOrganizationsAnalyticsUserCostReportNamespace
@@ -16,6 +15,7 @@ class BetaOrganizationsAnalyticsNamespace(clientConfig: ClientConfig) {
     val connectors: BetaOrganizationsAnalyticsConnectorsNamespace
     val plugins: BetaOrganizationsAnalyticsPluginsNamespace
     val artifacts: BetaOrganizationsAnalyticsArtifactsNamespace
+
     init {
         userUsageReport = BetaOrganizationsAnalyticsUserUsageReportNamespace(clientConfig)
         userCostReport = BetaOrganizationsAnalyticsUserCostReportNamespace(clientConfig)

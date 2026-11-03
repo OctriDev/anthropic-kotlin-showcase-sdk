@@ -12,23 +12,50 @@ import dev.octri.showcase.anthropic.SdkResponse
 
 object BetaOrganizationsMe {
 
-    /**
-     * Retrieve information about the organization associated with the authenticated API key.
-     */
-    fun retrieveBetaOrganizationsMe(clientConfig: ClientConfig, options: RequestOptions? = null): BetaOrganizationSchema {
+    /** Retrieve information about the organization associated with the authenticated API key. */
+    fun retrieveBetaOrganizationsMe(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): BetaOrganizationSchema {
         return retrieveBetaOrganizationsMeWithRawResponse(clientConfig, options).data
     }
 
-
-    /** [retrieveBetaOrganizationsMe], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaOrganizationsMeWithRawResponse(clientConfig: ClientConfig, options: RequestOptions? = null): SdkResponse<BetaOrganizationSchema> {
-        return SdkClient.request<BetaOrganizationSchema>(SdkClient.RequestSpec("GET", "/v1/organizations/me?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsMe", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+    /**
+     * [retrieveBetaOrganizationsMe], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun retrieveBetaOrganizationsMeWithRawResponse(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaOrganizationSchema> {
+        return SdkClient.request<BetaOrganizationSchema>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/organizations/me?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaOrganizationsMe",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }

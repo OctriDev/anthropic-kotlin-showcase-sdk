@@ -3,89 +3,279 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaSessionsResourcesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from a previous response's cursor; omit `limit` to return all resources, or set it to request a bounded page of up to 1000 resources.
+     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from
+     * a previous response's cursor; omit `limit` to return all resources, or set it to request a
+     * bounded page of up to 1000 resources.
      */
-    fun list(sessionId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsListSessionResources {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.listBetaSessionsResources(clientConfig, sessionId, limit, page, anthropicBeta, anthropicWorkspaceId, options)
+    fun list(
+        sessionId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsListSessionResources {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+            .listBetaSessionsResources(
+                clientConfig,
+                sessionId,
+                limit,
+                page,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from a previous response's cursor; omit `limit` to return all resources, or set it to request a bounded page of up to 1000 resources.
+     * Lists resources attached to a session, ordered by creation time. Use `page` to continue from
+     * a previous response's cursor; omit `limit` to return all resources, or set it to request a
+     * bounded page of up to 1000 resources.
      */
-    fun listPaginated(sessionId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (BetaManagedAgentsSessionResource) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.listBetaSessionsResourcesPaginated(clientConfig, sessionId, limit, page, anthropicBeta, anthropicWorkspaceId, options, yieldFn)
+    fun listPaginated(
+        sessionId: String,
+        limit: Int? = null,
+        page: String? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaManagedAgentsSessionResource) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+            .listBetaSessionsResourcesPaginated(
+                clientConfig,
+                sessionId,
+                limit,
+                page,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+                yieldFn,
+            )
     }
 
     /**
-     * Adds a previously uploaded file as a resource attached to a session. Provide the file's `file_id` and optionally set `mount_path`; if omitted, the file is mounted at `/mnt/session/uploads/<file_id>`.
+     * Adds a previously uploaded file as a resource attached to a session. Provide the file's
+     * `file_id` and optionally set `mount_path`; if omitted, the file is mounted at
+     * `/mnt/session/uploads/<file_id>`.
      */
-    fun create(sessionId: String, body: BetaManagedAgentsAddSessionResourceParams, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsAddSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.createBetaSessionsResources(clientConfig, sessionId, body, anthropicBeta, anthropicWorkspaceId, options)
+    fun create(
+        sessionId: String,
+        body: BetaManagedAgentsAddSessionResourceParams,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsAddSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+            .createBetaSessionsResources(
+                clientConfig,
+                sessionId,
+                body,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Retrieves a specific resource attached to a session. Use `session_id` and `resource_id` to identify the resource; the response may describe a file, a URL-based resource, or an attached memory store.
+     * Retrieves a specific resource attached to a session. Use `session_id` and `resource_id` to
+     * identify the resource; the response may describe a file, a URL-based resource, or an attached
+     * memory store.
      */
-    fun retrieve(sessionId: String, resourceId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsGetSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.retrieveBetaSessionsResources(clientConfig, sessionId, resourceId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        sessionId: String,
+        resourceId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsGetSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+            .retrieveBetaSessionsResources(
+                clientConfig,
+                sessionId,
+                resourceId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Deletes a resource attached to a session. Use `session_id` and `resource_id` to identify the resource to remove; the response confirms deletion with the resource identifier.
+     * Deletes a resource attached to a session. Use `session_id` and `resource_id` to identify the
+     * resource to remove; the response confirms deletion with the resource identifier.
      */
-    fun delete(sessionId: String, resourceId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsDeleteSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.deleteBetaSessionsResources(clientConfig, sessionId, resourceId, anthropicBeta, anthropicWorkspaceId, options)
+    fun delete(
+        sessionId: String,
+        resourceId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsDeleteSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+            .deleteBetaSessionsResources(
+                clientConfig,
+                sessionId,
+                resourceId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Updates the authorization token for a resource attached to an agent session. Supply the new `authorization_token`; token rotation is currently supported only for `github_repository` resources.
+     * Updates the authorization token for a resource attached to an agent session. Supply the new
+     * `authorization_token`; token rotation is currently supported only for `github_repository`
+     * resources.
      */
-    fun update(sessionId: String, resourceId: String, authorizationToken: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaManagedAgentsUpdateSessionResource {
-        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.updateBetaSessionsResources(clientConfig, sessionId, resourceId, authorizationToken, anthropicBeta, anthropicWorkspaceId, options)
+    fun update(
+        sessionId: String,
+        resourceId: String,
+        authorizationToken: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaManagedAgentsUpdateSessionResource {
+        return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+            .updateBetaSessionsResources(
+                clientConfig,
+                sessionId,
+                resourceId,
+                authorizationToken,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaSessionsResourcesNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaSessionsResourcesNamespace], returning the [SdkResponse] envelope
+     * around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Lists resources attached to a session, ordered by creation time. Use `page` to continue from a previous response's cursor; omit `limit` to return all resources, or set it to request a bounded page of up to 1000 resources.
+         * Lists resources attached to a session, ordered by creation time. Use `page` to continue
+         * from a previous response's cursor; omit `limit` to return all resources, or set it to
+         * request a bounded page of up to 1000 resources.
          */
-        fun list(sessionId: String, limit: Int? = null, page: String? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsListSessionResources> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.listBetaSessionsResourcesWithRawResponse(clientConfig, sessionId, limit, page, anthropicBeta, anthropicWorkspaceId, options)
+        fun list(
+            sessionId: String,
+            limit: Int? = null,
+            page: String? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsListSessionResources> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+                .listBetaSessionsResourcesWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    limit,
+                    page,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Adds a previously uploaded file as a resource attached to a session. Provide the file's `file_id` and optionally set `mount_path`; if omitted, the file is mounted at `/mnt/session/uploads/<file_id>`.
+         * Adds a previously uploaded file as a resource attached to a session. Provide the file's
+         * `file_id` and optionally set `mount_path`; if omitted, the file is mounted at
+         * `/mnt/session/uploads/<file_id>`.
          */
-        fun create(sessionId: String, body: BetaManagedAgentsAddSessionResourceParams, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsAddSessionResource> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.createBetaSessionsResourcesWithRawResponse(clientConfig, sessionId, body, anthropicBeta, anthropicWorkspaceId, options)
+        fun create(
+            sessionId: String,
+            body: BetaManagedAgentsAddSessionResourceParams,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsAddSessionResource> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+                .createBetaSessionsResourcesWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    body,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Retrieves a specific resource attached to a session. Use `session_id` and `resource_id` to identify the resource; the response may describe a file, a URL-based resource, or an attached memory store.
+         * Retrieves a specific resource attached to a session. Use `session_id` and `resource_id`
+         * to identify the resource; the response may describe a file, a URL-based resource, or an
+         * attached memory store.
          */
-        fun retrieve(sessionId: String, resourceId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsGetSessionResource> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.retrieveBetaSessionsResourcesWithRawResponse(clientConfig, sessionId, resourceId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            sessionId: String,
+            resourceId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsGetSessionResource> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+                .retrieveBetaSessionsResourcesWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    resourceId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Deletes a resource attached to a session. Use `session_id` and `resource_id` to identify the resource to remove; the response confirms deletion with the resource identifier.
+         * Deletes a resource attached to a session. Use `session_id` and `resource_id` to identify
+         * the resource to remove; the response confirms deletion with the resource identifier.
          */
-        fun delete(sessionId: String, resourceId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsDeleteSessionResource> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.deleteBetaSessionsResourcesWithRawResponse(clientConfig, sessionId, resourceId, anthropicBeta, anthropicWorkspaceId, options)
+        fun delete(
+            sessionId: String,
+            resourceId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsDeleteSessionResource> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+                .deleteBetaSessionsResourcesWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    resourceId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Updates the authorization token for a resource attached to an agent session. Supply the new `authorization_token`; token rotation is currently supported only for `github_repository` resources.
+         * Updates the authorization token for a resource attached to an agent session. Supply the
+         * new `authorization_token`; token rotation is currently supported only for
+         * `github_repository` resources.
          */
-        fun update(sessionId: String, resourceId: String, authorizationToken: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaManagedAgentsUpdateSessionResource> {
-            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources.updateBetaSessionsResourcesWithRawResponse(clientConfig, sessionId, resourceId, authorizationToken, anthropicBeta, anthropicWorkspaceId, options)
+        fun update(
+            sessionId: String,
+            resourceId: String,
+            authorizationToken: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaManagedAgentsUpdateSessionResource> {
+            return dev.octri.showcase.anthropic.methods.beta.sessions.BetaSessionsResources
+                .updateBetaSessionsResourcesWithRawResponse(
+                    clientConfig,
+                    sessionId,
+                    resourceId,
+                    authorizationToken,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
-
     }
 }

@@ -5,16 +5,10 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Typed representation of the `BetaDeleteSpendLimitResponse` API schema.
- */
+/** Typed representation of the `BetaDeleteSpendLimitResponse` API schema. */
 data class BetaDeleteSpendLimitResponse(
-    /**
-     * Required `string` value serialized in the `id` wire field.
-     */
+    /** Required `string` value serialized in the `id` wire field. */
     val id: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
-    val type: BetaDeleteSpendLimitResponseTypeEnum
+    /** Required `string` value serialized in the `type` wire field. */
+    val type: BetaDeleteSpendLimitResponseTypeEnum,
 ) : SdkResource()

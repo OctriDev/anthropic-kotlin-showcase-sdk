@@ -16,92 +16,226 @@ import dev.octri.showcase.anthropic.SdkResponse
 object BetaSkillsVersions {
 
     /**
-     * Creates a new version of a skill by uploading its files. Send the files as `multipart/form-data`; they must share a top-level directory that contains `SKILL.md` at its root.
+     * Creates a new version of a skill by uploading its files. Send the files as
+     * `multipart/form-data`; they must share a top-level directory that contains `SKILL.md` at its
+     * root.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param files Files to upload for the skill. All files must be in the same
-     *   top-level directory and must include a SKILL.md file at the root of that
-     *   directory.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param files Files to upload for the skill. All files must be in the same top-level directory
+     *   and must include a SKILL.md file at the root of that directory.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun createBetaSkillsVersions(clientConfig: ClientConfig, skillId: String, files: List<SdkClient.UploadFile>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSkillVersion {
-        return createBetaSkillsVersionsWithRawResponse(clientConfig, skillId, files, anthropicBeta, anthropicWorkspaceId, options).data
+    fun createBetaSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        files: List<SdkClient.UploadFile>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSkillVersion {
+        return createBetaSkillsVersionsWithRawResponse(
+                clientConfig,
+                skillId,
+                files,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
-
-
-    /** [createBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun createBetaSkillsVersionsWithRawResponse(clientConfig: ClientConfig, skillId: String, files: List<SdkClient.UploadFile>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSkillVersion> {
-        return SdkClient.request<BetaSkillVersion>(SdkClient.RequestSpec("POST", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions?beta=true", config = clientConfig, body = SdkClient.bodyMap("files" to (files)), contentType = "multipart/form-data", operationId = "createBetaSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Lists versions for a specific skill, with cursor-based pagination. Use `skill_id` to select the skill and pass a previous response's `next_page` token in `page` to continue through its versions.
-     *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param page Optionally set to the `next_page` token from the previous
-     *   response.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
-     *   Defaults to `20`.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * [createBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
      */
-    fun listBetaSkillsVersions(clientConfig: ClientConfig, skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaListSkillVersionsResponse {
-        return listBetaSkillsVersionsWithRawResponse(clientConfig, skillId, page, limit, anthropicBeta, anthropicWorkspaceId, options).data
+    fun createBetaSkillsVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        skillId: String,
+        files: List<SdkClient.UploadFile>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSkillVersion> {
+        return SdkClient.request<BetaSkillVersion>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions?beta=true",
+                config = clientConfig,
+                body = SdkClient.bodyMap("files" to (files)),
+                contentType = "multipart/form-data",
+                operationId = "createBetaSkillsVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-    /** [listBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaSkillsVersionsWithRawResponse(clientConfig: ClientConfig, skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaListSkillVersionsResponse> {
-        return SdkClient.request<BetaListSkillVersionsResponse>(SdkClient.RequestSpec("GET", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions?beta=true", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "limit" to SdkClient.queryValue(limit, "form", true)), operationId = "listBetaSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Lists versions for a specific skill, with cursor-based pagination. Use `skill_id` to select the skill and pass a previous response's `next_page` token in `page` to continue through its versions.
+     * Lists versions for a specific skill, with cursor-based pagination. Use `skill_id` to select
+     * the skill and pass a previous response's `next_page` token in `page` to continue through its
+     * versions.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param page Optionally set to the `next_page` token from the previous
-     *   response.
-     * @param limit Number of results to return per page. Ranges from `1` to `1000`.
-     *   Defaults to `20`.
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
+     *   `20`.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun listBetaSkillsVersionsPaginated(clientConfig: ClientConfig, skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldFn: (BetaSkillVersion) -> Boolean) {
+    fun listBetaSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaListSkillVersionsResponse {
+        return listBetaSkillsVersionsWithRawResponse(
+                clientConfig,
+                skillId,
+                page,
+                limit,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
+    }
+
+    /**
+     * [listBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun listBetaSkillsVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        skillId: String,
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaListSkillVersionsResponse> {
+        return SdkClient.request<BetaListSkillVersionsResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "page" to SdkClient.queryValue(page, "form", true),
+                        "limit" to SdkClient.queryValue(limit, "form", true),
+                    ),
+                operationId = "listBetaSkillsVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Lists versions for a specific skill, with cursor-based pagination. Use `skill_id` to select
+     * the skill and pass a previous response's `next_page` token in `page` to continue through its
+     * versions.
+     *
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param page Optionally set to the `next_page` token from the previous response.
+     * @param limit Number of results to return per page. Ranges from `1` to `1000`. Defaults to
+     *   `20`.
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     */
+    fun listBetaSkillsVersionsPaginated(
+        clientConfig: ClientConfig,
+        skillId: String,
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaSkillVersion) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaSkillsVersions(clientConfig, skillId, cursor, limit, anthropicBeta, anthropicWorkspaceId, options)
+            val page =
+                listBetaSkillsVersions(
+                    clientConfig,
+                    skillId,
+                    cursor,
+                    limit,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             for (item in items) {
@@ -118,10 +252,28 @@ object BetaSkillsVersions {
         val hasMore: Boolean,
     )
 
-    fun listBetaSkillsVersionsPages(clientConfig: ClientConfig, skillId: String, page: SdkClient.SdkOptional<String?>? = null, limit: SdkClient.SdkOptional<Long?>? = null, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null, yieldPage: (ListBetaSkillsVersionsPage) -> Boolean) {
+    fun listBetaSkillsVersionsPages(
+        clientConfig: ClientConfig,
+        skillId: String,
+        page: SdkClient.SdkOptional<String?>? = null,
+        limit: SdkClient.SdkOptional<Long?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaSkillsVersionsPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
-            val page = listBetaSkillsVersions(clientConfig, skillId, cursor, limit, anthropicBeta, anthropicWorkspaceId, options)
+            val page =
+                listBetaSkillsVersions(
+                    clientConfig,
+                    skillId,
+                    cursor,
+                    limit,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
             val items = page.`data`.orEmpty()
             if (items.isEmpty()) return
             val nextCursor = page.nextPage
@@ -132,103 +284,238 @@ object BetaSkillsVersions {
         }
     }
 
+    /**
+     * Retrieves a specific version of a skill. Use `skill_id` to select the skill and `version` to
+     * identify a version, or use `latest` to retrieve the most recent version.
+     *
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param version Identifies the skill version: a version ID, or the literal `latest` for the
+     *   skill's most recent version. Requests carrying the `skills-2025-10-02` beta header address
+     *   versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
+     */
+    fun retrieveBetaSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSkillVersion {
+        return retrieveBetaSkillsVersionsWithRawResponse(
+                clientConfig,
+                skillId,
+                version,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
+    }
 
     /**
-     * Retrieves a specific version of a skill. Use `skill_id` to select the skill and `version` to identify a version, or use `latest` to retrieve the most recent version.
-     *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param version Identifies the skill version: a version ID, or the literal
-     *   `latest` for the skill's most recent version. Requests carrying the
-     *   `skills-2025-10-02` beta header address versions by their Unix epoch timestamp
-     *   instead (e.g., "1759178010641129").
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * [retrieveBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
      */
-    fun retrieveBetaSkillsVersions(clientConfig: ClientConfig, skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSkillVersion {
-        return retrieveBetaSkillsVersionsWithRawResponse(clientConfig, skillId, version, anthropicBeta, anthropicWorkspaceId, options).data
+    fun retrieveBetaSkillsVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaSkillVersion> {
+        return SdkClient.request<BetaSkillVersion>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaSkillsVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-    /** [retrieveBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaSkillsVersionsWithRawResponse(clientConfig: ClientConfig, skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSkillVersion> {
-        return SdkClient.request<BetaSkillVersion>(SdkClient.RequestSpec("GET", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}?beta=true", config = clientConfig, operationId = "retrieveBetaSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Deletes a specific version of a skill. Supply `skill_id` and the version's identifier, or its Unix epoch timestamp when using the `skills-2025-10-02` beta.
+     * Deletes a specific version of a skill. Supply `skill_id` and the version's identifier, or its
+     * Unix epoch timestamp when using the `skills-2025-10-02` beta.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param version Identifies the skill version by its version ID. Requests
-     *   carrying the `skills-2025-10-02` beta header address versions by their Unix
-     *   epoch timestamp instead (e.g., "1759178010641129").
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param version Identifies the skill version by its version ID. Requests carrying the
+     *   `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead
+     *   (e.g., "1759178010641129").
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun deleteBetaSkillsVersions(clientConfig: ClientConfig, skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaDeletedSkillVersion {
-        return deleteBetaSkillsVersionsWithRawResponse(clientConfig, skillId, version, anthropicBeta, anthropicWorkspaceId, options).data
+    fun deleteBetaSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaDeletedSkillVersion {
+        return deleteBetaSkillsVersionsWithRawResponse(
+                clientConfig,
+                skillId,
+                version,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
 
-
-    /** [deleteBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun deleteBetaSkillsVersionsWithRawResponse(clientConfig: ClientConfig, skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaDeletedSkillVersion> {
-        return SdkClient.request<BetaDeletedSkillVersion>(SdkClient.RequestSpec("DELETE", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}?beta=true", config = clientConfig, operationId = "deleteBetaSkillsVersions", decoder = SdkClient.ResponseDecoder.JSON, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+    /**
+     * [deleteBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun deleteBetaSkillsVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaDeletedSkillVersion> {
+        return SdkClient.request<BetaDeletedSkillVersion>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}?beta=true",
+                config = clientConfig,
+                operationId = "deleteBetaSkillsVersions",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
 
     /**
      * Download a skill version's content as a zip archive.
      *
-     * @param skillId Unique identifier for the skill. The format and length of IDs
-     *   may change over time.
-     * @param version Identifies the skill version by its version ID. Requests
-     *   carrying the `skills-2025-10-02` beta header address versions by their Unix
-     *   epoch timestamp instead (e.g., "1759178010641129").
-     * @param anthropicBeta Optional header to specify the beta version(s) you want
-     *   to use. To use multiple betas, use a comma separated list like `beta1,beta2`
-     *   or specify the header multiple times for each beta.
-     * @param anthropicWorkspaceId Optional header to select the Workspace for this
-     *   request. The value is a Workspace ID (for example,
-     *   `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for credentials that can act
-     *   on more than one Workspace. A credential that belongs to a specific Workspace
-     *   may omit it; if sent, it must match that Workspace.
+     * @param skillId Unique identifier for the skill. The format and length of IDs may change over
+     *   time.
+     * @param version Identifies the skill version by its version ID. Requests carrying the
+     *   `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead
+     *   (e.g., "1759178010641129").
+     * @param anthropicBeta Optional header to specify the beta version(s) you want to use. To use
+     *   multiple betas, use a comma separated list like `beta1,beta2` or specify the header
+     *   multiple times for each beta.
+     * @param anthropicWorkspaceId Optional header to select the Workspace for this request. The
+     *   value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`). Only needed for
+     *   credentials that can act on more than one Workspace. A credential that belongs to a
+     *   specific Workspace may omit it; if sent, it must match that Workspace.
      */
-    fun downloadBetaSkillsVersions(clientConfig: ClientConfig, skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): ByteArray {
-        return downloadBetaSkillsVersionsWithRawResponse(clientConfig, skillId, version, anthropicBeta, anthropicWorkspaceId, options).data
+    fun downloadBetaSkillsVersions(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): ByteArray {
+        return downloadBetaSkillsVersionsWithRawResponse(
+                clientConfig,
+                skillId,
+                version,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
+            .data
     }
 
-
-    /** [downloadBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun downloadBetaSkillsVersionsWithRawResponse(clientConfig: ClientConfig, skillId: String, version: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<ByteArray> {
-        return SdkClient.request<ByteArray>(SdkClient.RequestSpec("GET", "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}/content?beta=true", config = clientConfig, operationId = "downloadBetaSkillsVersions", decoder = SdkClient.ResponseDecoder.BYTES, extraHeaders = SdkClient.headers("anthropic-beta" to SdkClient.headerValue(anthropicBeta, false), "anthropic-workspace-id" to SdkClient.headerValue(anthropicWorkspaceId, false)), options = options))
+    /**
+     * [downloadBetaSkillsVersions], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun downloadBetaSkillsVersionsWithRawResponse(
+        clientConfig: ClientConfig,
+        skillId: String,
+        version: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ByteArray> {
+        return SdkClient.request<ByteArray>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/skills/${SdkClient.encodePathSegment(skillId)}/versions/${SdkClient.encodePathSegment(version)}/content?beta=true",
+                config = clientConfig,
+                operationId = "downloadBetaSkillsVersions",
+                decoder = SdkClient.ResponseDecoder.BYTES,
+                extraHeaders =
+                    SdkClient.headers(
+                        "anthropic-beta" to SdkClient.headerValue(anthropicBeta, false),
+                        "anthropic-workspace-id" to
+                            SdkClient.headerValue(anthropicWorkspaceId, false),
+                    ),
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

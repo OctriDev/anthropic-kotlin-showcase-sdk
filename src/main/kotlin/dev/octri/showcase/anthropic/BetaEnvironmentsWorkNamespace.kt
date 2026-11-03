@@ -3,165 +3,451 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaEnvironmentsWorkNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves queue statistics for an environment's work queue. Use the metrics to inspect queued and pending work and, when workers send `Anthropic-Worker-ID` with poll requests, the number of workers polling recently.
+     * Retrieves queue statistics for an environment's work queue. Use the metrics to inspect queued
+     * and pending work and, when workers send `Anthropic-Worker-ID` with poll requests, the number
+     * of workers polling recently.
      *
      * Get statistics about the work queue for an environment.
      */
-    fun retrieveStats(environmentId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSelfHostedWorkQueueStats {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.retrieveBetaEnvironmentsWorkStats(clientConfig, environmentId, anthropicBeta, authorization, anthropicWorkspaceId, options)
+    fun retrieveStats(
+        environmentId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWorkQueueStats {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .retrieveBetaEnvironmentsWorkStats(
+                clientConfig,
+                environmentId,
+                anthropicBeta,
+                authorization,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Retrieves the next available work item from an environment's queue, optionally waiting for work to arrive. The SDK and CLI environment workers call this operation automatically; you generally do not need to invoke it directly.
+     * Retrieves the next available work item from an environment's queue, optionally waiting for
+     * work to arrive. The SDK and CLI environment workers call this operation automatically; you
+     * generally do not need to invoke it directly.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Long poll for work items in the queue.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Long poll for work
+     * items in the queue.
      */
-    fun poll(request: dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.PollBetaEnvironmentsWorkRequest, options: RequestOptions? = null): BetaSelfHostedWork {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.pollBetaEnvironmentsWork(clientConfig, request, options)
+    fun poll(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.PollBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .pollBetaEnvironmentsWork(clientConfig, request, options)
     }
 
     /**
-     * Acknowledges receipt of a work item, moving it from the queue into the starting state. The SDK and CLI environment workers call this operation automatically as part of handling work in self-hosted environments.
+     * Acknowledges receipt of a work item, moving it from the queue into the starting state. The
+     * SDK and CLI environment workers call this operation automatically as part of handling work in
+     * self-hosted environments.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting' and removing it from the queue.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Acknowledge
+     * receipt of a work item, transitioning it from 'queued' to 'starting' and removing it from the
+     * queue.
      */
-    fun ack(environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaSelfHostedWork {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.ackBetaEnvironmentsWork(clientConfig, environmentId, workId, anthropicBeta, authorization, options)
+    fun ack(
+        environmentId: String,
+        workId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .ackBetaEnvironmentsWork(
+                clientConfig,
+                environmentId,
+                workId,
+                anthropicBeta,
+                authorization,
+                options,
+            )
     }
 
     /**
-     * Records a heartbeat for a work item to maintain its lease in a self-hosted environment. The SDK and CLI environment workers call this operation automatically; send the previous heartbeat value for conditional updates.
+     * Records a heartbeat for a work item to maintain its lease in a self-hosted environment. The
+     * SDK and CLI environment workers call this operation automatically; send the previous
+     * heartbeat value for conditional updates.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Record a heartbeat for a work item to maintain the lease.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Record a heartbeat
+     * for a work item to maintain the lease.
      */
-    fun heartbeat(request: dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.HeartbeatBetaEnvironmentsWorkRequest, options: RequestOptions? = null): BetaSelfHostedWorkHeartbeatResponse {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.heartbeatBetaEnvironmentsWork(clientConfig, request, options)
+    fun heartbeat(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.HeartbeatBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWorkHeartbeatResponse {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .heartbeatBetaEnvironmentsWork(clientConfig, request, options)
     }
 
     /**
-     * Stops a work item in a self-hosted environment, initiating a graceful shutdown or an immediate stop. The SDK and CLI environment workers call this operation automatically; set `force` to true only when you want to skip graceful shutdown.
+     * Stops a work item in a self-hosted environment, initiating a graceful shutdown or an
+     * immediate stop. The SDK and CLI environment workers call this operation automatically; set
+     * `force` to true only when you want to skip graceful shutdown.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Stop a work item, initiating graceful or forced shutdown.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Stop a work item,
+     * initiating graceful or forced shutdown.
      */
-    fun stop(request: dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.StopBetaEnvironmentsWorkRequest, options: RequestOptions? = null): BetaSelfHostedWork {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.stopBetaEnvironmentsWork(clientConfig, request, options)
+    fun stop(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.StopBetaEnvironmentsWorkRequest,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .stopBetaEnvironmentsWork(clientConfig, request, options)
     }
 
     /**
-     * Retrieves detailed information about a specific work item in an environment. The SDK and CLI environment workers call this operation automatically as part of managing work in self-hosted environments.
+     * Retrieves detailed information about a specific work item in an environment. The SDK and CLI
+     * environment workers call this operation automatically as part of managing work in self-hosted
+     * environments.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Retrieve detailed information about a specific work item.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Retrieve detailed
+     * information about a specific work item.
      */
-    fun retrieve(environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSelfHostedWork {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.retrieveBetaEnvironmentsWork(clientConfig, environmentId, workId, anthropicBeta, anthropicWorkspaceId, options)
+    fun retrieve(
+        environmentId: String,
+        workId: String,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .retrieveBetaEnvironmentsWork(
+                clientConfig,
+                environmentId,
+                workId,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Updates metadata on a work item in a self-hosted environment using merge semantics. Set metadata keys to strings to add or replace values, or to null to delete them; omitting the `metadata` field is not supported. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+     * Updates metadata on a work item in a self-hosted environment using merge semantics. Set
+     * metadata keys to strings to add or replace values, or to null to delete them; omitting the
+     * `metadata` field is not supported. The SDK and CLI environment workers call this operation
+     * automatically, so you do not need to invoke it directly.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Update work item metadata with merge semantics.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. Update work item
+     * metadata with merge semantics.
      */
-    fun update(environmentId: String, workId: String, metadata: Map<String, String>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): BetaSelfHostedWork {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.updateBetaEnvironmentsWork(clientConfig, environmentId, workId, metadata, anthropicBeta, anthropicWorkspaceId, options)
+    fun update(
+        environmentId: String,
+        workId: String,
+        metadata: Map<String, String>,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        anthropicWorkspaceId: String? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWork {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .updateBetaEnvironmentsWork(
+                clientConfig,
+                environmentId,
+                workId,
+                metadata,
+                anthropicBeta,
+                anthropicWorkspaceId,
+                options,
+            )
     }
 
     /**
-     * Lists work items in a self-hosted environment for the environment worker to execute. Use `limit` to set the page size and pass the opaque `page` cursor from a previous response to continue through results. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+     * Lists work items in a self-hosted environment for the environment worker to execute. Use
+     * `limit` to set the page size and pass the opaque `page` cursor from a previous response to
+     * continue through results. The SDK and CLI environment workers call this operation
+     * automatically, so you do not need to invoke it directly.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. List work items in an environment.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. List work items in
+     * an environment.
      */
-    fun list(environmentId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaSelfHostedWorkListResponse {
-        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.listBetaEnvironmentsWork(clientConfig, environmentId, limit, page, anthropicBeta, authorization, options)
+    fun list(
+        environmentId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaSelfHostedWorkListResponse {
+        return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .listBetaEnvironmentsWork(
+                clientConfig,
+                environmentId,
+                limit,
+                page,
+                anthropicBeta,
+                authorization,
+                options,
+            )
     }
 
     /**
-     * Lists work items in a self-hosted environment for the environment worker to execute. Use `limit` to set the page size and pass the opaque `page` cursor from a previous response to continue through results. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+     * Lists work items in a self-hosted environment for the environment worker to execute. Use
+     * `limit` to set the page size and pass the opaque `page` cursor from a previous response to
+     * continue through results. The SDK and CLI environment workers call this operation
+     * automatically, so you do not need to invoke it directly.
      *
-     * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. List work items in an environment.
+     * Note: these endpoints are called automatically by the pre-built environment worker provided
+     * in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They
+     * are included here as a reference; you do not need to invoke them directly. List work items in
+     * an environment.
      */
-    fun listPaginated(environmentId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaSelfHostedWork) -> Boolean) {
-        dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.listBetaEnvironmentsWorkPaginated(clientConfig, environmentId, limit, page, anthropicBeta, authorization, options, yieldFn)
+    fun listPaginated(
+        environmentId: String,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        anthropicBeta: List<AnthropicBeta>? = null,
+        authorization: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaSelfHostedWork) -> Boolean,
+    ) {
+        dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+            .listBetaEnvironmentsWorkPaginated(
+                clientConfig,
+                environmentId,
+                limit,
+                page,
+                anthropicBeta,
+                authorization,
+                options,
+                yieldFn,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaEnvironmentsWorkNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaEnvironmentsWorkNamespace], returning the [SdkResponse] envelope
+     * around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Retrieves queue statistics for an environment's work queue. Use the metrics to inspect queued and pending work and, when workers send `Anthropic-Worker-ID` with poll requests, the number of workers polling recently.
+         * Retrieves queue statistics for an environment's work queue. Use the metrics to inspect
+         * queued and pending work and, when workers send `Anthropic-Worker-ID` with poll requests,
+         * the number of workers polling recently.
          *
          * Get statistics about the work queue for an environment.
          */
-        fun retrieveStats(environmentId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWorkQueueStats> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.retrieveBetaEnvironmentsWorkStatsWithRawResponse(clientConfig, environmentId, anthropicBeta, authorization, anthropicWorkspaceId, options)
+        fun retrieveStats(
+            environmentId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            authorization: SdkClient.SdkOptional<String?>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWorkQueueStats> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .retrieveBetaEnvironmentsWorkStatsWithRawResponse(
+                    clientConfig,
+                    environmentId,
+                    anthropicBeta,
+                    authorization,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Retrieves the next available work item from an environment's queue, optionally waiting for work to arrive. The SDK and CLI environment workers call this operation automatically; you generally do not need to invoke it directly.
+         * Retrieves the next available work item from an environment's queue, optionally waiting
+         * for work to arrive. The SDK and CLI environment workers call this operation
+         * automatically; you generally do not need to invoke it directly.
          *
-         * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Long poll for work items in the queue.
+         * Note: these endpoints are called automatically by the pre-built environment worker
+         * provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox
+         * environments. They are included here as a reference; you do not need to invoke them
+         * directly. Long poll for work items in the queue.
          */
-        fun poll(request: dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.PollBetaEnvironmentsWorkRequest, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.pollBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options)
+        fun poll(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.PollBetaEnvironmentsWorkRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWork> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .pollBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Acknowledges receipt of a work item, moving it from the queue into the starting state. The SDK and CLI environment workers call this operation automatically as part of handling work in self-hosted environments.
+         * Acknowledges receipt of a work item, moving it from the queue into the starting state.
+         * The SDK and CLI environment workers call this operation automatically as part of handling
+         * work in self-hosted environments.
          *
-         * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting' and removing it from the queue.
+         * Note: these endpoints are called automatically by the pre-built environment worker
+         * provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox
+         * environments. They are included here as a reference; you do not need to invoke them
+         * directly. Acknowledge receipt of a work item, transitioning it from 'queued' to
+         * 'starting' and removing it from the queue.
          */
-        fun ack(environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.ackBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, workId, anthropicBeta, authorization, options)
+        fun ack(
+            environmentId: String,
+            workId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            authorization: SdkClient.SdkOptional<String?>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWork> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .ackBetaEnvironmentsWorkWithRawResponse(
+                    clientConfig,
+                    environmentId,
+                    workId,
+                    anthropicBeta,
+                    authorization,
+                    options,
+                )
         }
 
         /**
-         * Records a heartbeat for a work item to maintain its lease in a self-hosted environment. The SDK and CLI environment workers call this operation automatically; send the previous heartbeat value for conditional updates.
+         * Records a heartbeat for a work item to maintain its lease in a self-hosted environment.
+         * The SDK and CLI environment workers call this operation automatically; send the previous
+         * heartbeat value for conditional updates.
          *
-         * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Record a heartbeat for a work item to maintain the lease.
+         * Note: these endpoints are called automatically by the pre-built environment worker
+         * provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox
+         * environments. They are included here as a reference; you do not need to invoke them
+         * directly. Record a heartbeat for a work item to maintain the lease.
          */
-        fun heartbeat(request: dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.HeartbeatBetaEnvironmentsWorkRequest, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWorkHeartbeatResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.heartbeatBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options)
+        fun heartbeat(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.HeartbeatBetaEnvironmentsWorkRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWorkHeartbeatResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .heartbeatBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Stops a work item in a self-hosted environment, initiating a graceful shutdown or an immediate stop. The SDK and CLI environment workers call this operation automatically; set `force` to true only when you want to skip graceful shutdown.
+         * Stops a work item in a self-hosted environment, initiating a graceful shutdown or an
+         * immediate stop. The SDK and CLI environment workers call this operation automatically;
+         * set `force` to true only when you want to skip graceful shutdown.
          *
-         * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Stop a work item, initiating graceful or forced shutdown.
+         * Note: these endpoints are called automatically by the pre-built environment worker
+         * provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox
+         * environments. They are included here as a reference; you do not need to invoke them
+         * directly. Stop a work item, initiating graceful or forced shutdown.
          */
-        fun stop(request: dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.StopBetaEnvironmentsWorkRequest, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.stopBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options)
+        fun stop(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.StopBetaEnvironmentsWorkRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWork> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .stopBetaEnvironmentsWorkWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Retrieves detailed information about a specific work item in an environment. The SDK and CLI environment workers call this operation automatically as part of managing work in self-hosted environments.
+         * Retrieves detailed information about a specific work item in an environment. The SDK and
+         * CLI environment workers call this operation automatically as part of managing work in
+         * self-hosted environments.
          *
-         * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Retrieve detailed information about a specific work item.
+         * Note: these endpoints are called automatically by the pre-built environment worker
+         * provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox
+         * environments. They are included here as a reference; you do not need to invoke them
+         * directly. Retrieve detailed information about a specific work item.
          */
-        fun retrieve(environmentId: String, workId: String, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.retrieveBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, workId, anthropicBeta, anthropicWorkspaceId, options)
+        fun retrieve(
+            environmentId: String,
+            workId: String,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWork> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .retrieveBetaEnvironmentsWorkWithRawResponse(
+                    clientConfig,
+                    environmentId,
+                    workId,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Updates metadata on a work item in a self-hosted environment using merge semantics. Set metadata keys to strings to add or replace values, or to null to delete them; omitting the `metadata` field is not supported. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+         * Updates metadata on a work item in a self-hosted environment using merge semantics. Set
+         * metadata keys to strings to add or replace values, or to null to delete them; omitting
+         * the `metadata` field is not supported. The SDK and CLI environment workers call this
+         * operation automatically, so you do not need to invoke it directly.
          *
-         * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. Update work item metadata with merge semantics.
+         * Note: these endpoints are called automatically by the pre-built environment worker
+         * provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox
+         * environments. They are included here as a reference; you do not need to invoke them
+         * directly. Update work item metadata with merge semantics.
          */
-        fun update(environmentId: String, workId: String, metadata: Map<String, String>, anthropicBeta: List<AnthropicBeta>? = null, anthropicWorkspaceId: String? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWork> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.updateBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, workId, metadata, anthropicBeta, anthropicWorkspaceId, options)
+        fun update(
+            environmentId: String,
+            workId: String,
+            metadata: Map<String, String>,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            anthropicWorkspaceId: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWork> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .updateBetaEnvironmentsWorkWithRawResponse(
+                    clientConfig,
+                    environmentId,
+                    workId,
+                    metadata,
+                    anthropicBeta,
+                    anthropicWorkspaceId,
+                    options,
+                )
         }
 
         /**
-         * Lists work items in a self-hosted environment for the environment worker to execute. Use `limit` to set the page size and pass the opaque `page` cursor from a previous response to continue through results. The SDK and CLI environment workers call this operation automatically, so you do not need to invoke it directly.
+         * Lists work items in a self-hosted environment for the environment worker to execute. Use
+         * `limit` to set the page size and pass the opaque `page` cursor from a previous response
+         * to continue through results. The SDK and CLI environment workers call this operation
+         * automatically, so you do not need to invoke it directly.
          *
-         * Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly. List work items in an environment.
+         * Note: these endpoints are called automatically by the pre-built environment worker
+         * provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox
+         * environments. They are included here as a reference; you do not need to invoke them
+         * directly. List work items in an environment.
          */
-        fun list(environmentId: String, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, anthropicBeta: List<AnthropicBeta>? = null, authorization: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): SdkResponse<BetaSelfHostedWorkListResponse> {
-            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork.listBetaEnvironmentsWorkWithRawResponse(clientConfig, environmentId, limit, page, anthropicBeta, authorization, options)
+        fun list(
+            environmentId: String,
+            limit: Long? = null,
+            page: SdkClient.SdkOptional<String?>? = null,
+            anthropicBeta: List<AnthropicBeta>? = null,
+            authorization: SdkClient.SdkOptional<String?>? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaSelfHostedWorkListResponse> {
+            return dev.octri.showcase.anthropic.methods.beta.environments.BetaEnvironmentsWork
+                .listBetaEnvironmentsWorkWithRawResponse(
+                    clientConfig,
+                    environmentId,
+                    limit,
+                    page,
+                    anthropicBeta,
+                    authorization,
+                    options,
+                )
         }
-
     }
 }

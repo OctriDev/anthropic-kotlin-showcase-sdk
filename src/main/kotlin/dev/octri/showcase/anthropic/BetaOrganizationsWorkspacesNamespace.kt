@@ -3,90 +3,187 @@
 
 package dev.octri.showcase.anthropic
 
-
 class BetaOrganizationsWorkspacesNamespace(private val clientConfig: ClientConfig) {
     val members: BetaOrganizationsWorkspacesMembersNamespace
     val rateLimits: BetaOrganizationsWorkspacesRateLimitsNamespace
     val serviceAccounts: BetaOrganizationsWorkspacesServiceAccountsNamespace
+
     init {
         members = BetaOrganizationsWorkspacesMembersNamespace(clientConfig)
         rateLimits = BetaOrganizationsWorkspacesRateLimitsNamespace(clientConfig)
         serviceAccounts = BetaOrganizationsWorkspacesServiceAccountsNamespace(clientConfig)
     }
+
     /**
-     * Retrieves a workspace by its identifier. Use `workspace_id` to select the workspace whose configuration and metadata you need. The response includes the workspace's data residency settings, tags, and archive state.
+     * Retrieves a workspace by its identifier. Use `workspace_id` to select the workspace whose
+     * configuration and metadata you need. The response includes the workspace's data residency
+     * settings, tags, and archive state.
      */
     fun retrieve(workspaceId: String, options: RequestOptions? = null): BetaWorkspace {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.retrieveBetaOrganizationsWorkspaces(clientConfig, workspaceId, options)
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces
+            .retrieveBetaOrganizationsWorkspaces(clientConfig, workspaceId, options)
     }
 
     /**
-     * Updates selected configuration fields for a workspace. Include only the fields you want to change; omitted fields remain unchanged. Use `name`, `display_color`, `tags`, `data_residency`, or `external_key_id` as needed.
+     * Updates selected configuration fields for a workspace. Include only the fields you want to
+     * change; omitted fields remain unchanged. Use `name`, `display_color`, `tags`,
+     * `data_residency`, or `external_key_id` as needed.
      */
-    fun update(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.UpdateBetaOrganizationsWorkspacesRequest, options: RequestOptions? = null): BetaWorkspace {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.updateBetaOrganizationsWorkspaces(clientConfig, request, options)
+    fun update(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.UpdateBetaOrganizationsWorkspacesRequest,
+        options: RequestOptions? = null,
+    ): BetaWorkspace {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces
+            .updateBetaOrganizationsWorkspaces(clientConfig, request, options)
     }
 
     /**
-     * Lists workspaces in the organization, with cursor-based pagination. Set `include_archived` to include archived workspaces, and use `before_id` or `after_id` to navigate pages. The response includes cursors and a `has_more` flag.
+     * Lists workspaces in the organization, with cursor-based pagination. Set `include_archived` to
+     * include archived workspaces, and use `before_id` or `after_id` to navigate pages. The
+     * response includes cursors and a `has_more` flag.
      */
-    fun list(includeArchived: Boolean? = null, beforeId: String? = null, afterId: String? = null, limit: Long? = null, options: RequestOptions? = null): BetaListResponseWorkspace {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.listBetaOrganizationsWorkspaces(clientConfig, includeArchived, beforeId, afterId, limit, options)
+    fun list(
+        includeArchived: Boolean? = null,
+        beforeId: String? = null,
+        afterId: String? = null,
+        limit: Long? = null,
+        options: RequestOptions? = null,
+    ): BetaListResponseWorkspace {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces
+            .listBetaOrganizationsWorkspaces(
+                clientConfig,
+                includeArchived,
+                beforeId,
+                afterId,
+                limit,
+                options,
+            )
     }
 
     /**
-     * Creates a workspace for the organization. Provide a `name` and optionally configure data residency, display color, tags, or a customer-managed encryption key. If `data_residency` is omitted, its settings default to a US workspace location, unrestricted inference geographies, and global default inference geography.
+     * Creates a workspace for the organization. Provide a `name` and optionally configure data
+     * residency, display color, tags, or a customer-managed encryption key. If `data_residency` is
+     * omitted, its settings default to a US workspace location, unrestricted inference geographies,
+     * and global default inference geography.
      */
-    fun create(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.CreateBetaOrganizationsWorkspacesRequest, options: RequestOptions? = null): BetaWorkspace {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.createBetaOrganizationsWorkspaces(clientConfig, request, options)
+    fun create(
+        request:
+            dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.CreateBetaOrganizationsWorkspacesRequest,
+        options: RequestOptions? = null,
+    ): BetaWorkspace {
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces
+            .createBetaOrganizationsWorkspaces(clientConfig, request, options)
     }
 
     /**
-     * Archives a workspace in the organization. Use `workspace_id` to identify the workspace to archive. The response returns the workspace object with its archive state.
+     * Archives a workspace in the organization. Use `workspace_id` to identify the workspace to
+     * archive. The response returns the workspace object with its archive state.
      */
     fun archive(workspaceId: String, options: RequestOptions? = null): BetaWorkspace {
-        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.archiveBetaOrganizationsWorkspaces(clientConfig, workspaceId, options)
+        return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces
+            .archiveBetaOrganizationsWorkspaces(clientConfig, workspaceId, options)
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [BetaOrganizationsWorkspacesNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [BetaOrganizationsWorkspacesNamespace], returning the [SdkResponse]
+     * envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Retrieves a workspace by its identifier. Use `workspace_id` to select the workspace whose configuration and metadata you need. The response includes the workspace's data residency settings, tags, and archive state.
+         * Retrieves a workspace by its identifier. Use `workspace_id` to select the workspace whose
+         * configuration and metadata you need. The response includes the workspace's data residency
+         * settings, tags, and archive state.
          */
-        fun retrieve(workspaceId: String, options: RequestOptions? = null): SdkResponse<BetaWorkspace> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.retrieveBetaOrganizationsWorkspacesWithRawResponse(clientConfig, workspaceId, options)
+        fun retrieve(
+            workspaceId: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaWorkspace> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsWorkspaces
+                .retrieveBetaOrganizationsWorkspacesWithRawResponse(
+                    clientConfig,
+                    workspaceId,
+                    options,
+                )
         }
 
         /**
-         * Updates selected configuration fields for a workspace. Include only the fields you want to change; omitted fields remain unchanged. Use `name`, `display_color`, `tags`, `data_residency`, or `external_key_id` as needed.
+         * Updates selected configuration fields for a workspace. Include only the fields you want
+         * to change; omitted fields remain unchanged. Use `name`, `display_color`, `tags`,
+         * `data_residency`, or `external_key_id` as needed.
          */
-        fun update(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.UpdateBetaOrganizationsWorkspacesRequest, options: RequestOptions? = null): SdkResponse<BetaWorkspace> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.updateBetaOrganizationsWorkspacesWithRawResponse(clientConfig, request, options)
+        fun update(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.UpdateBetaOrganizationsWorkspacesRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaWorkspace> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsWorkspaces
+                .updateBetaOrganizationsWorkspacesWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Lists workspaces in the organization, with cursor-based pagination. Set `include_archived` to include archived workspaces, and use `before_id` or `after_id` to navigate pages. The response includes cursors and a `has_more` flag.
+         * Lists workspaces in the organization, with cursor-based pagination. Set
+         * `include_archived` to include archived workspaces, and use `before_id` or `after_id` to
+         * navigate pages. The response includes cursors and a `has_more` flag.
          */
-        fun list(includeArchived: Boolean? = null, beforeId: String? = null, afterId: String? = null, limit: Long? = null, options: RequestOptions? = null): SdkResponse<BetaListResponseWorkspace> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.listBetaOrganizationsWorkspacesWithRawResponse(clientConfig, includeArchived, beforeId, afterId, limit, options)
+        fun list(
+            includeArchived: Boolean? = null,
+            beforeId: String? = null,
+            afterId: String? = null,
+            limit: Long? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaListResponseWorkspace> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsWorkspaces
+                .listBetaOrganizationsWorkspacesWithRawResponse(
+                    clientConfig,
+                    includeArchived,
+                    beforeId,
+                    afterId,
+                    limit,
+                    options,
+                )
         }
 
         /**
-         * Creates a workspace for the organization. Provide a `name` and optionally configure data residency, display color, tags, or a customer-managed encryption key. If `data_residency` is omitted, its settings default to a US workspace location, unrestricted inference geographies, and global default inference geography.
+         * Creates a workspace for the organization. Provide a `name` and optionally configure data
+         * residency, display color, tags, or a customer-managed encryption key. If `data_residency`
+         * is omitted, its settings default to a US workspace location, unrestricted inference
+         * geographies, and global default inference geography.
          */
-        fun create(request: dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.CreateBetaOrganizationsWorkspacesRequest, options: RequestOptions? = null): SdkResponse<BetaWorkspace> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.createBetaOrganizationsWorkspacesWithRawResponse(clientConfig, request, options)
+        fun create(
+            request:
+                dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.CreateBetaOrganizationsWorkspacesRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaWorkspace> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsWorkspaces
+                .createBetaOrganizationsWorkspacesWithRawResponse(clientConfig, request, options)
         }
 
         /**
-         * Archives a workspace in the organization. Use `workspace_id` to identify the workspace to archive. The response returns the workspace object with its archive state.
+         * Archives a workspace in the organization. Use `workspace_id` to identify the workspace to
+         * archive. The response returns the workspace object with its archive state.
          */
-        fun archive(workspaceId: String, options: RequestOptions? = null): SdkResponse<BetaWorkspace> {
-            return dev.octri.showcase.anthropic.methods.beta.organizations.BetaOrganizationsWorkspaces.archiveBetaOrganizationsWorkspacesWithRawResponse(clientConfig, workspaceId, options)
+        fun archive(
+            workspaceId: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<BetaWorkspace> {
+            return dev.octri.showcase.anthropic.methods.beta.organizations
+                .BetaOrganizationsWorkspaces
+                .archiveBetaOrganizationsWorkspacesWithRawResponse(
+                    clientConfig,
+                    workspaceId,
+                    options,
+                )
         }
-
     }
 }

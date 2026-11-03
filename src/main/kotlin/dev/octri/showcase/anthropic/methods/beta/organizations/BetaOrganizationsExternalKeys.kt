@@ -26,54 +26,152 @@ object BetaOrganizationsExternalKeys {
      * @param displayName Human-friendly display name.
      * @param geo Data residency geo. Only `us` is supported.
      */
-    fun createBetaOrganizationsExternalKeys(clientConfig: ClientConfig, providerConfig: BetaExternalKeyCreateParamsProviderConfig, displayName: SdkClient.SdkOptional<String?>? = null, geo: BetaExternalKeyCreateParamsGeoEnum? = null, options: RequestOptions? = null): BetaExternalKey {
-        return createBetaOrganizationsExternalKeysWithRawResponse(clientConfig, providerConfig, displayName, geo, options).data
+    fun createBetaOrganizationsExternalKeys(
+        clientConfig: ClientConfig,
+        providerConfig: BetaExternalKeyCreateParamsProviderConfig,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        geo: BetaExternalKeyCreateParamsGeoEnum? = null,
+        options: RequestOptions? = null,
+    ): BetaExternalKey {
+        return createBetaOrganizationsExternalKeysWithRawResponse(
+                clientConfig,
+                providerConfig,
+                displayName,
+                geo,
+                options,
+            )
+            .data
     }
-
-
-    /** [createBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun createBetaOrganizationsExternalKeysWithRawResponse(clientConfig: ClientConfig, providerConfig: BetaExternalKeyCreateParamsProviderConfig, displayName: SdkClient.SdkOptional<String?>? = null, geo: BetaExternalKeyCreateParamsGeoEnum? = null, options: RequestOptions? = null): SdkResponse<BetaExternalKey> {
-        return SdkClient.request<BetaExternalKey>(SdkClient.RequestSpec("POST", "/v1/organizations/external_keys?beta=true", config = clientConfig, body = SdkClient.bodyMap("provider_config" to (providerConfig), "display_name" to
-    (displayName ?: SdkClient.SdkOptional.Omitted), "geo" to (SdkClient.omitIfNull(geo))), operationId = "createBetaOrganizationsExternalKeys", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * List external key configs in the caller's organization. Results are ordered by creation time (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
+     * [createBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun createBetaOrganizationsExternalKeysWithRawResponse(
+        clientConfig: ClientConfig,
+        providerConfig: BetaExternalKeyCreateParamsProviderConfig,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        geo: BetaExternalKeyCreateParamsGeoEnum? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaExternalKey> {
+        return SdkClient.request<BetaExternalKey>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/organizations/external_keys?beta=true",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "provider_config" to (providerConfig),
+                        "display_name" to (displayName ?: SdkClient.SdkOptional.Omitted),
+                        "geo" to (SdkClient.omitIfNull(geo)),
+                    ),
+                operationId = "createBetaOrganizationsExternalKeys",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * List external key configs in the caller's organization. Results are ordered by creation time
+     * (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
      *
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
      */
-    fun listBetaOrganizationsExternalKeys(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): BetaExternalKeyListResponse {
-        return listBetaOrganizationsExternalKeysWithRawResponse(clientConfig, limit, page, options).data
+    fun listBetaOrganizationsExternalKeys(
+        clientConfig: ClientConfig,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): BetaExternalKeyListResponse {
+        return listBetaOrganizationsExternalKeysWithRawResponse(clientConfig, limit, page, options)
+            .data
     }
 
-
-    /** [listBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listBetaOrganizationsExternalKeysWithRawResponse(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): SdkResponse<BetaExternalKeyListResponse> {
+    /**
+     * [listBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun listBetaOrganizationsExternalKeysWithRawResponse(
+        clientConfig: ClientConfig,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaExternalKeyListResponse> {
         if (limit != null) {
             Validation.validateRange("limit", limit, Validation.RangeOpts(min = 1.0, max = 100.0))
-}
+        }
 
-        return SdkClient.request<BetaExternalKeyListResponse>(SdkClient.RequestSpec("GET", "/v1/organizations/external_keys?beta=true", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "listBetaOrganizationsExternalKeys", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaExternalKeyListResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/organizations/external_keys?beta=true",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "limit" to SdkClient.queryValue(limit, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "listBetaOrganizationsExternalKeys",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * List external key configs in the caller's organization. Results are ordered by creation time (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
+     * List external key configs in the caller's organization. Results are ordered by creation time
+     * (newest first). Use the `next_page` cursor from the response to fetch subsequent pages.
      *
      * @param limit Number of results per page.
      * @param page Opaque cursor from a previous response's `next_page`.
      */
-    fun listBetaOrganizationsExternalKeysPaginated(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldFn: (BetaExternalKey) -> Boolean) {
+    fun listBetaOrganizationsExternalKeysPaginated(
+        clientConfig: ClientConfig,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldFn: (BetaExternalKey) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
             val page = listBetaOrganizationsExternalKeys(clientConfig, limit, cursor, options)
@@ -93,7 +191,13 @@ object BetaOrganizationsExternalKeys {
         val hasMore: Boolean,
     )
 
-    fun listBetaOrganizationsExternalKeysPages(clientConfig: ClientConfig, limit: Long? = null, page: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null, yieldPage: (ListBetaOrganizationsExternalKeysPage) -> Boolean) {
+    fun listBetaOrganizationsExternalKeysPages(
+        clientConfig: ClientConfig,
+        limit: Long? = null,
+        page: SdkClient.SdkOptional<String?>? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ListBetaOrganizationsExternalKeysPage) -> Boolean,
+    ) {
         var cursor = page
         while (true) {
             val page = listBetaOrganizationsExternalKeys(clientConfig, limit, cursor, options)
@@ -107,99 +211,283 @@ object BetaOrganizationsExternalKeys {
         }
     }
 
-
     /**
      * Retrieve a single external key config in the caller's organization by ID.
      *
      * @param externalKeyId ID of the External Key.
      */
-    fun retrieveBetaOrganizationsExternalKeys(clientConfig: ClientConfig, externalKeyId: String, options: RequestOptions? = null): BetaExternalKey {
-        return retrieveBetaOrganizationsExternalKeysWithRawResponse(clientConfig, externalKeyId, options).data
+    fun retrieveBetaOrganizationsExternalKeys(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        options: RequestOptions? = null,
+    ): BetaExternalKey {
+        return retrieveBetaOrganizationsExternalKeysWithRawResponse(
+                clientConfig,
+                externalKeyId,
+                options,
+            )
+            .data
     }
-
-
-    /** [retrieveBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun retrieveBetaOrganizationsExternalKeysWithRawResponse(clientConfig: ClientConfig, externalKeyId: String, options: RequestOptions? = null): SdkResponse<BetaExternalKey> {
-        Validation.validateLength("external_key_id", externalKeyId, Validation.LengthOpts(max = 2048))
-
-        return SdkClient.request<BetaExternalKey>(SdkClient.RequestSpec("GET", "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}?beta=true", config = clientConfig, operationId = "retrieveBetaOrganizationsExternalKeys", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Partially update an external key config. Omitted fields are left unchanged. `display_name` is always editable. `geo` and `provider_config` cannot be changed once any workspace references this config, because previously encrypted data requires the original key identity to decrypt.
+     * [retrieveBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun retrieveBetaOrganizationsExternalKeysWithRawResponse(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaExternalKey> {
+        Validation.validateLength(
+            "external_key_id",
+            externalKeyId,
+            Validation.LengthOpts(max = 2048),
+        )
+
+        return SdkClient.request<BetaExternalKey>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}?beta=true",
+                config = clientConfig,
+                operationId = "retrieveBetaOrganizationsExternalKeys",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Partially update an external key config. Omitted fields are left unchanged. `display_name` is
+     * always editable. `geo` and `provider_config` cannot be changed once any workspace references
+     * this config, because previously encrypted data requires the original key identity to decrypt.
      *
      * @param externalKeyId ID of the External Key.
      * @param displayName Human-friendly display name.
      * @param geo Data residency geo. Only `us` is supported.
      * @param providerConfig KMS provider identity and auth coordinates.
      */
-    fun updateBetaOrganizationsExternalKeys(clientConfig: ClientConfig, externalKeyId: String, displayName: SdkClient.SdkOptional<String?>? = null, geo: SdkClient.SdkOptional<String?>? = null, providerConfig: SdkClient.SdkOptional<BetaExternalKeyUpdateParamsProviderConfig?>? = null, options: RequestOptions? = null): BetaExternalKey {
-        return updateBetaOrganizationsExternalKeysWithRawResponse(clientConfig, externalKeyId, displayName, geo, providerConfig, options).data
+    fun updateBetaOrganizationsExternalKeys(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        geo: SdkClient.SdkOptional<String?>? = null,
+        providerConfig: SdkClient.SdkOptional<BetaExternalKeyUpdateParamsProviderConfig?>? = null,
+        options: RequestOptions? = null,
+    ): BetaExternalKey {
+        return updateBetaOrganizationsExternalKeysWithRawResponse(
+                clientConfig,
+                externalKeyId,
+                displayName,
+                geo,
+                providerConfig,
+                options,
+            )
+            .data
     }
-
-
-    /** [updateBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun updateBetaOrganizationsExternalKeysWithRawResponse(clientConfig: ClientConfig, externalKeyId: String, displayName: SdkClient.SdkOptional<String?>? = null, geo: SdkClient.SdkOptional<String?>? = null, providerConfig: SdkClient.SdkOptional<BetaExternalKeyUpdateParamsProviderConfig?>? = null, options: RequestOptions? = null): SdkResponse<BetaExternalKey> {
-        Validation.validateLength("external_key_id", externalKeyId, Validation.LengthOpts(max = 2048))
-
-        return SdkClient.request<BetaExternalKey>(SdkClient.RequestSpec("POST", "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}?beta=true", config = clientConfig, body = SdkClient.bodyMap("display_name" to
-    (displayName ?: SdkClient.SdkOptional.Omitted), "geo" to (geo ?: SdkClient.SdkOptional.Omitted), "provider_config" to
-    (providerConfig ?: SdkClient.SdkOptional.Omitted)), operationId = "updateBetaOrganizationsExternalKeys", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Delete an external key config. The request is rejected if any workspace still references this config.
+     * [updateBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun updateBetaOrganizationsExternalKeysWithRawResponse(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        displayName: SdkClient.SdkOptional<String?>? = null,
+        geo: SdkClient.SdkOptional<String?>? = null,
+        providerConfig: SdkClient.SdkOptional<BetaExternalKeyUpdateParamsProviderConfig?>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaExternalKey> {
+        Validation.validateLength(
+            "external_key_id",
+            externalKeyId,
+            Validation.LengthOpts(max = 2048),
+        )
+
+        return SdkClient.request<BetaExternalKey>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}?beta=true",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "display_name" to (displayName ?: SdkClient.SdkOptional.Omitted),
+                        "geo" to (geo ?: SdkClient.SdkOptional.Omitted),
+                        "provider_config" to (providerConfig ?: SdkClient.SdkOptional.Omitted),
+                    ),
+                operationId = "updateBetaOrganizationsExternalKeys",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Delete an external key config. The request is rejected if any workspace still references this
+     * config.
      *
      * @param externalKeyId ID of the External Key.
      */
-    fun deleteBetaOrganizationsExternalKeys(clientConfig: ClientConfig, externalKeyId: String, options: RequestOptions? = null): BetaDeleteExternalKeyResponse {
-        return deleteBetaOrganizationsExternalKeysWithRawResponse(clientConfig, externalKeyId, options).data
+    fun deleteBetaOrganizationsExternalKeys(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        options: RequestOptions? = null,
+    ): BetaDeleteExternalKeyResponse {
+        return deleteBetaOrganizationsExternalKeysWithRawResponse(
+                clientConfig,
+                externalKeyId,
+                options,
+            )
+            .data
     }
-
-
-    /** [deleteBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun deleteBetaOrganizationsExternalKeysWithRawResponse(clientConfig: ClientConfig, externalKeyId: String, options: RequestOptions? = null): SdkResponse<BetaDeleteExternalKeyResponse> {
-        Validation.validateLength("external_key_id", externalKeyId, Validation.LengthOpts(max = 2048))
-
-        return SdkClient.request<BetaDeleteExternalKeyResponse>(SdkClient.RequestSpec("DELETE", "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}?beta=true", config = clientConfig, operationId = "deleteBetaOrganizationsExternalKeys", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Validate an external key config against the customer's KMS. Anthropic performs an encrypt/decrypt roundtrip against the configured KMS key and waits up to 30 seconds for the result. The response status is `success` if the roundtrip succeeded, or `failure` with an error message if it failed or timed out.
+     * [deleteBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun deleteBetaOrganizationsExternalKeysWithRawResponse(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaDeleteExternalKeyResponse> {
+        Validation.validateLength(
+            "external_key_id",
+            externalKeyId,
+            Validation.LengthOpts(max = 2048),
+        )
+
+        return SdkClient.request<BetaDeleteExternalKeyResponse>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}?beta=true",
+                config = clientConfig,
+                operationId = "deleteBetaOrganizationsExternalKeys",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Validate an external key config against the customer's KMS. Anthropic performs an
+     * encrypt/decrypt roundtrip against the configured KMS key and waits up to 30 seconds for the
+     * result. The response status is `success` if the roundtrip succeeded, or `failure` with an
+     * error message if it failed or timed out.
      *
      * @param externalKeyId ID of the External Key.
      */
-    fun validateBetaOrganizationsExternalKeys(clientConfig: ClientConfig, externalKeyId: String, options: RequestOptions? = null): BetaValidateExternalKeyResponse {
-        return validateBetaOrganizationsExternalKeysWithRawResponse(clientConfig, externalKeyId, options).data
+    fun validateBetaOrganizationsExternalKeys(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        options: RequestOptions? = null,
+    ): BetaValidateExternalKeyResponse {
+        return validateBetaOrganizationsExternalKeysWithRawResponse(
+                clientConfig,
+                externalKeyId,
+                options,
+            )
+            .data
     }
 
+    /**
+     * [validateBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun validateBetaOrganizationsExternalKeysWithRawResponse(
+        clientConfig: ClientConfig,
+        externalKeyId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BetaValidateExternalKeyResponse> {
+        Validation.validateLength(
+            "external_key_id",
+            externalKeyId,
+            Validation.LengthOpts(max = 2048),
+        )
 
-    /** [validateBetaOrganizationsExternalKeys], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun validateBetaOrganizationsExternalKeysWithRawResponse(clientConfig: ClientConfig, externalKeyId: String, options: RequestOptions? = null): SdkResponse<BetaValidateExternalKeyResponse> {
-        Validation.validateLength("external_key_id", externalKeyId, Validation.LengthOpts(max = 2048))
-
-        return SdkClient.request<BetaValidateExternalKeyResponse>(SdkClient.RequestSpec("POST", "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}/validate?beta=true", config = clientConfig, operationId = "validateBetaOrganizationsExternalKeys", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BetaErrorResponse::class.java, "401" to BetaErrorResponse::class.java, "403" to BetaErrorResponse::class.java, "404" to BetaErrorResponse::class.java, "408" to BetaErrorResponse::class.java, "409" to BetaErrorResponse::class.java, "412" to BetaErrorResponse::class.java, "413" to BetaErrorResponse::class.java, "429" to BetaErrorResponse::class.java, "431" to BetaErrorResponse::class.java, "499" to BetaErrorResponse::class.java, "500" to BetaErrorResponse::class.java, "501" to BetaErrorResponse::class.java, "503" to BetaErrorResponse::class.java, "504" to BetaErrorResponse::class.java, "529" to BetaErrorResponse::class.java)))
+        return SdkClient.request<BetaValidateExternalKeyResponse>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/v1/organizations/external_keys/${SdkClient.encodePathSegment(externalKeyId)}/validate?beta=true",
+                config = clientConfig,
+                operationId = "validateBetaOrganizationsExternalKeys",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BetaErrorResponse::class.java,
+                        "401" to BetaErrorResponse::class.java,
+                        "403" to BetaErrorResponse::class.java,
+                        "404" to BetaErrorResponse::class.java,
+                        "408" to BetaErrorResponse::class.java,
+                        "409" to BetaErrorResponse::class.java,
+                        "412" to BetaErrorResponse::class.java,
+                        "413" to BetaErrorResponse::class.java,
+                        "429" to BetaErrorResponse::class.java,
+                        "431" to BetaErrorResponse::class.java,
+                        "499" to BetaErrorResponse::class.java,
+                        "500" to BetaErrorResponse::class.java,
+                        "501" to BetaErrorResponse::class.java,
+                        "503" to BetaErrorResponse::class.java,
+                        "504" to BetaErrorResponse::class.java,
+                        "529" to BetaErrorResponse::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }

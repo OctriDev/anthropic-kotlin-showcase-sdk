@@ -5,20 +5,12 @@ package dev.octri.showcase.anthropic.models
 
 import dev.octri.showcase.anthropic.SdkResource
 
-/**
- * Typed representation of the `BetaEnrollmentUrl` API schema.
- */
+/** Typed representation of the `BetaEnrollmentUrl` API schema. */
 data class BetaEnrollmentUrl(
-    /**
-     * Enrollment URL to send to the end user. Valid until `expires_at`.
-     */
+    /** Enrollment URL to send to the end user. Valid until `expires_at`. */
     val url: String,
-    /**
-     * When this enrollment URL expires, in RFC 3339 format.
-     */
+    /** When this enrollment URL expires, in RFC 3339 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: BetaTimestamp,
-    /**
-     * Object type. Always `enrollment_url`.
-     */
-    val type: BetaEnrollmentUrlTypeEnum
+    /** Object type. Always `enrollment_url`. */
+    val type: BetaEnrollmentUrlTypeEnum,
 ) : SdkResource()
